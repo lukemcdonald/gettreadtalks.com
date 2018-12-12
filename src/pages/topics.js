@@ -26,9 +26,17 @@ export default ({data}) => {
 
 export const pageQuery = graphql`
 	query {
-		allAirtable(filter:{
-			queryName:{eq:"PUBLISHED_TOPICS"}
-		}) {
+		allAirtable(
+			filter:{
+				queryName:{
+					eq:"PUBLISHED_TOPICS"
+				}
+			}
+			sort: {
+				fields:data___name
+				order:ASC
+			}
+		) {
 			edges {
 				node {
 					id
