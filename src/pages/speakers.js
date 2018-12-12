@@ -11,13 +11,15 @@ export default ({data}) => {
 		<Layout>
 			<SEO title="Speakers" keywords={['speakers', 'pastors', 'evangelists']} />
 
-			{posts.map(({node: { id, fields, data: post }}) => (
-				<p id={id} key={id}>
-					<Link to={`/speakers/${fields.slug}`}>
-						{post.name}
-					</Link>
-				</p>
-			))}
+			<ol>
+				{posts.map(({node: { id, fields, data: post }}) => (
+					<li id={id} key={id}>
+						<Link to={`/speakers/${fields.slug}`}>
+							{post.name}
+						</Link>
+					</li>
+				))}
+			</ol>
 		</Layout>
 	)
 }

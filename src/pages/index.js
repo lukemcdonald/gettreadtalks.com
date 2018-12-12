@@ -11,13 +11,15 @@ export default ({data}) => {
 		<Layout>
 			<SEO title="Home" keywords={['treadtalks', 'talks', 'sermons']} />
 
-			{posts.map(({node: { id, fields, data: post }}) => (
-				<p id={id} key={id}>
-					<Link to={`/talks/${fields.slug}`}>
-						{post.title}
-					</Link>
-				</p>
-			))}
+			<ol>
+				{posts.map(({node: { id, fields, data: post }}) => (
+					<li id={id} key={id}>
+						<Link to={`/talks/${fields.slug}`}>
+							{post.title}
+						</Link>
+					</li>
+				))}
+			</ol>
 		</Layout>
 	)
 }

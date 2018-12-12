@@ -6,14 +6,14 @@ import SEO from '../components/seo'
 
 export default (props) => (
   <Layout>
-    <SEO title="Home" keywords={['gatsby', 'application', 'react']} />
-		{props.data.allSitePage.edges.map(({node}) => {
-
-			return (
-			<p key={node.path}>
-				<Link to={node.path}>{node.path}</Link>
-			</p>
-		)})}
+		<SEO title="Home" keywords={['gatsby', 'application', 'react']} />
+		<ol>
+			{props.data.allSitePage.edges.map(({node}) => (
+				<li key={node.path}>
+					<Link to={node.path}>{node.path}</Link>
+				</li>
+			))}
+		</ol>
 	</Layout>
 )
 

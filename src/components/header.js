@@ -26,8 +26,28 @@ const Header = ({ siteTitle }) => (
         >
           {siteTitle}
         </Link>
-      </h1>
-    </div>
+			</h1>
+		</div>
+		<div style={{
+			background: 'white',
+			borderBottom: '1px solid rebeccapurple'
+		}}>
+
+    <div
+      style={{
+        margin: '0 auto',
+        maxWidth: 960,
+        padding: '1.45rem 1.0875rem',
+      }}
+    >
+				<Link to="/talks">Talks</Link> |
+				<Link to="/talks/featured">Featured Talks</Link> |
+				<Link to="/speakers">Speakers</Link> |
+				<Link to="/topics">Topics</Link> |
+				<Link to="/testing">Testing</Link>
+		</div>
+		</div>
+
   </div>
 )
 

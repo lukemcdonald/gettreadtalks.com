@@ -11,22 +11,33 @@ export default ({data}) => {
 		<Layout>
 			<SEO title="Talks" keywords={['talks', 'sermons', 'treadtalks']} />
 
-			{posts.map(({node: { id, fields, data: post }}) => (
-				<p id={id} key={id}>
-					<Link to={`/talks/${fields.slug}`}>
-						{post.title}
-					</Link>
-				</p>
-			))}
+			<ol>
+				{posts.map(({node: { id, fields, data: post }}) => (
+					<li id={id} key={id}>
+						<Link to={`/talks/${fields.slug}`}>
+							{post.title}
+						</Link>
+					</li>
+				))}
+			</ol>
 		</Layout>
 	)
 }
 
 export const pageQuery = graphql`
 	query {
-		allAirtable(filter:{
-			queryName:{eq:"PUBLISHED_TALKS"}
-		}) {
+		allAirtable(
+			limit: 100
+			filter:{
+				queryName:{
+					eq:"PUBLISHED_TALKS"
+				}
+			}
+			sort: {
+				fields:data___publishedDate
+				order:DESC
+			}
+		) {
 			edges {
 				node {
 					id
