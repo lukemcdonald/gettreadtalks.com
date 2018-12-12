@@ -10,7 +10,7 @@ const toSlug = (string) => {
 
   // remove accents, swap ñ for n, etc
   const from = "åàáãäâèéëêìíïîòóöôùúüûñç·/_,:;";
-  const to = "aaaaaaeeeeiiiioooouuuunc------";
+  const to   = "aaaaaaeeeeiiiioooouuuunc------";
 
   for (var i = 0, l = from.length; i < l; i++) {
     str = str.replace(new RegExp(from.charAt(i), "g"), to.charAt(i));
@@ -42,7 +42,7 @@ exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
 
   return new Promise((resolve, reject) => {
-		function resolvePage(result, { queryName, templatePath, urlPath = '' }) {
+		const resolvePage = (result, { queryName, templatePath, urlPath = '' }) => {
 			const { data, errors } = result;
 
 			if (errors) {
@@ -59,7 +59,7 @@ exports.createPages = ({ graphql, actions }) => {
 					component: slash(template),
 					context: {
 						id,
-						title: data.title
+						title: data.title,
 					}
 				});
 			});

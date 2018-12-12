@@ -55,14 +55,10 @@ module.exports = {
 				tables: [
 					{
 						baseId: process.env.AIRTABLE_BASE,
-						tableName: `Speakers`,
-						tableView: `Published`,
-						queryName: `PUBLISHED_SPEAKERS`,
-						mapping: {
-							avatar: `fileNode`,
-							banner: `fileNode`,
-							description: `text/markdown`
-						}
+						tableName: `Talks`,
+						tableView: `All Talks`,
+						queryName: `ALL_TALKS`,
+						tableLinks: [`speakers`, `topics`]
 					},
 					{
 						baseId: process.env.AIRTABLE_BASE,
@@ -73,9 +69,41 @@ module.exports = {
 					},
 					{
 						baseId: process.env.AIRTABLE_BASE,
+						tableName: `Speakers`,
+						tableView: `All Speakers`,
+						queryName: `ALL_SPEAKERS`,
+						tableLinks: [`talks`],
+						mapping: {
+							avatar: `fileNode`,
+							banner: `fileNode`,
+							description: `text/markdown`
+						}
+					},
+					{
+						baseId: process.env.AIRTABLE_BASE,
+						tableName: `Speakers`,
+						tableView: `Published`,
+						queryName: `PUBLISHED_SPEAKERS`,
+						tableLinks: [`talks`],
+						mapping: {
+							avatar: `fileNode`,
+							banner: `fileNode`,
+							description: `text/markdown`
+						}
+					},
+					{
+						baseId: process.env.AIRTABLE_BASE,
+						tableName: `Topics`,
+						tableView: `All Topics`,
+						queryName: `ALL_TOPICS`,
+						tableLinks: [`talks`]
+					},
+					{
+						baseId: process.env.AIRTABLE_BASE,
 						tableName: `Topics`,
 						tableView: `Published`,
 						queryName: `PUBLISHED_TOPICS`,
+						tableLinks: [`talks`]
 					}
 				]
 			}
