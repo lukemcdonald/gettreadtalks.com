@@ -56,11 +56,13 @@ exports.createPages = ({ graphql, actions }) => {
 			const template = path.resolve(templatePath);
 
 			data[queryName].edges.forEach(({node}) => {
+				const {name, title} = node.data;
+
 				createPage({
 					path: `${urlPath}/${node.fields.slug}`,
 					component: slash(template),
 					context: {
-						title: node.data.title,
+						title: name || title,
 					}
 				});
 			});
@@ -91,6 +93,61 @@ exports.createPages = ({ graphql, actions }) => {
 					templatePath: './src/templates/talk.js',
 					urlPath: '/talks',
 				});
+			})
+
+			// Speakers
+
+			.then(() => {
+				graphql(`
+				{
+					allAirtable( filter: { queryName: { eq: "PUBLISHED_SPEAKERS" } } ) {
+						edges {
+							node {
+								data {
+									name
+								}
+								fields {
+									slug
+								}
+							}
+						}
+					}
+				}
+			`).then(result => {
+					resolvePage(result, {
+						queryName: 'allAirtable',
+						templatePath: './src/templates/speaker.js',
+						urlPath: '/speakers',
+					});
+				})
+			})
+
+			// TOPICS
+
+			.then(() => {
+				graphql(`
+				{
+					allAirtable( filter: { queryName: { eq: "PUBLISHED_TOPICS" } } ) {
+						edges {
+							node {
+								data {
+									name
+								}
+								fields {
+									slug
+								}
+							}
+						}
+					}
+				}
+			`)
+				.then(result => {
+					resolvePage(result, {
+						queryName: 'allAirtable',
+						templatePath: './src/templates/topic.js',
+						urlPath: '/topics',
+					});
+				})
 			})
   });
 };
