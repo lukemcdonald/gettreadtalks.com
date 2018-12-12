@@ -71,7 +71,7 @@ exports.createPages = ({ graphql, actions }) => {
     resolve(
       graphql(`
 				{
-					allAirtable(filter: { table: { eq: "Talks" } }) {
+					allAirtable(filter: { queryName: { eq: "PUBLISHED_TALKS" } }) {
 						edges {
 							node {
 								id

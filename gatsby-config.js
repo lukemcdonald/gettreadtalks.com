@@ -69,6 +69,13 @@ module.exports = {
 					},
 					{
 						baseId: process.env.AIRTABLE_BASE,
+						tableName: `Talks`,
+						tableView: `Favorites`,
+						queryName: `FEATURED_TALKS`,
+						tableLinks: [`speakers`, `topics`]
+					},
+					{
+						baseId: process.env.AIRTABLE_BASE,
 						tableName: `Speakers`,
 						tableView: `All Speakers`,
 						queryName: `ALL_SPEAKERS`,
