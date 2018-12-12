@@ -5,7 +5,7 @@ import Layout from '../components/layout'
 import SEO from '../components/seo'
 
 export default ({data}) => {
-	const posts = data.allAirtable.edges;
+	const { edges: posts } = data.allAirtable;
 
 	return (
 		<Layout>
