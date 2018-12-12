@@ -4,23 +4,16 @@ import { Link, graphql } from 'gatsby'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 
-const IndexPage = (props) => {
-
-	console.log(props);
-
-	return (
-		<Layout>
-			<SEO title="Home" keywords={['gatsby', 'application', 'react']} />
-			{props.data.allAirtable.edges.map(edge => (
-				<p key={edge.node.data.title}>
-					{edge.node.data.title}
-				</p>
-			))}
-		</Layout>
-	)
-}
-
-export default IndexPage;
+export default (props) => (
+	<Layout>
+		<SEO title="Home" keywords={['gatsby', 'application', 'react']} />
+		{props.data.allAirtable.edges.map(edge => (
+			<p key={edge.node.data.title}>
+				{edge.node.data.title}
+			</p>
+		))}
+	</Layout>
+)
 
 export const pageQuery = graphql`
 	query {
