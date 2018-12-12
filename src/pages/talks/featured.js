@@ -1,15 +1,15 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
 
-import Layout from '../components/layout'
-import SEO from '../components/seo'
+import Layout from '../../components/layout'
+import SEO from '../../components/seo'
 
 export default ({data}) => {
 	const { edges: posts } = data.allAirtable;
 
 	return (
 		<Layout>
-			<SEO title="Home" keywords={['treadtalks', 'talks', 'sermons']} />
+			<SEO title="Featured Talks" keywords={['talks', 'sermons', 'treadtalks']} />
 
 			{posts.map(({node: { id, fields, data: post }}) => (
 				<p id={id} key={id}>
@@ -24,10 +24,9 @@ export default ({data}) => {
 
 export const pageQuery = graphql`
 	query {
-		allAirtable(
-			limit: 5
-			filter:{queryName:{eq:"PUBLISHED_TALKS"}}
-		) {
+		allAirtable(filter:{
+			queryName:{eq:"FEATURED_TALKS"}
+		}) {
 			edges {
 				node {
 					id
