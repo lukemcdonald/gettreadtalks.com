@@ -10,8 +10,8 @@ export default ( props ) => {
 }
 
 export const pageQuery = graphql`
-  query getSpeakerByName($title: String!) {
-    airtable(table: { eq: "Speakers" }, data: { name: { eq: $title } }) {
+  query($id: String!) {
+    airtable(id:{eq: $id}) {
       id
       data {
 				name

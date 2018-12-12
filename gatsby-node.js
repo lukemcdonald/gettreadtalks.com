@@ -56,14 +56,12 @@ exports.createPages = ({ graphql, actions }) => {
 			const template = path.resolve(templatePath);
 
 			data[queryName].edges.forEach(({node}) => {
-				const {name, title} = node.data;
+				const { id, fields } = node;
 
 				createPage({
-					path: `${urlPath}/${node.fields.slug}`,
+					path: `${urlPath}/${fields.slug}`,
 					component: slash(template),
-					context: {
-						title: name || title,
-					}
+					context: { id	}
 				});
 			});
 
@@ -77,9 +75,7 @@ exports.createPages = ({ graphql, actions }) => {
 				allAirtable( filter: { queryName: { eq: "PUBLISHED_TALKS" } } ) {
 					edges {
 						node {
-							data {
-								title
-							}
+							id
 							fields {
 								slug
 							}
@@ -103,9 +99,7 @@ exports.createPages = ({ graphql, actions }) => {
 					allAirtable( filter: { queryName: { eq: "PUBLISHED_SPEAKERS" } } ) {
 						edges {
 							node {
-								data {
-									name
-								}
+								id
 								fields {
 									slug
 								}
@@ -130,9 +124,7 @@ exports.createPages = ({ graphql, actions }) => {
 					allAirtable( filter: { queryName: { eq: "PUBLISHED_TOPICS" } } ) {
 						edges {
 							node {
-								data {
-									name
-								}
+								id
 								fields {
 									slug
 								}
