@@ -27,13 +27,16 @@ const toSlug = (string) => {
 }
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions;
+	const { createNodeField } = actions;
+	const airtableTables = ['Speakers', 'Talks', 'Topics'];
 
-  if (node.internal.type === `Airtable` && node.table === `Talks`) {
-    createNodeField({
+  if (node.internal.type === `Airtable` && airtableTables.includes(node.table)) {
+		const { name, title } = node.data;
+
+		createNodeField({
 			node,
 			name: `slug`,
-			value: toSlug(node.data.title)
+			value: toSlug(name || title)
 		});
   }
 };
@@ -52,14 +55,12 @@ exports.createPages = ({ graphql, actions }) => {
 
 			const template = path.resolve(templatePath);
 
-			data[queryName].edges.forEach(edge => {
-				const { id, fields, data } = edge.node;
+			data[queryName].edges.forEach(({node}) => {
 				createPage({
-					path: `${urlPath}/${fields.slug}`,
+					path: `${urlPath}/${node.fields.slug}`,
 					component: slash(template),
 					context: {
-						id,
-						title: data.title,
+						title: node.data.title,
 					}
 				});
 			});
@@ -67,31 +68,29 @@ exports.createPages = ({ graphql, actions }) => {
 			resolve();
 		}
 
-    // Query for all markdown "nodes" and for the slug we previously created.
-    resolve(
-      graphql(`
-				{
-					allAirtable(filter: { queryName: { eq: "PUBLISHED_TALKS" } }) {
-						edges {
-							node {
-								id
-								data {
-									title
-								}
-								fields {
-									slug
-								}
+		// TALKS
+
+		graphql(`
+			{
+				allAirtable( filter: { queryName: { eq: "PUBLISHED_TALKS" } } ) {
+					edges {
+						node {
+							data {
+								title
+							}
+							fields {
+								slug
 							}
 						}
 					}
 				}
-			`).then(result => {
+			}
+		`).then(result => {
 				resolvePage(result, {
 					queryName: 'allAirtable',
 					templatePath: './src/templates/talk.js',
 					urlPath: '/talks',
 				});
-      })
-    );
+			})
   });
 };
