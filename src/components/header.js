@@ -1,62 +1,55 @@
-import { Link } from 'gatsby'
-import PropTypes from 'prop-types'
-import React from 'react'
+/* global tw */
+import styled from 'styled-components';
+
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'gatsby';
+
+import Logo from './logo';
+import Nav from './nav';
+
+const SiteHeader = styled('header')`
+	${tw`bg-white clearfix border-t-4 pt-1 border-brand`};
+`;
+
+const Container = styled('div')`
+	${tw`container px-4 mx-auto`};
+`;
+
+const NavBar = styled('nav')`
+	${tw`block my-4 md:flex`};
+`;
+
+const SiteTitle = styled('h1')`
+	${tw`flex justify-center items-center md:justify-start md:w-1/2`};
+`;
+
+const SiteLogo = styled(Logo)`
+	${tw`h-8`};
+`;
 
 const Header = ({ siteTitle }) => (
-  <div
-    style={{
-      background: 'rebeccapurple',
-      marginBottom: '1.45rem',
-    }}
-  >
-    <div
-      style={{
-        margin: '0 auto',
-        maxWidth: 960,
-        padding: '1.45rem 1.0875rem',
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: 'white',
-            textDecoration: 'none',
-          }}
-        >
-          {siteTitle}
-        </Link>
-			</h1>
-		</div>
-		<div style={{
-			background: 'white',
-			borderBottom: '1px solid rebeccapurple'
-		}}>
-
-    <div
-      style={{
-        margin: '0 auto',
-        maxWidth: 960,
-        padding: '1.45rem 1.0875rem',
-      }}
-    >
-				<Link to="/talks">Talks</Link> |
-				<Link to="/talks/featured">Featured Talks</Link> |
-				<Link to="/speakers">Speakers</Link> |
-				<Link to="/topics">Topics</Link> |
-				<Link to="/testing">Testing</Link>
-		</div>
-		</div>
-
-  </div>
-)
+	<SiteHeader>
+		<Container>
+			<NavBar>
+				<SiteTitle>
+					<Link to="/">
+						<SiteLogo />
+						<span className="visuallyhidden">{siteTitle}</span>
+					</Link>
+				</SiteTitle>
+				<Nav />
+			</NavBar>
+		</Container>
+	</SiteHeader>
+);
 
 Header.propTypes = {
-  siteTitle: PropTypes.string,
-}
+	siteTitle: PropTypes.string,
+};
 
 Header.defaultProps = {
-  siteTitle: '',
-}
+	siteTitle: '',
+};
 
-export default Header
+export default Header;

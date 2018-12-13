@@ -1,47 +1,39 @@
-import React from 'react'
-import { Link, graphql } from 'gatsby'
+import React from 'react';
+import { Link, graphql } from 'gatsby';
 
-import Layout from '../../components/layout'
-import SEO from '../../components/seo'
+import Layout from '../../layouts';
+import SEO from '../../components/seo';
 
-export default ({data}) => {
+export default ({ data }) => {
 	const { edges: posts } = data.allAirtable;
 
 	return (
 		<Layout>
-			<SEO title="Featured Talks" keywords={['talks', 'sermons', 'treadtalks']} />
+			<SEO
+				title="Featured Talks"
+				keywords={['talks', 'sermons', 'treadtalks']}
+			/>
 
 			<ol>
-				{posts.map(({node: { id, fields, data: post }}) => (
-					<li id={id} key={id}>
-						<Link to={`/talks/${fields.slug}`}>
-							{post.title}
-						</Link>
+				{posts.map(({ node: { id, fields, data: post } }) => (
+					<li key={id} id={id}>
+						<Link to={`/talks/${fields.slug}`}>{post.title}</Link>
 					</li>
 				))}
 			</ol>
 		</Layout>
-	)
-}
+	);
+};
 
 export const pageQuery = graphql`
 	query {
 		allAirtable(
-      filter:{
-        queryName:{
-          eq:"PUBLISHED_TALKS"
-        }
-        data:{
-          favorite:{
-						eq:true
-          }
-				}
-      }
-      sort: {
-        fields:data___publishedDate
-        order:DESC
-      }
-    ) {
+			filter: {
+				queryName: { eq: "PUBLISHED_TALKS" }
+				data: { favorite: { eq: true } }
+			}
+			sort: { fields: data___publishedDate, order: DESC }
+		) {
 			edges {
 				node {
 					id
@@ -49,7 +41,7 @@ export const pageQuery = graphql`
 						title
 						link
 						scripture
-            favorite
+						favorite
 						speakers {
 							id
 							data {
