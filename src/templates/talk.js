@@ -6,7 +6,6 @@ import SEO from '../components/seo';
 
 export default props => {
 	const { data: post } = props.data.airtable;
-	console.log(props);
 
 	return (
 		<Layout>
