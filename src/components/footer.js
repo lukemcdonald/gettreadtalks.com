@@ -1,13 +1,20 @@
+/* global tw */
+import styled from 'styled-components';
+
 import React from 'react';
 import PropTypes from 'prop-types';
 
+const Container = styled('section')`
+	${tw`container py-10 px-4 mx-auto`}
+`;
+
 const Footer = ({ siteTitle }) => (
 	<footer>
-		<section className="container py-10 px-4 mx-auto">
+		<Container>
 			<p>
 				©{siteTitle} {new Date().getFullYear()}
 			</p>
-		</section>
+		</Container>
 	</footer>
 );
 

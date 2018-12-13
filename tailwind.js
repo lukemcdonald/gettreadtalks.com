@@ -43,8 +43,9 @@ View the full documentation at https://tailwindcss.com.
 */
 
 let colors = {
-	transparent: 'transparent',
+	current: 'currentColor',
 	inherit: 'inherit',
+	transparent: 'transparent',
 
 	white: '#ffffff',
 	'grey-lightest': '#fbf8f8',
@@ -753,8 +754,8 @@ module.exports = {
 		minHeight: ['responsive'],
 		minWidth: ['responsive'],
 		negativeMargin: ['responsive'],
-    objectFit: ['responsive'],
-    objectPosition: false,
+		objectFit: ['responsive'],
+		objectPosition: false,
 		opacity: ['responsive'],
 		outline: ['focus'],
 		overflow: ['responsive'],

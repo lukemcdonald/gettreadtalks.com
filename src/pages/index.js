@@ -3,6 +3,7 @@ import { Link, graphql } from 'gatsby';
 
 import Layout from '../layouts';
 import SEO from '../components/seo';
+import Intro from '../components/intro';
 
 export default ({ data }) => {
 	const { edges: posts } = data.allAirtable;
@@ -10,6 +11,12 @@ export default ({ data }) => {
 	return (
 		<Layout>
 			<SEO title="Home" keywords={['treadtalks', 'talks', 'sermons']} />
+
+			<Intro
+				title="Workout your salvation."
+				text="Weekly sermons to elevate your spiritual heartbeat."
+				image={require('../assets/images/bg-intro.jpg')}
+			/>
 
 			<ol>
 				{posts.map(({ node: { id, fields, data: post } }) => (

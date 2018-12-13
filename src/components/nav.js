@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import React from 'react';
 import { Link } from 'gatsby';
 
+import { PrimaryButton } from './styled/button';
+
 const links = [
 	{ label: 'About', path: '/about' },
 	{ label: 'Speakers', path: '/speakers' },
@@ -36,8 +38,8 @@ export default () => (
 				{link.label}
 			</NavLink>
 		))}
-		<a href="http://eepurl.com/dNtF3U" className="button button--primary">
+		<PrimaryButton as="a" href="http://eepurl.com/dNtF3U">
 			Subscribe
-		</a>
+		</PrimaryButton>
 	</Nav>
 );
