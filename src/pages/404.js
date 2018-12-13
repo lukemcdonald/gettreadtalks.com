@@ -2,21 +2,26 @@
 import styled from 'styled-components';
 import React from 'react';
 
-import DefaultLayout from '../layouts';
+import Layout from '../layouts';
 import SEO from '../components/seo';
 import Intro from '../components/intro';
 
-const Layout = styled(DefaultLayout)`
-	${tw`bg-grey-lightest`}
+import {
+	Container as ContainerStyle,
+	Section,
+} from '../components/styled/layout';
+
+const Container = styled(ContainerStyle)`
+	${tw`-mt-24 pb-16 relative`}
 `;
-const Container = styled('div')`
-	${tw`container pb-16 px-4 mx-auto relative -mt-24`}
-`;
-const Section = styled('div')`
-	${tw`mx-auto max-w-md w-full`}
-`;
+
 const GospelVideo = styled('figure')`
-	${tw`responsive-media aspect-16x9 mb-16 rounded overflow-hidden shadow-lg`}
+	${tw`bg-white mb-16 relative rounded overflow-hidden shadow-lg`}
+	padding-bottom: 56.25%;
+
+	& > iframe {
+		${tw`absolute pin`};
+	}
 `;
 
 export default () => (
@@ -25,7 +30,7 @@ export default () => (
 
 		<Intro
 			title="Are you lost?"
-			text="Sorry, the page you are looking for no longer exists."
+			text="Sorry, but the page you are looking for cannot be found nor has it evolved into something else."
 			image={require('../assets/images/bg-intro.jpg')}
 		/>
 

@@ -1,10 +1,9 @@
-/* global tw */
-import styled from 'styled-components';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StaticQuery, graphql } from 'gatsby';
 
 import { GlobalStyles } from '../components/styled/global';
+import { Page, Main } from '../components/styled/layout';
 import Header from '../components/header';
 import Footer from '../components/footer';
 
@@ -36,12 +35,4 @@ export const SITE_TITLE_QUERY = graphql`
 			}
 		}
 	}
-`;
-
-export const Page = styled.div`
-	${tw`app flex flex-col font-sans min-h-screen`};
-`;
-
-export const Main = styled.main`
-	${tw`flex-grow`};
 `;

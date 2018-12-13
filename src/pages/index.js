@@ -2,11 +2,11 @@ import React from 'react';
 import { Link, graphql } from 'gatsby';
 
 import Layout from '../layouts';
-import SEO from '../components/seo';
 import Intro from '../components/intro';
+import SEO from '../components/seo';
 
 export default ({ data }) => {
-	const { edges: posts } = data.allAirtable;
+	const { edges: posts = [] } = data.allAirtable;
 
 	return (
 		<Layout>

@@ -1,6 +1,7 @@
 /* global tw */
 import styled from 'styled-components';
 import { screens } from '../../../tailwind';
+import { Container } from './layout';
 
 export const IntroMedia = styled('figure')`
 	${tw`h-full object-cover relative`}
@@ -16,15 +17,16 @@ export const IntroMedia = styled('figure')`
 `;
 
 export const IntroImage = styled('img')`
-	${tw`w-full h-full md:h-auto opacity-75`}
+	${tw` h-full opacity-75 w-full`}
+	${tw` md:h-auto`}
 `;
 
 export const IntroImageOverlay = styled('span')`
-	${tw`absolute pin bg-grey-lightest opacity-75`}
+	${tw`absolute bg-grey-lightest opacity-75 pin`}
 `;
 
-export const IntroBody = styled('div')`
-	${tw`mx-auto max-w-md px-4 py-16 relative w-full`}
+export const IntroBody = styled(Container)`
+	${tw`max-w-md py-16 relative`}
 `;
 
 export const IntroTitle = styled('h1')`
@@ -36,7 +38,7 @@ export const IntroText = styled('div')`
 `;
 
 export const Intro = styled('div')`
-	${tw`intro bg-cover bg-grey-lightest overflow-hidden text-grey-darkest text-center`}
+	${tw`bg-cover bg-grey-lightest overflow-hidden text-grey-darkest text-center`}
 
 	display: grid;
 	grid-template-areas: 'intro';

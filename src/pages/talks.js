@@ -2,14 +2,20 @@ import React from 'react';
 import { Link, graphql } from 'gatsby';
 
 import Layout from '../layouts';
+import Intro from '../components/intro';
 import SEO from '../components/seo';
 
 export default ({ data }) => {
-	const { edges: posts } = data.allAirtable;
+	const { edges: posts = [] } = data.allAirtable;
 
 	return (
 		<Layout>
 			<SEO title="Talks" keywords={['talks', 'sermons', 'treadtalks']} />
+
+			<Intro
+				title="Talks"
+				text="Weekly sermons to elevate your spiritual heartbeat."
+			/>
 
 			<ol>
 				{posts.map(({ node: { id, fields, data: post } }) => (

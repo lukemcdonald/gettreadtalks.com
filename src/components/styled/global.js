@@ -33,6 +33,10 @@ export const GlobalStyles = createGlobalStyle`
 		${tw`m-0`}
 	}
 
+	.aspect-16x9 {
+		padding-bottom: 56.25%;
+	}
+
 	.visuallyhidden {
 		border: 0;
 		clip: rect(1px, 1px, 1px, 1px);
