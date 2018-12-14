@@ -17,7 +17,7 @@ const TalkContainer = styled('div')`
 	${tw`flex items-center`}
 `;
 
-const TalkBody = styled('figure')`
+const TalkBody = styled('div')`
 	${tw`flex-grow`}
 `;
 

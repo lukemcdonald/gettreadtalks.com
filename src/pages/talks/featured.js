@@ -1,8 +1,12 @@
 import React from 'react';
-import { Link, graphql } from 'gatsby';
+import { graphql } from 'gatsby';
 
 import Layout from '../../layouts';
+import Intro from '../../components/intro';
 import SEO from '../../components/seo';
+import { Section } from '../../components/styled/layout';
+import Talks from '../../components/talks';
+import TalksNav from '../../components/talks/nav';
 
 export default ({ data }) => {
 	const { edges: posts } = data.allAirtable;
@@ -10,17 +14,22 @@ export default ({ data }) => {
 	return (
 		<Layout>
 			<SEO
-				title="Featured Talks"
-				keywords={['talks', 'sermons', 'treadtalks']}
+				title="Talks"
+				keywords={['featured', 'talks', 'sermons', 'treadtalks']}
 			/>
+			<Intro
+				title="Featured Talks"
+				text="Staff picked talks to elevate your spiritual heartbeat."
+			/>
+			<div className="container has-subnav mx-auto pb-16 px-4 relative">
+				<Section>
+					<TalksNav />
+				</Section>
 
-			<ol>
-				{posts.map(({ node: { id, fields, data: post } }) => (
-					<li key={id} id={id}>
-						<Link to={`/talks/${fields.slug}`}>{post.title}</Link>
-					</li>
-				))}
-			</ol>
+				<Section>
+					<Talks data={posts} />
+				</Section>
+			</div>
 		</Layout>
 	);
 };
@@ -46,6 +55,18 @@ export const pageQuery = graphql`
 							id
 							data {
 								name
+								avatar {
+									localFiles {
+										childImageSharp {
+											fluid(maxWidth: 128) {
+												...GatsbyImageSharpFluid_tracedSVG
+											}
+										}
+									}
+								}
+							}
+							fields {
+								slug
 							}
 						}
 					}

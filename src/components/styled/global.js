@@ -37,6 +37,12 @@ export const GlobalStyles = createGlobalStyle`
 		padding-bottom: 56.25%;
 	}
 
+	.trans {
+		transition-duration: 0.25s;
+		transition-property: all;
+		transition-timing-function: ease-in-out;
+	}
+
 	.visuallyhidden {
 		border: 0;
 		clip: rect(1px, 1px, 1px, 1px);
