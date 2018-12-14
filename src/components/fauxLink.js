@@ -2,9 +2,9 @@
 import styled from 'styled-components';
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'gatsby';
+import { Link as GatsbyLink } from 'gatsby';
 
-const Anchor = styled('a')`
+const Link = styled(GatsbyLink)`
 	${tw`block pin absolute`}
 `;
 
@@ -12,15 +12,15 @@ const FauxLink = ({ href, to, text }) => {
 	return (
 		<Fragment>
 			{to && (
-				<Anchor as={Link} to={to}>
+				<Link to={to}>
 					<span className="visuallyhidden">{text}</span>
-				</Anchor>
+				</Link>
 			)}
 
 			{href && (
-				<Anchor href={href} rel="noopener noreferrer" target="_blank">
+				<Link as="a" href={href} rel="noopener noreferrer" target="_blank">
 					<span className="visuallyhidden">{text}</span>
-				</Anchor>
+				</Link>
 			)}
 		</Fragment>
 	);

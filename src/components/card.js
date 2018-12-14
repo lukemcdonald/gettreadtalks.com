@@ -9,6 +9,10 @@ export const Card = styled('article')`
 	&.enable-hover-style {
 		${tw`hover:border-brand hover:shadow-lg`}
 	}
+
+	header > :last-child {
+		margin-bottom: 0;
+	}
 `;
 
 export const CardInside = styled('div')`

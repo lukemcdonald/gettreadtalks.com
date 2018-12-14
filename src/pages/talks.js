@@ -4,7 +4,7 @@ import { graphql } from 'gatsby';
 import Layout from '../layouts';
 import Intro from '../components/intro';
 import SEO from '../components/seo';
-import { Section } from '../components/styled/layout';
+import { Container, Section } from '../components/styled/layout';
 import Talks from '../components/talks';
 import TalksNav from '../components/talks/nav';
 
@@ -20,7 +20,7 @@ export default ({ data }) => {
 				text="Weekly sermons to elevate your spiritual heartbeat."
 			/>
 
-			<div className="container has-subnav mx-auto pb-16 px-4 relative">
+			<Container className="has-subnav">
 				<Section>
 					<TalksNav />
 				</Section>
@@ -28,7 +28,7 @@ export default ({ data }) => {
 				<Section>
 					<Talks data={posts} />
 				</Section>
-			</div>
+			</Container>
 		</Layout>
 	);
 };

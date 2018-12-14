@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { screens } from '../../../tailwind';
 
 export const Container = styled('div')`
-	${tw`mx-auto px-4 w-full`}
+	${tw`mx-auto px-4 relative w-full`}
 
 	@media (min-width: ${screens.sm}) {
 		max-width: ${screens.sm};

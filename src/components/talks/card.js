@@ -9,36 +9,33 @@ import CardAvatar from '../cardAvatar';
 import FauxLink from '../fauxLink';
 import { MetaText, MetaSep, MetaLink } from '../styled/meta';
 
+const Container = styled('div')`
+	${tw`flex items-center`}
+`;
+const Body = styled('div')`
+	${tw`flex-grow`}
+`;
+const Title = styled('h2')`
+	${tw`font-bold mb-1 text-black text-xl`}
+`;
 const SpeakerLink = styled(MetaLink)`
 	${tw`relative z-10`}
 `;
 
-const TalkContainer = styled('div')`
-	${tw`flex items-center`}
-`;
-
-const TalkBody = styled('div')`
-	${tw`flex-grow`}
-`;
-
-const TalkTitle = styled('h2')`
-	${tw`font-bold mb-1 text-black text-xl`}
-`;
-
-const TalkCard = ({ talk }) => {
-	const { link, scripture, speakers, title } = talk;
+const TalkCard = ({ post }) => {
+	const { link, scripture, speakers, title } = post;
 
 	return (
 		<Card>
-			<TalkContainer>
+			<Container>
 				{speakers.map(({ id, data }) => (
 					<CardAvatar key={id} data={data.avatar} title={data.name} />
 				))}
 
-				<TalkBody>
+				<Body>
 					{title && (
 						<header>
-							<TalkTitle>{title}</TalkTitle>
+							<Title>{title}</Title>
 						</header>
 					)}
 
@@ -59,8 +56,8 @@ const TalkCard = ({ talk }) => {
 							</MetaText>
 						)}
 					</footer>
-				</TalkBody>
-			</TalkContainer>
+				</Body>
+			</Container>
 
 			<FauxLink href={link} text={`Listen to ${title}`} />
 		</Card>
@@ -68,7 +65,7 @@ const TalkCard = ({ talk }) => {
 };
 
 TalkCard.propTypes = {
-	talk: PropTypes.object.isRequired,
+	post: PropTypes.object.isRequired,
 	slug: PropTypes.string.isRequired,
 };
 

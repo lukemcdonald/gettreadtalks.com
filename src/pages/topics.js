@@ -1,23 +1,30 @@
 import React from 'react';
-import { Link, graphql } from 'gatsby';
+import { graphql } from 'gatsby';
 
 import Layout from '../layouts';
+import Intro from '../components/intro';
 import SEO from '../components/seo';
+import { Container, Section } from '../components/styled/layout';
+import Topics from '../components/topics';
 
 export default ({ data }) => {
 	const { edges: posts = [] } = data.allAirtable;
 
 	return (
 		<Layout>
-			<SEO title="Topics" keywords={['topics']} />
+			<SEO
+				title="Topics"
+				description="A list of topics with published talks."
+				keywords={['topics']}
+			/>
 
-			<ol>
-				{posts.map(({ node: { id, fields, data: post } }) => (
-					<li key={id} id={id}>
-						<Link to={`/topics/${fields.slug}`}>{post.name}</Link>
-					</li>
-				))}
-			</ol>
+			<Intro title="Topics" />
+
+			<Container>
+				<Section>
+					<Topics data={posts} />
+				</Section>
+			</Container>
 		</Layout>
 	);
 };

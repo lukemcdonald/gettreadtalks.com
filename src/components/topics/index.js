@@ -1,10 +1,10 @@
 import React, { Fragment } from 'react';
-import Talk from './card';
+import Topic from './card';
 
 export default ({ data: posts }) => (
 	<Fragment>
 		{posts.map(({ node: post }) => (
-			<Talk key={post.id} post={post.data} slug={post.fields.slug} />
+			<Topic key={post.id} post={post.data} slug={post.fields.slug} />
 		))}
 	</Fragment>
 );
