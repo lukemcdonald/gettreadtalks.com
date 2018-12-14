@@ -25,7 +25,7 @@ const GospelVideo = styled('figure')`
 `;
 
 export default () => (
-	<Layout className="bg-grey-lightest">
+	<Layout>
 		<SEO title="404: Not found" />
 
 		<Intro

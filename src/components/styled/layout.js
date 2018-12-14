@@ -19,7 +19,8 @@ export const Container = styled('div')`
 `;
 
 export const Main = styled('main')`
-	${tw`flex-grow bg-grey-lightest`};
+	${tw`flex-grow`};
+	${props => (props.bg ? tw`bg-${props.bg}` : tw`bg-grey-lightest`)};
 `;
 
 export const Section = styled('div')`
@@ -27,5 +28,5 @@ export const Section = styled('div')`
 `;
 
 export const Page = styled('div')`
-	${tw`app flex flex-col font-sans min-h-screen`};
+	${tw`flex flex-col font-sans min-h-screen`};
 `;

@@ -7,15 +7,15 @@ import { Page, Main } from '../components/styled/layout';
 import Header from '../components/header';
 import Footer from '../components/footer';
 
-const Layout = ({ children }) => (
+const Layout = ({ children, header, main, footer }) => (
 	<StaticQuery
 		query={SITE_TITLE_QUERY}
 		render={data => (
 			<Page>
 				<GlobalStyles />
-				<Header siteTitle={data.site.siteMetadata.title} />
-				<Main>{children}</Main>
-				<Footer siteTitle={data.site.siteMetadata.title} />
+				<Header {...main} siteTitle={data.site.siteMetadata.title} />
+				<Main {...main}>{children}</Main>
+				<Footer {...main} siteTitle={data.site.siteMetadata.title} />
 			</Page>
 		)}
 	/>
