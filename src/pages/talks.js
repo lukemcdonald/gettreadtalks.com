@@ -11,6 +11,8 @@ import TalksNav from '../components/talks/nav';
 export default ({ data }) => {
 	const { edges: posts = [] } = data.allAirtable;
 
+	console.log(posts);
+
 	return (
 		<Layout>
 			<SEO title="Talks" keywords={['talks', 'sermons', 'treadtalks']} />
@@ -36,19 +38,24 @@ export default ({ data }) => {
 export const pageQuery = graphql`
 	query {
 		allAirtable(
-			limit: 100
 			filter: { queryName: { eq: "PUBLISHED_TALKS" } }
 			sort: { fields: data___publishedDate, order: DESC }
 		) {
 			edges {
 				node {
 					id
+					fields {
+						slug
+					}
 					data {
 						title
 						link
 						scripture
 						speakers {
 							id
+							fields {
+								slug
+							}
 							data {
 								name
 								avatar {
@@ -61,13 +68,7 @@ export const pageQuery = graphql`
 									}
 								}
 							}
-							fields {
-								slug
-							}
 						}
-					}
-					fields {
-						slug
 					}
 				}
 			}

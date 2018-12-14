@@ -10,6 +10,8 @@ import Topics from '../components/topics';
 export default ({ data }) => {
 	const { edges: posts = [] } = data.allAirtable;
 
+	console.log(posts);
+
 	return (
 		<Layout>
 			<SEO
@@ -38,12 +40,12 @@ export const pageQuery = graphql`
 			edges {
 				node {
 					id
+					fields {
+						slug
+					}
 					data {
 						name
 						publishedTalksCount
-					}
-					fields {
-						slug
 					}
 				}
 			}

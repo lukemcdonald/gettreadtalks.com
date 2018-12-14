@@ -12,10 +12,14 @@ const Image = styled(Img)`
 	object-fit: cover;
 `;
 
-const CardAvatar = ({ title, data }) => (
-	<Figure>
-		<Image alt={title} fluid={data.localFiles[0].childImageSharp.fluid} />
-	</Figure>
-);
+const CardAvatar = ({ title, data }) => {
+	return (
+		<Figure>
+			{data && (
+				<Image alt={title} fluid={data.localFiles[0].childImageSharp.fluid} />
+			)}
+		</Figure>
+	);
+};
 
 export default CardAvatar;

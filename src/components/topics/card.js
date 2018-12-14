@@ -16,11 +16,11 @@ const Title = styled('h2')`
 	${tw`font-bold mb-1 text-black text-xl`}
 `;
 
-const TopicCard = ({ slug, post }) => {
+const TopicCard = ({ id, slug, post }) => {
 	const { publishedTalksCount, name } = post;
 
 	return (
-		<Card>
+		<Card id={id}>
 			<Body>
 				<Title>{name}</Title>
 				{publishedTalksCount && (
