@@ -18,7 +18,7 @@ export default ({ data }) => {
 			<Intro
 				title="Workout your salvation."
 				text="Weekly sermons to elevate your spiritual heartbeat."
-				image={require('../assets/images/bg-intro.jpg')}
+				image={{ name: 'bg-intro' }}
 			/>
 
 			<Container className="has-subnav">

@@ -1,6 +1,6 @@
 /* global tw */
 import styled from 'styled-components';
-import { Link } from 'gatsby';
+import Link from '../link';
 
 export const MetaText = styled('span')`
 	${tw`text-grey-dark text-xs tracking-wider uppercase`}

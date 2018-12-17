@@ -1,5 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
+import { graphql } from 'gatsby';
+import Images from './images';
 
 import {
 	Intro,
@@ -15,10 +17,21 @@ export default ({ image, text, title }) => (
 	<Intro className={classnames({ 'has-bg': image })}>
 		{image && (
 			<IntroMedia>
-				<IntroImage
-					alt={title}
-					fluid={image.localFiles[0].childImageSharp.fluid}
-				/>
+				{image.localFiles && (
+					<IntroImage
+						alt={title}
+						fluid={image.localFiles[0].childImageSharp.fluid}
+					/>
+				)}
+
+				{image.name && (
+					<Images>
+						{images => (
+							<IntroImage alt={title} fluid={images[image.name].fluid} />
+						)}
+					</Images>
+				)}
+
 				<IntroImageOverlay />
 			</IntroMedia>
 		)}
@@ -29,3 +42,16 @@ export default ({ image, text, title }) => (
 		</IntroBody>
 	</Intro>
 );
+
+export const pageQuery = graphql`
+	query {
+		file(relativePath: { eq: "bg-intro.jpg" }) {
+			childImageSharp {
+				id
+				fluid {
+					tracedSVG
+				}
+			}
+		}
+	}
+`;

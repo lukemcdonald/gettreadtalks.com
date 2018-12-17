@@ -52,7 +52,7 @@ const SpeakerCard = ({ id, post, slug }) => {
 						{ministry && (
 							<Ministry>
 								{website ? (
-									<MetaLink href={website}>{ministry}</MetaLink>
+									<MetaLink to={website}>{ministry}</MetaLink>
 								) : (
 									<Fragment>{ministry}</Fragment>
 								)}

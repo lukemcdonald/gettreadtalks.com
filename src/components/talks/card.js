@@ -59,11 +59,7 @@ const TalkCard = ({ id, post }) => {
 				</Body>
 			</Container>
 
-			<FauxLink
-				to={link}
-				rel="noopener noreferrer"
-				target="_blank"
-			>{`Listen to ${title}`}</FauxLink>
+			<FauxLink to={link} target="_blank">{`Listen to ${title}`}</FauxLink>
 		</Card>
 	);
 };
