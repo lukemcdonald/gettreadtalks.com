@@ -4,7 +4,7 @@ import { graphql } from 'gatsby';
 import Layout from '../layouts';
 import Intro from '../components/intro';
 import SEO from '../components/seo';
-import { Section } from '../components/styled/layout';
+import { Container, Section } from '../components/styled/layout';
 import Talks from '../components/talks';
 import TalksNav from '../components/talks/nav';
 
@@ -21,7 +21,7 @@ export default ({ data }) => {
 				image={require('../assets/images/bg-intro.jpg')}
 			/>
 
-			<div className="container has-subnav pb-16 px-4 mx-auto relative">
+			<Container className="has-subnav">
 				<Section>
 					<TalksNav />
 				</Section>
@@ -29,14 +29,18 @@ export default ({ data }) => {
 				<Section>
 					<Talks data={posts} />
 				</Section>
-			</div>
+			</Container>
 		</Layout>
 	);
 };
 
 export const pageQuery = graphql`
 	query {
-		allAirtable(limit: 5, filter: { queryName: { eq: "PUBLISHED_TALKS" } }) {
+		allAirtable(
+			limit: 5
+			filter: { queryName: { eq: "PUBLISHED_TALKS" } }
+			sort: { fields: data___publishedDate, order: DESC }
+		) {
 			edges {
 				node {
 					id

@@ -1,8 +1,15 @@
-import React, { Fragment } from 'react';
+/* global tw */
+import styled from 'styled-components';
+import React from 'react';
+
 import Speaker from './card';
 
+const Speakers = styled.div`
+	${tw`mb-20`};
+`;
+
 export default ({ data: posts }) => (
-	<Fragment>
+	<Speakers>
 		{posts.map(({ node: post }) => (
 			<Speaker
 				key={post.id}
@@ -11,5 +18,5 @@ export default ({ data: posts }) => (
 				slug={post.fields.slug}
 			/>
 		))}
-	</Fragment>
+	</Speakers>
 );

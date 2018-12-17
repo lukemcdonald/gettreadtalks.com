@@ -1,9 +1,16 @@
-import React, { Fragment } from 'react';
+/* global tw */
+import styled from 'styled-components';
+import React from 'react';
+
 import Talk from './card';
+
+const Talks = styled.div`
+	${tw`mb-20`};
+`;
 
 export default ({ data: posts }) => {
 	return (
-		<Fragment>
+		<Talks>
 			{posts.map(({ node: post }) => {
 				return (
 					<Talk
@@ -14,6 +21,6 @@ export default ({ data: posts }) => {
 					/>
 				);
 			})}
-		</Fragment>
+		</Talks>
 	);
 };

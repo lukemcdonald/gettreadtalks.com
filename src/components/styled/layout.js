@@ -23,7 +23,7 @@ export const Main = styled('main')`
 	${props => (props.bg ? tw`bg-${props.bg}` : tw`bg-grey-lightest`)};
 `;
 
-export const Section = styled('div')`
+export const Section = styled('section')`
 	${tw`mx-auto max-w-md w-full`}
 `;
 
