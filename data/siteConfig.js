@@ -3,7 +3,7 @@ module.exports = {
 	siteTagline: 'Weekly sermons to elevate your spiritual heartbeat.',
 	siteDescription: 'Weekly sermons to elevate your spiritual heartbeat.',
 	siteIcon: 'src/assets/images/favicon.png',
-	siteUrl: 'https://treadtalks-develop.netlify.com/',
+	siteUrl: 'https://gettreadtalks.com/',
 	socialLinks: [
 		{
 			label: 'Facebook',
