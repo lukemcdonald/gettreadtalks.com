@@ -56,12 +56,6 @@ export const pageQuery = graphql`
 						title
 						link
 						scripture
-						topics {
-							id
-							data {
-								name
-							}
-						}
 						speakers {
 							id
 							fields {

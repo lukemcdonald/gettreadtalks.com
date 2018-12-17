@@ -1,5 +1,7 @@
 /* global tw */
 import styled from 'styled-components';
+import Img from 'gatsby-image';
+
 import { screens } from '../../../tailwind';
 import { Container } from './layout';
 
@@ -16,9 +18,9 @@ export const IntroMedia = styled('figure')`
 	}
 `;
 
-export const IntroImage = styled('img')`
-	${tw` h-full opacity-75 w-full`}
-	${tw` md:h-auto`}
+export const IntroImage = styled(Img)`
+	${tw`h-full opacity-75 w-full`}
+	${tw`md:h-auto`}
 `;
 
 export const IntroImageOverlay = styled('span')`
@@ -26,7 +28,11 @@ export const IntroImageOverlay = styled('span')`
 `;
 
 export const IntroBody = styled(Container)`
-	${tw`max-w-md py-16 relative`}
+	${tw`py-16 relative`}
+
+	&& {
+		${tw`max-w-md`}
+	}
 `;
 
 export const IntroTitle = styled('h1')`

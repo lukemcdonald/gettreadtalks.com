@@ -63,7 +63,7 @@ const SpeakerCard = ({ id, post, slug }) => {
 					</Footer>
 				</Body>
 
-				<FauxLink to={`/speakers/${slug}`} text={`${name} Talks`} />
+				<FauxLink to={`/speakers/${slug}`}>{`${name} Talks`}</FauxLink>
 			</Container>
 		</Card>
 	);

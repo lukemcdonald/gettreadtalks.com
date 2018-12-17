@@ -21,6 +21,7 @@ module.exports = {
 		'gatsby-plugin-sitemap',
 		'gatsby-plugin-styled-components',
 		'gatsby-plugin-tailwindcss',
+		`gatsby-transformer-remark`,
 		'gatsby-transformer-sharp',
 		{
 			resolve: `gatsby-source-filesystem`,
@@ -58,14 +59,14 @@ module.exports = {
 						tableName: `Talks`,
 						tableView: `All Talks`,
 						queryName: `ALL_TALKS`,
-						tableLinks: [`speakers`, `topics`]
+						tableLinks: [`speakers`, `topics`],
 					},
 					{
 						baseId: process.env.AIRTABLE_BASE,
 						tableName: `Talks`,
 						tableView: `Published`,
 						queryName: `PUBLISHED_TALKS`,
-						tableLinks: [`speakers`, `topics`]
+						tableLinks: [`speakers`, `topics`],
 					},
 					{
 						baseId: process.env.AIRTABLE_BASE,
@@ -76,8 +77,8 @@ module.exports = {
 						mapping: {
 							avatar: `fileNode`,
 							banner: `fileNode`,
-							description: `text/markdown`
-						}
+							description: `text/markdown`,
+						},
 					},
 					{
 						baseId: process.env.AIRTABLE_BASE,
@@ -88,25 +89,25 @@ module.exports = {
 						mapping: {
 							avatar: `fileNode`,
 							banner: `fileNode`,
-							description: `text/markdown`
-						}
+							description: `text/markdown`,
+						},
 					},
 					{
 						baseId: process.env.AIRTABLE_BASE,
 						tableName: `Topics`,
 						tableView: `All Topics`,
 						queryName: `ALL_TOPICS`,
-						tableLinks: [`talks`]
+						tableLinks: [`talks`],
 					},
 					{
 						baseId: process.env.AIRTABLE_BASE,
 						tableName: `Topics`,
 						tableView: `Published`,
 						queryName: `PUBLISHED_TOPICS`,
-						tableLinks: [`talks`]
-					}
-				]
-			}
-		}
+						tableLinks: [`talks`],
+					},
+				],
+			},
+		},
 	],
 };
