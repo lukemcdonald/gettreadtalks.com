@@ -16,7 +16,7 @@ const Title = styled('h2')`
 	${tw`font-bold mb-1 text-black text-xl`}
 `;
 
-const TopicCard = ({ id, slug, post }) => {
+const TopicCard = ({ id, post, slug }) => {
 	const { publishedTalksCount, name } = post;
 
 	return (

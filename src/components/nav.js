@@ -15,7 +15,7 @@ const NavLink = styled(Link)`
 
 	&:hover,
 	&.is-active {
-		${tw`font-bold text-brand`}
+		${tw`text-brand`}
 	}
 `;
 

@@ -7,7 +7,7 @@ export const MetaText = styled('span')`
 `;
 
 export const MetaLink = styled(Link)`
-	${tw`no-underline hover:text-brand`}
+	${tw`no-underline hover:text-brand relative z-10`}
 `;
 
 export const MetaSep = styled('span')`

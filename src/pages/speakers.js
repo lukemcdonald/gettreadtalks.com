@@ -1,9 +1,11 @@
 import React from 'react';
-import { Link, graphql } from 'gatsby';
+import { graphql } from 'gatsby';
 
 import Layout from '../layouts';
 import Intro from '../components/intro';
 import SEO from '../components/seo';
+import { Container, Section } from '../components/styled/layout';
+import Speakers from '../components/speakers';
 
 export default ({ data }) => {
 	const { edges: posts = [] } = data.allAirtable;
@@ -14,13 +16,11 @@ export default ({ data }) => {
 
 			<Intro title="Speakers" />
 
-			<ol>
-				{posts.map(({ node: { id, fields, data: post } }) => (
-					<li key={id} id={id}>
-						<Link to={`/speakers/${fields.slug}`}>{post.name}</Link>
-					</li>
-				))}
-			</ol>
+			<Container>
+				<Section>
+					<Speakers data={posts} />
+				</Section>
+			</Container>
 		</Layout>
 	);
 };
@@ -36,11 +36,18 @@ export const pageQuery = graphql`
 					id
 					data {
 						name
-						firstName
-						lastName
 						role
 						ministry
 						website
+						avatar {
+							localFiles {
+								childImageSharp {
+									fluid(maxWidth: 128) {
+										...GatsbyImageSharpFluid_tracedSVG
+									}
+								}
+							}
+						}
 					}
 					fields {
 						slug

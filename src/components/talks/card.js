@@ -22,11 +22,11 @@ const SpeakerLink = styled(MetaLink)`
 	${tw`relative z-10`}
 `;
 
-const TalkCard = ({ post }) => {
+const TalkCard = ({ id, post }) => {
 	const { link, scripture, speakers, title } = post;
 
 	return (
-		<Card>
+		<Card id={id}>
 			<Container>
 				{speakers.map(({ id, data }) => (
 					<CardAvatar key={id} data={data.avatar} title={data.name} />

@@ -11,8 +11,6 @@ import TalksNav from '../components/talks/nav';
 export default ({ data }) => {
 	const { edges: posts = [] } = data.allAirtable;
 
-	console.log(posts);
-
 	return (
 		<Layout>
 			<SEO title="Talks" keywords={['talks', 'sermons', 'treadtalks']} />

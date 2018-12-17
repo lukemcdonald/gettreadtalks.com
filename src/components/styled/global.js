@@ -37,6 +37,7 @@ export const GlobalStyles = createGlobalStyle`
 		padding-bottom: 56.25%;
 	}
 
+	a,
 	.trans {
 		transition-duration: 0.25s;
 		transition-property: all;
