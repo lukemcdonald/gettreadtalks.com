@@ -7,11 +7,12 @@ import { Link } from 'gatsby';
 import { PrimaryButton } from './styled/button';
 
 const Nav = styled(`div`)`
-	${tw`block text-center font-semibold md:w-1/2 md:text-right`}
+	${tw`block text-center font-semibold`}
+	${tw`md:w-1/2 md:text-right`}
 `;
 
 const NavLink = styled(Link)`
-	${tw`inline-block mr-8 py-6 no-underline text-black hover:text-brand`}
+	${tw`inline-block mr-8 py-6 no-underline text-black`}
 
 	&:hover,
 	&.is-active {

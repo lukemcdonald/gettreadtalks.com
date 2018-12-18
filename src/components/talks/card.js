@@ -22,7 +22,7 @@ const SpeakerLink = styled(MetaLink)`
 	${tw`relative z-10`}
 `;
 
-const TalkCard = ({ id, post }) => {
+const TalkCard = ({ id, post, slug }) => {
 	const { link, scripture, speakers, title } = post;
 
 	return (
@@ -59,7 +59,7 @@ const TalkCard = ({ id, post }) => {
 				</Body>
 			</Container>
 
-			<FauxLink to={link} target="_blank">{`Listen to ${title}`}</FauxLink>
+			<FauxLink to={`/talks/${slug}`}>{`Listen to ${title}`}</FauxLink>
 		</Card>
 	);
 };

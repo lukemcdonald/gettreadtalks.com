@@ -31,7 +31,7 @@ export const IntroBody = styled(Container)`
 	${tw`py-16 relative`}
 
 	&& {
-		${tw`max-w-md`}
+		${tw`max-w-lg`}
 	}
 `;
 
