@@ -16,6 +16,17 @@ const Title = styled.h1`
 	${tw`font-semibold mb-4 text-black text-4xl`};
 `;
 const Content = styled.div`
+	${tw`text-grey-darker`};
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		${tw`text-black`};
+	}
+
 	h2 {
 		${tw`mt-12 mb-6`};
 
