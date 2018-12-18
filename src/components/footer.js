@@ -3,9 +3,10 @@ import styled from 'styled-components';
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Container as ContainerStyle } from './styled/layout';
 
-const Container = styled('section')`
-	${tw`container py-10 px-4 mx-auto`}
+const Container = styled(ContainerStyle)`
+	${tw`py-10`}
 `;
 
 const Footer = ({ siteTitle }) => (
