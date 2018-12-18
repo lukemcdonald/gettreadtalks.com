@@ -61,11 +61,15 @@ export const Intro = styled('div')`
 		}
 
 		+ div {
-			${tw`-mt-10`}
+			/* gatsby-build doesn't currently support negative margins using tw */
+			/* ${tw`-mt-10`} */
+			margin-top: -1.5rem;
 		}
 
 		+ .has-subnav {
-			${tw`-mt-24`}
+			/* gatsby-build doesn't currently support negative margins using tw */
+			/* ${tw`-mt-24`} */
+			margin-top: -6rem;
 		}
 	}
 

@@ -12,7 +12,9 @@ import {
 } from '../components/styled/layout';
 
 const Container = styled(ContainerStyle)`
-	${tw`-mt-24 pb-16 relative`}
+	${tw`pb-16 relative`}
+	/* gatsby-build doesn't currently support negative margins using tw */
+	margin-top: -6rem; /* -mt-24 */
 `;
 
 const GospelVideo = styled('figure')`
