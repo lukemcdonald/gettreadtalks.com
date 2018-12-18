@@ -11,6 +11,11 @@ import Intro from '../components/intro';
 import { Container, Section } from '../components/styled/layout';
 import { MetaText } from '../components/styled/meta';
 import Topics from '../components/topics';
+import { SecondaryButton } from '../components/styled/button';
+
+const TalkLink = styled(SecondaryButton)`
+	${tw`block m-auto mb-16`};
+`;
 
 const SectionHeading = styled(MetaText)`
 	${tw`my-3 py-2`};
@@ -41,17 +46,20 @@ export default props => {
 				text={mapObjectToString(['speaker', 'scripture'], meta)}
 			/>
 
-			{post.topics && (
-				<Container>
+			<Container>
+				<Section>
+					<TalkLink to={post.link} as={Link} large={true}>
+						Listen to Talk &rarr;
+					</TalkLink>
+				</Section>
+
+				{post.topics && (
 					<Section>
 						<SectionHeading as="h2">Related Topics</SectionHeading>
-					</Section>
-
-					<Section>
 						<Topics data={post.topics} />
 					</Section>
-				</Container>
-			)}
+				)}
+			</Container>
 		</Layout>
 	);
 };

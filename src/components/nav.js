@@ -1,9 +1,8 @@
 /* global tw */
 import styled from 'styled-components';
-
 import React from 'react';
-import { Link } from 'gatsby';
 
+import Link from '../components/link';
 import { PrimaryButton } from './styled/button';
 
 const Nav = styled(`div`)`
