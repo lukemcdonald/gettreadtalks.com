@@ -4,7 +4,8 @@ import React from 'react';
 import classnames from 'classnames';
 
 export const Card = styled('article')`
-	${tw`border border-grey-lighter border-solid flex mb-4 relative rounded lg:mb-6`}
+	${tw`border border-grey-lighter border-solid flex mb-4 relative rounded`}
+	${tw`lg:mb-6`}
 
 	&.enable-hover-style {
 		${tw`hover:border-brand hover:shadow-lg`}
@@ -16,7 +17,8 @@ export const Card = styled('article')`
 `;
 
 export const CardInside = styled('div')`
-	${tw`bg-white flex flex-grow flex-col justify-between p-4 relative rounded lg:p-6`}
+	${tw`bg-white flex flex-grow flex-col justify-between p-4 relative rounded`}
+	${tw`lg:p-6`}
 `;
 
 export default ({ children, hoverStyle = true, ...props }) => (

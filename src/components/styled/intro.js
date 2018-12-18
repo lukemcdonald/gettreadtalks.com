@@ -44,7 +44,7 @@ export const IntroText = styled('div')`
 `;
 
 export const Intro = styled('div')`
-	${tw`bg-cover bg-grey-lightest overflow-hidden text-grey-darkest text-center`}
+	${tw`bg-cover bg-grey-lightest overflow-hidden text-center text-grey-darkest`}
 
 	display: grid;
 	grid-template-areas: 'intro';
@@ -55,16 +55,18 @@ export const Intro = styled('div')`
 		grid-area: intro;
 	}
 
-	&.has-bg > div {
-		${tw`mb-16`}
-	}
+	&.has-bg {
+		> div {
+			${tw`mb-16`}
+		}
 
-	&.has-bg + .container {
-		${tw`-mt-10`}
-	}
+		+ div {
+			${tw`-mt-10`}
+		}
 
-	&.has-bg + .has-subnav {
-		${tw`-mt-24`}
+		+ .has-subnav {
+			${tw`-mt-24`}
+		}
 	}
 
 	@media (min-width: ${screens.md}) {

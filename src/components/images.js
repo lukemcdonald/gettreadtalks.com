@@ -5,6 +5,22 @@
 import React from 'react';
 import { graphql, StaticQuery } from 'gatsby';
 
+export default ({ children }) => (
+	<StaticQuery query={imagesQuery}>
+		{({ allFile: { edges } }) =>
+			children(
+				edges.reduce(
+					(allImages, edge) => ({
+						...allImages,
+						[edge.node.name]: edge.node.childImageSharp,
+					}),
+					{}
+				)
+			)
+		}
+	</StaticQuery>
+);
+
 const imagesQuery = graphql`
 	query {
 		allFile(
@@ -27,19 +43,3 @@ const imagesQuery = graphql`
 		}
 	}
 `;
-
-export default ({ children }) => (
-	<StaticQuery query={imagesQuery}>
-		{({ allFile: { edges } }) =>
-			children(
-				edges.reduce(
-					(allImages, edge) => ({
-						...allImages,
-						[edge.node.name]: edge.node.childImageSharp,
-					}),
-					{}
-				)
-			)
-		}
-	</StaticQuery>
-);

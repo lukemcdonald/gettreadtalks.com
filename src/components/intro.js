@@ -1,6 +1,5 @@
 import React from 'react';
 import classnames from 'classnames';
-import { graphql } from 'gatsby';
 import Images from './images';
 
 import {
@@ -42,16 +41,3 @@ export default ({ image, text, title }) => (
 		</IntroBody>
 	</Intro>
 );
-
-export const pageQuery = graphql`
-	query {
-		file(relativePath: { eq: "bg-intro.jpg" }) {
-			childImageSharp {
-				id
-				fluid {
-					tracedSVG
-				}
-			}
-		}
-	}
-`;

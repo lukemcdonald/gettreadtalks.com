@@ -4,11 +4,13 @@ import React from 'react';
 import Img from 'gatsby-image';
 
 const Figure = styled('figure')`
-	${tw`hidden sm:block w-16 h-16 lg:-mt-3 lg:-mb-3 lg:-ml-2 mr-4 rounded-full bg-grey-lighter`}
+	${tw`bg-grey-lighter h-16 hidden mr-4 rounded-full w-16`}
+	${tw`sm:block`}
+	${tw`lg:-mt-3 lg:-mb-3 lg:-ml-2`}
 `;
 
 const Image = styled(Img)`
-	${tw`object-cover rounded-full`}
+	${tw`rounded-full`}
 	object-fit: cover;
 `;
 
