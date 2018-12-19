@@ -17,3 +17,9 @@ export const talkType = shape({
 	title: string.isRequired,
 	topics: topicType,
 });
+
+export const talkDefaults = {
+	series: [],
+	speakers: [],
+	topics: [],
+};

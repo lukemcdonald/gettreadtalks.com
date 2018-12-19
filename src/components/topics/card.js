@@ -1,7 +1,7 @@
 /* global tw */
 import styled from 'styled-components';
 import React from 'react';
-import { topicType } from '../../prop-types';
+import { topicType, topicDefaults } from '../../prop-types';
 
 import Card from '../card';
 import FauxLink from '../fauxLink';
@@ -32,8 +32,7 @@ const TopicCard = ({ data: post }) => (
 	</Card>
 );
 
-TopicCard.propTypes = {
-	data: topicType.isRequired,
-};
+TopicCard.propTypes = { data: topicType.isRequired };
+TopicCard.defaultProps = topicDefaults;
 
 export default TopicCard;

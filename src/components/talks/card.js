@@ -1,7 +1,7 @@
 /* global tw */
 import styled from 'styled-components';
 import React from 'react';
-import { talkType } from '../../prop-types';
+import { talkType, talkDefaults } from '../../prop-types';
 
 import Card from '../card';
 import CardAvatar from '../cardAvatar';
@@ -58,8 +58,7 @@ const TalkCard = ({ data: post }) => (
 	</Card>
 );
 
-TalkCard.propTypes = {
-	data: talkType.isRequired,
-};
+TalkCard.propTypes = { data: talkType.isRequired };
+TalkCard.defaultProps = talkDefaults;
 
 export default TalkCard;

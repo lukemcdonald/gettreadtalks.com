@@ -15,3 +15,8 @@ export const speakerType = shape({
 	talks: talkType,
 	website: string,
 });
+
+export const speakerDefaults = {
+	banner: [],
+	talks: [],
+};

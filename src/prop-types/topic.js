@@ -8,3 +8,7 @@ export const topicType = shape({
 	publishedTalksCount: oneOfType([number, string]),
 	talks: talkType,
 });
+
+export const topicDefaults = {
+	talks: [],
+};
