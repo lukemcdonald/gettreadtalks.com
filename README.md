@@ -3,8 +3,8 @@
 # ToDo's
 
 - [] Improve single talk page
-  - [] Fix talk link button on mobile
-  - [] Add link speaker to archive
+  - [x] Fix talk link button on mobile
+  - [x] Add link speaker to archive
   - [] Add short description
 - [] Improve talks card
   - [] Add external link

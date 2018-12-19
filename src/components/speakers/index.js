@@ -6,7 +6,7 @@ import { flattenObjectsByKey } from '../../utils';
 import Speaker from './card';
 
 const Speakers = styled.div`
-	${tw`mb-8`};
+	${tw`mb-4 lg:mg-6`};
 `;
 
 export default ({ data }) => {

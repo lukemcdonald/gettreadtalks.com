@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 import { screens } from '../../../tailwind';
 
-export const Container = styled('div')`
+export const Container = styled.div`
 	${tw`mx-auto px-4 relative w-full`}
 
 	@media (min-width: ${screens.sm}) {
@@ -18,7 +18,7 @@ export const Container = styled('div')`
 	}
 `;
 
-export const Main = styled('main')`
+export const Main = styled.main`
 	${tw`flex-grow`};
 
 	${props => (props.bg ? tw`bg-${props.bg}` : tw`bg-grey-lightest`)};
@@ -30,10 +30,14 @@ export const Main = styled('main')`
 	}
 `;
 
-export const Section = styled('section')`
+export const Section = styled.section`
 	${tw`mx-auto max-w-md w-full`}
 `;
 
-export const Page = styled('div')`
+export const SectionTitle = styled.h2`
+	${tw`block no-underline my-3 py-2 text-grey-darkest text-sm tracking-wide uppercase`}
+`;
+
+export const Page = styled.div`
 	${tw`flex flex-col font-sans min-h-screen`};
 `;

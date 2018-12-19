@@ -11,16 +11,12 @@ import Intro from '../components/intro';
 import Topics from '../components/topics';
 import Speakers from '../components/speakers';
 
-import { Container, Section } from '../components/styled/layout';
+import { Container, Section, SectionTitle } from '../components/styled/layout';
 import { SecondaryButton } from '../components/styled/button';
 
 const TalkLink = styled(SecondaryButton)`
 	${tw`m-auto mt-16`};
 	${tw`md:w-1/3`};
-`;
-
-const SectionHeading = styled.h2`
-	${tw`block no-underline my-3 py-2 text-grey-darkest text-sm tracking-wide uppercase`}
 `;
 
 export default props => {
@@ -37,8 +33,6 @@ export default props => {
 			: null,
 	};
 
-	console.log(objectToString(meta));
-
 	return (
 		<Layout>
 			<SEO
@@ -51,7 +45,7 @@ export default props => {
 				excerpt={mapObjectToString(['speakers', 'scripture'], meta)}
 			>
 				<p>
-					<TalkLink to={post.link} as={Link} large={true}>
+					<TalkLink to={post.link} as={Link} large={1}>
 						Listen to Talk &rarr;
 					</TalkLink>
 				</p>
@@ -60,17 +54,18 @@ export default props => {
 			<Container>
 				{post.speakers && (
 					<Section>
-						<SectionHeading>Speaker</SectionHeading>
+						<SectionTitle>
+							{1 === post.speakers.length ? `Speaker` : `Speakers`}
+						</SectionTitle>
 						<Speakers data={post.speakers} />
 					</Section>
 				)}
 
 				{post.topics && (
 					<Section>
-						<SectionHeading>
-							{post.topics === 1 ? `Topic` : `Topics`}
-							{console.log(post.topics)}
-						</SectionHeading>
+						<SectionTitle>
+							{1 === post.topics.length ? `Topic` : `Topics`}
+						</SectionTitle>
 						<Topics data={post.topics} />
 					</Section>
 				)}

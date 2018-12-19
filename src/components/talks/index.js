@@ -6,7 +6,7 @@ import { flattenObjectsByKey } from '../../utils';
 import Talk from './card';
 
 const Talks = styled.div`
-	${tw`mb-8`};
+	${tw`mb-4 lg:mg-6`};
 `;
 
 export default ({ data }) => {
