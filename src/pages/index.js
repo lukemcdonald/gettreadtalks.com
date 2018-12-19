@@ -13,7 +13,10 @@ export default ({ data }) => {
 
 	return (
 		<Layout>
-			<SEO title="Home" keywords={['treadtalks', 'talks', 'sermons']} />
+			<SEO
+				title="TREAD Talks - Weekly sermons to elevate your spiritual heartbeat."
+				keywords={['treadtalks', 'talks', 'sermons']}
+			/>
 
 			<Intro
 				title="Workout your salvation."

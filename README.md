@@ -2,6 +2,7 @@
 
 # ToDo's
 
+- [] Improve SEO Meta (Link)[https://metatags.io/]
 - [] Improve single talk page
   - [x] Fix talk link button on mobile
   - [x] Add link speaker to archive
