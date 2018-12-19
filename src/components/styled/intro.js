@@ -48,7 +48,8 @@ export const IntroTitle = styled('h1')`
 `;
 
 export const IntroExcerpt = styled('div')`
-	${tw`md:text-2xl leading-normal`}
+	${tw`leading-normal max-w-md m-auto`}
+	${tw`md:text-2xl`}
 `;
 
 export const IntroContent = styled(IntroExcerpt)``;
