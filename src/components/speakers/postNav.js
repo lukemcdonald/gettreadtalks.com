@@ -1,5 +1,3 @@
-/* global tw */
-import styled from 'styled-components';
 import React from 'react';
 
 import SubNav from '../subNav';

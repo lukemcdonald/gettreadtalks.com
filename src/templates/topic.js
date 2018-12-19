@@ -6,6 +6,7 @@ import SEO from '../components/seo';
 import Intro from '../components/intro';
 import { Container, Section } from '../components/styled/layout';
 import Talks from '../components/talks';
+import TopicsNav from '../components/topics/postNav';
 
 export default props => {
 	const { data: post } = props.data.airtable;
@@ -20,6 +21,10 @@ export default props => {
 			<Intro title={post.name} excerpt={description} />
 
 			<Container>
+				<Section>
+					<TopicsNav />
+				</Section>
+
 				<Section>
 					<Talks data={posts} />
 				</Section>
