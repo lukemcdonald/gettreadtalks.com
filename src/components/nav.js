@@ -22,7 +22,7 @@ const NavLink = styled(Link)`
 const links = [
 	{ label: 'About', path: '/about' },
 	{ label: 'Speakers', path: '/speakers' },
-	{ label: 'Talks', path: '/talks' },
+	{ label: 'Talks', path: '/archive' },
 	{ label: 'Topics', path: '/topics' },
 ];
 

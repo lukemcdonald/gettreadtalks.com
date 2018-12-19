@@ -2,22 +2,19 @@
 
 # ToDo's
 
-- [] Update URL paths
-  - [] Talks `/archive/`
-  - [] Featured Talks `/featured/`
-  - [] Speakers `/by/`
-  - [] Speaker `/by/${speaker}/`
-  - [] Talk `/by/${speaker}/${talk}/`
-  - [] Topics `/on/`
-  - [] Topic `/on/${topic}/`
-  - [] Series `/series/`
-  - [] Series `/series/${series}/`
+- [] Improve single talk page
+  - [] Fix talk link button on mobile
+  - [] Add link speaker to archive
+  - [] Add short description
+- [] Improve talks card
+  - [] Add external link
+  - [] Add featured talk indicator
+- [] Add schema or Google JSON-LD
 - [] React/Gatsby Themes config
-- [] Add Featured Talk indicator
 - [] Integrate NProgress in header
 - [] Primary Navigation Submenu [Design](https://twitter.com/steveschoger/status/953297226985549825)
 - [][reakit](https://github.com/reakit/reakit) integration
-- [] Series Archives
+- [] Series Pages
 - [] Subscribe Form
 - [] Sidebar Layout
 - [] Footer Navigation
@@ -34,3 +31,11 @@
   - [] Filter Talks by Speakers, Topics, View (latest, featured, etc), or comibined.
 - [x] Improve performance and caching
 - [x] Refactor to use [Gatsby Airtable](https://github.com/jbolda/gatsby-source-airtable)
+- [x] Update URL paths
+  - [x] Talks `/archive/`
+  - [x] Featured Talks `/featured/`
+  - [x] Speakers `/speakers/`
+  - [x] Speaker `/by/${speaker}/`
+  - [x] Talk `/by/${speaker}/${talk}/`
+  - [x] Topics `/topics/`
+  - [x] Topic `/on/${topic}/`

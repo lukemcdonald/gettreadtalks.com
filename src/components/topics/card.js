@@ -32,7 +32,7 @@ const TopicCard = ({ id, post, slug }) => {
 				)}
 			</Body>
 
-			<FauxLink to={`/topics/${slug}`}>{`${name} Talks`}</FauxLink>
+			<FauxLink to={`/on/${slug}`}>{`${name} Talks`}</FauxLink>
 		</Card>
 	);
 };

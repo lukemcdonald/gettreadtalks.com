@@ -1,13 +1,3 @@
-export const objectToString = (object = {}, sep = ' ') => {
-	return Object.keys(object)
-		.map(key => object[key])
-		.join(sep);
-};
-
-export const mapObjectToString = (keys = [], object = {}, sep = ' ') => {
-	return keys.map(key => object[key]).join(sep);
-};
-
 export const flattenObjectByKey = (object = {}, key = '') => {
 	return key in object ? { ...object[key] } : object;
 };
@@ -19,4 +9,18 @@ export const flattenObjectsByKey = (objects = [], key = '') => {
 	}
 
 	return objects.map(object => flattenObjectByKey(object, key));
+};
+
+export const objectToString = (object = {}, sep = ' ') => {
+	return Object.keys(object)
+		.map(key => object[key])
+		.join(sep);
+};
+
+export const mapObjectToString = (keys = [], object = {}, sep = ' ') => {
+	return keys.map(key => object[key]).join(sep);
+};
+
+export const getCurrentYear = () => {
+	return new Date().getFullYear();
 };

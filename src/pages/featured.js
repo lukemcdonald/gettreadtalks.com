@@ -1,12 +1,12 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import Layout from '../../layouts';
-import Intro from '../../components/intro';
-import SEO from '../../components/seo';
-import { Container, Section } from '../../components/styled/layout';
-import Talks from '../../components/talks';
-import TalksNav from '../../components/talks/nav';
+import Layout from '../layouts';
+import Intro from '../components/intro';
+import SEO from '../components/seo';
+import { Container, Section } from '../components/styled/layout';
+import Talks from '../components/talks';
+import TalksNav from '../components/talks/nav';
 
 export default ({ data }) => {
 	const { edges: posts } = data.allAirtable;

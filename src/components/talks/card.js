@@ -59,7 +59,9 @@ const TalkCard = ({ id, post, slug }) => {
 				</Body>
 			</Container>
 
-			<FauxLink to={`/talks/${slug}`}>{`Listen to ${title}`}</FauxLink>
+			<FauxLink
+				to={`/by/${speakers[0].fields.slug}/${slug}`}
+			>{`Listen to ${title}`}</FauxLink>
 		</Card>
 	);
 };
