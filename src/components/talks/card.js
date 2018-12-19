@@ -1,12 +1,12 @@
 /* global tw */
 import styled from 'styled-components';
-
 import React from 'react';
-import PropTypes from 'prop-types';
+import { talkType } from '../../prop-types';
 
 import Card from '../card';
 import CardAvatar from '../cardAvatar';
 import FauxLink from '../fauxLink';
+
 import { MetaText, MetaSep, MetaLink } from '../styled/meta';
 
 const Container = styled('div')`
@@ -30,11 +30,9 @@ const TalkCard = ({ data: post }) => (
 			))}
 
 			<Body>
-				{post.title && (
-					<header>
-						<Title>{post.title}</Title>
-					</header>
-				)}
+				<header>
+					<Title>{post.title}</Title>
+				</header>
 
 				<footer>
 					{post.speakers.map(({ id, data, fields }) => (
@@ -61,7 +59,7 @@ const TalkCard = ({ data: post }) => (
 );
 
 TalkCard.propTypes = {
-	data: PropTypes.object.isRequired,
+	data: talkType.isRequired,
 };
 
 export default TalkCard;

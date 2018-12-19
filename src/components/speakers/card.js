@@ -1,8 +1,7 @@
 /* global tw */
 import styled from 'styled-components';
-
 import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
+import { speakerType } from '../../prop-types';
 
 import Card from '../card';
 import CardAvatar from '../cardAvatar';
@@ -66,7 +65,7 @@ const SpeakerCard = ({ data: post }) => (
 );
 
 SpeakerCard.propTypes = {
-	data: PropTypes.object.isRequired,
+	data: speakerType.isRequired,
 };
 
 export default SpeakerCard;
