@@ -34,6 +34,9 @@ export const pageQuery = graphql`
 			edges {
 				node {
 					id
+					fields {
+						slug
+					}
 					data {
 						name
 						role
@@ -48,9 +51,6 @@ export const pageQuery = graphql`
 								}
 							}
 						}
-					}
-					fields {
-						slug
 					}
 				}
 			}

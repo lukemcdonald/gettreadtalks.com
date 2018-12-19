@@ -2,15 +2,19 @@
 import styled from 'styled-components';
 
 export const Button = styled('button')`
-	${tw`border-2 font-semibold inline-block no-underline rounded-full text-center text-inherit`}
+	${tw`border-2 inline-block rounded-full text-base text-inherit`}
+
+	&& {
+		${tw`font-semibold no-underline px-6 py-2 text-center`}
+	}
 
 	&:hover {
 		${tw`border-black`}
 	}
 
-	${props => (props.large ? tw`sm:px-8` : tw`px-6`)};
-	${props => (props.large ? tw`sm:py-4` : tw`py-2`)};
-	${props => (props.large ? tw`sm:text-xl` : tw`text-base`)};
+	${props => (props.large ? tw`sm:px-8` : null)};
+	${props => (props.large ? tw`sm:py-4` : null)};
+	${props => (props.large ? tw`sm:text-xl` : null)};
 `;
 
 export const PrimaryButton = styled(Button)`
@@ -22,17 +26,17 @@ export const PrimaryButton = styled(Button)`
 `;
 
 export const SecondaryButton = styled(Button)`
-	${tw`border-brand text-brand`}
+	${tw`border-black bg-black text-white`}
 
-	&:hover {
-		${tw`text-black`}
+	&&:hover {
+		${tw`border-grey-darkest bg-grey-darkest text-white`}
 	}
 `;
 
 export const TertiaryButton = styled(Button)`
-	${tw`border-current text-grey-darker`}
+	${tw`border-brand text-brand`}
 
-	&:hover {
-		${tw`border-current text-black`}
+	&&:hover {
+		${tw`text-black`}
 	}
 `;

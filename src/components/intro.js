@@ -9,10 +9,11 @@ import {
 	IntroImageOverlay,
 	IntroBody,
 	IntroTitle,
-	IntroText,
+	IntroExcerpt,
+	IntroContent,
 } from './styled/intro';
 
-export default ({ image, text, title }) => (
+export default ({ children, image, excerpt, title }) => (
 	<Intro className={classnames({ 'has-bg': image })}>
 		{image && (
 			<IntroMedia>
@@ -37,7 +38,10 @@ export default ({ image, text, title }) => (
 
 		<IntroBody>
 			{title && <IntroTitle>{title}</IntroTitle>}
-			{text && <IntroText dangerouslySetInnerHTML={{ __html: text }} />}
+			{excerpt && (
+				<IntroExcerpt dangerouslySetInnerHTML={{ __html: excerpt }} />
+			)}
+			{children && <IntroContent>{children}</IntroContent>}
 		</IntroBody>
 	</Intro>
 );

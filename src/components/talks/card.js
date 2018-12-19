@@ -22,53 +22,46 @@ const SpeakerLink = styled(MetaLink)`
 	${tw`relative z-10`}
 `;
 
-const TalkCard = ({ id, post, slug }) => {
-	const { link, scripture, speakers, title } = post;
+const TalkCard = ({ data: post }) => (
+	<Card id={post.id}>
+		<Container>
+			{post.speakers.map(({ id, data }) => (
+				<CardAvatar key={id} data={data.avatar} title={data.name} />
+			))}
 
-	return (
-		<Card id={id}>
-			<Container>
-				{speakers.map(({ id, data }) => (
-					<CardAvatar key={id} data={data.avatar} title={data.name} />
-				))}
+			<Body>
+				{post.title && (
+					<header>
+						<Title>{post.title}</Title>
+					</header>
+				)}
 
-				<Body>
-					{title && (
-						<header>
-							<Title>{title}</Title>
-						</header>
+				<footer>
+					{post.speakers.map(({ id, data, fields }) => (
+						<MetaText key={id}>
+							<MetaSep>By</MetaSep>&nbsp;
+							<SpeakerLink to={`/by/${fields.slug}`}>{data.name}</SpeakerLink>
+							&nbsp;
+						</MetaText>
+					))}
+
+					{post.scripture && (
+						<MetaText>
+							<MetaSep>from</MetaSep> {post.scripture}
+						</MetaText>
 					)}
+				</footer>
+			</Body>
+		</Container>
 
-					<footer>
-						{speakers.map(({ id, data, fields }) => (
-							<MetaText key={id}>
-								<MetaSep>By</MetaSep>&nbsp;
-								<SpeakerLink to={`/speakers/${fields.slug}`}>
-									{data.name}
-								</SpeakerLink>
-								&nbsp;
-							</MetaText>
-						))}
-
-						{scripture && (
-							<MetaText>
-								<MetaSep>from</MetaSep> {scripture}
-							</MetaText>
-						)}
-					</footer>
-				</Body>
-			</Container>
-
-			<FauxLink
-				to={`/by/${speakers[0].fields.slug}/${slug}`}
-			>{`Listen to ${title}`}</FauxLink>
-		</Card>
-	);
-};
+		<FauxLink
+			to={`/by/${post.speakers[0].fields.slug}/${post.slug}`}
+		>{`Listen to ${post.title}`}</FauxLink>
+	</Card>
+);
 
 TalkCard.propTypes = {
-	post: PropTypes.object.isRequired,
-	slug: PropTypes.string.isRequired,
+	data: PropTypes.object.isRequired,
 };
 
 export default TalkCard;

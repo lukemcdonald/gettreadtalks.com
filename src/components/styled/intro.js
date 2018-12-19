@@ -33,15 +33,25 @@ export const IntroBody = styled(Container)`
 	&& {
 		${tw`max-w-lg`}
 	}
+
+	a {
+		${tw`no-underline`}
+
+		&:hover {
+			${tw`text-brand`}
+		}
+	}
 `;
 
 export const IntroTitle = styled('h1')`
 	${tw`font-semibold mb-4 text-4xl text-black md:text-5xl`}
 `;
 
-export const IntroText = styled('div')`
+export const IntroExcerpt = styled('div')`
 	${tw`md:text-2xl leading-normal`}
 `;
+
+export const IntroContent = styled(IntroExcerpt)``;
 
 export const Intro = styled('div')`
 	${tw`bg-cover bg-grey-lightest overflow-hidden text-center text-grey-darkest`}

@@ -6,7 +6,7 @@ import { flattenObjectsByKey } from '../../utils';
 import Topic from './card';
 
 const Topics = styled.div`
-	${tw`mb-20`};
+	${tw`mb-8`};
 `;
 
 export default ({ data }) => {
@@ -14,14 +14,10 @@ export default ({ data }) => {
 
 	return (
 		<Topics>
-			{posts.map(post => (
-				<Topic
-					key={post.id}
-					id={post.id}
-					post={post.data}
-					slug={post.fields.slug}
-				/>
-			))}
+			{posts.map(({ id, fields, data }) => {
+				const post = { id, ...fields, ...data };
+				return <Topic key={id} data={post} />;
+			})}
 		</Topics>
 	);
 };

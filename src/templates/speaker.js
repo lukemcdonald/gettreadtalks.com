@@ -17,7 +17,7 @@ export default props => {
 		<Layout>
 			<SEO title={post.name} description={description.excerpt} />
 
-			<Intro title={post.name} text={description.html} image={post.banner} />
+			<Intro title={post.name} excerpt={description.html} image={post.banner} />
 
 			<Container className="has-subnav">
 				<Section>

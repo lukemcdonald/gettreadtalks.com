@@ -33,45 +33,40 @@ const Ministry = styled(MetaText)`
 	${tw`pr-2 hidden sm:inline`};
 `;
 
-const SpeakerCard = ({ id, post, slug }) => {
-	const { avatar, ministry, name, role, website } = post;
+const SpeakerCard = ({ data: post }) => (
+	<Card id={post.id}>
+		<Container>
+			<CardAvatar data={post.avatar} title={post.name} />
 
-	return (
-		<Card id={id}>
-			<Container>
-				<CardAvatar data={avatar} title={name} />
+			<Body>
+				{post.name && (
+					<Header>
+						<Title>{post.name}</Title>
+					</Header>
+				)}
 
-				<Body>
-					{name && (
-						<Header>
-							<Title>{name}</Title>
-						</Header>
+				<Footer>
+					{post.ministry && (
+						<Ministry>
+							{post.website ? (
+								<MetaLink to={post.website}>{post.ministry}</MetaLink>
+							) : (
+								<Fragment>{post.ministry}</Fragment>
+							)}
+						</Ministry>
 					)}
 
-					<Footer>
-						{ministry && (
-							<Ministry>
-								{website ? (
-									<MetaLink to={website}>{ministry}</MetaLink>
-								) : (
-									<Fragment>{ministry}</Fragment>
-								)}
-							</Ministry>
-						)}
+					{post.role && <MetaText>{post.role}</MetaText>}
+				</Footer>
+			</Body>
 
-						{role && <MetaText>{role}</MetaText>}
-					</Footer>
-				</Body>
-
-				<FauxLink to={`/by/${slug}`}>{`${name} Talks`}</FauxLink>
-			</Container>
-		</Card>
-	);
-};
+			<FauxLink to={`/by/${post.slug}`}>{`${post.name} Talks`}</FauxLink>
+		</Container>
+	</Card>
+);
 
 SpeakerCard.propTypes = {
-	post: PropTypes.object.isRequired,
-	slug: PropTypes.string.isRequired,
+	data: PropTypes.object.isRequired,
 };
 
 export default SpeakerCard;

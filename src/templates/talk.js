@@ -8,54 +8,69 @@ import { mapObjectToString, objectToString } from '../utils';
 import Layout from '../layouts';
 import SEO from '../components/seo';
 import Intro from '../components/intro';
-import { Container, Section } from '../components/styled/layout';
-import { MetaText } from '../components/styled/meta';
 import Topics from '../components/topics';
+import Speakers from '../components/speakers';
+
+import { Container, Section } from '../components/styled/layout';
 import { SecondaryButton } from '../components/styled/button';
 
 const TalkLink = styled(SecondaryButton)`
-	${tw`block m-auto mb-16`};
+	${tw`m-auto mt-16`};
+	${tw`md:w-1/3`};
 `;
 
-const SectionHeading = styled(MetaText)`
-	${tw`my-3 py-2`};
+const SectionHeading = styled.h2`
+	${tw`block no-underline my-3 py-2 text-grey-darkest text-sm tracking-wide uppercase`}
 `;
 
 export default props => {
 	const { data: post } = props.data.airtable;
-	const speaker = post.speakers.map(({ data }) => data);
 
 	const meta = {
 		title: post.title,
-		speaker: speaker[0].name ? `<em>by</em> ${speaker[0].name}` : '',
-		scripture: post.scripture ? `<em>from</em> ${post.scripture}` : '',
+		speakers: post.speakers
+			? `<em>by</em> ${post.speakers.map(({ data }) => data.name).join(', ')}`
+			: null,
+		scripture: post.scripture ? `<em>from</em> ${post.scripture}` : null,
 		topics: post.topics
-			? `on ${post.topics.map(({ data }) => data.name).join(', ')}`
-			: '',
+			? `<em>on</em> ${post.topics.map(({ data }) => data.name).join(', ')}`
+			: null,
 	};
+
+	console.log(objectToString(meta));
 
 	return (
 		<Layout>
 			<SEO
-				title={mapObjectToString(['title', 'speaker'], meta)}
+				title={mapObjectToString(['title', 'speakers'], meta)}
 				description={objectToString(meta)}
 			/>
 
 			<Intro
 				title={post.title}
-				text={mapObjectToString(['speaker', 'scripture'], meta)}
-			/>
-
-			<Container>
-				<Section>
+				excerpt={mapObjectToString(['speakers', 'scripture'], meta)}
+			>
+				<p>
 					<TalkLink to={post.link} as={Link} large={true}>
 						Listen to Talk &rarr;
 					</TalkLink>
-				</Section>
+				</p>
+			</Intro>
+
+			<Container>
+				{post.speakers && (
+					<Section>
+						<SectionHeading>Speaker</SectionHeading>
+						<Speakers data={post.speakers} />
+					</Section>
+				)}
 
 				{post.topics && (
 					<Section>
-						<SectionHeading as="h2">Related Topics</SectionHeading>
+						<SectionHeading>
+							{post.topics === 1 ? `Topic` : `Topics`}
+							{console.log(post.topics)}
+						</SectionHeading>
 						<Topics data={post.topics} />
 					</Section>
 				)}
@@ -89,6 +104,9 @@ export const pageQuery = graphql`
 					}
 					data {
 						name
+						role
+						ministry
+						website
 						avatar {
 							localFiles {
 								childImageSharp {

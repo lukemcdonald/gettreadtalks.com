@@ -21,7 +21,7 @@ const Image = styled(Img)`
 	object-fit: cover;
 `;
 
-const CardAvatar = ({ title, data }) => {
+const CardAvatar = ({ data, title }) => {
 	return (
 		<Figure>
 			{data && (

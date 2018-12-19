@@ -20,7 +20,7 @@ export default ({ data }) => {
 
 			<Intro
 				title="Featured Talks"
-				text="Staff picked talks to elevate your spiritual heartbeat."
+				excerpt="Staff picked talks to elevate your spiritual heartbeat."
 			/>
 
 			<Container className="has-subnav">

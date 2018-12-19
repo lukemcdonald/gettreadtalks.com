@@ -17,7 +17,7 @@ export default props => {
 		<Layout>
 			<SEO title={post.name} description={description} />
 
-			<Intro title={post.name} text={description} />
+			<Intro title={post.name} excerpt={description} />
 
 			<Container>
 				<Section>

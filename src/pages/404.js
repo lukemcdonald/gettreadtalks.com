@@ -32,7 +32,7 @@ export default () => (
 
 		<Intro
 			title="Are you lost?"
-			text="Sorry, but the page you are looking for cannot be found nor has it evolved into something else."
+			excerpt="Sorry, but the page you are looking for cannot be found nor has it evolved into something else."
 			image={require('../assets/images/bg-intro.jpg')}
 		/>
 

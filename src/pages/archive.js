@@ -17,7 +17,7 @@ export default ({ data }) => {
 
 			<Intro
 				title="Talks"
-				text="Weekly sermons to elevate your spiritual heartbeat."
+				excerpt="Weekly sermons to elevate your spiritual heartbeat."
 			/>
 
 			<Container className="has-subnav">
