@@ -1,21 +1,25 @@
 /* global tw */
 import styled from 'styled-components';
-import Logo from '../logo';
+import SiteLogo from '../logo';
 
-export const SiteHeader = styled.header`
-	${tw`bg-white border-brand border-t-4 clearfix pt-1`};
+export const Header = styled.header`
+	${tw`bg-white border-brand border-t-4 clearfix`};
 `;
 
-export const SiteBranding = styled.nav`
+export const Branding = styled.nav`
 	${tw`block my-4`};
 	${tw`md:flex`};
 `;
 
-export const SiteTitle = styled.h1`
+export const Title = styled.h1`
 	${tw`flex justify-center items-center`};
 	${tw`md:justify-start md:w-1/2`};
 `;
 
-export const SiteLogo = styled(Logo)`
+export const Logo = styled(SiteLogo)`
 	${tw`h-8`};
+`;
+
+export const Footer = styled.footer`
+	${tw`py-10`}
 `;

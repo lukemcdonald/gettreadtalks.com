@@ -3,31 +3,31 @@ import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
 
 import { Container } from './styled/layout';
-import { SiteHeader, SiteBranding, SiteTitle, SiteLogo } from './styled/site';
+import { Header, Branding, Title, Logo } from './styled/site';
 import SiteNav from './nav';
 
-const Header = ({ siteTitle }) => (
-	<SiteHeader>
+const SiteHeader = ({ siteTitle }) => (
+	<Header>
 		<Container>
-			<SiteBranding>
-				<SiteTitle>
+			<Branding>
+				<Title>
 					<Link to="/">
-						<SiteLogo />
+						<Logo />
 						<span className="visuallyhidden">{siteTitle}</span>
 					</Link>
-				</SiteTitle>
+				</Title>
 				<SiteNav />
-			</SiteBranding>
+			</Branding>
 		</Container>
-	</SiteHeader>
+	</Header>
 );
 
-Header.propTypes = {
+SiteHeader.propTypes = {
 	siteTitle: PropTypes.string,
 };
 
-Header.defaultProps = {
+SiteHeader.defaultProps = {
 	siteTitle: '',
 };
 
-export default Header;
+export default SiteHeader;
