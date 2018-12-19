@@ -2,7 +2,7 @@ const Promise = require(`bluebird`);
 const path = require(`path`);
 const slash = require(`slash`);
 
-const toSlug = string => {
+const slugify = string => {
 	let str = string;
 
 	str = str.replace(/^\s+|\s+$/g, ''); // trim
@@ -39,7 +39,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 		createNodeField({
 			node,
 			name: `slug`,
-			value: toSlug(name || title),
+			value: slugify(name || title),
 		});
 	}
 };
