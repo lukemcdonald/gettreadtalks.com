@@ -23,15 +23,11 @@ const MenuLink = styled(Link)`
 	${tw`block no-underline text-grey-darkest text-sm tracking-wide uppercase`}
 
 	&:hover {
-		${tw`text-brand`}
+		${tw`text-black`}
 	}
 
 	&.is-active {
-		${tw`font-bold text-black `}
-
-		&:hover {
-			${tw`text-black `}
-		}
+		${tw`font-bold text-brand `}
 	}
 `;
 
