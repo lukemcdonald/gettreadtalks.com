@@ -14,7 +14,7 @@ import Topics from '../components/topics';
 import { SecondaryButton } from '../components/styled/button';
 
 const TalkLink = styled(SecondaryButton)`
-	${tw`block m-auto my-16`};
+	${tw`block m-auto mb-16`};
 `;
 
 const SectionHeading = styled(MetaText)`
@@ -35,7 +35,7 @@ export default props => {
 	};
 
 	return (
-		<Layout main={{ bg: 'white' }}>
+		<Layout>
 			<SEO
 				title={mapObjectToString(['title', 'speaker'], meta)}
 				description={objectToString(meta)}
