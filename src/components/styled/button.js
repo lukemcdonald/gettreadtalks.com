@@ -5,7 +5,7 @@ export const Button = styled('button')`
 	${tw`border-2 inline-block rounded-full text-base text-inherit`}
 
 	&& {
-		${tw`font-semibold no-underline px-6 py-2 text-center`}
+		${tw`font-semibold no-underline px-4 py-2 text-center`}
 	}
 
 	&:hover {
