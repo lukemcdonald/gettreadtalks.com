@@ -42,7 +42,7 @@ function SEO({ description, lang, meta, keywords, title }) {
 							},
 							{
 								property: 'og:image',
-								content: `${metaImage}`,
+								content: `${siteMetadata.siteUrl}${metaImage}`,
 							},
 							{
 								name: 'twitter:card',
@@ -62,7 +62,7 @@ function SEO({ description, lang, meta, keywords, title }) {
 							},
 							{
 								name: 'twitter:image',
-								content: `${metaImage}`,
+								content: `${siteMetadata.siteUrl}${metaImage}`,
 							},
 						]
 							.concat(
@@ -93,7 +93,7 @@ const detailsQuery = graphql`
 				author
 				description
 				title
-				url
+				siteUrl
 			}
 		}
 	}
