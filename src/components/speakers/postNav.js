@@ -10,5 +10,5 @@ export default ({ data }) => {
 		{ text: `${ministry} →`, to: `${website}` },
 	];
 
-	return <SubNav title="Speaker Navigation" links={links} justify={true} />;
+	return <SubNav title="Speaker Navigation" links={links} justify="between" />;
 };

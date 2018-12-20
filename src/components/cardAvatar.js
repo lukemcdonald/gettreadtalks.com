@@ -5,7 +5,7 @@ import Img from 'gatsby-image';
 import { screens } from '../../tailwind';
 
 const Figure = styled('figure')`
-	${tw`bg-grey-lighter h-16 hidden mr-4 rounded-full w-16`}
+	${tw`bg-grey-lighter h-16 hidden mr-4 overflow-hidden rounded-full w-16`}
 	${tw`sm:block`}
 
 	/* gatsby-build doesn't currently support negative margins using tw */

@@ -7,13 +7,17 @@ export const Header = styled.header`
 `;
 
 export const Branding = styled.nav`
-	${tw`block my-4`};
+	${tw`block my-8`};
 	${tw`md:flex`};
 `;
 
 export const Title = styled.h1`
-	${tw`flex justify-center items-center`};
-	${tw`md:justify-start md:w-1/2`};
+	${tw`flex items-center justify-center mb-3`};
+	${tw`md:justify-start md:mb-0 md:w-1/2`};
+
+	a {
+		display: flex;
+	}
 `;
 
 export const Logo = styled(SiteLogo)`

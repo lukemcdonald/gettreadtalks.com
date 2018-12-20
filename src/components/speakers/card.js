@@ -25,7 +25,7 @@ const Title = styled('h2')`
 `;
 
 const Footer = styled.footer`
-	${tw`flex justify-between mt-2`};
+	${tw`flex mt-2`};
 `;
 
 const Ministry = styled(MetaText)`
@@ -45,17 +45,19 @@ const SpeakerCard = ({ data: post }) => (
 				)}
 
 				<Footer>
+					{post.role && <MetaText>{post.role}</MetaText>}
+
 					{post.ministry && (
 						<Ministry>
 							{post.website ? (
-								<MetaLink to={post.website}>{post.ministry}</MetaLink>
+								<MetaLink to={post.website}>
+									&nbsp;&middot;&nbsp;{post.ministry}
+								</MetaLink>
 							) : (
-								<Fragment>{post.ministry}</Fragment>
+								<Fragment>&nbsp;&middot;&nbsp;{post.ministry}</Fragment>
 							)}
 						</Ministry>
 					)}
-
-					{post.role && <MetaText>{post.role}</MetaText>}
 				</Footer>
 			</Body>
 

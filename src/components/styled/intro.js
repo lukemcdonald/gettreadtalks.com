@@ -9,7 +9,6 @@ export const IntroMedia = styled('figure')`
 	${tw`h-full object-cover relative`}
 
 	img {
-		object-fit: cover;
 		filter: grayscale(100%);
 	}
 
@@ -28,7 +27,8 @@ export const IntroImageOverlay = styled('span')`
 `;
 
 export const IntroBody = styled(Container)`
-	${tw`py-16 relative`}
+	${tw`py-8 relative`}
+	${tw`md:py-16`}
 
 	&& {
 		${tw`max-w-lg`}
@@ -40,6 +40,10 @@ export const IntroBody = styled(Container)`
 		&:hover {
 			${tw`text-brand`}
 		}
+	}
+
+	> :last-child {
+		${tw`mb-0`}
 	}
 `;
 
@@ -56,7 +60,6 @@ export const IntroContent = styled(IntroExcerpt)``;
 
 export const Intro = styled('div')`
 	${tw`bg-cover bg-grey-lightest overflow-hidden text-center text-grey-darkest`}
-
 	display: grid;
 	grid-template-areas: 'intro';
 	align-items: center;
@@ -66,27 +69,28 @@ export const Intro = styled('div')`
 		grid-area: intro;
 	}
 
-	&.has-bg {
-		> div {
-			${tw`mb-16`}
-		}
-
-		+ div {
-			/* gatsby-build doesn't currently support negative margins using tw */
-			/* ${tw`-mt-10`} */
-			margin-top: -1.5rem;
-		}
-
-		+ .has-subnav {
-			/* gatsby-build doesn't currently support negative margins using tw */
-			/* ${tw`-mt-24`} */
-			margin-top: -6rem;
-		}
-	}
-
 	@media (min-width: ${screens.md}) {
-		.has-bg {
-			min-height: 360px;
+		&.has-bg {
+			&,
+			${IntroImage} {
+				min-height: 360px;
+			}
+
+			> div {
+				${tw`mb-16`}
+			}
+
+			+ div {
+				/* gatsby-build doesn't currently support negative margins using tw */
+				/* ${tw`-mt-10`} */
+				margin-top: -1.5rem;
+			}
+
+			+ .has-subnav {
+				/* gatsby-build doesn't currently support negative margins using tw */
+				/* ${tw`-mt-24`} */
+				margin-top: -6rem;
+			}
 		}
 	}
 `;

@@ -3,16 +3,19 @@ import styled from 'styled-components';
 import React from 'react';
 import Link from './link';
 
-const Title = styled.h2`
-	${tw``};
-`;
+const Title = styled.h2``;
 
 const Menu = styled.ul`
-	${tw`list-reset flex`};
+	${tw`flex list-reset justify-center`};
+	${tw`lg:justify-start`}
 `;
 
 const MenuItem = styled.li`
-	${tw`mr-8 my-3 font-semibold inline-block py-2`};
+	${tw`mx-4 my-3 font-semibold py-2`};
+
+	&:first-child {
+		${tw`ml-0`};
+	}
 
 	&:last-child {
 		${tw`mr-0`};
@@ -33,7 +36,13 @@ const MenuLink = styled(Link)`
 
 const Nav = styled('nav')`
 	${Menu} {
-		${props => (props.justify ? tw`justify-between` : tw``)}
+		${props => (props.justify ? tw`justify-between` : null)}
+	}
+
+	${MenuItem} {
+		&:last-child {
+			${props => (props.justify ? tw`text-right` : null)}
+		}
 	}
 `;
 

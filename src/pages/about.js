@@ -7,13 +7,15 @@ import SEO from '../components/seo';
 import { Container, Section } from '../components/styled/layout';
 
 const Article = styled(Section)`
-	${tw`my-16`};
+	${tw`my-8`};
+	${tw`md:my-16`};
 `;
+
 const Header = styled.header`
-	${tw`mb-12`};
+	${tw`mb-6`};
 `;
 const Title = styled.h1`
-	${tw`font-semibold mb-4 text-black text-4xl`};
+	${tw`font-semibold mb-6 text-black text-4xl`};
 `;
 const Content = styled.div`
 	${tw`text-grey-darker`};

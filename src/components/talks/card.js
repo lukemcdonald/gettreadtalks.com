@@ -21,6 +21,9 @@ const Title = styled('h2')`
 const SpeakerLink = styled(MetaLink)`
 	${tw`relative z-10`}
 `;
+const Footer = styled.footer`
+	${tw`flex mt-2`};
+`;
 
 const TalkCard = ({ data: post }) => (
 	<Card id={post.id}>
@@ -34,7 +37,7 @@ const TalkCard = ({ data: post }) => (
 					<Title>{post.title}</Title>
 				</header>
 
-				<footer>
+				<Footer>
 					{post.speakers.map(({ id, data, fields }) => (
 						<MetaText key={id}>
 							<MetaSep>By</MetaSep>&nbsp;
@@ -48,7 +51,7 @@ const TalkCard = ({ data: post }) => (
 							<MetaSep>from</MetaSep> {post.scripture}
 						</MetaText>
 					)}
-				</footer>
+				</Footer>
 			</Body>
 		</Container>
 

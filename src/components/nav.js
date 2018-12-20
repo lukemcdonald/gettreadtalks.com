@@ -6,17 +6,24 @@ import Link from '../components/link';
 import { PrimaryButton } from './styled/button';
 
 const Nav = styled(`div`)`
-	${tw`block text-center font-semibold`}
+	${tw`block font-semibold text-center `}
 	${tw`md:w-1/2 md:text-right`}
 `;
 
 const NavLink = styled(Link)`
-	${tw`inline-block mr-8 py-6 no-underline text-black`}
+	${tw`inline-block mx-4 py-2 no-underline text-black`}
 
 	&:hover,
 	&.is-active {
 		${tw`text-brand`}
 	}
+`;
+
+const SubscribeButton = styled(PrimaryButton)`
+	${tw`block mt-3`};
+	${tw`xs:inline-block`};
+	${tw`sm:mt-0`};
+	${tw`md:ml-4`}
 `;
 
 const links = [
@@ -33,8 +40,8 @@ export default () => (
 				{link.label}
 			</NavLink>
 		))}
-		<PrimaryButton as="a" href="http://eepurl.com/dNtF3U">
+		<SubscribeButton as="a" href="http://eepurl.com/dNtF3U">
 			Subscribe
-		</PrimaryButton>
+		</SubscribeButton>
 	</Nav>
 );

@@ -12,7 +12,7 @@ const Body = styled('div')`
 `;
 
 const Title = styled('h2')`
-	${tw`font-bold mb-1 text-black text-xl`}
+	${tw`font-bold text-black text-xl`}
 `;
 
 const TopicCard = ({ data: post }) => (
