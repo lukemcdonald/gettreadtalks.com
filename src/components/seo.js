@@ -42,7 +42,7 @@ function SEO({ description, lang, meta, keywords, title }) {
 							},
 							{
 								property: 'og:image',
-								content: metaImage,
+								content: `${metaImage}`,
 							},
 							{
 								name: 'twitter:card',
@@ -62,7 +62,7 @@ function SEO({ description, lang, meta, keywords, title }) {
 							},
 							{
 								name: 'twitter:image',
-								content: metaImage,
+								content: `${metaImage}`,
 							},
 						]
 							.concat(
@@ -90,9 +90,10 @@ const detailsQuery = graphql`
 	query DefaultSEOQuery {
 		site {
 			siteMetadata {
-				title
-				description
 				author
+				description
+				title
+				url
 			}
 		}
 	}

@@ -1,11 +1,11 @@
 const tailwind = require('../tailwind');
 
 module.exports = {
-	siteTitle: 'TREAD Talks',
-	siteTagline: 'Weekly sermons to elevate your spiritual heartbeat.',
-	siteDescription: 'Weekly sermons to elevate your spiritual heartbeat.',
-	siteIcon: 'src/assets/images/favicon.png',
-	siteUrl: 'https://gettreadtalks.com',
+	title: 'TREAD Talks',
+	tagline: 'Weekly sermons to elevate your spiritual heartbeat.',
+	description: 'Weekly sermons to elevate your spiritual heartbeat.',
+	icon: 'src/assets/images/favicon.png',
+	url: 'https://gettreadtalks.com',
 	socialLinks: [
 		{
 			label: 'Facebook',

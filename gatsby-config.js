@@ -6,11 +6,11 @@ require('dotenv').config({
 
 module.exports = {
 	siteMetadata: {
-		siteUrl: config.siteUrl,
-		title: config.siteTitle,
-		tagline: config.siteTagline,
-		description: config.siteDescription,
-		image: config.siteImage,
+		url: config.url,
+		title: config.title,
+		tagline: config.tagline,
+		description: config.description,
+		image: config.image,
 		author: '@thelukemcdonald',
 		keywords:
 			'tread, talks, jesus, christ, God, religion, sermons, salvation, bible, biblical, audio, video',
@@ -40,14 +40,14 @@ module.exports = {
 		{
 			resolve: `gatsby-plugin-manifest`,
 			options: {
-				name: config.siteTitle,
-				short_name: config.siteTitle,
-				description: config.siteDescription,
+				name: config.title,
+				short_name: config.title,
+				description: config.description,
 				start_url: '/',
 				background_color: config.backgroundColor,
 				theme_color: config.themeColor,
 				display: 'minimal-ui',
-				icon: config.siteIcon,
+				icon: config.icon,
 			},
 		},
 		{
