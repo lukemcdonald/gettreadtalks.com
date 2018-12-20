@@ -3,6 +3,8 @@ import Helmet from 'react-helmet';
 import { StaticQuery, graphql } from 'gatsby';
 import striptags from 'striptags';
 
+import image from '../assets/images/meta-tags-image.jpg';
+
 import { seoType, seoDefaults } from '../prop-types';
 
 function SEO({ description, lang, meta, keywords, title }) {
@@ -10,15 +12,17 @@ function SEO({ description, lang, meta, keywords, title }) {
 		<StaticQuery
 			query={detailsQuery}
 			render={data => {
-				const metaDescription =
-					description || data.site.siteMetadata.description;
+				const { siteMetadata } = data.site;
+				const metaDescription = description || siteMetadata.description;
+				const metaImage = image || siteMetadata.image;
+
 				return (
 					<Helmet
 						htmlAttributes={{
 							lang,
 						}}
 						title={striptags(title)}
-						titleTemplate={`%s | ${data.site.siteMetadata.title}`}
+						titleTemplate={`%s | ${siteMetadata.title}`}
 						meta={[
 							{
 								name: 'description',
@@ -37,12 +41,16 @@ function SEO({ description, lang, meta, keywords, title }) {
 								content: 'website',
 							},
 							{
+								property: 'og:image',
+								content: metaImage,
+							},
+							{
 								name: 'twitter:card',
 								content: 'summary',
 							},
 							{
 								name: 'twitter:creator',
-								content: data.site.siteMetadata.author,
+								content: siteMetadata.author,
 							},
 							{
 								name: 'twitter:title',
@@ -51,6 +59,10 @@ function SEO({ description, lang, meta, keywords, title }) {
 							{
 								name: 'twitter:description',
 								content: striptags(metaDescription),
+							},
+							{
+								name: 'twitter:image',
+								content: metaImage,
 							},
 						]
 							.concat(

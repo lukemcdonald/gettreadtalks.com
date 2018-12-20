@@ -1,4 +1,4 @@
-const config = require('./data/siteConfig');
+const config = require('./config');
 
 require('dotenv').config({
 	path: `.env`,
@@ -10,6 +10,7 @@ module.exports = {
 		title: config.siteTitle,
 		tagline: config.siteTagline,
 		description: config.siteDescription,
+		image: config.siteImage,
 		author: '@thelukemcdonald',
 		keywords:
 			'tread, talks, jesus, christ, God, religion, sermons, salvation, bible, biblical, audio, video',

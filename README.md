@@ -3,6 +3,7 @@
 # ToDo's
 
 - [] Improve SEO Meta (Link)[https://metatags.io/]
+- [] Check dependencies and devDependencies are in right place. May not need all deps
 - [] Improve single talk page
   - [x] Fix talk link button on mobile
   - [x] Add link speaker to archive
