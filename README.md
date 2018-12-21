@@ -2,8 +2,17 @@
 
 # ToDo's
 
-- [] Improve SEO Meta (Link)[https://metatags.io/]
+- [] Improve SEO Meta (Link)[https://metatags.io/] with (JSON-LD)[https://jsonld.com/breadcrumb/] and an (SEO Component)[https://www.gatsbyjs.org/docs/add-seo-component/]
+  - [](Breadcrumbs)[https://developers.google.com/search/docs/data-types/breadcrumb] - [](Corporate Contact)[https://developers.google.com/search/docs/data-types/corporate-contact]
+  - [](Logo)[https://developers.google.com/search/docs/data-types/logo]
+  - [](Media Actions)[https://developers.google.com/actions/media/]
+  - [] (Sitelinks Searchbox)[https://developers.google.com/search/docs/data-types/sitelinks-searchbox]
+    - [](Social Profile)[https://developers.google.com/search/docs/data-types/social-profile]
 - [] Check dependencies and devDependencies are in right place. May not need all deps
+- [] Add Search
+  - Gatsby (setup)[https://www.gatsbyjs.org/docs/adding-search/]
+  - Algolia search (setup and filters)[https://community.algolia.com/react-instantsearch/videos/]
+- [](Pagination)[https://www.gatsbyjs.org/docs/adding-pagination/]
 - [] Improve single talk page
   - [x] Fix talk link button on mobile
   - [x] Add link speaker to archive

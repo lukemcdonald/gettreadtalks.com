@@ -4,6 +4,46 @@ require('dotenv').config({
 	path: `.env`,
 });
 
+const publishedTalksQuery = `{
+	allAirtable(
+		filter: { queryName: { eq: "PUBLISHED_TALKS" } }
+		sort: { fields: data___publishedDate, order: DESC }
+	) {
+		edges {
+			node {
+				id
+				fields {
+					slug
+				}
+				data {
+					title
+					scripture
+					speakers {
+						id
+						fields {
+							slug
+						}
+						data {
+							name
+						}
+					}
+				}
+			}
+		}
+	}
+}`;
+
+const searchQueries = [
+	{
+		indexName: `prod_PUBLISHED_TALKS`,
+		query: publishedTalksQuery,
+		transformer: ({ data }) => data.allAirtable.edges.map(({ node }) => node), // optional
+		settings: {
+			attributesToSnippet: ['path:5', 'internal'],
+		},
+	},
+];
+
 module.exports = {
 	siteMetadata: {
 		siteUrl: config.url,
@@ -29,6 +69,16 @@ module.exports = {
 			options: {
 				name: `images`,
 				path: `${__dirname}/src/assets/images`,
+			},
+		},
+		{
+			resolve: `gatsby-plugin-algolia`,
+			options: {
+				appId: process.env.ALGOLIA_APP_ID,
+				apiKey: process.env.ALGOLIA_API_KEY_ADMIN,
+				indexName: process.env.ALGOLIA_INDEX_NAME,
+				queries: searchQueries,
+				chunkSize: 10000, // default: 1000
 			},
 		},
 		{
