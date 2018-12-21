@@ -7,6 +7,7 @@ import SEO from '../components/seo';
 import { Container, Section } from '../components/styled/layout';
 import Talks from '../components/talks';
 import TalksNav from '../components/talks/nav';
+import Search from '../components/search';
 
 export default ({ data }) => {
 	const { edges: posts = [] } = data.allAirtable;
@@ -22,7 +23,9 @@ export default ({ data }) => {
 				title="Workout your salvation."
 				excerpt="Weekly sermons to elevate your spiritual heartbeat."
 				image={{ name: 'bg-intro' }}
-			/>
+			>
+				<Search />
+			</Intro>
 
 			<Container className="has-subnav">
 				<Section>

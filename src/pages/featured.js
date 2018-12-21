@@ -7,6 +7,7 @@ import SEO from '../components/seo';
 import { Container, Section } from '../components/styled/layout';
 import Talks from '../components/talks';
 import TalksNav from '../components/talks/nav';
+import Search from '../components/search';
 
 export default ({ data }) => {
 	const { edges: posts } = data.allAirtable;
@@ -21,7 +22,9 @@ export default ({ data }) => {
 			<Intro
 				title="Featured Talks"
 				excerpt="Staff picked talks to elevate your spiritual heartbeat."
-			/>
+			>
+				<Search />
+			</Intro>
 
 			<Container className="has-subnav">
 				<Section>
