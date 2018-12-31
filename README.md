@@ -8,7 +8,6 @@
   - [](Media Actions)[https://developers.google.com/actions/media/]
   - [] (Sitelinks Searchbox)[https://developers.google.com/search/docs/data-types/sitelinks-searchbox]
     - [](Social Profile)[https://developers.google.com/search/docs/data-types/social-profile]
-- [] Check dependencies and devDependencies are in right place. May not need all deps
 - [] Add Search
   - Gatsby (setup)[https://www.gatsbyjs.org/docs/adding-search/]
   - Algolia search (setup and filters)[https://community.algolia.com/react-instantsearch/videos/]
@@ -40,6 +39,8 @@
   - [] Track in Google Analytics
 - [] Search / Filter
   - [] Filter Talks by Speakers, Topics, View (latest, featured, etc), or comibined.
+- [x] Setup auto deploy/build for Netlfiy using Zapier
+- [x] Check dependencies and devDependencies are in right place. May not need all deps
 - [x] Improve performance and caching
 - [x] Refactor to use [Gatsby Airtable](https://github.com/jbolda/gatsby-source-airtable)
 - [x] Update URL paths
