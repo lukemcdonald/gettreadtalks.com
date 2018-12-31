@@ -6,7 +6,7 @@ import { screens } from '../../../tailwind';
 import { Container } from './layout';
 
 export const IntroMedia = styled('figure')`
-	${tw`h-full object-cover relative`}
+	${tw`h-full object-cover overflow-hidden relative`}
 
 	img {
 		filter: grayscale(100%);
@@ -59,7 +59,7 @@ export const IntroExcerpt = styled('div')`
 export const IntroContent = styled(IntroExcerpt)``;
 
 export const Intro = styled('div')`
-	${tw`bg-cover bg-grey-lightest overflow-hidden text-center text-grey-darkest`}
+	${tw`bg-cover bg-grey-lightest text-center text-grey-darkest`}
 	display: grid;
 	grid-template-areas: 'intro';
 	align-items: center;

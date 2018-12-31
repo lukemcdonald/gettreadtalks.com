@@ -11,6 +11,7 @@ export const Card = styled('article')`
 	margin-bottom: -1px;
 
 	&:first-child {
+		${tw`border-t`}
 		border-top-left-radius: .25rem;
 		border-top-right-radius: .25rem;
 	}
