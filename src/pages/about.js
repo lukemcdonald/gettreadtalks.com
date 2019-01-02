@@ -67,7 +67,7 @@ export default () => (
 
 					<p>
 						The idea behind <strong>TREAD Talks</strong> is to walk, run, climb,
-						ride, etc. while listening to the full length of a sermon on a
+						bike, etc. while listening to the full length of a sermon on a
 						weekly basis. Fifty-two sermons a year. Ideally, with others
 						participating alongside you, you'll be able to encourage one another
 						to be active in the bodies given to us by God and enjoy fellowship
