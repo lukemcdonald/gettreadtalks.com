@@ -57,14 +57,21 @@ export default () => (
 
 				<Content>
 					<p>
-						This site is for those christians seeking to elevate their spiritual
-						heartbeats while working out their phsical heartbaeak. The idea is
-						to walk, run, climb, ride, or whatever you do while listening to the
-						full length of a sermon on a weekly basis. Fifty-two sermons a year.
-						Ideally, with others participating alongside you, you'll be able to
-						encourage one another to be active in the bodies given to us by God
-						and enjoy fellowship and prayer around the contents of the sermon
-						each week.
+						This project was initially created for those christians seeking to
+						elevate their spiritual heartbeat while working out their physical
+						one. The idea has grown from making posts to Facebook to building a
+						full fledged website and automating the processes along the way. For
+						the most part, this site was built to scratch an web development
+						itch with project and content that I love.
+					</p>
+
+					<p>
+						The idea behind <strong>TREAD Talks</strong> is to walk, run, climb,
+						ride, etc. while listening to the full length of a sermon on a
+						weekly basis. Fifty-two sermons a year. Ideally, with others
+						participating alongside you, you'll be able to encourage one another
+						to be active in the bodies given to us by God and enjoy fellowship
+						and prayer around the contents of the sermon each week.
 					</p>
 
 					<p>
