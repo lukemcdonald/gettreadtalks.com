@@ -1,6 +1,14 @@
 # TREAD Talks
 
-# ToDo's
+## Development
+
+When updates are pushed to the 'develop' branch, those changes can be seen live here:
+
+https://develop--treadtalks.netlify.com
+
+Alternatively, a build version of the site that will be used on the live site can be tested locally using the `npm run serve` command.
+
+## ToDo's
 
 - [] Improve SEO Meta (Link)[https://metatags.io/] with (JSON-LD)[https://jsonld.com/breadcrumb/] and an (SEO Component)[https://www.gatsbyjs.org/docs/add-seo-component/]
   - [](Breadcrumbs)[https://developers.google.com/search/docs/data-types/breadcrumb] - [](Corporate Contact)[https://developers.google.com/search/docs/data-types/corporate-contact]
@@ -8,9 +16,6 @@
   - [](Media Actions)[https://developers.google.com/actions/media/]
   - [] (Sitelinks Searchbox)[https://developers.google.com/search/docs/data-types/sitelinks-searchbox]
     - [](Social Profile)[https://developers.google.com/search/docs/data-types/social-profile]
-- [] Add Search
-  - Gatsby (setup)[https://www.gatsbyjs.org/docs/adding-search/]
-  - Algolia search (setup and filters)[https://community.algolia.com/react-instantsearch/videos/]
 - [](Pagination)[https://www.gatsbyjs.org/docs/adding-pagination/]
 - [] Improve single talk page
   - [x] Fix talk link button on mobile
@@ -19,29 +24,23 @@
 - [] Improve talks card
   - [] Add external link
   - [] Add featured talk indicator
-- [] Add schema or Google JSON-LD
 - [] React/Gatsby Themes config
-- [] Integrate NProgress in header
 - [] Primary Navigation Submenu [Design](https://twitter.com/steveschoger/status/953297226985549825)
 - [][reakit](https://github.com/reakit/reakit) integration
-- [] Series Pages
+- [] Series Archive and Pages
 - [] Subscribe Form
 - [] Sidebar Layout
 - [] Footer Navigation
 - [] Social Navigation
-- [x] iTunes Affiliate Links
-  - [] Logos
-  - [x] Dwell
-  - [] ESV
-  - [][american gospel movie](https://vimeo.com/ondemand/gospel1/296083675)
-  - [] Manage affiliate products via Airtable
-- [] Track Clicks
-  - [] Push to Airtable Field
-  - [] Track in Google Analytics
-- [] Search / Filter
-  - [] Filter Talks by Speakers, Topics, View (latest, featured, etc), or comibined.
 - [] Statement of Faith page.
   - [] Include [TOC](https://github.com/remarkjs/remark-toc) like Berean
+  - [] Add menu item under About or links in footer
+- [] Display iTunes Affiliate Links
+  - [] Featured Links in Footer
+  - [] Add resources page to list all links by category/type (include link in footer menu)
+- [x] Manage affiliate products via Airtable
+- [x] Add Search - Gatsby (setup)[https://www.gatsbyjs.org/docs/adding-search/]
+  - [x] Algolia search (setup and filters)[https://community.algolia.com/react-instantsearch/videos/]
 - [x] MailChimp integration
   - [x] RSS Feed (Zapier RSS)
 - [x] Setup auto deploy/build for Netlfiy using Zapier
