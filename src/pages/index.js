@@ -57,7 +57,7 @@ export const pageQuery = graphql`
 						speakers {
 							id
 							data {
-								name
+								title
 								avatar {
 									localFiles {
 										childImageSharp {

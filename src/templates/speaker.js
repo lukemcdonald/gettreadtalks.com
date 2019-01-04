@@ -40,7 +40,7 @@ export const pageQuery = graphql`
 				slug
 			}
 			data {
-				name
+				title
 				ministry
 				website
 				banner {
@@ -83,7 +83,7 @@ export const pageQuery = graphql`
 								slug
 							}
 							data {
-								name
+								title
 								avatar {
 									localFiles {
 										childImageSharp {

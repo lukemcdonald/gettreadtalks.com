@@ -18,7 +18,7 @@ const Title = styled('h2')`
 const TopicCard = ({ data: post }) => (
 	<Card id={post.id}>
 		<Body>
-			<Title>{post.name}</Title>
+			<Title>{post.title}</Title>
 			{post.publishedTalksCount && (
 				<MetaText>
 					{post.publishedTalksCount === 1
@@ -28,7 +28,7 @@ const TopicCard = ({ data: post }) => (
 			)}
 		</Body>
 
-		<FauxLink to={`/${post.slug}`}>{`${post.name} Talks`}</FauxLink>
+		<FauxLink to={`/${post.slug}`}>{`Talks on ${post.title}`}</FauxLink>
 	</Card>
 );
 

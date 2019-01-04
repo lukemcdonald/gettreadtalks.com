@@ -25,11 +25,11 @@ export default props => {
 	const meta = {
 		title: post.title,
 		speakers: post.speakers
-			? `<em>by</em> ${post.speakers.map(({ data }) => data.name).join(', ')}`
+			? `<em>by</em> ${post.speakers.map(({ data }) => data.title).join(', ')}`
 			: null,
 		scripture: post.scripture ? `<em>from</em> ${post.scripture}` : null,
 		topics: post.topics
-			? `<em>on</em> ${post.topics.map(({ data }) => data.name).join(', ')}`
+			? `<em>on</em> ${post.topics.map(({ data }) => data.title).join(', ')}`
 			: null,
 	};
 
@@ -88,7 +88,7 @@ export const pageQuery = graphql`
 						slug
 					}
 					data {
-						name
+						title
 						publishedTalksCount
 					}
 				}
@@ -98,7 +98,7 @@ export const pageQuery = graphql`
 						slug
 					}
 					data {
-						name
+						title
 						role
 						ministry
 						website

@@ -42,13 +42,12 @@ exports.onCreateNode = ({ node, actions }) => {
 		airtableTables.includes(node.table) &&
 		Object.keys(node.data).length
 	) {
-		const { name, path: nodePath, title } = node.data;
-		const generatedPath = slugify(name || title);
+		const { path: nodePath, title } = node.data;
 
 		createNodeField({
 			node,
 			name: `slug`,
-			value: nodePath || generatedPath,
+			value: nodePath || slugify(title),
 		});
 	}
 };

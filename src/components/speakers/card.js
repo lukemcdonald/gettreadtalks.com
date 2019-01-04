@@ -35,12 +35,12 @@ const Ministry = styled(MetaText)`
 const SpeakerCard = ({ data: post }) => (
 	<Card id={post.id}>
 		<Container>
-			<CardAvatar data={post.avatar} title={post.name} />
+			<CardAvatar data={post.avatar} title={post.title} />
 
 			<Body>
-				{post.name && (
+				{post.title && (
 					<Header>
-						<Title>{post.name}</Title>
+						<Title>{post.title}</Title>
 					</Header>
 				)}
 
@@ -61,7 +61,7 @@ const SpeakerCard = ({ data: post }) => (
 				</Footer>
 			</Body>
 
-			<FauxLink to={`/${post.slug}`}>{`${post.name} Talks`}</FauxLink>
+			<FauxLink to={`/${post.slug}`}>{`Talks by ${post.title}`}</FauxLink>
 		</Container>
 	</Card>
 );

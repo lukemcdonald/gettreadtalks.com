@@ -9,10 +9,10 @@ export const speakerType = shape({
 	id: string.isRequired,
 	lastName: string,
 	ministry: string,
-	name: string.isRequired,
 	publishedTalksCount: oneOfType([number, string]),
 	role: string,
 	talks: talkType,
+	title: string.isRequired,
 	website: string,
 });
 

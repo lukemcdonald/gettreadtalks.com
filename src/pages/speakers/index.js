@@ -38,7 +38,7 @@ export const pageQuery = graphql`
 						slug
 					}
 					data {
-						name
+						title
 						role
 						ministry
 						website

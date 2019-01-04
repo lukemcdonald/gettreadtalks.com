@@ -22,10 +22,10 @@ export default ({ hit }) => (
 
 		<div>
 			{hit.data.speakers.map(({ data, fields }) => (
-				<MetaText key={data.name}>
+				<MetaText key={data.title}>
 					<MetaSep>By</MetaSep>&nbsp;
 					<SpeakerLink to={`/${fields.slug}`}>
-						<Highlight attribute="data.speakers[0].data.name" hit={hit} />
+						<Highlight attribute="data.speakers[0].data.title" hit={hit} />
 					</SpeakerLink>
 					&nbsp;
 				</MetaText>

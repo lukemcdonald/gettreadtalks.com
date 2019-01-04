@@ -41,7 +41,7 @@ export const pageQuery = graphql`
 				slug
 			}
 			data {
-				name
+				title
 			}
 		}
 		allAirtable(
@@ -67,7 +67,7 @@ export const pageQuery = graphql`
 								slug
 							}
 							data {
-								name
+								title
 								avatar {
 									localFiles {
 										childImageSharp {

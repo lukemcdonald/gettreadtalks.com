@@ -29,7 +29,7 @@ const TalkCard = ({ data: post }) => (
 	<Card id={post.id}>
 		<Container>
 			{post.speakers.map(({ id, data }) => (
-				<CardAvatar key={id} data={data.avatar} title={data.name} />
+				<CardAvatar key={id} data={data.avatar} title={data.title} />
 			))}
 
 			<Body>
@@ -41,7 +41,7 @@ const TalkCard = ({ data: post }) => (
 					{post.speakers.map(({ id, data, fields }) => (
 						<MetaText key={id}>
 							<MetaSep>By</MetaSep>&nbsp;
-							<SpeakerLink to={`/${fields.slug}`}>{data.name}</SpeakerLink>
+							<SpeakerLink to={`/${fields.slug}`}>{data.title}</SpeakerLink>
 							&nbsp;
 						</MetaText>
 					))}

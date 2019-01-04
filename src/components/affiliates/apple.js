@@ -9,27 +9,27 @@ const Container = styled.div`
 // @Link https://banners.itunes.apple.com/us/catalog
 const products = [
 	{
-		name: 'Saints of Zion',
+		title: 'Saints of Zion',
 		id: '1264726262',
 		store: 'appleMusic',
 	},
 	{
-		name: 'Holiness of God',
+		title: 'Holiness of God',
 		id: '562309063',
 		store: 'books',
 	},
 	{
-		name: 'Dwell: Audio Bible',
+		title: 'Dwell: Audio Bible',
 		id: '1343917374',
 		store: 'apps',
 	},
 	{
-		name: 'A Case for Christ',
+		title: 'A Case for Christ',
 		id: '1217904344',
 		store: 'movie',
 	},
 	{
-		name: 'Challies Daily Podcast',
+		title: 'Challies Daily Podcast',
 		id: '1442620971',
 		store: 'podcast',
 	},

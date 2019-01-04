@@ -33,7 +33,7 @@ export const pageQuery = graphql`
 	query {
 		allAirtable(
 			filter: { queryName: { eq: "PUBLISHED_TOPICS" } }
-			sort: { fields: data___name, order: ASC }
+			sort: { fields: data___title, order: ASC }
 		) {
 			edges {
 				node {
@@ -42,7 +42,7 @@ export const pageQuery = graphql`
 						slug
 					}
 					data {
-						name
+						title
 						publishedTalksCount
 					}
 				}
