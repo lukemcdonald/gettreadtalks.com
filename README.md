@@ -41,6 +41,7 @@
 - [] Search / Filter
   - [] Filter Talks by Speakers, Topics, View (latest, featured, etc), or comibined.
 - [] Statement of Faith page.
+  - [] Include [TOC](https://github.com/remarkjs/remark-toc) like Berean
 - [x] MailChimp integration
   - [x] RSS Feed (Zapier RSS)
 - [x] Setup auto deploy/build for Netlfiy using Zapier

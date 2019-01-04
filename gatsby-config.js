@@ -157,6 +157,16 @@ module.exports = {
 						queryName: `PUBLISHED_TOPICS`,
 						tableLinks: [`talks`],
 					},
+					{
+						baseId: process.env.AIRTABLE_BASE,
+						tableName: `Pages`,
+						tableView: `Published`,
+						queryName: `PUBLISHED_PAGES`,
+						mapping: {
+							banner: `fileNode`,
+							content: `text/markdown`,
+						},
+					},
 				],
 			},
 		},

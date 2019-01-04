@@ -26,20 +26,29 @@ const slugify = string => {
 	return str;
 };
 
-exports.onCreateNode = ({ node, actions, getNode }) => {
+exports.onCreateNode = ({ node, actions }) => {
 	const { createNodeField } = actions;
-	const airtableTables = ['Speakers', 'Talks', 'Topics'];
+	const airtableTables = ['Pages', 'Speakers', 'Talks', 'Topics'];
 
+	/**
+	 * Create a slug value on the node fields property.
+	 *
+	 * 1. Node is an Airtable type
+	 * 2. Node type is a whitelisted Airtable
+	 * 3. Node data is not empty (empty table row in Airtable)
+	 */
 	if (
 		node.internal.type === `Airtable` &&
-		airtableTables.includes(node.table)
+		airtableTables.includes(node.table) &&
+		Object.keys(node.data).length
 	) {
-		const { name, title } = node.data;
+		const { name, slug, title } = node.data;
+		const generatedSlug = slugify(name || title);
 
 		createNodeField({
 			node,
 			name: `slug`,
-			value: slugify(name || title),
+			value: slug || generatedSlug,
 		});
 	}
 };
@@ -86,11 +95,13 @@ exports.createPages = ({ graphql, actions }) => {
 					const { id, fields, data } = node;
 					const { speakers = [] } = data;
 
-					createPage({
-						path: `/by/${speakers[0].fields.slug}/${fields.slug}`,
-						component: slash(template),
-						context: { id },
-					});
+					if (fields && fields.slug) {
+						createPage({
+							path: `/by/${speakers[0].fields.slug}/${fields.slug}`,
+							component: slash(template),
+							context: { id },
+						});
+					}
 				});
 
 				resolve();
@@ -125,11 +136,13 @@ exports.createPages = ({ graphql, actions }) => {
 					data.allAirtable.edges.forEach(({ node }) => {
 						const { id, fields } = node;
 
-						createPage({
-							path: `/by/${fields.slug}`,
-							component: slash(template),
-							context: { id },
-						});
+						if (fields && fields.slug) {
+							createPage({
+								path: `/by/${fields.slug}`,
+								component: slash(template),
+								context: { id },
+							});
+						}
 					});
 
 					resolve();
@@ -165,11 +178,55 @@ exports.createPages = ({ graphql, actions }) => {
 					data.allAirtable.edges.forEach(({ node }) => {
 						const { id, fields } = node;
 
-						createPage({
-							path: `/on/${fields.slug}`,
-							component: slash(template),
-							context: { id },
-						});
+						if (fields && fields.slug) {
+							createPage({
+								path: `/on/${fields.slug}`,
+								component: slash(template),
+								context: { id },
+							});
+						}
+					});
+
+					resolve();
+				});
+			})
+
+			// PAGES
+
+			.then(() => {
+				graphql(`
+					{
+						allAirtable(filter: { queryName: { eq: "PUBLISHED_PAGES" } }) {
+							edges {
+								node {
+									id
+									fields {
+										slug
+									}
+								}
+							}
+						}
+					}
+				`).then(result => {
+					const { data, errors } = result;
+
+					if (errors) {
+						console.log(errors);
+						reject(errors);
+					}
+
+					const template = path.resolve(`./src/templates/page.js`);
+
+					data.allAirtable.edges.forEach(({ node }) => {
+						const { id, fields } = node;
+
+						if (fields && fields.slug) {
+							createPage({
+								path: `/${fields.slug}`,
+								component: slash(template),
+								context: { id },
+							});
+						}
 					});
 
 					resolve();
