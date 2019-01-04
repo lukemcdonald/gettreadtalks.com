@@ -18,6 +18,21 @@ const products = [
 		id: '562309063',
 		store: 'books',
 	},
+	{
+		name: 'Dwell: Audio Bible',
+		id: '1343917374',
+		store: 'apps',
+	},
+	{
+		name: 'A Case for Christ',
+		id: '1217904344',
+		store: 'movie',
+	},
+	{
+		name: 'Challies Daily Podcast',
+		id: '1442620971',
+		store: 'podcast',
+	},
 ];
 
 class Apple extends Component {
