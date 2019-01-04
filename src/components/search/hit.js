@@ -24,7 +24,7 @@ export default ({ hit }) => (
 			{hit.data.speakers.map(({ data, fields }) => (
 				<MetaText key={data.name}>
 					<MetaSep>By</MetaSep>&nbsp;
-					<SpeakerLink to={`/by/${fields.slug}`}>
+					<SpeakerLink to={`/${fields.slug}`}>
 						<Highlight attribute="data.speakers[0].data.name" hit={hit} />
 					</SpeakerLink>
 					&nbsp;
@@ -38,8 +38,8 @@ export default ({ hit }) => (
 				</MetaText>
 			)}
 		</div>
-		<FauxLink
-			to={`/by/${hit.data.speakers[0].fields.slug}/${hit.fields.slug}`}
-		>{`Listen to ${hit.data.title}`}</FauxLink>
+		<FauxLink to={`/${hit.fields.slug}`}>{`Listen to ${
+			hit.data.title
+		}`}</FauxLink>
 	</Fragment>
 );

@@ -42,13 +42,13 @@ exports.onCreateNode = ({ node, actions }) => {
 		airtableTables.includes(node.table) &&
 		Object.keys(node.data).length
 	) {
-		const { name, slug, title } = node.data;
-		const generatedSlug = slugify(name || title);
+		const { name, path: nodePath, title } = node.data;
+		const generatedPath = slugify(name || title);
 
 		createNodeField({
 			node,
 			name: `slug`,
-			value: slug || generatedSlug,
+			value: nodePath || generatedPath,
 		});
 	}
 };
@@ -68,14 +68,6 @@ exports.createPages = ({ graphql, actions }) => {
 							fields {
 								slug
 							}
-							data {
-								speakers {
-									id
-									fields {
-										slug
-									}
-								}
-							}
 						}
 					}
 				}
@@ -92,12 +84,11 @@ exports.createPages = ({ graphql, actions }) => {
 				const template = path.resolve(`./src/templates/talk.js`);
 
 				data.allAirtable.edges.forEach(({ node }) => {
-					const { id, fields, data } = node;
-					const { speakers = [] } = data;
+					const { id, fields } = node;
 
 					if (fields && fields.slug) {
 						createPage({
-							path: `/by/${speakers[0].fields.slug}/${fields.slug}`,
+							path: `/${fields.slug}`,
 							component: slash(template),
 							context: { id },
 						});
@@ -138,7 +129,7 @@ exports.createPages = ({ graphql, actions }) => {
 
 						if (fields && fields.slug) {
 							createPage({
-								path: `/by/${fields.slug}`,
+								path: `/${fields.slug}`,
 								component: slash(template),
 								context: { id },
 							});
@@ -180,7 +171,7 @@ exports.createPages = ({ graphql, actions }) => {
 
 						if (fields && fields.slug) {
 							createPage({
-								path: `/on/${fields.slug}`,
+								path: `/${fields.slug}`,
 								component: slash(template),
 								context: { id },
 							});

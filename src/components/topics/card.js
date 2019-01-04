@@ -28,7 +28,7 @@ const TopicCard = ({ data: post }) => (
 			)}
 		</Body>
 
-		<FauxLink to={`/on/${post.slug}`}>{`${post.name} Talks`}</FauxLink>
+		<FauxLink to={`/${post.slug}`}>{`${post.name} Talks`}</FauxLink>
 	</Card>
 );
 
