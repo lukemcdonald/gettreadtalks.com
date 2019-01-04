@@ -24,7 +24,7 @@ const publishedTalksQuery = `{
 							slug
 						}
 						data {
-							name
+							title
 						}
 					}
 				}
