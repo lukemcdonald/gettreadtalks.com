@@ -1,27 +1,24 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import Layout from '../layouts';
-import Intro from '../components/intro';
-import SEO from '../components/seo';
-import { Container, Section } from '../components/styled/layout';
-import Talks from '../components/talks';
-import TalksNav from '../components/talks/nav';
-import Search from '../components/search/search';
+import Layout from '../../layouts';
+import Intro from '../../components/intro';
+import SEO from '../../components/seo';
+import { Container, Section } from '../../components/styled/layout';
+import Talks from '../../components/talks';
+import TalksNav from '../../components/talks/nav';
+import Search from '../../components/search/search';
 
 export default ({ data }) => {
-	const { edges: posts } = data.allAirtable;
+	const { edges: posts = [] } = data.allAirtable;
 
 	return (
 		<Layout>
-			<SEO
-				title="Featured Talks"
-				keywords={['featured', 'talks', 'sermons', 'treadtalks']}
-			/>
+			<SEO title="Talks" keywords={['talks', 'sermons', 'treadtalks']} />
 
 			<Intro
-				title="Featured Talks"
-				excerpt="Staff picked talks to elevate your spiritual heartbeat."
+				title="Talks"
+				excerpt="Weekly sermons to elevate your spiritual heartbeat."
 			>
 				<Search />
 			</Intro>
@@ -42,22 +39,24 @@ export default ({ data }) => {
 export const pageQuery = graphql`
 	query {
 		allAirtable(
-			filter: {
-				queryName: { eq: "PUBLISHED_TALKS" }
-				data: { favorite: { eq: true } }
-			}
+			filter: { queryName: { eq: "PUBLISHED_TALKS" } }
 			sort: { fields: data___publishedDate, order: DESC }
 		) {
 			edges {
 				node {
 					id
+					fields {
+						slug
+					}
 					data {
 						title
 						link
 						scripture
-						favorite
 						speakers {
 							id
+							fields {
+								slug
+							}
 							data {
 								name
 								avatar {
@@ -70,13 +69,7 @@ export const pageQuery = graphql`
 									}
 								}
 							}
-							fields {
-								slug
-							}
 						}
-					}
-					fields {
-						slug
 					}
 				}
 			}

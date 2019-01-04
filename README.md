@@ -29,11 +29,12 @@
 - [] Sidebar Layout
 - [] Footer Navigation
 - [] Social Navigation
-- [] iTunes Affiliate Links
+- [x] iTunes Affiliate Links
   - [] Logos
-  - [] Dwell
+  - [x] Dwell
   - [] ESV
   - [][american gospel movie](https://vimeo.com/ondemand/gospel1/296083675)
+  - [] Manage affiliate products via Airtable
 - [] Track Clicks
   - [] Push to Airtable Field
   - [] Track in Google Analytics
@@ -47,7 +48,7 @@
 - [x] Improve performance and caching
 - [x] Refactor to use [Gatsby Airtable](https://github.com/jbolda/gatsby-source-airtable)
 - [x] Update URL paths
-  - [x] Talks `/archive/`
+  - [x] Talks `/talks/`
   - [x] Featured Talks `/featured/`
   - [x] Speakers `/speakers/`
   - [x] Speaker `/by/${speaker}/`

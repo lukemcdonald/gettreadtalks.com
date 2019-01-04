@@ -29,7 +29,7 @@ const SubscribeButton = styled(PrimaryButton)`
 const links = [
 	{ label: 'About', path: '/about' },
 	{ label: 'Speakers', path: '/speakers' },
-	{ label: 'Talks', path: '/archive' },
+	{ label: 'Talks', path: '/talks' },
 	{ label: 'Topics', path: '/topics' },
 ];
 

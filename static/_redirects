@@ -1,6 +1,6 @@
 # Redirects from what the browser requests to what we serve for Netlify
 
-/sitemap.xml    /sitemap.xml  200
+/sitemap.xml    /sitemap.xml      200
 
-/talks          /archive      301
-/talks/featured /featured     301
+/archive        /talks            301
+/featured       /talks/featured   301
