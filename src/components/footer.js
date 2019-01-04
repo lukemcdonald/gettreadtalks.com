@@ -3,14 +3,16 @@ import PropTypes from 'prop-types';
 
 import { getCurrentYear } from '../utils';
 import { Container } from './styled/layout';
-import { Footer } from './styled/site';
+import { Footer, Copyright } from './styled/site';
+import Affiliate from './affiliates/apple';
 
 const SiteFooter = ({ siteTitle }) => (
 	<Footer>
 		<Container>
-			<p>
+			<Affiliate />
+			<Copyright>
 				&copy; {siteTitle} {getCurrentYear()}
-			</p>
+			</Copyright>
 		</Container>
 	</Footer>
 );

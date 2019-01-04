@@ -25,5 +25,9 @@ export const Logo = styled(SiteLogo)`
 `;
 
 export const Footer = styled.footer`
-	${tw`py-10`}
+	${tw`py-10 text-center`}
+`;
+
+export const Copyright = styled.p`
+	${tw`text-center`};
 `;
