@@ -40,6 +40,8 @@
 - [] Search / Filter
   - [] Filter Talks by Speakers, Topics, View (latest, featured, etc), or comibined.
 - [] Statement of Faith page.
+- [x] MailChimp integration
+  - [x] RSS Feed (Zapier RSS)
 - [x] Setup auto deploy/build for Netlfiy using Zapier
 - [x] Check dependencies and devDependencies are in right place. May not need all deps
 - [x] Improve performance and caching
