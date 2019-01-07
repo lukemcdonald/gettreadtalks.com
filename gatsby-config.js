@@ -167,6 +167,16 @@ module.exports = {
 							content: `text/markdown`,
 						},
 					},
+					{
+						baseId: process.env.AIRTABLE_BASE,
+						tableName: `Affiliate Links`,
+						tableView: `All Links`,
+						queryName: `ALL_AFFILIATE_LINKS`,
+						mapping: {
+							image: `fileNode`,
+							description: `text/markdown`,
+						},
+					},
 				],
 			},
 		},

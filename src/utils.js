@@ -24,3 +24,31 @@ export const mapObjectToString = (keys = [], object = {}, sep = ' ') => {
 export const getCurrentYear = () => {
 	return new Date().getFullYear();
 };
+
+export const serializeObject = (object = {}, prefix) => {
+	let str = [];
+
+	for (const param in object) {
+		if (object.hasOwnProperty(param)) {
+			const k = prefix ? `${prefix}[${param}]` : param;
+			const v = object[param];
+
+			str.push(
+				typeof v === 'object'
+					? serializeObject(v, k)
+					: encodeURIComponent(k) + '=' + encodeURIComponent(v)
+			);
+		}
+	}
+
+	return str.join('&');
+};
+
+export const getRandomArrayItem = (items = []) => {
+	return items[Math.floor(Math.random() * items.length)];
+};
+
+export const getRandomObjectItem = (items = {}) => {
+	const keys = Object.keys(items);
+	return items[keys[(keys.length * Math.random()) << 0]];
+};

@@ -28,6 +28,7 @@ Alternatively, a build version of the site that will be used on the live site ca
 - [] Primary Navigation Submenu [Design](https://twitter.com/steveschoger/status/953297226985549825)
 - [][reakit](https://github.com/reakit/reakit) integration
 - [] Series Archive and Pages
+- [] Clips Archive and Pages
 - [] Subscribe Form
 - [] Sidebar Layout
 - [] Footer Navigation
@@ -38,6 +39,9 @@ Alternatively, a build version of the site that will be used on the live site ca
 - [] Display iTunes Affiliate Links
   - [] Featured Links in Footer
   - [] Add resources page to list all links by category/type (include link in footer menu)
+- [] Add [oEmbed](https://github.com/raae/gatsby-remark-oembed) for YouTube, Vimeo, and SoundCloud
+  - https://github.com/gatsbyjs/gatsby/issues/8788
+  - https://github.com/gatsbyjs/gatsby/pull/10146
 - [x] Manage affiliate products via Airtable
 - [x] Add Search - Gatsby (setup)[https://www.gatsbyjs.org/docs/adding-search/]
   - [x] Algolia search (setup and filters)[https://community.algolia.com/react-instantsearch/videos/]
