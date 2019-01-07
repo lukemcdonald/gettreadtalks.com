@@ -60,7 +60,12 @@ exports.createPages = ({ graphql, actions }) => {
 
 		graphql(`
 			{
-				allAirtable(filter: { queryName: { eq: "PUBLISHED_TALKS" } }) {
+				allAirtable(
+					filter: {
+						queryName: { eq: "PUBLISHED_TALKS" }
+						data: { title: { ne: null } }
+					}
+				) {
 					edges {
 						node {
 							id
@@ -102,7 +107,12 @@ exports.createPages = ({ graphql, actions }) => {
 			.then(() => {
 				graphql(`
 					query {
-						allAirtable(filter: { queryName: { eq: "PUBLISHED_SPEAKERS" } }) {
+						allAirtable(
+							filter: {
+								queryName: { eq: "PUBLISHED_SPEAKERS" }
+								data: { title: { ne: null } }
+							}
+						) {
 							edges {
 								node {
 									id
@@ -144,7 +154,12 @@ exports.createPages = ({ graphql, actions }) => {
 			.then(() => {
 				graphql(`
 					{
-						allAirtable(filter: { queryName: { eq: "PUBLISHED_TOPICS" } }) {
+						allAirtable(
+							filter: {
+								queryName: { eq: "PUBLISHED_TOPICS" }
+								data: { title: { ne: null } }
+							}
+						) {
 							edges {
 								node {
 									id
@@ -186,7 +201,12 @@ exports.createPages = ({ graphql, actions }) => {
 			.then(() => {
 				graphql(`
 					{
-						allAirtable(filter: { queryName: { eq: "PUBLISHED_PAGES" } }) {
+						allAirtable(
+							filter: {
+								queryName: { eq: "PUBLISHED_PAGES" }
+								data: { title: { ne: null } }
+							}
+						) {
 							edges {
 								node {
 									id

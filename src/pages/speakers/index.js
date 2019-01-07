@@ -28,7 +28,10 @@ export default ({ data }) => {
 export const pageQuery = graphql`
 	query {
 		allAirtable(
-			filter: { queryName: { eq: "PUBLISHED_SPEAKERS" } }
+			filter: {
+				queryName: { eq: "PUBLISHED_SPEAKERS" }
+				data: { title: { ne: null } }
+			}
 			sort: { fields: data___lastName, order: ASC }
 		) {
 			edges {

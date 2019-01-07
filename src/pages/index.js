@@ -44,7 +44,10 @@ export const pageQuery = graphql`
 	query {
 		allAirtable(
 			limit: 5
-			filter: { queryName: { eq: "PUBLISHED_TALKS" } }
+			filter: {
+				queryName: { eq: "PUBLISHED_TALKS" }
+				data: { title: { ne: null } }
+			}
 			sort: { fields: data___publishedDate, order: DESC }
 		) {
 			edges {
