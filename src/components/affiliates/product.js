@@ -1,6 +1,6 @@
 /* global tw */
 import styled from 'styled-components';
-import React from 'react';
+import React, { Component } from 'react';
 import Image from 'gatsby-image';
 import { screens } from '../../../tailwind';
 
@@ -45,36 +45,67 @@ const Badge = styled.div`
 	margin: -1px;
 `;
 
-export default ({ data: post, disclosure = true }) => (
-	<Card>
-		<Container>
-			{post.image && (
-				<Figure>
-					<Image
-						alt={post.title}
-						fluid={post.image.localFiles[0].childImageSharp.fluid}
-					/>
-				</Figure>
-			)}
+class Product extends Component {
+	state = {
+		post: {},
+		loading: true,
+		disclosure: true,
+	};
 
-			<Body>
-				<header>
-					<Title>{post.title}</Title>
-					{post.subtitle && <Subtitle>{post.subtitle}</Subtitle>}
-				</header>
+	componentDidMount() {
+		const { data, disclosure } = this.props;
 
-				<Footer>
-					<AppleLink to={post.link} type={post.type} />
-				</Footer>
-			</Body>
+		console.log(this.props);
 
-			<FauxLink to={`${post.link}`}>{`View to ${post.title}`}</FauxLink>
-		</Container>
+		this.setState({
+			post: data,
+			disclosure: disclosure ? true : false,
+			loading: false,
+		});
+	}
 
-		{disclosure && (
-			<Badge>
-				<Disclosure title="Affiliate" content={false} />
-			</Badge>
-		)}
-	</Card>
-);
+	render(props) {
+		const { post, loading, disclosure } = this.state;
+		// const { data: post, disclosure } = this.props;
+
+		if (loading) {
+			return <div />;
+		}
+
+		return (
+			<Card>
+				<Container>
+					{post.image && (
+						<Figure>
+							<Image
+								alt={post.title}
+								fluid={post.image.localFiles[0].childImageSharp.fluid}
+							/>
+						</Figure>
+					)}
+
+					<Body>
+						<header>
+							<Title>{post.title}</Title>
+							{post.subtitle && <Subtitle>{post.subtitle}</Subtitle>}
+						</header>
+
+						<Footer>
+							<AppleLink to={post.link} type={post.type} />
+						</Footer>
+					</Body>
+
+					<FauxLink to={`${post.link}`}>{`View to ${post.title}`}</FauxLink>
+				</Container>
+
+				{disclosure && (
+					<Badge>
+						<Disclosure title="Affiliate" content={false} />
+					</Badge>
+				)}
+			</Card>
+		);
+	}
+}
+
+export default Product;

@@ -45,10 +45,14 @@ export const serializeObject = (object = {}, prefix) => {
 };
 
 export const getRandomArrayItem = (items = []) => {
-	return items[Math.floor(Math.random() * items.length)];
+	return items[getRandomIndex(items)];
 };
 
 export const getRandomObjectItem = (items = {}) => {
 	const keys = Object.keys(items);
-	return items[keys[(keys.length * Math.random()) << 0]];
+	return items[keys[getRandomIndex(keys)]];
+};
+
+export const getRandomIndex = items => {
+	return Math.floor((items.length * Math.random()) << 0);
 };
