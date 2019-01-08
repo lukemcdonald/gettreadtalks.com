@@ -34,7 +34,7 @@ const MenuLink = styled(Link)`
 	}
 `;
 
-const Nav = styled('nav')`
+const Nav = styled.nav`
 	${Menu} {
 		${props => (props.justify ? tw`justify-between` : null)}
 	}

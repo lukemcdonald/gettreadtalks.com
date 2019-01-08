@@ -8,11 +8,11 @@ import CardAvatar from '../cardAvatar';
 import FauxLink from '../fauxLink';
 import { MetaText, MetaLink } from '../styled/meta';
 
-const Container = styled('div')`
+const Container = styled.div`
 	${tw`flex items-center`}
 `;
 
-const Body = styled('div')`
+const Body = styled.div`
 	${tw`flex-grow`}
 `;
 
@@ -20,8 +20,9 @@ const Header = styled.header`
 	${tw``};
 `;
 
-const Title = styled('h2')`
-	${tw`font-bold mb-1 text-black text-xl`}
+const Title = styled.h2`
+	${tw`font-bold mb-1 text-black text-lg`}
+	${tw`sm:text-xl`}
 `;
 
 const Footer = styled.footer`

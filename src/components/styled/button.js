@@ -1,7 +1,7 @@
 /* global tw */
 import styled from 'styled-components';
 
-export const Button = styled('button')`
+export const Button = styled.button`
 	${tw`border-2 inline-block rounded-full text-base text-inherit`}
 
 	&& {

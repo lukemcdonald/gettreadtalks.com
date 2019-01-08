@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import React from 'react';
 import classnames from 'classnames';
 
-export const Card = styled('article')`
+export const Card = styled.article`
 	${tw`bg-white border border-grey-lighter border-solid flex flex-grow flex-col justify-between p-4 relative rounded-t`}
 	${tw`hover:z-10 hover:border`}
 	${tw`md:mb-4 md:rounded md:border`}

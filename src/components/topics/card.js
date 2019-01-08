@@ -7,12 +7,13 @@ import Card from '../card';
 import FauxLink from '../fauxLink';
 import { MetaText } from '../styled/meta';
 
-const Body = styled('div')`
+const Body = styled.div`
 	${tw`flex justify-between items-center`}
 `;
 
-const Title = styled('h2')`
-	${tw`font-bold text-black text-xl`}
+const Title = styled.h2`
+	${tw`font-bold mb-1 text-black text-lg`}
+	${tw`sm:text-xl`}
 `;
 
 const TopicCard = ({ data: post }) => (

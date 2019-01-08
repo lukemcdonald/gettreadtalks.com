@@ -4,9 +4,9 @@ import React from 'react';
 import Img from 'gatsby-image';
 import { screens } from '../../tailwind';
 
-const Figure = styled('figure')`
-	${tw`bg-grey-lighter h-16 hidden mr-4 overflow-hidden rounded-full w-16`}
-	${tw`sm:block`}
+const Figure = styled.figure`
+	${tw`bg-grey-lighter h-12 mr-4 overflow-hidden rounded-full w-12`}
+	${tw`sm:h-16 sm:w-16`}
 
 	/* gatsby-build doesn't currently support negative margins using tw */
 	@media (min-width: ${screens.lg}) {

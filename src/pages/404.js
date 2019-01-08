@@ -17,7 +17,7 @@ const Container = styled(ContainerStyle)`
 	margin-top: -6rem; /* -mt-24 */
 `;
 
-const GospelVideo = styled('figure')`
+const GospelVideo = styled.figure`
 	${tw`bg-white mb-16 relative rounded overflow-hidden shadow-lg`}
 	padding-bottom: 56.25%;
 

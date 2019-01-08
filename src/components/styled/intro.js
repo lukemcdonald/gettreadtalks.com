@@ -5,7 +5,7 @@ import Img from 'gatsby-image';
 import { screens } from '../../../tailwind';
 import { Container } from './layout';
 
-export const IntroMedia = styled('figure')`
+export const IntroMedia = styled.figure`
 	${tw`h-full object-cover overflow-hidden relative`}
 
 	img {
@@ -22,7 +22,7 @@ export const IntroImage = styled(Img)`
 	${tw`md:h-auto`}
 `;
 
-export const IntroImageOverlay = styled('span')`
+export const IntroImageOverlay = styled.span`
 	${tw`absolute bg-grey-lightest opacity-75 pin`}
 `;
 
@@ -47,18 +47,18 @@ export const IntroBody = styled(Container)`
 	}
 `;
 
-export const IntroTitle = styled('h1')`
+export const IntroTitle = styled.h1`
 	${tw`font-semibold mb-4 text-4xl text-black md:text-5xl`}
 `;
 
-export const IntroExcerpt = styled('div')`
+export const IntroExcerpt = styled.div`
 	${tw`leading-normal max-w-md m-auto`}
 	${tw`md:text-2xl`}
 `;
 
 export const IntroContent = styled(IntroExcerpt)``;
 
-export const Intro = styled('div')`
+export const Intro = styled.div`
 	${tw`bg-cover bg-grey-lightest text-center text-grey-darkest`}
 	display: grid;
 	grid-template-areas: 'intro';

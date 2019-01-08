@@ -42,10 +42,10 @@ Alternatively, a build version of the site that will be used on the live site ca
 - [] Add [oEmbed](https://github.com/raae/gatsby-remark-oembed) for YouTube, Vimeo, and SoundCloud
   - https://github.com/gatsbyjs/gatsby/issues/8788
   - https://github.com/gatsbyjs/gatsby/pull/10146
-- [x] Manage affiliate products via Airtable
-  - [] Fix affiliate link not linking to correct product on refresh. Use stateful component to manage product on componentDidMount.
 - [] Confessional Statement [page](https://bbcmonticello.com/about/confessional-statement/)
   - [] Use FAQ [react accordion](https://github.com/springload/react-accessible-accordion) design like [convert kit](https://convertkit.com/pricing/)
+- [x] Manage affiliate products via Airtable
+  - [x] Fix affiliate link not linking to correct product on refresh.
 - [x] Add Search - Gatsby (setup)[https://www.gatsbyjs.org/docs/adding-search/]
   - [x] Algolia search (setup and filters)[https://community.algolia.com/react-instantsearch/videos/]
 - [x] MailChimp integration

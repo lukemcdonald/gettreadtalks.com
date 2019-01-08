@@ -9,7 +9,7 @@ import Disclosure from './disclosure';
 import Card from '../card';
 import FauxLink from '../fauxLink';
 
-const Container = styled('div')`
+const Container = styled.div`
 	${tw`flex items-center text-left`}
 `;
 
