@@ -12,13 +12,13 @@ export default props => {
 	const { data: post } = props.data.airtable;
 	const { edges: posts = [] } = props.data.allAirtable;
 
-	const { description = `Talks on the topic of ${post.name}.` } = post;
+	const { description = `Talks on the topic of ${post.title}.` } = post;
 
 	return (
 		<Layout>
-			<SEO title={post.name} description={description} />
+			<SEO title={post.title} description={description} />
 
-			<Intro title={post.name} excerpt={description} />
+			<Intro title={post.title} excerpt={description} />
 
 			<Container>
 				<Section>
