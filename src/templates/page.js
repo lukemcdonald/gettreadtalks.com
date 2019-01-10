@@ -1,9 +1,5 @@
-/* global tw */
-import styled from 'styled-components';
 import React from 'react';
 import { graphql } from 'gatsby';
-import Link from '../components/link';
-import { mapObjectToString, objectToString } from '../utils';
 
 import Layout from '../components/layout';
 import SEO from '../components/seo';
