@@ -29,6 +29,10 @@ const Footer = styled.footer`
 		${tw`inline-block relative z-20 no-underline`}
 	}
 `;
+const Scripture = styled(MetaText)`
+	${tw`hidden`};
+	${tw`xs:inline`};
+`;
 
 const TalkCard = ({ data: post }) => (
 	<Card id={post.id}>
@@ -52,9 +56,9 @@ const TalkCard = ({ data: post }) => (
 					))}
 
 					{post.scripture && (
-						<MetaText>
+						<Scripture>
 							<MetaSep>from</MetaSep> {post.scripture}
-						</MetaText>
+						</Scripture>
 					)}
 				</Footer>
 			</Body>
