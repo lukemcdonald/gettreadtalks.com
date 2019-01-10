@@ -6,6 +6,7 @@ import { GlobalStyles } from './styled/global';
 import { Page, Main } from './styled/layout';
 import Header from './header';
 import Footer from './footer';
+import RefTagger from './refTagger';
 
 const Layout = ({ children, header, main, footer }) => (
 	<StaticQuery
@@ -16,6 +17,7 @@ const Layout = ({ children, header, main, footer }) => (
 				<Header {...main} siteTitle={data.site.siteMetadata.title} />
 				<Main {...main}>{children}</Main>
 				<Footer {...main} siteTitle={data.site.siteMetadata.title} />
+				<RefTagger />
 			</Page>
 		)}
 	/>

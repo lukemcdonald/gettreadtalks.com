@@ -24,6 +24,10 @@ const SpeakerLink = styled(MetaLink)`
 `;
 const Footer = styled.footer`
 	${tw`flex mt-2`};
+
+	.rtBibleRef {
+		${tw`inline-block relative z-20 no-underline`}
+	}
 `;
 
 const TalkCard = ({ data: post }) => (
