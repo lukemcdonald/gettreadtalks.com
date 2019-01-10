@@ -10,11 +10,13 @@ import Card from '../card';
 import FauxLink from '../fauxLink';
 
 const Container = styled.div`
-	${tw`flex items-center text-left`}
+	${tw`flex text-left`}
+	${tw`sm:items-center`}
 `;
 
 const Body = styled.div`
-	${tw`flex-grow flex justify-between`}
+	${tw`flex-grow `}
+	${tw`sm:flex sm:justify-between`}
 `;
 
 const Title = styled.h2`
@@ -26,7 +28,8 @@ const Subtitle = styled.div`
 `;
 
 const Figure = styled.figure`
-	${tw`bg-grey-lighter h-auto mr-4 overflow-hidden w-16`}
+	${tw`h-auto mr-4 overflow-hidden w-16`}
+	${tw`sm:bg-grey-lighter`}
 
 	/* gatsby-build doesn't currently support negative margins using tw */
 	@media (min-width: ${screens.lg}) {
@@ -37,7 +40,13 @@ const Figure = styled.figure`
 `;
 
 const Footer = styled.footer`
-	${tw`flex pl-3`};
+	${tw`block mt-3`};
+	${tw`sm:mt-0`};
+
+	a {
+		display: block;
+		min-height: 41px;
+	}
 `;
 
 const Badge = styled.div`
