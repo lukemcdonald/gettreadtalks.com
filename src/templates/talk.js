@@ -5,7 +5,7 @@ import { graphql } from 'gatsby';
 import Link from '../components/link';
 import { mapObjectToString, objectToString } from '../utils';
 
-import Layout from '../layouts';
+import Layout from '../components/layout';
 import SEO from '../components/seo';
 import Intro from '../components/intro';
 import Topics from '../components/topics';

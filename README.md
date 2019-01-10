@@ -44,8 +44,12 @@ Alternatively, a build version of the site that will be used on the live site ca
   - https://github.com/gatsbyjs/gatsby/pull/10146
 - [] Confessional Statement [page](https://bbcmonticello.com/about/confessional-statement/)
   - [] Use FAQ [react accordion](https://github.com/springload/react-accessible-accordion) design like [convert kit](https://convertkit.com/pricing/)
-- [x] Manage affiliate products via Airtable
+  - [] Table of Contents [JS script](https://codepen.io/cferdinandi/pen/dwjLRO?mc_cid=e90e43a445&mc_eid=453d78f23c)
+- [] Affiliate Product Links
+  - [x] Manage affiliate products via Airtable
   - [x] Fix affiliate link not linking to correct product on refresh.
+  - [x] iTunes Affiliate Links
+  - [] Amazon Affiliate Links
 - [x] Add Search - Gatsby (setup)[https://www.gatsbyjs.org/docs/adding-search/]
   - [x] Algolia search (setup and filters)[https://community.algolia.com/react-instantsearch/videos/]
 - [x] MailChimp integration

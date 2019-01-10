@@ -55,8 +55,6 @@ class Product extends Component {
 	componentDidMount() {
 		const { data, disclosure } = this.props;
 
-		console.log(this.props);
-
 		this.setState({
 			post: data,
 			disclosure: disclosure ? true : false,
