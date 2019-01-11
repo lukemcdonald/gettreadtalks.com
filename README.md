@@ -36,9 +36,6 @@ Alternatively, a build version of the site that will be used on the live site ca
 - [] Statement of Faith page.
   - [] Include [TOC](https://github.com/remarkjs/remark-toc) like Berean
   - [] Add menu item under About or links in footer
-- [] Display iTunes Affiliate Links
-  - [] Featured Links in Footer
-  - [] Add resources page to list all links by category/type (include link in footer menu)
 - [] Add [oEmbed](https://github.com/raae/gatsby-remark-oembed) for YouTube, Vimeo, and SoundCloud
   - https://github.com/gatsbyjs/gatsby/issues/8788
   - https://github.com/gatsbyjs/gatsby/pull/10146
@@ -50,6 +47,7 @@ Alternatively, a build version of the site that will be used on the live site ca
   - [x] Fix affiliate link not linking to correct product on refresh.
   - [x] iTunes Affiliate Links
   - [] Amazon Affiliate Links
+  - [] Add resources page to list all links by category/type (include link in footer menu)
 - [x] Add Search - Gatsby (setup)[https://www.gatsbyjs.org/docs/adding-search/]
   - [x] Algolia search (setup and filters)[https://community.algolia.com/react-instantsearch/videos/]
 - [x] MailChimp integration

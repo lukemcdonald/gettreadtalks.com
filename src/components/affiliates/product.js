@@ -54,24 +54,21 @@ const Badge = styled.div`
 
 class Product extends Component {
 	state = {
-		post: {},
 		loading: true,
-		disclosure: true,
 	};
 
 	componentDidMount() {
-		const { data, disclosure } = this.props;
-
+		// Prevent affiliate links from not updating when page is refreshed.
+		// Not sure why this needs to be done exactly but does fix the issue
+		// on the live site or during `npm run serve`
 		this.setState({
-			post: data,
-			disclosure: disclosure ? true : false,
 			loading: false,
 		});
 	}
 
 	render(props) {
-		const { post, loading, disclosure } = this.state;
-		// const { data: post, disclosure } = this.props;
+		const { loading } = this.state;
+		const { data: post, disclosure } = this.props;
 
 		if (loading) {
 			return <div />;

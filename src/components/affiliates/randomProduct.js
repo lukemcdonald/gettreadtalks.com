@@ -9,7 +9,7 @@ export default () => (
 	<Products>
 		{products => {
 			const data = getRandomObjectItem(products);
-			return <Product data={data} />;
+			return <Product data={data} disclosure={true} />;
 		}}
 	</Products>
 );
