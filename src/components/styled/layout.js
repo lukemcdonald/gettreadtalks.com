@@ -20,12 +20,12 @@ export const Container = styled.div`
 
 export const Main = styled.main`
 	${tw`flex-grow`};
-
 	${props => (props.bg ? tw`bg-${props.bg}` : tw`bg-grey-lightest`)};
 
 	> ${Container} {
 		&:last-child {
-			${tw`mb-12 md:mb-20`};
+			${tw`mb-12`};
+			${tw`md:mb-20 md:mt-0`};
 		}
 	}
 `;

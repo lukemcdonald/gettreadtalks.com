@@ -19,7 +19,6 @@ export const IntroMedia = styled.figure`
 
 export const IntroImage = styled(Img)`
 	${tw`h-full opacity-75 w-full`}
-	${tw`md:h-auto`}
 `;
 
 export const IntroImageOverlay = styled.span`
@@ -67,6 +66,10 @@ export const Intro = styled.div`
 	${IntroMedia},
 	${IntroBody} {
 		grid-area: intro;
+	}
+
+	&.has-bg + .has-subnav {
+		${tw`mt-6`}
 	}
 
 	@media (min-width: ${screens.md}) {

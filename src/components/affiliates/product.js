@@ -11,7 +11,6 @@ import FauxLink from '../fauxLink';
 
 const Container = styled.div`
 	${tw`flex text-left`}
-	${tw`sm:items-center`}
 `;
 
 const Body = styled.div`
@@ -24,12 +23,11 @@ const Title = styled.h2`
 `;
 
 const Subtitle = styled.div`
-	${tw`text-base text-grey-dark`};
+	${tw`text-base text-grey-dark leading-tight`};
 `;
 
 const Figure = styled.figure`
 	${tw`h-auto mr-4 overflow-hidden w-16`}
-	${tw`sm:bg-grey-lighter`}
 
 	/* gatsby-build doesn't currently support negative margins using tw */
 	@media (min-width: ${screens.lg}) {
@@ -41,7 +39,7 @@ const Figure = styled.figure`
 
 const Footer = styled.footer`
 	${tw`block mt-3`};
-	${tw`sm:mt-0`};
+	${tw`sm:mt-0 sm:pl-3`};
 
 	a {
 		display: block;
