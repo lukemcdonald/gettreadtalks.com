@@ -29,7 +29,6 @@ Alternatively, a build version of the site that will be used on the live site ca
 - [][reakit](https://github.com/reakit/reakit) integration
 - [] Series Archive and Pages
 - [] Clips Archive and Pages
-- [] Subscribe Form
 - [] Sidebar Layout
 - [] Footer Navigation
 - [] Social Navigation
@@ -55,12 +54,13 @@ Alternatively, a build version of the site that will be used on the live site ca
 - [x] Setup auto deploy/build for Netlfiy using Zapier
 - [x] Check dependencies and devDependencies are in right place. May not need all deps
 - [x] Improve performance and caching
+- [x] Subscribe Form / Link
 - [x] Refactor to use [Gatsby Airtable](https://github.com/jbolda/gatsby-source-airtable)
 - [x] Update URL paths
-  - [x] Talks `/talks/`
-  - [x] Featured Talks `/featured/`
-  - [x] Speakers `/speakers/`
-  - [x] Speaker `/by/${speaker}/`
-  - [x] Talk `/by/${speaker}/${talk}/`
-  - [x] Topics `/topics/`
-  - [x] Topic `/on/${topic}/`
+  - [x] `/speakers/`
+  - [x] `/speakers/${speaker}/`
+  - [x] `/talks/`
+  - [x] `/talks/featured/`
+  - [x] `/talks/${speaker}/${talk}`
+  - [x] `/topics/`
+  - [x] `/topics/${topic}/`
