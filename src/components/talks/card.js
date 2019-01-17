@@ -50,7 +50,7 @@ const TalkCard = ({ data: post }) => (
 					{post.speakers.map(({ id, data, fields }) => (
 						<MetaText key={id}>
 							<MetaSep>By</MetaSep>&nbsp;
-							<SpeakerLink to={`/${fields.slug}`}>{data.title}</SpeakerLink>
+							<SpeakerLink to={fields.slug}>{data.title}</SpeakerLink>
 							&nbsp;
 						</MetaText>
 					))}
@@ -64,7 +64,7 @@ const TalkCard = ({ data: post }) => (
 			</Body>
 		</Container>
 
-		<FauxLink to={`/${post.slug}`}>{`Listen to ${post.title}`}</FauxLink>
+		<FauxLink to={post.slug}>{`Listen to ${post.title}`}</FauxLink>
 	</Card>
 );
 

@@ -92,7 +92,7 @@ exports.createPages = ({ graphql, actions }) => {
 
 					if (fields && fields.slug) {
 						createPage({
-							path: `/${fields.slug}`,
+							path: `${fields.slug}`,
 							component: slash(template),
 							context: { id },
 						});
@@ -138,7 +138,7 @@ exports.createPages = ({ graphql, actions }) => {
 
 						if (fields && fields.slug) {
 							createPage({
-								path: `/${fields.slug}`,
+								path: `${fields.slug}`,
 								component: slash(template),
 								context: { id },
 							});
@@ -185,7 +185,7 @@ exports.createPages = ({ graphql, actions }) => {
 
 						if (fields && fields.slug) {
 							createPage({
-								path: `/${fields.slug}`,
+								path: `${fields.slug}`,
 								component: slash(template),
 								context: { id },
 							});
@@ -232,7 +232,7 @@ exports.createPages = ({ graphql, actions }) => {
 
 						if (fields && fields.slug) {
 							createPage({
-								path: `/${fields.slug}`,
+								path: `${fields.slug}`,
 								component: slash(template),
 								context: { id },
 							});

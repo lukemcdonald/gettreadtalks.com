@@ -97,7 +97,7 @@ class Product extends Component {
 						</Footer>
 					</Body>
 
-					<FauxLink to={`${post.link}`}>{`View to ${post.title}`}</FauxLink>
+					<FauxLink to={post.link}>{`View to ${post.title}`}</FauxLink>
 				</Container>
 
 				{disclosure && (

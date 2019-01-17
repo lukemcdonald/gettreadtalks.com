@@ -62,7 +62,7 @@ const SpeakerCard = ({ data: post }) => (
 				</Footer>
 			</Body>
 
-			<FauxLink to={`/${post.slug}`}>{`Talks by ${post.title}`}</FauxLink>
+			<FauxLink to={post.slug}>{`Talks by ${post.title}`}</FauxLink>
 		</Container>
 	</Card>
 );
