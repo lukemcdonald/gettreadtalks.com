@@ -6,7 +6,7 @@ export default ({ data }) => {
 	const { ministry, website } = data;
 
 	const links = [
-		{ text: '← All Speakers', to: '/speakers' },
+		{ text: '← All Speakers', to: '/speakers/' },
 		{ text: `${ministry} →`, to: `${website}` },
 	];
 
