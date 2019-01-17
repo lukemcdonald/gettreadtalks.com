@@ -32,6 +32,8 @@ Alternatively, a build version of the site that will be used on the live site ca
 - [] Sidebar Layout
 - [] Footer Navigation
 - [] Social Navigation
+- [] Add [Netlify Identity](https://www.netlify.com/docs/identity/)
+  - [React Component](https://github.com/sw-yx/react-netlify-identity)
 - [] Statement of Faith page.
   - [] Include [TOC](https://github.com/remarkjs/remark-toc) like Berean
   - [] Add menu item under About or links in footer

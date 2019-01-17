@@ -14,9 +14,9 @@ const Layout = ({ children, header, main, footer }) => (
 		render={data => (
 			<Page>
 				<GlobalStyles />
-				<Header {...main} siteTitle={data.site.siteMetadata.title} />
+				<Header {...header} siteTitle={data.site.siteMetadata.title} />
 				<Main {...main}>{children}</Main>
-				<Footer {...main} siteTitle={data.site.siteMetadata.title} />
+				<Footer {...footer} siteTitle={data.site.siteMetadata.title} />
 				<RefTagger />
 			</Page>
 		)}
