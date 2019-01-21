@@ -15,7 +15,7 @@ export default ({ data }) => {
 	return (
 		<Layout>
 			<SEO
-				title="TREAD Talks - Weekly sermons to elevate your spiritual heartbeat."
+				title="Weekly sermons to elevate your spiritual heartbeat."
 				keywords={['treadtalks', 'talks', 'sermons']}
 			/>
 
