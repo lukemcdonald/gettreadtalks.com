@@ -11,15 +11,22 @@ import SpeakerNav from '../components/speakers/postNav';
 export default props => {
 	const { data: post } = props.data.airtable;
 	const { edges: posts = [] } = props.data.allAirtable;
-	const description = post.description.childMarkdownRemark;
+
+	let { description } = post;
+	if (description) {
+		description = description.childMarkdownRemark;
+	}
 
 	return (
 		<Layout>
-			<SEO title={post.title} description={description.excerpt} />
+			<SEO
+				title={post.title}
+				description={description ? description.excerpt : ''}
+			/>
 
 			<Intro
 				title={post.title}
-				excerpt={description.html}
+				excerpt={description ? description.html : ''}
 				image={post.banner}
 			/>
 
