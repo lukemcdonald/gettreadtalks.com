@@ -50,7 +50,6 @@ module.exports = {
 		title: config.title,
 		tagline: config.tagline,
 		description: config.description,
-		image: config.image,
 		author: '@thelukemcdonald',
 		keywords:
 			'tread, talks, jesus, christ, God, religion, sermons, salvation, bible, biblical, audio, video',

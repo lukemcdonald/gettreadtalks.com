@@ -17,7 +17,7 @@ module.exports = {
 			url: 'https://twitter.com/gettreadtalks',
 		},
 	],
-	copyright: `©TREAD Talks 2018`,
+	copyright: `©TREAD Talks 2019`,
 	themeColor: tailwind.colors.brand,
 	backgroundColor: tailwind.colors.brand,
 };
