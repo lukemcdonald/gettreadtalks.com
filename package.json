@@ -48,7 +48,6 @@
 		"tailwindcss": "^0.7.3"
 	},
 	"devDependencies": {
-		"dotenv": "^6.2.0",
 		"prettier": "^1.15.3"
 	},
 	"eslintConfig": {

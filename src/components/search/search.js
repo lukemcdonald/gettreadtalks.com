@@ -24,12 +24,13 @@ export default class Search extends Component {
 	};
 
 	render() {
+		console.log(process.env.GATSBY_ALGOLIA_APP_ID);
 		return (
 			<SearchStyles>
 				<InstantSearch
-					appId="MSM4664OMW"
-					apiKey="7fb1f124e1b1c522c047da1392f0cac2"
-					indexName="prod_PUBLISHED_TALKS"
+					appId={process.env.GATSBY_ALGOLIA_APP_ID}
+					apiKey={process.env.GATSBY_ALGOLIA_API_KEY}
+					indexName={process.env.GATSBY_ALGOLIA_INDEX_NAME}
 				>
 					<Configure hitsPerPage={5} />
 
