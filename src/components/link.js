@@ -12,7 +12,12 @@ const Link = ({ activeClassName = 'is-active', children, to, ...other }) => {
 	// Use Gatsby Link for internal links, and <a> for others
 	if (internal) {
 		return (
-			<GatsbyLink to={to} activeClassName={activeClassName} {...other}>
+			<GatsbyLink
+				to={to}
+				activeClassName={activeClassName}
+				rel="canonical"
+				{...other}
+			>
 				{children}
 			</GatsbyLink>
 		);
