@@ -126,7 +126,6 @@ module.exports = {
 						tableLinks: [`talks`],
 						mapping: {
 							avatar: `fileNode`,
-							banner: `fileNode`,
 							description: `text/markdown`,
 						},
 					},
@@ -138,7 +137,6 @@ module.exports = {
 						tableLinks: [`talks`],
 						mapping: {
 							avatar: `fileNode`,
-							banner: `fileNode`,
 							description: `text/markdown`,
 						},
 					},

@@ -1,9 +1,7 @@
 import { shape, number, string, oneOfType } from 'prop-types';
-import { attachmentType } from './attachment';
 import { talkType } from './talk';
 
 export const speakerType = shape({
-	banner: attachmentType,
 	description: string,
 	firstName: string,
 	id: string.isRequired,
@@ -17,6 +15,5 @@ export const speakerType = shape({
 });
 
 export const speakerDefaults = {
-	banner: [],
 	talks: [],
 };

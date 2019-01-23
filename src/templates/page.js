@@ -47,15 +47,6 @@ export const pageQuery = graphql`
 						html
 					}
 				}
-				banner {
-					localFiles {
-						childImageSharp {
-							fluid(maxWidth: 1440) {
-								...GatsbyImageSharpFluid_tracedSVG
-							}
-						}
-					}
-				}
 			}
 		}
 	}
