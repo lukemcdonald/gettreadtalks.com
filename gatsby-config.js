@@ -160,7 +160,6 @@ module.exports = {
 						tableView: `Published`,
 						queryName: `PUBLISHED_PAGES`,
 						mapping: {
-							banner: `fileNode`,
 							content: `text/markdown`,
 						},
 					},

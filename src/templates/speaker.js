@@ -24,11 +24,7 @@ export default props => {
 				description={description ? description.excerpt : ''}
 			/>
 
-			<Intro
-				title={post.title}
-				excerpt={description ? description.html : ''}
-				image={post.banner}
-			/>
+			<Intro title={post.title} excerpt={description ? description.html : ''} />
 
 			<Container className="has-subnav">
 				<Section>
@@ -54,15 +50,6 @@ export const pageQuery = graphql`
 				title
 				ministry
 				website
-				banner {
-					localFiles {
-						childImageSharp {
-							fluid(maxWidth: 1440) {
-								...GatsbyImageSharpFluid_tracedSVG
-							}
-						}
-					}
-				}
 				description {
 					childMarkdownRemark {
 						excerpt
