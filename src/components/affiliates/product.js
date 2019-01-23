@@ -66,7 +66,7 @@ class Product extends Component {
 		});
 	}
 
-	render(props) {
+	render() {
 		const { loading } = this.state;
 		const { data: post, disclosure } = this.props;
 
