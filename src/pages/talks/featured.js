@@ -53,7 +53,6 @@ export const pageQuery = graphql`
 					id
 					data {
 						title
-						link
 						scripture
 						favorite
 						speakers {

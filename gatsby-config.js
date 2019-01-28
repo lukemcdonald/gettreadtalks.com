@@ -87,6 +87,21 @@ module.exports = {
 			},
 		},
 		{
+			resolve: `gatsby-transformer-remark`,
+			options: {
+				plugins: [
+					{
+						resolve: `@raae/gatsby-remark-oembed`,
+						options: {
+							providers: {
+								include: ['SoundCloud', 'Vimeo', 'YouTube'],
+							},
+						},
+					},
+				],
+			},
+		},
+		{
 			resolve: `gatsby-plugin-manifest`,
 			options: {
 				name: config.title,
@@ -110,6 +125,9 @@ module.exports = {
 						tableView: `All Talks`,
 						queryName: `ALL_TALKS`,
 						tableLinks: [`speakers`, `topics`],
+						mapping: {
+							link: `text/markdown`,
+						},
 					},
 					{
 						baseId: process.env.AIRTABLE_BASE,
@@ -117,6 +135,9 @@ module.exports = {
 						tableView: `Published`,
 						queryName: `PUBLISHED_TALKS`,
 						tableLinks: [`speakers`, `topics`],
+						mapping: {
+							link: `text/markdown`,
+						},
 					},
 					{
 						baseId: process.env.AIRTABLE_BASE,
@@ -171,6 +192,7 @@ module.exports = {
 						mapping: {
 							image: `fileNode`,
 							description: `text/markdown`,
+							link: `text/markdown`,
 						},
 					},
 				],

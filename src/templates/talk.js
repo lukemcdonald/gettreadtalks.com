@@ -19,8 +19,20 @@ const TalkLink = styled(SecondaryButton)`
 	${tw`md:w-1/3`};
 `;
 
+const Media = styled.div`
+	${tw`mt-12`};
+`;
+
 export default props => {
 	const { data: post } = props.data.airtable;
+
+	const {
+		link: {
+			childMarkdownRemark: { html: mediaHtml, htmlAst: media },
+		},
+	} = post;
+
+	const mediaObject = media.children[0].children[0];
 
 	const meta = {
 		title: post.title,
@@ -44,11 +56,20 @@ export default props => {
 				title={post.title}
 				excerpt={mapObjectToString(['speakers', 'scripture'], meta)}
 			>
-				<p>
-					<TalkLink to={post.link} as={Link} large={1}>
-						Listen to Talk &rarr;
-					</TalkLink>
-				</p>
+				{mediaObject.tagName === 'iframe' && (
+					<Media
+						className="responsive-media"
+						dangerouslySetInnerHTML={{ __html: mediaHtml }}
+					/>
+				)}
+
+				{mediaObject.tagName === 'a' && (
+					<p>
+						<TalkLink to={mediaObject.properties.href} as={Link} large={1}>
+							Listen to Talk &rarr;
+						</TalkLink>
+					</p>
+				)}
 			</Intro>
 
 			<Container>
@@ -80,7 +101,12 @@ export const pageQuery = graphql`
 			id
 			data {
 				title
-				link
+				link {
+					childMarkdownRemark {
+						html
+						htmlAst
+					}
+				}
 				scripture
 				topics {
 					id

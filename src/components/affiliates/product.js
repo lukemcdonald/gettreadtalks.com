@@ -93,11 +93,16 @@ class Product extends Component {
 						</header>
 
 						<Footer>
-							<AppleLink to={post.link} type={post.type} />
+							<AppleLink
+								to={post.link.childMarkdownRemark.rawMarkdownBody}
+								type={post.type}
+							/>
 						</Footer>
 					</Body>
 
-					<FauxLink to={post.link}>{`View to ${post.title}`}</FauxLink>
+					<FauxLink
+						to={post.link.childMarkdownRemark.rawMarkdownBody}
+					>{`View to ${post.title}`}</FauxLink>
 				</Container>
 
 				{disclosure && (

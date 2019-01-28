@@ -36,7 +36,11 @@ const affiliateLinksQuery = graphql`
 					data {
 						title
 						subtitle
-						link
+						link {
+							childMarkdownRemark {
+								rawMarkdownBody
+							}
+						}
 						affiliate
 						type
 						productId

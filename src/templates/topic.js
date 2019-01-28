@@ -59,7 +59,6 @@ export const pageQuery = graphql`
 					}
 					data {
 						title
-						link
 						scripture
 						speakers {
 							id

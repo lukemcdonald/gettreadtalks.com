@@ -24,6 +24,7 @@ Alternatively, a build version of the site that will be used on the live site ca
 - [] Improve talks card
   - [] Add external link
   - [] Add featured talk indicator
+  - [] Add free indicator; maybe price?
 - [] React/Gatsby Themes config
 - [] Primary Navigation Submenu [Design](https://twitter.com/steveschoger/status/953297226985549825)
 - [][reakit](https://github.com/reakit/reakit) integration
@@ -37,9 +38,11 @@ Alternatively, a build version of the site that will be used on the live site ca
 - [] Statement of Faith page.
   - [] Include [TOC](https://github.com/remarkjs/remark-toc) like Berean
   - [] Add menu item under About or links in footer
-- [] Add [oEmbed](https://github.com/raae/gatsby-remark-oembed) for YouTube, Vimeo, and SoundCloud
+- [x] Add [oEmbed](https://github.com/raae/gatsby-remark-oembed) for YouTube, Vimeo, and SoundCloud
   - https://github.com/gatsbyjs/gatsby/issues/8788
   - https://github.com/gatsbyjs/gatsby/pull/10146
+  - [x] Videos (YouTube, Vimeo)
+  - [] Audio (detect mp3 and display player, browser player)
 - [] Confessional Statement [page](https://bbcmonticello.com/about/confessional-statement/)
   - [] Use FAQ [react accordion](https://github.com/springload/react-accessible-accordion) design like [convert kit](https://convertkit.com/pricing/)
   - [] Table of Contents [JS script](https://codepen.io/cferdinandi/pen/dwjLRO?mc_cid=e90e43a445&mc_eid=453d78f23c)
