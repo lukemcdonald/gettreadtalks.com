@@ -10,6 +10,10 @@ Alternatively, a build version of the site that will be used on the live site ca
 
 ## ToDo's
 
+- [] Add comment functionality using (ReplyBox)[https://app.getreplybox.com/sites/rbGnNrn9v3]
+- [] User authentication and login using (Netlify Identity)[https://github.com/sw-yx/jamstack-hackathon-starter]
+- [] Add SEO images for videos  
+  - [] YouTube (https://img.youtube.com/vi/<insert-youtube-video-id-here>/0.jpg)
 - [] Improve SEO Meta (Link)[https://metatags.io/] with (JSON-LD)[https://jsonld.com/breadcrumb/] and an (SEO Component)[https://www.gatsbyjs.org/docs/add-seo-component/]
   - [](Breadcrumbs)[https://developers.google.com/search/docs/data-types/breadcrumb] - [](Corporate Contact)[https://developers.google.com/search/docs/data-types/corporate-contact]
   - [](Logo)[https://developers.google.com/search/docs/data-types/logo]
