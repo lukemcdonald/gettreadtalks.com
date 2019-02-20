@@ -5,11 +5,12 @@ import { graphql } from 'gatsby';
 import Link from '../components/link';
 import { mapObjectToString, objectToString } from '../utils';
 
+import Intro from '../components/intro';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
-import Intro from '../components/intro';
-import Topics from '../components/topics';
 import Speakers from '../components/speakers';
+import Topics from '../components/topics';
+import ReplyBox from '../components/replyBox';
 
 import { Container, Section, SectionTitle } from '../components/styled/layout';
 import { SecondaryButton } from '../components/styled/button';
@@ -90,6 +91,13 @@ export default props => {
 						<Topics data={post.topics} />
 					</Section>
 				)}
+			</Container>
+
+			<Container>
+				<Section>
+					<SectionTitle>Comments</SectionTitle>
+					<ReplyBox />
+				</Section>
 			</Container>
 		</Layout>
 	);
