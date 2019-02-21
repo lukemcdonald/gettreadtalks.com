@@ -18,6 +18,10 @@ export default class ReplyBox extends Component {
 		}
 	}
 
+	componentDidMount() {
+		this.setState({ scriptLoaded: false })
+	}
+
 	handleScriptCreate() {
 		this.setState({ scriptLoaded: false })
 	}
