@@ -93,12 +93,14 @@ export default props => {
 				)}
 			</Container>
 
-			<Container>
-				<Section>
-					<SectionTitle>Comments</SectionTitle>
-					<ReplyBox />
-				</Section>
-			</Container>
+			{/*
+				<Container>
+					<Section>
+						<SectionTitle>Comments</SectionTitle>
+						<ReplyBox />
+					</Section>
+				</Container>
+			*/}
 		</Layout>
 	);
 };

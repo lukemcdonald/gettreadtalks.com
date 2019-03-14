@@ -10,7 +10,7 @@ Alternatively, a build version of the site that will be used on the live site ca
 
 ## ToDo's
 
-- [x] Add comment functionality using (ReplyBox)[https://app.getreplybox.com/sites/rbGnNrn9v3]
+- [] Add comment functionality using (ReplyBox)[https://app.getreplybox.com/sites/rbGnNrn9v3]
 - [] User authentication and login using (Netlify Identity)[https://github.com/sw-yx/jamstack-hackathon-starter]
 - [] Add SEO images for videos  
   - [] YouTube (https://img.youtube.com/vi/<insert-youtube-video-id-here>/0.jpg)
