@@ -32,21 +32,38 @@ export default class ReplyBox extends Component {
 		super(props);
 
 		this.state = {
-			id: '',
-			mediaType: '',
-			provider: '',
 			mediaUrl: '',
 		}
 	}
 
 	componentDidMount() {
+		this.setParsedMedia();
+	}
+
+	componentWillMount() {
+		this.setParsedMedia();
+	}
+
+	getParsedMedia() {
 		const mediaLink = this.props.data.airtable.data.link.childMarkdownRemark.rawMarkdownBody;
-		const parsedMedia = urlParser.parse(mediaLink);
-		this.setState(parsedMedia);
+		return urlParser.parse(mediaLink);
+	}
+
+	setParsedMedia() {
+		const parsedMedia = this.getParsedMedia();
+
+		if ( parsedMedia ) {
+			const mediaUrl = urlParser.create({
+				videoInfo: parsedMedia,
+				format: 'longImage',
+			})
+
+			this.setState({mediaUrl});
+		}
 	}
 
 	render() {
-		const { id, mediaType, provider } = this.state;
+		const { id, mediaType, provider, mediaUrl } = this.state;
 		const { data: post } = this.props.data.airtable;
 
 		const {
@@ -67,18 +84,13 @@ export default class ReplyBox extends Component {
 				: null,
 		};
 
-		console.log(post.path);
-
 		return (
 			<Layout>
 				<SEO
 					title={mapObjectToString(['title', 'speakers'], meta)}
 					description={objectToString(meta)}
 					pathname={post.path}
-					image={urlParser.create({
-						videoInfo: { id, mediaType,	provider },
-						format: 'longImage',
-					})}
+					image={mediaUrl}
 				/>
 
 				<Intro
