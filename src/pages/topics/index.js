@@ -16,6 +16,7 @@ export default ({ data }) => {
 				title="Topics"
 				description="A list of topics with published talks."
 				keywords={['topics']}
+				pathname="/topics/"
 			/>
 
 			<Intro title="Topics" />

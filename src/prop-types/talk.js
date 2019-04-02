@@ -11,6 +11,7 @@ export const talkType = shape({
 	scripture: string,
 	series: seriesType,
 	seriesOrder: number,
+	path: string,
 	speaker: string,
 	speakers: speakerType,
 	status: string,

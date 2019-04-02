@@ -7,6 +7,7 @@ export const speakerType = shape({
 	id: string.isRequired,
 	lastName: string,
 	ministry: string,
+	path: string,
 	publishedTalksCount: oneOfType([number, string]),
 	role: string,
 	talks: talkType,

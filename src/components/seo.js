@@ -57,6 +57,10 @@ function SEO(props) {
 								content: seo.image,
 							},
 							{
+								property: 'og:url',
+								content: seo.url,
+							},
+							{
 								name: 'twitter:card',
 								content: 'summary_large_image',
 							},

@@ -22,6 +22,7 @@ export default props => {
 			<SEO
 				title={post.title}
 				description={description ? description.excerpt : ''}
+				pathname={post.path}
 			/>
 
 			<Intro title={post.title} excerpt={description ? description.html : ''} />
@@ -73,6 +74,7 @@ export const pageQuery = graphql`
 					}
 					data {
 						title
+						path
 						scripture
 						speakers {
 							id

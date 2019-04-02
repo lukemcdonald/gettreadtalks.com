@@ -14,6 +14,7 @@ export default props => {
 			<SEO
 				title={post.title}
 				description={post.content.childMarkdownRemark.excerpt}
+				pathname={post.path}
 			/>
 
 			<Container>
@@ -41,6 +42,7 @@ export const pageQuery = graphql`
 			}
 			data {
 				title
+				path
 				content {
 					childMarkdownRemark {
 						excerpt

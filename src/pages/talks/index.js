@@ -14,7 +14,11 @@ export default ({ data }) => {
 
 	return (
 		<Layout>
-			<SEO title="Talks" keywords={['talks', 'sermons', 'treadtalks']} />
+			<SEO
+				title="Talks"
+				keywords={['talks', 'sermons', 'treadtalks']}
+				pathname="/talks/"
+			/>
 
 			<Intro
 				title="Talks"

@@ -17,6 +17,7 @@ export default ({ data }) => {
 			<SEO
 				title="Featured Talks"
 				keywords={['featured', 'talks', 'sermons', 'treadtalks']}
+				pathname="/talks/featured/"
 			/>
 
 			<Intro

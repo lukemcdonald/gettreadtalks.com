@@ -46,7 +46,7 @@ export default class ReplyBox extends Component {
 	}
 
 	render() {
-		const { id, mediaUrl, mediaType, provider } = this.state;
+		const { id, mediaType, provider } = this.state;
 		const { data: post } = this.props.data.airtable;
 
 		const {
@@ -67,11 +67,14 @@ export default class ReplyBox extends Component {
 				: null,
 		};
 
+		console.log(post.path);
+
 		return (
 			<Layout>
 				<SEO
 					title={mapObjectToString(['title', 'speakers'], meta)}
 					description={objectToString(meta)}
+					pathname={post.path}
 					image={urlParser.create({
 						videoInfo: { id, mediaType,	provider },
 						format: 'longImage',
@@ -138,6 +141,7 @@ export const pageQuery = graphql`
 			id
 			data {
 				title
+				path
 				link {
 					childMarkdownRemark {
 						html
