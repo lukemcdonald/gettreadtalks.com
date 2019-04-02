@@ -19,7 +19,7 @@ function SEO(props) {
 						striptags(description || siteMetadata.description),
 						160
 					),
-					image: `${siteMetadata.siteUrl}${image || siteMetadata.image}`,
+					image: image || siteMetadata.siteUrl + siteMetadata.image,
 					title: striptags(title || siteMetadata.title),
 					url: `${siteMetadata.siteUrl}${pathname || '/'}`,
 				};

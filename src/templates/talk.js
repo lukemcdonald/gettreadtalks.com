@@ -5,6 +5,8 @@ import { graphql } from 'gatsby';
 import Link from '../components/link';
 import { mapObjectToString, objectToString } from '../utils';
 
+import urlParser from 'js-video-url-parser';
+
 import Intro from '../components/intro';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
@@ -50,11 +52,17 @@ export default props => {
 			: null,
 	};
 
+	const parsedMedia = urlParser.parse(mediaLink);
+
 	return (
 		<Layout>
 			<SEO
 				title={mapObjectToString(['title', 'speakers'], meta)}
 				description={objectToString(meta)}
+				image={'youtube' === parsedMedia.provider ? urlParser.create({
+					videoInfo: parsedMedia,
+					format: 'longImage',
+				}) : ''}
 			/>
 
 			<Intro
