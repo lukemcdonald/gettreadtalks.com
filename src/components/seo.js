@@ -3,26 +3,34 @@ import Helmet from 'react-helmet';
 import { StaticQuery, graphql } from 'gatsby';
 import striptags from 'striptags';
 
-import image from '../assets/images/meta-tags-image.jpg';
-
 import { seoType, seoDefaults } from '../prop-types';
+import { trimText } from '../utils';
 
-function SEO({ description, lang, meta, keywords, title }) {
+function SEO(props) {
+	const { description, image, keywords, lang, meta, pathname, title } = props;
+
 	return (
 		<StaticQuery
 			query={detailsQuery}
-			render={data => {
-				const { siteMetadata } = data.site;
-				const metaDescription = description || siteMetadata.description;
-				const metaImage = image || siteMetadata.image;
+			render={({ site: { siteMetadata } }) => {
+
+				const seo = {
+					description: trimText(
+						striptags(description || siteMetadata.description),
+						160
+					),
+					image: `${siteMetadata.siteUrl}${image || siteMetadata.image}`,
+					title: striptags(title || siteMetadata.title),
+					url: `${siteMetadata.siteUrl}${pathname || '/'}`,
+				};
 
 				return (
 					<Helmet
 						htmlAttributes={{
 							lang,
 						}}
-						title={striptags(title)}
-						titleTemplate={`%s | ${siteMetadata.title}`}
+						title={seo.title}
+						titleTemplate={siteMetadata.titleTemplate}
 						meta={[
 							{
 								name: 'google-site-verification',
@@ -30,15 +38,15 @@ function SEO({ description, lang, meta, keywords, title }) {
 							},
 							{
 								name: 'description',
-								content: striptags(metaDescription),
+								content: seo.description,
 							},
 							{
 								property: 'og:title',
-								content: striptags(title),
+								content: seo.title,
 							},
 							{
 								property: 'og:description',
-								content: striptags(metaDescription),
+								content: seo.description,
 							},
 							{
 								property: 'og:type',
@@ -46,27 +54,31 @@ function SEO({ description, lang, meta, keywords, title }) {
 							},
 							{
 								property: 'og:image',
-								content: `${siteMetadata.siteUrl}${metaImage}`,
+								content: seo.image,
+							},
+							{
+								property: 'og:url',
+								content: seo.url,
 							},
 							{
 								name: 'twitter:card',
-								content: 'summary',
+								content: 'summary_large_image',
 							},
 							{
 								name: 'twitter:creator',
-								content: siteMetadata.author,
+								content: siteMetadata.twitterUsername,
 							},
 							{
 								name: 'twitter:title',
-								content: striptags(title),
+								content: seo.title,
 							},
 							{
 								name: 'twitter:description',
-								content: striptags(metaDescription),
+								content: seo.description,
 							},
 							{
 								name: 'twitter:image',
-								content: `${siteMetadata.siteUrl}${metaImage}`,
+								content: seo.image,
 							},
 						]
 							.concat(
@@ -94,10 +106,12 @@ const detailsQuery = graphql`
 	query DefaultSEOQuery {
 		site {
 			siteMetadata {
-				author
 				description
-				title
+				image
 				siteUrl
+				title
+				titleTemplate
+				twitterUsername
 			}
 		}
 	}

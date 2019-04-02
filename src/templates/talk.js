@@ -10,7 +10,7 @@ import Layout from '../components/layout';
 import SEO from '../components/seo';
 import Speakers from '../components/speakers';
 import Topics from '../components/topics';
-import ReplyBox from '../components/replyBox';
+// import ReplyBox from '../components/replyBox';
 
 import { Container, Section, SectionTitle } from '../components/styled/layout';
 import { SecondaryButton } from '../components/styled/button';
@@ -29,7 +29,11 @@ export default props => {
 
 	const {
 		link: {
-			childMarkdownRemark: { html: mediaHtml, htmlAst: media },
+			childMarkdownRemark: {
+				html: mediaHtml,
+				htmlAst: media,
+				rawMarkdownBody: mediaLink,
+			},
 		},
 	} = post;
 
@@ -115,6 +119,7 @@ export const pageQuery = graphql`
 					childMarkdownRemark {
 						html
 						htmlAst
+						rawMarkdownBody
 					}
 				}
 				scripture

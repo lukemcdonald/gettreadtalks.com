@@ -2,14 +2,20 @@ import { string, array, arrayOf } from 'prop-types';
 
 export const seoType = {
 	description: string,
+	image: string,
+	keywords: arrayOf(string),
 	lang: string,
 	meta: array,
-	keywords: arrayOf(string),
+	pathname: string,
 	title: string.isRequired,
 };
 
 export const seoDefaults = {
+	description: null,
+	image: null,
+	keywords: [],
 	lang: 'en',
 	meta: [],
-	keywords: [],
+	pathname: null,
+	title: null,
 };

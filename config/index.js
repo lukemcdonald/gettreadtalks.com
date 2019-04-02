@@ -1,23 +1,15 @@
 const tailwind = require('../tailwind');
 
 module.exports = {
-	title: 'TREAD Talks',
-	tagline: 'Weekly sermons to elevate your spiritual heartbeat.',
-	description:
-		'Workout your salvation with weekly sermons to elevate your spiritual heartbeat.',
-	icon: 'src/assets/images/favicon.png',
-	url: 'https://gettreadtalks.com',
-	socialLinks: [
-		{
-			label: 'Facebook',
-			url: 'https://www.facebook.com/gettreadtalks/',
-		},
-		{
-			label: 'Twitter',
-			url: 'https://twitter.com/gettreadtalks',
-		},
-	],
-	copyright: `©TREAD Talks 2019`,
-	themeColor: tailwind.colors.brand,
 	backgroundColor: tailwind.colors.brand,
+	copyright: `©TREAD Talks 2019`,
+	description: 'Workout your salvation with weekly sermons to elevate your spiritual heartbeat.',
+	icon: 'static/assets/images/favicon.png',
+	image: '/assets/images/default-seo-image.jpg',
+	tagline: 'Weekly sermons to elevate your spiritual heartbeat.',
+	themeColor: tailwind.colors.brand,
+	title: 'TREAD Talks',
+	titleTemplate: '%s — TREAD Talks',
+	twitterUsername: '@wpcomthemes',
+	url: 'https://gettreadtalks.com',
 };

@@ -46,13 +46,14 @@ const searchQueries = [
 
 module.exports = {
 	siteMetadata: {
-		siteUrl: config.url,
-		title: config.title,
-		tagline: config.tagline,
 		description: config.description,
-		author: '@thelukemcdonald',
-		keywords:
-			'tread, talks, jesus, christ, God, religion, sermons, salvation, bible, biblical, audio, video',
+		image: config.image,
+		keywords: 'wordpress, themes, wp, wp.com, wpcom, premium, free',
+		siteUrl: config.url,
+		tagline: config.tagline,
+		title: config.title,
+		titleTemplate: config.titleTemplate,
+		twitterUsername: config.twitterUsername,
 	},
 	plugins: [
 		'gatsby-plugin-react-helmet',

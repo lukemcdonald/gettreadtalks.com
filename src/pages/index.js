@@ -16,7 +16,20 @@ export default ({ data }) => {
 		<Layout>
 			<SEO
 				title="Weekly sermons to elevate your spiritual heartbeat."
-				keywords={['treadtalks', 'talks', 'sermons']}
+				keywords={[
+					'tread',
+					'talks',
+					'Jesus',
+					'Christ',
+					'God',
+					'preaching',
+					'religion',
+					'sermons',
+					'fitness',
+					'workout',
+					'health',
+					'excercise',
+				]}
 			/>
 
 			<Intro

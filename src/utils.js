@@ -56,3 +56,11 @@ export const getRandomObjectItem = (items = {}) => {
 export const getRandomIndex = items => {
 	return Math.floor((items.length * Math.random()) << 0);
 };
+
+export const trimText = (text, limit) => {
+	if (text.length > limit) {
+		return `${text.slice(0, limit).trim()}...`;
+	}
+
+	return text;
+};
