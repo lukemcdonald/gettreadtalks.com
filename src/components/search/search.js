@@ -24,7 +24,6 @@ export default class Search extends Component {
 	};
 
 	render() {
-		console.log(process.env.GATSBY_ALGOLIA_APP_ID);
 		return (
 			<SearchStyles>
 				<InstantSearch

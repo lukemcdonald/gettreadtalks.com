@@ -1,6 +1,6 @@
 /* global tw */
 import styled from 'styled-components';
-import React from 'react';
+import React, { Component } from 'react';
 import { graphql } from 'gatsby';
 import Link from '../components/link';
 import { mapObjectToString, objectToString } from '../utils';
@@ -26,95 +26,110 @@ const Media = styled.div`
 	${tw`mt-12`};
 `;
 
-export default props => {
-	const { data: post } = props.data.airtable;
+export default class ReplyBox extends Component {
 
-	const {
-		link: {
-			childMarkdownRemark: {
-				html: mediaHtml,
-				htmlAst: media,
-				rawMarkdownBody: mediaLink,
-			},
-		},
-	} = post;
+	constructor(props){
+		super(props);
 
-	const mediaObject = media.children[0].children[0];
+		this.state = {
+			id: '',
+			mediaType: '',
+			provider: '',
+			mediaUrl: '',
+		}
+	}
 
-	const meta = {
-		title: post.title,
-		speakers: post.speakers
-			? `<em>by</em> ${post.speakers.map(({ data }) => data.title).join(', ')}`
-			: null,
-		scripture: post.scripture ? `<em>from</em> ${post.scripture}` : null,
-		topics: post.topics
-			? `<em>on</em> ${post.topics.map(({ data }) => data.title).join(', ')}`
-			: null,
-	};
+	componentDidMount() {
+		const mediaLink = this.props.data.airtable.data.link.childMarkdownRemark.rawMarkdownBody;
+		const parsedMedia = urlParser.parse(mediaLink);
+		this.setState(parsedMedia);
+	}
 
-	const parsedMedia = urlParser.parse(mediaLink);
+	render() {
+		const { id, mediaUrl, mediaType, provider } = this.state;
+		const { data: post } = this.props.data.airtable;
 
-	return (
-		<Layout>
-			<SEO
-				title={mapObjectToString(['title', 'speakers'], meta)}
-				description={objectToString(meta)}
-				image={'youtube' === parsedMedia.provider ? urlParser.create({
-					videoInfo: parsedMedia,
-					format: 'longImage',
-				}) : ''}
-			/>
+		const {
+			html: mediaHtml,
+			htmlAst: media,
+		} = post.link.childMarkdownRemark;
 
-			<Intro
-				title={post.title}
-				excerpt={mapObjectToString(['speakers', 'scripture'], meta)}
-			>
-				{mediaObject.tagName === 'iframe' && (
-					<Media
-						className="responsive-media"
-						dangerouslySetInnerHTML={{ __html: mediaHtml }}
-					/>
-				)}
+		const mediaObject = media.children[0].children[0];
 
-				{mediaObject.tagName === 'a' && (
-					<p>
-						<TalkLink to={mediaObject.properties.href} as={Link} large={1}>
-							Listen to Talk &rarr;
-						</TalkLink>
-					</p>
-				)}
-			</Intro>
+		const meta = {
+			title: post.title,
+			speakers: post.speakers
+				? `<em>by</em> ${post.speakers.map(({ data }) => data.title).join(', ')}`
+				: null,
+			scripture: post.scripture ? `<em>from</em> ${post.scripture}` : null,
+			topics: post.topics
+				? `<em>on</em> ${post.topics.map(({ data }) => data.title).join(', ')}`
+				: null,
+		};
 
-			<Container>
-				{post.speakers && (
-					<Section>
-						<SectionTitle>
-							{1 === post.speakers.length ? `Speaker` : `Speakers`}
-						</SectionTitle>
-						<Speakers data={post.speakers} />
-					</Section>
-				)}
+		return (
+			<Layout>
+				<SEO
+					title={mapObjectToString(['title', 'speakers'], meta)}
+					description={objectToString(meta)}
+					image={urlParser.create({
+						videoInfo: { id, mediaType,	provider },
+						format: 'longImage',
+					})}
+				/>
 
-				{post.topics && (
-					<Section>
-						<SectionTitle>
-							{1 === post.topics.length ? `Topic` : `Topics`}
-						</SectionTitle>
-						<Topics data={post.topics} />
-					</Section>
-				)}
-			</Container>
+				<Intro
+					title={post.title}
+					excerpt={mapObjectToString(['speakers', 'scripture'], meta)}
+				>
+					{mediaObject.tagName === 'iframe' && (
+						<Media
+							className="responsive-media"
+							dangerouslySetInnerHTML={{ __html: mediaHtml }}
+						/>
+					)}
 
-			{/*
+					{mediaObject.tagName === 'a' && (
+						<p>
+							<TalkLink to={mediaObject.properties.href} as={Link} large={1}>
+								Listen to Talk &rarr;
+							</TalkLink>
+						</p>
+					)}
+				</Intro>
+
 				<Container>
-					<Section>
-						<SectionTitle>Comments</SectionTitle>
-						<ReplyBox />
-					</Section>
+					{post.speakers && (
+						<Section>
+							<SectionTitle>
+								{1 === post.speakers.length ? `Speaker` : `Speakers`}
+							</SectionTitle>
+							<Speakers data={post.speakers} />
+						</Section>
+					)}
+
+					{post.topics && (
+						<Section>
+							<SectionTitle>
+								{1 === post.topics.length ? `Topic` : `Topics`}
+							</SectionTitle>
+							<Topics data={post.topics} />
+						</Section>
+					)}
 				</Container>
-			*/}
-		</Layout>
-	);
+
+				{/*
+					<Container>
+						<Section>
+							<SectionTitle>Comments</SectionTitle>
+							<ReplyBox />
+						</Section>
+					</Container>
+				*/}
+			</Layout>
+		);
+	}
+
 };
 
 export const pageQuery = graphql`
