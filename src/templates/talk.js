@@ -63,7 +63,7 @@ export default class ReplyBox extends Component {
 	}
 
 	render() {
-		const { id, mediaType, provider, mediaUrl } = this.state;
+		const { mediaUrl } = this.state;
 		const { data: post } = this.props.data.airtable;
 
 		const {

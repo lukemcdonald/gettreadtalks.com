@@ -64,3 +64,25 @@ export const trimText = (text, limit) => {
 
 	return text;
 };
+
+export const getFormatedPublishDate = () => {
+	var today = new Date();
+	var dd = String(today.getDate()).padStart(2, '0');
+	var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+	var yyyy = today.getFullYear();
+
+	return `${yyyy}${mm}${dd}`;
+}
+
+export const getCurrentPosts = ( posts = {}, limit = null ) => {
+	const today = getFormatedPublishDate();
+	const currentPosts = posts.filter(({node}) => {
+		return node.data.publishedDate <= today;
+	});
+
+	if ( limit ) {
+		return currentPosts.slice(0, limit);
+	} else {
+		return currentPosts;
+	}
+}

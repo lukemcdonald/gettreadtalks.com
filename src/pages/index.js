@@ -1,5 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
+import { getCurrentPosts } from "../utils";
 
 import Layout from '../components/layout';
 import Intro from '../components/intro';
@@ -11,6 +12,7 @@ import Search from '../components/search/search';
 
 export default ({ data }) => {
 	const { edges: posts = [] } = data.allAirtable;
+	const currentPosts = getCurrentPosts( posts, 5 );
 
 	return (
 		<Layout>
@@ -46,7 +48,7 @@ export default ({ data }) => {
 				</Section>
 
 				<Section>
-					<Talks data={posts} />
+					<Talks data={currentPosts} />
 				</Section>
 			</Container>
 		</Layout>
@@ -56,18 +58,22 @@ export default ({ data }) => {
 export const pageQuery = graphql`
 	query {
 		allAirtable(
-			limit: 5
+			limit: 15
 			filter: {
 				queryName: { eq: "PUBLISHED_TALKS" }
 				data: { title: { ne: null } }
 			}
-			sort: { fields: data___publishedDate, order: DESC }
+			sort: {
+				fields: data___publishedDate,
+				order: DESC
+			}
 		) {
 			edges {
 				node {
 					id
 					data {
 						title
+						publishedDate(formatString:"YYYYMMDD")
 						scripture
 						speakers {
 							id
