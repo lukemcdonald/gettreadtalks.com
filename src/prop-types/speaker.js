@@ -1,5 +1,5 @@
-import { shape, number, string, oneOfType } from 'prop-types';
-import { talkType } from './talk';
+import { array, shape, number, string, oneOfType } from 'prop-types';
+// import { talkType } from './talk';
 
 export const speakerType = shape({
 	description: string,
@@ -10,7 +10,7 @@ export const speakerType = shape({
 	path: string,
 	publishedTalksCount: oneOfType([number, string]),
 	role: string,
-	talks: talkType,
+	talks: array,
 	title: string.isRequired,
 	website: string,
 });
