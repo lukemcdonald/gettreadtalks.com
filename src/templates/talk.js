@@ -71,7 +71,7 @@ export default class ReplyBox extends Component {
 			htmlAst: media,
 		} = post.link.childMarkdownRemark;
 
-		const mediaObject = media.children[0].children[0];
+		const mediaObject = media.children[0].children[0] || '';
 
 		const meta = {
 			title: post.title,
@@ -97,14 +97,14 @@ export default class ReplyBox extends Component {
 					title={post.title}
 					excerpt={mapObjectToString(['speakers', 'scripture'], meta)}
 				>
-					{mediaObject.tagName === 'iframe' && (
+					{ 'iframe' === mediaObject.tagName && (
 						<Media
 							className="responsive-media"
 							dangerouslySetInnerHTML={{ __html: mediaHtml }}
 						/>
 					)}
 
-					{mediaObject.tagName === 'a' && (
+					{ 'a' === mediaObject.tagName && (
 						<p>
 							<TalkLink to={mediaObject.properties.href} as={Link} large={1}>
 								Listen to Talk &rarr;
@@ -132,19 +132,9 @@ export default class ReplyBox extends Component {
 						</Section>
 					)}
 				</Container>
-
-				{/*
-					<Container>
-						<Section>
-							<SectionTitle>Comments</SectionTitle>
-							<ReplyBox />
-						</Section>
-					</Container>
-				*/}
 			</Layout>
 		);
 	}
-
 };
 
 export const pageQuery = graphql`

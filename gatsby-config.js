@@ -95,7 +95,7 @@ module.exports = {
 						resolve: `@raae/gatsby-remark-oembed`,
 						options: {
 							providers: {
-								include: ['SoundCloud', 'Vimeo', 'YouTube'],
+								include: ['Vimeo', 'YouTube'],
 							},
 						},
 					},
@@ -123,8 +123,8 @@ module.exports = {
 					{
 						baseId: process.env.AIRTABLE_BASE,
 						tableName: `Talks`,
-						tableView: `All Talks`,
-						queryName: `ALL_TALKS`,
+						tableView: `Approved`,
+						queryName: `APPROVED_TALKS`,
 						tableLinks: [`speakers`, `topics`],
 						mapping: {
 							link: `text/markdown`,
@@ -143,17 +143,6 @@ module.exports = {
 					{
 						baseId: process.env.AIRTABLE_BASE,
 						tableName: `Speakers`,
-						tableView: `All Speakers`,
-						queryName: `ALL_SPEAKERS`,
-						tableLinks: [`talks`],
-						mapping: {
-							avatar: `fileNode`,
-							description: `text/markdown`,
-						},
-					},
-					{
-						baseId: process.env.AIRTABLE_BASE,
-						tableName: `Speakers`,
 						tableView: `Published`,
 						queryName: `PUBLISHED_SPEAKERS`,
 						tableLinks: [`talks`],
@@ -161,13 +150,6 @@ module.exports = {
 							avatar: `fileNode`,
 							description: `text/markdown`,
 						},
-					},
-					{
-						baseId: process.env.AIRTABLE_BASE,
-						tableName: `Topics`,
-						tableView: `All Topics`,
-						queryName: `ALL_TOPICS`,
-						tableLinks: [`talks`],
 					},
 					{
 						baseId: process.env.AIRTABLE_BASE,
