@@ -20,7 +20,7 @@ Alternatively, a build version of the site that will be used on the live site ca
   - [](Media Actions)[https://developers.google.com/actions/media/]
   - [] (Sitelinks Searchbox)[https://developers.google.com/search/docs/data-types/sitelinks-searchbox]
     - [](Social Profile)[https://developers.google.com/search/docs/data-types/social-profile]
-- [](Pagination)[https://www.gatsbyjs.org/docs/adding-pagination/]
+- [x](Pagination)[https://www.gatsbyjs.org/docs/adding-pagination/]
 - [] Improve single talk page
   - [x] Fix talk link button on mobile
   - [x] Add link speaker to archive

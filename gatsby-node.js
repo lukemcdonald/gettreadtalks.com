@@ -1,4 +1,5 @@
 const path = require(`path`);
+const { paginate } = require(`gatsby-awesome-pagination`);
 
 exports.onCreateNode = ({ node, actions }) => {
 	const { createNodeField } = actions;
@@ -118,6 +119,14 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 			},
 		})
 	})
+
+	paginate({
+		createPage,
+		items: Talks,
+		itemsPerPage: 12,
+		component: path.resolve('./src/templates/talks.js'),
+		pathPrefix: ({ pageNumber }) =>	pageNumber === 0 ? `/talks` : `/talks/page`,
+	});
 
 	Speakers.forEach(post => {
 		createPage({

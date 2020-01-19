@@ -1,18 +1,17 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import { getCurrentPosts } from "../../utils";
 
-import Layout from '../../components/layout';
-import Intro from '../../components/intro';
-import SEO from '../../components/seo';
-import { Container, Section } from '../../components/styled/layout';
-import Talks from '../../components/talks';
-import TalksNav from '../../components/talks/nav';
-import Search from '../../components/search/search';
+import Layout from '../components/layout';
+import Intro from '../components/intro';
+import SEO from '../components/seo';
+import { Container, Section } from '../components/styled/layout';
+import Talks from '../components/talks';
+import TalksNav from '../components/talks/nav';
+import Search from '../components/search/search';
+import Pagination from '../components/pagination';
 
-export default ({ data }) => {
+export default ({ data, pageContext }) => {
 	const { edges: posts = [] } = data.allAirtable;
-	const currentPosts = getCurrentPosts( posts );
 
 	return (
 		<Layout>
@@ -23,7 +22,7 @@ export default ({ data }) => {
 			/>
 
 			<Intro
-				title="Talks"
+				title="Talks (Paginated)"
 				excerpt="Weekly sermons to elevate your spiritual heartbeat."
 			>
 				<Search />
@@ -35,16 +34,23 @@ export default ({ data }) => {
 				</Section>
 
 				<Section>
-					<Talks data={currentPosts} />
+					<Talks data={posts} />
 				</Section>
+
+				<Section>
+					<Pagination pageContext={pageContext} />
+				</Section>
+
 			</Container>
 		</Layout>
 	);
 };
 
 export const pageQuery = graphql`
-	query {
+	query($limit: Int!, $skip: Int!) {
 		allAirtable(
+			limit: $limit
+			skip: $skip
 			filter: {
 				queryName: { eq: "PUBLISHED_TALKS" }
 				data: { title: { ne: null } }
