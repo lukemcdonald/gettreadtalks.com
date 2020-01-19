@@ -1,6 +1,4 @@
-const Promise = require(`bluebird`);
 const path = require(`path`);
-const slash = require(`slash`);
 
 exports.onCreateNode = ({ node, actions }) => {
 	const { createNodeField } = actions;
@@ -28,242 +26,130 @@ exports.onCreateNode = ({ node, actions }) => {
 	}
 };
 
-exports.createPages = ({ graphql, actions }) => {
+exports.createPages = async ({ graphql, actions, reporter }) => {
 	const { createPage } = actions;
 
-	return new Promise((resolve, reject) => {
-		// TALKS
-
-		graphql(`
-			{
-				allAirtable(
-					filter: {
-						queryName: { eq: "PUBLISHED_TALKS" }
-						data: { title: { ne: null } }
-					}
-				) {
-					edges {
-						node {
-							id
-							fields {
-								slug
-							}
+	// Query data.
+	const result = await graphql(`
+		{
+			talksQuery: allAirtable(
+				filter: {
+					queryName: { in: ["APPROVED_TALKS","PUBLISHED_TALKS"] }
+					data: { title: { ne: null } }
+				}
+			) {
+				edges {
+					node {
+						id
+						fields {
+							slug
 						}
 					}
 				}
 			}
-		`)
-			.then(result => {
-				const { data, errors } = result;
-
-				if (errors) {
-					console.log(errors);
-					reject(errors);
+			speakersQuery: allAirtable(
+				filter: {
+					queryName: { eq: "PUBLISHED_SPEAKERS" }
+					data: { title: { ne: null } }
 				}
-
-				const template = path.resolve(`./src/templates/talk.js`);
-
-				data.allAirtable.edges.forEach(({ node }) => {
-					const { id, fields } = node;
-
-					if (fields && fields.slug) {
-						createPage({
-							path: `${fields.slug}`,
-							component: slash(template),
-							context: { id },
-						});
-					}
-				});
-
-				resolve();
-			})
-
-			// Approved Talks
-
-			.then(() => {
-				graphql(`
-					query {
-						allAirtable(
-							filter: {
-								queryName: { eq: "APPROVED_TALKS" }
-								data: { title: { ne: null } }
-							}
-						) {
-							edges {
-								node {
-									id
-									fields {
-										slug
-									}
-								}
-							}
+			) {
+				edges {
+					node {
+						id
+						fields {
+							slug
 						}
 					}
-				`).then(result => {
-					const { data, errors } = result;
-
-					if (errors) {
-						console.log(errors);
-						reject(errors);
-					}
-
-					const template = path.resolve(`./src/templates/talk.js`);
-
-					data.allAirtable.edges.forEach(({ node }) => {
-						const { id, fields } = node;
-
-						if (fields && fields.slug) {
-							createPage({
-								path: `${fields.slug}`,
-								component: slash(template),
-								context: { id },
-							});
-						}
-					});
-
-					resolve();
-				});
-			})
-
-			// Speakers
-
-			.then(() => {
-				graphql(`
-					query {
-						allAirtable(
-							filter: {
-								queryName: { eq: "PUBLISHED_SPEAKERS" }
-								data: { title: { ne: null } }
-							}
-						) {
-							edges {
-								node {
-									id
-									fields {
-										slug
-									}
-								}
-							}
+				}
+			}
+			topicsQuery: allAirtable(
+				filter: {
+					queryName: { eq: "PUBLISHED_TOPICS" }
+					data: { title: { ne: null } }
+				}
+			) {
+				edges {
+					node {
+						id
+						fields {
+							slug
 						}
 					}
-				`).then(result => {
-					const { data, errors } = result;
-
-					if (errors) {
-						console.log(errors);
-						reject(errors);
-					}
-
-					const template = path.resolve(`./src/templates/speaker.js`);
-
-					data.allAirtable.edges.forEach(({ node }) => {
-						const { id, fields } = node;
-
-						if (fields && fields.slug) {
-							createPage({
-								path: `${fields.slug}`,
-								component: slash(template),
-								context: { id },
-							});
-						}
-					});
-
-					resolve();
-				});
-			})
-
-			// TOPICS
-
-			.then(() => {
-				graphql(`
-					{
-						allAirtable(
-							filter: {
-								queryName: { eq: "PUBLISHED_TOPICS" }
-								data: { title: { ne: null } }
-							}
-						) {
-							edges {
-								node {
-									id
-									fields {
-										slug
-									}
-								}
-							}
+				}
+			}
+			pagesQuery: allAirtable(
+				filter: {
+					queryName: { eq: "PUBLISHED_PAGES" }
+					data: { title: { ne: null } }
+				}
+			) {
+				edges {
+					node {
+						id
+						fields {
+							slug
 						}
 					}
-				`).then(result => {
-					const { data, errors } = result;
+				}
+			}
+		}
+	`)
 
-					if (errors) {
-						console.log(errors);
-						reject(errors);
-					}
+	// Report errors.
+	if (result.errors) {
+		reporter.panicOnBuild(`Error while running GraphQL query.`)
+		return
+	}
 
-					const template = path.resolve(`./src/templates/topic.js`);
+	// Define content types.
+	const Talks    = result.data.talksQuery.edges
+	const Speakers = result.data.speakersQuery.edges
+	const Topics   = result.data.topicsQuery.edges
+	const Pages    = result.data.pagesQuery.edges
 
-					data.allAirtable.edges.forEach(({ node }) => {
-						const { id, fields } = node;
+	// Create pages.
+	Talks.forEach(post => {
+		createPage({
+			path: `${post.node.fields.slug}`,
+			component: path.resolve(`./src/templates/talk.js`),
+			context: {
+				id: post.node.id,
+				slug: post.node.fields.slug,
+			},
+		})
+	})
 
-						if (fields && fields.slug) {
-							createPage({
-								path: `${fields.slug}`,
-								component: slash(template),
-								context: { id },
-							});
-						}
-					});
+	Speakers.forEach(post => {
+		createPage({
+			path: `${post.node.fields.slug}`,
+			component: path.resolve(`./src/templates/speaker.js`),
+			context: {
+				id: post.node.id,
+				slug: post.node.fields.slug,
+			},
+		})
+	})
 
-					resolve();
-				});
-			})
+	Topics.forEach(post => {
+		createPage({
+			path: `${post.node.fields.slug}`,
+			component: path.resolve(`./src/templates/topic.js`),
+			context: {
+				id: post.node.id,
+				slug: post.node.fields.slug,
+			},
+		})
+	})
 
-			// PAGES
+	Pages.forEach(post => {
+		createPage({
+			path: `${post.node.fields.slug}`,
+			component: path.resolve(`./src/templates/page.js`),
+			context: {
+				id: post.node.id,
+				slug: post.node.fields.slug,
+			},
+		})
+	})
 
-			.then(() => {
-				graphql(`
-					{
-						allAirtable(
-							filter: {
-								queryName: { eq: "PUBLISHED_PAGES" }
-								data: { title: { ne: null } }
-							}
-						) {
-							edges {
-								node {
-									id
-									fields {
-										slug
-									}
-								}
-							}
-						}
-					}
-				`).then(result => {
-					const { data, errors } = result;
-
-					if (errors) {
-						console.log(errors);
-						reject(errors);
-					}
-
-					const template = path.resolve(`./src/templates/page.js`);
-
-					data.allAirtable.edges.forEach(({ node }) => {
-						const { id, fields } = node;
-
-						if (fields && fields.slug) {
-							createPage({
-								path: `${fields.slug}`,
-								component: slash(template),
-								context: { id },
-							});
-						}
-					});
-
-					resolve();
-				});
-			});
-	});
 };
