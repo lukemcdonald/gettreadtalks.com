@@ -22,7 +22,7 @@ export default ({ data, pageContext }) => {
 			/>
 
 			<Intro
-				title="Talks (Paginated)"
+				title="Talks"
 				excerpt="Weekly sermons to elevate your spiritual heartbeat."
 			>
 				<Search />
