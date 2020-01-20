@@ -10,6 +10,6 @@ module.exports = {
 	themeColor: tailwind.colors.brand,
 	title: 'TREAD Talks',
 	titleTemplate: '%s — TREAD Talks',
-	twitterUsername: '@wpcomthemes',
+	twitterUsername: '@gettreadtalks',
 	url: 'https://gettreadtalks.com',
 };

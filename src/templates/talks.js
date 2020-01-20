@@ -4,11 +4,12 @@ import { graphql } from 'gatsby';
 import Layout from '../components/layout';
 import Intro from '../components/intro';
 import SEO from '../components/seo';
-import { Container, Section } from '../components/styled/layout';
 import Talks from '../components/talks';
 import TalksNav from '../components/talks/nav';
 import Search from '../components/search/search';
 import Pagination from '../components/pagination';
+
+import { Container, Section } from '../components/styled/layout';
 
 export default ({ data, pageContext }) => {
 	const { edges: posts = [] } = data.allAirtable;
@@ -40,7 +41,6 @@ export default ({ data, pageContext }) => {
 				<Section>
 					<Pagination pageContext={pageContext} />
 				</Section>
-
 			</Container>
 		</Layout>
 	);
