@@ -46,14 +46,8 @@ const searchQueries = [
 
 module.exports = {
 	siteMetadata: {
-		description: config.description,
-		image: config.image,
 		keywords: 'wordpress, themes, wp, wp.com, wpcom, premium, free',
-		siteUrl: config.url,
-		tagline: config.tagline,
-		title: config.title,
-		titleTemplate: config.titleTemplate,
-		twitterUsername: config.twitterUsername,
+		...config,
 	},
 	plugins: [
 		'gatsby-plugin-react-helmet',
@@ -122,6 +116,16 @@ module.exports = {
 				tables: [
 					{
 						baseId: process.env.AIRTABLE_BASE,
+						tableName: `Clips`,
+						tableView: `Published`,
+						queryName: `PUBLISHED_CLIPS`,
+						tableLinks: [`speakers`, `topics`, `talks`],
+						mapping: {
+							link: `text/markdown`,
+						},
+					},
+					{
+						baseId: process.env.AIRTABLE_BASE,
 						tableName: `Talks`,
 						tableView: `Approved`,
 						queryName: `APPROVED_TALKS`,
@@ -145,7 +149,7 @@ module.exports = {
 						tableName: `Speakers`,
 						tableView: `Published`,
 						queryName: `PUBLISHED_SPEAKERS`,
-						tableLinks: [`talks`],
+						tableLinks: [`clips`, `talks`],
 						mapping: {
 							avatar: `fileNode`,
 							description: `text/markdown`,
@@ -156,7 +160,7 @@ module.exports = {
 						tableName: `Topics`,
 						tableView: `Published`,
 						queryName: `PUBLISHED_TOPICS`,
-						tableLinks: [`talks`],
+						tableLinks: [`clips`, `talks`],
 					},
 					{
 						baseId: process.env.AIRTABLE_BASE,

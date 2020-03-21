@@ -9,8 +9,8 @@ import Talks from '../components/talks';
 import SpeakerNav from '../components/speakers/postNav';
 
 export default props => {
-	const { data: post } = props.data.airtable;
-	const { edges: posts = [] } = props.data.allAirtable;
+	const { data: post } = props.data.speaker;
+	const { edges: talks = [] } = props.data.talks;
 
 	let { description } = post;
 	if (description) {
@@ -33,7 +33,7 @@ export default props => {
 				</Section>
 
 				<Section>
-					<Talks data={posts} />
+					<Talks data={talks} />
 				</Section>
 			</Container>
 		</Layout>
@@ -42,7 +42,7 @@ export default props => {
 
 export const pageQuery = graphql`
 	query($id: String!) {
-		airtable(id: { eq: $id }) {
+		speaker: airtable(id: { eq: $id }) {
 			id
 			fields {
 				slug
@@ -57,9 +57,19 @@ export const pageQuery = graphql`
 						html
 					}
 				}
+				clips {
+					id
+					fields {
+						slug
+					}
+					data {
+						title
+						path
+					}
+				}
 			}
 		}
-		allAirtable(
+		talks: allAirtable(
 			filter: {
 				queryName: { eq: "PUBLISHED_TALKS" }
 				data: { speakers: { elemMatch: { id: { eq: $id } } } }

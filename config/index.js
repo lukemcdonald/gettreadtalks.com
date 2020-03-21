@@ -11,5 +11,5 @@ module.exports = {
 	title: 'TREAD Talks',
 	titleTemplate: '%s — TREAD Talks',
 	twitterUsername: '@gettreadtalks',
-	url: 'https://gettreadtalks.com',
+	siteUrl: 'https://gettreadtalks.com',
 };

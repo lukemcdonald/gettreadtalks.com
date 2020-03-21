@@ -10,20 +10,27 @@ import urlParser from 'js-video-url-parser';
 import Intro from '../components/intro';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
+
 import Speakers from '../components/speakers';
 import Topics from '../components/topics';
+import Talks from '../components/talks';
 
 import { Container, Section, SectionTitle } from '../components/styled/layout';
 import { SecondaryButton } from '../components/styled/button';
 
-const TalkLink = styled(SecondaryButton)`
+const ClipLink = styled(SecondaryButton)`
 	${tw`m-auto mt-16`};
 	${tw`md:w-1/3`};
 `;
 
 const Media = styled.div`
-	${tw`mt-12`};
+	${tw`mt-12 -mb-2 relative z-50`};
 `;
+
+const Separator = styled.div`
+${tw`mb-8`};
+`;
+
 
 export default class ReplyBox extends Component {
 
@@ -77,7 +84,9 @@ export default class ReplyBox extends Component {
 			speakers: post.speakers
 				? `<em>by</em> ${post.speakers.map(({ data }) => data.title).join(', ')}`
 				: null,
-			scripture: post.scripture ? `<em>from</em> ${post.scripture}` : null,
+			talks: post.talks
+				? `<em>on</em> ${post.talks.map(({ data }) => data.title).join(', ')}`
+				: null,
 			topics: post.topics
 				? `<em>on</em> ${post.topics.map(({ data }) => data.title).join(', ')}`
 				: null,
@@ -94,7 +103,7 @@ export default class ReplyBox extends Component {
 
 				<Intro
 					title={post.title}
-					excerpt={mapObjectToString(['speakers', 'scripture'], meta)}
+					excerpt={mapObjectToString(['speakers'], meta)}
 				>
 					{ 'iframe' === mediaObject.tagName && (
 						<Media
@@ -105,11 +114,21 @@ export default class ReplyBox extends Component {
 
 					{ 'a' === mediaObject.tagName && (
 						<p>
-							<TalkLink to={mediaObject.properties.href} as={Link} large={1}>
-								Listen to Talk &rarr;
-							</TalkLink>
+							<ClipLink to={mediaObject.properties.href} as={Link} large={1}>
+								Listen to Clip &rarr;
+							</ClipLink>
+							{ post.talks && (
+								<Separator />
+							)}
 						</p>
 					)}
+
+					{post.talks && (
+						<div>
+							<Talks data={post.talks} subtitle="Related Talk:" />
+						</div>
+					)}
+
 				</Intro>
 
 				<Container>
@@ -130,6 +149,7 @@ export default class ReplyBox extends Component {
 							<Topics data={post.topics} />
 						</Section>
 					)}
+
 				</Container>
 			</Layout>
 		);
@@ -150,7 +170,26 @@ export const pageQuery = graphql`
 						rawMarkdownBody
 					}
 				}
-				scripture
+				talks {
+					id
+					fields {
+						slug
+					}
+					data {
+						title
+						publishedDate(formatString:"YYYYMMDD")
+						scripture
+						speakers {
+							id
+							fields {
+								slug
+							}
+							data {
+								title
+							}
+						}
+					}
+				}
 				topics {
 					id
 					fields {

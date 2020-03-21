@@ -9,7 +9,7 @@ import FauxLink from '../fauxLink';
 import { MetaText, MetaLink } from '../styled/meta';
 
 const Container = styled.div`
-	${tw`flex items-center`}
+	${tw`flex items-center leading-tight`}
 `;
 
 const Body = styled.div`

@@ -13,7 +13,7 @@ export const Branding = styled.nav`
 
 export const Title = styled.h1`
 	${tw`flex items-center justify-center mb-3`};
-	${tw`md:justify-start md:mb-0 md:w-1/2`};
+	${tw`md:justify-start md:mb-0 md:w-1/4`};
 
 	a {
 		display: flex;
@@ -21,7 +21,8 @@ export const Title = styled.h1`
 `;
 
 export const Logo = styled(SiteLogo)`
-	${tw`h-8`};
+	${tw`h-6`};
+	${tw`lg:h-8`};
 `;
 
 export const Footer = styled.footer`

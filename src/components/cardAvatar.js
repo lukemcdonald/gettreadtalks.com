@@ -23,11 +23,15 @@ const Image = styled(Img)`
 
 const CardAvatar = ({ data, title }) => {
 	return (
-		<Figure>
-			{data && (
-				<Image alt={title} fluid={data.localFiles[0].childImageSharp.fluid} />
+		<>
+			{ data && (
+				<Figure>
+					{data && (
+						<Image alt={title} fluid={data.localFiles[0].childImageSharp.fluid} />
+					)}
+				</Figure>
 			)}
-		</Figure>
+		</>
 	);
 };
 

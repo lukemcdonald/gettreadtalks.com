@@ -7,7 +7,7 @@ import { PrimaryButton } from './styled/button';
 
 const Nav = styled(`div`)`
 	${tw`block font-semibold text-center `}
-	${tw`md:w-1/2 md:text-right`}
+	${tw`md:w-3/4 md:text-right`}
 `;
 
 const NavLink = styled(Link)`
@@ -28,6 +28,7 @@ const SubscribeButton = styled(PrimaryButton)`
 
 const links = [
 	{ label: 'About', path: '/about/' },
+	{ label: 'Clips', path: '/clips/' },
 	{ label: 'Speakers', path: '/speakers/' },
 	{ label: 'Talks', path: '/talks/' },
 	{ label: 'Topics', path: '/topics/' },

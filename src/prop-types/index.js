@@ -1,4 +1,5 @@
 export { attachmentType } from './attachment';
+export { clipType, clipDefaults } from './clip';
 export { seoType, seoDefaults } from './seo';
 export { seriesType } from './series';
 export { speakerType, speakerDefaults } from './speaker';

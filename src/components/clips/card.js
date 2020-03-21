@@ -1,7 +1,7 @@
 /* global tw */
 import styled from 'styled-components';
 import React from 'react';
-import { talkType, talkDefaults } from '../../prop-types';
+import { clipType, clipDefaults } from '../../prop-types';
 
 import Card from '../card';
 import CardAvatar from '../cardAvatar';
@@ -10,7 +10,7 @@ import FauxLink from '../fauxLink';
 import { MetaText, MetaSep, MetaLink } from '../styled/meta';
 
 const Container = styled.div`
-	${tw`flex items-center text-left leading-tight`}
+	${tw`flex items-center leading-tight`}
 `;
 const Body = styled.div`
 	${tw`flex-grow`}
@@ -24,35 +24,18 @@ const SpeakerLink = styled(MetaLink)`
 `;
 const Footer = styled.footer`
 	${tw`flex mt-2`};
-
-	.rtBibleRef {
-		${tw`inline-block relative z-20 no-underline`}
-	}
-`;
-const Scripture = styled(MetaText)`
-	${tw`hidden`};
-	${tw`xs:inline`};
-`;
-const Alttitle = styled.h3`
-	${tw`text-brand text-xs tracking-wider uppercase mb-2`};
 `;
 
-const TalkCard = ({ data: post, subtitle }) => (
+const ClipCard = ({ data: post }) => (
 	<Card id={post.id}>
 		<Container>
-			{post.speakers.map(({ id, data = { avatar: '', title: '' } }) => (
+			{post.speakers.map(({ id, data }) => (
 				<CardAvatar key={id} data={data.avatar} title={data.title} />
 			))}
 
 			<Body>
 				<header>
-					{subtitle && (
-						<Alttitle>{subtitle}</Alttitle>
-					)}
-
-					{post.title && (
-						<Title>{post.title}</Title>
-					) }
+					<Title>{post.title}</Title>
 				</header>
 
 				<Footer>
@@ -63,12 +46,6 @@ const TalkCard = ({ data: post, subtitle }) => (
 							&nbsp;
 						</MetaText>
 					))}
-
-					{post.scripture && (
-						<Scripture>
-							<MetaSep>from</MetaSep> {post.scripture}
-						</Scripture>
-					)}
 				</Footer>
 			</Body>
 		</Container>
@@ -77,7 +54,7 @@ const TalkCard = ({ data: post, subtitle }) => (
 	</Card>
 );
 
-TalkCard.propTypes = { data: talkType.isRequired };
-TalkCard.defaultProps = talkDefaults;
+ClipCard.propTypes = { data: clipType.isRequired };
+ClipCard.defaultProps = clipDefaults;
 
-export default TalkCard;
+export default ClipCard;

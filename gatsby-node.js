@@ -3,7 +3,7 @@ const { paginate } = require(`gatsby-awesome-pagination`);
 
 exports.onCreateNode = ({ node, actions }) => {
 	const { createNodeField } = actions;
-	const airtableTables = ['Pages', 'Speakers', 'Talks', 'Topics'];
+	const airtableTables = ['Clips', 'Pages', 'Speakers', 'Talks', 'Topics'];
 
 	/**
 	 * Create a slug value on the node fields property.
@@ -33,6 +33,21 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 	// Query data.
 	const result = await graphql(`
 		{
+			clipsQuery: allAirtable(
+				filter: {
+					queryName: { eq: "PUBLISHED_CLIPS" }
+					data: { title: { ne: null } }
+				}
+			) {
+				edges {
+					node {
+						id
+						fields {
+							slug
+						}
+					}
+				}
+			}
 			talksQuery: allAirtable(
 				filter: {
 					queryName: { in: ["APPROVED_TALKS","PUBLISHED_TALKS"] }
@@ -103,12 +118,24 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 	}
 
 	// Define content types.
+	const Clips    = result.data.clipsQuery.edges
 	const Talks    = result.data.talksQuery.edges
 	const Speakers = result.data.speakersQuery.edges
 	const Topics   = result.data.topicsQuery.edges
 	const Pages    = result.data.pagesQuery.edges
 
 	// Create pages.
+	Clips.forEach(post => {
+		createPage({
+			path: `${post.node.fields.slug}`,
+			component: path.resolve(`./src/templates/clip.js`),
+			context: {
+				id: post.node.id,
+				slug: post.node.fields.slug,
+			},
+		})
+	})
+
 	Talks.forEach(post => {
 		createPage({
 			path: `${post.node.fields.slug}`,

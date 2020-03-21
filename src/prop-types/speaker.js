@@ -1,7 +1,7 @@
 import { array, shape, number, string, oneOfType } from 'prop-types';
-// import { talkType } from './talk';
 
 export const speakerType = shape({
+	clips: array,
 	description: string,
 	firstName: string,
 	id: string.isRequired,
@@ -16,5 +16,6 @@ export const speakerType = shape({
 });
 
 export const speakerDefaults = {
+	clips: [],
 	talks: [],
 };
