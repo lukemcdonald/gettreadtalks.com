@@ -33,7 +33,10 @@ Alternatively, a build version of the site that will be used on the live site ca
 - [] Primary Navigation Submenu [Design](https://twitter.com/steveschoger/status/953297226985549825)
 - [][reakit](https://github.com/reakit/reakit) integration
 - [] Series Archive and Pages
-- [] Clips Archive and Pages
+- [x] Clips Archive and Pages
+  - [] Add clips to Speaker Pages
+  - [] Add clips to Topic pages
+- [] Testimonials Archive and Pages
 - [] Sidebar Layout
 - [] Footer Navigation
 - [] Social Navigation
