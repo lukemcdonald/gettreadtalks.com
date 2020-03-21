@@ -11,7 +11,8 @@ const Nav = styled(`div`)`
 `;
 
 const NavLink = styled(Link)`
-	${tw`inline-block mx-4 py-2 no-underline text-black`}
+	${tw`inline-block mx-2 py-2 no-underline text-black`}
+	${tw`xs:mx-4`}
 
 	&:hover,
 	&.is-active {
