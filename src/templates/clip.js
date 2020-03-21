@@ -24,7 +24,7 @@ const ClipLink = styled(SecondaryButton)`
 `;
 
 const Media = styled.div`
-	${tw`mt-12 -mb-2 relative z-50`};
+	${tw`mt-12 relative z-50`};
 `;
 
 const Separator = styled.div`
@@ -109,6 +109,7 @@ export default class ReplyBox extends Component {
 						<Media
 							className="responsive-media"
 							dangerouslySetInnerHTML={{ __html: mediaHtml }}
+							style={{marginBottom: `-3px`}}
 						/>
 					)}
 
