@@ -6,7 +6,6 @@ import Link from '../components/link';
 import { mapObjectToString, objectToString } from '../utils';
 
 import urlParser from 'js-video-url-parser';
-// import { parseVideoUrl, getVideoImage } from '../utilities/video';
 
 import Intro from '../components/intro';
 import Layout from '../components/layout';
@@ -45,11 +44,8 @@ export default class ReplyBox extends Component {
 	}
 
 	getParsedMedia() {
-		return urlParser.parse( this.getVideoUrl() );
-	}
-
-	getVideoUrl() {
-		return this.props.data.airtable.data.link.childMarkdownRemark.rawMarkdownBody;
+		const mediaLink = this.props.data.airtable.data.link.childMarkdownRemark.rawMarkdownBody;
+		return urlParser.parse(mediaLink);
 	}
 
 	async setParsedMedia() {
@@ -59,18 +55,10 @@ export default class ReplyBox extends Component {
 			const mediaUrl = urlParser.create({
 				videoInfo: parsedMedia,
 				format: 'longImage',
-				// format: 'youtube' === parsedMedia.provider ? 'longImage' : 'image',
 			})
 
 			this.setState({mediaUrl});
 		}
-
-		// const videoUrl = this.getVideoUrl();
-		// const videoImage = await getVideoImage( videoUrl );
-
-		// this.setState({
-		// 	mediaUrl: videoImage.src
-		// });
 	}
 
 	render() {
