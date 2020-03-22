@@ -1,13 +1,14 @@
 /* global tw */
 import styled from 'styled-components';
 import React from 'react';
+import Img from 'gatsby-image';
 
+import Images from './images';
 import Link from '../components/link';
-import { PrimaryButton } from './styled/button';
 
 const Nav = styled(`div`)`
-	${tw`block font-semibold text-center `}
-	${tw`md:w-3/4 md:text-right`}
+	${tw`flex flex-wrap justify-center items-center font-semibold text-center`}
+	${tw`md:w-3/4 md:justify-end`}
 `;
 
 const NavLink = styled(Link)`
@@ -20,11 +21,13 @@ const NavLink = styled(Link)`
 	}
 `;
 
-const SubscribeButton = styled(PrimaryButton)`
-	${tw`block mt-3`};
-	${tw`xs:inline-block`};
-	${tw`sm:mt-0`};
-	${tw`md:ml-4`}
+const ActionLink = styled(Link)`
+	${tw`block ml-2 hover:opacity-75`};
+	${tw`xs:ml-4`};
+`;
+
+const FacebookImage = styled(Img)`
+	${tw`w-8 h-8`}
 `;
 
 const links = [
@@ -42,8 +45,19 @@ export default () => (
 				{link.label}
 			</NavLink>
 		))}
-		<SubscribeButton as="a" href="http://eepurl.com/dNtF3U">
-			Subscribe
-		</SubscribeButton>
+
+		<ActionLink href="https://www.facebook.com/gettreadtalks">
+			<Images>
+				{images => {
+					console.log(images['facebook-icon'])
+					return (
+						<FacebookImage
+							alt="Facebook Logo"
+							fluid={images['facebook-icon'].fluid}
+						/>
+					)
+			}}
+			</Images>
+		</ActionLink>
 	</Nav>
 );
