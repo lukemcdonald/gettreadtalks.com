@@ -54,7 +54,7 @@ export default class ReplyBox extends Component {
 		if ( parsedMedia ) {
 			const mediaUrl = urlParser.create({
 				videoInfo: parsedMedia,
-				format: 'longImage',
+				format: 'youtube' === parsedMedia.provider ? 'longImage' : 'image',
 			})
 
 			this.setState({mediaUrl});

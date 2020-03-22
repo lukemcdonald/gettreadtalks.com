@@ -49,7 +49,6 @@ export default () => (
 		<ActionLink href="https://www.facebook.com/gettreadtalks">
 			<Images>
 				{images => {
-					console.log(images['facebook-icon'])
 					return (
 						<FacebookImage
 							alt="Facebook Logo"
