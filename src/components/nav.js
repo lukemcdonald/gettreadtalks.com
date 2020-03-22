@@ -33,6 +33,7 @@ const FacebookImage = styled(Img)`
 const links = [
 	{ label: 'About', path: '/about/' },
 	{ label: 'Clips', path: '/clips/' },
+	{ label: 'Series', path: '/series/' },
 	{ label: 'Speakers', path: '/speakers/' },
 	{ label: 'Talks', path: '/talks/' },
 	{ label: 'Topics', path: '/topics/' },

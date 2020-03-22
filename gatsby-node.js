@@ -3,7 +3,7 @@ const { paginate } = require(`gatsby-awesome-pagination`);
 
 exports.onCreateNode = ({ node, actions }) => {
 	const { createNodeField } = actions;
-	const airtableTables = ['Clips', 'Pages', 'Speakers', 'Talks', 'Topics'];
+	const airtableTables = ['Clips', 'Pages', 'Series', 'Speakers', 'Talks', 'Topics'];
 
 	/**
 	 * Create a slug value on the node fields property.
@@ -48,9 +48,24 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 					}
 				}
 			}
-			talksQuery: allAirtable(
+			pagesQuery: allAirtable(
 				filter: {
-					queryName: { in: ["APPROVED_TALKS","PUBLISHED_TALKS"] }
+					queryName: { eq: "PUBLISHED_PAGES" }
+					data: { title: { ne: null } }
+				}
+			) {
+				edges {
+					node {
+						id
+						fields {
+							slug
+						}
+					}
+				}
+			}
+			seriesQuery: allAirtable(
+				filter: {
+					queryName: { eq: "PUBLISHED_SERIES" }
 					data: { title: { ne: null } }
 				}
 			) {
@@ -78,9 +93,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 					}
 				}
 			}
-			topicsQuery: allAirtable(
+			talksQuery: allAirtable(
 				filter: {
-					queryName: { eq: "PUBLISHED_TOPICS" }
+					queryName: { in: ["APPROVED_TALKS","PUBLISHED_TALKS"] }
 					data: { title: { ne: null } }
 				}
 			) {
@@ -93,9 +108,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 					}
 				}
 			}
-			pagesQuery: allAirtable(
+			topicsQuery: allAirtable(
 				filter: {
-					queryName: { eq: "PUBLISHED_PAGES" }
+					queryName: { eq: "PUBLISHED_TOPICS" }
 					data: { title: { ne: null } }
 				}
 			) {
@@ -119,16 +134,50 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
 	// Define content types.
 	const Clips    = result.data.clipsQuery.edges
-	const Talks    = result.data.talksQuery.edges
-	const Speakers = result.data.speakersQuery.edges
-	const Topics   = result.data.topicsQuery.edges
 	const Pages    = result.data.pagesQuery.edges
+	const Series   = result.data.seriesQuery.edges
+	const Speakers = result.data.speakersQuery.edges
+	const Talks    = result.data.talksQuery.edges
+	const Topics   = result.data.topicsQuery.edges
 
-	// Create pages.
+	// Create content pages.
 	Clips.forEach(post => {
 		createPage({
 			path: `${post.node.fields.slug}`,
 			component: path.resolve(`./src/templates/clip.js`),
+			context: {
+				id: post.node.id,
+				slug: post.node.fields.slug,
+			},
+		})
+	})
+
+	Pages.forEach(post => {
+		createPage({
+			path: `${post.node.fields.slug}`,
+			component: path.resolve(`./src/templates/page.js`),
+			context: {
+				id: post.node.id,
+				slug: post.node.fields.slug,
+			},
+		})
+	})
+
+	Series.forEach(post => {
+		createPage({
+			path: `${post.node.fields.slug}`,
+			component: path.resolve(`./src/templates/series.js`),
+			context: {
+				id: post.node.id,
+				slug: post.node.fields.slug,
+			},
+		})
+	})
+
+	Speakers.forEach(post => {
+		createPage({
+			path: `${post.node.fields.slug}`,
+			component: path.resolve(`./src/templates/speaker.js`),
 			context: {
 				id: post.node.id,
 				slug: post.node.fields.slug,
@@ -147,25 +196,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 		})
 	})
 
-	paginate({
-		createPage,
-		items: Talks,
-		itemsPerPage: 12,
-		component: path.resolve('./src/templates/talks.js'),
-		pathPrefix: ({ pageNumber }) =>	pageNumber === 0 ? `/talks` : `/talks/page`,
-	});
-
-	Speakers.forEach(post => {
-		createPage({
-			path: `${post.node.fields.slug}`,
-			component: path.resolve(`./src/templates/speaker.js`),
-			context: {
-				id: post.node.id,
-				slug: post.node.fields.slug,
-			},
-		})
-	})
-
 	Topics.forEach(post => {
 		createPage({
 			path: `${post.node.fields.slug}`,
@@ -177,15 +207,14 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 		})
 	})
 
-	Pages.forEach(post => {
-		createPage({
-			path: `${post.node.fields.slug}`,
-			component: path.resolve(`./src/templates/page.js`),
-			context: {
-				id: post.node.id,
-				slug: post.node.fields.slug,
-			},
-		})
-	})
+
+	// Paginate content pages.
+	paginate({
+		createPage,
+		items: Talks,
+		itemsPerPage: 12,
+		component: path.resolve('./src/templates/talks.js'),
+		pathPrefix: ({ pageNumber }) =>	pageNumber === 0 ? `/talks` : `/talks/page`,
+	});
 
 };

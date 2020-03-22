@@ -116,6 +116,17 @@ module.exports = {
 				tables: [
 					{
 						baseId: process.env.AIRTABLE_BASE,
+						tableName: `Affiliate Links`,
+						tableView: `All Links`,
+						queryName: `ALL_AFFILIATE_LINKS`,
+						mapping: {
+							image: `fileNode`,
+							description: `text/markdown`,
+							link: `text/markdown`,
+						},
+					},
+					{
+						baseId: process.env.AIRTABLE_BASE,
 						tableName: `Clips`,
 						tableView: `Published`,
 						queryName: `PUBLISHED_CLIPS`,
@@ -126,20 +137,19 @@ module.exports = {
 					},
 					{
 						baseId: process.env.AIRTABLE_BASE,
-						tableName: `Talks`,
-						tableView: `Approved`,
-						queryName: `APPROVED_TALKS`,
-						tableLinks: [`speakers`, `topics`],
+						tableName: `Pages`,
+						tableView: `Published`,
+						queryName: `PUBLISHED_PAGES`,
 						mapping: {
-							link: `text/markdown`,
+							content: `text/markdown`,
 						},
 					},
 					{
 						baseId: process.env.AIRTABLE_BASE,
-						tableName: `Talks`,
+						tableName: `Series`,
 						tableView: `Published`,
-						queryName: `PUBLISHED_TALKS`,
-						tableLinks: [`speakers`, `topics`],
+						queryName: `PUBLISHED_SERIES`,
+						tableLinks: [`talks`],
 						mapping: {
 							link: `text/markdown`,
 						},
@@ -157,30 +167,30 @@ module.exports = {
 					},
 					{
 						baseId: process.env.AIRTABLE_BASE,
+						tableName: `Talks`,
+						tableView: `Approved`,
+						queryName: `APPROVED_TALKS`,
+						tableLinks: [`series`, `speakers`, `topics`],
+						mapping: {
+							link: `text/markdown`,
+						},
+					},
+					{
+						baseId: process.env.AIRTABLE_BASE,
+						tableName: `Talks`,
+						tableView: `Published`,
+						queryName: `PUBLISHED_TALKS`,
+						tableLinks: [`series`, `speakers`, `topics`],
+						mapping: {
+							link: `text/markdown`,
+						},
+					},
+					{
+						baseId: process.env.AIRTABLE_BASE,
 						tableName: `Topics`,
 						tableView: `Published`,
 						queryName: `PUBLISHED_TOPICS`,
 						tableLinks: [`clips`, `talks`],
-					},
-					{
-						baseId: process.env.AIRTABLE_BASE,
-						tableName: `Pages`,
-						tableView: `Published`,
-						queryName: `PUBLISHED_PAGES`,
-						mapping: {
-							content: `text/markdown`,
-						},
-					},
-					{
-						baseId: process.env.AIRTABLE_BASE,
-						tableName: `Affiliate Links`,
-						tableView: `All Links`,
-						queryName: `ALL_AFFILIATE_LINKS`,
-						mapping: {
-							image: `fileNode`,
-							description: `text/markdown`,
-							link: `text/markdown`,
-						},
 					},
 				],
 			},
