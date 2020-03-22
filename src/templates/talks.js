@@ -52,8 +52,8 @@ export const pageQuery = graphql`
 			limit: $limit
 			skip: $skip
 			filter: {
-				queryName: { eq: "PUBLISHED_TALKS" }
-				data: { title: { ne: null } }
+				queryName: { eq: "PUBLISHED_TALKS" },
+				data: { publishedDate: { ne: null } }
 			}
 			sort: {
 				fields: data___publishedDate,

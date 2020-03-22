@@ -95,7 +95,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 			}
 			talksQuery: allAirtable(
 				filter: {
-					queryName: { in: ["APPROVED_TALKS","PUBLISHED_TALKS"] }
+					queryName: { in: ["PUBLISHED_TALKS"] }
 					data: { title: { ne: null } }
 				}
 			) {

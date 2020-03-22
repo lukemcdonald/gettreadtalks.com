@@ -6,42 +6,36 @@ import { seriesType, seriesDefaults } from '../../prop-types';
 import Card from '../card';
 import CardAvatar from '../cardAvatar';
 import FauxLink from '../fauxLink';
-import { MetaText, MetaLink } from '../styled/meta';
+import { MetaText } from '../styled/meta';
 
 const Container = styled.div`
 	${tw`flex items-center leading-tight`}
 `;
 
 const Body = styled.div`
-	${tw`flex-grow`}
-`;
-
-const Header = styled.header`
-	${tw``};
+	${tw`flex justify-between items-center`}
 `;
 
 const Title = styled.h2`
 	${tw`font-bold mb-1 text-black text-lg`}
-	${tw`sm:text-xl`}
-`;
-
-const Footer = styled.footer`
-	${tw`flex mt-2`};
+	${tw`sm:text-xl sm:mb-0`}
 `;
 
 const SeriesCard = ({ data: post }) => (
 	<Card id={post.id}>
-		<Container>
-			<Body>
-				{post.title && (
-					<Header>
-						<Title>{post.title}</Title>
-					</Header>
-				)}
-			</Body>
+		<Body>
+			<Title>{post.title}</Title>
 
-			<FauxLink to={post.slug}>{`Series on ${post.title}`}</FauxLink>
-		</Container>
+			{post.publishedTalksCount && (
+				<MetaText>
+					{post.publishedTalksCount === 1
+						? `${post.publishedTalksCount} Talk`
+						: `${post.publishedTalksCount} Talks`}
+				</MetaText>
+			)}
+		</Body>
+
+		<FauxLink to={post.slug}>{`Series on ${post.title}`}</FauxLink>
 	</Card>
 );
 

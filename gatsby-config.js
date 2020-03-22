@@ -117,8 +117,8 @@ module.exports = {
 					{
 						baseId: process.env.AIRTABLE_BASE,
 						tableName: `Affiliate Links`,
-						tableView: `All Links`,
-						queryName: `ALL_AFFILIATE_LINKS`,
+						tableView: `Published`,
+						queryName: `PUBLISHED_AFFILIATE_LINKS`,
 						mapping: {
 							image: `fileNode`,
 							description: `text/markdown`,
@@ -163,16 +163,6 @@ module.exports = {
 						mapping: {
 							avatar: `fileNode`,
 							description: `text/markdown`,
-						},
-					},
-					{
-						baseId: process.env.AIRTABLE_BASE,
-						tableName: `Talks`,
-						tableView: `Approved`,
-						queryName: `APPROVED_TALKS`,
-						tableLinks: [`series`, `speakers`, `topics`],
-						mapping: {
-							link: `text/markdown`,
 						},
 					},
 					{

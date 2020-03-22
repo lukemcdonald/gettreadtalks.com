@@ -9,8 +9,8 @@ import Talks from '../components/talks';
 import TopicsNav from '../components/topics/postNav';
 
 export default props => {
-	const { data: post } = props.data.airtable;
-	const { edges: posts = [] } = props.data.allAirtable;
+	const { data: post } = props.data.post;
+	const { edges: posts = [] } = props.data.posts;
 
 	const { description = `Talks on the topic of ${post.title}.` } = post;
 
@@ -39,7 +39,7 @@ export default props => {
 
 export const pageQuery = graphql`
 	query($id: String!) {
-		airtable(id: { eq: $id }) {
+		post: airtable(id: { eq: $id }) {
 			id
 			fields {
 				slug
@@ -48,12 +48,15 @@ export const pageQuery = graphql`
 				title
 			}
 		}
-		allAirtable(
+		posts: allAirtable(
 			filter: {
 				queryName: { eq: "PUBLISHED_TALKS" }
 				data: { topics: { elemMatch: { id: { eq: $id } } } }
 			}
-			sort: { fields: data___publishedDate, order: DESC }
+			sort: {
+				fields: data___publishedDate,
+				order: DESC
+			}
 		) {
 			edges {
 				node {

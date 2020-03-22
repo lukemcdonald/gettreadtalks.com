@@ -47,11 +47,12 @@ export const pageQuery = graphql`
 		allAirtable(
 			filter: {
 				queryName: { eq: "PUBLISHED_TALKS" }
-				data: {
-					favorite: { eq: true }
-				}
+				data: { favorite: { eq: true }, publishedDate: { ne: null } }
 			}
-			sort: { fields: data___publishedDate, order: DESC }
+			sort: {
+				fields: data___publishedDate,
+				order: DESC
+			}
 		) {
 			edges {
 				node {

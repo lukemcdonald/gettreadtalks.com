@@ -25,7 +25,7 @@ const affiliateLinksQuery = graphql`
 	query {
 		allAirtable(
 			filter: {
-				queryName: { eq: "ALL_AFFILIATE_LINKS" }
+				queryName: { eq: "PUBLISHED_AFFILIATE_LINKS" }
 				data: { title: { ne: null } }
 			}
 			sort: { fields: data___type, order: ASC }

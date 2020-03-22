@@ -60,8 +60,8 @@ export const pageQuery = graphql`
 		allAirtable(
 			limit: 15
 			filter: {
-				queryName: { eq: "PUBLISHED_TALKS" }
-				data: { title: { ne: null } }
+				queryName: { eq: "PUBLISHED_TALKS" },
+				data: { publishedDate: { ne: null } }
 			}
 			sort: {
 				fields: data___publishedDate,

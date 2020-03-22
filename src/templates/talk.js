@@ -22,7 +22,7 @@ const TalkLink = styled(SecondaryButton)`
 `;
 
 const Media = styled.div`
-	${tw`mt-12`};
+	${tw`mt-12 bg-black`};
 `;
 
 export default class ReplyBox extends Component {

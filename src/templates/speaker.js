@@ -74,7 +74,10 @@ export const pageQuery = graphql`
 				queryName: { eq: "PUBLISHED_TALKS" }
 				data: { speakers: { elemMatch: { id: { eq: $id } } } }
 			}
-			sort: { fields: data___publishedDate, order: DESC }
+			sort: {
+				fields: data___publishedDate,
+				order: DESC
+			}
 		) {
 			edges {
 				node {

@@ -13,7 +13,7 @@ const Body = styled.div`
 
 const Title = styled.h2`
 	${tw`font-bold mb-1 text-black text-lg`}
-	${tw`sm:text-xl`}
+	${tw`sm:text-xl sm:mb-0`}
 `;
 
 const TopicCard = ({ data: post }) => (

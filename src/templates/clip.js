@@ -24,13 +24,12 @@ const ClipLink = styled(SecondaryButton)`
 `;
 
 const Media = styled.div`
-	${tw`mt-12 relative z-50`};
+	${tw`mt-12 bg-black relative z-50`};
 `;
 
 const Separator = styled.div`
 ${tw`mb-8`};
 `;
-
 
 export default class ReplyBox extends Component {
 
