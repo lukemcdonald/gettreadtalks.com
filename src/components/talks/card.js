@@ -38,17 +38,17 @@ const Alttitle = styled.h3`
 	${tw`text-brand text-xs tracking-wider uppercase mb-2`};
 `;
 
-const TalkCard = ({ data: post, subtitle }) => (
+const TalkCard = ({ data: post }) => (
 	<Card id={post.id}>
 		<Container>
-			{post.speakers.map(({ id, data = { avatar: '', title: '' } }) => (
+			{ ! post.hideAvatar && post.speakers.map(({ id, data = { avatar: '', title: '' } }) => (
 				<CardAvatar key={id} data={data.avatar} title={data.title} />
 			))}
 
 			<Body>
 				<header>
-					{subtitle && (
-						<Alttitle>{subtitle}</Alttitle>
+					{post.subtitle && (
+						<Alttitle>{post.subtitle}</Alttitle>
 					)}
 
 					{post.title && (

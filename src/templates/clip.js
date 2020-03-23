@@ -83,9 +83,6 @@ export default class ReplyBox extends Component {
 			speakers: post.speakers
 				? `<em>by</em> ${post.speakers.map(({ data }) => data.title).join(', ')}`
 				: null,
-			talks: post.talks
-				? `<em>on</em> ${post.talks.map(({ data }) => data.title).join(', ')}`
-				: null,
 			topics: post.topics
 				? `<em>on</em> ${post.topics.map(({ data }) => data.title).join(', ')}`
 				: null,
@@ -117,6 +114,7 @@ export default class ReplyBox extends Component {
 							<ClipLink to={mediaObject.properties.href} as={Link} large={1}>
 								Listen to Clip &rarr;
 							</ClipLink>
+
 							{ post.talks && (
 								<Separator />
 							)}
@@ -124,9 +122,7 @@ export default class ReplyBox extends Component {
 					)}
 
 					{post.talks && (
-						<div>
-							<Talks data={post.talks} subtitle="Related Talk:" />
-						</div>
+						<Talks data={post.talks} subtitle="Related Talk:" hideAvatar />
 					)}
 
 				</Intro>
