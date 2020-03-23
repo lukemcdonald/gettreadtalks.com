@@ -38,7 +38,7 @@ export default [
 		type: 'Podcast',
 		kind: 'podcast',
 		bubble: 'podcasts',
-		width: 133,
+		width: 165,
 		height: 34,
 	},
 	{
