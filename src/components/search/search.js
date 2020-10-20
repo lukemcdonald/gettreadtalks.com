@@ -27,9 +27,9 @@ export default class Search extends Component {
 		return (
 			<SearchStyles>
 				<InstantSearch
-					appId={process.env.GATSBY_ALGOLIA_APP_ID}
-					apiKey={process.env.GATSBY_ALGOLIA_API_KEY}
-					indexName={process.env.GATSBY_ALGOLIA_INDEX_NAME}
+					appId={process.env.ALGOLIA_APP_ID}
+					apiKey={process.env.ALGOLIA_API_KEY}
+					indexName={process.env.ALGOLIA_INDEX_NAME}
 				>
 					<Configure hitsPerPage={5} />
 
