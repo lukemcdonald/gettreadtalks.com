@@ -1,45 +1,43 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import Layout from '../components/layout';
 import SEO from '../components/seo';
 import Intro from '../components/intro';
-import { Container, Section } from '../components/styled/layout';
 import Talks from '../components/talks';
 import TopicsNav from '../components/topics/postNav';
 
-export default props => {
-	const { data: post } = props.data.post;
-	const { edges: posts = [] } = props.data.posts;
+export default function SingleTopicPage({ data }) {
+	const { data: topic } = data.topic;
+	const { edges: talks = [] } = data.talks;
 
-	const { description = `Talks on the topic of ${post.title}.` } = post;
+	const { description = `Talks on the topic of ${topic.title}.` } = topic;
 
 	return (
-		<Layout>
+		<>
 			<SEO
-				title={post.title}
+				title={topic.title}
 				description={description}
-				pathname={post.path}
+				pathname={topic.path}
 			/>
 
-			<Intro title={post.title} excerpt={description} />
+			<Intro title={topic.title} excerpt={description} />
 
-			<Container>
-				<Section>
+			<div>
+				<section>
 					<TopicsNav />
-				</Section>
+				</section>
 
-				<Section>
-					<Talks data={posts} />
-				</Section>
-			</Container>
-		</Layout>
+				<section>
+					<Talks talks={talks} />
+				</section>
+			</div>
+		</>
 	);
-};
+}
 
-export const pageQuery = graphql`
+export const query = graphql`
 	query($id: String!) {
-		post: airtable(id: { eq: $id }) {
+		topic: airtable(id: { eq: $id }) {
 			id
 			fields {
 				slug
@@ -48,15 +46,12 @@ export const pageQuery = graphql`
 				title
 			}
 		}
-		posts: allAirtable(
+		talks: allAirtable(
 			filter: {
 				queryName: { eq: "PUBLISHED_TALKS" }
 				data: { topics: { elemMatch: { id: { eq: $id } } } }
 			}
-			sort: {
-				fields: data___publishedDate,
-				order: DESC
-			}
+			sort: { fields: data___publishedDate, order: DESC }
 		) {
 			edges {
 				node {

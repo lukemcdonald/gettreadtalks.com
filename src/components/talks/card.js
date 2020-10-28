@@ -1,84 +1,44 @@
-/* global tw */
-import styled from 'styled-components';
 import React from 'react';
-import { talkType, talkDefaults } from '../../prop-types';
+import { Link } from 'gatsby';
 
 import Card from '../card';
 import CardAvatar from '../cardAvatar';
 import FauxLink from '../fauxLink';
 
-import { MetaText, MetaSep, MetaLink } from '../styled/meta';
-
-const Container = styled.div`
-	${tw`flex text-left leading-tight`}
-	${tw`sm:items-center`}
-`;
-const Body = styled.div`
-	${tw`flex-grow`}
-`;
-const Title = styled.h2`
-	${tw`font-bold mb-1 text-black text-lg`}
-	${tw`sm:text-xl`}
-`;
-const SpeakerLink = styled(MetaLink)`
-	${tw`relative z-10`}
-`;
-const Footer = styled.footer`
-	${tw`flex mt-2`};
-
-	.rtBibleRef {
-		${tw`inline-block relative z-20 no-underline`}
-	}
-`;
-const Scripture = styled(MetaText)`
-	${tw`hidden`};
-	${tw`xs:inline`};
-`;
-const Alttitle = styled.h3`
-	${tw`text-brand text-xs tracking-wider uppercase mb-2`};
-`;
-
-const TalkCard = ({ data: post }) => (
-	<Card id={post.id}>
-		<Container>
-			{ ! post.hideAvatar && post.speakers.map(({ id, data = { avatar: '', title: '' } }) => (
-				<CardAvatar key={id} data={data.avatar} title={data.title} />
-			))}
-
-			<Body>
-				<header>
-					{post.subtitle && (
-						<Alttitle>{post.subtitle}</Alttitle>
-					)}
-
-					{post.title && (
-						<Title>{post.title}</Title>
-					) }
-				</header>
-
-				<Footer>
-					{post.speakers.map(({ id, data, fields }) => (
-						<MetaText key={id}>
-							<MetaSep>By</MetaSep>&nbsp;
-							<SpeakerLink to={fields.slug}>{data.title}</SpeakerLink>
-							&nbsp;
-						</MetaText>
+export default function TalkCard({ talk }) {
+	return (
+		<Card id={talk.id}>
+			<div>
+				{!talk.hideAvatar &&
+					talk.speakers.map(({ id, data = { avatar: '', title: '' } }) => (
+						<CardAvatar key={id} data={data.avatar} title={data.title} />
 					))}
 
-					{post.scripture && (
-						<Scripture>
-							<MetaSep>from</MetaSep> {post.scripture}
-						</Scripture>
-					)}
-				</Footer>
-			</Body>
-		</Container>
+				<div>
+					<header>
+						{talk.title && <h2>{talk.title}</h2>}
+						{talk.subtitle && <h3>{talk.subtitle}</h3>}
+					</header>
 
-		<FauxLink to={post.slug}>{`Listen to ${post.title}`}</FauxLink>
-	</Card>
-);
+					<footer>
+						{talk.speakers.map(({ id, data, fields }) => (
+							<span key={id}>
+								<span>By</span>&nbsp;
+								<Link to={fields.slug}>{data.title}</Link>
+								&nbsp;
+							</span>
+						))}
 
-TalkCard.propTypes = { data: talkType.isRequired };
-TalkCard.defaultProps = talkDefaults;
+						{talk.scripture && (
+							<span>
+								<span>from</span> {talk.scripture}
+							</span>
+						)}
+					</footer>
+				</div>
+			</div>
 
-export default TalkCard;
+			<FauxLink to={talk.slug}>{`Listen to ${talk.title}`}</FauxLink>
+		</Card>
+	);
+}

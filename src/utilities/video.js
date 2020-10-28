@@ -12,7 +12,9 @@ export const parseVideoUrl = (url) => {
 
 	let type = '';
 
-	url.match(/(http:|https:|)\/\/(player.|www.|m.)?(vimeo\.com|youtu(be\.com|\.be|be\.googleapis\.com))\/(video\/|embed\/|watch\?v=|v\/)?([A-Za-z0-9._%-]*)(\S+)?/);
+	url.match(
+		/(http:|https:|)\/\/(player.|www.|m.)?(vimeo\.com|youtu(be\.com|\.be|be\.googleapis\.com))\/(video\/|embed\/|watch\?v=|v\/)?([A-Za-z0-9._%-]*)(\S+)?/
+	);
 
 	if (RegExp.$3.indexOf('youtu') > -1) {
 		type = 'youtube';
@@ -22,42 +24,40 @@ export const parseVideoUrl = (url) => {
 
 	return {
 		type,
-		id: RegExp.$6
+		id: RegExp.$6,
 	};
-}
+};
 
 /**
  * @link https://depone.dev/video/
  */
-export const getVideoImage = ( url ) => {
-	var videoDetails = parseVideoUrl( url );
-	var videoType = videoDetails.type;
-	var videoID = videoDetails.id;
-	var videoImage = {
+export const getVideoImage = (url) => {
+	const videoDetails = parseVideoUrl(url);
+	const videoType = videoDetails.type;
+	const videoID = videoDetails.id;
+	const videoImage = {
 		src: '',
 	};
 
-	if ( 'youtube' === videoType ) {
+	if (videoType === 'youtube') {
 		videoImage.src = getYoutubeVideoSrc(videoID);
 	}
 
-	if ( 'vimeo' ===  videoType ) {
+	if (videoType === 'vimeo') {
 		videoImage.src = getVimeoImageSrc(videoID);
 	}
 
 	return videoImage;
-}
+};
 
-const getYoutubeVideoSrc = (videoID) => {
-	return `https://img.youtube.com/vi/${videoID}/maxresdefault.jpg`;
-}
+const getYoutubeVideoSrc = (videoID) =>
+	`https://img.youtube.com/vi/${videoID}/maxresdefault.jpg`;
 
-const getVimeoImageSrc = (videoID) => {
-	return fetch(`https://vimeo.com/api/v2/video/${videoID}.json`)
-	.then((response) => response.json())
-	.then((data) => {
-		const thumbSplit = data[0].thumbnail_large.split(/\d{3}(?=.jpg)/);
-		return thumbSplit[0] + '1280x720' + thumbSplit[1];
-	})
-	.catch(error => console.log(error));
-}
+const getVimeoImageSrc = (videoID) =>
+	fetch(`https://vimeo.com/api/v2/video/${videoID}.json`)
+		.then((response) => response.json())
+		.then((data) => {
+			const thumbSplit = data[0].thumbnail_large.split(/\d{3}(?=.jpg)/);
+			return `${thumbSplit[0]}1280x720${thumbSplit[1]}`;
+		})
+		.catch((error) => console.log(error));

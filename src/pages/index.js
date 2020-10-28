@@ -1,21 +1,17 @@
 import React from 'react';
-import { graphql } from 'gatsby';
-import { getCurrentPosts } from "../utils";
+import { getCurrentPosts } from '../utils';
 
-import Layout from '../components/layout';
 import Intro from '../components/intro';
 import SEO from '../components/seo';
-import { Container, Section } from '../components/styled/layout';
 import Talks from '../components/talks';
 import TalksNav from '../components/talks/nav';
-import Search from '../components/search/search';
 
-export default ({ data }) => {
-	const { edges: posts = [] } = data.allAirtable;
-	const currentPosts = getCurrentPosts( posts, 5 );
+export default function IndexPage({ data }) {
+	const { edges: talks = [] } = data.talks;
+	const currentTalks = getCurrentPosts(talks, 5);
 
 	return (
-		<Layout>
+		<>
 			<SEO
 				title="Weekly sermons to elevate your spiritual heartbeat."
 				keywords={[
@@ -38,42 +34,37 @@ export default ({ data }) => {
 				title="Workout your salvation."
 				excerpt="Weekly sermons to elevate your spiritual heartbeat."
 				image={{ name: 'bg-intro' }}
-			>
-				<Search />
-			</Intro>
+			/>
 
-			<Container className="has-subnav">
-				<Section>
+			<div className="has-subnav">
+				<section>
 					<TalksNav />
-				</Section>
+				</section>
 
-				<Section>
-					<Talks data={currentPosts} />
-				</Section>
-			</Container>
-		</Layout>
+				<section>
+					<Talks talks={currentTalks} />
+				</section>
+			</div>
+		</>
 	);
-};
+}
 
-export const pageQuery = graphql`
+export const query = graphql`
 	query {
-		allAirtable(
+		talks: allAirtable(
 			limit: 15
 			filter: {
-				queryName: { eq: "PUBLISHED_TALKS" },
+				queryName: { eq: "PUBLISHED_TALKS" }
 				data: { publishedDate: { ne: null } }
 			}
-			sort: {
-				fields: data___publishedDate,
-				order: DESC
-			}
+			sort: { fields: data___publishedDate, order: DESC }
 		) {
 			edges {
 				node {
 					id
 					data {
 						title
-						publishedDate(formatString:"YYYYMMDD")
+						publishedDate(formatString: "YYYYMMDD")
 						scripture
 						speakers {
 							id

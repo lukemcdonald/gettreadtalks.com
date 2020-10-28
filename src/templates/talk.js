@@ -1,38 +1,21 @@
-/* global tw */
-import styled from 'styled-components';
 import React, { Component } from 'react';
 import { graphql } from 'gatsby';
+import urlParser from 'js-video-url-parser';
 import Link from '../components/link';
 import { mapObjectToString, objectToString } from '../utils';
 
-import urlParser from 'js-video-url-parser';
-
 import Intro from '../components/intro';
-import Layout from '../components/layout';
 import SEO from '../components/seo';
 import Speakers from '../components/speakers';
 import Topics from '../components/topics';
 
-import { Container, Section, SectionTitle } from '../components/styled/layout';
-import { SecondaryButton } from '../components/styled/button';
-
-const TalkLink = styled(SecondaryButton)`
-	${tw`m-auto mt-16`};
-	${tw`md:w-1/3`};
-`;
-
-const Media = styled.div`
-	${tw`mt-12 bg-black`};
-`;
-
-export default class ReplyBox extends Component {
-
-	constructor(props){
+export default class SinlgeTalkPage extends Component {
+	constructor(props) {
 		super(props);
 
 		this.state = {
 			mediaUrl: '',
-		}
+		};
 	}
 
 	componentDidMount() {
@@ -44,101 +27,97 @@ export default class ReplyBox extends Component {
 	}
 
 	getParsedMedia() {
-		const mediaLink = this.props.data.airtable.data.link.childMarkdownRemark.rawMarkdownBody;
+		const mediaLink = this.props.data.talk.data.link.childMarkdownRemark
+			.rawMarkdownBody;
 		return urlParser.parse(mediaLink);
 	}
 
 	async setParsedMedia() {
 		const parsedMedia = this.getParsedMedia();
 
-		if ( parsedMedia ) {
+		if (parsedMedia) {
 			const mediaUrl = urlParser.create({
 				videoInfo: parsedMedia,
 				format: 'longImage',
-			})
+			});
 
-			this.setState({mediaUrl});
+			this.setState({ mediaUrl });
 		}
 	}
 
 	render() {
 		const { mediaUrl } = this.state;
-		const { data: post } = this.props.data.airtable;
+		const { data: talk } = this.props.data.talk;
 
-		const {
-			html: mediaHtml,
-			htmlAst: media,
-		} = post.link.childMarkdownRemark;
+		const { html: mediaHtml, htmlAst: media } = talk.link.childMarkdownRemark;
 
 		const mediaObject = media.children[0].children[0] || '';
 
 		const meta = {
-			title: post.title,
-			speakers: post.speakers
-				? `<em>by</em> ${post.speakers.map(({ data }) => data.title).join(', ')}`
+			title: talk.title,
+			speakers: talk.speakers
+				? `<em>by</em> ${talk.speakers
+						.map(({ data }) => data.title)
+						.join(', ')}`
 				: null,
-			scripture: post.scripture ? `<em>from</em> ${post.scripture}` : null,
-			topics: post.topics
-				? `<em>on</em> ${post.topics.map(({ data }) => data.title).join(', ')}`
+			scripture: talk.scripture ? `<em>from</em> ${talk.scripture}` : null,
+			topics: talk.topics
+				? `<em>on</em> ${talk.topics.map(({ data }) => data.title).join(', ')}`
 				: null,
 		};
 
 		return (
-			<Layout>
+			<>
 				<SEO
 					title={mapObjectToString(['title', 'speakers'], meta)}
 					description={objectToString(meta)}
-					pathname={post.path}
+					pathname={talk.path}
 					image={mediaUrl}
 				/>
 
 				<Intro
-					title={post.title}
+					title={talk.title}
 					excerpt={mapObjectToString(['speakers', 'scripture'], meta)}
 				>
-					{ 'iframe' === mediaObject.tagName && (
-						<Media
+					{mediaObject.tagName === 'iframe' && (
+						<div
 							className="responsive-media"
 							dangerouslySetInnerHTML={{ __html: mediaHtml }}
 						/>
 					)}
 
-					{ 'a' === mediaObject.tagName && (
+					{mediaObject.tagName === 'a' && (
 						<p>
-							<TalkLink to={mediaObject.properties.href} as={Link} large={1}>
+							<Link to={mediaObject.properties.href}>
 								Listen to Talk &rarr;
-							</TalkLink>
+							</Link>
 						</p>
 					)}
 				</Intro>
 
-				<Container>
-					{post.speakers && (
-						<Section>
-							<SectionTitle>
-								{1 === post.speakers.length ? `Speaker` : `Speakers`}
-							</SectionTitle>
-							<Speakers data={post.speakers} />
-						</Section>
+				<div>
+					{talk.speakers && (
+						<section>
+							<h2>{talk.speakers.length === 1 ? `Speaker` : `Speakers`}</h2>
+							<Speakers data={talk.speakers} />
+						</section>
 					)}
 
-					{post.topics && (
-						<Section>
-							<SectionTitle>
-								{1 === post.topics.length ? `Topic` : `Topics`}
-							</SectionTitle>
-							<Topics data={post.topics} />
-						</Section>
+					{talk.topics && (
+						<section>
+							<h2>{talk.topics.length === 1 ? `Topic` : `Topics`}</h2>
+							<Topics topics={talk.topics} />
+						</section>
 					)}
-				</Container>
-			</Layout>
+				</div>
+			</>
 		);
 	}
-};
+}
 
-export const pageQuery = graphql`
+export const query = graphql`
 	query($id: String!) {
-		airtable(id: { eq: $id }) {
+		talk: airtable(id: { eq: $id }) {
 			id
 			data {
 				title

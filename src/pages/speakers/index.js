@@ -1,17 +1,15 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import Layout from '../../components/layout';
 import Intro from '../../components/intro';
 import SEO from '../../components/seo';
-import { Container, Section } from '../../components/styled/layout';
 import Speakers from '../../components/speakers';
 
-export default ({ data }) => {
-	const { edges: posts = [] } = data.allAirtable;
+export default function SpeakersPage({ data }) {
+	const { edges: speakers = [] } = data.speakers;
 
 	return (
-		<Layout>
+		<>
 			<SEO
 				title="Speakers"
 				keywords={['speakers', 'pastors', 'evangelists']}
@@ -20,18 +18,18 @@ export default ({ data }) => {
 
 			<Intro title="Speakers" />
 
-			<Container>
-				<Section>
-					<Speakers data={posts} />
-				</Section>
-			</Container>
-		</Layout>
+			<div>
+				<section>
+					<Speakers speakers={speakers} />
+				</section>
+			</div>
+		</>
 	);
-};
+}
 
 export const pageQuery = graphql`
 	query {
-		allAirtable(
+		speakers: allAirtable(
 			filter: {
 				queryName: { eq: "PUBLISHED_SPEAKERS" }
 				data: { title: { ne: null } }

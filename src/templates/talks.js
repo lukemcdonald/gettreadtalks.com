@@ -1,21 +1,17 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import Layout from '../components/layout';
 import Intro from '../components/intro';
 import SEO from '../components/seo';
 import Talks from '../components/talks';
 import TalksNav from '../components/talks/nav';
-import Search from '../components/search/search';
 import Pagination from '../components/pagination';
 
-import { Container, Section } from '../components/styled/layout';
-
-export default ({ data, pageContext }) => {
-	const { edges: posts = [] } = data.allAirtable;
+export default function ArchiveTalksPage({ data, pageContext }) {
+	const { edges: talks = [] } = data.talks;
 
 	return (
-		<Layout>
+		<>
 			<SEO
 				title="Talks"
 				keywords={['talks', 'sermons', 'treadtalks']}
@@ -25,40 +21,36 @@ export default ({ data, pageContext }) => {
 			<Intro
 				title="Talks"
 				excerpt="Weekly sermons to elevate your spiritual heartbeat."
-			>
-				<Search />
-			</Intro>
+			/>
 
-			<Container className="has-subnav">
-				<Section>
+			<div className="has-subnav">
+				<section>
 					<TalksNav />
-				</Section>
+				</section>
 
-				<Section>
-					<Talks data={posts} />
-				</Section>
+				<section>
+					{console.log(talks)}
+					<Talks talks={talks} />
+				</section>
 
-				<Section>
+				<section>
 					<Pagination pageContext={pageContext} />
-				</Section>
-			</Container>
-		</Layout>
+				</section>
+			</div>
+		</>
 	);
-};
+}
 
-export const pageQuery = graphql`
+export const query = graphql`
 	query($limit: Int!, $skip: Int!) {
-		allAirtable(
+		talks: allAirtable(
 			limit: $limit
 			skip: $skip
 			filter: {
-				queryName: { eq: "PUBLISHED_TALKS" },
+				queryName: { eq: "PUBLISHED_TALKS" }
 				data: { publishedDate: { ne: null } }
 			}
-			sort: {
-				fields: data___publishedDate,
-				order: DESC
-			}
+			sort: { fields: data___publishedDate, order: DESC }
 		) {
 			edges {
 				node {
@@ -68,7 +60,7 @@ export const pageQuery = graphql`
 					}
 					data {
 						title
-						publishedDate(formatString:"YYYYMMDD")
+						publishedDate(formatString: "YYYYMMDD")
 						scripture
 						speakers {
 							id

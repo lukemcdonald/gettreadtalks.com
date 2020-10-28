@@ -1,23 +1,17 @@
-/* global tw */
-import styled from 'styled-components';
 import React from 'react';
 import { flattenObjectsByKey } from '../../utils';
 
 import Talk from './card';
 
-const Talks = styled.div`
-	${tw`mb-4 lg:mg-6`};
-`;
-
-export default ({ data, subtitle, hideAvatar }) => {
-	const posts = flattenObjectsByKey(data, 'node');
+export default function Talks({ talks, subtitle, hideAvatar }) {
+	const posts = flattenObjectsByKey(talks, 'node');
 
 	return (
-		<Talks>
+		<div>
 			{posts.map(({ id, fields, data }) => {
-				const post = { id, ...fields, ...data, subtitle, hideAvatar };
-				return <Talk key={id} data={post} />;
+				const talk = { id, ...fields, ...data, subtitle, hideAvatar };
+				return <Talk key={id} talk={talk} />;
 			})}
-		</Talks>
+		</div>
 	);
-};
+}

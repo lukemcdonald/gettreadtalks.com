@@ -36,9 +36,8 @@ export default class RefTagger extends Component {
 	componentDidMount() {
 		if (!RefTagger.scriptIsAdded) {
 			return this.addScript();
-		} else {
-			window.refTagger.tag();
 		}
+		window.refTagger.tag();
 	}
 
 	componentDidUpdate() {

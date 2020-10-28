@@ -1,46 +1,47 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import Layout from '../components/layout';
 import SEO from '../components/seo';
 import Intro from '../components/intro';
-import { Container, Section } from '../components/styled/layout';
 import Talks from '../components/talks';
 import SpeakerNav from '../components/speakers/postNav';
 
-export default props => {
-	const { data: post } = props.data.speaker;
-	const { edges: talks = [] } = props.data.talks;
+export default function SingleSpeakerPage({ data }) {
+	const { data: speaker } = data.speaker;
+	const { edges: talks = [] } = data.talks;
+	let { description } = speaker;
 
-	let { description } = post;
 	if (description) {
 		description = description.childMarkdownRemark;
 	}
 
 	return (
-		<Layout>
+		<>
 			<SEO
-				title={post.title}
+				title={speaker.title}
 				description={description ? description.excerpt : ''}
-				pathname={post.path}
+				pathname={speaker.path}
 			/>
 
-			<Intro title={post.title} excerpt={description ? description.html : ''} />
+			<Intro
+				title={speaker.title}
+				excerpt={description ? description.html : ''}
+			/>
 
-			<Container className="has-subnav">
-				<Section>
-					<SpeakerNav data={post} />
-				</Section>
+			<div className="has-subnav">
+				<section>
+					<SpeakerNav data={speaker} />
+				</section>
 
-				<Section>
-					<Talks data={talks} />
-				</Section>
-			</Container>
-		</Layout>
+				<section>
+					<Talks talks={talks} />
+				</section>
+			</div>
+		</>
 	);
-};
+}
 
-export const pageQuery = graphql`
+export const query = graphql`
 	query($id: String!) {
 		speaker: airtable(id: { eq: $id }) {
 			id
@@ -74,10 +75,7 @@ export const pageQuery = graphql`
 				queryName: { eq: "PUBLISHED_TALKS" }
 				data: { speakers: { elemMatch: { id: { eq: $id } } } }
 			}
-			sort: {
-				fields: data___publishedDate,
-				order: DESC
-			}
+			sort: { fields: data___publishedDate, order: DESC }
 		) {
 			edges {
 				node {

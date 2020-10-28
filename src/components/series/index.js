@@ -1,23 +1,17 @@
-/* global tw */
-import styled from 'styled-components';
 import React from 'react';
 import { flattenObjectsByKey } from '../../utils';
 
-import SeriesCard from './card';
+import SingleSeries from './card';
 
-const Series = styled.div`
-	${tw`mb-4 lg:mg-6`};
-`;
-
-export default ({ data }) => {
-	const posts = flattenObjectsByKey(data, 'node');
+export default function Series({ series }) {
+	const posts = flattenObjectsByKey(series, 'node');
 
 	return (
-		<Series>
+		<div>
 			{posts.map(({ id, fields, data }) => {
-				const post = { id, ...fields, ...data };
-				return <SeriesCard key={id} data={post} />;
+				const singleSeries = { id, ...fields, ...data };
+				return <SingleSeries key={id} series={singleSeries} />;
 			})}
-		</Series>
+		</div>
 	);
-};
+}

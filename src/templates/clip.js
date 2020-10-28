@@ -1,44 +1,23 @@
-/* global tw */
-import styled from 'styled-components';
 import React, { Component } from 'react';
 import { graphql } from 'gatsby';
+import urlParser from 'js-video-url-parser';
 import Link from '../components/link';
 import { mapObjectToString, objectToString } from '../utils';
 
-import urlParser from 'js-video-url-parser';
-
 import Intro from '../components/intro';
-import Layout from '../components/layout';
 import SEO from '../components/seo';
 
 import Speakers from '../components/speakers';
 import Topics from '../components/topics';
 import Talks from '../components/talks';
 
-import { Container, Section, SectionTitle } from '../components/styled/layout';
-import { SecondaryButton } from '../components/styled/button';
-
-const ClipLink = styled(SecondaryButton)`
-	${tw`m-auto mt-16`};
-	${tw`md:w-1/3`};
-`;
-
-const Media = styled.div`
-	${tw`mt-12 bg-black relative z-50`};
-`;
-
-const Separator = styled.div`
-${tw`mb-8`};
-`;
-
-export default class ReplyBox extends Component {
-
-	constructor(props){
+export default class SingleClipPage extends Component {
+	constructor(props) {
 		super(props);
 
 		this.state = {
 			mediaUrl: '',
-		}
+		};
 	}
 
 	componentDidMount() {
@@ -50,111 +29,108 @@ export default class ReplyBox extends Component {
 	}
 
 	getParsedMedia() {
-		const mediaLink = this.props.data.airtable.data.link.childMarkdownRemark.rawMarkdownBody;
+		const mediaLink = this.props.data.clip.data.link.childMarkdownRemark
+			.rawMarkdownBody;
 		return urlParser.parse(mediaLink);
 	}
 
 	setParsedMedia() {
 		const parsedMedia = this.getParsedMedia();
 
-		if ( parsedMedia ) {
+		if (parsedMedia) {
 			const mediaUrl = urlParser.create({
 				videoInfo: parsedMedia,
 				format: 'longImage',
-			})
+			});
 
-			this.setState({mediaUrl});
+			this.setState({ mediaUrl });
 		}
 	}
 
 	render() {
 		const { mediaUrl } = this.state;
-		const { data: post } = this.props.data.airtable;
+		const { data: clip } = this.props.data.airtable;
 
-		const {
-			html: mediaHtml,
-			htmlAst: media,
-		} = post.link.childMarkdownRemark;
+		const { html: mediaHtml, htmlAst: media } = clip.link.childMarkdownRemark;
 
 		const mediaObject = media.children[0].children[0] || '';
 
 		const meta = {
-			title: post.title,
-			speakers: post.speakers
-				? `<em>by</em> ${post.speakers.map(({ data }) => data.title).join(', ')}`
+			title: clip.title,
+			speakers: clip.speakers
+				? `<em>by</em> ${clip.speakers
+						.map(({ data }) => data.title)
+						.join(', ')}`
 				: null,
-			topics: post.topics
-				? `<em>on</em> ${post.topics.map(({ data }) => data.title).join(', ')}`
+			topics: clip.topics
+				? `<em>on</em> ${clip.topics.map(({ data }) => data.title).join(', ')}`
 				: null,
 		};
 
 		return (
-			<Layout>
+			<>
 				<SEO
 					title={mapObjectToString(['title', 'speakers'], meta)}
 					description={objectToString(meta)}
-					pathname={post.path}
+					pathname={clip.path}
 					image={mediaUrl}
 				/>
 
 				<Intro
-					title={post.title}
+					title={clip.title}
 					excerpt={mapObjectToString(['speakers'], meta)}
 				>
-					{ 'iframe' === mediaObject.tagName && (
-						<Media
+					{mediaObject.tagName === 'iframe' && (
+						<div
 							className="responsive-media"
 							dangerouslySetInnerHTML={{ __html: mediaHtml }}
-							style={{marginBottom: `-3px`}}
+							style={{ marginBottom: `-3px` }}
 						/>
 					)}
 
-					{ 'a' === mediaObject.tagName && (
+					{mediaObject.tagName === 'a' && (
 						<p>
-							<ClipLink to={mediaObject.properties.href} as={Link} large={1}>
+							<button
+								type="button"
+								to={mediaObject.properties.href}
+								as={Link}
+								large={1}
+							>
 								Listen to Clip &rarr;
-							</ClipLink>
+							</button>
 
-							{ post.talks && (
-								<Separator />
-							)}
+							{clip.talks && <div />}
 						</p>
 					)}
 
-					{post.talks && (
-						<Talks data={post.talks} subtitle="Related Talk:" hideAvatar />
+					{clip.talks && (
+						<Talks talks={clip.talks} subtitle="Related Talk:" hideAvatar />
 					)}
-
 				</Intro>
 
-				<Container>
-					{post.speakers && (
-						<Section>
-							<SectionTitle>
-								{1 === post.speakers.length ? `Speaker` : `Speakers`}
-							</SectionTitle>
-							<Speakers data={post.speakers} />
-						</Section>
+				<div>
+					{clip.speakers && (
+						<section>
+							<h2>{clip.speakers.length === 1 ? `Speaker` : `Speakers`}</h2>
+							<Speakers data={clip.speakers} />
+						</section>
 					)}
 
-					{post.topics && (
-						<Section>
-							<SectionTitle>
-								{1 === post.topics.length ? `Topic` : `Topics`}
-							</SectionTitle>
-							<Topics data={post.topics} />
-						</Section>
+					{clip.topics && (
+						<section>
+							<h2>{clip.topics.length === 1 ? `Topic` : `Topics`}</h2>
+							<Topics topics={clip.topics} />
+						</section>
 					)}
-
-				</Container>
-			</Layout>
+				</div>
+			</>
 		);
 	}
-};
+}
 
-export const pageQuery = graphql`
+export const query = graphql`
 	query($id: String!) {
-		airtable(id: { eq: $id }) {
+		clip: airtable(id: { eq: $id }) {
 			id
 			data {
 				title
@@ -173,7 +149,7 @@ export const pageQuery = graphql`
 					}
 					data {
 						title
-						publishedDate(formatString:"YYYYMMDD")
+						publishedDate(formatString: "YYYYMMDD")
 						scripture
 						speakers {
 							id

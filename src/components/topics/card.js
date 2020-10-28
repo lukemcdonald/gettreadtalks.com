@@ -1,39 +1,23 @@
-/* global tw */
-import styled from 'styled-components';
 import React from 'react';
-import { topicType, topicDefaults } from '../../prop-types';
 
 import Card from '../card';
 import FauxLink from '../fauxLink';
-import { MetaText } from '../styled/meta';
 
-const Body = styled.div`
-	${tw`flex justify-between items-center`}
-`;
+export default function TopicCard({ topic }) {
+	return (
+		<Card id={topic.id}>
+			<div>
+				<h2>{topic.title}</h2>
+				{topic.publishedTalksCount && (
+					<span>
+						{topic.publishedTalksCount === 1
+							? `${topic.publishedTalksCount} Talk`
+							: `${topic.publishedTalksCount} Talks`}
+					</span>
+				)}
+			</div>
 
-const Title = styled.h2`
-	${tw`font-bold mb-1 text-black text-lg`}
-	${tw`sm:text-xl sm:mb-0`}
-`;
-
-const TopicCard = ({ data: post }) => (
-	<Card id={post.id}>
-		<Body>
-			<Title>{post.title}</Title>
-			{post.publishedTalksCount && (
-				<MetaText>
-					{post.publishedTalksCount === 1
-						? `${post.publishedTalksCount} Talk`
-						: `${post.publishedTalksCount} Talks`}
-				</MetaText>
-			)}
-		</Body>
-
-		<FauxLink to={post.slug}>{`Talks on ${post.title}`}</FauxLink>
-	</Card>
-);
-
-TopicCard.propTypes = { data: topicType.isRequired };
-TopicCard.defaultProps = topicDefaults;
-
-export default TopicCard;
+			<FauxLink to={topic.slug}>{`Talks on ${topic.title}`}</FauxLink>
+		</Card>
+	);
+}

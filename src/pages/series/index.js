@@ -1,17 +1,15 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import Layout from '../../components/layout';
 import Intro from '../../components/intro';
 import SEO from '../../components/seo';
-import { Container, Section } from '../../components/styled/layout';
 import Series from '../../components/series';
 
-export default ({ data }) => {
-	const { edges: posts = [] } = data.allAirtable;
+export default function SeriesPage({ data }) {
+	const { edges: series = [] } = data.series;
 
 	return (
-		<Layout>
+		<>
 			<SEO
 				title="Sermon Series"
 				keywords={['series', 'talks', 'group']}
@@ -20,18 +18,18 @@ export default ({ data }) => {
 
 			<Intro title="Sermon Series" />
 
-			<Container>
-				<Section>
-					<Series data={posts} />
-				</Section>
-			</Container>
-		</Layout>
+			<div>
+				<section>
+					<Series series={series} />
+				</section>
+			</div>
+		</>
 	);
-};
+}
 
-export const pageQuery = graphql`
+export const query = graphql`
 	query {
-		allAirtable(
+		series: allAirtable(
 			filter: {
 				queryName: { eq: "PUBLISHED_SERIES" }
 				data: { title: { ne: null } }

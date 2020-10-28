@@ -1,21 +1,18 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import { getCurrentPosts } from "../../utils";
+import { getCurrentPosts } from '../../utils';
 
-import Layout from '../../components/layout';
 import Intro from '../../components/intro';
 import SEO from '../../components/seo';
-import { Container, Section } from '../../components/styled/layout';
 import Talks from '../../components/talks';
 import TalksNav from '../../components/talks/nav';
-import Search from '../../components/search/search';
 
-export default ({ data }) => {
-	const { edges: posts } = data.allAirtable;
-	const currentPosts = getCurrentPosts( posts );
+export default function FeaturedTalksPage({ data }) {
+	const { edges: talks } = data.talks;
+	const currentTalks = getCurrentPosts(talks);
 
 	return (
-		<Layout>
+		<>
 			<SEO
 				title="Featured Talks"
 				keywords={['featured', 'talks', 'sermons', 'treadtalks']}
@@ -25,41 +22,36 @@ export default ({ data }) => {
 			<Intro
 				title="Featured Talks"
 				excerpt="Staff picked talks to elevate your spiritual heartbeat."
-			>
-				<Search />
-			</Intro>
+			/>
 
-			<Container className="has-subnav">
-				<Section>
+			<div className="has-subnav">
+				<section>
 					<TalksNav />
-				</Section>
+				</section>
 
-				<Section>
-					<Talks data={currentPosts} />
-				</Section>
-			</Container>
-		</Layout>
+				<section>
+					<Talks talks={currentTalks} />
+				</section>
+			</div>
+		</>
 	);
-};
+}
 
-export const pageQuery = graphql`
+export const query = graphql`
 	query {
-		allAirtable(
+		talks: allAirtable(
 			filter: {
 				queryName: { eq: "PUBLISHED_TALKS" }
 				data: { favorite: { eq: true }, publishedDate: { ne: null } }
 			}
-			sort: {
-				fields: data___publishedDate,
-				order: DESC
-			}
+			sort: { fields: data___publishedDate, order: DESC }
 		) {
 			edges {
 				node {
 					id
 					data {
 						title
-						publishedDate(formatString:"YYYYMMDD")
+						publishedDate(formatString: "YYYYMMDD")
 						scripture
 						favorite
 						speakers {

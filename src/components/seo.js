@@ -3,17 +3,38 @@ import Helmet from 'react-helmet';
 import { StaticQuery, graphql } from 'gatsby';
 import striptags from 'striptags';
 
-import { seoType, seoDefaults } from '../prop-types';
 import { trimText } from '../utils';
 
-function SEO(props) {
-	const { description, image, keywords, lang, meta, pathname, title } = props;
+const seoQuery = graphql`
+	query {
+		site {
+			siteMetadata {
+				description
+				image
+				siteUrl
+				title
+				titleTemplate
+				twitterUsername
+			}
+		}
+	}
+`;
+
+export default function SEO(props) {
+	const {
+		description = '',
+		image = '',
+		keywords = [],
+		lang = 'en',
+		meta = [],
+		pathname = '',
+		title = '',
+	} = props;
 
 	return (
 		<StaticQuery
-			query={detailsQuery}
+			query={seoQuery}
 			render={({ site: { siteMetadata } }) => {
-
 				const seo = {
 					description: trimText(
 						striptags(description || siteMetadata.description),
@@ -96,23 +117,3 @@ function SEO(props) {
 		/>
 	);
 }
-
-SEO.propTypes = seoType;
-SEO.defaultProps = seoDefaults;
-
-export default SEO;
-
-const detailsQuery = graphql`
-	query DefaultSEOQuery {
-		site {
-			siteMetadata {
-				description
-				image
-				siteUrl
-				title
-				titleTemplate
-				twitterUsername
-			}
-		}
-	}
-`;

@@ -1,9 +1,16 @@
-const path = require(`path`);
-const { paginate } = require(`gatsby-awesome-pagination`);
+import path from 'path';
+import { paginate } from 'gatsby-awesome-pagination';
 
 exports.onCreateNode = ({ node, actions }) => {
 	const { createNodeField } = actions;
-	const airtableTables = ['Clips', 'Pages', 'Series', 'Speakers', 'Talks', 'Topics'];
+	const airtableTables = [
+		'Clips',
+		'Pages',
+		'Series',
+		'Speakers',
+		'Talks',
+		'Topics',
+	];
 
 	/**
 	 * Create a slug value on the node fields property.
@@ -27,13 +34,10 @@ exports.onCreateNode = ({ node, actions }) => {
 	}
 };
 
-exports.createPages = async ({ graphql, actions, reporter }) => {
-	const { createPage } = actions;
-
-	// Query data.
-	const result = await graphql(`
-		{
-			clipsQuery: allAirtable(
+async function createClipPages({ graphql, actions, reporter }) {
+	const { data, errors } = await graphql(`
+		query {
+			clips: allAirtable(
 				filter: {
 					queryName: { eq: "PUBLISHED_CLIPS" }
 					data: { title: { ne: null } }
@@ -48,7 +52,30 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 					}
 				}
 			}
-			pagesQuery: allAirtable(
+		}
+	`);
+
+	if (errors) {
+		reporter.panicOnBuild(`Error while running GraphQL query.`);
+		return;
+	}
+
+	data.clips.edges.forEach((post) => {
+		actions.createPage({
+			path: `${post.node.fields.slug}`,
+			component: path.resolve(`./src/templates/clip.js`),
+			context: {
+				id: post.node.id,
+				slug: post.node.fields.slug,
+			},
+		});
+	});
+}
+
+async function createPagePages({ graphql, actions, reporter }) {
+	const { data, errors } = await graphql(`
+		query {
+			pages: allAirtable(
 				filter: {
 					queryName: { eq: "PUBLISHED_PAGES" }
 					data: { title: { ne: null } }
@@ -63,7 +90,30 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 					}
 				}
 			}
-			seriesQuery: allAirtable(
+		}
+	`);
+
+	if (errors) {
+		reporter.panicOnBuild(`Error while running GraphQL query.`);
+		return;
+	}
+
+	data.pages.edges.forEach((post) => {
+		actions.createPage({
+			path: `${post.node.fields.slug}`,
+			component: path.resolve(`./src/templates/page.js`),
+			context: {
+				id: post.node.id,
+				slug: post.node.fields.slug,
+			},
+		});
+	});
+}
+
+async function createSeriesPages({ graphql, actions, reporter }) {
+	const { data, errors } = await graphql(`
+		query {
+			series: allAirtable(
 				filter: {
 					queryName: { eq: "PUBLISHED_SERIES" }
 					data: { title: { ne: null } }
@@ -78,7 +128,30 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 					}
 				}
 			}
-			speakersQuery: allAirtable(
+		}
+	`);
+
+	if (errors) {
+		reporter.panicOnBuild(`Error while running GraphQL query.`);
+		return;
+	}
+
+	data.series.edges.forEach((post) => {
+		actions.createPage({
+			path: `${post.node.fields.slug}`,
+			component: path.resolve(`./src/templates/series.js`),
+			context: {
+				id: post.node.id,
+				slug: post.node.fields.slug,
+			},
+		});
+	});
+}
+
+async function createSpeakerPages({ graphql, actions, reporter }) {
+	const { data, errors } = await graphql(`
+		query {
+			speakers: allAirtable(
 				filter: {
 					queryName: { eq: "PUBLISHED_SPEAKERS" }
 					data: { title: { ne: null } }
@@ -93,7 +166,30 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 					}
 				}
 			}
-			talksQuery: allAirtable(
+		}
+	`);
+
+	if (errors) {
+		reporter.panicOnBuild(`Error while running GraphQL query.`);
+		return;
+	}
+
+	data.speakers.edges.forEach((post) => {
+		actions.createPage({
+			path: `${post.node.fields.slug}`,
+			component: path.resolve(`./src/templates/speaker.js`),
+			context: {
+				id: post.node.id,
+				slug: post.node.fields.slug,
+			},
+		});
+	});
+}
+
+async function createTalkPages({ graphql, actions, reporter }) {
+	const { data, errors } = await graphql(`
+		query {
+			talks: allAirtable(
 				filter: {
 					queryName: { in: ["PUBLISHED_TALKS"] }
 					data: { title: { ne: null } }
@@ -108,7 +204,40 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 					}
 				}
 			}
-			topicsQuery: allAirtable(
+		}
+	`);
+
+	if (errors) {
+		reporter.panicOnBuild(`Error while running GraphQL query.`);
+		return;
+	}
+
+	data.talks.edges.forEach((post) => {
+		actions.createPage({
+			path: `${post.node.fields.slug}`,
+			component: path.resolve(`./src/templates/talk.js`),
+			context: {
+				id: post.node.id,
+				slug: post.node.fields.slug,
+			},
+		});
+	});
+
+	// Paginate content pages.
+	paginate({
+		createPage: actions.createPage,
+		items: data.talks.edges,
+		itemsPerPage: 12,
+		component: path.resolve('./src/templates/talks.js'),
+		pathPrefix: ({ pageNumber }) =>
+			pageNumber === 0 ? `/talks` : `/talks/page`,
+	});
+}
+
+async function createTopicPages({ graphql, actions, reporter }) {
+	const { data, errors } = await graphql(`
+		query {
+			topics: allAirtable(
 				filter: {
 					queryName: { eq: "PUBLISHED_TOPICS" }
 					data: { title: { ne: null } }
@@ -124,97 +253,32 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 				}
 			}
 		}
-	`)
+	`);
 
-	// Report errors.
-	if (result.errors) {
-		reporter.panicOnBuild(`Error while running GraphQL query.`)
-		return
+	if (errors) {
+		reporter.panicOnBuild(`Error while running GraphQL query.`);
+		return;
 	}
 
-	// Define content types.
-	const Clips    = result.data.clipsQuery.edges
-	const Pages    = result.data.pagesQuery.edges
-	const Series   = result.data.seriesQuery.edges
-	const Speakers = result.data.speakersQuery.edges
-	const Talks    = result.data.talksQuery.edges
-	const Topics   = result.data.topicsQuery.edges
-
-	// Create content pages.
-	Clips.forEach(post => {
-		createPage({
-			path: `${post.node.fields.slug}`,
-			component: path.resolve(`./src/templates/clip.js`),
-			context: {
-				id: post.node.id,
-				slug: post.node.fields.slug,
-			},
-		})
-	})
-
-	Pages.forEach(post => {
-		createPage({
-			path: `${post.node.fields.slug}`,
-			component: path.resolve(`./src/templates/page.js`),
-			context: {
-				id: post.node.id,
-				slug: post.node.fields.slug,
-			},
-		})
-	})
-
-	Series.forEach(post => {
-		createPage({
-			path: `${post.node.fields.slug}`,
-			component: path.resolve(`./src/templates/series.js`),
-			context: {
-				id: post.node.id,
-				slug: post.node.fields.slug,
-			},
-		})
-	})
-
-	Speakers.forEach(post => {
-		createPage({
-			path: `${post.node.fields.slug}`,
-			component: path.resolve(`./src/templates/speaker.js`),
-			context: {
-				id: post.node.id,
-				slug: post.node.fields.slug,
-			},
-		})
-	})
-
-	Talks.forEach(post => {
-		createPage({
-			path: `${post.node.fields.slug}`,
-			component: path.resolve(`./src/templates/talk.js`),
-			context: {
-				id: post.node.id,
-				slug: post.node.fields.slug,
-			},
-		})
-	})
-
-	Topics.forEach(post => {
-		createPage({
+	data.topics.edges.forEach((post) => {
+		actions.createPage({
 			path: `${post.node.fields.slug}`,
 			component: path.resolve(`./src/templates/topic.js`),
 			context: {
 				id: post.node.id,
 				slug: post.node.fields.slug,
 			},
-		})
-	})
-
-
-	// Paginate content pages.
-	paginate({
-		createPage,
-		items: Talks,
-		itemsPerPage: 12,
-		component: path.resolve('./src/templates/talks.js'),
-		pathPrefix: ({ pageNumber }) =>	pageNumber === 0 ? `/talks` : `/talks/page`,
+		});
 	});
+}
 
-};
+export async function createPages(params) {
+	await Promise.all([
+		createClipPages(params),
+		createPagePages(params),
+		createSeriesPages(params),
+		createSpeakerPages(params),
+		createTalkPages(params),
+		createTopicPages(params),
+	]);
+}

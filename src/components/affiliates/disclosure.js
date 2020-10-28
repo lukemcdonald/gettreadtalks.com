@@ -1,18 +1,4 @@
-/* global tw */
-import styled from 'styled-components';
 import React from 'react';
-
-const Disclosure = styled.div`
-	${tw`relative`};
-`;
-
-const Title = styled.div`
-	${tw`text-xs`};
-`;
-
-const Content = styled.div`
-	${tw`text-base w-full p-6 bg-grey-lightest`};
-`;
 
 export default props => {
 	const {
@@ -23,9 +9,9 @@ export default props => {
 	} = props;
 
 	return (
-		<Disclosure>
-			{title && <Title>{title}</Title>}
-			{content && <Content>{content}</Content>}
-		</Disclosure>
+		<div>
+			{title && <div>{title}</div>}
+			{content && <div>{content}</div>}
+		</div>
 	);
 };

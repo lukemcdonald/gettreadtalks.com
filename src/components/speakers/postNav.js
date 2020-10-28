@@ -2,7 +2,7 @@ import React from 'react';
 
 import SubNav from '../subNav';
 
-export default ({ data }) => {
+export default function SpearksPostNav({ data }) {
 	const { ministry, website } = data;
 
 	const links = [
@@ -11,4 +11,4 @@ export default ({ data }) => {
 	];
 
 	return <SubNav title="Speaker Navigation" links={links} justify="between" />;
-};
+}

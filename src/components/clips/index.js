@@ -1,23 +1,17 @@
-/* global tw */
-import styled from 'styled-components';
 import React from 'react';
 import { flattenObjectsByKey } from '../../utils';
 
 import Clip from './card';
 
-const Clips = styled.div`
-	${tw`mb-4 lg:mg-6`};
-`;
-
-export default ({ data }) => {
-	const posts = flattenObjectsByKey(data, 'node');
+export default function Clips({ clips }) {
+	const posts = flattenObjectsByKey(clips, 'node');
 
 	return (
-		<Clips>
+		<div>
 			{posts.map(({ id, fields, data }) => {
-				const post = { id, ...fields, ...data };
-				return <Clip key={id} data={post} />;
+				const clip = { id, ...fields, ...data };
+				return <Clip key={id} clip={clip} />;
 			})}
-		</Clips>
+		</div>
 	);
-};
+}

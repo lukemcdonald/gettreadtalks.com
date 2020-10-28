@@ -1,37 +1,31 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import Layout from '../components/layout';
 import SEO from '../components/seo';
 import Intro from '../components/intro';
-import { Container, Section } from '../components/styled/layout';
 import Talks from '../components/talks';
 
-export default props => {
-	const { data: post } = props.data.airtable;
-	// const { edges: talks = [] } = props.data.talks;
+export default function SingleSeriesPage({ data }) {
+	const { data: series } = data.series;
 
 	return (
-		<Layout>
-			<SEO
-				title={post.title}
-				pathname={post.path}
-			/>
+		<>
+			<SEO title={series.title} pathname={series.path} />
 
-			<Intro title={post.title} excerpt={''} />
+			<Intro title={series.title} excerpt="" />
 
-			<Container>
-				<Section>
-					<Talks data={post.talks} />
-				</Section>
-			</Container>
-		</Layout>
+			<div>
+				<section>
+					<Talks talks={series.talks} />
+				</section>
+			</div>
+		</>
 	);
-};
+}
 
 export const pageQuery = graphql`
-	query ($id: String!) {
-		airtable(id: {eq: $id}) {
+	query($id: String!) {
+		series: airtable(id: { eq: $id }) {
 			id
 			fields {
 				slug

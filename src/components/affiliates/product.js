@@ -1,56 +1,10 @@
-/* global tw */
-import styled from 'styled-components';
 import React, { Component } from 'react';
 import Image from 'gatsby-image';
-import { screens } from '../../../tailwind';
 
 import AppleLink from './appleLink';
 import Disclosure from './disclosure';
 import Card from '../card';
 import FauxLink from '../fauxLink';
-
-const Container = styled.div`
-	${tw`flex text-left`}
-`;
-
-const Body = styled.div`
-	${tw`flex-grow `}
-	${tw`sm:flex sm:justify-between`}
-`;
-
-const Title = styled.h2`
-	${tw`font-bold mb-1 text-black text-xl`}
-`;
-
-const Subtitle = styled.div`
-	${tw`text-base text-grey-dark leading-tight`};
-`;
-
-const Figure = styled.figure`
-	${tw`h-auto mr-4 overflow-hidden w-16`}
-
-	/* gatsby-build doesn't currently support negative margins using tw */
-	@media (min-width: ${screens.lg}) {
-		margin-top: -0.75rem;
-		margin-bottom: -0.75rem;
-		margin-left: -0.5rem;
-	}
-`;
-
-const Footer = styled.footer`
-	${tw`block mt-3`};
-	${tw`sm:mt-0 sm:pl-3`};
-
-	a {
-		display: block;
-		min-height: 41px;
-	}
-`;
-
-const Badge = styled.div`
-	${tw`absolute pin-b pin-r bg-grey-light text-white px-2 leading-normal`};
-	margin: -1px;
-`;
 
 class Product extends Component {
 	state = {
@@ -76,39 +30,39 @@ class Product extends Component {
 
 		return (
 			<Card>
-				<Container>
+				<div>
 					{post.image && (
-						<Figure>
+						<figure>
 							<Image
 								alt={post.title}
 								fluid={post.image.localFiles[0].childImageSharp.fluid}
 							/>
-						</Figure>
+						</figure>
 					)}
 
-					<Body>
+					<div>
 						<header>
-							<Title>{post.title}</Title>
-							{post.subtitle && <Subtitle>{post.subtitle}</Subtitle>}
+							<h2>{post.title}</h2>
+							{post.subtitle && <div>{post.subtitle}</div>}
 						</header>
 
-						<Footer>
+						<footer>
 							<AppleLink
 								to={post.link.childMarkdownRemark.rawMarkdownBody}
 								type={post.type}
 							/>
-						</Footer>
-					</Body>
+						</footer>
+					</div>
 
 					<FauxLink
 						to={post.link.childMarkdownRemark.rawMarkdownBody}
 					>{`View to ${post.title}`}</FauxLink>
-				</Container>
+				</div>
 
 				{disclosure && (
-					<Badge>
+					<div>
 						<Disclosure title="Affiliate" content={false} />
-					</Badge>
+					</div>
 				)}
 			</Card>
 		);

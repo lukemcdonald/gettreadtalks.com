@@ -3,7 +3,7 @@ import React from 'react';
 import Link from './link';
 import styles from './pagination.module.css';
 
-const Pagination = ({ pageContext }) => {
+export default function Pagination({ pageContext }) {
 	const {
 		previousPagePath,
 		nextPagePath,
@@ -38,6 +38,4 @@ const Pagination = ({ pageContext }) => {
 			)}
 		</nav>
 	);
-};
-
-export default Pagination;
+}

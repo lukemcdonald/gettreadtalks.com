@@ -1,18 +1,16 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import Layout from '../../components/layout';
 import Intro from '../../components/intro';
 import SEO from '../../components/seo';
-import { Container, Section } from '../../components/styled/layout';
 
 import Clips from '../../components/clips';
 
-export default ({ data }) => {
-	const { edges: posts = [] } = data.allAirtable;
+export default function ClipsPage({ data }) {
+	const { edges: clips = [] } = data.clips;
 
 	return (
-		<Layout>
+		<>
 			<SEO
 				title="Clips"
 				keywords={['clips', 'talks', 'sermons', 'treadtalks']}
@@ -24,21 +22,19 @@ export default ({ data }) => {
 				excerpt="Be encouraged by these shorter Christ centered montages."
 			/>
 
-			<Container className="has-subnav">
-				<Section>
-					<Clips data={posts} />
-				</Section>
-			</Container>
-		</Layout>
+			<div className="has-subnav">
+				<section>
+					<Clips clips={clips} />
+				</section>
+			</div>
+		</>
 	);
-};
+}
 
-export const pageQuery = graphql`
+export const query = graphql`
 	query {
-		allAirtable(
-			filter: {
-				queryName: { eq: "PUBLISHED_CLIPS" }
-			}
+		clips: allAirtable(
+			filter: { queryName: { eq: "PUBLISHED_CLIPS" } }
 			sort: { fields: data___publishedDate, order: DESC }
 		) {
 			edges {
@@ -46,7 +42,7 @@ export const pageQuery = graphql`
 					id
 					data {
 						title
-						publishedDate(formatString:"YYYYMMDD")
+						publishedDate(formatString: "YYYYMMDD")
 						speakers {
 							id
 							data {

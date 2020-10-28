@@ -1,61 +1,19 @@
-const config = require('./config');
+import dotenv from 'dotenv';
+import config from './config';
 
-require('dotenv').config({
-	path: `.env`,
-});
+dotenv.config({ path: '.env' });
 
-const publishedTalksQuery = `{
-	allAirtable(
-		filter: { queryName: { eq: "PUBLISHED_TALKS" } }
-		sort: { fields: data___publishedDate, order: DESC }
-	) {
-		edges {
-			node {
-				id
-				fields {
-					slug
-				}
-				data {
-					title
-					scripture
-					speakers {
-						id
-						fields {
-							slug
-						}
-						data {
-							title
-						}
-					}
-				}
-			}
-		}
-	}
-}`;
-
-const searchQueries = [
-	{
-		indexName: `prod_PUBLISHED_TALKS`,
-		query: publishedTalksQuery,
-		transformer: ({ data }) => data.allAirtable.edges.map(({ node }) => node), // optional
-		settings: {
-			attributesToSnippet: ['path:5', 'internal'],
-		},
-	},
-];
-
-module.exports = {
+export default {
 	siteMetadata: {
-		keywords: 'wordpress, themes, wp, wp.com, wpcom, premium, free',
+		keywords: 'sermon, workout, health, bible, pastor, speaker, talk, tread',
 		...config,
 	},
 	plugins: [
+		'gatsby-plugin-postcss',
 		'gatsby-plugin-react-helmet',
 		'gatsby-plugin-robots-txt',
 		'gatsby-plugin-sharp',
 		'gatsby-plugin-sitemap',
-		'gatsby-plugin-styled-components',
-		'gatsby-plugin-tailwindcss',
 		`gatsby-transformer-remark`,
 		'gatsby-transformer-sharp',
 		{
@@ -63,16 +21,6 @@ module.exports = {
 			options: {
 				name: `images`,
 				path: `${__dirname}/src/assets/images`,
-			},
-		},
-		{
-			resolve: `gatsby-plugin-algolia`,
-			options: {
-				appId: process.env.ALGOLIA_APP_ID,
-				apiKey: process.env.ALGOLIA_API_KEY_ADMIN,
-				indexName: process.env.ALGOLIA_INDEX_NAME,
-				queries: searchQueries,
-				chunkSize: 10000, // default: 1000
 			},
 		},
 		{

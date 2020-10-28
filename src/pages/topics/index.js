@@ -1,17 +1,15 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import Layout from '../../components/layout';
 import Intro from '../../components/intro';
 import SEO from '../../components/seo';
-import { Container, Section } from '../../components/styled/layout';
 import Topics from '../../components/topics';
 
-export default ({ data }) => {
-	const { edges: posts = [] } = data.allAirtable;
+export default function TopicsPage({ data }) {
+	const { edges: topics = [] } = data.topics;
 
 	return (
-		<Layout>
+		<>
 			<SEO
 				title="Topics"
 				description="A list of topics with published talks."
@@ -21,18 +19,18 @@ export default ({ data }) => {
 
 			<Intro title="Topics" />
 
-			<Container>
-				<Section>
-					<Topics data={posts} />
-				</Section>
-			</Container>
-		</Layout>
+			<div>
+				<section>
+					<Topics topics={topics} />
+				</section>
+			</div>
+		</>
 	);
-};
+}
 
-export const pageQuery = graphql`
+export const query = graphql`
 	query {
-		allAirtable(
+		topics: allAirtable(
 			filter: { queryName: { eq: "PUBLISHED_TOPICS" } }
 			sort: { fields: data___title, order: ASC }
 		) {
