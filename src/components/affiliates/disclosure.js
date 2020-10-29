@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default props => {
+export default function Disclosure(props) {
 	const {
 		title = 'Ad',
 		content = `We may earn a small commission for this endorsement, recommendation,
@@ -9,9 +9,9 @@ export default props => {
 	} = props;
 
 	return (
-		<div>
+		<>
 			{title && <div>{title}</div>}
 			{content && <div>{content}</div>}
-		</div>
+		</>
 	);
-};
+}

@@ -5,25 +5,9 @@
 import React from 'react';
 import { graphql, StaticQuery } from 'gatsby';
 
-export default ({ children }) => (
-	<StaticQuery query={affiliateLinksQuery}>
-		{({ allAirtable: { edges } }) =>
-			children(
-				edges.reduce(
-					(allLinks, edge, index) => ({
-						...allLinks,
-						[index]: edge.node.data,
-					}),
-					{}
-				)
-			)
-		}
-	</StaticQuery>
-);
-
-const affiliateLinksQuery = graphql`
+const query = graphql`
 	query {
-		allAirtable(
+		affiliates: allAirtable(
 			filter: {
 				queryName: { eq: "PUBLISHED_AFFILIATE_LINKS" }
 				data: { title: { ne: null } }
@@ -65,3 +49,21 @@ const affiliateLinksQuery = graphql`
 		}
 	}
 `;
+
+export default function Products({ children }) {
+	return (
+		<StaticQuery query={query}>
+			{({ affiliates: { edges } }) =>
+				children(
+					edges.reduce(
+						(allLinks, edge, index) => ({
+							...allLinks,
+							[index]: edge.node.data,
+						}),
+						{}
+					)
+				)
+			}
+		</StaticQuery>
+	);
+}

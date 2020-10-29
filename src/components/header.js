@@ -5,11 +5,11 @@ import SiteNav from './nav';
 
 export default function SiteHeader({ siteTitle }) {
 	return (
-		<header>
-			<div className="container py-10">
-				<nav className="flex justify-between items-center">
+		<header className="border-t-4 border-red-600 bg-gradient-to-b from-gray-50">
+			<div className="p-10 text-black">
+				<nav className="flex items-center justify-between ">
 					<h1>
-						<Link to="/">
+						<Link to="/" className="">
 							<Logo className="inline-block h-8 fill-current" />
 							<span className="sr-only">{siteTitle}</span>
 						</Link>

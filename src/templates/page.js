@@ -15,9 +15,9 @@ export default function SinglePage({ data }) {
 			/>
 
 			<div>
-				<section>
+				<section className="m-auto prose">
 					<header>
-						<h1>{page.title}</h1>
+						<h1 className="text-4xl text-black">{page.title}</h1>
 					</header>
 					<div
 						dangerouslySetInnerHTML={{

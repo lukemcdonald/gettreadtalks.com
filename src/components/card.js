@@ -1,10 +1,14 @@
 import React from 'react';
+import classnames from 'classnames';
 
-export default function Card({ children, ...props }) {
+export default function Card({ children, className, ...props }) {
 	return (
 		<article
 			{...props}
-			className="-mb-1 bg-white border border-grey-lighter border-solid flex flex-grow flex-col justify-between p-4 relative rounded-t hover:z-10 hover:border md:mb-4 md:rounded md:border lg:mb-6 lg:p-6 hover:border-brand hover:shadow-lg last:mb-0 last:rounded-bl last:rounded-br first:border-t first:rounded-tl first:rounded-tr"
+			className={classnames(
+				'transition duration-300 text-gray-700 relative flex flex-col justify-between flex-grow p-4 -mb-1 bg-white border rounded-t border-gray-300 last:mb-0 first:border-t first:rounded-tl first:rounded-tr last:rounded-bl last:rounded-br hover:z-10 hover:border-red-600 hover:shadow-lg md:mb-4 md:rounded lg:mb-6 lg:p-6 ',
+				className
+			)}
 		>
 			{children}
 		</article>

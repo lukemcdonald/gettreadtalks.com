@@ -4,6 +4,7 @@
  */
 
 @import "theme/variables.css";
+@import "theme/base.css";
 
 /**
  * Base
@@ -25,3 +26,4 @@
  */
 
 @import "tailwindcss/utilities";
+@import "theme/tyography.css";

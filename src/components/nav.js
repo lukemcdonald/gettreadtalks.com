@@ -15,20 +15,29 @@ const links = [
 
 export default function Nav() {
 	return (
-		<div className="flex gap-4">
+		<div className="flex items-center gap-4">
 			{links.map((link) => (
-				<Link key={link.label} to={link.path} activeClassName="is-active">
+				<Link
+					key={link.label}
+					to={link.path}
+					className="text-lg font-normal"
+					activeClassName="uppercase font-extrabold text-red-600 tracking-tight"
+				>
 					{link.label}
 				</Link>
 			))}
 
 			<Link
-				className="inline-block w-6"
+				className="inline-block pl-4 border-l border-gray-400"
 				href="https://www.facebook.com/gettreadtalks"
 			>
 				<Images>
 					{(images) => (
-						<Img alt="Facebook Logo" fluid={images['facebook-icon'].fluid} />
+						<Img
+							className="w-6"
+							alt="Facebook Logo"
+							fluid={images['facebook-icon'].fluid}
+						/>
 					)}
 				</Images>
 			</Link>

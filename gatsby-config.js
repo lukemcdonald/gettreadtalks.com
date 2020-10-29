@@ -14,7 +14,6 @@ export default {
 		'gatsby-plugin-robots-txt',
 		'gatsby-plugin-sharp',
 		'gatsby-plugin-sitemap',
-		`gatsby-transformer-remark`,
 		'gatsby-transformer-sharp',
 		{
 			resolve: `gatsby-source-filesystem`,
