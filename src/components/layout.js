@@ -5,8 +5,8 @@ import Header from './header';
 import Footer from './footer';
 import RefTagger from './refTagger';
 
-const SITE_TITLE_QUERY = graphql`
-	query SITE_TITLE_QUERY {
+const SITE_META_QUERY = graphql`
+	query {
 		site {
 			siteMetadata {
 				title
@@ -18,7 +18,7 @@ const SITE_TITLE_QUERY = graphql`
 export default function Layout({ children }) {
 	return (
 		<StaticQuery
-			query={SITE_TITLE_QUERY}
+			query={SITE_META_QUERY}
 			render={(data) => (
 				<div>
 					<Header siteTitle={data.site.siteMetadata.title} />

@@ -49,13 +49,20 @@
     "js-video-url-parser": "^0.4.2",
     "netlify-cli": "^2.67.0",
     "netlify-lambda": "^2.0.1",
+    "postcss": "^8.1.4",
+    "postcss-cli": "^8.1.0",
     "postcss-custom-properties": "^10.0.0",
+    "postcss-import": "^13.0.0",
+    "postcss-nested": "^5.0.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
     "react-load-script": "0.0.6",
     "remark-html": "^13.0.1",
-    "striptags": "^3.1.1"
+    "striptags": "^3.1.1",
+    "@tailwindcss/custom-forms": "^0.2.1",
+    "@tailwindcss/typography": "^0.2.0",
+    "tailwindcss": "^1.9.6"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
@@ -71,14 +78,7 @@
     "eslint-plugin-react": "^7.21.5",
     "eslint-plugin-react-hooks": "^4.2.0",
     "esm": "^3.2.25",
-    "postcss": "^8.1.4",
-    "postcss-cli": "^8.1.0",
-    "postcss-import": "^13.0.0",
-    "postcss-nested": "^5.0.1",
-    "prettier": "^2.1.2",
-    "@tailwindcss/custom-forms": "^0.2.1",
-    "@tailwindcss/typography": "^0.2.0",
-    "tailwindcss": "^1.9.6"
+    "prettier": "^2.1.2"
   },
   "browserslist": [
     ">0.2%",
