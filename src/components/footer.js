@@ -6,7 +6,7 @@ import RandomProduct from './affiliates/randomProduct';
 export default function SiteFooter({ siteTitle }) {
 	return (
 		<footer>
-			<div>
+			<div className="container py-10">
 				<section>
 					<RandomProduct />
 				</section>

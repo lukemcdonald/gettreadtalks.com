@@ -20,9 +20,11 @@ export default function Layout({ children }) {
 		<StaticQuery
 			query={SITE_META_QUERY}
 			render={(data) => (
-				<div>
+				<div className="text-gray-800">
 					<Header siteTitle={data.site.siteMetadata.title} />
-					<main>{children}</main>
+					<main>
+						<div className="container">{children}</div>
+					</main>
 					<Footer siteTitle={data.site.siteMetadata.title} />
 					<RefTagger />
 				</div>

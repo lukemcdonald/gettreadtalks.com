@@ -13,36 +13,14 @@
 	--color-gray-800: #252f3f;
 	--color-gray-900: #161e2e;
 
-	/* --color-primary-50': #fdf7f9; */
-	/* --color-primary-100: #f5d8df; */
-	/* --color-primary-200: #e9a9b8; */
-	/* --color-primary-300: #dd7a91; */
-	/* --color-primary-400: #d14c6b; */
-	/* --color-primary-500: #b42e4d; */
-	--color-primary-600: #852239;
-	/* --color-primary-700: #661a2c; */
-	--color-primary-800: #501f18;
-	/* --color-primary-900: #270a11; */
-
-	/* --color-secondary-50:  #fbfcf9; */
-	/* --color-secondary-100: #e0e6d4; */
-	/* --color-secondary-200: #c6d0af; */
-	/* --color-secondary-300: #abba8a; */
-	/* --color-secondary-400: #90a465; */
-	/* --color-secondary-500: #7c8e54; */
-	/* --color-secondary-600: #667646; */
-	--color-secondary-700: #515d37;
-	/* --color-secondary-800: #3c4428; */
-	/* --color-secondary-900: #262c1a; */
-
-	/* --color-tertiary-50': #f9f8f6; */
-	/* --color-tertiary-100: #f2efe9; */
-	--color-tertiary-200: #e3ddd1;
-	/* --color-tertiary-300: #cdc2ac; */
-	/* --color-tertiary-400: #b6a788; */
-	/* --color-tertiary-500: #a08c63; */
-	/* --color-tertiary-600: #7d6c4c; */
-	/* --color-tertiary-700: #584d36; */
-	/* --color-tertiary-800: #403727; */
-	/* --color-tertiary-900: #1b1811; */
+	--color-primary-50:  #fdefee;
+	--color-primary-100: #fbdfdd;
+	--color-primary-200: #f5aea7;
+	--color-primary-300: #f07d72;
+	--color-primary-400: #ea4c3d;
+	--color-primary-500: #e62b1a; /* Brand */
+	--color-primary-600: #c32415;
+	--color-primary-700: #8e1a10;
+	--color-primary-800: #59100a;
+	--color-primary-900: #240704;
 }
