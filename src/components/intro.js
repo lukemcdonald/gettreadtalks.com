@@ -4,9 +4,9 @@ import Images from './images';
 
 export default function Intro({ children, image, excerpt, title }) {
 	return (
-		<div>
+		<div className="relative flex items-center justify-center overflow-hidden text-gray-300 bg-gray-900">
 			{image && (
-				<figure>
+				<figure className="hidden w-full h-full overflow-hidden opacity-15 max-h-screen-50 md:block">
 					{image.localFiles && (
 						<Img
 							alt={title}
@@ -22,9 +22,16 @@ export default function Intro({ children, image, excerpt, title }) {
 				</figure>
 			)}
 
-			<div>
-				{title && <h1>{title}</h1>}
-				{excerpt && <div dangerouslySetInnerHTML={{ __html: excerpt }} />}
+			<div className="z-20 p-6 md:absolute">
+				{title && (
+					<h1 className="text-5xl font-bold text-center text-white">{title}</h1>
+				)}
+				{excerpt && (
+					<div
+						className="mt-1 text-2xl font-light text-center"
+						dangerouslySetInnerHTML={{ __html: excerpt }}
+					/>
+				)}
 				{children && <div>{children}</div>}
 			</div>
 		</div>

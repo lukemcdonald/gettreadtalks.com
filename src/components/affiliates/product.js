@@ -32,8 +32,8 @@ class Product extends Component {
 		}
 
 		return (
-			<Card>
-				<div className="flex items-center gap-6">
+			<Card className="relative bg-gray-800 border-none">
+				<div className="flex items-center gap-4 ">
 					{post.image && (
 						<figure className="w-16">
 							<Image
@@ -44,8 +44,10 @@ class Product extends Component {
 					)}
 
 					<div>
-						<h2 className="text-xl font-bold text-black">{post.title}</h2>
-						{post.subtitle && <div>{post.subtitle}</div>}
+						<h2 className="text-xl font-bold text-white">{post.title}</h2>
+						{post.subtitle && (
+							<p className="text-sm text-gray-400">{post.subtitle}</p>
+						)}
 
 						<FauxLink to={post.link.childMarkdownRemark.rawMarkdownBody}>
 							{`View to ${post.title}`}
@@ -54,7 +56,7 @@ class Product extends Component {
 				</div>
 
 				{disclosure && (
-					<div className="absolute bottom-0 right-0 px-1 -mb-px -mr-px text-xs text-white bg-gray-400">
+					<div className="absolute bottom-0 right-0 px-1 mb-1 mr-1 text-xs text-gray-900 bg-gray-400 rounded-sm">
 						<Disclosure title="Affiliate" content={false} />
 					</div>
 				)}

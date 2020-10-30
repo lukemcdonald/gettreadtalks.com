@@ -5,6 +5,7 @@ import Intro from '../components/intro';
 import SEO from '../components/seo';
 import Talks from '../components/talks';
 import TalksNav from '../components/talks/nav';
+import RandomProduct from '../components/affiliates/randomProduct';
 
 export default function IndexPage({ data }) {
 	const { edges: talks = [] } = data.talks;
@@ -36,14 +37,17 @@ export default function IndexPage({ data }) {
 				image={{ name: 'bg-intro' }}
 			/>
 
-			<div className="has-subnav">
-				<section>
+			<div className="container flex justify-between gap-6 mt-16">
+				<section className="w-1/5">
 					<TalksNav />
 				</section>
 
-				<section>
+				<section className="flex-grow max-w-65ch">
 					<Talks talks={currentTalks} />
+					<RandomProduct />
 				</section>
+
+				<section className="w-1/5" />
 			</div>
 		</>
 	);

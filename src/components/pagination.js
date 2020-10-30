@@ -32,7 +32,7 @@ export default function Pagination({ pageContext }) {
 			</ul>
 			{numberOfPages > 1 && (
 				<div>
-					<span className="visuallyhidden">Page</span> {humanPageNumber} /{' '}
+					<span className="sr-only">Page</span> {humanPageNumber} /{' '}
 					{numberOfPages}
 				</div>
 			)}

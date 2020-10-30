@@ -6,7 +6,7 @@ import SiteNav from './nav';
 export default function SiteHeader({ siteTitle }) {
 	return (
 		<header className="border-t-4 border-red-600 bg-gradient-to-b from-gray-50">
-			<div className="p-10 text-black">
+			<div className="container py-10 text-gray-900">
 				<nav className="flex items-center justify-between ">
 					<h1>
 						<Link to="/" className="">

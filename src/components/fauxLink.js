@@ -3,7 +3,7 @@ import Link from './link';
 
 export default function FauxLink({ children, to, ...other }) {
 	return (
-		<Link to={to} {...other} className="absolute inset-0 block">
+		<Link to={to} {...other} className="absolute inset-0 z-10 block">
 			<span className="sr-only">{children}</span>
 		</Link>
 	);

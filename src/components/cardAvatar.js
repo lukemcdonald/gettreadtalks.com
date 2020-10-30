@@ -3,10 +3,14 @@ import Img from 'gatsby-image';
 
 export default function CardAvatar({ data, title }) {
 	return (
-		<div>
+		<figure className="w-16">
 			{data && (
-				<Img alt={title} fluid={data.localFiles[0].childImageSharp.fluid} />
+				<Img
+					className="rounded-full"
+					alt={title}
+					fluid={data.localFiles[0].childImageSharp.fluid}
+				/>
 			)}
-		</div>
+		</figure>
 	);
 }

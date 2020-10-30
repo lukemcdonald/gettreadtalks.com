@@ -3,8 +3,7 @@
  * -----------------------------------------------------------------------------
  */
 
-@import "theme/variables.css";
-@import "theme/base.css";
+@import "theme/_variables.css";
 
 /**
  * Base
@@ -12,6 +11,8 @@
  */
 
 @import "tailwindcss/base";
+@import "theme/base/general.css";
+
 
 /**
  * Components
@@ -19,11 +20,11 @@
  */
 
 @import "tailwindcss/components";
+@import "theme/components/typography.css";
 
 /**
- * Utilities
+ * Utilites
  * -----------------------------------------------------------------------------
  */
 
 @import "tailwindcss/utilities";
-@import "theme/tyography.css";

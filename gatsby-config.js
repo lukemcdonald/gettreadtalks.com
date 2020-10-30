@@ -16,6 +16,14 @@ export default {
 		'gatsby-plugin-sitemap',
 		'gatsby-transformer-sharp',
 		{
+			resolve: 'gatsby-plugin-react-svg',
+			options: {
+				rule: {
+					include: /svgs/,
+				},
+			},
+		},
+		{
 			resolve: `gatsby-source-filesystem`,
 			options: {
 				name: `images`,
