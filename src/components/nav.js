@@ -30,7 +30,7 @@ export default function Nav() {
 			))}
 
 			<Link
-				className="inline-block pl-6 text-gray-600 border-l border-gray-400 hover:text-blue-600"
+				className="inline-block pl-6 text-gray-700 border-l border-gray-400 hover:text-blue-600"
 				href="https://www.facebook.com/gettreadtalks"
 			>
 				<FacebookIcon className="w-5 fill-current" />

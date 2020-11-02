@@ -1,4 +1,6 @@
 import React from 'react';
+import { graphql } from 'gatsby';
+
 import { getCurrentPosts } from '../utils';
 
 import Intro from '../components/intro';
@@ -34,10 +36,10 @@ export default function IndexPage({ data }) {
 			<Intro
 				title="Workout your salvation."
 				excerpt="Weekly sermons to elevate your spiritual heartbeat."
-				image={{ name: 'bg-intro' }}
+				image={{ name: 'billy-graham-preaching-header' }}
 			/>
 
-			<div className="container flex justify-between gap-6 mt-16">
+			<div className="container flex justify-between gap-12 mt-16">
 				<section className="w-1/5">
 					<TalksNav />
 				</section>
@@ -47,7 +49,7 @@ export default function IndexPage({ data }) {
 					<RandomProduct />
 				</section>
 
-				<section className="w-1/5" />
+				<span className="w-1/5" />
 			</div>
 		</>
 	);

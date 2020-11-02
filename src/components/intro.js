@@ -4,9 +4,9 @@ import Images from './images';
 
 export default function Intro({ children, image, excerpt, title }) {
 	return (
-		<div className="relative flex items-center justify-center overflow-hidden text-gray-300 bg-gray-900">
+		<div className="flex items-center justify-center overflow-hidden text-gray-400 bg-gray-900 max-h-screen-50 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900">
 			{image && (
-				<figure className="hidden w-full h-full overflow-hidden opacity-15 max-h-screen-50 md:block">
+				<figure className="flex-grow hidden opacity-15 md:block">
 					{image.localFiles && (
 						<Img
 							alt={title}
@@ -28,7 +28,7 @@ export default function Intro({ children, image, excerpt, title }) {
 				)}
 				{excerpt && (
 					<div
-						className="mt-1 text-2xl font-light text-center"
+						className="mt-2 text-2xl font-light text-center"
 						dangerouslySetInnerHTML={{ __html: excerpt }}
 					/>
 				)}

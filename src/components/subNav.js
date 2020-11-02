@@ -15,8 +15,8 @@ export default function SubNav({ title, links = [], ...other }) {
 					<li key={link.to} className="mb-3 lg:mb-1">
 						<Link
 							to={link.to}
-							className="relative block px-2 py-1 -mx-2 font-medium text-gray-600 rounded hover:text-gray-900"
-							activeClassName="text-red-600 hover:text-red-600"
+							className="relative block px-2 py-1 -mx-2 font-medium text-gray-600 rounded md:inline-block hover:text-gray-900"
+							activeClassName="text-red-600 hover:text-red-600 font-bold"
 						>
 							{link.text}
 						</Link>
