@@ -16,8 +16,8 @@ export default function NotFoundPage() {
 				image={bgImage}
 			/>
 
-			<div>
-				<section>
+			<section>
+				<div>
 					<figure>
 						<iframe
 							title="Steve Lawson's Gospel Presentation"
@@ -29,8 +29,8 @@ export default function NotFoundPage() {
 							allowFullScreen
 						/>
 					</figure>
-				</section>
-			</div>
+				</div>
+			</section>
 		</>
 	);
 }

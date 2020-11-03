@@ -23,20 +23,19 @@ export default function ArchiveTalksPage({ data, pageContext }) {
 				excerpt="Weekly sermons to elevate your spiritual heartbeat."
 			/>
 
-			<div className="has-subnav">
-				<section>
+			<section>
+				<div>
 					<TalksNav />
-				</section>
+				</div>
 
-				<section>
-					{console.log(talks)}
+				<div>
 					<Talks talks={talks} />
-				</section>
+				</div>
 
-				<section>
+				<div>
 					<Pagination pageContext={pageContext} />
-				</section>
-			</div>
+				</div>
+			</section>
 		</>
 	);
 }

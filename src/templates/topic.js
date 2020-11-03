@@ -22,15 +22,15 @@ export default function SingleTopicPage({ data }) {
 
 			<Intro title={topic.title} excerpt={description} />
 
-			<div>
-				<section>
+			<section>
+				<div>
 					<TopicsNav />
-				</section>
+				</div>
 
-				<section>
+				<div>
 					<Talks talks={talks} />
-				</section>
-			</div>
+				</div>
+			</section>
 		</>
 	);
 }

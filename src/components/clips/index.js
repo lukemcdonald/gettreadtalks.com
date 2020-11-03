@@ -1,5 +1,5 @@
 import React from 'react';
-import { flattenObjectsByKey } from '../../utils';
+import { flattenObjectsByKey } from '../../utilities';
 
 import Clip from './card';
 

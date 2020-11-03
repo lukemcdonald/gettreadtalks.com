@@ -6,7 +6,7 @@ export default function Card({ children, className, ...props }) {
 		<article
 			{...props}
 			className={classnames(
-				'relative text-gray-700 flex flex-grow items-center gap-4 p-4 bg-white rounded-t hover:z-10 hover:border-red-600 hover:shadow-lg md:border md:border-gray-300 md:mb-4 md:rounded md:transition md:duration-300 lg:mb-6',
+				'relative flex items-center flex-grow gap-4 p-4 text-gray-700 bg-white rounded-t hover:z-10 hover:border-red-600 hover:shadow-lg md:border md:border-gray-300 md:rounded md:transition md:duration-300',
 				className
 			)}
 		>

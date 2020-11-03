@@ -7,7 +7,7 @@ import FauxLink from '../fauxLink';
 
 export default function TalkCard({ talk }) {
 	return (
-		<Card id={talk.id}>
+		<Card id={talk.id} className="flex">
 			{!talk.hideAvatar &&
 				talk.speakers.map(({ id, data = { avatar: '', title: '' } }) => (
 					<CardAvatar key={id} data={data.avatar} title={data.title} />

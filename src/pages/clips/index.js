@@ -22,11 +22,11 @@ export default function ClipsPage({ data }) {
 				excerpt="Be encouraged by these shorter Christ centered montages."
 			/>
 
-			<div className="has-subnav">
-				<section>
+			<section>
+				<div>
 					<Clips clips={clips} />
-				</section>
-			</div>
+				</div>
+			</section>
 		</>
 	);
 }

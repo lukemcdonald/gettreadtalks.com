@@ -18,11 +18,11 @@ export default function SpeakersPage({ data }) {
 
 			<Intro title="Speakers" />
 
-			<div>
-				<section>
+			<section>
+				<div>
 					<Speakers speakers={speakers} />
-				</section>
-			</div>
+				</div>
+			</section>
 		</>
 	);
 }

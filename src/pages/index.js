@@ -1,17 +1,16 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-
-import { getCurrentPosts } from '../utils';
+import { shuffle } from '../utilities';
 
 import Intro from '../components/intro';
 import SEO from '../components/seo';
 import Talks from '../components/talks';
 import TalksNav from '../components/talks/nav';
-import RandomProduct from '../components/affiliates/randomProduct';
+
+import Section, { Content, Heading, Sidebar } from '../components/section';
 
 export default function IndexPage({ data }) {
 	const { edges: talks = [] } = data.talks;
-	const currentTalks = getCurrentPosts(talks, 5);
 
 	return (
 		<>
@@ -39,18 +38,41 @@ export default function IndexPage({ data }) {
 				image={{ name: 'billy-graham-preaching-header' }}
 			/>
 
-			<div className="container flex justify-between gap-12 mt-16">
-				<section className="w-1/5">
+			<Section>
+				<Sidebar>
+					<Heading>Featured Talks</Heading>
+					<div className="mb-8 prose">
+						<p>
+							<strong>Don't know where to begin?</strong> Try starting with one
+							of these favorites.
+						</p>
+					</div>
 					<TalksNav />
-				</section>
+				</Sidebar>
 
-				<section className="flex-grow max-w-65ch">
-					<Talks talks={currentTalks} />
-					<RandomProduct />
-				</section>
+				<Content>
+					<Talks talks={shuffle(talks).slice(0, 5)} />
+				</Content>
+			</Section>
 
-				<span className="w-1/5" />
-			</div>
+			<Section separator>
+				<Sidebar>
+					<Heading>Speakers</Heading>
+				</Sidebar>
+
+				<Content>
+					<ul className="grid grid-cols-3 gap-6">
+						<li className="bg-white">#1</li>
+						<li className="bg-white">#2</li>
+						<li className="bg-white">#3</li>
+						<li className="bg-white">#4</li>
+						<li className="bg-white">#1</li>
+						<li className="bg-white">#2</li>
+						<li className="bg-white">#3</li>
+						<li className="bg-white">#4</li>
+					</ul>
+				</Content>
+			</Section>
 		</>
 	);
 }
@@ -58,10 +80,9 @@ export default function IndexPage({ data }) {
 export const query = graphql`
 	query {
 		talks: allAirtable(
-			limit: 15
 			filter: {
 				queryName: { eq: "PUBLISHED_TALKS" }
-				data: { publishedDate: { ne: null } }
+				data: { favorite: { eq: true }, publishedDate: { ne: null } }
 			}
 			sort: { fields: data___publishedDate, order: DESC }
 		) {
@@ -93,6 +114,37 @@ export const query = graphql`
 					}
 					fields {
 						slug
+					}
+				}
+			}
+		}
+		speakers: allAirtable(
+			filter: {
+				queryName: { eq: "PUBLISHED_SPEAKERS" }
+				data: { title: { ne: null } }
+			}
+			sort: { fields: data___lastName, order: ASC }
+		) {
+			edges {
+				node {
+					id
+					fields {
+						slug
+					}
+					data {
+						title
+						role
+						ministry
+						website
+						avatar {
+							localFiles {
+								childImageSharp {
+									fluid(maxWidth: 128) {
+										...GatsbyImageSharpFluid_tracedSVG
+									}
+								}
+							}
+						}
 					}
 				}
 			}

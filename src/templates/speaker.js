@@ -28,15 +28,15 @@ export default function SingleSpeakerPage({ data }) {
 				excerpt={description ? description.html : ''}
 			/>
 
-			<div className="has-subnav">
-				<section>
+			<section>
+				<div>
 					<SpeakerNav data={speaker} />
-				</section>
+				</div>
 
-				<section>
+				<div>
 					<Talks talks={talks} />
-				</section>
-			</div>
+				</div>
+			</section>
 		</>
 	);
 }

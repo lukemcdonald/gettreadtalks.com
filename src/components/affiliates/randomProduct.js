@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { getRandomObjectItem } from '../../utils';
+import { getRandomObjectItem } from '../../utilities';
 
 import Products from './products';
 import Product from './product';

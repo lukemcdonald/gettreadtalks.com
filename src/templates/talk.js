@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { graphql } from 'gatsby';
 import urlParser from 'js-video-url-parser';
 import Link from '../components/link';
-import { mapObjectToString, objectToString } from '../utils';
+import { mapObjectToString, objectToString } from '../utilities';
 
 import Intro from '../components/intro';
 import SEO from '../components/seo';
@@ -95,21 +95,23 @@ export default class SinlgeTalkPage extends Component {
 					)}
 				</Intro>
 
-				<div>
+				<section>
 					{talk.speakers && (
-						<section>
+						<div>
 							<h2>{talk.speakers.length === 1 ? `Speaker` : `Speakers`}</h2>
 							<Speakers data={talk.speakers} />
-						</section>
+						</div>
 					)}
+				</section>
 
+				<section>
 					{talk.topics && (
-						<section>
+						<div>
 							<h2>{talk.topics.length === 1 ? `Topic` : `Topics`}</h2>
 							<Topics topics={talk.topics} />
-						</section>
+						</div>
 					)}
-				</div>
+				</section>
 			</>
 		);
 	}

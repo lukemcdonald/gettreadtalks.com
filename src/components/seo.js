@@ -3,7 +3,7 @@ import Helmet from 'react-helmet';
 import { StaticQuery, graphql } from 'gatsby';
 import striptags from 'striptags';
 
-import { trimText } from '../utils';
+import { trimText } from '../utilities';
 
 const seoQuery = graphql`
 	query {

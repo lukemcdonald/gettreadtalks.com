@@ -14,11 +14,11 @@ export default function SingleSeriesPage({ data }) {
 
 			<Intro title={series.title} excerpt="" />
 
-			<div>
-				<section>
+			<section>
+				<div>
 					<Talks talks={series.talks} />
-				</section>
-			</div>
+				</div>
+			</section>
 		</>
 	);
 }

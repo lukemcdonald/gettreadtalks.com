@@ -1,17 +1,19 @@
 import React from 'react';
+import Section, { Content } from './section';
 
-import { getCurrentYear } from '../utils';
+import { getCurrentYear } from '../utilities';
+import RandomProducts from './affiliates/randomProduct';
 
 export default function SiteFooter({ siteTitle }) {
 	return (
-		<footer className="pb-12 bg-gradient-to-t from-white">
-			<div className="container">
-				<section className="m-auto mt-8 max-w-65ch">
-					<p className="text-center">
-						&copy; {siteTitle} {getCurrentYear()}
-					</p>
-				</section>
-			</div>
-		</footer>
+		<Section type="footer" className="bg-gradient-to-t from-white">
+			<Content>
+				<RandomProducts />
+
+				<p className="mt-8 text-center">
+					&copy; {siteTitle} {getCurrentYear()}
+				</p>
+			</Content>
+		</Section>
 	);
 }

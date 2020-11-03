@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { graphql } from 'gatsby';
 import urlParser from 'js-video-url-parser';
 import Link from '../components/link';
-import { mapObjectToString, objectToString } from '../utils';
+import { mapObjectToString, objectToString } from '../utilities';
 
 import Intro from '../components/intro';
 import SEO from '../components/seo';
@@ -108,21 +108,23 @@ export default class SingleClipPage extends Component {
 					)}
 				</Intro>
 
-				<div>
+				<section>
 					{clip.speakers && (
-						<section>
+						<div>
 							<h2>{clip.speakers.length === 1 ? `Speaker` : `Speakers`}</h2>
 							<Speakers data={clip.speakers} />
-						</section>
+						</div>
 					)}
+				</section>
 
+				<section>
 					{clip.topics && (
-						<section>
+						<div>
 							<h2>{clip.topics.length === 1 ? `Topic` : `Topics`}</h2>
 							<Topics topics={clip.topics} />
-						</section>
+						</div>
 					)}
-				</div>
+				</section>
 			</>
 		);
 	}

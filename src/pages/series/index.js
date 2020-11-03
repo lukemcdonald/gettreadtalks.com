@@ -18,11 +18,11 @@ export default function SeriesPage({ data }) {
 
 			<Intro title="Sermon Series" />
 
-			<div>
-				<section>
+			<section>
+				<div>
 					<Series series={series} />
-				</section>
-			</div>
+				</div>
+			</section>
 		</>
 	);
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import { getCurrentPosts } from '../../utils';
+import { getCurrentPosts } from '../../utilities';
 
 import Intro from '../../components/intro';
 import SEO from '../../components/seo';
@@ -24,15 +24,15 @@ export default function FeaturedTalksPage({ data }) {
 				excerpt="Staff picked talks to elevate your spiritual heartbeat."
 			/>
 
-			<div className="has-subnav">
-				<section>
+			<section>
+				<div>
 					<TalksNav />
-				</section>
+				</div>
 
-				<section>
+				<div>
 					<Talks talks={currentTalks} />
-				</section>
-			</div>
+				</div>
+			</section>
 		</>
 	);
 }
