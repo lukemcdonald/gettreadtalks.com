@@ -29,12 +29,9 @@ export default function SeriesPage({ data }) {
 
 export const query = graphql`
 	query {
-		series: allAirtable(
-			filter: {
-				queryName: { eq: "PUBLISHED_SERIES" }
-				data: { title: { ne: null } }
-			}
-			sort: { fields: data___lastName, order: ASC }
+		series: allAirtableSerie(
+			filter: { data: { title: { ne: null } } }
+			sort: { fields: data___title, order: ASC }
 		) {
 			edges {
 				node {

@@ -119,7 +119,7 @@ export default class SinlgeTalkPage extends Component {
 
 export const query = graphql`
 	query($id: String!) {
-		talk: airtable(id: { eq: $id }) {
+		talk: airtableTalk(id: { eq: $id }) {
 			id
 			data {
 				title

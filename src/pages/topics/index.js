@@ -30,10 +30,7 @@ export default function TopicsPage({ data }) {
 
 export const query = graphql`
 	query {
-		topics: allAirtable(
-			filter: { queryName: { eq: "PUBLISHED_TOPICS" } }
-			sort: { fields: data___title, order: ASC }
-		) {
+		topics: allAirtableTopic(sort: { fields: data___title, order: ASC }) {
 			edges {
 				node {
 					id

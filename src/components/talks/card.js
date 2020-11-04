@@ -1,8 +1,6 @@
 import React from 'react';
-import { Link } from 'gatsby';
 
-import Card from '../card';
-import CardAvatar from '../cardAvatar';
+import Card, { Avatar, Meta, MetaLink, SubTitle, Title } from '../card';
 import FauxLink from '../fauxLink';
 
 export default function TalkCard({ talk }) {
@@ -10,31 +8,27 @@ export default function TalkCard({ talk }) {
 		<Card id={talk.id} className="flex">
 			{!talk.hideAvatar &&
 				talk.speakers.map(({ id, data = { avatar: '', title: '' } }) => (
-					<CardAvatar key={id} data={data.avatar} title={data.title} />
+					<Avatar key={id} data={data.avatar} title={data.title} />
 				))}
 
 			<div>
-				<header>
-					{talk.title && <h2 className="text-xl font-bold">{talk.title}</h2>}
-					{talk.subtitle && <h3>{talk.subtitle}</h3>}
-				</header>
+				{talk.title && <Title level="2">{talk.title}</Title>}
+				{talk.subtitle && <SubTitle level="3">{talk.subtitle}</SubTitle>}
 
-				<footer className="mt-px text-sm text-gray-500">
+				<Meta>
 					{talk.speakers.map(({ id, data, fields }) => (
-						<span key={id}>
-							<span className="sr-only">By&nbsp;</span>
-							<Link to={fields.slug}>{data.title}</Link>
+						<>
+							<MetaLink key={id} to={fields.slug}>
+								{data.title}
+							</MetaLink>
 							&nbsp;
-						</span>
+						</>
 					))}
 
-					{talk.scripture && (
-						<span>
-							<span>&middot;</span> {talk.scripture}
-						</span>
-					)}
-				</footer>
+					{talk.scripture && <span>&middot;&nbsp;{talk.scripture}</span>}
+				</Meta>
 			</div>
+
 			<FauxLink to={talk.slug}>{`Listen to ${talk.title}`}</FauxLink>
 		</Card>
 	);

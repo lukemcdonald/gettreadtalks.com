@@ -29,11 +29,8 @@ export default function SpeakersPage({ data }) {
 
 export const pageQuery = graphql`
 	query {
-		speakers: allAirtable(
-			filter: {
-				queryName: { eq: "PUBLISHED_SPEAKERS" }
-				data: { title: { ne: null } }
-			}
+		speakers: allAirtableSpeaker(
+			filter: { data: { title: { ne: null } } }
 			sort: { fields: data___lastName, order: ASC }
 		) {
 			edges {

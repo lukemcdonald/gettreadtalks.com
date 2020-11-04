@@ -8,9 +8,11 @@ import Talks from '../components/talks';
 import TalksNav from '../components/talks/nav';
 
 import Section, { Content, Heading, Sidebar } from '../components/section';
+import Speakers from '../components/speakers';
 
 export default function IndexPage({ data }) {
 	const { edges: talks = [] } = data.talks;
+	const { edges: speakers = [] } = data.speakers;
 
 	return (
 		<>
@@ -40,37 +42,42 @@ export default function IndexPage({ data }) {
 
 			<Section>
 				<Sidebar>
-					<Heading>Featured Talks</Heading>
-					<div className="mb-8 prose">
-						<p>
-							<strong>Don't know where to begin?</strong> Try starting with one
-							of these favorites.
-						</p>
+					<div className="sticky top-10">
+						<Heading>Featured Talks</Heading>
+						<div className="mb-8 prose">
+							<p>
+								<strong>Don't know what to listen to?</strong> Try starting with
+								one of these favorites.
+							</p>
+						</div>
+						<TalksNav />
 					</div>
-					<TalksNav />
 				</Sidebar>
 
 				<Content>
-					<Talks talks={shuffle(talks).slice(0, 5)} />
+					<Talks
+						className="flex flex-col gap-6"
+						talks={shuffle(talks).slice(0, 5)}
+					/>
 				</Content>
 			</Section>
 
 			<Section separator>
 				<Sidebar>
-					<Heading>Speakers</Heading>
+					<div className="sticky top-10">
+						<Heading>Featured Speakers</Heading>
+						<p>
+							Have you listened to one of these faithful ministers of the
+							Gospel?
+						</p>
+					</div>
 				</Sidebar>
 
-				<Content>
-					<ul className="grid grid-cols-3 gap-6">
-						<li className="bg-white">#1</li>
-						<li className="bg-white">#2</li>
-						<li className="bg-white">#3</li>
-						<li className="bg-white">#4</li>
-						<li className="bg-white">#1</li>
-						<li className="bg-white">#2</li>
-						<li className="bg-white">#3</li>
-						<li className="bg-white">#4</li>
-					</ul>
+				<Content className="lg:col-span-9">
+					<Speakers
+						speakers={shuffle(speakers).slice(0, 6)}
+						className="grid grid-cols-3 gap-6"
+					/>
 				</Content>
 			</Section>
 		</>
@@ -79,11 +86,8 @@ export default function IndexPage({ data }) {
 
 export const query = graphql`
 	query {
-		talks: allAirtable(
-			filter: {
-				queryName: { eq: "PUBLISHED_TALKS" }
-				data: { favorite: { eq: true }, publishedDate: { ne: null } }
-			}
+		talks: allAirtableTalk(
+			filter: { data: { favorite: { eq: true }, publishedDate: { ne: null } } }
 			sort: { fields: data___publishedDate, order: DESC }
 		) {
 			edges {
@@ -118,11 +122,8 @@ export const query = graphql`
 				}
 			}
 		}
-		speakers: allAirtable(
-			filter: {
-				queryName: { eq: "PUBLISHED_SPEAKERS" }
-				data: { title: { ne: null } }
-			}
+		speakers: allAirtableSpeaker(
+			filter: { data: { favorite: { eq: true }, title: { ne: null } } }
 			sort: { fields: data___lastName, order: ASC }
 		) {
 			edges {
@@ -133,7 +134,6 @@ export const query = graphql`
 					}
 					data {
 						title
-						role
 						ministry
 						website
 						avatar {

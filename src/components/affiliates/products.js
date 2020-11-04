@@ -7,11 +7,8 @@ import { graphql, StaticQuery } from 'gatsby';
 
 const query = graphql`
 	query {
-		affiliates: allAirtable(
-			filter: {
-				queryName: { eq: "PUBLISHED_AFFILIATE_LINKS" }
-				data: { title: { ne: null } }
-			}
+		affiliates: allAirtableAffiliateLink(
+			filter: { data: { title: { ne: null } } }
 			sort: { fields: data___type, order: ASC }
 		) {
 			edges {

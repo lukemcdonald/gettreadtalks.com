@@ -42,13 +42,10 @@ export default function ArchiveTalksPage({ data, pageContext }) {
 
 export const query = graphql`
 	query($limit: Int!, $skip: Int!) {
-		talks: allAirtable(
+		talks: allAirtableTalk(
 			limit: $limit
 			skip: $skip
-			filter: {
-				queryName: { eq: "PUBLISHED_TALKS" }
-				data: { publishedDate: { ne: null } }
-			}
+			filter: { data: { publishedDate: { ne: null } } }
 			sort: { fields: data___publishedDate, order: DESC }
 		) {
 			edges {

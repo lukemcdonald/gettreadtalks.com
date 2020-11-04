@@ -37,7 +37,7 @@ export default function SingleTopicPage({ data }) {
 
 export const query = graphql`
 	query($id: String!) {
-		topic: airtable(id: { eq: $id }) {
+		topic: airtableTopic(id: { eq: $id }) {
 			id
 			fields {
 				slug
@@ -46,11 +46,8 @@ export const query = graphql`
 				title
 			}
 		}
-		talks: allAirtable(
-			filter: {
-				queryName: { eq: "PUBLISHED_TALKS" }
-				data: { topics: { elemMatch: { id: { eq: $id } } } }
-			}
+		talks: allAirtableTalk(
+			filter: { data: { topics: { elemMatch: { id: { eq: $id } } } } }
 			sort: { fields: data___publishedDate, order: DESC }
 		) {
 			edges {

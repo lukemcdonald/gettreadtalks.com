@@ -43,7 +43,7 @@ export default function SingleSpeakerPage({ data }) {
 
 export const query = graphql`
 	query($id: String!) {
-		speaker: airtable(id: { eq: $id }) {
+		speaker: airtableSpeaker(id: { eq: $id }) {
 			id
 			fields {
 				slug
@@ -70,11 +70,8 @@ export const query = graphql`
 				}
 			}
 		}
-		talks: allAirtable(
-			filter: {
-				queryName: { eq: "PUBLISHED_TALKS" }
-				data: { speakers: { elemMatch: { id: { eq: $id } } } }
-			}
+		talks: allAirtableTalk(
+			filter: { data: { speakers: { elemMatch: { id: { eq: $id } } } } }
 			sort: { fields: data___publishedDate, order: DESC }
 		) {
 			edges {

@@ -33,8 +33,7 @@ export default function ClipsPage({ data }) {
 
 export const query = graphql`
 	query {
-		clips: allAirtable(
-			filter: { queryName: { eq: "PUBLISHED_CLIPS" } }
+		clips: allAirtableClip(
 			sort: { fields: data___publishedDate, order: DESC }
 		) {
 			edges {

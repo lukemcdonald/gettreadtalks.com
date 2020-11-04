@@ -1,42 +1,34 @@
-import { Link } from 'gatsby';
 import React from 'react';
 
-import Card from '../card';
-import CardAvatar from '../cardAvatar';
+import Card, { Avatar, Meta, MetaLink, Title } from '../card';
 import FauxLink from '../fauxLink';
 
 export default function SpeakerCard({ speaker }) {
 	return (
 		<Card id={speaker.id}>
+			{speaker.avatar && <Avatar data={speaker.avatar} title={speaker.title} />}
+
 			<div>
-				<CardAvatar data={speaker.avatar} title={speaker.title} />
+				{speaker.title && <Title level="2">{speaker.title}</Title>}
 
-				<div>
-					{speaker.title && (
-						<header>
-							<h2>{speaker.title}</h2>
-						</header>
+				<Meta>
+					{speaker.role && <span>{speaker.role}&nbsp;</span>}
+
+					{speaker.ministry && (
+						<span>
+							{speaker.role && <span>&middot;</span>}
+							{speaker.website ? (
+								<MetaLink to={speaker.website}>{speaker.ministry}</MetaLink>
+							) : (
+								<span>{speaker.ministry}</span>
+							)}
+						</span>
 					)}
-
-					<footer>
-						{speaker.role && <span>{speaker.role}</span>}
-
-						{speaker.ministry && (
-							<span>
-								{speaker.website ? (
-									<Link to={speaker.website}>
-										&nbsp;&middot;&nbsp;{speaker.ministry}
-									</Link>
-								) : (
-									<span>&nbsp;&middot;&nbsp;{speaker.ministry}</span>
-								)}
-							</span>
-						)}
-					</footer>
-				</div>
-
-				<FauxLink to={speaker.slug}>{`Talks by ${speaker.title}`}</FauxLink>
+					<span>&nbsp;</span>
+				</Meta>
 			</div>
+
+			<FauxLink to={speaker.slug}>{`Talks by ${speaker.title}`}</FauxLink>
 		</Card>
 	);
 }

@@ -15,7 +15,7 @@ export default function Section({
 		<Tag className={classnames('px-4 sm:px-6 ', className)}>
 			<div
 				className={classnames(
-					'grid gap-6 py-10 sm:grid-cols-3 lg:py-16 lg:grid-cols-12 max-w-screen-xl m-auto',
+					'grid gap-6 sm:grid-cols-3 lg:grid-cols-12 max-w-screen-xl m-auto',
 					separator ? 'border-t border-gray-300' : '',
 					sidebars === 2 ? '' : ''
 				)}
@@ -42,13 +42,20 @@ export function Heading({ children, className, level }) {
 	);
 }
 
-export function Content({ children }) {
+export function Content({ children, className }) {
 	return (
-		<div className="sm:col-span-2 lg:col-span-6 lg:col-start-4">{children}</div>
+		<div
+			className={classnames(
+				'py-10 lg:py-16 sm:col-span-2 lg:col-span-6 lg:col-start-4',
+				className
+			)}
+		>
+			{children}
+		</div>
 	);
 }
 
-export function Sidebar({ children, right }) {
+export function Sidebar({ children, className, right }) {
 	const padding = right ? 'pl' : 'pr';
 
 	return (
@@ -56,7 +63,9 @@ export function Sidebar({ children, right }) {
 			className={classnames(
 				`${padding}-6`,
 				`lg:${padding}-10`,
-				'lg:col-span-3'
+				'lg:col-span-3',
+				'py-10 lg:py-16',
+				className
 			)}
 		>
 			{children}

@@ -1,8 +1,7 @@
 import { Link } from 'gatsby';
 import React from 'react';
 
-import Card from '../card';
-import CardAvatar from '../cardAvatar';
+import Card, { Avatar } from '../card';
 import FauxLink from '../fauxLink';
 
 export default function ClipCard({ clip }) {
@@ -10,7 +9,7 @@ export default function ClipCard({ clip }) {
 		<Card id={clip.id}>
 			<div>
 				{clip.speakers.map(({ id, data }) => (
-					<CardAvatar key={id} data={data.avatar} title={data.title} />
+					<Avatar key={id} data={data.avatar} title={data.title} />
 				))}
 
 				<div>

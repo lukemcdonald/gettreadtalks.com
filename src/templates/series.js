@@ -25,7 +25,7 @@ export default function SingleSeriesPage({ data }) {
 
 export const pageQuery = graphql`
 	query($id: String!) {
-		series: airtable(id: { eq: $id }) {
+		series: airtableSerie(id: { eq: $id }) {
 			id
 			fields {
 				slug

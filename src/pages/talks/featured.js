@@ -39,11 +39,8 @@ export default function FeaturedTalksPage({ data }) {
 
 export const query = graphql`
 	query {
-		talks: allAirtable(
-			filter: {
-				queryName: { eq: "PUBLISHED_TALKS" }
-				data: { favorite: { eq: true }, publishedDate: { ne: null } }
-			}
+		talks: allAirtableTalk(
+			filter: { data: { favorite: { eq: true }, publishedDate: { ne: null } } }
 			sort: { fields: data___publishedDate, order: DESC }
 		) {
 			edges {

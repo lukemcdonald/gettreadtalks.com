@@ -132,7 +132,7 @@ export default class SingleClipPage extends Component {
 
 export const query = graphql`
 	query($id: String!) {
-		clip: airtable(id: { eq: $id }) {
+		clip: airtableClip(id: { eq: $id }) {
 			id
 			data {
 				title

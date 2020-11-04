@@ -4,12 +4,12 @@ import { paginate } from 'gatsby-awesome-pagination';
 exports.onCreateNode = ({ node, actions }) => {
 	const { createNodeField } = actions;
 	const airtableTables = [
-		'Clips',
-		'Pages',
-		'Series',
-		'Speakers',
-		'Talks',
-		'Topics',
+		'AirtableClip',
+		'AirtablePage',
+		'AirtableSerie',
+		'AirtableSpeaker',
+		'AirtableTalk',
+		'AirtableTopic',
 	];
 
 	/**
@@ -20,8 +20,7 @@ exports.onCreateNode = ({ node, actions }) => {
 	 * 3. Node data is not empty (empty table row in Airtable)
 	 */
 	if (
-		node.internal.type === `Airtable` &&
-		airtableTables.includes(node.table) &&
+		airtableTables.includes(node.internal.type) &&
 		Object.keys(node.data).length
 	) {
 		const { path: nodePath, title } = node.data;
@@ -37,12 +36,7 @@ exports.onCreateNode = ({ node, actions }) => {
 async function createClipPages({ graphql, actions, reporter }) {
 	const { data, errors } = await graphql(`
 		query {
-			clips: allAirtable(
-				filter: {
-					queryName: { eq: "PUBLISHED_CLIPS" }
-					data: { title: { ne: null } }
-				}
-			) {
+			clips: allAirtableClip(filter: { data: { title: { ne: null } } }) {
 				edges {
 					node {
 						id
@@ -75,12 +69,7 @@ async function createClipPages({ graphql, actions, reporter }) {
 async function createPagePages({ graphql, actions, reporter }) {
 	const { data, errors } = await graphql(`
 		query {
-			pages: allAirtable(
-				filter: {
-					queryName: { eq: "PUBLISHED_PAGES" }
-					data: { title: { ne: null } }
-				}
-			) {
+			pages: allAirtablePage(filter: { data: { title: { ne: null } } }) {
 				edges {
 					node {
 						id
@@ -113,12 +102,7 @@ async function createPagePages({ graphql, actions, reporter }) {
 async function createSeriesPages({ graphql, actions, reporter }) {
 	const { data, errors } = await graphql(`
 		query {
-			series: allAirtable(
-				filter: {
-					queryName: { eq: "PUBLISHED_SERIES" }
-					data: { title: { ne: null } }
-				}
-			) {
+			series: allAirtableSerie(filter: { data: { title: { ne: null } } }) {
 				edges {
 					node {
 						id
@@ -151,12 +135,7 @@ async function createSeriesPages({ graphql, actions, reporter }) {
 async function createSpeakerPages({ graphql, actions, reporter }) {
 	const { data, errors } = await graphql(`
 		query {
-			speakers: allAirtable(
-				filter: {
-					queryName: { eq: "PUBLISHED_SPEAKERS" }
-					data: { title: { ne: null } }
-				}
-			) {
+			speakers: allAirtableSpeaker(filter: { data: { title: { ne: null } } }) {
 				edges {
 					node {
 						id
@@ -189,12 +168,7 @@ async function createSpeakerPages({ graphql, actions, reporter }) {
 async function createTalkPages({ graphql, actions, reporter }) {
 	const { data, errors } = await graphql(`
 		query {
-			talks: allAirtable(
-				filter: {
-					queryName: { in: ["PUBLISHED_TALKS"] }
-					data: { title: { ne: null } }
-				}
-			) {
+			talks: allAirtableTalk(filter: { data: { title: { ne: null } } }) {
 				edges {
 					node {
 						id
@@ -237,12 +211,7 @@ async function createTalkPages({ graphql, actions, reporter }) {
 async function createTopicPages({ graphql, actions, reporter }) {
 	const { data, errors } = await graphql(`
 		query {
-			topics: allAirtable(
-				filter: {
-					queryName: { eq: "PUBLISHED_TOPICS" }
-					data: { title: { ne: null } }
-				}
-			) {
+			topics: allAirtableTopic(filter: { data: { title: { ne: null } } }) {
 				edges {
 					node {
 						id

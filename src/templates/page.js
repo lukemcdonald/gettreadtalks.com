@@ -4,7 +4,7 @@ import { graphql } from 'gatsby';
 import SEO from '../components/seo';
 
 export default function SinglePage({ data }) {
-	const { data: page } = data.airtable;
+	const { data: page } = data.page;
 
 	return (
 		<article className="m-auto mt-12 prose prose-lg">
@@ -29,7 +29,7 @@ export default function SinglePage({ data }) {
 
 export const pageQuery = graphql`
 	query($id: String!) {
-		airtable(id: { eq: $id }) {
+		page: airtablePage(id: { eq: $id }) {
 			id
 			fields {
 				slug
