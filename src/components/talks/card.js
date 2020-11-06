@@ -3,7 +3,7 @@ import React from 'react';
 import Card, { Avatar, Meta, MetaLink, SubTitle, Title } from '../card';
 import FauxLink from '../fauxLink';
 
-export default function TalkCard({ talk }) {
+export default function Talk({ talk }) {
 	return (
 		<Card id={talk.id} className="flex">
 			{!talk.hideAvatar &&
@@ -17,12 +17,12 @@ export default function TalkCard({ talk }) {
 
 				<Meta>
 					{talk.speakers.map(({ id, data, fields }) => (
-						<>
+						<span key={id}>
 							<MetaLink key={id} to={fields.slug}>
 								{data.title}
 							</MetaLink>
 							&nbsp;
-						</>
+						</span>
 					))}
 
 					{talk.scripture && <span>&middot;&nbsp;{talk.scripture}</span>}

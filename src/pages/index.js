@@ -77,6 +77,7 @@ export default function IndexPage({ data }) {
 					<Speakers
 						speakers={shuffle(speakers).slice(0, 6)}
 						className="grid grid-cols-3 gap-6"
+						size="small"
 					/>
 				</Content>
 			</Section>

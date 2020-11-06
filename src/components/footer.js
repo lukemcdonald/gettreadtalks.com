@@ -10,7 +10,7 @@ export default function SiteFooter({ siteTitle }) {
 			<Content>
 				<RandomProducts />
 
-				<p className="mt-8 text-center">
+				<p className="mt-8 text-center text-gray-500">
 					&copy; {siteTitle} {getCurrentYear()}
 				</p>
 			</Content>

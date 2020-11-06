@@ -19,15 +19,17 @@ export default function Card({ children, className, ...props }) {
 }
 
 export function Title({ children, className, level }) {
-	const Tag = sanitizeHTMLTag(level, ['h1', 'h2', 'h3']);
+	const Tag = sanitizeHTMLTag(`h${level}`, ['h1', 'h2', 'h3']);
 
 	return (
-		<Tag className={classnames('text-xl font-bold', className)}>{children}</Tag>
+		<Tag className={classnames('text-xl font-bold leading-6', className)}>
+			{children}
+		</Tag>
 	);
 }
 
 export function SubTitle({ children, className, level }) {
-	const Tag = sanitizeHTMLTag(level, ['h2', 'h3']);
+	const Tag = sanitizeHTMLTag(`h${level}`, ['h2', 'h3']);
 
 	return (
 		<Tag

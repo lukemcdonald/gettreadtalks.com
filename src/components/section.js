@@ -27,11 +27,17 @@ export default function Section({
 }
 
 export function Heading({ children, className, level }) {
-	const Tag = sanitizeHTMLTag(level, ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']);
+	const Tag = sanitizeHTMLTag(`h${level}`, [
+		'h1',
+		'h2',
+		'h3',
+		'h4',
+		'h5',
+		'h6',
+	]);
 
 	return (
 		<Tag
-			headingLevel
 			className={classnames(
 				'mb-3 text-sm font-bold tracking-wide text-gray-500 uppercase lg:mb-2 lg:text-xs',
 				className

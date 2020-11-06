@@ -11,7 +11,6 @@ export default function Talks({ className, hideAvatar, subtitle, talks }) {
 		<div className={classnames('', className)}>
 			{posts.map(({ id, fields, data }) => {
 				const talk = { id, ...fields, ...data, hideAvatar, subtitle };
-				console.log(talk);
 				return <Talk key={id} talk={talk} />;
 			})}
 		</div>
