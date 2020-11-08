@@ -40,9 +40,9 @@ export default function IndexPage({ data }) {
 				image={{ name: 'billy-graham-preaching-header' }}
 			/>
 
-			<Section className="relative overflow-hidden">
+			<Section className="relative">
 				<ul
-					className="absolute left-0 z-0 flex flex-col w-full font-black leading-none tracking-tighter text-gray-200 uppercase transform -right-6 -top-12 css-slideshow"
+					className="absolute left-0 z-0 flex flex-col w-full overflow-hidden font-black leading-none tracking-tighter text-gray-200 uppercase transform -right-6 -top-16 css-slideshow"
 					style={{ fontSize: '16rem' }}
 				>
 					<li className="text-right">Gospel</li>

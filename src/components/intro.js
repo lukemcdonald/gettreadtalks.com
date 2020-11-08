@@ -8,7 +8,7 @@ export default function Intro({ children, image, excerpt, title }) {
 	return (
 		<div
 			className={classnames(
-				'flex items-center justify-center overflow-hidden text-gray-400 bg-gray-900 max-h-screen-50 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900',
+				'flex items-center justify-center overflow-hidden text-gray-400 bg-gray-900 max-h-screen-50 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 z-10 relative',
 				styles
 			)}
 		>
