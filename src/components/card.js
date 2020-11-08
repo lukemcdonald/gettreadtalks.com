@@ -19,33 +19,35 @@ export default function Card({ children, className, ...props }) {
 }
 
 export function Title({ children, className, level }) {
-	const Tag = sanitizeHTMLTag(`h${level}`, ['h1', 'h2', 'h3']);
+	const Heading = sanitizeHTMLTag(`h${level}`, ['h1', 'h2', 'h3']);
 
 	return (
-		<Tag className={classnames('text-xl font-bold leading-6', className)}>
+		<Heading className={classnames('text-xl font-bold leading-6', className)}>
 			{children}
-		</Tag>
+		</Heading>
 	);
 }
 
 export function SubTitle({ children, className, level }) {
-	const Tag = sanitizeHTMLTag(`h${level}`, ['h2', 'h3']);
+	const Heading = sanitizeHTMLTag(`h${level}`, ['h2', 'h3']);
 
 	return (
-		<Tag
+		<Heading
 			className={classnames(
 				'text-red-600 text-xs tracking-wide uppercase mb-2',
 				className
 			)}
 		>
 			{children}
-		</Tag>
+		</Heading>
 	);
 }
 
 export function Meta({ children, className }) {
 	return (
-		<div className={classnames('mt-px text-sm text-gray-500', className)}>
+		<div
+			className={classnames('mt-px leading-6 text-sm text-gray-500', className)}
+		>
 			{children}
 		</div>
 	);

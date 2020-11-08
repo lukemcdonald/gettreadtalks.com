@@ -13,7 +13,6 @@ const seoQuery = graphql`
 				image
 				siteUrl
 				title
-				titleTemplate
 				twitterUsername
 			}
 		}
@@ -22,13 +21,12 @@ const seoQuery = graphql`
 
 export default function SEO(props) {
 	const {
+		title = '',
 		description = '',
 		image = '',
 		keywords = [],
-		lang = 'en',
 		meta = [],
 		pathname = '',
-		title = '',
 	} = props;
 
 	return (
@@ -47,11 +45,20 @@ export default function SEO(props) {
 
 				return (
 					<Helmet
-						htmlAttributes={{
-							lang,
-						}}
+						htmlAttributes={{ lang: 'en' }}
 						title={seo.title}
-						titleTemplate={siteMetadata.titleTemplate}
+						titleTemplate={`%s — ${siteMetadata.title}`}
+						link={[
+							{
+								rel: 'icon',
+								type: 'image/svg+xml',
+								href: '/favicon.svg',
+							},
+							{
+								rel: 'alternate icon',
+								href: '/favicon.png',
+							},
+						]}
 						meta={[
 							{
 								name: 'google-site-verification',

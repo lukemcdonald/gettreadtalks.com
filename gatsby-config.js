@@ -104,6 +104,13 @@ export default {
 					},
 					{
 						baseId: process.env.AIRTABLE_BASE,
+						tableName: `Scriptures`,
+						tableView: `All Scriptures`,
+						queryName: `Scripture`,
+						separateNodeType: true,
+					},
+					{
+						baseId: process.env.AIRTABLE_BASE,
 						tableName: `Series`,
 						tableView: `Published`,
 						queryName: `Serie`,

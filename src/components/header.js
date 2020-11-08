@@ -10,7 +10,7 @@ export default function SiteHeader({ siteTitle }) {
 				<nav className="flex items-center justify-between text-gray-900">
 					<h1>
 						<Link to="/" className="block">
-							<Logo className="inline-block h-8 fill-current" />
+							<Logo className="inline-block h-8 " />
 							<span className="sr-only">{siteTitle}</span>
 						</Link>
 					</h1>

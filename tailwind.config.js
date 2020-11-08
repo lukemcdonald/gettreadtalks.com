@@ -18,7 +18,7 @@ module.exports = {
 				current: 'currentColor',
 				inherit: 'inherit',
 				transparent: 'transparent',
-				gray: {
+				gray1: {
 					50: 'var(--color-gray-50)',
 					100: 'var(--color-gray-100)',
 					200: 'var(--color-gray-200)',
@@ -108,7 +108,6 @@ module.exports = {
 		}),
 	},
 	plugins: [
-		require('@tailwindcss/custom-forms'),
 		require('@tailwindcss/typography'),
 	],
 };

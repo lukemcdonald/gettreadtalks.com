@@ -1,14 +1,12 @@
 module.exports = {
-	backgroundColor: '#ffffff',
-	copyright: `©TREAD Talks 2019`,
+	title: 'TREAD Talks',
+	siteUrl: 'https://gettreadtalks.com',
 	description:
 		'Workout your salvation with weekly sermons to elevate your spiritual heartbeat.',
-	icon: 'static/assets/images/favicon.png',
-	image: '/assets/images/default-seo-image.jpg',
 	tagline: 'Weekly sermons to elevate your spiritual heartbeat.',
-	themeColor: '#e62b1a',
-	title: 'TREAD Talks',
-	titleTemplate: '%s — TREAD Talks',
+	icon: 'static/favicon.png',
+	image: '/default-seo-image.jpg',
 	twitterUsername: '@gettreadtalks',
-	siteUrl: 'https://gettreadtalks.com',
+	themeColor: '#e62b1a',
+	backgroundColor: '#e5e7eb',
 };

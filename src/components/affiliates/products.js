@@ -1,7 +1,3 @@
-/**
- * Query local images in src/assets/images folder and return them as a render prop.
- */
-
 import React from 'react';
 import { graphql, StaticQuery } from 'gatsby';
 
