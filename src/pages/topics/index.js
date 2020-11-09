@@ -1,9 +1,9 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import Intro from '../../components/intro';
 import SEO from '../../components/seo';
 import Topics from '../../components/topics';
+import Section, { Content } from '../../components/section';
 
 export default function TopicsPage({ data }) {
 	const { edges: topics = [] } = data.topics;
@@ -17,13 +17,15 @@ export default function TopicsPage({ data }) {
 				pathname="/topics/"
 			/>
 
-			<Intro title="Topics" />
-
-			<div>
-				<section>
-					<Topics topics={topics} />
-				</section>
-			</div>
+			<Section>
+				<Content>
+					<header className="prose prose-lg">
+						<h1 className="text-4xl font-bold text-gray-900">Topics</h1>
+						<span />
+					</header>
+					<Topics className="flex flex-col gap-6" topics={topics} />
+				</Content>
+			</Section>
 		</>
 	);
 }

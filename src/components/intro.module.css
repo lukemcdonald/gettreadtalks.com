@@ -1,3 +1,7 @@
-.intro-image {
-  filter: grayscale(100%);
+.intro {
+  min-height: 300px;
+
+  img {
+    filter: grayscale(100%);
+  }
 }

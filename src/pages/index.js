@@ -42,12 +42,12 @@ export default function IndexPage({ data }) {
 
 			<Section className="relative">
 				<ul
-					className="absolute left-0 z-0 flex flex-col w-full overflow-hidden font-black leading-none tracking-tighter text-gray-200 uppercase transform -right-6 -top-16 css-slideshow"
-					style={{ fontSize: '16rem' }}
+					className="absolute inset-x-0 z-0 hidden w-full px-12 overflow-hidden font-black leading-none tracking-tighter text-gray-300 uppercase transform -top-2 css-slideshow md:flex md:flex-col"
+					style={{ fontSize: '16vw' }}
 				>
-					<li className="text-right">Gospel</li>
-					<li className="text-left">Faithfull</li>
-					<li className="text-right">Bold</li>
+					<li className="text-right">Jesus</li>
+					<li className="text-right">Is</li>
+					<li className="text-right">King</li>
 				</ul>
 
 				<Sidebar>

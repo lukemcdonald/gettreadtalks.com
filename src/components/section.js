@@ -9,7 +9,13 @@ export default function Section({
 	sidebars,
 	type,
 }) {
-	const Tag = sanitizeHTMLTag(type, ['div', 'footer', 'header', 'section']);
+	const Tag = sanitizeHTMLTag(type, [
+		'section',
+		'article',
+		'div',
+		'footer',
+		'header',
+	]);
 
 	return (
 		<Tag className={classnames('px-4 sm:px-6 ', className)}>
@@ -48,16 +54,24 @@ export function Heading({ children, className, level }) {
 	);
 }
 
-export function Content({ children, className }) {
+export function Content({ children, className, type }) {
+	const Tag = sanitizeHTMLTag(type, [
+		'section',
+		'article',
+		'div',
+		'footer',
+		'header',
+	]);
+
 	return (
-		<div
+		<Tag
 			className={classnames(
 				'py-10 lg:py-16 sm:col-span-2 lg:col-span-6 lg:col-start-4',
 				className
 			)}
 		>
 			{children}
-		</div>
+		</Tag>
 	);
 }
 

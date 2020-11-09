@@ -2,28 +2,32 @@ import React from 'react';
 import { graphql } from 'gatsby';
 
 import SEO from '../components/seo';
+import Section, { Content } from '../components/section';
 
 export default function SinglePage({ data }) {
 	const { data: page } = data.page;
 
 	return (
-		<article className="m-auto mt-12 prose prose-lg">
+		<>
 			<SEO
 				title={page.title}
 				description={page.content.childMarkdownRemark.excerpt}
 				pathname={page.path}
 			/>
 
-			<header>
-				<h1 className="text-4xl text-gray-900">{page.title}</h1>
-			</header>
-
-			<div
-				dangerouslySetInnerHTML={{
-					__html: page.content.childMarkdownRemark.html,
-				}}
-			/>
-		</article>
+			<Section>
+				<Content type="article" className="prose prose-lg">
+					<header>
+						<h1 className="text-4xl text-gray-900">{page.title}</h1>
+					</header>
+					<div
+						dangerouslySetInnerHTML={{
+							__html: page.content.childMarkdownRemark.html,
+						}}
+					/>
+				</Content>
+			</Section>
+		</>
 	);
 }
 

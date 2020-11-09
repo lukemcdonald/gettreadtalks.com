@@ -2,8 +2,7 @@ import React from 'react';
 
 import SEO from '../components/seo';
 import Intro from '../components/intro';
-
-const bgImage = require('../assets/images/bg-intro.jpg');
+import Section, { Content } from '../components/section';
 
 export default function NotFoundPage() {
 	return (
@@ -13,14 +12,14 @@ export default function NotFoundPage() {
 			<Intro
 				title="Are you lost?"
 				excerpt="Sorry, but the page you are looking for cannot be found nor has it evolved into something else."
-				image={bgImage}
 			/>
 
-			<section>
-				<div>
+			<Section>
+				<Content>
 					<figure>
 						<iframe
 							title="Steve Lawson's Gospel Presentation"
+							className="rounded"
 							width="640"
 							height="360"
 							src="https://www.youtube.com/embed/4exu-7RDdKE"
@@ -29,8 +28,8 @@ export default function NotFoundPage() {
 							allowFullScreen
 						/>
 					</figure>
-				</div>
-			</section>
+				</Content>
+			</Section>
 		</>
 	);
 }
