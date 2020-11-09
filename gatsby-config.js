@@ -128,6 +128,7 @@ export default {
 						tableLinks: [`clips`, `talks`],
 						mapping: {
 							avatar: `fileNode`,
+							banner: `fileNode`,
 							description: `text/markdown`,
 						},
 						separateNodeType: true,

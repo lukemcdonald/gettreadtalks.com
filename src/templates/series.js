@@ -5,12 +5,12 @@ import SEO from '../components/seo';
 import Intro from '../components/intro';
 import Talks from '../components/talks';
 
-export default function SingleSeriesPage({ data }) {
+export default function SingleSeriesPage({ data, location }) {
 	const { data: series } = data.series;
 
 	return (
 		<>
-			<SEO title={series.title} pathname={series.path} />
+			<SEO title={series.title} location={location} />
 
 			<Intro title={series.title} excerpt="" />
 

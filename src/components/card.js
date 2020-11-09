@@ -18,28 +18,28 @@ export default function Card({ children, className, ...props }) {
 	);
 }
 
-export function Title({ children, className, level }) {
-	const Heading = sanitizeHTMLTag(`h${level}`, ['h1', 'h2', 'h3']);
+export function Title({ children, className, as }) {
+	const Tag = sanitizeHTMLTag(as, ['h1', 'h2', 'h3']);
 
 	return (
-		<Heading className={classnames('text-xl font-bold leading-6', className)}>
+		<Tag className={classnames('text-xl font-bold leading-6', className)}>
 			{children}
-		</Heading>
+		</Tag>
 	);
 }
 
-export function SubTitle({ children, className, level }) {
-	const Heading = sanitizeHTMLTag(`h${level}`, ['h2', 'h3']);
+export function SubTitle({ children, className, as }) {
+	const Tag = sanitizeHTMLTag(as, ['h2', 'h3']);
 
 	return (
-		<Heading
+		<Tag
 			className={classnames(
 				'text-red-600 text-xs tracking-wide uppercase mb-2',
 				className
 			)}
 		>
 			{children}
-		</Heading>
+		</Tag>
 	);
 }
 

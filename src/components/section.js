@@ -2,14 +2,8 @@ import React from 'react';
 import classnames from 'classnames';
 import { sanitizeHTMLTag } from '../utilities';
 
-export default function Section({
-	children,
-	className,
-	separator,
-	sidebars,
-	type,
-}) {
-	const Tag = sanitizeHTMLTag(type, [
+export default function Section({ children, className, separator, as }) {
+	const Tag = sanitizeHTMLTag(as, [
 		'section',
 		'article',
 		'div',
@@ -22,8 +16,7 @@ export default function Section({
 			<div
 				className={classnames(
 					'grid gap-6 sm:grid-cols-3 lg:grid-cols-12 max-w-screen-xl m-auto',
-					separator ? 'border-t border-gray-300' : '',
-					sidebars === 2 ? '' : ''
+					separator ? 'border-t border-gray-300' : ''
 				)}
 			>
 				{children}
@@ -32,15 +25,8 @@ export default function Section({
 	);
 }
 
-export function Heading({ children, className, level }) {
-	const Tag = sanitizeHTMLTag(`h${level}`, [
-		'h1',
-		'h2',
-		'h3',
-		'h4',
-		'h5',
-		'h6',
-	]);
+export function Heading({ children, className, as }) {
+	const Tag = sanitizeHTMLTag(as, ['h1', 'h2', 'h3']);
 
 	return (
 		<Tag
@@ -54,8 +40,8 @@ export function Heading({ children, className, level }) {
 	);
 }
 
-export function Content({ children, className, type }) {
-	const Tag = sanitizeHTMLTag(type, [
+export function Content({ children, className, as }) {
+	const Tag = sanitizeHTMLTag(as, [
 		'section',
 		'article',
 		'div',

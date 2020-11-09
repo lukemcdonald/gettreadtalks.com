@@ -5,7 +5,7 @@ import SEO from '../../components/seo';
 import Topics from '../../components/topics';
 import Section, { Content } from '../../components/section';
 
-export default function TopicsPage({ data }) {
+export default function TopicsPage({ data, location }) {
 	const { edges: topics = [] } = data.topics;
 
 	return (
@@ -13,8 +13,7 @@ export default function TopicsPage({ data }) {
 			<SEO
 				title="Topics"
 				description="A list of topics with published talks."
-				keywords={['topics']}
-				pathname="/topics/"
+				location={location}
 			/>
 
 			<Section>

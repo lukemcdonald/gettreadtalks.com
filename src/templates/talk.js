@@ -47,7 +47,8 @@ export default class SinlgeTalkPage extends Component {
 
 	render() {
 		const { mediaUrl } = this.state;
-		const { data: talk } = this.props.data.talk;
+		const { data, location } = this.props;
+		const { data: talk } = data.talk;
 
 		const { html: mediaHtml, htmlAst: media } = talk.link.childMarkdownRemark;
 
@@ -57,12 +58,14 @@ export default class SinlgeTalkPage extends Component {
 			title: talk.title,
 			speakers: talk.speakers
 				? `<em>by</em> ${talk.speakers
-						.map(({ data }) => data.title)
+						.map(({ data: speaker }) => speaker.title)
 						.join(', ')}`
 				: null,
 			scripture: talk.scripture ? `<em>from</em> ${talk.scripture}` : null,
 			topics: talk.topics
-				? `<em>on</em> ${talk.topics.map(({ data }) => data.title).join(', ')}`
+				? `<em>on</em> ${talk.topics
+						.map(({ data: topic }) => topic.title)
+						.join(', ')}`
 				: null,
 		};
 
@@ -71,8 +74,8 @@ export default class SinlgeTalkPage extends Component {
 				<SEO
 					title={mapObjectToString(['title', 'speakers'], meta)}
 					description={objectToString(meta)}
-					pathname={talk.path}
 					image={mediaUrl}
+					location={location}
 				/>
 
 				<Intro

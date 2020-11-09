@@ -5,16 +5,12 @@ import Intro from '../../components/intro';
 import SEO from '../../components/seo';
 import Series from '../../components/series';
 
-export default function SeriesPage({ data }) {
+export default function SeriesPage({ data, location }) {
 	const { edges: series = [] } = data.series;
 
 	return (
 		<>
-			<SEO
-				title="Sermon Series"
-				keywords={['series', 'talks', 'group']}
-				pathname="/series/"
-			/>
+			<SEO title="Sermon Series" location={location} />
 
 			<Intro title="Sermon Series" />
 

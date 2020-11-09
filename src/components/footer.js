@@ -6,7 +6,7 @@ import RandomProduct from './affiliates/randomProduct';
 
 export default function SiteFooter({ siteTitle }) {
 	return (
-		<Section type="footer" className="bg-gradient-to-t from-white">
+		<Section as="footer" className="bg-gradient-to-t from-white">
 			<Content>
 				<RandomProduct />
 

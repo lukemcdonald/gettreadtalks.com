@@ -18,19 +18,21 @@ export default function Intro({ children, image, excerpt, title }) {
 					{image.localFiles && (
 						<Img
 							alt={title}
-							fluid={image.localFiles[0].childImageSharp.fluid}
+							fluid={image?.localFiles[0]?.childImageSharp?.fluid}
 						/>
 					)}
 
 					{image.name && (
 						<Images>
-							{(images) => <Img alt={title} fluid={images[image.name].fluid} />}
+							{(images) => (
+								<Img alt={title} fluid={images[image.name]?.fluid} />
+							)}
 						</Images>
 					)}
 				</figure>
 			)}
 
-			<Section type="div" className="z-20 p-6 md:absolute md:inset-x-0">
+			<Section as="div" className="z-20 p-6 md:absolute md:inset-x-0">
 				<Content>
 					{title && (
 						<h1 className="text-5xl font-bold text-center text-white">

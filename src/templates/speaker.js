@@ -4,9 +4,10 @@ import { graphql } from 'gatsby';
 import SEO from '../components/seo';
 import Intro from '../components/intro';
 import Talks from '../components/talks';
-import SpeakerNav from '../components/speakers/postNav';
+import Section, { Content, Heading, Sidebar } from '../components/section';
+import { Button } from '../components/link';
 
-export default function SingleSpeakerPage({ data }) {
+export default function SingleSpeakerPage({ data, location }) {
 	const { data: speaker } = data.speaker;
 	const { edges: talks = [] } = data.talks;
 	let { description } = speaker;
@@ -19,24 +20,38 @@ export default function SingleSpeakerPage({ data }) {
 		<>
 			<SEO
 				title={speaker.title}
-				description={description ? description.excerpt : ''}
-				pathname={speaker.path}
+				description={description?.excerpt}
+				image={speaker.avatar?.localFiles[0]?.publicURL}
+				location={location}
 			/>
 
 			<Intro
 				title={speaker.title}
-				excerpt={description ? description.html : ''}
+				excerpt={speaker.talks.length}
+				image={speaker?.banner}
 			/>
 
-			<section>
-				<div>
-					<SpeakerNav data={speaker} />
-				</div>
+			<Section>
+				<Sidebar>
+					<Heading as="h2">About</Heading>
+					{description && (
+						<div dangerouslySetInnerHTML={{ __html: description.html }} />
+					)}
 
-				<div>
-					<Talks talks={talks} />
-				</div>
-			</section>
+					{speaker.ministry && (
+						<p className="mt-6">
+							{speaker.website && (
+								<Button to={speaker.website}>{speaker.ministry}</Button>
+							)}
+							{!speaker.website && speaker.ministry}
+						</p>
+					)}
+				</Sidebar>
+
+				<Content>
+					<Talks className="flex flex-col gap-6" talks={talks} />
+				</Content>
+			</Section>
 		</>
 	);
 }
@@ -50,12 +65,27 @@ export const query = graphql`
 			}
 			data {
 				title
+				role
 				ministry
 				website
 				description {
 					childMarkdownRemark {
 						excerpt
 						html
+					}
+				}
+				avatar {
+					localFiles {
+						publicURL
+					}
+				}
+				banner {
+					localFiles {
+						childImageSharp {
+							fluid(maxWidth: 1600) {
+								...GatsbyImageSharpFluid_tracedSVG
+							}
+						}
 					}
 				}
 				clips {
@@ -66,6 +96,11 @@ export const query = graphql`
 					data {
 						title
 						path
+					}
+				}
+				talks {
+					data {
+						title
 					}
 				}
 			}

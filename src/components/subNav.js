@@ -1,9 +1,9 @@
 import React from 'react';
 import Link from './link';
 
-export default function SubNav({ title, links = [], ...other }) {
+export default function SubNav({ className, links = [], title }) {
 	return (
-		<nav {...other}>
+		<nav className={className}>
 			{title && (
 				<h2 className="mb-3 text-sm font-bold tracking-wide text-gray-500 uppercase lg:mb-2 lg:text-xs">
 					{title}

@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link as GatsbyLink } from 'gatsby';
+import classnames from 'classnames';
 
 // Since DOM elements <a> cannot receive activeClassName,
 // destructure the prop here and pass it only to GatsbyLink
 export default function Link({
+	className,
 	activeClassName = 'is-active',
 	children,
 	to,
@@ -19,6 +21,7 @@ export default function Link({
 		return (
 			<GatsbyLink
 				to={to}
+				className={className}
 				activeClassName={activeClassName}
 				rel="canonical"
 				{...other}
@@ -29,8 +32,29 @@ export default function Link({
 	}
 
 	return (
-		<a href={to} {...other}>
+		<a className={className} href={to} {...other}>
 			{children}
 		</a>
+	);
+}
+
+export function Button({
+	className,
+	activeClassName = 'is-active',
+	children,
+	to,
+	...other
+}) {
+	return (
+		<Link
+			className={classnames(
+				'bg-gray-600 rounded py-2 px-4 text-white inline-block hover:shadow-lg transition duration-300',
+				className
+			)}
+			to={to}
+			{...other}
+		>
+			{children}
+		</Link>
 	);
 }

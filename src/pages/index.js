@@ -10,29 +10,13 @@ import TalksNav from '../components/talks/nav';
 import Section, { Content, Heading, Sidebar } from '../components/section';
 import Speakers from '../components/speakers';
 
-export default function IndexPage({ data }) {
+export default function IndexPage({ data, location }) {
 	const { edges: talks = [] } = data.talks;
 	const { edges: speakers = [] } = data.speakers;
 
 	return (
 		<>
-			<SEO
-				title="Weekly sermons to elevate your spiritual heartbeat."
-				keywords={[
-					'tread',
-					'talks',
-					'Jesus',
-					'Christ',
-					'God',
-					'preaching',
-					'religion',
-					'sermons',
-					'fitness',
-					'workout',
-					'health',
-					'excercise',
-				]}
-			/>
+			<SEO title="Excercise Your Inner Man" location={location} />
 
 			<Intro
 				title="Workout your salvation."
@@ -52,7 +36,7 @@ export default function IndexPage({ data }) {
 
 				<Sidebar>
 					<div className="sticky top-10">
-						<Heading>Featured Talks</Heading>
+						<Heading as="h2">Featured Talks</Heading>
 						<div className="mb-8 prose">
 							<p>
 								<strong>Don't know what to listen to?</strong> Try starting with
@@ -74,7 +58,7 @@ export default function IndexPage({ data }) {
 			<Section separator>
 				<Sidebar>
 					<div className="sticky top-10">
-						<Heading>Featured Speakers</Heading>
+						<Heading as="h2">Featured Speakers</Heading>
 						<p>
 							Have you listened to one of these faithful ministers of the
 							Gospel?

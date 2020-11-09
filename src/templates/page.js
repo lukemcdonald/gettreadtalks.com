@@ -4,7 +4,7 @@ import { graphql } from 'gatsby';
 import SEO from '../components/seo';
 import Section, { Content } from '../components/section';
 
-export default function SinglePage({ data }) {
+export default function SinglePage({ data, location }) {
 	const { data: page } = data.page;
 
 	return (
@@ -12,11 +12,11 @@ export default function SinglePage({ data }) {
 			<SEO
 				title={page.title}
 				description={page.content.childMarkdownRemark.excerpt}
-				pathname={page.path}
+				location={location}
 			/>
 
 			<Section>
-				<Content type="article" className="prose prose-lg">
+				<Content as="article" className="prose prose-lg">
 					<header>
 						<h1 className="text-4xl text-gray-900">{page.title}</h1>
 					</header>

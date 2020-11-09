@@ -6,7 +6,7 @@ import Intro from '../components/intro';
 import Talks from '../components/talks';
 import TopicsNav from '../components/topics/postNav';
 
-export default function SingleTopicPage({ data }) {
+export default function SingleTopicPage({ data, location }) {
 	const { data: topic } = data.topic;
 	const { edges: talks = [] } = data.talks;
 
@@ -14,11 +14,7 @@ export default function SingleTopicPage({ data }) {
 
 	return (
 		<>
-			<SEO
-				title={topic.title}
-				description={description}
-				pathname={topic.path}
-			/>
+			<SEO title={topic.title} description={description} location={location} />
 
 			<Intro title={topic.title} excerpt={description} />
 

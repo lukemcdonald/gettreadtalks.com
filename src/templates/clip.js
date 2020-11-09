@@ -29,8 +29,8 @@ export default class SingleClipPage extends Component {
 	}
 
 	getParsedMedia() {
-		const mediaLink = this.props.data.clip.data.link.childMarkdownRemark
-			.rawMarkdownBody;
+		const { data } = this.props;
+		const mediaLink = data.clip.data.link.childMarkdownRemark.rawMarkdownBody;
 		return urlParser.parse(mediaLink);
 	}
 
@@ -49,7 +49,8 @@ export default class SingleClipPage extends Component {
 
 	render() {
 		const { mediaUrl } = this.state;
-		const { data: clip } = this.props.data.airtable;
+		const { data, location } = this.props;
+		const { data: clip } = data.clip;
 
 		const { html: mediaHtml, htmlAst: media } = clip.link.childMarkdownRemark;
 
@@ -59,11 +60,13 @@ export default class SingleClipPage extends Component {
 			title: clip.title,
 			speakers: clip.speakers
 				? `<em>by</em> ${clip.speakers
-						.map(({ data }) => data.title)
+						.map(({ data: speaker }) => speaker.title)
 						.join(', ')}`
 				: null,
 			topics: clip.topics
-				? `<em>on</em> ${clip.topics.map(({ data }) => data.title).join(', ')}`
+				? `<em>on</em> ${clip.topics
+						.map(({ data: topic }) => topic.title)
+						.join(', ')}`
 				: null,
 		};
 
@@ -72,8 +75,8 @@ export default class SingleClipPage extends Component {
 				<SEO
 					title={mapObjectToString(['title', 'speakers'], meta)}
 					description={objectToString(meta)}
-					pathname={clip.path}
 					image={mediaUrl}
+					location={location}
 				/>
 
 				<Intro

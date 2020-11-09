@@ -7,17 +7,13 @@ import SEO from '../../components/seo';
 import Talks from '../../components/talks';
 import TalksNav from '../../components/talks/nav';
 
-export default function FeaturedTalksPage({ data }) {
+export default function FeaturedTalksPage({ data, location }) {
 	const { edges: talks } = data.talks;
 	const currentTalks = getCurrentPosts(talks);
 
 	return (
 		<>
-			<SEO
-				title="Featured Talks"
-				keywords={['featured', 'talks', 'sermons', 'treadtalks']}
-				pathname="/talks/featured/"
-			/>
+			<SEO title="Featured Talks" location={location} />
 
 			<Intro
 				title="Featured Talks"

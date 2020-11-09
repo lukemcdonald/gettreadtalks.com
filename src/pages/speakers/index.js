@@ -5,16 +5,12 @@ import Intro from '../../components/intro';
 import SEO from '../../components/seo';
 import Speakers from '../../components/speakers';
 
-export default function SpeakersPage({ data }) {
+export default function SpeakersPage({ data, location }) {
 	const { edges: speakers = [] } = data.speakers;
 
 	return (
 		<>
-			<SEO
-				title="Speakers"
-				keywords={['speakers', 'pastors', 'evangelists']}
-				pathname="/speakers/"
-			/>
+			<SEO title="Speakers" location={location} />
 
 			<Intro title="Speakers" />
 

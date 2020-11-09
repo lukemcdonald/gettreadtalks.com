@@ -6,16 +6,12 @@ import SEO from '../../components/seo';
 
 import Clips from '../../components/clips';
 
-export default function ClipsPage({ data }) {
+export default function ClipsPage({ data, location }) {
 	const { edges: clips = [] } = data.clips;
 
 	return (
 		<>
-			<SEO
-				title="Clips"
-				keywords={['clips', 'talks', 'sermons', 'treadtalks']}
-				pathname="/clips/"
-			/>
+			<SEO title="Clips" location={location} />
 
 			<Intro
 				title="Tiny Talks"

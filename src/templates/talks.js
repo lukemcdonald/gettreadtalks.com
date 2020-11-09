@@ -7,20 +7,17 @@ import Talks from '../components/talks';
 import TalksNav from '../components/talks/nav';
 import Pagination from '../components/pagination';
 
-export default function ArchiveTalksPage({ data, pageContext }) {
+export default function ArchiveTalksPage({ data, location, pageContext }) {
 	const { edges: talks = [] } = data.talks;
 
 	return (
 		<>
-			<SEO
-				title="Talks"
-				keywords={['talks', 'sermons', 'treadtalks']}
-				pathname="/talks/"
-			/>
+			<SEO title="Talks" />
 
 			<Intro
 				title="Talks"
 				excerpt="Weekly sermons to elevate your spiritual heartbeat."
+				location={location}
 			/>
 
 			<section>
