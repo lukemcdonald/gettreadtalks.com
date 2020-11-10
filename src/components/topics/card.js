@@ -7,7 +7,7 @@ export default function TopicCard({ topic }) {
 	return (
 		<Card id={topic.id} className="flex">
 			<div>
-				{topic.title && <Title level="2">{topic.title}</Title>}
+				{topic.title && <Title as="h2">{topic.title}</Title>}
 
 				<Meta>
 					{topic.publishedTalksCount && (

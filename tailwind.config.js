@@ -42,9 +42,16 @@ module.exports = {
 				15: '0.15',
 			},
 		},
-		container: {
-			center: true,
+		aspectRatio: {
+			'16x9': [16, 9],
 		},
+		container: (theme) => ({
+			center: true,
+			padding: {
+				DEFAULT: theme('padding.4'),
+				sm: theme('padding.6'),
+			},
+		}),
 		typography: (theme) => ({
 			default: {
 				css: {
@@ -107,7 +114,12 @@ module.exports = {
 			},
 		}),
 	},
+	variants: {
+		aspectRatio: ['responsive'],
+	},
 	plugins: [
 		require('@tailwindcss/typography'),
+		require('tailwindcss-responsive-embed'),
+		require('tailwindcss-aspect-ratio'),
 	],
 };

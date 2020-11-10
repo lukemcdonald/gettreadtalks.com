@@ -1,123 +1,52 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { graphql } from 'gatsby';
-import urlParser from 'js-video-url-parser';
-import Link from '../components/link';
-import { mapObjectToString, objectToString } from '../utilities';
-
-import Intro from '../components/intro';
 import SEO from '../components/seo';
-import Speakers from '../components/speakers';
-import Topics from '../components/topics';
+import Section, { Content, Heading, Sidebar } from '../components/section';
+import { replaceAll } from '../utilities';
+import Intro from '../components/intro';
 
-export default class SinlgeTalkPage extends Component {
-	constructor(props) {
-		super(props);
+export default function Talk({ data, location }) {
+	const { data: talk } = data.talk;
+	const media = talk?.link?.childMarkdownRemark;
+	const video = media?.htmlAst.children[0].children[0];
+	const hasVideo = media?.htmlAst.children[0].children[0].tagName === 'iframe';
+	console.log(media.html);
 
-		this.state = {
-			mediaUrl: '',
-		};
-	}
+	return (
+		<>
+			<SEO
+				title={`${talk.title} by ${talk.speaker}`}
+				description={`Listen to ${talk.title} by ${talk.speaker} from ${talk.scripture}.`}
+				location={location}
+			/>
 
-	componentDidMount() {
-		this.setParsedMedia();
-	}
-
-	componentWillMount() {
-		this.setParsedMedia();
-	}
-
-	getParsedMedia() {
-		const mediaLink = this.props.data.talk.data.link.childMarkdownRemark
-			.rawMarkdownBody;
-		return urlParser.parse(mediaLink);
-	}
-
-	async setParsedMedia() {
-		const parsedMedia = this.getParsedMedia();
-
-		if (parsedMedia) {
-			const mediaUrl = urlParser.create({
-				videoInfo: parsedMedia,
-				format: 'longImage',
-			});
-
-			this.setState({ mediaUrl });
-		}
-	}
-
-	render() {
-		const { mediaUrl } = this.state;
-		const { data, location } = this.props;
-		const { data: talk } = data.talk;
-
-		const { html: mediaHtml, htmlAst: media } = talk.link.childMarkdownRemark;
-
-		const mediaObject = media.children[0].children[0] || '';
-
-		const meta = {
-			title: talk.title,
-			speakers: talk.speakers
-				? `<em>by</em> ${talk.speakers
-						.map(({ data: speaker }) => speaker.title)
-						.join(', ')}`
-				: null,
-			scripture: talk.scripture ? `<em>from</em> ${talk.scripture}` : null,
-			topics: talk.topics
-				? `<em>on</em> ${talk.topics
-						.map(({ data: topic }) => topic.title)
-						.join(', ')}`
-				: null,
-		};
-
-		return (
-			<>
-				<SEO
-					title={mapObjectToString(['title', 'speakers'], meta)}
-					description={objectToString(meta)}
-					image={mediaUrl}
-					location={location}
-				/>
-
-				<Intro
-					title={talk.title}
-					excerpt={mapObjectToString(['speakers', 'scripture'], meta)}
-				>
-					{mediaObject.tagName === 'iframe' && (
-						<div
-							className="responsive-media"
-							dangerouslySetInnerHTML={{ __html: mediaHtml }}
-						/>
-					)}
-
-					{mediaObject.tagName === 'a' && (
-						<p>
-							<Link to={mediaObject.properties.href}>
-								Listen to Talk &rarr;
-							</Link>
-						</p>
-					)}
+			{hasVideo && (
+				<Intro className="py-16">
+					<figure
+						className="embed-responsive aspect-ratio-16x9"
+						dangerouslySetInnerHTML={{
+							__html: media.html.replace(/<p>|<\/p>/g, ''),
+						}}
+					/>
 				</Intro>
+			)}
 
-				<section>
-					{talk.speakers && (
-						<div>
-							<h2>{talk.speakers.length === 1 ? `Speaker` : `Speakers`}</h2>
-							<Speakers data={talk.speakers} />
-						</div>
-					)}
-				</section>
-
-				<section>
-					{talk.topics && (
-						<div>
-							<h2>{talk.topics.length === 1 ? `Topic` : `Topics`}</h2>
-							<Topics topics={talk.topics} />
-						</div>
-					)}
-				</section>
-			</>
-		);
-	}
+			<Section>
+				<Sidebar>
+					<Heading>Topics</Heading>
+					<ul>
+						<li>TOPIC name</li>
+					</ul>
+				</Sidebar>
+				<Content>
+					<h1>{talk.title}</h1>
+					<h2>
+						By {talk.speaker} from {talk.scripture}
+					</h2>
+				</Content>
+			</Section>
+		</>
+	);
 }
 
 export const query = graphql`
@@ -126,7 +55,6 @@ export const query = graphql`
 			id
 			data {
 				title
-				path
 				link {
 					childMarkdownRemark {
 						html
@@ -136,10 +64,6 @@ export const query = graphql`
 				}
 				scripture
 				topics {
-					id
-					fields {
-						slug
-					}
 					data {
 						title
 						publishedTalksCount

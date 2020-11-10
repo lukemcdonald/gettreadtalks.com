@@ -5,8 +5,8 @@ import SiteNav from './nav';
 
 export default function SiteHeader({ siteTitle }) {
 	return (
-		<header className="px-4 border-t-4 border-red-600 bg-gradient-to-b from-gray-50 sm:px-6">
-			<div className="max-w-screen-xl py-10 m-auto">
+		<header className="border-t-4 border-red-600 bg-gradient-to-b from-gray-50">
+			<div className="container max-w-screen-xl py-10">
 				<nav className="flex items-center justify-between text-gray-900">
 					<h1>
 						<Link to="/" className="block">

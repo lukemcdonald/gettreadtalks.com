@@ -12,8 +12,8 @@ export default function Talk({ talk }) {
 				))}
 
 			<div>
-				{talk.title && <Title level="2">{talk.title}</Title>}
-				{talk.subtitle && <SubTitle level="3">{talk.subtitle}</SubTitle>}
+				{talk.title && <Title as="h2">{talk.title}</Title>}
+				{talk.subtitle && <SubTitle as="h3">{talk.subtitle}</SubTitle>}
 
 				<Meta>
 					{talk.speakers.map(({ id, data, fields }) => (

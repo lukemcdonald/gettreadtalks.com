@@ -33,7 +33,7 @@ export default function Intro({ children, image, excerpt, title }) {
 			)}
 
 			<Section as="div" className="z-20 p-6 md:absolute md:inset-x-0">
-				<Content>
+				<Content className="sm:col-span-3">
 					{title && (
 						<h1 className="text-5xl font-bold text-center text-white">
 							{title}
@@ -45,7 +45,7 @@ export default function Intro({ children, image, excerpt, title }) {
 							dangerouslySetInnerHTML={{ __html: excerpt }}
 						/>
 					)}
-					{children && <div>{children}</div>}
+					{children}
 				</Content>
 			</Section>
 		</section>

@@ -9,7 +9,7 @@ export default function Card({ children, className, ...props }) {
 		<article
 			{...props}
 			className={classnames(
-				'relative flex items-center flex-grow gap-4 p-4 text-gray-700 bg-white rounded-t hover:z-10 hover:border-red-600 hover:shadow-lg md:border md:border-gray-300 md:rounded md:transition md:duration-300',
+				'relative flex items-center flex-grow gap-4 p-4 text-gray-700 transition duration-300 bg-white border border-gray-300 rounded hover:z-10 hover:border-red-600 hover:shadow-lg',
 				className
 			)}
 		>
@@ -45,9 +45,7 @@ export function SubTitle({ children, className, as }) {
 
 export function Meta({ children, className }) {
 	return (
-		<div
-			className={classnames('mt-px leading-6 text-sm text-gray-500', className)}
-		>
+		<div className={classnames('mt-1 text-sm text-gray-500', className)}>
 			{children}
 		</div>
 	);

@@ -69,7 +69,7 @@ export default function IndexPage({ data, location }) {
 				<Content className="lg:col-span-9">
 					<Speakers
 						speakers={shuffle(speakers).slice(0, 6)}
-						className="grid grid-cols-3 gap-6"
+						className="flex flex-col gap-6 lg:grid lg:grid-cols-2 xl:grid-cols-3"
 						size="small"
 					/>
 				</Content>

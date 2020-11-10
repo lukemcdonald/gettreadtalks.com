@@ -7,20 +7,13 @@ import FauxLink from '../fauxLink';
 
 // console.log(textSize);
 
-export default function SpeakerCard({ size, speaker }) {
+export default function SpeakerCard({ speaker }) {
 	return (
 		<Card id={speaker.id}>
 			{speaker.avatar && <Avatar data={speaker.avatar} title={speaker.title} />}
 
 			<div>
-				{speaker.title && (
-					<Title
-						level="2"
-						className={classnames('', size === 'small' ? 'text-sm' : '')}
-					>
-						{speaker.title}
-					</Title>
-				)}
+				{speaker.title && <Title as="h2">{speaker.title}</Title>}
 
 				<Meta>
 					{speaker.role && <span>{speaker.role}&nbsp;</span>}
