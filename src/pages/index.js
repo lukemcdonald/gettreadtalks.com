@@ -22,6 +22,7 @@ export default function IndexPage({ data, location }) {
 				title="Workout your salvation."
 				excerpt="Weekly sermons to elevate your spiritual heartbeat."
 				image={data.file}
+				fullscreen
 			/>
 
 			<Section className="relative">

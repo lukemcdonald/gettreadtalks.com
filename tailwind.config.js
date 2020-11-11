@@ -38,9 +38,6 @@ module.exports = {
 				'65ch': '65ch',
 				'73ch': '73ch',
 			},
-			opacity: {
-				15: '0.15',
-			},
 		},
 		aspectRatio: {
 			'16x9': [16, 9],

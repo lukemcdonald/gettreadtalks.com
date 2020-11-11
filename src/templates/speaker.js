@@ -10,18 +10,13 @@ import { Button } from '../components/link';
 export default function SingleSpeakerPage({ data, location }) {
 	const { data: speaker } = data.speaker;
 	const { edges: talks = [] } = data.talks;
-	let { description } = speaker;
-
-	if (description) {
-		description = description.childMarkdownRemark;
-	}
 
 	return (
 		<>
 			<SEO
 				title={speaker.title}
-				description={description?.excerpt}
-				image={speaker.avatar?.localFiles[0]?.publicURL}
+				description={speaker.description?.childMarkdownRemark.excerpt}
+				image={speaker.avatar?.localFiles?.[0]?.publicURL}
 				location={location}
 			/>
 
@@ -34,16 +29,19 @@ export default function SingleSpeakerPage({ data, location }) {
 			<Section>
 				<Sidebar>
 					<Heading as="h2">About</Heading>
-					{description && (
-						<div dangerouslySetInnerHTML={{ __html: description.html }} />
-					)}
+					<div
+						dangerouslySetInnerHTML={{
+							__html: speaker.description?.childMarkdownRemark.html,
+						}}
+					/>
 
 					{speaker.ministry && (
 						<p className="mt-6">
 							{speaker.website && (
 								<Button to={speaker.website}>{speaker.ministry}</Button>
 							)}
-							{!speaker.website && speaker.ministry}
+
+							{!speaker.website && <span>{speaker.ministry}</span>}
 						</p>
 					)}
 				</Sidebar>

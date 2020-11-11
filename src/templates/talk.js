@@ -1,16 +1,17 @@
 import React from 'react';
 import { graphql } from 'gatsby';
+import classnames from 'classnames';
+
 import SEO from '../components/seo';
 import Section, { Content, Heading, Sidebar } from '../components/section';
-import { replaceAll } from '../utilities';
 import Intro from '../components/intro';
+
+import IntroStyles from '../components/intro.module.css';
 
 export default function Talk({ data, location }) {
 	const { data: talk } = data.talk;
 	const media = talk?.link?.childMarkdownRemark;
-	const video = media?.htmlAst.children[0].children[0];
 	const hasVideo = media?.htmlAst.children[0].children[0].tagName === 'iframe';
-	console.log(media.html);
 
 	return (
 		<>
@@ -21,9 +22,19 @@ export default function Talk({ data, location }) {
 			/>
 
 			{hasVideo && (
-				<Intro className="py-16">
+				<Intro
+					className={IntroStyles.bgGradient}
+					align="wide"
+					fullscreen
+					title={talk.title}
+					excerpt={`${talk.speaker} ${
+						talk.scripture
+							? `<span class="text-gray-500">&bull;</span> ${talk.scripture}`
+							: ''
+					}`}
+				>
 					<figure
-						className="embed-responsive aspect-ratio-16x9"
+						className="mt-10 rounded shadow-lg embed-responsive aspect-ratio-16x9"
 						dangerouslySetInnerHTML={{
 							__html: media.html.replace(/<p>|<\/p>/g, ''),
 						}}
@@ -63,31 +74,11 @@ export const query = graphql`
 					}
 				}
 				scripture
+				speaker
 				topics {
 					data {
 						title
 						publishedTalksCount
-					}
-				}
-				speakers {
-					id
-					fields {
-						slug
-					}
-					data {
-						title
-						role
-						ministry
-						website
-						avatar {
-							localFiles {
-								childImageSharp {
-									fluid(maxWidth: 128) {
-										...GatsbyImageSharpFluid_tracedSVG
-									}
-								}
-							}
-						}
 					}
 				}
 			}
