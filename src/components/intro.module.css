@@ -1,7 +1,4 @@
-.intro {
+.intro-bg {
   min-height: 300px;
-
-  img {
-    filter: grayscale(100%);
-  }
+  opacity: 0;
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { graphql } from 'gatsby';
+import { graphql, useStaticQuery } from 'gatsby';
 import { shuffle } from '../utilities';
 
 import Intro from '../components/intro';
@@ -21,7 +21,7 @@ export default function IndexPage({ data, location }) {
 			<Intro
 				title="Workout your salvation."
 				excerpt="Weekly sermons to elevate your spiritual heartbeat."
-				image={{ name: 'billy-graham-preaching-header' }}
+				image={data.file}
 			/>
 
 			<Section className="relative">
@@ -140,6 +140,13 @@ export const query = graphql`
 							}
 						}
 					}
+				}
+			}
+		}
+		file(relativePath: { eq: "billy-graham-preaching-header.jpg" }) {
+			childImageSharp {
+				fluid(grayscale: true) {
+					...GatsbyImageSharpFluid_tracedSVG
 				}
 			}
 		}

@@ -82,7 +82,7 @@ export const query = graphql`
 				banner {
 					localFiles {
 						childImageSharp {
-							fluid(maxWidth: 1600) {
+							fluid(maxWidth: 1600, grayscale: true) {
 								...GatsbyImageSharpFluid_tracedSVG
 							}
 						}

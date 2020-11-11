@@ -1,53 +1,41 @@
 import React from 'react';
 import classnames from 'classnames';
-import Img from 'gatsby-image';
-import Images from './images';
+import BackgroundImage from 'gatsby-background-image';
 import styles from './intro.module.css';
 import Section, { Content } from './section';
 
 export default function Intro({ children, image, excerpt, title }) {
+	const imageSrc = image?.localFiles?.[0] || image || '';
+
 	return (
-		<section
-			className={classnames(
-				'flex items-center justify-center overflow-hidden text-gray-400 bg-gray-900 max-h-screen-50 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 z-10 relative',
-				styles.intro
-			)}
-		>
-			{image && (
-				<figure className="flex-grow hidden opacity-15 md:block">
-					{image.localFiles && (
-						<Img
-							alt={title}
-							fluid={image?.localFiles[0]?.childImageSharp?.fluid}
-						/>
+		<>
+			{imageSrc && (
+				<BackgroundImage
+					alt={title}
+					fluid={imageSrc.childImageSharp.fluid}
+					className={classnames(
+						'w-full intro-bg max-h-screen-50 flex items-center justify-center',
+						styles.introBg
 					)}
+				>
+					<div className="absolute inset-0 z-0 opacity-75 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900" />
 
-					{image.name && (
-						<Images>
-							{(images) => (
-								<Img alt={title} fluid={images[image.name]?.fluid} />
-							)}
-						</Images>
-					)}
-				</figure>
+					<Content className="relative sm:col-span-3">
+						{title && (
+							<h1 className="text-5xl font-bold text-center text-white">
+								{title}
+							</h1>
+						)}
+						{excerpt && (
+							<div
+								className="mt-2 text-2xl font-light text-center text-gray-400"
+								dangerouslySetInnerHTML={{ __html: excerpt }}
+							/>
+						)}
+						{children}
+					</Content>
+				</BackgroundImage>
 			)}
-
-			<Section as="div" className="z-20 p-6 md:absolute md:inset-x-0">
-				<Content className="sm:col-span-3">
-					{title && (
-						<h1 className="text-5xl font-bold text-center text-white">
-							{title}
-						</h1>
-					)}
-					{excerpt && (
-						<div
-							className="mt-2 text-2xl font-light text-center"
-							dangerouslySetInnerHTML={{ __html: excerpt }}
-						/>
-					)}
-					{children}
-				</Content>
-			</Section>
-		</section>
+		</>
 	);
 }
