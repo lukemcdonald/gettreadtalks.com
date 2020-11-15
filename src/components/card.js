@@ -9,7 +9,7 @@ export default function Card({ children, className, ...props }) {
 		<article
 			{...props}
 			className={classnames(
-				'relative flex items-center flex-grow gap-4 p-4 text-gray-700 transition duration-300 bg-white border border-gray-300 rounded hover:z-10 hover:border-red-600 hover:shadow-lg',
+				'relative flex items-center flex-grow p-4 text-gray-700 transition duration-300 bg-white border border-gray-300 rounded hover:z-10 hover:border-red-600 hover:shadow-lg',
 				className
 			)}
 		>
@@ -64,7 +64,7 @@ export function MetaLink({ children, className, to }) {
 
 export function Avatar({ data, title }) {
 	return (
-		<figure className="w-16 h-16">
+		<figure className="w-16 h-16 mr-4">
 			{data && (
 				<Img
 					className="w-16 h-16 rounded-full"

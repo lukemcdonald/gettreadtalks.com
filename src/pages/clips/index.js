@@ -16,7 +16,9 @@ export default function ClipsPage({ data, location }) {
 			<Section>
 				<Sidebar>
 					<Heading>Tiny Talks</Heading>
-					<p>Be encouraged by these short Christ centered montages.</p>
+					<div className="prose">
+						<p>Be encouraged by these short Christ centered montages.</p>
+					</div>
 				</Sidebar>
 
 				<Content>

@@ -17,12 +17,12 @@ const links = [
 
 export default function Nav() {
 	return (
-		<div className="flex items-center gap-6">
+		<div className="flex items-center">
 			{links.map((link) => (
 				<Link
 					key={link.label}
 					to={link.path}
-					className="text-lg font-medium hover:text-red-600"
+					className="mr-6 text-lg font-medium hover:text-red-600"
 					activeClassName="uppercase font-extrabold text-red-600 tracking-tight"
 				>
 					{link.label}

@@ -6,7 +6,9 @@ import Section, { Content } from './section';
 const IntroContent = ({ align, children, excerpt, title }) => (
 	<Content className="relative sm:col-span-3" align={align}>
 		{title && (
-			<h1 className="text-5xl font-bold text-center text-white">{title}</h1>
+			<h1 className="text-5xl font-bold leading-tight text-center text-white">
+				{title}
+			</h1>
 		)}
 
 		{excerpt && (

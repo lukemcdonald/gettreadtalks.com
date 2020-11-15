@@ -4,6 +4,7 @@ import { graphql } from 'gatsby';
 import Intro from '../../components/intro';
 import SEO from '../../components/seo';
 import Speakers from '../../components/speakers';
+import Section, { Content, Heading, Sidebar } from '../../components/section';
 
 export default function SpeakersPage({ data, location }) {
 	const { edges: speakers = [] } = data.speakers;
@@ -12,13 +13,22 @@ export default function SpeakersPage({ data, location }) {
 		<>
 			<SEO title="Speakers" location={location} />
 
-			<Intro title="Speakers" />
+			<Section>
+				<Sidebar>
+					<Heading>Speakers</Heading>
+					<div className="prose">
+						<p>
+							Here you will find an archive of faithful ambassadors of Christ.
+							Choose a speaker to view their available talks.
+						</p>
 
-			<section>
-				<div>
+						<p>Speakers are listed in alphabetical order by last name.</p>
+					</div>
+				</Sidebar>
+				<Content>
 					<Speakers speakers={speakers} />
-				</div>
-			</section>
+				</Content>
+			</Section>
 		</>
 	);
 }

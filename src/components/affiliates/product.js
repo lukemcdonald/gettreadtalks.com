@@ -33,9 +33,9 @@ class Product extends Component {
 
 		return (
 			<Card className="relative bg-gray-800 border-none">
-				<div className="flex items-center gap-4 ">
+				<div className="flex items-center">
 					{post.image && (
-						<figure className="w-16">
+						<figure className="w-16 mr-4">
 							<Image
 								alt={post.title}
 								fluid={post.image.localFiles[0].childImageSharp.fluid}

@@ -22,7 +22,13 @@ export default function SingleSpeakerPage({ data, location }) {
 
 			<Intro
 				title={speaker.title}
-				excerpt={speaker.talks.length}
+				excerpt={`${speaker.role} ${
+					speaker.ministry && speaker.role
+						? `<span class="text-gray-500">&bull;</span>`
+						: ''
+				}
+            ${speaker.ministry}
+				`}
 				image={speaker?.banner}
 			/>
 

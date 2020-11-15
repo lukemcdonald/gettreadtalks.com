@@ -1,5 +1,5 @@
 import React from 'react';
-import { graphql, useStaticQuery } from 'gatsby';
+import { graphql } from 'gatsby';
 import { shuffle } from '../utilities';
 
 import Intro from '../components/intro';
@@ -20,7 +20,7 @@ export default function IndexPage({ data, location }) {
 
 			<Intro
 				title="Workout your salvation."
-				excerpt="Weekly sermons to elevate your spiritual heartbeat."
+				excerpt="Christ centered sermons to elevate your spiritual heartbeat."
 				image={data.file}
 				fullscreen
 			/>
@@ -50,7 +50,7 @@ export default function IndexPage({ data, location }) {
 
 				<Content>
 					<Talks
-						className="flex flex-col gap-6"
+						className="grid grid-cols-1 gap-6"
 						talks={shuffle(talks).slice(0, 5)}
 					/>
 				</Content>

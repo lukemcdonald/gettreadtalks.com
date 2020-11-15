@@ -1,38 +1,41 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import Intro from '../components/intro';
 import SEO from '../components/seo';
 import Talks from '../components/talks';
-import TalksNav from '../components/talks/nav';
 import Pagination from '../components/pagination';
+import Section, { Content, Heading, Sidebar } from '../components/section';
+import TopicNav from '../components/topics/topicNav';
 
 export default function ArchiveTalksPage({ data, location, pageContext }) {
 	const { edges: talks = [] } = data.talks;
+	const { edges: topics = [] } = data.topics;
 
 	return (
 		<>
-			<SEO title="Talks" />
+			<SEO title="Talks" location={location} />
 
-			<Intro
-				title="Talks"
-				excerpt="Weekly sermons to elevate your spiritual heartbeat."
-				location={location}
-			/>
+			<Section>
+				<Sidebar>
+					<Heading>Talks</Heading>
+					<div className="prose">
+						<p>
+							Christ centered sermons that will elevate your spiritual
+							heartbeat.
+						</p>
+					</div>
+				</Sidebar>
 
-			<section>
-				<div>
-					<TalksNav />
-				</div>
-
-				<div>
-					<Talks talks={talks} />
-				</div>
-
-				<div>
+				<Content>
+					<Talks className="grid grid-cols-1 gap-6" talks={talks} />
 					<Pagination pageContext={pageContext} />
-				</div>
-			</section>
+				</Content>
+
+				<Sidebar>
+					<Heading>Topics</Heading>
+					<TopicNav topics={topics} />
+				</Sidebar>
+			</Section>
 		</>
 	);
 }
@@ -73,6 +76,20 @@ export const query = graphql`
 								}
 							}
 						}
+					}
+				}
+			}
+		}
+		topics: allAirtableTopic(sort: { fields: data___title, order: ASC }) {
+			edges {
+				node {
+					id
+					fields {
+						slug
+					}
+					data {
+						title
+						publishedTalksCount
 					}
 				}
 			}

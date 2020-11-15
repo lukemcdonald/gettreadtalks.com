@@ -2,31 +2,28 @@ import React from 'react';
 import { graphql } from 'gatsby';
 
 import SEO from '../components/seo';
-import Intro from '../components/intro';
 import Talks from '../components/talks';
-import TopicsNav from '../components/topics/postNav';
+import Section, { Content, Heading, Sidebar } from '../components/section';
 
 export default function SingleTopicPage({ data, location }) {
 	const { data: topic } = data.topic;
 	const { edges: talks = [] } = data.talks;
 
-	const { description = `Talks on the topic of ${topic.title}.` } = topic;
+	const description = `Talks on the topic of ${topic.title}.`;
 
 	return (
 		<>
 			<SEO title={topic.title} description={description} location={location} />
 
-			<Intro title={topic.title} excerpt={description} />
-
-			<section>
-				<div>
-					<TopicsNav />
-				</div>
-
-				<div>
-					<Talks talks={talks} />
-				</div>
-			</section>
+			<Section>
+				<Sidebar>
+					<Heading>{topic.title}</Heading>
+					<div className="prose">{description}</div>
+				</Sidebar>
+				<Content>
+					<Talks className="grid grid-cols-1 gap-6" talks={talks} />
+				</Content>
+			</Section>
 		</>
 	);
 }

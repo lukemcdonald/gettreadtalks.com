@@ -15,10 +15,12 @@ export default function SeriesPage({ data, location }) {
 			<Section>
 				<Sidebar>
 					<Heading>Sermon Series</Heading>
-					<p>
-						Each series includes talks that were given by one or more speakers
-						on the same topic or book of the Bible.
-					</p>
+					<div className="prose">
+						<p>
+							Each series includes talks that were given by one or more speakers
+							on the same topic or book of the Bible.
+						</p>
+					</div>
 				</Sidebar>
 				<Content>
 					<Series className="flex flex-col gap-6" series={series} />
