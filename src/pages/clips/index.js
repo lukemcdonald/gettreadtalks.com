@@ -1,10 +1,10 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import Intro from '../../components/intro';
 import SEO from '../../components/seo';
 
 import Clips from '../../components/clips';
+import Section, { Content, Heading, Sidebar } from '../../components/section';
 
 export default function ClipsPage({ data, location }) {
 	const { edges: clips = [] } = data.clips;
@@ -13,16 +13,16 @@ export default function ClipsPage({ data, location }) {
 		<>
 			<SEO title="Clips" location={location} />
 
-			<Intro
-				title="Tiny Talks"
-				excerpt="Be encouraged by these shorter Christ centered montages."
-			/>
+			<Section>
+				<Sidebar>
+					<Heading>Tiny Talks</Heading>
+					<p>Be encouraged by these short Christ centered montages.</p>
+				</Sidebar>
 
-			<section>
-				<div>
-					<Clips clips={clips} />
-				</div>
-			</section>
+				<Content>
+					<Clips className="flex flex-col gap-6" clips={clips} />
+				</Content>
+			</Section>
 		</>
 	);
 }
@@ -35,11 +35,17 @@ export const query = graphql`
 			edges {
 				node {
 					id
+					fields {
+						slug
+					}
 					data {
 						title
 						publishedDate(formatString: "YYYYMMDD")
 						speakers {
 							id
+							fields {
+								slug
+							}
 							data {
 								title
 								avatar {
@@ -52,13 +58,7 @@ export const query = graphql`
 									}
 								}
 							}
-							fields {
-								slug
-							}
 						}
-					}
-					fields {
-						slug
 					}
 				}
 			}

@@ -1,9 +1,9 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import Intro from '../../components/intro';
 import SEO from '../../components/seo';
 import Series from '../../components/series';
+import Section, { Content, Heading, Sidebar } from '../../components/section';
 
 export default function SeriesPage({ data, location }) {
 	const { edges: series = [] } = data.series;
@@ -12,13 +12,18 @@ export default function SeriesPage({ data, location }) {
 		<>
 			<SEO title="Sermon Series" location={location} />
 
-			<Intro title="Sermon Series" />
-
-			<section>
-				<div>
-					<Series series={series} />
-				</div>
-			</section>
+			<Section>
+				<Sidebar>
+					<Heading>Sermon Series</Heading>
+					<p>
+						Each series includes talks that were given by one or more speakers
+						on the same topic or book of the Bible.
+					</p>
+				</Sidebar>
+				<Content>
+					<Series className="flex flex-col gap-6" series={series} />
+				</Content>
+			</Section>
 		</>
 	);
 }
