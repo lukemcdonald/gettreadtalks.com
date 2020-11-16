@@ -37,12 +37,10 @@ async function createClipPages({ graphql, actions, reporter }) {
 	const { data, errors } = await graphql(`
 		query {
 			clips: allAirtableClip(filter: { data: { title: { ne: null } } }) {
-				edges {
-					node {
-						id
-						fields {
-							slug
-						}
+				nodes {
+					id
+					fields {
+						slug
 					}
 				}
 			}
@@ -54,13 +52,13 @@ async function createClipPages({ graphql, actions, reporter }) {
 		return;
 	}
 
-	data.clips.edges.forEach((post) => {
+	data.clips.nodes.forEach((post) => {
 		actions.createPage({
-			path: `${post.node.fields.slug}`,
+			path: `${post.fields.slug}`,
 			component: path.resolve(`./src/templates/clip.js`),
 			context: {
-				id: post.node.id,
-				slug: post.node.fields.slug,
+				id: post.id,
+				slug: post.fields.slug,
 			},
 		});
 	});
@@ -70,12 +68,10 @@ async function createPagePages({ graphql, actions, reporter }) {
 	const { data, errors } = await graphql(`
 		query {
 			pages: allAirtablePage(filter: { data: { title: { ne: null } } }) {
-				edges {
-					node {
-						id
-						fields {
-							slug
-						}
+				nodes {
+					id
+					fields {
+						slug
 					}
 				}
 			}
@@ -87,13 +83,13 @@ async function createPagePages({ graphql, actions, reporter }) {
 		return;
 	}
 
-	data.pages.edges.forEach((post) => {
+	data.pages.nodes.forEach((post) => {
 		actions.createPage({
-			path: `${post.node.fields.slug}`,
+			path: `${post.fields.slug}`,
 			component: path.resolve(`./src/templates/page.js`),
 			context: {
-				id: post.node.id,
-				slug: post.node.fields.slug,
+				id: post.id,
+				slug: post.fields.slug,
 			},
 		});
 	});
@@ -103,12 +99,10 @@ async function createSeriesPages({ graphql, actions, reporter }) {
 	const { data, errors } = await graphql(`
 		query {
 			series: allAirtableSerie(filter: { data: { title: { ne: null } } }) {
-				edges {
-					node {
-						id
-						fields {
-							slug
-						}
+				nodes {
+					id
+					fields {
+						slug
 					}
 				}
 			}
@@ -120,13 +114,13 @@ async function createSeriesPages({ graphql, actions, reporter }) {
 		return;
 	}
 
-	data.series.edges.forEach((post) => {
+	data.series.nodes.forEach((post) => {
 		actions.createPage({
-			path: `${post.node.fields.slug}`,
+			path: `${post.fields.slug}`,
 			component: path.resolve(`./src/templates/series.js`),
 			context: {
-				id: post.node.id,
-				slug: post.node.fields.slug,
+				id: post.id,
+				slug: post.fields.slug,
 			},
 		});
 	});
@@ -136,12 +130,10 @@ async function createSpeakerPages({ graphql, actions, reporter }) {
 	const { data, errors } = await graphql(`
 		query {
 			speakers: allAirtableSpeaker(filter: { data: { title: { ne: null } } }) {
-				edges {
-					node {
-						id
-						fields {
-							slug
-						}
+				nodes {
+					id
+					fields {
+						slug
 					}
 				}
 			}
@@ -153,13 +145,13 @@ async function createSpeakerPages({ graphql, actions, reporter }) {
 		return;
 	}
 
-	data.speakers.edges.forEach((post) => {
+	data.speakers.nodes.forEach((post) => {
 		actions.createPage({
-			path: `${post.node.fields.slug}`,
+			path: `${post.fields.slug}`,
 			component: path.resolve(`./src/templates/speaker.js`),
 			context: {
-				id: post.node.id,
-				slug: post.node.fields.slug,
+				id: post.id,
+				slug: post.fields.slug,
 			},
 		});
 	});
@@ -169,12 +161,10 @@ async function createTalkPages({ graphql, actions, reporter }) {
 	const { data, errors } = await graphql(`
 		query {
 			talks: allAirtableTalk(filter: { data: { title: { ne: null } } }) {
-				edges {
-					node {
-						id
-						fields {
-							slug
-						}
+				nodes {
+					id
+					fields {
+						slug
 					}
 				}
 			}
@@ -186,13 +176,13 @@ async function createTalkPages({ graphql, actions, reporter }) {
 		return;
 	}
 
-	data.talks.edges.forEach((post) => {
+	data.talks.nodes.forEach((post) => {
 		actions.createPage({
-			path: `${post.node.fields.slug}`,
+			path: `${post.fields.slug}`,
 			component: path.resolve(`./src/templates/talk.js`),
 			context: {
-				id: post.node.id,
-				slug: post.node.fields.slug,
+				id: post.id,
+				slug: post.fields.slug,
 			},
 		});
 	});
@@ -200,7 +190,7 @@ async function createTalkPages({ graphql, actions, reporter }) {
 	// Paginate content pages.
 	paginate({
 		createPage: actions.createPage,
-		items: data.talks.edges,
+		items: data.talks.nodes,
 		itemsPerPage: 12,
 		component: path.resolve('./src/templates/talks.js'),
 		pathPrefix: ({ pageNumber }) =>
@@ -212,12 +202,10 @@ async function createTopicPages({ graphql, actions, reporter }) {
 	const { data, errors } = await graphql(`
 		query {
 			topics: allAirtableTopic(filter: { data: { title: { ne: null } } }) {
-				edges {
-					node {
-						id
-						fields {
-							slug
-						}
+				nodes {
+					id
+					fields {
+						slug
 					}
 				}
 			}
@@ -229,13 +217,13 @@ async function createTopicPages({ graphql, actions, reporter }) {
 		return;
 	}
 
-	data.topics.edges.forEach((post) => {
+	data.topics.nodes.forEach((post) => {
 		actions.createPage({
-			path: `${post.node.fields.slug}`,
+			path: `${post.fields.slug}`,
 			component: path.resolve(`./src/templates/topic.js`),
 			context: {
-				id: post.node.id,
-				slug: post.node.fields.slug,
+				id: post.id,
+				slug: post.fields.slug,
 			},
 		});
 	});

@@ -3,10 +3,10 @@ import { graphql } from 'gatsby';
 
 import SEO from '../../components/seo';
 import Topics from '../../components/topics';
-import Section, { Content } from '../../components/section';
+import Section, { Content, Heading, Sidebar } from '../../components/section';
 
 export default function TopicsPage({ data, location }) {
-	const { edges: topics = [] } = data.topics;
+	const { topics } = data;
 
 	return (
 		<>
@@ -17,12 +17,14 @@ export default function TopicsPage({ data, location }) {
 			/>
 
 			<Section>
+				<Sidebar>
+					<Heading>Topics</Heading>
+					<div className="prose">
+						<p>Listen to talks on one of these great topics.</p>
+					</div>
+				</Sidebar>
 				<Content>
-					<header className="prose prose-lg">
-						<h1 className="text-4xl font-bold text-gray-900">Topics</h1>
-						<span />
-					</header>
-					<Topics className="flex flex-col gap-6" topics={topics} />
+					<Topics className="grid grid-cols-1 gap-6" topics={topics.nodes} />
 				</Content>
 			</Section>
 		</>
@@ -32,16 +34,14 @@ export default function TopicsPage({ data, location }) {
 export const query = graphql`
 	query {
 		topics: allAirtableTopic(sort: { fields: data___title, order: ASC }) {
-			edges {
-				node {
-					id
-					fields {
-						slug
-					}
-					data {
-						title
-						publishedTalksCount
-					}
+			nodes {
+				id
+				fields {
+					slug
+				}
+				data {
+					title
+					publishedTalksCount
 				}
 			}
 		}

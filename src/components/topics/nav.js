@@ -6,8 +6,8 @@ export default function TopicsNav({ title, topics }) {
 
 	topics.map((topic) =>
 		links.push({
-			text: topic.node.data.title,
-			to: topic.node.fields.slug,
+			text: topic.data.title,
+			to: topic.fields.slug,
 		})
 	);
 

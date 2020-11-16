@@ -81,9 +81,7 @@ export const getFormatedPublishDate = () => {
 
 export const getCurrentPosts = (posts = {}, limit = null) => {
 	const today = getFormatedPublishDate();
-	const currentPosts = posts.filter(
-		({ node }) => node.data.publishedDate <= today
-	);
+	const currentPosts = posts.filter((post) => post.data.publishedDate <= today);
 
 	if (limit) {
 		return currentPosts.slice(0, limit);

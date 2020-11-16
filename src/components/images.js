@@ -7,20 +7,18 @@ import { graphql, StaticQuery } from 'gatsby';
 
 const imagesQuery = graphql`
 	query {
-		allFile(
+		images: allFile(
 			filter: {
 				extension: { regex: "/jpeg|jpg|png/" }
 				sourceInstanceName: { eq: "images" }
 			}
 		) {
-			edges {
-				node {
-					id
-					name
-					childImageSharp {
-						fluid(maxWidth: 1280) {
-							...GatsbyImageSharpFluid_tracedSVG
-						}
+			nodes {
+				id
+				name
+				childImageSharp {
+					fluid(maxWidth: 1280) {
+						...GatsbyImageSharpFluid_tracedSVG
 					}
 				}
 			}
@@ -31,12 +29,12 @@ const imagesQuery = graphql`
 export default function Images({ children }) {
 	return (
 		<StaticQuery query={imagesQuery}>
-			{({ allFile: { edges } }) =>
+			{({ images: { nodes } }) =>
 				children(
-					edges.reduce(
-						(allImages, edge) => ({
+					nodes.reduce(
+						(allImages, node) => ({
 							...allImages,
-							[edge.node.name]: edge.node.childImageSharp,
+							[node.name]: node.childImageSharp,
 						}),
 						{}
 					)

@@ -6,12 +6,11 @@ import Talks from '../components/talks';
 import Pagination from '../components/pagination';
 import Section, { Content, Heading, Sidebar } from '../components/section';
 import TopicsNav from '../components/topics/nav';
-import TalksNav from '../components/talks/nav';
 import Link from '../components/link';
+import TopicsFilter from '../components/topics/filter';
 
 export default function ArchiveTalksPage({ data, location, pageContext }) {
-	const { edges: talks = [] } = data.talks;
-	const { edges: topics = [] } = data.topics;
+	const { talks, topics } = data;
 
 	return (
 		<>
@@ -32,13 +31,14 @@ export default function ArchiveTalksPage({ data, location, pageContext }) {
 				</Sidebar>
 
 				<Content>
-					<Talks className="grid grid-cols-1 gap-6" talks={talks} />
+					<TopicsFilter />
+					<Talks className="grid grid-cols-1 gap-6" talks={talks.nodes} />
 					<Pagination pageContext={pageContext} />
 				</Content>
 
 				<Sidebar>
 					<Heading>Topics</Heading>
-					<TopicsNav topics={topics} />
+					<TopicsNav topics={topics.nodes} />
 				</Sidebar>
 			</Section>
 		</>
@@ -53,29 +53,27 @@ export const query = graphql`
 			filter: { data: { publishedDate: { ne: null } } }
 			sort: { fields: data___publishedDate, order: DESC }
 		) {
-			edges {
-				node {
-					id
-					fields {
-						slug
-					}
-					data {
-						title
-						publishedDate(formatString: "YYYYMMDD")
-						scripture
-						speakers {
-							id
-							fields {
-								slug
-							}
-							data {
-								title
-								avatar {
-									localFiles {
-										childImageSharp {
-											fluid(maxWidth: 128) {
-												...GatsbyImageSharpFluid_tracedSVG
-											}
+			nodes {
+				id
+				fields {
+					slug
+				}
+				data {
+					title
+					publishedDate(formatString: "YYYYMMDD")
+					scripture
+					speakers {
+						id
+						fields {
+							slug
+						}
+						data {
+							title
+							avatar {
+								localFiles {
+									childImageSharp {
+										fluid(maxWidth: 128) {
+											...GatsbyImageSharpFluid_tracedSVG
 										}
 									}
 								}
@@ -86,16 +84,14 @@ export const query = graphql`
 			}
 		}
 		topics: allAirtableTopic(sort: { fields: data___title, order: ASC }) {
-			edges {
-				node {
-					id
-					fields {
-						slug
-					}
-					data {
-						title
-						publishedTalksCount
-					}
+			nodes {
+				id
+				fields {
+					slug
+				}
+				data {
+					title
+					publishedTalksCount
 				}
 			}
 		}

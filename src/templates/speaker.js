@@ -8,8 +8,10 @@ import Section, { Content, Heading, Sidebar } from '../components/section';
 import { Button } from '../components/link';
 
 export default function SingleSpeakerPage({ data, location }) {
-	const { data: speaker } = data.speaker;
-	const { edges: talks = [] } = data.talks;
+	const {
+		talks,
+		speaker: { data: speaker },
+	} = data;
 
 	return (
 		<>
@@ -53,7 +55,7 @@ export default function SingleSpeakerPage({ data, location }) {
 				</Sidebar>
 
 				<Content>
-					<Talks className="flex flex-col gap-6" talks={talks} />
+					<Talks className="flex flex-col gap-6" talks={talks.nodes} />
 				</Content>
 			</Section>
 		</>
@@ -63,10 +65,6 @@ export default function SingleSpeakerPage({ data, location }) {
 export const query = graphql`
 	query($id: String!) {
 		speaker: airtableSpeaker(id: { eq: $id }) {
-			id
-			fields {
-				slug
-			}
 			data {
 				title
 				role
@@ -113,29 +111,27 @@ export const query = graphql`
 			filter: { data: { speakers: { elemMatch: { id: { eq: $id } } } } }
 			sort: { fields: data___publishedDate, order: DESC }
 		) {
-			edges {
-				node {
-					id
-					fields {
-						slug
-					}
-					data {
-						title
-						path
-						scripture
-						speakers {
-							id
-							fields {
-								slug
-							}
-							data {
-								title
-								avatar {
-									localFiles {
-										childImageSharp {
-											fluid(maxWidth: 128) {
-												...GatsbyImageSharpFluid_tracedSVG
-											}
+			nodes {
+				id
+				fields {
+					slug
+				}
+				data {
+					title
+					path
+					scripture
+					speakers {
+						id
+						fields {
+							slug
+						}
+						data {
+							title
+							avatar {
+								localFiles {
+									childImageSharp {
+										fluid(maxWidth: 128) {
+											...GatsbyImageSharpFluid_tracedSVG
 										}
 									}
 								}

@@ -10,8 +10,8 @@ import Section, { Content, Heading, Sidebar } from '../../components/section';
 import Link from '../../components/link';
 
 export default function FeaturedTalksPage({ data, location }) {
-	const { edges: talks } = data.talks;
-	const currentTalks = getCurrentPosts(talks);
+	const { talks } = data;
+	const currentTalks = getCurrentPosts(talks.nodes);
 
 	return (
 		<>
@@ -41,36 +41,34 @@ export const query = graphql`
 			filter: { data: { favorite: { eq: true }, publishedDate: { ne: null } } }
 			sort: { fields: data___publishedDate, order: DESC }
 		) {
-			edges {
-				node {
-					id
-					data {
-						title
-						publishedDate(formatString: "YYYYMMDD")
-						scripture
-						favorite
-						speakers {
-							id
-							data {
-								title
-								avatar {
-									localFiles {
-										childImageSharp {
-											fluid(maxWidth: 128) {
-												...GatsbyImageSharpFluid_tracedSVG
-											}
+			nodes {
+				id
+				data {
+					title
+					publishedDate(formatString: "YYYYMMDD")
+					scripture
+					favorite
+					speakers {
+						id
+						data {
+							title
+							avatar {
+								localFiles {
+									childImageSharp {
+										fluid(maxWidth: 128) {
+											...GatsbyImageSharpFluid_tracedSVG
 										}
 									}
 								}
 							}
-							fields {
-								slug
-							}
+						}
+						fields {
+							slug
 						}
 					}
-					fields {
-						slug
-					}
+				}
+				fields {
+					slug
 				}
 			}
 		}

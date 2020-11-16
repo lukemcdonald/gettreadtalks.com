@@ -7,7 +7,7 @@ import Speakers from '../../components/speakers';
 import Section, { Content, Heading, Sidebar } from '../../components/section';
 
 export default function SpeakersPage({ data, location }) {
-	const { edges: speakers = [] } = data.speakers;
+	const { speakers } = data;
 
 	return (
 		<>
@@ -26,7 +26,10 @@ export default function SpeakersPage({ data, location }) {
 					</div>
 				</Sidebar>
 				<Content>
-					<Speakers className="grid grid-cols-1 gap-6" speakers={speakers} />
+					<Speakers
+						className="grid grid-cols-1 gap-6"
+						speakers={speakers.nodes}
+					/>
 				</Content>
 			</Section>
 		</>
@@ -39,23 +42,21 @@ export const pageQuery = graphql`
 			filter: { data: { title: { ne: null } } }
 			sort: { fields: data___lastName, order: ASC }
 		) {
-			edges {
-				node {
-					id
-					fields {
-						slug
-					}
-					data {
-						title
-						role
-						ministry
-						website
-						avatar {
-							localFiles {
-								childImageSharp {
-									fluid(maxWidth: 128) {
-										...GatsbyImageSharpFluid_tracedSVG
-									}
+			nodes {
+				id
+				fields {
+					slug
+				}
+				data {
+					title
+					role
+					ministry
+					website
+					avatar {
+						localFiles {
+							childImageSharp {
+								fluid(maxWidth: 128) {
+									...GatsbyImageSharpFluid_tracedSVG
 								}
 							}
 						}

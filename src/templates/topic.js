@@ -6,8 +6,10 @@ import Talks from '../components/talks';
 import Section, { Content, Heading, Sidebar } from '../components/section';
 
 export default function SingleTopicPage({ data, location }) {
-	const { data: topic } = data.topic;
-	const { edges: talks = [] } = data.talks;
+	const {
+		talks,
+		topic: { data: topic },
+	} = data;
 
 	const description = `Talks on the topic of ${topic.title}.`;
 
@@ -21,7 +23,7 @@ export default function SingleTopicPage({ data, location }) {
 					<div className="prose">{description}</div>
 				</Sidebar>
 				<Content>
-					<Talks className="grid grid-cols-1 gap-6" talks={talks} />
+					<Talks className="grid grid-cols-1 gap-6" talks={talks.nodes} />
 				</Content>
 			</Section>
 		</>
@@ -43,29 +45,27 @@ export const query = graphql`
 			filter: { data: { topics: { elemMatch: { id: { eq: $id } } } } }
 			sort: { fields: data___publishedDate, order: DESC }
 		) {
-			edges {
-				node {
-					id
-					fields {
-						slug
-					}
-					data {
-						title
-						path
-						scripture
-						speakers {
-							id
-							fields {
-								slug
-							}
-							data {
-								title
-								avatar {
-									localFiles {
-										childImageSharp {
-											fluid(maxWidth: 128) {
-												...GatsbyImageSharpFluid_tracedSVG
-											}
+			nodes {
+				id
+				fields {
+					slug
+				}
+				data {
+					title
+					path
+					scripture
+					speakers {
+						id
+						fields {
+							slug
+						}
+						data {
+							title
+							avatar {
+								localFiles {
+									childImageSharp {
+										fluid(maxWidth: 128) {
+											...GatsbyImageSharpFluid_tracedSVG
 										}
 									}
 								}

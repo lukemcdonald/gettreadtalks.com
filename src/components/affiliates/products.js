@@ -7,32 +7,30 @@ const query = graphql`
 			filter: { data: { title: { ne: null } } }
 			sort: { fields: data___type, order: ASC }
 		) {
-			edges {
-				node {
-					id
-					data {
-						title
-						subtitle
-						link {
-							childMarkdownRemark {
-								rawMarkdownBody
-							}
+			nodes {
+				id
+				data {
+					title
+					subtitle
+					link {
+						childMarkdownRemark {
+							rawMarkdownBody
 						}
-						affiliate
-						type
-						productId
-						description {
-							childMarkdownRemark {
-								excerpt
-								html
-							}
+					}
+					affiliate
+					type
+					productId
+					description {
+						childMarkdownRemark {
+							excerpt
+							html
 						}
-						image {
-							localFiles {
-								childImageSharp {
-									fluid(maxWidth: 128) {
-										...GatsbyImageSharpFluid_tracedSVG
-									}
+					}
+					image {
+						localFiles {
+							childImageSharp {
+								fluid(maxWidth: 128) {
+									...GatsbyImageSharpFluid_tracedSVG
 								}
 							}
 						}
@@ -46,12 +44,12 @@ const query = graphql`
 export default function Products({ children }) {
 	return (
 		<StaticQuery query={query}>
-			{({ affiliates: { edges } }) =>
+			{({ affiliates: { nodes } }) =>
 				children(
-					edges.reduce(
-						(allLinks, edge, index) => ({
+					nodes.reduce(
+						(allLinks, node, index) => ({
 							...allLinks,
-							[index]: edge.node.data,
+							[index]: node.data,
 						}),
 						{}
 					)

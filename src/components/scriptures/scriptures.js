@@ -4,13 +4,11 @@ import { graphql, StaticQuery } from 'gatsby';
 const query = graphql`
 	query {
 		scriptures: allAirtableScripture {
-			edges {
-				node {
-					id
-					data {
-						verse
-						content
-					}
+			nodes {
+				id
+				data {
+					verse
+					content
 				}
 			}
 		}
@@ -20,12 +18,12 @@ const query = graphql`
 export default function Scriptures({ children }) {
 	return (
 		<StaticQuery query={query}>
-			{({ scriptures: { edges } }) =>
+			{({ scriptures: { nodes } }) =>
 				children(
-					edges.reduce(
-						(allScriptures, edge, index) => ({
+					nodes.reduce(
+						(allScriptures, node, index) => ({
 							...allScriptures,
-							[index]: edge.node.data,
+							[index]: node.data,
 						}),
 						{}
 					)

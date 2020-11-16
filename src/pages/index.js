@@ -9,10 +9,10 @@ import TalksNav from '../components/talks/nav';
 
 import Section, { Content, Heading, Sidebar } from '../components/section';
 import Speakers from '../components/speakers';
+import TopicsFilter from '../components/topics/filter';
 
 export default function IndexPage({ data, location }) {
-	const { edges: talks = [] } = data.talks;
-	const { edges: speakers = [] } = data.speakers;
+	const { talks, speakers } = data;
 
 	return (
 		<>
@@ -49,9 +49,10 @@ export default function IndexPage({ data, location }) {
 				</Sidebar>
 
 				<Content>
+					<TopicsFilter />
 					<Talks
 						className="grid grid-cols-1 gap-6"
-						talks={shuffle(talks).slice(0, 5)}
+						talks={shuffle(talks.nodes).slice(0, 5)}
 					/>
 				</Content>
 			</Section>
@@ -69,7 +70,7 @@ export default function IndexPage({ data, location }) {
 
 				<Content className="lg:col-span-9">
 					<Speakers
-						speakers={shuffle(speakers).slice(0, 6)}
+						speakers={shuffle(speakers.nodes).slice(0, 6)}
 						className="flex flex-col gap-6 lg:grid lg:grid-cols-2 xl:grid-cols-3"
 						size="small"
 					/>
@@ -85,35 +86,33 @@ export const query = graphql`
 			filter: { data: { favorite: { eq: true }, publishedDate: { ne: null } } }
 			sort: { fields: data___publishedDate, order: DESC }
 		) {
-			edges {
-				node {
-					id
-					data {
-						title
-						publishedDate(formatString: "YYYYMMDD")
-						scripture
-						speakers {
-							id
-							data {
-								title
-								avatar {
-									localFiles {
-										childImageSharp {
-											fluid(maxWidth: 128) {
-												...GatsbyImageSharpFluid_tracedSVG
-											}
+			nodes {
+				id
+				data {
+					title
+					publishedDate(formatString: "YYYYMMDD")
+					scripture
+					speakers {
+						id
+						data {
+							title
+							avatar {
+								localFiles {
+									childImageSharp {
+										fluid(maxWidth: 128) {
+											...GatsbyImageSharpFluid_tracedSVG
 										}
 									}
 								}
 							}
-							fields {
-								slug
-							}
+						}
+						fields {
+							slug
 						}
 					}
-					fields {
-						slug
-					}
+				}
+				fields {
+					slug
 				}
 			}
 		}
@@ -121,22 +120,20 @@ export const query = graphql`
 			filter: { data: { favorite: { eq: true }, title: { ne: null } } }
 			sort: { fields: data___lastName, order: ASC }
 		) {
-			edges {
-				node {
-					id
-					fields {
-						slug
-					}
-					data {
-						title
-						ministry
-						website
-						avatar {
-							localFiles {
-								childImageSharp {
-									fluid(maxWidth: 128) {
-										...GatsbyImageSharpFluid_tracedSVG
-									}
+			nodes {
+				id
+				fields {
+					slug
+				}
+				data {
+					title
+					ministry
+					website
+					avatar {
+						localFiles {
+							childImageSharp {
+								fluid(maxWidth: 128) {
+									...GatsbyImageSharpFluid_tracedSVG
 								}
 							}
 						}

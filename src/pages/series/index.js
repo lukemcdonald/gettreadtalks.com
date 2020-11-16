@@ -6,7 +6,7 @@ import Series from '../../components/series';
 import Section, { Content, Heading, Sidebar } from '../../components/section';
 
 export default function SeriesPage({ data, location }) {
-	const { edges: series = [] } = data.series;
+	const { series } = data;
 
 	return (
 		<>
@@ -23,7 +23,7 @@ export default function SeriesPage({ data, location }) {
 					</div>
 				</Sidebar>
 				<Content>
-					<Series className="grid grid-cols-1 gap-6" series={series} />
+					<Series className="grid grid-cols-1 gap-6" series={series.nodes} />
 				</Content>
 			</Section>
 		</>
@@ -36,16 +36,14 @@ export const query = graphql`
 			filter: { data: { title: { ne: null } } }
 			sort: { fields: data___title, order: ASC }
 		) {
-			edges {
-				node {
-					id
-					fields {
-						slug
-					}
-					data {
-						title
-						publishedTalksCount
-					}
+			nodes {
+				id
+				fields {
+					slug
+				}
+				data {
+					title
+					publishedTalksCount
 				}
 			}
 		}

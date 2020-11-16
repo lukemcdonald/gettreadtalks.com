@@ -7,7 +7,7 @@ import Clips from '../../components/clips';
 import Section, { Content, Heading, Sidebar } from '../../components/section';
 
 export default function ClipsPage({ data, location }) {
-	const { edges: clips = [] } = data.clips;
+	const { clips } = data;
 
 	return (
 		<>
@@ -22,7 +22,7 @@ export default function ClipsPage({ data, location }) {
 				</Sidebar>
 
 				<Content>
-					<Clips className="grid grid-cols-1 gap-6" clips={clips} />
+					<Clips className="grid grid-cols-1 gap-6" clips={clips.nodes} />
 				</Content>
 			</Section>
 		</>
@@ -34,28 +34,26 @@ export const query = graphql`
 		clips: allAirtableClip(
 			sort: { fields: data___publishedDate, order: DESC }
 		) {
-			edges {
-				node {
-					id
-					fields {
-						slug
-					}
-					data {
-						title
-						publishedDate(formatString: "YYYYMMDD")
-						speakers {
-							id
-							fields {
-								slug
-							}
-							data {
-								title
-								avatar {
-									localFiles {
-										childImageSharp {
-											fluid(maxWidth: 128) {
-												...GatsbyImageSharpFluid_tracedSVG
-											}
+			nodes {
+				id
+				fields {
+					slug
+				}
+				data {
+					title
+					publishedDate(formatString: "YYYYMMDD")
+					speakers {
+						id
+						fields {
+							slug
+						}
+						data {
+							title
+							avatar {
+								localFiles {
+									childImageSharp {
+										fluid(maxWidth: 128) {
+											...GatsbyImageSharpFluid_tracedSVG
 										}
 									}
 								}
