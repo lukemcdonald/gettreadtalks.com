@@ -2,11 +2,11 @@ import React from 'react';
 
 import SubNav from '../subNav';
 
-export default () => {
+export default ({ title }) => {
 	const links = [
-		{ text: 'Featured Talks', to: '/talks/featured/' },
 		{ text: 'All Talks', to: '/talks/' },
+		{ text: 'Featured Talks', to: '/talks/featured/' },
 	];
 
-	return <SubNav title="Talks Navigation" links={links} />;
+	return <SubNav title={title} links={links} />;
 };

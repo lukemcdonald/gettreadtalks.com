@@ -5,7 +5,9 @@ import SEO from '../components/seo';
 import Talks from '../components/talks';
 import Pagination from '../components/pagination';
 import Section, { Content, Heading, Sidebar } from '../components/section';
-import TopicNav from '../components/topics/topicNav';
+import TopicsNav from '../components/topics/nav';
+import TalksNav from '../components/talks/nav';
+import Link from '../components/link';
 
 export default function ArchiveTalksPage({ data, location, pageContext }) {
 	const { edges: talks = [] } = data.talks;
@@ -18,12 +20,15 @@ export default function ArchiveTalksPage({ data, location, pageContext }) {
 			<Section>
 				<Sidebar>
 					<Heading>Talks</Heading>
-					<div className="prose">
+					<div className="mb-8 prose">
 						<p>
 							Christ centered sermons that will elevate your spiritual
 							heartbeat.
 						</p>
 					</div>
+					<Link className="font-medium" to="/talks/featured/">
+						Featured Talks &rarr;
+					</Link>
 				</Sidebar>
 
 				<Content>
@@ -33,7 +38,7 @@ export default function ArchiveTalksPage({ data, location, pageContext }) {
 
 				<Sidebar>
 					<Heading>Topics</Heading>
-					<TopicNav topics={topics} />
+					<TopicsNav topics={topics} />
 				</Sidebar>
 			</Section>
 		</>

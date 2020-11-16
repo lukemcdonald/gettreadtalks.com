@@ -23,7 +23,7 @@ export default function SeriesPage({ data, location }) {
 					</div>
 				</Sidebar>
 				<Content>
-					<Series className="flex flex-col gap-6" series={series} />
+					<Series className="grid grid-cols-1 gap-6" series={series} />
 				</Content>
 			</Section>
 		</>

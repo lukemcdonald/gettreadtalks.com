@@ -6,6 +6,8 @@ import Intro from '../../components/intro';
 import SEO from '../../components/seo';
 import Talks from '../../components/talks';
 import TalksNav from '../../components/talks/nav';
+import Section, { Content, Heading, Sidebar } from '../../components/section';
+import Link from '../../components/link';
 
 export default function FeaturedTalksPage({ data, location }) {
 	const { edges: talks } = data.talks;
@@ -15,20 +17,20 @@ export default function FeaturedTalksPage({ data, location }) {
 		<>
 			<SEO title="Featured Talks" location={location} />
 
-			<Intro
-				title="Featured Talks"
-				excerpt="Staff picked talks to elevate your spiritual heartbeat."
-			/>
-
-			<section>
-				<div>
-					<TalksNav />
-				</div>
-
-				<div>
-					<Talks talks={currentTalks} />
-				</div>
-			</section>
+			<Section>
+				<Sidebar>
+					<Heading>Featured Talks</Heading>
+					<div className="mb-8 prose">
+						<p>Hand picked talks to elevate your spiritual heartbeat.</p>
+					</div>
+					<Link className="font-medium" to="/talks/">
+						&larr; All Talks
+					</Link>
+				</Sidebar>
+				<Content>
+					<Talks className="grid grid-cols-1 gap-6" talks={currentTalks} />
+				</Content>
+			</Section>
 		</>
 	);
 }

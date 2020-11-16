@@ -26,7 +26,7 @@ export default function SpeakersPage({ data, location }) {
 					</div>
 				</Sidebar>
 				<Content>
-					<Speakers speakers={speakers} />
+					<Speakers className="grid grid-cols-1 gap-6" speakers={speakers} />
 				</Content>
 			</Section>
 		</>

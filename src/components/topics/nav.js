@@ -1,7 +1,7 @@
 import React from 'react';
 import SubNav from '../subNav';
 
-export default function TopicNav({ topics }) {
+export default function TopicsNav({ title, topics }) {
 	const links = [];
 
 	topics.map((topic) =>
@@ -11,5 +11,5 @@ export default function TopicNav({ topics }) {
 		})
 	);
 
-	return <SubNav title="Topics Navigation" links={links} />;
+	return <SubNav title={title} links={links} />;
 }

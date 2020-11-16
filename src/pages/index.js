@@ -44,7 +44,7 @@ export default function IndexPage({ data, location }) {
 								one of these favorites.
 							</p>
 						</div>
-						<TalksNav />
+						<TalksNav title="More Talks" />
 					</div>
 				</Sidebar>
 
