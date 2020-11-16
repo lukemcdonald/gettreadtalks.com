@@ -12,7 +12,6 @@ const links = [
 	{ label: 'Series', path: '/series/' },
 	{ label: 'Speakers', path: '/speakers/' },
 	{ label: 'Talks', path: '/talks/' },
-	{ label: 'Topics', path: '/topics/' },
 ];
 
 export default function Nav() {

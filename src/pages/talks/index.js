@@ -1,15 +1,14 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import SEO from '../components/seo';
-import Talks from '../components/talks';
-import Pagination from '../components/pagination';
-import Section, { Content, Heading, Sidebar } from '../components/section';
-import TopicsNav from '../components/topics/nav';
-import Link from '../components/link';
-import TopicsFilter from '../components/topics/filter';
+import SEO from '../../components/seo';
+import Talks from '../../components/talks';
+// import Pagination from '../../components/pagination';
+import Section, { Content, Heading, Sidebar } from '../../components/section';
+import TopicsNav from '../../components/topics/nav';
+import Link from '../../components/link';
 
-export default function ArchiveTalksPage({ data, location, pageContext }) {
+export default function TalksPage({ data, location, pageContext }) {
 	const { talks, topics } = data;
 
 	return (
@@ -31,9 +30,8 @@ export default function ArchiveTalksPage({ data, location, pageContext }) {
 				</Sidebar>
 
 				<Content>
-					<TopicsFilter />
 					<Talks className="grid grid-cols-1 gap-6" talks={talks.nodes} />
-					<Pagination pageContext={pageContext} />
+					{/* <Pagination pageContext={pageContext} /> */}
 				</Content>
 
 				<Sidebar>
@@ -46,11 +44,14 @@ export default function ArchiveTalksPage({ data, location, pageContext }) {
 }
 
 export const query = graphql`
-	query($limit: Int!, $skip: Int!) {
+	query($topic: [String]) {
 		talks: allAirtableTalk(
-			limit: $limit
-			skip: $skip
-			filter: { data: { publishedDate: { ne: null } } }
+			filter: {
+				data: {
+					publishedDate: { ne: null }
+					topics: { elemMatch: { data: { title: { in: $topic } } } }
+				}
+			}
 			sort: { fields: data___publishedDate, order: DESC }
 		) {
 			nodes {

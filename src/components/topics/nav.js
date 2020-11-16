@@ -2,7 +2,12 @@ import React from 'react';
 import SubNav from '../subNav';
 
 export default function TopicsNav({ title, topics }) {
-	const links = [];
+	const links = [
+		{
+			text: 'All Topics',
+			to: '/talks/',
+		},
+	];
 
 	topics.map((topic) =>
 		links.push({

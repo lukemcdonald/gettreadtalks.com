@@ -48,7 +48,7 @@ async function createClipPages({ graphql, actions, reporter }) {
 	`);
 
 	if (errors) {
-		reporter.panicOnBuild(`Error while running GraphQL query.`);
+		reporter.panicOnBuild(`Error while running GraphQL query for Clips.`);
 		return;
 	}
 
@@ -79,7 +79,7 @@ async function createPagePages({ graphql, actions, reporter }) {
 	`);
 
 	if (errors) {
-		reporter.panicOnBuild(`Error while running GraphQL query.`);
+		reporter.panicOnBuild(`Error while running GraphQL query for Pages.`);
 		return;
 	}
 
@@ -110,7 +110,7 @@ async function createSeriesPages({ graphql, actions, reporter }) {
 	`);
 
 	if (errors) {
-		reporter.panicOnBuild(`Error while running GraphQL query.`);
+		reporter.panicOnBuild(`Error while running GraphQL query for Series.`);
 		return;
 	}
 
@@ -141,7 +141,7 @@ async function createSpeakerPages({ graphql, actions, reporter }) {
 	`);
 
 	if (errors) {
-		reporter.panicOnBuild(`Error while running GraphQL query.`);
+		reporter.panicOnBuild(`Error while running GraphQL query for Speakers.`);
 		return;
 	}
 
@@ -172,7 +172,7 @@ async function createTalkPages({ graphql, actions, reporter }) {
 	`);
 
 	if (errors) {
-		reporter.panicOnBuild(`Error while running GraphQL query.`);
+		reporter.panicOnBuild(`Error while running GraphQL query for Talks.`);
 		return;
 	}
 
@@ -188,14 +188,14 @@ async function createTalkPages({ graphql, actions, reporter }) {
 	});
 
 	// Paginate content pages.
-	paginate({
-		createPage: actions.createPage,
-		items: data.talks.nodes,
-		itemsPerPage: 12,
-		component: path.resolve('./src/templates/talks.js'),
-		pathPrefix: ({ pageNumber }) =>
-			pageNumber === 0 ? `/talks` : `/talks/page`,
-	});
+	// paginate({
+	// 	createPage: actions.createPage,
+	// 	items: data.talks.nodes,
+	// 	itemsPerPage: 12,
+	// 	component: path.resolve('./src/templates/talks.js'),
+	// 	pathPrefix: ({ pageNumber }) =>
+	// 		pageNumber === 0 ? `/talks` : `/talks/page`,
+	// });
 }
 
 async function createTopicPages({ graphql, actions, reporter }) {
@@ -207,23 +207,27 @@ async function createTopicPages({ graphql, actions, reporter }) {
 					fields {
 						slug
 					}
+					data {
+						title
+					}
 				}
 			}
 		}
 	`);
 
 	if (errors) {
-		reporter.panicOnBuild(`Error while running GraphQL query.`);
+		reporter.panicOnBuild(`Error while running GraphQL query for Topics.`);
 		return;
 	}
 
 	data.topics.nodes.forEach((post) => {
 		actions.createPage({
 			path: `${post.fields.slug}`,
-			component: path.resolve(`./src/templates/topic.js`),
+			component: path.resolve(`./src/pages/talks/index.js`),
 			context: {
 				id: post.id,
 				slug: post.fields.slug,
+				topic: post.data.title,
 			},
 		});
 	});

@@ -33,7 +33,6 @@ export function Content({ align, as, children, className }) {
 		'header',
 		'section',
 	]);
-	console.log('Align', align);
 
 	const isWide = align === 'wide';
 

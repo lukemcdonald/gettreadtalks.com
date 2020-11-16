@@ -5,13 +5,23 @@ import SEO from '../components/seo';
 import Intro from '../components/intro';
 import Talks from '../components/talks';
 import Section, { Content, Heading, Sidebar } from '../components/section';
-import { Button } from '../components/link';
+import Link, { Button } from '../components/link';
+import { Avatar } from '../components/card';
 
 export default function SingleSpeakerPage({ data, location }) {
 	const {
 		talks,
 		speaker: { data: speaker },
 	} = data;
+
+	const speakerImage = `
+    <img
+      class="w-24 shadow-lg rounded-full block m-auto mb-4"
+      src="${speaker.avatar.localFiles[0].childImageSharp.fluid.src}"
+      alt="${speaker.title}"
+    />`;
+
+	console.log(speaker.avatar);
 
 	return (
 		<>
@@ -23,13 +33,13 @@ export default function SingleSpeakerPage({ data, location }) {
 			/>
 
 			<Intro
-				title={speaker.title}
-				excerpt={`${speaker.role} ${
+				title={`${speakerImage} ${speaker.title}`}
+				excerpt={`${speaker?.role ? speaker.role : ''} ${
 					speaker.ministry && speaker.role
 						? `<span class="text-gray-500">&bull;</span>`
 						: ''
 				}
-            ${speaker.ministry}
+            ${speaker?.ministry ? speaker.ministry : ''}
 				`}
 				image={speaker?.banner}
 			/>
@@ -38,24 +48,35 @@ export default function SingleSpeakerPage({ data, location }) {
 				<Sidebar>
 					<Heading as="h2">About</Heading>
 					<div
+						className="prose"
 						dangerouslySetInnerHTML={{
 							__html: speaker.description?.childMarkdownRemark.html,
 						}}
 					/>
 
 					{speaker.ministry && (
-						<p className="mt-6">
-							{speaker.website && (
-								<Button to={speaker.website}>{speaker.ministry}</Button>
-							)}
+						<>
+							<Heading as="h3" className="mt-8">
+								Ministry
+							</Heading>
 
-							{!speaker.website && <span>{speaker.ministry}</span>}
-						</p>
+							<p className="prose">
+								{speaker.website && (
+									<Link to={speaker.website}>{speaker.ministry}</Link>
+								)}
+
+								{!speaker.website && <span>{speaker.ministry}</span>}
+							</p>
+						</>
 					)}
 				</Sidebar>
 
 				<Content>
-					<Talks className="flex flex-col gap-6" talks={talks.nodes} />
+					<Talks
+						className="grid grid-cols-1 gap-6"
+						talks={talks.nodes}
+						hideAvatar
+					/>
 				</Content>
 			</Section>
 		</>
@@ -79,6 +100,11 @@ export const query = graphql`
 				avatar {
 					localFiles {
 						publicURL
+						childImageSharp {
+							fluid(maxWidth: 128) {
+								...GatsbyImageSharpFluid_tracedSVG
+							}
+						}
 					}
 				}
 				banner {

@@ -66,7 +66,7 @@ export default function Talk({ data, location }) {
 					</Sidebar>
 					<Content>
 						<Talks
-							className="flex flex-col gap-6"
+							className="grid grid-cols-1 gap-6"
 							talks={shuffle(talks).slice(0, 5)}
 						/>
 					</Content>

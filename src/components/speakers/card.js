@@ -5,8 +5,6 @@ import { textSize } from 'tailwindcss/defaultConfig';
 import Card, { Avatar, Meta, MetaLink, Title } from '../card';
 import FauxLink from '../fauxLink';
 
-// console.log(textSize);
-
 export default function SpeakerCard({ speaker }) {
 	return (
 		<Card id={speaker.id}>

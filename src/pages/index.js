@@ -9,7 +9,6 @@ import TalksNav from '../components/talks/nav';
 
 import Section, { Content, Heading, Sidebar } from '../components/section';
 import Speakers from '../components/speakers';
-import TopicsFilter from '../components/topics/filter';
 
 export default function IndexPage({ data, location }) {
 	const { talks, speakers } = data;
@@ -49,7 +48,6 @@ export default function IndexPage({ data, location }) {
 				</Sidebar>
 
 				<Content>
-					<TopicsFilter />
 					<Talks
 						className="grid grid-cols-1 gap-6"
 						talks={shuffle(talks.nodes).slice(0, 5)}
