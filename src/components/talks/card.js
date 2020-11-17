@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Card, { Avatar, Meta, MetaLink, SubTitle, Title } from '../card';
+import Card from '../card';
 import FauxLink from '../fauxLink';
 
 export default function Talk({ talk }) {
@@ -8,25 +8,28 @@ export default function Talk({ talk }) {
 		<Card id={talk.id}>
 			{!talk.hideAvatar &&
 				talk.speakers.map(({ id, data = { avatar: '', title: '' } }) => (
-					<Avatar key={id} data={data.avatar} title={data.title} />
+					<Card.Avatar key={id} image={data.avatar} title={data.title} />
 				))}
 
 			<div>
-				{talk.title && <Title as="h2">{talk.title}</Title>}
-				{talk.subtitle && <SubTitle as="h3">{talk.subtitle}</SubTitle>}
+				{talk.title && <Card.Title as="h2">{talk.title}</Card.Title>}
 
-				<Meta>
+				{talk.subtitle && (
+					<Card.SubTitle as="h3">{talk.subtitle}</Card.SubTitle>
+				)}
+
+				<Card.Meta>
 					{talk.speakers.map(({ id, data, fields }) => (
 						<span key={id}>
-							<MetaLink key={id} to={fields.slug}>
+							<Card.MetaLink key={id} to={fields.slug}>
 								{data.title}
-							</MetaLink>
+							</Card.MetaLink>
 							&nbsp;
 						</span>
 					))}
 
 					{talk.scripture && <span>&middot;&nbsp;{talk.scripture}</span>}
-				</Meta>
+				</Card.Meta>
 			</div>
 
 			<FauxLink to={talk.slug}>{`Listen to ${talk.title}`}</FauxLink>

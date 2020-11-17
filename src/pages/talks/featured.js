@@ -2,11 +2,9 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import { getCurrentPosts } from '../../utilities';
 
-import Intro from '../../components/intro';
 import SEO from '../../components/seo';
 import Talks from '../../components/talks';
-import TalksNav from '../../components/talks/nav';
-import Section, { Content, Heading, Sidebar } from '../../components/section';
+import Section from '../../components/section';
 import Link from '../../components/link';
 
 export default function FeaturedTalksPage({ data, location }) {
@@ -18,18 +16,21 @@ export default function FeaturedTalksPage({ data, location }) {
 			<SEO title="Featured Talks" location={location} />
 
 			<Section>
-				<Sidebar>
-					<Heading>Featured Talks</Heading>
+				<Section.Sidebar>
+					<Section.Heading as="h1">Featured Talks</Section.Heading>
+
 					<div className="mb-8 prose">
 						<p>Hand picked talks to elevate your spiritual heartbeat.</p>
 					</div>
+
 					<Link className="font-medium" to="/talks/">
 						&larr; All Talks
 					</Link>
-				</Sidebar>
-				<Content>
+				</Section.Sidebar>
+
+				<Section.Content>
 					<Talks className="grid grid-cols-1 gap-6" talks={currentTalks} />
-				</Content>
+				</Section.Content>
 			</Section>
 		</>
 	);

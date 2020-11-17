@@ -3,7 +3,7 @@ import { graphql } from 'gatsby';
 
 import SEO from '../../components/seo';
 import Series from '../../components/series';
-import Section, { Content, Heading, Sidebar } from '../../components/section';
+import Section from '../../components/section';
 
 export default function SeriesPage({ data, location }) {
 	const { series } = data;
@@ -13,18 +13,20 @@ export default function SeriesPage({ data, location }) {
 			<SEO title="Sermon Series" location={location} />
 
 			<Section>
-				<Sidebar>
-					<Heading>Sermon Series</Heading>
+				<Section.Sidebar>
+					<Section.Heading as="h1">Sermon Series</Section.Heading>
+
 					<div className="prose">
 						<p>
 							Each series includes talks that were given by one or more speakers
 							on the same topic or book of the Bible.
 						</p>
 					</div>
-				</Sidebar>
-				<Content>
+				</Section.Sidebar>
+
+				<Section.Content>
 					<Series className="grid grid-cols-1 gap-6" series={series.nodes} />
-				</Content>
+				</Section.Content>
 			</Section>
 		</>
 	);

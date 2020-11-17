@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 
 import SEO from '../components/seo';
-import Section, { Content, Heading, Sidebar } from '../components/section';
+import Section from '../components/section';
 import Intro from '../components/intro';
 
 import IntroStyles from '../components/intro.module.css';
@@ -25,17 +25,17 @@ export default function Talk({ data, location }) {
 			/>
 
 			{hasVideo && (
-				<Intro
-					className={IntroStyles.bgGradient}
-					align="wide"
-					fullscreen
-					title={talk.title}
-					excerpt={`<span class="text-gray-500">by</span>  ${talk.speaker} ${
-						talk.scripture
-							? `<span class="text-gray-500">&bull;</span> ${talk.scripture}`
-							: ''
-					}`}
-				>
+				<Intro className={IntroStyles.bgGradient} align="wide" fullscreen>
+					<Intro.Title>{talk.title}</Intro.Title>
+					<Intro.Tagline>
+						<span className="text-gray-500">by</span> {talk.speaker}
+						{talk.scripture && (
+							<>
+								<span className="text-gray-500">&bull;</span> {talk.scripture}
+							</>
+						)}
+					</Intro.Tagline>
+
 					<figure
 						className="mt-10 rounded shadow-lg embed-responsive aspect-ratio-16x9"
 						dangerouslySetInnerHTML={{
@@ -47,8 +47,9 @@ export default function Talk({ data, location }) {
 
 			{talks.length > 0 && (
 				<Section>
-					<Sidebar>
-						<Heading>Keep Going</Heading>
+					<Section.Sidebar>
+						<Section.Heading as="h2">Keep Going</Section.Heading>
+
 						<div className="prose">
 							<p>
 								<em>Don't stop here!</em> Enjoy{' '}
@@ -63,13 +64,14 @@ export default function Talk({ data, location }) {
 								</p>
 							)}
 						</div>
-					</Sidebar>
-					<Content>
+					</Section.Sidebar>
+
+					<Section.Content>
 						<Talks
 							className="grid grid-cols-1 gap-6"
 							talks={shuffle(talks).slice(0, 5)}
 						/>
-					</Content>
+					</Section.Content>
 				</Section>
 			)}
 		</>

@@ -1,10 +1,9 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import Intro from '../../components/intro';
 import SEO from '../../components/seo';
 import Speakers from '../../components/speakers';
-import Section, { Content, Heading, Sidebar } from '../../components/section';
+import Section from '../../components/section';
 
 export default function SpeakersPage({ data, location }) {
 	const { speakers } = data;
@@ -14,8 +13,9 @@ export default function SpeakersPage({ data, location }) {
 			<SEO title="Speakers" location={location} />
 
 			<Section>
-				<Sidebar>
-					<Heading>Speakers</Heading>
+				<Section.Sidebar>
+					<Section.Heading as="h1">Speakers</Section.Heading>
+
 					<div className="prose">
 						<p>
 							Here you will find an archive of faithful ambassadors of Christ.
@@ -24,13 +24,14 @@ export default function SpeakersPage({ data, location }) {
 
 						<p>Speakers are listed in alphabetical order by last name.</p>
 					</div>
-				</Sidebar>
-				<Content>
+				</Section.Sidebar>
+
+				<Section.Content>
 					<Speakers
 						className="grid grid-cols-1 gap-6"
 						speakers={speakers.nodes}
 					/>
-				</Content>
+				</Section.Content>
 			</Section>
 		</>
 	);

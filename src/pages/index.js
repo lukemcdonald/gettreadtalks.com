@@ -3,12 +3,11 @@ import { graphql } from 'gatsby';
 import { shuffle } from '../utilities';
 
 import Intro from '../components/intro';
+import Section from '../components/section';
 import SEO from '../components/seo';
+import Speakers from '../components/speakers';
 import Talks from '../components/talks';
 import TalksNav from '../components/talks/nav';
-
-import Section, { Content, Heading, Sidebar } from '../components/section';
-import Speakers from '../components/speakers';
 
 export default function IndexPage({ data, location }) {
 	const { talks, speakers } = data;
@@ -17,12 +16,12 @@ export default function IndexPage({ data, location }) {
 		<>
 			<SEO title="Excercise Your Inner Man" location={location} />
 
-			<Intro
-				title="Workout your salvation."
-				excerpt="Christ centered sermons to elevate your spiritual heartbeat."
-				image={data.file}
-				fullscreen
-			/>
+			<Intro image={data.file} fullscreen>
+				<Intro.Title>Workout your salvation.</Intro.Title>
+				<Intro.Tagline>
+					<p>Christ centered sermons to elevate your spiritual heartbeat.</p>
+				</Intro.Tagline>
+			</Intro>
 
 			<Section className="relative">
 				<ul
@@ -34,45 +33,48 @@ export default function IndexPage({ data, location }) {
 					<li className="text-right">King</li>
 				</ul>
 
-				<Sidebar>
+				<Section.Sidebar>
 					<div className="sticky top-10">
-						<Heading as="h2">Featured Talks</Heading>
+						<Section.Heading as="h2">Featured Talks</Section.Heading>
+
 						<div className="mb-8 prose">
 							<p>
 								<strong>Don't know what to listen to?</strong> Try starting with
 								one of these favorites.
 							</p>
 						</div>
+
 						<TalksNav title="More Talks" />
 					</div>
-				</Sidebar>
+				</Section.Sidebar>
 
-				<Content>
+				<Section.Content>
 					<Talks
 						className="grid grid-cols-1 gap-6"
 						talks={shuffle(talks.nodes).slice(0, 5)}
 					/>
-				</Content>
+				</Section.Content>
 			</Section>
 
 			<Section separator>
-				<Sidebar>
+				<Section.Sidebar>
 					<div className="sticky top-10">
-						<Heading as="h2">Featured Speakers</Heading>
+						<Section.Heading as="h2">Featured Speakers</Section.Heading>
+
 						<p>
 							Have you listened to one of these faithful ministers of the
 							Gospel?
 						</p>
 					</div>
-				</Sidebar>
+				</Section.Sidebar>
 
-				<Content className="lg:col-span-9">
+				<Section.Content className="lg:col-span-9">
 					<Speakers
 						speakers={shuffle(speakers.nodes).slice(0, 6)}
 						className="flex flex-col gap-6 lg:grid lg:grid-cols-2 xl:grid-cols-3"
 						size="small"
 					/>
-				</Content>
+				</Section.Content>
 			</Section>
 		</>
 	);

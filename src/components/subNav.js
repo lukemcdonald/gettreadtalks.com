@@ -1,11 +1,11 @@
 import React from 'react';
 import Link from './link';
-import { Heading } from './section';
+import Section from './section';
 
 export default function SubNav({ className, links = [], title }) {
 	return (
 		<nav className={className}>
-			{title && <Heading as="h2">{title}</Heading>}
+			{title && <Section.Heading as="h2">{title}</Section.Heading>}
 
 			<ul>
 				{links.map((link) => (

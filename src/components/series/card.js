@@ -7,14 +7,16 @@ export default function SeriesCard({ series }) {
 	return (
 		<Card id={series.id}>
 			<div>
-				<h2>{series.title}</h2>
+				<Card.Title as="h2">{series.title}</Card.Title>
 
 				{series.publishedTalksCount && (
-					<span>
-						{series.publishedTalksCount === 1
-							? `${series.publishedTalksCount} Talk`
-							: `${series.publishedTalksCount} Talks`}
-					</span>
+					<Card.Meta>
+						<span>
+							{series.publishedTalksCount === 1
+								? `${series.publishedTalksCount} Talk`
+								: `${series.publishedTalksCount} Talks`}
+						</span>
+					</Card.Meta>
 				)}
 			</div>
 

@@ -1,31 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import classnames from 'classnames';
 import { sanitizeHTMLTag } from '../utilities';
 
-export default function Section({ children, className, separator, as }) {
-	const Tag = sanitizeHTMLTag(as, [
-		'section',
-		'article',
-		'div',
-		'footer',
-		'header',
-	]);
-
-	return (
-		<Tag className={classnames('', className)}>
-			<div
-				className={classnames(
-					'grid gap-6 sm:grid-cols-3 lg:grid-cols-12 max-w-screen-xl container',
-					separator ? 'border-t border-gray-300' : ''
-				)}
-			>
-				{children}
-			</div>
-		</Tag>
-	);
-}
-
-export function Content({ align, as, children, className }) {
+export function SectionContent({ align, as, children, className }) {
 	const Tag = sanitizeHTMLTag(as, [
 		'div',
 		'article',
@@ -54,7 +31,7 @@ export function Content({ align, as, children, className }) {
 	);
 }
 
-export function Sidebar({ children, className, right }) {
+export function SectionSidebar({ children, className, right }) {
 	const padding = right ? 'pl' : 'pr';
 
 	return (
@@ -72,7 +49,7 @@ export function Sidebar({ children, className, right }) {
 	);
 }
 
-export function Heading({ children, className, as }) {
+export function SectionHeading({ children, className, as }) {
 	const Tag = sanitizeHTMLTag(as, ['h1', 'h2', 'h3']);
 
 	return (
@@ -85,4 +62,37 @@ export function Heading({ children, className, as }) {
 			{children}
 		</Tag>
 	);
+}
+
+export default class Intro extends Component {
+	static Content = SectionContent;
+
+	static Sidebar = SectionSidebar;
+
+	static Heading = SectionHeading;
+
+	render() {
+		const { children, className, separator, as } = this.props;
+
+		const Tag = sanitizeHTMLTag(as, [
+			'section',
+			'article',
+			'div',
+			'footer',
+			'header',
+		]);
+
+		return (
+			<Tag className={classnames('', className)}>
+				<div
+					className={classnames(
+						'grid gap-6 sm:grid-cols-3 lg:grid-cols-12 max-w-screen-xl container',
+						separator ? 'border-t border-gray-300' : ''
+					)}
+				>
+					{children}
+				</div>
+			</Tag>
+		);
+	}
 }

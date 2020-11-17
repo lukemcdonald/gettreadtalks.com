@@ -2,20 +2,25 @@ import React from 'react';
 
 import SEO from '../components/seo';
 import Intro from '../components/intro';
-import Section, { Content } from '../components/section';
+import Section from '../components/section';
 
 export default function NotFoundPage() {
 	return (
 		<>
 			<SEO title="404: Not found" />
 
-			<Intro
-				title="Are you lost?"
-				excerpt="Sorry, but the page you are looking for cannot be found nor has it evolved into something else."
-			/>
+			<Intro>
+				<Intro.Title>Are you lost?</Intro.Title>
+				<Intro.Tagline>
+					<p>
+						Sorry, but the page you are looking for cannot be found nor has it
+						evolved into something else.
+					</p>
+				</Intro.Tagline>
+			</Intro>
 
 			<Section>
-				<Content>
+				<Section.Content>
 					<figure>
 						<iframe
 							title="Steve Lawson's Gospel Presentation"
@@ -28,7 +33,7 @@ export default function NotFoundPage() {
 							allowFullScreen
 						/>
 					</figure>
-				</Content>
+				</Section.Content>
 			</Section>
 		</>
 	);

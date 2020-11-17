@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 
 import SEO from '../components/seo';
-import Section, { Content } from '../components/section';
+import Section from '../components/section';
 
 export default function SinglePage({ data, location }) {
 	const { data: page } = data.page;
@@ -16,16 +16,17 @@ export default function SinglePage({ data, location }) {
 			/>
 
 			<Section>
-				<Content as="article" className="prose prose-lg">
+				<Section.Content as="article" className="prose prose-lg">
 					<header>
 						<h1 className="text-4xl text-gray-900">{page.title}</h1>
 					</header>
+
 					<div
 						dangerouslySetInnerHTML={{
 							__html: page.content.childMarkdownRemark.html,
 						}}
 					/>
-				</Content>
+				</Section.Content>
 			</Section>
 		</>
 	);

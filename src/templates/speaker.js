@@ -1,27 +1,18 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import SEO from '../components/seo';
+import Avatar from '../components/avatar';
 import Intro from '../components/intro';
+import Link from '../components/link';
+import Section from '../components/section';
+import SEO from '../components/seo';
 import Talks from '../components/talks';
-import Section, { Content, Heading, Sidebar } from '../components/section';
-import Link, { Button } from '../components/link';
-import { Avatar } from '../components/card';
 
 export default function SingleSpeakerPage({ data, location }) {
 	const {
 		talks,
 		speaker: { data: speaker },
 	} = data;
-
-	const speakerImage = `
-    <img
-      class="w-24 shadow-lg rounded-full block m-auto mb-4"
-      src="${speaker.avatar.localFiles[0].childImageSharp.fluid.src}"
-      alt="${speaker.title}"
-    />`;
-
-	console.log(speaker.avatar);
 
 	return (
 		<>
@@ -32,33 +23,46 @@ export default function SingleSpeakerPage({ data, location }) {
 				location={location}
 			/>
 
-			<Intro
-				title={`${speakerImage} ${speaker.title}`}
-				excerpt={`${speaker?.role ? speaker.role : ''} ${
-					speaker.ministry && speaker.role
-						? `<span class="text-gray-500">&bull;</span>`
-						: ''
-				}
-            ${speaker?.ministry ? speaker.ministry : ''}
-				`}
-				image={speaker?.banner}
-			/>
+			<Intro image={speaker?.banner}>
+				<Intro.Title>
+					<Avatar
+						className="block w-24 m-auto mb-4 rounded-full shadow-lg"
+						image={speaker.avatar}
+						title={speaker.title}
+					/>
+
+					{speaker.title}
+				</Intro.Title>
+
+				<Intro.Tagline>
+					{speaker?.role || ''}
+					{speaker.ministry && speaker.role && (
+						<span className="mx-1 text-gray-500">&bull;</span>
+					)}
+					{speaker?.ministry || ''}
+				</Intro.Tagline>
+			</Intro>
 
 			<Section>
-				<Sidebar>
-					<Heading as="h2">About</Heading>
-					<div
-						className="prose"
-						dangerouslySetInnerHTML={{
-							__html: speaker.description?.childMarkdownRemark.html,
-						}}
-					/>
+				<Section.Sidebar>
+					{speaker.description && (
+						<>
+							<Section.Heading as="h2">About</Section.Heading>
+
+							<div
+								className="prose"
+								dangerouslySetInnerHTML={{
+									__html: speaker.description?.childMarkdownRemark.html,
+								}}
+							/>
+						</>
+					)}
 
 					{speaker.ministry && (
 						<>
-							<Heading as="h3" className="mt-8">
+							<Section.Heading as="h3" className="mt-8">
 								Ministry
-							</Heading>
+							</Section.Heading>
 
 							<p className="prose">
 								{speaker.website && (
@@ -69,15 +73,15 @@ export default function SingleSpeakerPage({ data, location }) {
 							</p>
 						</>
 					)}
-				</Sidebar>
+				</Section.Sidebar>
 
-				<Content>
+				<Section.Content>
 					<Talks
 						className="grid grid-cols-1 gap-6"
 						talks={talks.nodes}
 						hideAvatar
 					/>
-				</Content>
+				</Section.Content>
 			</Section>
 		</>
 	);

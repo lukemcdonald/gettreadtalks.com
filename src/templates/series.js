@@ -12,7 +12,9 @@ export default function SingleSeriesPage({ data, location }) {
 		<>
 			<SEO title={series.title} location={location} />
 
-			<Intro title={series.title} excerpt="" />
+			<Intro>
+				<Intro.Title>{series.title}</Intro.Title>
+			</Intro>
 
 			<section>
 				<div>

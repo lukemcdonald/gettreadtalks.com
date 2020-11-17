@@ -79,10 +79,10 @@ export default class SingleClipPage extends Component {
 					location={location}
 				/>
 
-				<Intro
-					title={clip.title}
-					excerpt={mapObjectToString(['speakers'], meta)}
-				>
+				<Intro>
+					<Intro.Title>{clip.title}</Intro.Title>
+					<Intro.Tagline>{mapObjectToString(['speakers'], meta)}</Intro.Tagline>
+
 					{mediaObject.tagName === 'iframe' && (
 						<div
 							className="responsive-media"

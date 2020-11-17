@@ -4,7 +4,7 @@ import { graphql } from 'gatsby';
 import SEO from '../../components/seo';
 import Talks from '../../components/talks';
 // import Pagination from '../../components/pagination';
-import Section, { Content, Heading, Sidebar } from '../../components/section';
+import Section from '../../components/section';
 import TopicsNav from '../../components/topics/nav';
 import Link from '../../components/link';
 
@@ -16,28 +16,31 @@ export default function TalksPage({ data, location, pageContext }) {
 			<SEO title="Talks" location={location} />
 
 			<Section>
-				<Sidebar>
-					<Heading>Talks</Heading>
+				<Section.Sidebar>
+					<Section.Heading as="h1">Talks</Section.Heading>
+
 					<div className="mb-8 prose">
 						<p>
 							Christ centered sermons that will elevate your spiritual
 							heartbeat.
 						</p>
 					</div>
+
 					<Link className="font-medium" to="/talks/featured/">
 						Featured Talks &rarr;
 					</Link>
-				</Sidebar>
+				</Section.Sidebar>
 
-				<Content>
+				<Section.Content>
 					<Talks className="grid grid-cols-1 gap-6" talks={talks.nodes} />
 					{/* <Pagination pageContext={pageContext} /> */}
-				</Content>
+				</Section.Content>
 
-				<Sidebar>
-					<Heading>Topics</Heading>
+				<Section.Sidebar>
+					<Section.Heading as="h2">Topics</Section.Heading>
+
 					<TopicsNav topics={topics.nodes} />
-				</Sidebar>
+				</Section.Sidebar>
 			</Section>
 		</>
 	);

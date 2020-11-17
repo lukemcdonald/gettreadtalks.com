@@ -4,7 +4,7 @@ import { graphql } from 'gatsby';
 import SEO from '../../components/seo';
 
 import Clips from '../../components/clips';
-import Section, { Content, Heading, Sidebar } from '../../components/section';
+import Section from '../../components/section';
 
 export default function ClipsPage({ data, location }) {
 	const { clips } = data;
@@ -14,16 +14,16 @@ export default function ClipsPage({ data, location }) {
 			<SEO title="Clips" location={location} />
 
 			<Section>
-				<Sidebar>
-					<Heading>Tiny Talks</Heading>
+				<Section.Sidebar>
+					<Section.Heading as="h1">Tiny Talks</Section.Heading>
 					<div className="prose">
 						<p>Be encouraged by these short Christ centered montages.</p>
 					</div>
-				</Sidebar>
+				</Section.Sidebar>
 
-				<Content>
+				<Section.Content>
 					<Clips className="grid grid-cols-1 gap-6" clips={clips.nodes} />
-				</Content>
+				</Section.Content>
 			</Section>
 		</>
 	);
