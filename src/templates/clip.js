@@ -1,136 +1,81 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { graphql } from 'gatsby';
-import urlParser from 'js-video-url-parser';
-import Link from '../components/link';
-import { mapObjectToString, objectToString } from '../utilities';
+import { Button } from '../components/link';
 
 import Intro from '../components/intro';
 import SEO from '../components/seo';
 
+import Section from '../components/section';
 import Speakers from '../components/speakers';
 import Topics from '../components/topics';
 import Talks from '../components/talks';
 
-export default class SingleClipPage extends Component {
-	constructor(props) {
-		super(props);
+import IntroStyles from '../components/intro.module.css';
 
-		this.state = {
-			mediaUrl: '',
-		};
-	}
+export default function SingleClipPage({ data, location }) {
+	const { data: clip } = data.clip;
 
-	componentDidMount() {
-		this.setParsedMedia();
-	}
+	const media = clip?.link?.childMarkdownRemark;
+	const mediaObject = media?.htmlAst.children[0].children[0];
+	const hasVideo = mediaObject.tagName === 'iframe';
 
-	componentWillMount() {
-		this.setParsedMedia();
-	}
+	return (
+		<>
+			<SEO title={clip.title} location={location} />
 
-	getParsedMedia() {
-		const { data } = this.props;
-		const mediaLink = data.clip.data.link.childMarkdownRemark.rawMarkdownBody;
-		return urlParser.parse(mediaLink);
-	}
+			<Intro className={IntroStyles.bgGradient} align="wide" fullscreen>
+				<Intro.Title>{clip.title}</Intro.Title>
+				<Intro.Tagline>
+					<span className="text-gray-500">by</span>{' '}
+					{clip.speakers.map((speaker) => speaker.data.title).join(', ')}
+					{console.log(clip.speakers)}
+				</Intro.Tagline>
 
-	setParsedMedia() {
-		const parsedMedia = this.getParsedMedia();
+				{hasVideo && (
+					<figure
+						className="relative z-10 mt-10 rounded-t shadow-lg embed-responsive aspect-ratio-16x9"
+						dangerouslySetInnerHTML={{
+							__html: media.html.replace(/<p>|<\/p>/g, ''),
+						}}
+					/>
+				)}
 
-		if (parsedMedia) {
-			const mediaUrl = urlParser.create({
-				videoInfo: parsedMedia,
-				format: 'longImage',
-			});
+				{clip.talks && (
+					<Talks
+						className="-mt-1"
+						talks={clip.talks}
+						subtitle="Related Talk:"
+						hideAvatar
+					/>
+				)}
 
-			this.setState({ mediaUrl });
-		}
-	}
+				{!hasVideo && (
+					<Button to={mediaObject.properties.href}>
+						Listen to Clip &rarr;
+					</Button>
+				)}
+			</Intro>
 
-	render() {
-		const { mediaUrl } = this.state;
-		const { data, location } = this.props;
-		const { data: clip } = data.clip;
-
-		const { html: mediaHtml, htmlAst: media } = clip.link.childMarkdownRemark;
-
-		const mediaObject = media.children[0].children[0] || '';
-
-		const meta = {
-			title: clip.title,
-			speakers: clip.speakers
-				? `<em>by</em> ${clip.speakers
-						.map(({ data: speaker }) => speaker.title)
-						.join(', ')}`
-				: null,
-			topics: clip.topics
-				? `<em>on</em> ${clip.topics
-						.map(({ data: topic }) => topic.title)
-						.join(', ')}`
-				: null,
-		};
-
-		return (
-			<>
-				<SEO
-					title={mapObjectToString(['title', 'speakers'], meta)}
-					description={objectToString(meta)}
-					image={mediaUrl}
-					location={location}
-				/>
-
-				<Intro>
-					<Intro.Title>{clip.title}</Intro.Title>
-					<Intro.Tagline>{mapObjectToString(['speakers'], meta)}</Intro.Tagline>
-
-					{mediaObject.tagName === 'iframe' && (
-						<div
-							className="responsive-media"
-							dangerouslySetInnerHTML={{ __html: mediaHtml }}
-							style={{ marginBottom: `-3px` }}
-						/>
-					)}
-
-					{mediaObject.tagName === 'a' && (
-						<p>
-							<button
-								type="button"
-								to={mediaObject.properties.href}
-								as={Link}
-								large={1}
-							>
-								Listen to Clip &rarr;
-							</button>
-
-							{clip.talks && <div />}
-						</p>
-					)}
-
-					{clip.talks && (
-						<Talks talks={clip.talks} subtitle="Related Talk:" hideAvatar />
-					)}
-				</Intro>
-
-				<section>
+			<Section>
+				{clip.topics && (
+					<Section.Sidebar>
+						<Section.Heading>
+							{clip.topics.length === 1 ? `Topic` : `Topics`}
+						</Section.Heading>
+						<Topics topics={clip.topics} />
+					</Section.Sidebar>
+				)}
+				<Section.Content>
 					{clip.speakers && (
 						<div>
 							<h2>{clip.speakers.length === 1 ? `Speaker` : `Speakers`}</h2>
-							<Speakers data={clip.speakers} />
+							<Speakers speakers={clip.speakers} />
 						</div>
 					)}
-				</section>
-
-				<section>
-					{clip.topics && (
-						<div>
-							<h2>{clip.topics.length === 1 ? `Topic` : `Topics`}</h2>
-							<Topics topics={clip.topics} />
-						</div>
-					)}
-				</section>
-			</>
-		);
-	}
+				</Section.Content>
+			</Section>
+		</>
+	);
 }
 
 export const query = graphql`

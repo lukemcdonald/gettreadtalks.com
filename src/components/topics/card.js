@@ -5,7 +5,7 @@ import FauxLink from '../fauxLink';
 
 export default function TopicCard({ topic }) {
 	return (
-		<Card id={topic.id} className="flex">
+		<Card className="flex rounded">
 			<div>
 				{topic.title && <Card.Title as="h2">{topic.title}</Card.Title>}
 

@@ -5,7 +5,7 @@ import FauxLink from '../fauxLink';
 
 export default function SeriesCard({ series }) {
 	return (
-		<Card id={series.id}>
+		<Card className="rounded">
 			<div>
 				<Card.Title as="h2">{series.title}</Card.Title>
 

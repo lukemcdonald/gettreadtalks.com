@@ -5,7 +5,7 @@ import FauxLink from '../fauxLink';
 
 export default function SpeakerCard({ speaker }) {
 	return (
-		<Card id={speaker.id}>
+		<Card className="rounded">
 			{speaker.avatar && (
 				<Card.Avatar image={speaker.avatar} title={speaker.title} />
 			)}

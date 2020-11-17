@@ -1,6 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
+import Section from '../components/section';
 import SEO from '../components/seo';
 import Intro from '../components/intro';
 import Talks from '../components/talks';
@@ -16,11 +17,11 @@ export default function SingleSeriesPage({ data, location }) {
 				<Intro.Title>{series.title}</Intro.Title>
 			</Intro>
 
-			<section>
-				<div>
-					<Talks talks={series.talks} />
-				</div>
-			</section>
+			<Section>
+				<Section.Content>
+					<Talks className="grid grid-cols-1 gap-6" talks={series.talks} />
+				</Section.Content>
+			</Section>
 		</>
 	);
 }

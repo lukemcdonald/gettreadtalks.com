@@ -20,7 +20,7 @@ export const CardSubTitle = ({ children, className, as }) => {
 	return (
 		<Tag
 			className={classnames(
-				'text-red-600 text-xs tracking-wide uppercase mb-2',
+				'text-red-600 text-xs tracking-wide uppercase mb-2 mt-1 font-bold',
 				className
 			)}
 		>
@@ -67,7 +67,7 @@ export default class Card extends Component {
 		return (
 			<article
 				className={classnames(
-					'relative flex items-center flex-grow p-4 text-gray-700 transition duration-300 bg-white border border-gray-300 rounded hover:z-10 hover:border-red-600 hover:shadow-lg',
+					'relative flex items-center flex-grow p-4 text-gray-700 transition duration-300 bg-white border border-gray-300 hover:z-10 hover:border-red-600 hover:shadow-lg',
 					className
 				)}
 			>

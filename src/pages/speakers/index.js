@@ -18,8 +18,8 @@ export default function SpeakersPage({ data, location }) {
 
 					<div className="prose">
 						<p>
-							Here you will find an archive of faithful ambassadors of Christ.
-							Choose a speaker to view their available talks.
+							Choose from one of these faithful ambassadors of Christ to view
+							their available talks.
 						</p>
 
 						<p>Speakers are listed in alphabetical order by last name.</p>

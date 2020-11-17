@@ -14,7 +14,8 @@ export default function Talk({ data, location }) {
 	const { data: talk } = data.talk;
 	const { talks } = talk.speakers[0].data;
 	const media = talk?.link?.childMarkdownRemark;
-	const hasVideo = media?.htmlAst.children[0].children[0].tagName === 'iframe';
+	const mediaObject = media?.htmlAst.children[0].children[0];
+	const hasVideo = mediaObject.tagName === 'iframe';
 
 	return (
 		<>
@@ -24,26 +25,32 @@ export default function Talk({ data, location }) {
 				location={location}
 			/>
 
-			{hasVideo && (
-				<Intro className={IntroStyles.bgGradient} align="wide" fullscreen>
-					<Intro.Title>{talk.title}</Intro.Title>
-					<Intro.Tagline>
-						<span className="text-gray-500">by</span> {talk.speaker}
-						{talk.scripture && (
-							<>
-								<span className="text-gray-500">&bull;</span> {talk.scripture}
-							</>
-						)}
-					</Intro.Tagline>
+			<Intro className={IntroStyles.bgGradient} align="wide" fullscreen>
+				<Intro.Title>{talk.title}</Intro.Title>
+				<Intro.Tagline>
+					<span className="text-gray-500">by</span> {talk.speaker}
+					{talk.scripture && (
+						<>
+							<span className="text-gray-500">&bull;</span> {talk.scripture}
+						</>
+					)}
+				</Intro.Tagline>
 
+				{hasVideo && (
 					<figure
 						className="mt-10 rounded shadow-lg embed-responsive aspect-ratio-16x9"
 						dangerouslySetInnerHTML={{
 							__html: media.html.replace(/<p>|<\/p>/g, ''),
 						}}
 					/>
-				</Intro>
-			)}
+				)}
+
+				{!hasVideo && (
+					<Button to={mediaObject.properties.href}>
+						Listen to Talk &rarr;
+					</Button>
+				)}
+			</Intro>
 
 			{talks.length > 0 && (
 				<Section>

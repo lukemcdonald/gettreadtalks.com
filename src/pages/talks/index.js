@@ -26,9 +26,8 @@ export default function TalksPage({ data, location, pageContext }) {
 						</p>
 					</div>
 
-					<Link className="font-medium" to="/talks/featured/">
-						Featured Talks &rarr;
-					</Link>
+					<Section.Heading as="h2">Topics</Section.Heading>
+					<TopicsNav topics={topics.nodes} />
 				</Section.Sidebar>
 
 				<Section.Content>
@@ -36,10 +35,10 @@ export default function TalksPage({ data, location, pageContext }) {
 					{/* <Pagination pageContext={pageContext} /> */}
 				</Section.Content>
 
-				<Section.Sidebar>
-					<Section.Heading as="h2">Topics</Section.Heading>
-
-					<TopicsNav topics={topics.nodes} />
+				<Section.Sidebar right>
+					<Link className="font-medium" to="/talks/featured/">
+						Featured Talks &rarr;
+					</Link>
 				</Section.Sidebar>
 			</Section>
 		</>

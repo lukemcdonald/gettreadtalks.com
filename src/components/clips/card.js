@@ -5,7 +5,7 @@ import FauxLink from '../fauxLink';
 
 export default function ClipCard({ clip }) {
 	return (
-		<Card id={clip.id}>
+		<Card className="rounded">
 			{clip.speakers.map(({ id, data }) => (
 				<Card.Avatar key={id} image={data.avatar} title={data.title} />
 			))}

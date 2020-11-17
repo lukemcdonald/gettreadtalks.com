@@ -22,15 +22,17 @@ export default function FeaturedTalksPage({ data, location }) {
 					<div className="mb-8 prose">
 						<p>Hand picked talks to elevate your spiritual heartbeat.</p>
 					</div>
-
-					<Link className="font-medium" to="/talks/">
-						&larr; All Talks
-					</Link>
 				</Section.Sidebar>
 
 				<Section.Content>
 					<Talks className="grid grid-cols-1 gap-6" talks={currentTalks} />
 				</Section.Content>
+
+				<Section.Sidebar right>
+					<Link className="font-medium" to="/talks/">
+						&larr; All Talks
+					</Link>
+				</Section.Sidebar>
 			</Section>
 		</>
 	);
