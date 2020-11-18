@@ -3,49 +3,70 @@ import classnames from 'classnames';
 
 import Link from './link';
 
-export default function Pagination({ pageContext }) {
-	const {
-		previousPagePath,
-		nextPagePath,
-		humanPageNumber,
-		numberOfPages,
-	} = pageContext;
+import ChevronLeftIcon from '../assets/svgs/icon-chevron-left.svg';
+import ChevronRightIcon from '../assets/svgs/icon-chevron-right.svg';
+
+const LinkCSS =
+	'flex-grow flex relative items-center justify-center py-2 text-sm font-medium bg-white border border-gray-300 hover:text-red-600 disabled:opacity-50';
+const PrevNextCSS = 'px-2 text-gray-500';
+const NumbersCSS = 'px-4 text-gray-700';
+
+export default function Pagination({
+	className,
+	pageSize,
+	totalCount,
+	currentPage,
+	base,
+	showPageNumbers = false,
+	showPrevious = false,
+	showNext = false,
+}) {
+	const totalPages = Math.ceil(totalCount / pageSize);
+	const prevPage = currentPage - 1;
+	const nextPage = currentPage + 1;
+
+	const hasPrevPage = prevPage >= 1;
+	const hasNextPage = nextPage <= totalPages;
+
+	console.log(Array.from({ length: totalPages }));
 
 	return (
 		<nav
-			role="navigation"
-			className="flex justify-between my-8 text-lg font-bold"
-		>
-			<ul className="flex gap-4">
-				{previousPagePath && (
-					<li>
-						<Link to={previousPagePath} rel="prev">
-							{nextPagePath ? 'Previous' : 'Previous Page'}
-						</Link>
-					</li>
-				)}
-
-				{humanPageNumber >= 2 && humanPageNumber < numberOfPages && (
-					<li className="mx-4">
-						<span>&mdash;</span>
-					</li>
-				)}
-
-				{nextPagePath && (
-					<li>
-						<Link to={nextPagePath} rel="next">
-							{previousPagePath ? 'Next' : 'Next Page'}
-						</Link>
-					</li>
-				)}
-			</ul>
-
-			{numberOfPages > 1 && (
-				<div>
-					<span className="sr-only">Page</span> {humanPageNumber} /{' '}
-					{numberOfPages}
-				</div>
+			className={classnames(
+				'relative z-0 inline-flex shadow-sm -space-x-px',
+				className
 			)}
+			aria-label="Pagination"
+		>
+			<Link
+				to={`${base}/${prevPage}`}
+				disabled={!hasPrevPage}
+				className={classnames('rounded-l', LinkCSS, PrevNextCSS)}
+			>
+				<span>
+					<ChevronLeftIcon />
+				</span>
+				<span className={classnames(showPrevious ? 'pr-1' : 'sr-only')}>
+					Prev
+				</span>
+			</Link>
+			{showPageNumbers &&
+				Array.from({ length: totalPages }).map((_, i) => (
+					<Link
+						className={classnames(LinkCSS, NumbersCSS)}
+						to={`${base}/${i > 0 ? i + 1 : ''}`}
+					>
+						{i + 1}
+					</Link>
+				))}
+			<Link
+				to={`${base}/${nextPage}`}
+				disabled={!hasNextPage}
+				className={classnames('rounded-r', LinkCSS, PrevNextCSS)}
+			>
+				<span className={classnames(showNext ? 'pl-1' : 'sr-only')}>Next</span>
+				<ChevronRightIcon />
+			</Link>
 		</nav>
 	);
 }

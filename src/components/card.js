@@ -8,7 +8,12 @@ export const CardTitle = ({ children, className, as }) => {
 	const Tag = sanitizeHTMLTag(as, ['h1', 'h2', 'h3']);
 
 	return (
-		<Tag className={classnames('text-xl font-bold leading-6', className)}>
+		<Tag
+			className={classnames(
+				'text-lg font-bold leading-6 text-gray-900',
+				className
+			)}
+		>
 			{children}
 		</Tag>
 	);
@@ -30,7 +35,7 @@ export const CardSubTitle = ({ children, className, as }) => {
 };
 
 export const CardMeta = ({ children, className }) => (
-	<div className={classnames('mt-1 text-sm text-gray-500', className)}>
+	<div className={classnames('mt-px text-sm text-gray-500', className)}>
 		{children}
 	</div>
 );

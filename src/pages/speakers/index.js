@@ -1,11 +1,12 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
+import Pagination from '../../components/pagination';
 import SEO from '../../components/seo';
 import Speakers from '../../components/speakers';
 import Section from '../../components/section';
 
-export default function SpeakersPage({ data, location }) {
+export default function SpeakersPage({ data, location, pageContext }) {
 	const { speakers } = data;
 
 	return (
@@ -24,6 +25,15 @@ export default function SpeakersPage({ data, location }) {
 
 						<p>Speakers are listed in alphabetical order by last name.</p>
 					</div>
+
+					<Pagination
+						className="mt-6"
+						pageSize={parseInt(process.env.GATSBY_PAGE_SIZE)}
+						totalCount={speakers.totalCount}
+						currentPage={pageContext.currentPage || 1}
+						base="/speakers"
+						showPageNumbers
+					/>
 				</Section.Sidebar>
 
 				<Section.Content>
@@ -38,11 +48,14 @@ export default function SpeakersPage({ data, location }) {
 }
 
 export const pageQuery = graphql`
-	query {
+	query($skip: Int = 0, $pageSize: Int = 12) {
 		speakers: allAirtableSpeaker(
+			skip: $skip
+			limit: $pageSize
 			filter: { data: { title: { ne: null } } }
 			sort: { fields: data___lastName, order: ASC }
 		) {
+			totalCount
 			nodes {
 				id
 				fields {

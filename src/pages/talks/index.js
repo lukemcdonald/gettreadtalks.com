@@ -8,7 +8,7 @@ import Section from '../../components/section';
 import TopicsNav from '../../components/topics/nav';
 import Link from '../../components/link';
 
-export default function TalksPage({ data, location, pageContext }) {
+export default function TalksPage({ data, location }) {
 	const { talks, topics } = data;
 
 	return (

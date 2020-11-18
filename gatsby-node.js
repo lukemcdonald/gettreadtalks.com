@@ -130,6 +130,7 @@ async function createSpeakerPages({ graphql, actions, reporter }) {
 	const { data, errors } = await graphql(`
 		query {
 			speakers: allAirtableSpeaker(filter: { data: { title: { ne: null } } }) {
+				totalCount
 				nodes {
 					id
 					fields {
@@ -144,6 +145,21 @@ async function createSpeakerPages({ graphql, actions, reporter }) {
 		reporter.panicOnBuild(`Error while running GraphQL query for Speakers.`);
 		return;
 	}
+
+	const pageSize = parseInt(process.env.GATSBY_PAGE_SIZE);
+	const pageCount = Math.ceil(data.speakers.totalCount / pageSize);
+
+	Array.from({ length: pageCount }).forEach((_, i) => {
+		actions.createPage({
+			path: `/speakers/${i + 1}`,
+			component: path.resolve(`./src/pages/speakers/index.js`),
+			context: {
+				skip: i * pageSize,
+				currentPage: i + 1,
+				pageSize,
+			},
+		});
+	});
 
 	data.speakers.nodes.forEach((post) => {
 		actions.createPage({
