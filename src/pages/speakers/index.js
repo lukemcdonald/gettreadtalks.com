@@ -14,7 +14,7 @@ export default function SpeakersPage({ data, location, pageContext }) {
 			<SEO title="Speakers" location={location} />
 
 			<Section>
-				<Section.Sidebar>
+				<Section.Sidebar sticky>
 					<Section.Heading as="h1">Speakers</Section.Heading>
 
 					<div className="prose">

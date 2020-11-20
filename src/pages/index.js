@@ -33,19 +33,17 @@ export default function IndexPage({ data, location }) {
 					<li className="text-right">King</li>
 				</ul>
 
-				<Section.Sidebar>
-					<div className="sticky top-10">
-						<Section.Heading as="h2">Featured Talks</Section.Heading>
+				<Section.Sidebar sticky>
+					<Section.Heading as="h2">Featured Talks</Section.Heading>
 
-						<div className="mb-8 prose">
-							<p>
-								<strong>Don't know what to listen to?</strong> Try starting with
-								one of these favorites.
-							</p>
-						</div>
-
-						<TalksNav title="More Talks" />
+					<div className="mb-8 prose">
+						<p>
+							<strong>Don't know what to listen to?</strong> Try starting with
+							one of these favorites.
+						</p>
 					</div>
+
+					<TalksNav title="More Talks" />
 				</Section.Sidebar>
 
 				<Section.Content>
@@ -57,15 +55,12 @@ export default function IndexPage({ data, location }) {
 			</Section>
 
 			<Section separator>
-				<Section.Sidebar>
-					<div className="sticky top-10">
-						<Section.Heading as="h2">Featured Speakers</Section.Heading>
+				<Section.Sidebar sticky>
+					<Section.Heading as="h2">Featured Speakers</Section.Heading>
 
-						<p>
-							Have you listened to one of these faithful ministers of the
-							Gospel?
-						</p>
-					</div>
+					<p>
+						Have you listened to one of these faithful ministers of the Gospel?
+					</p>
 				</Section.Sidebar>
 
 				<Section.Content className="lg:col-span-9">

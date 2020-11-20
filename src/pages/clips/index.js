@@ -14,7 +14,7 @@ export default function ClipsPage({ data, location }) {
 			<SEO title="Clips" location={location} />
 
 			<Section>
-				<Section.Sidebar>
+				<Section.Sidebar sticky>
 					<Section.Heading as="h1">Tiny Talks</Section.Heading>
 					<div className="prose">
 						<p>Be encouraged by these short Christ centered montages.</p>

@@ -16,7 +16,7 @@ export default function FeaturedTalksPage({ data, location }) {
 			<SEO title="Featured Talks" location={location} />
 
 			<Section>
-				<Section.Sidebar>
+				<Section.Sidebar sticky>
 					<Section.Heading as="h1">Featured Talks</Section.Heading>
 
 					<div className="mb-8 prose">

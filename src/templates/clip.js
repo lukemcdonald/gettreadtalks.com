@@ -58,7 +58,7 @@ export default function SingleClipPage({ data, location }) {
 
 			<Section>
 				{clip.topics && (
-					<Section.Sidebar>
+					<Section.Sidebar sticky>
 						<Section.Heading>
 							{clip.topics.length === 1 ? `Topic` : `Topics`}
 						</Section.Heading>

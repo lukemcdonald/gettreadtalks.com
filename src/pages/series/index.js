@@ -13,7 +13,7 @@ export default function SeriesPage({ data, location }) {
 			<SEO title="Sermon Series" location={location} />
 
 			<Section>
-				<Section.Sidebar>
+				<Section.Sidebar sticky>
 					<Section.Heading as="h1">Sermon Series</Section.Heading>
 
 					<div className="prose">

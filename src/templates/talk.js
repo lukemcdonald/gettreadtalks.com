@@ -54,7 +54,7 @@ export default function Talk({ data, location }) {
 
 			{talks.length > 0 && (
 				<Section>
-					<Section.Sidebar>
+					<Section.Sidebar sticky>
 						<Section.Heading as="h2">Keep Going</Section.Heading>
 
 						<div className="prose">

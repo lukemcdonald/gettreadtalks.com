@@ -7,7 +7,7 @@ import ChevronLeftIcon from '../assets/svgs/icon-chevron-left.svg';
 import ChevronRightIcon from '../assets/svgs/icon-chevron-right.svg';
 
 const LinkCSS =
-	'flex-grow flex relative items-center justify-center py-2 text-sm font-medium bg-white border border-gray-300 hover:text-red-600 disabled:opacity-50';
+	'flex-grow flex relative items-center justify-center py-2 text-sm font-medium bg-white border border-gray-300 hover:text-gray-900 disabled:opacity-50';
 const PrevNextCSS = 'px-2 text-gray-500';
 const NumbersCSS = 'px-4 text-gray-700';
 
@@ -53,8 +53,9 @@ export default function Pagination({
 			{showPageNumbers &&
 				Array.from({ length: totalPages }).map((_, i) => (
 					<Link
-						className={classnames(LinkCSS, NumbersCSS)}
 						to={`${base}/${i > 0 ? i + 1 : ''}`}
+						activeClassName="text-red-600"
+						className={classnames(LinkCSS, NumbersCSS)}
 					>
 						{i + 1}
 					</Link>

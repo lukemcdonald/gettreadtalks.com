@@ -31,7 +31,7 @@ export function SectionContent({ align, as, children, className }) {
 	);
 }
 
-export function SectionSidebar({ children, className, right }) {
+export function SectionSidebar({ children, className, right, sticky }) {
 	const padding = right ? 'pl' : 'pr';
 
 	return (
@@ -44,7 +44,10 @@ export function SectionSidebar({ children, className, right }) {
 				className
 			)}
 		>
-			{children}
+			<>
+				{sticky && <div className="sticky top-10">{children}</div>}
+				{!sticky && children}
+			</>
 		</div>
 	);
 }

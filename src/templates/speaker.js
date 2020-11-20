@@ -44,7 +44,7 @@ export default function SingleSpeakerPage({ data, location }) {
 			</Intro>
 
 			<Section>
-				<Section.Sidebar>
+				<Section.Sidebar sticky>
 					{speaker.description && (
 						<>
 							<Section.Heading as="h2">About</Section.Heading>
