@@ -46,6 +46,7 @@ module.exports = {
 		aspectRatio: ['responsive'],
 	},
 	plugins: [
+		require('@tailwindcss/forms'),
 		require('@tailwindcss/typography'),
 		require('tailwindcss-responsive-embed'),
 		require('tailwindcss-aspect-ratio'),

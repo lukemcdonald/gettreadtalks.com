@@ -1,60 +1,53 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link as GatsbyLink } from 'gatsby';
 import classnames from 'classnames';
 
+export const LinkButton = ({ className, activeClassName, children, to }) => (
+	<Link
+		to={to}
+		activeClassName={activeClassName}
+		className={classnames(
+			'bg-gray-600 rounded py-2 px-4 text-white inline-block hover:shadow-lg transition duration-300',
+			className
+		)}
+	>
+		{children}
+	</Link>
+);
+
 // Since DOM elements <a> cannot receive activeClassName,
 // destructure the prop here and pass it only to GatsbyLink
-export default function Link({
-	className,
-	activeClassName = 'is-active',
-	children,
-	to,
-	...other
-}) {
-	// Tailor the following test to your environment.
-	// This example assumes that any internal link (intended for Gatsby)
-	// will start with exactly one slash, and that anything else is external.
-	const internal = /^\/(?!\/)/.test(to);
+export default class Link extends Component {
+	static Button = LinkButton;
 
-	// Use Gatsby Link for internal links, and <a> for others
-	if (internal) {
-		return (
+	render() {
+		const {
+			className,
+			activeClassName = 'is-active',
+			children,
+			to,
+			target,
+		} = this.props;
+
+		// Tailor the following test to your environment.
+		// This example assumes that any internal link (intended for Gatsby)
+		// will start with exactly one slash, and that anything else is external.
+		const internal = /^\/(?!\/)/.test(to);
+
+		// Use Gatsby Link for internal links, and <a> for others
+		return internal ? (
 			<GatsbyLink
 				to={to}
 				className={className}
 				activeClassName={activeClassName}
 				rel="canonical"
-				{...other}
 			>
 				{children}
 			</GatsbyLink>
+		) : (
+			<a className={className} href={to} target={target}>
+				{children}
+			</a>
 		);
 	}
-
-	return (
-		<a className={className} href={to} {...other}>
-			{children}
-		</a>
-	);
-}
-
-export function Button({
-	className,
-	activeClassName = 'is-active',
-	children,
-	to,
-	...other
-}) {
-	return (
-		<Link
-			className={classnames(
-				'bg-gray-600 rounded py-2 px-4 text-white inline-block hover:shadow-lg transition duration-300',
-				className
-			)}
-			to={to}
-			{...other}
-		>
-			{children}
-		</Link>
-	);
 }

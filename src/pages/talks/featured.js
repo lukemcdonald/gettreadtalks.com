@@ -5,7 +5,6 @@ import { getCurrentPosts } from '../../utilities';
 import SEO from '../../components/seo';
 import Talks from '../../components/talks';
 import Section from '../../components/section';
-import Link from '../../components/link';
 
 export default function FeaturedTalksPage({ data, location }) {
 	const { talks } = data;
@@ -19,7 +18,7 @@ export default function FeaturedTalksPage({ data, location }) {
 				<Section.Sidebar sticky>
 					<Section.Heading as="h1">Featured Talks</Section.Heading>
 
-					<div className="mb-8 prose">
+					<div className="mt-2 prose">
 						<p>Hand picked talks to elevate your spiritual heartbeat.</p>
 					</div>
 				</Section.Sidebar>
@@ -28,11 +27,7 @@ export default function FeaturedTalksPage({ data, location }) {
 					<Talks className="grid grid-cols-1 gap-6" talks={currentTalks} />
 				</Section.Content>
 
-				<Section.Sidebar right>
-					<Link className="font-medium" to="/talks/">
-						&larr; All Talks
-					</Link>
-				</Section.Sidebar>
+				<Section.Sidebar right />
 			</Section>
 		</>
 	);

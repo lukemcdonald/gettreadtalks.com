@@ -22,17 +22,20 @@ export default function Layout({ children }) {
 		<StaticQuery
 			query={SITE_META_QUERY}
 			render={(data) => (
-				<div
-					className={classnames(
-						'relative text-gray-700 bg-fixed bg-gray-200 bg-cover',
-						styles.svgBg
-					)}
-				>
-					<Header siteTitle={data.site.siteMetadata.title} />
-					<main>{children}</main>
-					<Footer siteTitle={data.site.siteMetadata.title} />
-					<RefTagger />
-				</div>
+				<>
+					<div
+						className={classnames(
+							'fixed inset-0 bg-cover bg-gray-200 z-0',
+							styles.svgBg
+						)}
+					/>
+					<div className="relative text-gray-700">
+						<Header siteTitle={data.site.siteMetadata.title} />
+						<main>{children}</main>
+						<Footer siteTitle={data.site.siteMetadata.title} />
+						<RefTagger />
+					</div>
+				</>
 			)}
 		/>
 	);

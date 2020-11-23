@@ -1,45 +1,96 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
+import Page from '../../components/page';
+import Section from '../../components/section';
+import Select from '../../components/select';
 import SEO from '../../components/seo';
 import Talks from '../../components/talks';
-// import Pagination from '../../components/pagination';
-import Section from '../../components/section';
-import TopicsNav from '../../components/topics/nav';
-import Link from '../../components/link';
 
-export default function TalksPage({ data, location }) {
+import ChevronRightIcon from '../../assets/svgs/icon-chevron-right.svg';
+
+export default function TalksPage({ data, location, pageContext }) {
 	const { talks, topics } = data;
+	const isTopical = topics?.nodes && pageContext?.topic;
+	const description = `Christ centered talks ${
+		isTopical && `on ${pageContext.topic}`
+	} elevate your spiritual heartbeat.`;
+
+	const test = topics.nodes.map((topic) => ({
+		value: topic.fields.slug,
+		label: topic.data.title,
+	}));
+
+	const two = [
+		{
+			value: '/talks/',
+			label: 'All Talks',
+		},
+		{
+			value: '/talks/featured/',
+			label: 'Featured Talks',
+		},
+	];
+
+	console.log({ test, two });
 
 	return (
 		<>
-			<SEO title="Talks" location={location} />
+			<SEO title="Talks" description={description} location={location} />
 
 			<Section>
 				<Section.Sidebar>
-					<Section.Heading as="h1">Talks</Section.Heading>
+					{isTopical && <Section.Heading as="h2">Talks On</Section.Heading>}
 
-					<div className="mb-8 prose">
-						<p>
-							Christ centered sermons that will elevate your spiritual
-							heartbeat.
-						</p>
+					<Page.Title className="relative">
+						<span>
+							<span className="invisible">
+								{isTopical ? pageContext.topic : 'All Talks'}
+							</span>
+							<ChevronRightIcon className="inline-block w-8 mb-px ml-1 transform rotate-90" />
+						</span>
+
+						<Select className="absolute inset-0" current={pageContext.slug}>
+							<Select.Group
+								label="Talks"
+								options={[
+									{
+										value: '/talks/',
+										label: 'All Talks',
+									},
+									{
+										value: '/talks/featured/',
+										label: 'Featured Talks',
+									},
+								]}
+							/>
+
+							<Select.Group
+								label="Topics"
+								options={topics.nodes.map((topic) => ({
+									value: topic.fields.slug,
+									label: topic.data.title,
+								}))}
+							/>
+						</Select>
+
+						{/* <TopicsFilter
+							className="absolute inset-0"
+							label="Choose a Topic"
+							topics={topics.nodes}
+							currentTopic={{ to: pageContext.slug, text: pageContext.topic }}
+						/> */}
+					</Page.Title>
+
+					<div className="mt-2 prose">
+						<p>{description}</p>
 					</div>
-
-					<Section.Heading as="h2">Topics</Section.Heading>
-					<TopicsNav topics={topics.nodes} />
 				</Section.Sidebar>
 
 				<Section.Content>
 					<Talks className="grid grid-cols-1 gap-6" talks={talks.nodes} />
 					{/* <Pagination pageContext={pageContext} /> */}
 				</Section.Content>
-
-				<Section.Sidebar right>
-					<Link className="font-medium" to="/talks/featured/">
-						Featured Talks &rarr;
-					</Link>
-				</Section.Sidebar>
 			</Section>
 		</>
 	);
