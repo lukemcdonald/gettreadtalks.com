@@ -114,3 +114,37 @@ export const sanitizeHTMLTag = (tagname = '', whitelist = []) => {
 	const tags = whitelist || [tagname];
 	return tags.includes(sanitized) ? sanitized : whitelist[0];
 };
+
+export const maybePluralize = (count, noun, args = {}) => {
+	const defaults = {
+		suffix: 's',
+		showCount: true,
+		formatSmallNumbers: false,
+	};
+
+	const options = { ...defaults, ...args };
+
+	const smallNumbers = {
+		1: 'one',
+		2: 'two',
+		3: 'three',
+		4: 'four',
+		5: 'five',
+		6: 'six',
+		7: 'seven',
+		8: 'eight',
+		9: 'nine',
+	};
+
+	let displayCount;
+
+	if (options.formatSmallNumbers && smallNumbers[count]) {
+		displayCount = smallNumbers[count];
+	}
+
+	if (!options.showCount) {
+		displayCount = '';
+	}
+
+	return `${displayCount} ${noun}${count !== 1 ? options.suffix : ''}`;
+};

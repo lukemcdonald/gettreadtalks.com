@@ -19,7 +19,7 @@ export default function SingleSeriesPage({ data, location }) {
 
 			<Section>
 				<Section.Content>
-					<Talks className="grid grid-cols-1 gap-6" talks={series.talks} />
+					<Talks className="grid gap-6" talks={series.talks} />
 				</Section.Content>
 			</Section>
 		</>

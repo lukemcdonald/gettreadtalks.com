@@ -1,36 +1,25 @@
 import React from 'react';
 import { graphql } from 'gatsby';
+import { maybePluralize } from '../../utilities';
 
 import Page from '../../components/page';
 import Section from '../../components/section';
-import Select from '../../components/select';
 import SEO from '../../components/seo';
 import Talks from '../../components/talks';
-
-import ChevronRightIcon from '../../assets/svgs/icon-chevron-right.svg';
+import TalksFilter from '../../components/talks/filter';
 
 export default function TalksPage({ data, location, pageContext }) {
 	const { talks, topics } = data;
 	const isTopical = topics?.nodes && pageContext?.topic;
-	const description = `Christ centered talks ${
+	const description = `Listen to ${maybePluralize(
+		talks.totalCount,
+		'Christ centered talk',
+		{
+			formatSmallNumbers: true,
+		}
+	)} ${
 		isTopical && `on ${pageContext.topic}`
-	} elevate your spiritual heartbeat.`;
-
-	const test = topics.nodes.map((topic) => ({
-		value: topic.fields.slug,
-		label: topic.data.title,
-	}));
-
-	const two = [
-		{
-			value: '/talks/',
-			label: 'All Talks',
-		},
-		{
-			value: '/talks/featured/',
-			label: 'Featured Talks',
-		},
-	];
+	} to elevate your spiritual heartbeat.`;
 
 	return (
 		<>
@@ -41,43 +30,13 @@ export default function TalksPage({ data, location, pageContext }) {
 					{isTopical && <Section.Heading as="h2">Talks On</Section.Heading>}
 
 					<Page.Title className="relative">
-						<span>
-							<span className="invisible">
-								{isTopical ? pageContext.topic : 'All Talks'}
-							</span>
-							<ChevronRightIcon className="inline-block w-8 mb-px ml-1 transform rotate-90" />
-						</span>
-
-						<Select className="absolute inset-0" current={pageContext.slug}>
-							<Select.Group
-								label="Talks"
-								options={[
-									{
-										value: '/talks/',
-										label: 'All Talks',
-									},
-									{
-										value: '/talks/featured/',
-										label: 'Featured Talks',
-									},
-								]}
-							/>
-
-							<Select.Group
-								label="Topics"
-								options={topics.nodes.map((topic) => ({
-									value: topic.fields.slug,
-									label: topic.data.title,
-								}))}
-							/>
-						</Select>
-
-						{/* <TopicsFilter
-							className="absolute inset-0"
-							label="Choose a Topic"
+						<TalksFilter
 							topics={topics.nodes}
-							currentTopic={{ to: pageContext.slug, text: pageContext.topic }}
-						/> */}
+							current={{
+								value: pageContext.slug,
+								label: pageContext.topic,
+							}}
+						/>
 					</Page.Title>
 
 					<div className="mt-2 prose">
@@ -86,7 +45,7 @@ export default function TalksPage({ data, location, pageContext }) {
 				</Section.Sidebar>
 
 				<Section.Content>
-					<Talks className="grid grid-cols-1 gap-6" talks={talks.nodes} />
+					<Talks className="grid gap-6" talks={talks.nodes} />
 					{/* <Pagination pageContext={pageContext} /> */}
 				</Section.Content>
 			</Section>
@@ -105,6 +64,7 @@ export const query = graphql`
 			}
 			sort: { fields: data___publishedDate, order: DESC }
 		) {
+			totalCount
 			nodes {
 				id
 				fields {
@@ -144,6 +104,9 @@ export const query = graphql`
 				data {
 					title
 					publishedTalksCount
+					talks {
+						id
+					}
 				}
 			}
 		}

@@ -48,13 +48,13 @@ export default function IndexPage({ data, location }) {
 
 				<Section.Content>
 					<Talks
-						className="grid grid-cols-1 gap-6"
+						className="grid gap-6"
 						talks={shuffle(talks.nodes).slice(0, 5)}
 					/>
 				</Section.Content>
 			</Section>
 
-			<Section separator>
+			<Section separator="top">
 				<Section.Sidebar sticky>
 					<Section.Heading as="h2">Featured Speakers</Section.Heading>
 
@@ -63,10 +63,10 @@ export default function IndexPage({ data, location }) {
 					</p>
 				</Section.Sidebar>
 
-				<Section.Content className="lg:col-span-9">
+				<Section.Content align="wide">
 					<Speakers
 						speakers={shuffle(speakers.nodes).slice(0, 6)}
-						className="flex flex-col gap-6 lg:grid lg:grid-cols-2 xl:grid-cols-3"
+						className="grid gap-6 lg:grid lg:grid-cols-2 xl:grid-cols-3"
 						size="small"
 					/>
 				</Section.Content>

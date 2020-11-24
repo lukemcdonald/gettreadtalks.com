@@ -44,6 +44,7 @@ module.exports = {
 	},
 	variants: {
 		aspectRatio: ['responsive'],
+		opacity: ['disabled'],
 	},
 	plugins: [
 		require('@tailwindcss/forms'),

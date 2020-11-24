@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import Card from '../card';
 import FauxLink from '../fauxLink';
 
-export default function Talk({ talk }) {
+export default function Talk({ disable = [], talk }) {
+	disable.map((item) => (talk[item] = ''));
+
 	return (
 		<Card className="rounded">
-			{!talk.hideAvatar &&
-				talk.speakers.map(({ id, data = { avatar: '', title: '' } }) => (
-					<Card.Avatar key={id} image={data.avatar} title={data.title} />
+			{!disable.includes('avatar') &&
+				talk.speakers.map((speaker) => (
+					<Card.Avatar
+						key={speaker.id}
+						image={speaker.data?.avatar}
+						title={speaker.data?.title}
+					/>
 				))}
 
 			<div>
@@ -19,16 +25,20 @@ export default function Talk({ talk }) {
 				{talk.title && <Card.Title as="h2">{talk.title}</Card.Title>}
 
 				<Card.Meta>
-					{talk.speakers.map(({ id, data, fields }) => (
-						<span key={id}>
-							<Card.MetaLink key={id} to={fields.slug}>
-								{data.title}
-							</Card.MetaLink>
-							&nbsp;
-						</span>
-					))}
+					{!disable.includes('speaker') &&
+						talk.speakers.map(({ id, data, fields }) => (
+							<Fragment key={id}>
+								<span>
+									<Card.MetaLink key={id} to={fields.slug}>
+										{data.title}
+									</Card.MetaLink>
+								</span>
 
-					{talk.scripture && <span>&middot;&nbsp;{talk.scripture}</span>}
+								{talk.scripture && <span className="mx-1">&middot;</span>}
+							</Fragment>
+						))}
+
+					{talk.scripture && <span>{talk.scripture}</span>}
 				</Card.Meta>
 			</div>
 

@@ -25,6 +25,7 @@ export default class Link extends Component {
 			className,
 			activeClassName = 'is-active',
 			children,
+			disabled,
 			to,
 			target,
 		} = this.props;
@@ -37,10 +38,11 @@ export default class Link extends Component {
 		// Use Gatsby Link for internal links, and <a> for others
 		return internal ? (
 			<GatsbyLink
-				to={to}
-				className={className}
+				to={!disabled && to}
+				className={classnames(className, disabled ? 'opacity-60' : '')}
 				activeClassName={activeClassName}
 				rel="canonical"
+				disabled={disabled}
 			>
 				{children}
 			</GatsbyLink>

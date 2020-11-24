@@ -2,8 +2,11 @@ import React from 'react';
 
 import Card from '../card';
 import FauxLink from '../fauxLink';
+import { maybePluralize } from '../../utilities';
 
-export default function SpeakerCard({ speaker }) {
+export default function SpeakerCard({ disable = [], speaker }) {
+	disable.map((item) => (speaker[item] = ''));
+
 	return (
 		<Card className="rounded">
 			{speaker.avatar && (
@@ -14,11 +17,14 @@ export default function SpeakerCard({ speaker }) {
 				{speaker.title && <Card.Title as="h2">{speaker.title}</Card.Title>}
 
 				<Card.Meta>
-					{speaker.role && <span>{speaker.role}&nbsp;</span>}
+					{speaker.role && <span>{speaker.role}</span>}
+
+					{speaker.role && speaker.ministry && (
+						<span className="mx-1">&middot;</span>
+					)}
 
 					{speaker.ministry && (
 						<span>
-							{speaker.role && <span>&middot;</span>}
 							{speaker.website ? (
 								<Card.MetaLink to={speaker.website}>
 									{speaker.ministry}
@@ -28,7 +34,12 @@ export default function SpeakerCard({ speaker }) {
 							)}
 						</span>
 					)}
-					<span>&nbsp;</span>
+
+					{(speaker.role || speaker.ministry) && speaker.talks && (
+						<span className="mx-1">&middot;</span>
+					)}
+
+					{speaker.talks && maybePluralize(speaker.talks.length, 'Talk')}
 				</Card.Meta>
 			</div>
 

@@ -22,7 +22,7 @@ export default function ClipsPage({ data, location }) {
 				</Section.Sidebar>
 
 				<Section.Content>
-					<Clips className="grid grid-cols-1 gap-6" clips={clips.nodes} />
+					<Clips className="grid gap-6" clips={clips.nodes} />
 				</Section.Content>
 			</Section>
 		</>

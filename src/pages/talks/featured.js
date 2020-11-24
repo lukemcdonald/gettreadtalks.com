@@ -24,7 +24,7 @@ export default function FeaturedTalksPage({ data, location }) {
 				</Section.Sidebar>
 
 				<Section.Content>
-					<Talks className="grid grid-cols-1 gap-6" talks={currentTalks} />
+					<Talks className="grid gap-6" talks={currentTalks} />
 				</Section.Content>
 
 				<Section.Sidebar right />

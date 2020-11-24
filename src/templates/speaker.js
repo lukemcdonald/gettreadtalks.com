@@ -1,16 +1,20 @@
 import React from 'react';
 import { graphql } from 'gatsby';
+import { maybePluralize } from '../utilities';
 
 import Avatar from '../components/avatar';
+import ConditionalWrapper from '../components/wrapper';
 import Intro from '../components/intro';
 import Link from '../components/link';
 import Section from '../components/section';
 import SEO from '../components/seo';
 import Talks from '../components/talks';
+import Page from '../components/page';
+import SpeakersFilter from '../components/speakers/filter';
 
-export default function SingleSpeakerPage({ data, location }) {
+export default function SingleSpeakerPage({ data, location, pageContext }) {
 	const {
-		talks,
+		speakers,
 		speaker: { data: speaker },
 	} = data;
 
@@ -31,15 +35,19 @@ export default function SingleSpeakerPage({ data, location }) {
 						title={speaker.title}
 					/>
 
-					{speaker.title}
+					<SpeakersFilter
+						speakers={speakers.nodes}
+						current={{
+							value: pageContext.slug,
+							label: speaker.title,
+						}}
+					/>
 				</Intro.Title>
 
 				<Intro.Tagline>
 					{speaker?.role || ''}
-					{speaker.ministry && speaker.role && (
-						<span className="mx-1 text-gray-500">&bull;</span>
-					)}
-					{speaker?.ministry || ''}
+					<span className="mx-1 text-gray-500">&bull;</span>
+					{maybePluralize(speaker.talks.length, `Talk`)}
 				</Intro.Tagline>
 			</Intro>
 
@@ -49,8 +57,10 @@ export default function SingleSpeakerPage({ data, location }) {
 						<>
 							<Section.Heading as="h2">About</Section.Heading>
 
+							<Page.Title />
+
 							<div
-								className="prose"
+								className="mt-3 prose"
 								dangerouslySetInnerHTML={{
 									__html: speaker.description?.childMarkdownRemark.html,
 								}}
@@ -65,11 +75,14 @@ export default function SingleSpeakerPage({ data, location }) {
 							</Section.Heading>
 
 							<p className="prose">
-								{speaker.website && (
-									<Link to={speaker.website}>{speaker.ministry}</Link>
-								)}
-
-								{!speaker.website && <span>{speaker.ministry}</span>}
+								<ConditionalWrapper
+									condition={speaker.website}
+									wrapper={(children) => (
+										<Link to={speaker.website}>{children}</Link>
+									)}
+								>
+									{speaker.ministry}
+								</ConditionalWrapper>
 							</p>
 						</>
 					)}
@@ -77,9 +90,9 @@ export default function SingleSpeakerPage({ data, location }) {
 
 				<Section.Content>
 					<Talks
-						className="grid grid-cols-1 gap-6"
-						talks={talks.nodes}
-						hideAvatar
+						className="grid gap-6"
+						talks={speaker.talks}
+						disable={['avatar']}
 					/>
 				</Section.Content>
 			</Section>
@@ -131,43 +144,49 @@ export const query = graphql`
 					}
 				}
 				talks {
+					id
+					fields {
+						slug
+					}
 					data {
 						title
-					}
-				}
-			}
-		}
-		talks: allAirtableTalk(
-			filter: { data: { speakers: { elemMatch: { id: { eq: $id } } } } }
-			sort: { fields: data___publishedDate, order: DESC }
-		) {
-			nodes {
-				id
-				fields {
-					slug
-				}
-				data {
-					title
-					path
-					scripture
-					speakers {
-						id
-						fields {
-							slug
-						}
-						data {
-							title
-							avatar {
-								localFiles {
-									childImageSharp {
-										fluid(maxWidth: 128) {
-											...GatsbyImageSharpFluid_tracedSVG
+						path
+						scripture
+						speakers {
+							id
+							fields {
+								slug
+							}
+							data {
+								title
+								avatar {
+									localFiles {
+										childImageSharp {
+											fluid(maxWidth: 128) {
+												...GatsbyImageSharpFluid_tracedSVG
+											}
 										}
 									}
 								}
 							}
 						}
 					}
+				}
+			}
+		}
+		speakers: allAirtableSpeaker(
+			filter: { data: { title: { ne: null } } }
+			sort: { fields: data___lastName, order: ASC }
+		) {
+			totalCount
+			nodes {
+				id
+				fields {
+					slug
+				}
+				data {
+					firstName
+					lastName
 				}
 			}
 		}

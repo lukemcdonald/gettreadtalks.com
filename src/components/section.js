@@ -2,7 +2,18 @@ import React, { Component } from 'react';
 import classnames from 'classnames';
 import { sanitizeHTMLTag } from '../utilities';
 
-export function SectionContent({ align, as, children, className }) {
+export const SectionContainer = ({ className, children }) => (
+	<div className={classnames('container max-w-screen-xl', className)}>
+		{children}
+	</div>
+);
+
+export const SectionContent = ({
+	align = 'DEFUALT',
+	as,
+	children,
+	className,
+}) => {
 	const Tag = sanitizeHTMLTag(as, [
 		'div',
 		'article',
@@ -11,12 +22,13 @@ export function SectionContent({ align, as, children, className }) {
 		'section',
 	]);
 
-	const isWide = align === 'wide';
-
-	const columns = {
-		start: isWide ? '3' : '4',
-		span: isWide ? '8' : '6',
+	const columnsMapping = {
+		DEFUALT: { start: 4, span: 6 },
+		wide: { start: 4, span: 9 },
+		full: { start: 1, span: 12 },
 	};
+
+	const columns = columnsMapping[align];
 
 	return (
 		<Tag
@@ -29,9 +41,9 @@ export function SectionContent({ align, as, children, className }) {
 			{children}
 		</Tag>
 	);
-}
+};
 
-export function SectionSidebar({ children, className, right, sticky }) {
+export const SectionSidebar = ({ children, className, right, sticky }) => {
 	const padding = right ? 'pl' : 'pr';
 
 	return (
@@ -50,9 +62,9 @@ export function SectionSidebar({ children, className, right, sticky }) {
 			</>
 		</div>
 	);
-}
+};
 
-export function SectionHeading({ children, className, as }) {
+export const SectionHeading = ({ children, className, as }) => {
 	const Tag = sanitizeHTMLTag(as, ['h1', 'h2', 'h3']);
 
 	return (
@@ -65,17 +77,19 @@ export function SectionHeading({ children, className, as }) {
 			{children}
 		</Tag>
 	);
-}
+};
 
-export default class Intro extends Component {
+export default class Section extends Component {
 	static Content = SectionContent;
+
+	static Container = SectionContainer;
 
 	static Sidebar = SectionSidebar;
 
 	static Heading = SectionHeading;
 
 	render() {
-		const { children, className, separator, as } = this.props;
+		const { as, children, className, separator } = this.props;
 
 		const Tag = sanitizeHTMLTag(as, [
 			'section',
@@ -85,16 +99,23 @@ export default class Intro extends Component {
 			'header',
 		]);
 
+		const separatorMapping = {
+			top: 'border-t',
+			bottom: 'border-b',
+		};
+
 		return (
-			<Tag className={classnames('', className)}>
-				<div
-					className={classnames(
-						'grid gap-6 sm:grid-cols-3 lg:grid-cols-12 max-w-screen-xl container',
-						separator ? 'border-t border-gray-300' : ''
-					)}
-				>
-					{children}
-				</div>
+			<Tag className={className}>
+				<SectionContainer>
+					<div
+						className={classnames(
+							'grid gap-6 sm:grid-cols-3 lg:grid-cols-12 border-gray-300',
+							separator && separatorMapping[separator]
+						)}
+					>
+						{children}
+					</div>
+				</SectionContainer>
 			</Tag>
 		);
 	}

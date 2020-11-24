@@ -75,10 +75,7 @@ export default function Talk({ data, location }) {
 					</Section.Sidebar>
 
 					<Section.Content>
-						<Talks
-							className="grid grid-cols-1 gap-6"
-							talks={shuffle(talks).slice(0, 5)}
-						/>
+						<Talks className="grid gap-6" talks={shuffle(talks).slice(0, 5)} />
 					</Section.Content>
 				</Section>
 			)}

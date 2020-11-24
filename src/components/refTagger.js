@@ -6,6 +6,7 @@ export default class RefTagger extends Component {
 
 		const defaultSettings = {
 			bibleVersion: 'ESV',
+			dropShadow: false,
 			noSearchClassNames: ['no-reftagger'],
 			socialSharing: [],
 			tagChapters: true,
@@ -22,15 +23,17 @@ export default class RefTagger extends Component {
 			},
 		};
 
-		if (typeof window !== 'undefined' && window !== null) {
-			if (window.refTagger == null) {
-				window.refTagger = {
-					settings: {
-						...defaultSettings,
-						...props.settings,
-					},
-				};
-			}
+		if (
+			typeof window !== 'undefined' &&
+			window !== null &&
+			window.refTagger == null
+		) {
+			window.refTagger = {
+				settings: {
+					...defaultSettings,
+					...props.settings,
+				},
+			};
 		}
 	}
 
@@ -38,6 +41,7 @@ export default class RefTagger extends Component {
 		if (!RefTagger.scriptIsAdded) {
 			return this.addScript();
 		}
+
 		window.refTagger.tag();
 	}
 
@@ -55,7 +59,7 @@ export default class RefTagger extends Component {
 	}
 
 	render() {
-		return <div className="hidden" />;
+		return <div className="hidden shadow-lg" />;
 	}
 }
 
