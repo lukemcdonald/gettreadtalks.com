@@ -28,8 +28,8 @@ export default function SpeakersPage({ data, location, pageContext }) {
 
 					<div className="mt-2 prose">
 						<p>
-							Listen to talks from <em>{speakers.totalCount}</em> faithful
-							ambassadors of Christ.
+							Listen to <em>{speakers.totalCount}</em> faithful ambassadors of
+							Christ and be blessed.
 						</p>
 					</div>
 

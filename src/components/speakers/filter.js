@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Select from '../select';
 
 export default function SpeakersFilter({
@@ -7,24 +7,22 @@ export default function SpeakersFilter({
 	label = 'Speakers',
 	speakers,
 }) {
+	const speakerList = speakers.map((speaker) => ({
+		value: speaker.fields.slug,
+		label: `${speaker.data.lastName}, ${speaker.data.firstName}`,
+	}));
+
+	const options = [
+		{
+			value: '/speakers/',
+			label: 'All Speakers',
+		},
+		...speakerList,
+	];
+
 	return (
 		<Select label={label} className={className} current={current}>
-			<Select.Group
-				options={[
-					{
-						value: '/speakers/',
-						label: 'All Speakers',
-					},
-				]}
-			/>
-
-			<Select.Group
-				label="Speakers"
-				options={speakers.map((speaker) => ({
-					value: speaker.fields.slug,
-					label: `${speaker.data.lastName}, ${speaker.data.firstName}`,
-				}))}
-			/>
+			<Select.Group options={options} />
 		</Select>
 	);
 }

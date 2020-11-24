@@ -136,7 +136,7 @@ export const maybePluralize = (count, noun, args = {}) => {
 		9: 'nine',
 	};
 
-	let displayCount;
+	let displayCount = count;
 
 	if (options.formatSmallNumbers && smallNumbers[count]) {
 		displayCount = smallNumbers[count];
