@@ -8,7 +8,7 @@ import Intro from '../components/intro';
 import IntroStyles from '../components/intro.module.css';
 import Talks from '../components/talks';
 import { shuffle } from '../utilities';
-import { Button } from '../components/link';
+import Link from '../components/link';
 
 export default function Talk({ data, location }) {
 	const { data: talk } = data.talk;
@@ -46,9 +46,9 @@ export default function Talk({ data, location }) {
 				)}
 
 				{!hasVideo && (
-					<Button to={mediaObject.properties.href}>
+					<Link.Button to={mediaObject.properties.href}>
 						Listen to Talk &rarr;
-					</Button>
+					</Link.Button>
 				)}
 			</Intro>
 
@@ -63,14 +63,15 @@ export default function Talk({ data, location }) {
 								{talks.length >= 2 ? 'more talks' : 'another talk'} by{' '}
 								{talk.speaker}.
 							</p>
-							{talks.length > 5 && (
-								<p className="mt-6">
-									<Button to={talk.speakers[0].fields.slug}>
-										More by {talk.speaker} &rarr;
-									</Button>
-								</p>
-							)}
 						</div>
+
+						{talks.length > 5 && (
+							<p className="mt-6">
+								<Link.Button to={talk.speakers[0].fields.slug}>
+									More by {talk.speaker} &rarr;
+								</Link.Button>
+							</p>
+						)}
 					</Section.Sidebar>
 
 					<Section.Content>

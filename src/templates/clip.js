@@ -1,11 +1,10 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import { Button } from '../components/link';
 
 import Intro from '../components/intro';
-import SEO from '../components/seo';
-
+import Link from '../components/link';
 import Section from '../components/section';
+import SEO from '../components/seo';
 import Speakers from '../components/speakers';
 import Topics from '../components/topics';
 import Talks from '../components/talks';
@@ -28,7 +27,6 @@ export default function SingleClipPage({ data, location }) {
 				<Intro.Tagline>
 					<span className="text-gray-500">by</span>{' '}
 					{clip.speakers.map((speaker) => speaker.data.title).join(', ')}
-					{console.log(clip.speakers)}
 				</Intro.Tagline>
 
 				{hasVideo && (
@@ -50,9 +48,9 @@ export default function SingleClipPage({ data, location }) {
 				)}
 
 				{!hasVideo && (
-					<Button to={mediaObject.properties.href}>
+					<Link.Button to={mediaObject.properties.href}>
 						Listen to Clip &rarr;
-					</Button>
+					</Link.Button>
 				)}
 			</Intro>
 

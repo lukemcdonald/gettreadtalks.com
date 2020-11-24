@@ -35,16 +35,18 @@ export const CardSubTitle = ({ children, className, as }) => {
 };
 
 export const CardMeta = ({ children, className }) => (
-	<div className={classnames('mt-px text-sm text-gray-500', className)}>
+	<div
+		className={classnames(
+			'relative z-50 mt-px text-sm text-gray-500 inline-block',
+			className
+		)}
+	>
 		{children}
 	</div>
 );
 
 export const CardMetaLink = ({ children, className, to }) => (
-	<Link
-		to={to}
-		className={classnames('relative z-50 hover:underline', className)}
-	>
+	<Link to={to} className={classnames('hover:underline', className)}>
 		{children}
 	</Link>
 );

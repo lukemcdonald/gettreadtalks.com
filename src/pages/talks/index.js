@@ -32,8 +32,6 @@ export default function TalksPage({ data, location, pageContext }) {
 		},
 	];
 
-	console.log({ test, two });
-
 	return (
 		<>
 			<SEO title="Talks" description={description} location={location} />

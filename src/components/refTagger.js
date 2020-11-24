@@ -9,14 +9,15 @@ export default class RefTagger extends Component {
 			noSearchClassNames: ['no-reftagger'],
 			socialSharing: [],
 			tagChapters: true,
+			roundCorners: true,
 			customStyle: {
 				heading: {
-					backgroundColor: '#222020',
+					backgroundColor: '#111827',
 					color: '#ffffff',
 				},
 				body: {
 					backgroundColor: '#ffffff',
-					color: '#4a4848',
+					color: '#4b5563',
 				},
 			},
 		};
@@ -41,20 +42,20 @@ export default class RefTagger extends Component {
 	}
 
 	componentDidUpdate() {
-		// window.refTagger.tag();
+		window.refTagger.tag();
 	}
 
 	addScript() {
 		RefTagger.scriptIsAdded = true;
 
-		const script = document.createElement('script');
-		script.src = 'https://api.reftagger.com/v2/RefTagger.js';
-		script.async = true;
-		return document.body.appendChild(script);
+		const scriptElem = document.createElement('script');
+		const scriptTag = document.getElementsByTagName('script')[0];
+		scriptElem.src = '//api.reftagger.com/v2/RefTagger.js';
+		scriptTag.parentNode.insertBefore(scriptElem, scriptTag);
 	}
 
 	render() {
-		return <div style={{ display: 'none' }} />;
+		return <div className="hidden" />;
 	}
 }
 

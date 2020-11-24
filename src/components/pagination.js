@@ -28,8 +28,6 @@ export default function Pagination({
 	const hasPrevPage = prevPage >= 1;
 	const hasNextPage = nextPage <= totalPages;
 
-	console.log(Array.from({ length: totalPages }));
-
 	return (
 		<nav
 			className={classnames(
