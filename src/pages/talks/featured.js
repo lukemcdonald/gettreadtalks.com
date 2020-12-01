@@ -1,14 +1,14 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import { getCurrentPosts } from '../../utilities';
 
 import SEO from '../../components/seo';
 import Talks from '../../components/talks';
 import Section from '../../components/section';
+import Page from '../../components/page';
+import TalksFilter from '../../components/talks/filter';
 
 export default function FeaturedTalksPage({ data, location }) {
-	const { talks } = data;
-	const currentTalks = getCurrentPosts(talks.nodes);
+	const { talks, topics } = data;
 
 	return (
 		<>
@@ -16,18 +16,24 @@ export default function FeaturedTalksPage({ data, location }) {
 
 			<Section>
 				<Section.Sidebar sticky>
-					<Section.Heading as="h1">Featured Talks</Section.Heading>
+					<Page.Title className="relative">
+						<TalksFilter
+							topics={topics.nodes}
+							current={{
+								label: '★ Talks',
+								value: '/talks/featured/',
+							}}
+						/>
+					</Page.Title>
 
 					<div className="mt-2 prose">
-						<p>Hand picked talks to elevate your spiritual heartbeat.</p>
+						<p>Featured talks picked to elevate your spiritual heartbeat.</p>
 					</div>
 				</Section.Sidebar>
 
 				<Section.Content>
-					<Talks className="grid gap-6" talks={currentTalks} />
+					<Talks className="grid gap-6" talks={talks.nodes} />
 				</Section.Content>
-
-				<Section.Sidebar right />
 			</Section>
 		</>
 	);
@@ -45,7 +51,6 @@ export const query = graphql`
 					title
 					publishedDate(formatString: "YYYYMMDD")
 					scripture
-					favorite
 					speakers {
 						id
 						data {
@@ -67,6 +72,21 @@ export const query = graphql`
 				}
 				fields {
 					slug
+				}
+			}
+		}
+		topics: allAirtableTopic(sort: { fields: data___title, order: ASC }) {
+			nodes {
+				id
+				fields {
+					slug
+				}
+				data {
+					title
+					publishedTalksCount
+					talks {
+						id
+					}
 				}
 			}
 		}

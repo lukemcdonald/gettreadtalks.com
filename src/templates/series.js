@@ -41,6 +41,7 @@ export const pageQuery = graphql`
 					}
 					data {
 						title
+						favorite
 						path
 						scripture
 						speakers {

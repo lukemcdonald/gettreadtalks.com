@@ -42,11 +42,11 @@ export default class RefTagger extends Component {
 			return this.addScript();
 		}
 
-		window.refTagger.tag();
+		window?.refTagger?.tag();
 	}
 
 	componentDidUpdate() {
-		window.refTagger.tag();
+		window?.refTagger?.tag();
 	}
 
 	addScript() {

@@ -3,6 +3,8 @@ import { graphql } from 'gatsby';
 
 import SEO from '../components/seo';
 import Section from '../components/section';
+import RandomProduct from '../components/affiliates/randomProduct';
+import Page from '../components/page';
 
 export default function SinglePage({ data, location }) {
 	const { data: page } = data.page;
@@ -16,16 +18,20 @@ export default function SinglePage({ data, location }) {
 			/>
 
 			<Section>
-				<Section.Content as="article" className="prose prose-lg">
-					<header>
-						<h1 className="text-4xl text-gray-900">{page.title}</h1>
-					</header>
+				<Section.Content as="article">
+					<div className="prose">
+						<Page.Title>{page.title}</Page.Title>
+						<div
+							className="prose prose-lg"
+							dangerouslySetInnerHTML={{
+								__html: page.content.childMarkdownRemark.html,
+							}}
+						/>
+					</div>
 
-					<div
-						dangerouslySetInnerHTML={{
-							__html: page.content.childMarkdownRemark.html,
-						}}
-					/>
+					<div className="mt-10">
+						<RandomProduct size="small" />
+					</div>
 				</Section.Content>
 			</Section>
 		</>

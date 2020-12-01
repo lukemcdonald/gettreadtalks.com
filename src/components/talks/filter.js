@@ -18,7 +18,7 @@ export default function TalksFilter({
 					},
 					{
 						value: '/talks/featured/',
-						label: 'Featured Talks',
+						label: '★ Talks',
 					},
 				]}
 			/>

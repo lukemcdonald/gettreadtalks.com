@@ -8,12 +8,7 @@ export const SectionContainer = ({ className, children }) => (
 	</div>
 );
 
-export const SectionContent = ({
-	align = 'DEFUALT',
-	as,
-	children,
-	className,
-}) => {
+export const SectionContent = ({ align, as, children, className }) => {
 	const Tag = sanitizeHTMLTag(as, [
 		'div',
 		'article',
@@ -22,13 +17,14 @@ export const SectionContent = ({
 		'section',
 	]);
 
-	const columnsMapping = {
+	const alignMapping = {
 		DEFUALT: { start: 4, span: 6 },
 		wide: { start: 4, span: 9 },
+		'wide--center': { start: 2, span: 10 },
 		full: { start: 1, span: 12 },
 	};
 
-	const columns = columnsMapping[align];
+	const columns = alignMapping[align] || alignMapping.DEFUALT;
 
 	return (
 		<Tag
@@ -100,8 +96,10 @@ export default class Section extends Component {
 		]);
 
 		const separatorMapping = {
+			DEFAULT: '',
 			top: 'border-t',
 			bottom: 'border-b',
+			'top-bottom': 'border-t border-b',
 		};
 
 		return (
@@ -110,7 +108,7 @@ export default class Section extends Component {
 					<div
 						className={classnames(
 							'grid gap-6 sm:grid-cols-3 lg:grid-cols-12 border-gray-300',
-							separator && separatorMapping[separator]
+							separatorMapping[separator] || separatorMapping.DEFAULT
 						)}
 					>
 						{children}

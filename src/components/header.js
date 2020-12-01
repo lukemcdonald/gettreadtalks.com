@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import Logo from './logo';
+import Logo from './svgs/logo';
 import SiteNav from './nav';
 
 export default function SiteHeader({ siteTitle }) {

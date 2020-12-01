@@ -30,7 +30,7 @@ export default function SingleSpeakerPage({ data, location, pageContext }) {
 			<Intro image={speaker?.banner}>
 				<Intro.Title>
 					<Avatar
-						className="block w-24 m-auto mb-4 rounded-full shadow-lg"
+						className="block w-24 m-auto mb-4 border-4 border-white rounded-full shadow-lg"
 						image={speaker.avatar}
 						title={speaker.title}
 					/>
@@ -44,10 +44,8 @@ export default function SingleSpeakerPage({ data, location, pageContext }) {
 					/>
 				</Intro.Title>
 
-				<Intro.Tagline>
+				<Intro.Tagline className="text-center">
 					{speaker?.role || ''}
-					<span className="mx-1 text-gray-500">&bull;</span>
-					{maybePluralize(speaker.talks.length, `Talk`)}
 				</Intro.Tagline>
 			</Intro>
 
@@ -89,6 +87,13 @@ export default function SingleSpeakerPage({ data, location, pageContext }) {
 				</Section.Sidebar>
 
 				<Section.Content>
+					<Section.Heading>
+						<span>
+							{maybePluralize(speaker.talks.length, `Talk`, {
+								formatSmallNumbers: true,
+							})}
+						</span>
+					</Section.Heading>
 					<Talks
 						className="grid gap-6"
 						talks={speaker.talks}
@@ -150,6 +155,7 @@ export const query = graphql`
 					}
 					data {
 						title
+						favorite
 						path
 						scripture
 						speakers {

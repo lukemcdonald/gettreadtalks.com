@@ -4,6 +4,8 @@ import classnames from 'classnames';
 import { sanitizeHTMLTag } from '../utilities';
 import Avatar from './avatar';
 
+import styles from './card.module.css';
+
 export const CardTitle = ({ children, className, as }) => {
 	const Tag = sanitizeHTMLTag(as, ['h1', 'h2', 'h3']);
 
@@ -37,7 +39,8 @@ export const CardSubTitle = ({ children, className, as }) => {
 export const CardMeta = ({ children, className }) => (
 	<div
 		className={classnames(
-			'relative z-50 mt-px text-sm text-gray-500 inline-block',
+			'mt-px text-sm text-gray-500 inline-block',
+			styles.meta,
 			className
 		)}
 	>
@@ -58,15 +61,15 @@ export const CardAvatar = ({ image, title }) => (
 );
 
 export default class Card extends Component {
-	static Title = CardTitle;
-
-	static SubTitle = CardSubTitle;
+	static Avatar = CardAvatar;
 
 	static Meta = CardMeta;
 
 	static MetaLink = CardMetaLink;
 
-	static Avatar = CardAvatar;
+	static SubTitle = CardSubTitle;
+
+	static Title = CardTitle;
 
 	render() {
 		const { children, className } = this.props;

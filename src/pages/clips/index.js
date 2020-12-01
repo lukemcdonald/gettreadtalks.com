@@ -5,6 +5,8 @@ import SEO from '../../components/seo';
 
 import Clips from '../../components/clips';
 import Section from '../../components/section';
+import Page from '../../components/page';
+import RandomProduct from '../../components/affiliates/randomProduct';
 
 export default function ClipsPage({ data, location }) {
 	const { clips } = data;
@@ -15,8 +17,9 @@ export default function ClipsPage({ data, location }) {
 
 			<Section>
 				<Section.Sidebar sticky>
-					<Section.Heading as="h1">Tiny Talks</Section.Heading>
-					<div className="prose">
+					<Section.Heading>Clips</Section.Heading>
+					<Page.Title>Tiny Talks</Page.Title>
+					<div className="mt-2 prose">
 						<p>Be encouraged by these short Christ centered montages.</p>
 					</div>
 				</Section.Sidebar>
@@ -31,9 +34,7 @@ export default function ClipsPage({ data, location }) {
 
 export const query = graphql`
 	query {
-		clips: allAirtableClip(
-			sort: { fields: data___publishedDate, order: DESC }
-		) {
+		clips: allAirtableClip {
 			nodes {
 				id
 				fields {

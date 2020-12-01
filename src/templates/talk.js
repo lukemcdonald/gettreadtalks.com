@@ -1,14 +1,13 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import SEO from '../components/seo';
-import Section from '../components/section';
-import Intro from '../components/intro';
-
-import IntroStyles from '../components/intro.module.css';
-import Talks from '../components/talks';
 import { shuffle } from '../utilities';
+
+import Intro from '../components/intro';
 import Link from '../components/link';
+import Section from '../components/section';
+import SEO from '../components/seo';
+import Talks from '../components/talks';
 
 export default function Talk({ data, location }) {
 	const { data: talk } = data.talk;
@@ -25,13 +24,21 @@ export default function Talk({ data, location }) {
 				location={location}
 			/>
 
-			<Intro className={IntroStyles.bgGradient} align="wide" fullscreen>
+			<Intro align="wide--center" bgGradient fullscreen>
 				<Intro.Title>{talk.title}</Intro.Title>
-				<Intro.Tagline>
-					<span className="text-gray-500">by</span> {talk.speaker}
+
+				<Intro.Tagline className="flex justify-center space-x-2">
+					<span>
+						<span className="text-gray-500">by</span>&nbsp;
+						<Link className="hover:underline" to={talk.speakers[0].fields.slug}>
+							{talk.speaker}
+						</Link>
+					</span>
+
 					{talk.scripture && (
 						<>
-							<span className="text-gray-500">&bull;</span> {talk.scripture}
+							<span className="text-gray-500">&bull;</span>
+							<span>{talk.scripture}</span>
 						</>
 					)}
 				</Intro.Tagline>
@@ -46,9 +53,15 @@ export default function Talk({ data, location }) {
 				)}
 
 				{!hasVideo && (
-					<Link.Button to={mediaObject.properties.href}>
-						Listen to Talk &rarr;
-					</Link.Button>
+					<p className="mt-12 text-center">
+						<Link.Button
+							to={mediaObject.properties.href}
+							color="primary"
+							size="large"
+						>
+							Listen to Talk &rarr;
+						</Link.Button>
+					</p>
 				)}
 			</Intro>
 
@@ -64,18 +77,20 @@ export default function Talk({ data, location }) {
 								{talk.speaker}.
 							</p>
 						</div>
-
-						{talks.length > 5 && (
-							<p className="mt-6">
-								<Link.Button to={talk.speakers[0].fields.slug}>
-									More by {talk.speaker} &rarr;
-								</Link.Button>
-							</p>
-						)}
 					</Section.Sidebar>
 
 					<Section.Content>
 						<Talks className="grid gap-6" talks={shuffle(talks).slice(0, 5)} />
+						{talks.length > 5 && (
+							<p className="mt-6">
+								<Link
+									className="font-medium hover:underline"
+									to={talk.speakers[0].fields.slug}
+								>
+									More by {talk.speaker} &rarr;
+								</Link>
+							</p>
+						)}
 					</Section.Content>
 				</Section>
 			)}
@@ -89,6 +104,7 @@ export const query = graphql`
 			id
 			data {
 				title
+				favorite
 				link {
 					childMarkdownRemark {
 						html
@@ -111,10 +127,14 @@ export const query = graphql`
 							}
 							data {
 								title
+								favorite
 								publishedDate(formatString: "YYYYMMDD")
 								scripture
 								speakers {
 									id
+									fields {
+										slug
+									}
 									data {
 										title
 										avatar {
@@ -127,22 +147,9 @@ export const query = graphql`
 											}
 										}
 									}
-									fields {
-										slug
-									}
 								}
 							}
 						}
-					}
-				}
-				topics {
-					id
-					fields {
-						slug
-					}
-					data {
-						title
-						publishedTalksCount
 					}
 				}
 			}

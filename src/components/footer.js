@@ -2,7 +2,6 @@ import React from 'react';
 import Section from './section';
 
 import { getCurrentYear } from '../utilities';
-import RandomProduct from './affiliates/randomProduct';
 
 export default function SiteFooter({ siteTitle }) {
 	const year = getCurrentYear();
@@ -14,8 +13,6 @@ export default function SiteFooter({ siteTitle }) {
 			</Section.Sidebar>
 
 			<Section.Content>
-				<RandomProduct />
-
 				<p className="hidden mt-8 text-center text-gray-500 lg:block">
 					{copyright}
 				</p>

@@ -3,13 +3,8 @@ import { graphql } from 'gatsby';
 
 import Intro from '../components/intro';
 import Link from '../components/link';
-import Section from '../components/section';
 import SEO from '../components/seo';
-import Speakers from '../components/speakers';
-import Topics from '../components/topics';
 import Talks from '../components/talks';
-
-import IntroStyles from '../components/intro.module.css';
 
 export default function SingleClipPage({ data, location }) {
 	const { data: clip } = data.clip;
@@ -22,11 +17,12 @@ export default function SingleClipPage({ data, location }) {
 		<>
 			<SEO title={clip.title} location={location} />
 
-			<Intro className={IntroStyles.bgGradient} align="wide" fullscreen>
+			<Intro align="wide--center" bgGradient fullscreen>
 				<Intro.Title>{clip.title}</Intro.Title>
-				<Intro.Tagline>
-					<span className="text-gray-500">by</span>{' '}
-					{clip.speakers.map((speaker) => speaker.data.title).join(', ')}
+
+				<Intro.Tagline className="flex justify-center space-x-2">
+					<span className="text-gray-500">by</span>&nbsp;
+					{clip.speakers[0].data.title}
 				</Intro.Tagline>
 
 				{hasVideo && (
@@ -43,7 +39,6 @@ export default function SingleClipPage({ data, location }) {
 						className="-mt-1"
 						talks={clip.talks}
 						subtitle="Related Talk:"
-						hideAvatar
 					/>
 				)}
 
@@ -53,25 +48,6 @@ export default function SingleClipPage({ data, location }) {
 					</Link.Button>
 				)}
 			</Intro>
-
-			<Section>
-				{clip.topics && (
-					<Section.Sidebar sticky>
-						<Section.Heading>
-							{clip.topics.length === 1 ? `Topic` : `Topics`}
-						</Section.Heading>
-						<Topics topics={clip.topics} />
-					</Section.Sidebar>
-				)}
-				<Section.Content>
-					{clip.speakers && (
-						<div>
-							<h2>{clip.speakers.length === 1 ? `Speaker` : `Speakers`}</h2>
-							<Speakers speakers={clip.speakers} />
-						</div>
-					)}
-				</Section.Content>
-			</Section>
 		</>
 	);
 }
@@ -90,6 +66,11 @@ export const query = graphql`
 						rawMarkdownBody
 					}
 				}
+				speakers {
+					data {
+						title
+					}
+				}
 				talks {
 					id
 					fields {
@@ -97,6 +78,7 @@ export const query = graphql`
 					}
 					data {
 						title
+						favorite
 						publishedDate(formatString: "YYYYMMDD")
 						scripture
 						speakers {
@@ -106,35 +88,13 @@ export const query = graphql`
 							}
 							data {
 								title
-							}
-						}
-					}
-				}
-				topics {
-					id
-					fields {
-						slug
-					}
-					data {
-						title
-						publishedTalksCount
-					}
-				}
-				speakers {
-					id
-					fields {
-						slug
-					}
-					data {
-						title
-						role
-						ministry
-						website
-						avatar {
-							localFiles {
-								childImageSharp {
-									fluid(maxWidth: 128) {
-										...GatsbyImageSharpFluid_tracedSVG
+								avatar {
+									localFiles {
+										childImageSharp {
+											fluid(maxWidth: 128) {
+												...GatsbyImageSharpFluid_tracedSVG
+											}
+										}
 									}
 								}
 							}

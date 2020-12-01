@@ -17,6 +17,10 @@ export default function SpeakersFilter({
 			value: '/speakers/',
 			label: 'All Speakers',
 		},
+		{
+			value: '/speakers/featured/',
+			label: '★ Speakers',
+		},
 		...speakerList,
 	];
 

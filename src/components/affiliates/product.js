@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import Image from 'gatsby-image';
+import classnames from 'classnames';
 
 import Card from '../card';
+import ConditionalWrapper from '../wrapper';
 import Disclosure from './disclosure';
 import FauxLink from '../fauxLink';
 
@@ -25,18 +27,56 @@ class Product extends Component {
 
 	render() {
 		const { loading } = this.state;
-		const { data: post, disclosure } = this.props;
+		const {
+			data: post,
+			className,
+			disclosure = true,
+			size,
+			card = false,
+		} = this.props;
+
+		const sizeMapping = {
+			DEFAULT: {
+				container: '',
+				image: '',
+				title: 'text-lg',
+				subtitle: '',
+			},
+			large: {
+				container: '',
+				image: '',
+				title: 'text-xl',
+				subtitle: '',
+			},
+		};
+
+		const styled = sizeMapping[size] || sizeMapping.DEFAULT;
 
 		if (loading) {
 			return <div />;
 		}
 
 		return (
-			<Card className="relative bg-gray-800 border-none">
-				<div className="flex items-center">
+			<ConditionalWrapper
+				condition={card}
+				wrapper={(children) => (
+					<Card className="relative bg-gray-800 border-none rounded">
+						{children}
+					</Card>
+				)}
+			>
+				<div
+					className={classnames(
+						'flex items-center',
+						card ? '' : 'flex-grow relative',
+						styled.container,
+						className
+					)}
+				>
 					{post.image && (
-						<figure className="w-16 mr-4">
+						<figure className={classnames('w-16 mr-4', styled.image)}>
 							<Image
+								className="rounded-sm"
 								alt={post.title}
 								fluid={post.image.localFiles[0].childImageSharp.fluid}
 							/>
@@ -44,23 +84,39 @@ class Product extends Component {
 					)}
 
 					<div>
-						<h2 className="text-xl font-bold text-white">{post.title}</h2>
+						<h3
+							className={classnames(
+								'text-lg font-bold leading-6',
+								styled.title,
+								card ? 'text-white' : ''
+							)}
+						>
+							{post.title}
+						</h3>
+
 						{post.subtitle && (
-							<p className="text-sm text-gray-400">{post.subtitle}</p>
+							<p
+								className={classnames(
+									'mt-px text-sm inline-block text-gray-400',
+									styled.subtitle
+								)}
+							>
+								{post.subtitle}
+							</p>
 						)}
-
-						<FauxLink to={post.link.childMarkdownRemark.rawMarkdownBody}>
-							{`View to ${post.title}`}
-						</FauxLink>
 					</div>
+
+					<FauxLink to={post.link.childMarkdownRemark.rawMarkdownBody}>
+						{`View to ${post.title}`}
+					</FauxLink>
+
+					{disclosure && (
+						<div className="absolute bottom-0 right-0 px-1 mb-1 mr-1 text-xs text-gray-900 bg-gray-400 rounded-sm">
+							<Disclosure title="Affiliate" content={false} />
+						</div>
+					)}
 				</div>
-
-				{disclosure && (
-					<div className="absolute bottom-0 right-0 px-1 mb-1 mr-1 text-xs text-gray-900 bg-gray-400 rounded-sm">
-						<Disclosure title="Affiliate" content={false} />
-					</div>
-				)}
-			</Card>
+			</ConditionalWrapper>
 		);
 	}
 }

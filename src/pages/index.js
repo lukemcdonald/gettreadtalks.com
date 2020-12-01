@@ -1,6 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import { shuffle } from '../utilities';
+import RandomProduct from '../components/affiliates/randomProduct';
 
 import Intro from '../components/intro';
 import Section from '../components/section';
@@ -17,7 +18,7 @@ export default function IndexPage({ data, location }) {
 			<SEO title="Excercise Your Inner Man" location={location} />
 
 			<Intro image={data.file} fullscreen>
-				<Intro.Title>Workout your salvation.</Intro.Title>
+				<Intro.Title size="large">Workout your salvation.</Intro.Title>
 				<Intro.Tagline>
 					<p>Christ centered sermons to elevate your spiritual heartbeat.</p>
 				</Intro.Tagline>
@@ -58,7 +59,7 @@ export default function IndexPage({ data, location }) {
 				<Section.Sidebar sticky>
 					<Section.Heading as="h2">Featured Speakers</Section.Heading>
 
-					<p>
+					<p className="prose">
 						Have you listened to one of these faithful ministers of the Gospel?
 					</p>
 				</Section.Sidebar>
@@ -69,6 +70,18 @@ export default function IndexPage({ data, location }) {
 						className="grid gap-6 lg:grid lg:grid-cols-2 xl:grid-cols-3"
 						size="small"
 					/>
+				</Section.Content>
+			</Section>
+
+			<Section separator="top-bottom">
+				<Section.Sidebar>
+					<Section.Heading>Featured Product</Section.Heading>
+					<p className="prose">
+						Sometimes you come across great products. This is one of them.
+					</p>
+				</Section.Sidebar>
+				<Section.Content>
+					<RandomProduct card />
 				</Section.Content>
 			</Section>
 		</>
@@ -83,12 +96,18 @@ export const query = graphql`
 		) {
 			nodes {
 				id
+				fields {
+					slug
+				}
 				data {
 					title
 					publishedDate(formatString: "YYYYMMDD")
 					scripture
 					speakers {
 						id
+						fields {
+							slug
+						}
 						data {
 							title
 							avatar {
@@ -101,13 +120,7 @@ export const query = graphql`
 								}
 							}
 						}
-						fields {
-							slug
-						}
 					}
-				}
-				fields {
-					slug
 				}
 			}
 		}

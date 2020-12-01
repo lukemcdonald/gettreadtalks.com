@@ -29,7 +29,7 @@ export default function TalksPage({ data, location, pageContext }) {
 				<Section.Sidebar>
 					{isTopical && <Section.Heading as="h2">Talks On</Section.Heading>}
 
-					<Page.Title className="relative">
+					<Page.Title>
 						<TalksFilter
 							topics={topics.nodes}
 							current={{
@@ -72,6 +72,7 @@ export const query = graphql`
 				}
 				data {
 					title
+					favorite
 					publishedDate(formatString: "YYYYMMDD")
 					scripture
 					speakers {
