@@ -1,11 +1,14 @@
 import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 import classnames from 'classnames';
-import styles from './layout.module.css';
 
+import { RefTagger } from './refTagger';
 import Header from './header';
 import Footer from './footer';
-import RefTagger from './refTagger';
+
+import styles from './layout.module.css';
+
+const tailwind = require(`../../tailwind.config`);
 
 const SITE_META_QUERY = graphql`
 	query {
@@ -33,7 +36,18 @@ export default function Layout({ children }) {
 						<Header siteTitle={data.site.siteMetadata.title} />
 						<main>{children}</main>
 						<Footer siteTitle={data.site.siteMetadata.title} />
-						<RefTagger />
+						<RefTagger
+							customStyle={{
+								heading: {
+									backgroundColor: tailwind.theme.colors.gray[800],
+									color: tailwind.theme.colors.white,
+								},
+								body: {
+									backgroundColor: tailwind.theme.colors.red[600],
+									color: tailwind.theme.colors.gray[600],
+								},
+							}}
+						/>
 					</div>
 				</>
 			)}

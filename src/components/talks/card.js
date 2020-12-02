@@ -7,7 +7,6 @@ import StarSVG from '../svgs/star';
 
 export default function Talk({ disable = [], talk }) {
 	disable.map((item) => (talk[item] = ''));
-	console.log(talk);
 
 	return (
 		<Card className="rounded">

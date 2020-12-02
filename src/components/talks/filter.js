@@ -10,7 +10,6 @@ export default function TalksFilter({
 	return (
 		<Select label={label} className={className} current={current}>
 			<Select.Group
-				label="Talks"
 				options={[
 					{
 						value: '/talks/',

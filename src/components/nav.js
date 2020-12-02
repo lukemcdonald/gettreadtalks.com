@@ -14,23 +14,25 @@ const links = [
 
 export default function Nav() {
 	return (
-		<div className="flex items-center">
+		<div className="flex items-center space-x-6">
 			{links.map((link) => (
 				<Link
 					key={link.label}
 					to={link.path}
-					className="mr-6 text-lg font-medium hover:text-red-600"
+					className="text-lg font-medium hover:text-red-600"
 					activeClassName="uppercase font-extrabold text-red-600 tracking-tight"
 				>
 					{link.label}
 				</Link>
 			))}
 
+			<span className="inline-block h-5 border-l border-gray-400" />
+
 			<Link
-				className="inline-block pl-6 text-gray-700 border-l border-gray-400 hover:text-blue-600"
-				href="https://www.facebook.com/gettreadtalks"
+				className="block text-gray-700 hover:text-gray-900"
+				to="https://www.facebook.com/gettreadtalks"
 			>
-				<FacebookIcon className="w-5 fill-current" />
+				<FacebookIcon className="w-5 fill-current " />
 			</Link>
 		</div>
 	);

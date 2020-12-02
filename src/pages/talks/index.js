@@ -11,15 +11,14 @@ import TalksFilter from '../../components/talks/filter';
 export default function TalksPage({ data, location, pageContext }) {
 	const { talks, topics } = data;
 	const isTopical = topics?.nodes && pageContext?.topic;
-	const description = `Listen to ${maybePluralize(
+	console.log(isTopical ? 'topical' : 'nope');
+	const description = `Elevate your spiritual heartbeat with ${maybePluralize(
 		talks.totalCount,
 		'Christ centered talk',
 		{
 			formatSmallNumbers: true,
 		}
-	)} ${
-		isTopical && `on ${pageContext.topic}`
-	} to elevate your spiritual heartbeat.`;
+	)}${isTopical ? ` on ${pageContext.topic}` : ''}.`;
 
 	return (
 		<>

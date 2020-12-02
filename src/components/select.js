@@ -11,11 +11,17 @@ export const SelectGroup = ({ label, options }) => (
 		condition={label}
 		wrapper={(children) => <optgroup label={label}>{children}</optgroup>}
 	>
-		{options.map(({ label: text, value }) => (
-			<option key={text} value={value}>
-				{text}
-			</option>
-		))}
+		{options.map(({ label: text, value, separator }) =>
+			separator ? (
+				<option disabled>
+					{typeof separator === 'boolean' ? `─` : separator}
+				</option>
+			) : (
+				<option key={text} value={value}>
+					{text}
+				</option>
+			)
+		)}
 	</ConditionalWrapper>
 );
 
@@ -37,7 +43,7 @@ export default class Select extends Component {
 					}}
 				>
 					{({ handleChange, submitForm }) => (
-						<Form className="absolute inset-0 z-50 flex opacity-0 -right-10">
+						<Form className="absolute inset-0 z-50 flex overflow-hidden opacity-0 -right-10">
 							<Field
 								as="select"
 								name="optionPath"

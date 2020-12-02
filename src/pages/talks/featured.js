@@ -27,7 +27,10 @@ export default function FeaturedTalksPage({ data, location }) {
 					</Page.Title>
 
 					<div className="mt-2 prose">
-						<p>Featured talks picked to elevate your spiritual heartbeat.</p>
+						<p>
+							Choose one of these featured talks to elevate your spiritual
+							heartbeat.
+						</p>
 					</div>
 				</Section.Sidebar>
 

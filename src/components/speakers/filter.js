@@ -21,6 +21,9 @@ export default function SpeakersFilter({
 			value: '/speakers/featured/',
 			label: '★ Speakers',
 		},
+		{
+			separator: true,
+		},
 		...speakerList,
 	];
 

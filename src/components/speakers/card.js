@@ -47,7 +47,7 @@ export default function SpeakerCard({ disable = [], speaker }) {
 				{speaker?.favorite && (
 					<Link
 						to="/speakers/featured/"
-						className="absolute z-20 w-5 h-5 text-red-600 transition transform rotate-12 -right-2 -top-2 hover:rotate-45"
+						className="absolute z-20 w-5 h-5 text-gray-700 transition transform hover:text-red-600 rotate-12 -right-2 -top-2 hover:rotate-45"
 					>
 						<StarSVG />
 					</Link>

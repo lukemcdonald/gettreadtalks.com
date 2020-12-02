@@ -1,66 +1,44 @@
-import React, { Component } from 'react';
+import { useState, useEffect } from 'react';
 
-export default class RefTagger extends Component {
-	constructor(props) {
-		super(props);
+const addScript = (setScriptAdded) => {
+	setScriptAdded(true);
+	const el = document.createElement('script');
+	el.type = 'text/javascript';
+	el.async = true;
+	el.src = 'https://api.reftagger.com/v2/RefTagger.js';
+	document.getElementsByTagName('body')[0].appendChild(el);
+};
 
-		const defaultSettings = {
-			bibleVersion: 'ESV',
-			dropShadow: false,
-			noSearchClassNames: ['no-reftagger'],
-			socialSharing: [],
-			tagChapters: true,
-			roundCorners: true,
-			customStyle: {
-				heading: {
-					backgroundColor: '#111827',
-					color: '#ffffff',
-				},
-				body: {
-					backgroundColor: '#ffffff',
-					color: '#4b5563',
-				},
-			},
-		};
+const addRefTagger = ({
+	bibleVersion = 'esv',
+	dropShadow = false,
+	tagChapters = true,
+	roundCorners = true,
+	socialSharing = [],
+	customStyle,
+}) => {
+	window.refTagger = {
+		settings: {
+			bibleVersion,
+			dropShadow,
+			socialSharing,
+			tagChapters,
+			roundCorners,
+			customStyle,
+		},
+	};
+};
 
-		if (
-			typeof window !== 'undefined' &&
-			window !== null &&
-			window.refTagger == null
-		) {
-			window.refTagger = {
-				settings: {
-					...defaultSettings,
-					...props.settings,
-				},
-			};
-		}
-	}
+export const RefTagger = (props) => {
+	const [scriptAdded, setScriptAdded] = useState(false);
 
-	componentDidMount() {
-		if (!RefTagger.scriptIsAdded) {
-			return this.addScript();
-		}
+	useEffect(() => {
+		!scriptAdded && addScript(setScriptAdded);
+		window && !window.refTagger && addRefTagger(props);
+		window.refTagger && window.refTagger.tag && window.refTagger.tag();
 
-		window?.refTagger?.tag();
-	}
+		return () => window.refTagger.tag();
+	}, []);
 
-	componentDidUpdate() {
-		window?.refTagger?.tag();
-	}
-
-	addScript() {
-		RefTagger.scriptIsAdded = true;
-
-		const scriptElem = document.createElement('script');
-		const scriptTag = document.getElementsByTagName('script')[0];
-		scriptElem.src = '//api.reftagger.com/v2/RefTagger.js';
-		scriptTag.parentNode.insertBefore(scriptElem, scriptTag);
-	}
-
-	render() {
-		return <div className="hidden shadow-lg" />;
-	}
-}
-
-RefTagger.scriptIsAdded = false;
+	return null;
+};
