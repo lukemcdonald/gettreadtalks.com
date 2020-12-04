@@ -7,6 +7,7 @@ import Speakers from '../../components/speakers';
 import Section from '../../components/section';
 import SpeakersFilter from '../../components/speakers/filter';
 import Card from '../../components/card';
+import TextCarousel from '../../components/textCarousel';
 
 export default function SpeakersPage({ data, location, pageContext }) {
 	const { speakers } = data;
@@ -14,6 +15,8 @@ export default function SpeakersPage({ data, location, pageContext }) {
 	return (
 		<>
 			<SEO title="Speakers" location={location} />
+
+			<TextCarousel text="Repent and Believe" />
 
 			<Section>
 				<Section.Sidebar className="hidden" sticky>

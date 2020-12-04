@@ -9,6 +9,7 @@ import SEO from '../components/seo';
 import Speakers from '../components/speakers';
 import Talks from '../components/talks';
 import TalksNav from '../components/talks/nav';
+import TextCarousel from '../components/textCarousel';
 
 export default function IndexPage({ data, location }) {
 	const { talks, speakers } = data;
@@ -25,14 +26,7 @@ export default function IndexPage({ data, location }) {
 			</Intro>
 
 			<Section className="relative">
-				<ul
-					className="absolute inset-x-0 z-0 hidden w-full px-12 overflow-hidden font-black leading-none tracking-tighter text-gray-300 uppercase transform -top-2 css-slideshow md:flex md:flex-col"
-					style={{ fontSize: '16vw' }}
-				>
-					<li className="text-right">Jesus</li>
-					<li className="text-right">Is</li>
-					<li className="text-right">King</li>
-				</ul>
+				<TextCarousel text="Jesus Is King" />
 
 				<Section.Sidebar sticky>
 					<Section.Heading as="h2">Featured Talks</Section.Heading>

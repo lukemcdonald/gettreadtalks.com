@@ -1,15 +1,13 @@
-import { Link } from 'gatsby';
 import React, { Fragment } from 'react';
 
 import Card from '../card';
 import FauxLink from '../fauxLink';
-import StarSVG from '../svgs/star';
 
 export default function Talk({ disable = [], talk }) {
 	disable.map((item) => (talk[item] = ''));
 
 	return (
-		<Card className="rounded">
+		<Card>
 			{!disable.includes('avatar') &&
 				talk.speakers.map((speaker) => (
 					<Card.Avatar
@@ -43,14 +41,7 @@ export default function Talk({ disable = [], talk }) {
 					{talk.scripture && <span>{talk.scripture}</span>}
 				</Card.Meta>
 
-				{talk?.favorite && (
-					<Link
-						to="/talks/featured/"
-						className="absolute z-20 w-5 h-5 text-red-600 transition transform rotate-12 -right-2 -top-2 hover:rotate-45"
-					>
-						<StarSVG />
-					</Link>
-				)}
+				{talk?.favorite && <Card.FeaturedLink to="/talks/featured/" />}
 			</div>
 
 			<FauxLink to={talk.slug}>{`Listen to ${talk.title}`}</FauxLink>

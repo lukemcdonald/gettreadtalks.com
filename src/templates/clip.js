@@ -21,8 +21,12 @@ export default function SingleClipPage({ data, location }) {
 				<Intro.Title>{clip.title}</Intro.Title>
 
 				<Intro.Tagline className="flex justify-center space-x-2">
-					<span className="text-gray-500">by</span>&nbsp;
-					{clip.speakers[0].data.title}
+					<span>
+						<span className="text-gray-500">by</span>&nbsp;
+						<Link className="hover:underline" to={clip.speakers[0].fields.slug}>
+							{clip.speakers[0].data.title}
+						</Link>
+					</span>
 				</Intro.Tagline>
 
 				{hasVideo && (
@@ -67,6 +71,10 @@ export const query = graphql`
 					}
 				}
 				speakers {
+					fields {
+						slug
+					}
+
 					data {
 						title
 					}

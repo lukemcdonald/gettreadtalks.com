@@ -1,16 +1,19 @@
 import React from 'react';
 import { graphql } from 'gatsby';
+import classnames from 'classnames';
 import { maybePluralize } from '../utilities';
 
 import Avatar from '../components/avatar';
+import Clips from '../components/clips';
 import ConditionalWrapper from '../components/wrapper';
 import Intro from '../components/intro';
 import Link from '../components/link';
+import Page from '../components/page';
 import Section from '../components/section';
 import SEO from '../components/seo';
-import Talks from '../components/talks';
-import Page from '../components/page';
 import SpeakersFilter from '../components/speakers/filter';
+import Talks from '../components/talks';
+import TextCarousel from '../components/textCarousel';
 
 export default function SingleSpeakerPage({ data, location, pageContext }) {
 	const {
@@ -49,7 +52,8 @@ export default function SingleSpeakerPage({ data, location, pageContext }) {
 				</Intro.Tagline>
 			</Intro>
 
-			<Section>
+			<Section className="relative">
+				<TextCarousel text={`${speaker?.role || 'Ambassador'} for Christ`} />
 				<Section.Sidebar sticky>
 					{speaker.description && (
 						<>
@@ -87,18 +91,43 @@ export default function SingleSpeakerPage({ data, location, pageContext }) {
 				</Section.Sidebar>
 
 				<Section.Content>
-					<Section.Heading>
-						<span>
-							{maybePluralize(speaker.talks.length, `Talk`, {
-								formatSmallNumbers: true,
-							})}
-						</span>
-					</Section.Heading>
-					<Talks
-						className="grid gap-6"
-						talks={speaker.talks}
-						disable={['avatar']}
-					/>
+					{speaker.talks && (
+						<>
+							<Section.Heading>
+								<span>
+									{maybePluralize(speaker.talks.length, `Talk`, {
+										showCount: false,
+									})}
+								</span>
+							</Section.Heading>
+
+							<Talks
+								className="grid gap-6"
+								talks={speaker.talks}
+								disable={['avatar']}
+							/>
+						</>
+					)}
+
+					{speaker.clips && (
+						<>
+							<Section.Heading
+								className={classnames(speaker.talks ? 'mt-12' : '')}
+							>
+								<span>
+									{maybePluralize(speaker.clips.length, `Clip`, {
+										showCount: false,
+									})}
+								</span>
+							</Section.Heading>
+
+							<Clips
+								className="grid gap-6"
+								clips={speaker.clips}
+								disable={['avatar']}
+							/>
+						</>
+					)}
 				</Section.Content>
 			</Section>
 		</>
@@ -146,6 +175,24 @@ export const query = graphql`
 					data {
 						title
 						path
+						speakers {
+							id
+							fields {
+								slug
+							}
+							data {
+								title
+								avatar {
+									localFiles {
+										childImageSharp {
+											fluid(maxWidth: 128) {
+												...GatsbyImageSharpFluid_tracedSVG
+											}
+										}
+									}
+								}
+							}
+						}
 					}
 				}
 				talks {

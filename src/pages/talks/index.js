@@ -7,11 +7,11 @@ import Section from '../../components/section';
 import SEO from '../../components/seo';
 import Talks from '../../components/talks';
 import TalksFilter from '../../components/talks/filter';
+import TextCarousel from '../../components/textCarousel';
 
 export default function TalksPage({ data, location, pageContext }) {
 	const { talks, topics } = data;
 	const isTopical = topics?.nodes && pageContext?.topic;
-	console.log(isTopical ? 'topical' : 'nope');
 	const description = `Elevate your spiritual heartbeat with ${maybePluralize(
 		talks.totalCount,
 		'Christ centered talk',
@@ -24,7 +24,9 @@ export default function TalksPage({ data, location, pageContext }) {
 		<>
 			<SEO title="Talks" description={description} location={location} />
 
-			<Section>
+			<TextCarousel text="Jesus is Lord" />
+
+			<Section className="relative">
 				<Section.Sidebar>
 					{isTopical && <Section.Heading as="h2">Talks On</Section.Heading>}
 

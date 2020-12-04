@@ -11,13 +11,13 @@ export const SelectGroup = ({ label, options }) => (
 		condition={label}
 		wrapper={(children) => <optgroup label={label}>{children}</optgroup>}
 	>
-		{options.map(({ label: text, value, separator }) =>
+		{options.map(({ label: text, value, separator, index }) =>
 			separator ? (
-				<option disabled>
+				<option key={`${separator}-${index}`} disabled>
 					{typeof separator === 'boolean' ? `─` : separator}
 				</option>
 			) : (
-				<option key={text} value={value}>
+				<option key={`${value}`} value={value}>
 					{text}
 				</option>
 			)

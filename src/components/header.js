@@ -5,7 +5,7 @@ import SiteNav from './nav';
 
 export default function SiteHeader({ siteTitle }) {
 	return (
-		<header className="border-t-4 border-red-600 bg-gradient-to-b from-gray-50">
+		<header className="relative z-50 border-t-4 border-red-600 bg-gradient-to-b from-gray-50">
 			<div className="container max-w-screen-xl py-10">
 				<nav className="flex items-center justify-between text-gray-900">
 					<h1>
