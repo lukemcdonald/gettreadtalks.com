@@ -71,10 +71,10 @@ export const query = graphql`
 					}
 				}
 				speakers {
+					id
 					fields {
 						slug
 					}
-
 					data {
 						title
 					}

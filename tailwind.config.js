@@ -43,8 +43,11 @@ module.exports = {
 		}),
 	},
 	variants: {
-		aspectRatio: ['responsive'],
-		opacity: ['disabled'],
+		extend: {
+			aspectRatio: ['responsive'],
+			opacity: ['disabled'],
+			zIndex: ['hover'],
+		},
 	},
 	plugins: [
 		require('@tailwindcss/forms'),

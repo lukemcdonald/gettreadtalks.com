@@ -50,6 +50,7 @@ export default class Link extends Component {
 			disabled,
 			to,
 			target,
+			title,
 		} = this.props;
 
 		// Tailor the following test to your environment.
@@ -65,11 +66,12 @@ export default class Link extends Component {
 				activeClassName={activeClassName}
 				rel="canonical"
 				disabled={disabled}
+				title={title}
 			>
 				{children}
 			</GatsbyLink>
 		) : (
-			<a className={className} href={to} target={target}>
+			<a className={className} href={to} target={target} title={title}>
 				{children}
 			</a>
 		);

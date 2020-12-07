@@ -57,10 +57,7 @@ export default function SEO({ children, location, title, description, image }) {
 			<meta name="twitter:image" content={seo.image} />
 			<meta name="twitter:title" content={seo.title} />
 			<meta name="twitter:description" content={seo.description} />
-			<meta
-				name="twitter:creator"
-				content={site.siteMetadata.twitterUsername}
-			/>
+			<meta name="twitter:creator" content="@treadtalks" />
 
 			{/* Additions and Overrides */}
 			{children}

@@ -121,7 +121,7 @@ export default {
 						tableName: `Series`,
 						tableView: `Published`,
 						queryName: `Serie`,
-						tableLinks: [`talks`],
+						tableLinks: [`speakers`, `talks`],
 						mapping: {
 							link: `text/markdown`,
 						},

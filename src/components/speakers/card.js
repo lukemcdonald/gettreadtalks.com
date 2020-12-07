@@ -8,7 +8,7 @@ export default function SpeakerCard({ disable = [], speaker }) {
 	disable.map((item) => (speaker[item] = ''));
 
 	return (
-		<Card className="rounded">
+		<Card>
 			{speaker.avatar && (
 				<Card.Avatar image={speaker.avatar} title={speaker.title} />
 			)}

@@ -56,6 +56,9 @@ export const query = graphql`
 					scripture
 					speakers {
 						id
+						fields {
+							slug
+						}
 						data {
 							title
 							avatar {
@@ -67,9 +70,6 @@ export const query = graphql`
 									}
 								}
 							}
-						}
-						fields {
-							slug
 						}
 					}
 				}

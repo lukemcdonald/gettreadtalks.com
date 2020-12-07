@@ -55,7 +55,7 @@
     "gatsby-transformer-remark": "^2.12.0",
     "gatsby-transformer-sharp": "^2.8.0",
     "js-video-url-parser": "^0.4.3",
-    "netlify-cli": "^2.69.0",
+    "netlify-cli": "^2.69.3",
     "netlify-lambda": "^2.0.1",
     "postcss": "^8.1.10",
     "postcss-cli": "^8.3.0",
@@ -75,7 +75,7 @@
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "cross-env": "^7.0.3",
-    "eslint": "^7.14.0",
+    "eslint": "^7.15.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^6.15.0",
     "eslint-config-wesbos": "1.0.1",

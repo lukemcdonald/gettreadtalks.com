@@ -1,6 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
+import Page from '../../components/page';
 import SEO from '../../components/seo';
 import Series from '../../components/series';
 import Section from '../../components/section';
@@ -14,12 +15,12 @@ export default function SeriesPage({ data, location }) {
 
 			<Section>
 				<Section.Sidebar sticky>
-					<Section.Heading as="h1">Sermon Series</Section.Heading>
+					<Page.Title>Series</Page.Title>
 
-					<div className="prose">
+					<div className="mt-2 prose">
 						<p>
-							Each series includes talks that were given by one or more speakers
-							on the same topic or book of the Bible.
+							Each series includes talks given by one or more speakers on the
+							same topic or book of the Bible.
 						</p>
 					</div>
 				</Section.Sidebar>
@@ -46,6 +47,24 @@ export const query = graphql`
 				data {
 					title
 					publishedTalksCount
+					speakers {
+						id
+						fields {
+							slug
+						}
+						data {
+							title
+							avatar {
+								localFiles {
+									childImageSharp {
+										fluid(maxWidth: 128) {
+											...GatsbyImageSharpFluid_tracedSVG
+										}
+									}
+								}
+							}
+						}
+					}
 				}
 			}
 		}
