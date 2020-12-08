@@ -1,11 +1,10 @@
 import React from 'react';
 import Img from 'gatsby-image';
-import classnames from 'classnames';
 
 export default function Avatar({ className, image, title }) {
 	return (
 		<>
-			{image && (
+			{image?.localFiles?.[0] && (
 				<Img
 					className={className}
 					alt={title}

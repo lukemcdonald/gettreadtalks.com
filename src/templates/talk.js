@@ -113,6 +113,15 @@ export const query = graphql`
 					}
 				}
 				scripture
+				series {
+					id
+					fields {
+						slug
+					}
+					data {
+						title
+					}
+				}
 				speaker
 				speakers {
 					id
