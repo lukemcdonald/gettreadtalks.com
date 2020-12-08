@@ -7,6 +7,7 @@ import Intro from '../components/intro';
 import Link from '../components/link';
 import Section from '../components/section';
 import SEO from '../components/seo';
+import Series from '../components/series';
 import Talks from '../components/talks';
 
 export default function Talk({ data, location }) {
@@ -15,6 +16,8 @@ export default function Talk({ data, location }) {
 	const media = talk?.link?.childMarkdownRemark;
 	const mediaObject = media?.htmlAst.children[0].children[0];
 	const hasVideo = mediaObject.tagName === 'iframe';
+	const hasTalks = talks.length > 0;
+	const hasSeries = talk?.series;
 
 	return (
 		<>
@@ -65,15 +68,30 @@ export default function Talk({ data, location }) {
 				)}
 			</Intro>
 
-			{talks.length > 0 && (
+			{hasSeries && (
+				<Section separator={hasTalks && 'bottom'}>
+					<Section.Sidebar sticky>
+						<Section.Heading as="h2">Series</Section.Heading>
+
+						<div className="prose">
+							<p>This talk is part of a series of related talks.</p>
+						</div>
+					</Section.Sidebar>
+
+					<Section.Content>
+						<Series className="grid gap-6" series={talk.series} />
+					</Section.Content>
+				</Section>
+			)}
+
+			{hasTalks && (
 				<Section>
 					<Section.Sidebar sticky>
-						<Section.Heading as="h2">Keep Going</Section.Heading>
+						<Section.Heading as="h2">Talks</Section.Heading>
 
 						<div className="prose">
 							<p>
-								<em>Don't stop here!</em> Enjoy{' '}
-								{talks.length >= 2 ? 'more talks' : 'another talk'} by{' '}
+								Enjoy {talks.length >= 2 ? 'more talks' : 'another talk'} by{' '}
 								{talk.speaker}.
 							</p>
 						</div>
@@ -120,6 +138,25 @@ export const query = graphql`
 					}
 					data {
 						title
+						publishedTalksCount
+						speakers {
+							id
+							fields {
+								slug
+							}
+							data {
+								title
+								avatar {
+									localFiles {
+										childImageSharp {
+											fluid(maxWidth: 128) {
+												...GatsbyImageSharpFluid_tracedSVG
+											}
+										}
+									}
+								}
+							}
+						}
 					}
 				}
 				speaker
@@ -146,15 +183,6 @@ export const query = graphql`
 									}
 									data {
 										title
-										avatar {
-											localFiles {
-												childImageSharp {
-													fluid(maxWidth: 128) {
-														...GatsbyImageSharpFluid_tracedSVG
-													}
-												}
-											}
-										}
 									}
 								}
 							}

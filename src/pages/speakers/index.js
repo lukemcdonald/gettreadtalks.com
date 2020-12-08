@@ -52,7 +52,6 @@ export default function SpeakersPage({ data, location, pageContext }) {
 						className="grid gap-6 lg:grid lg:grid-cols-2 xl:grid-cols-4"
 						size="small"
 						speakers={speakers.nodes}
-						disable={['ministry']}
 					>
 						<Card className="items-start row-span-2 px-6 py-5">
 							<div>

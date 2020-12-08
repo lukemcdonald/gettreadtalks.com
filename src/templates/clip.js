@@ -41,8 +41,8 @@ export default function SingleClipPage({ data, location }) {
 				{clip.talks && (
 					<Talks
 						className="-mt-1"
-						talks={clip.talks}
 						subtitle="Related Talk:"
+						talks={clip.talks}
 					/>
 				)}
 
@@ -86,7 +86,6 @@ export const query = graphql`
 					}
 					data {
 						title
-						favorite
 						publishedDate(formatString: "YYYYMMDD")
 						scripture
 						speakers {

@@ -75,6 +75,10 @@ export const SectionHeading = ({ children, className, as }) => {
 	);
 };
 
+export const SectionSeparator = ({ className }) => (
+	<hr className={classnames('border-gray-200', className)} />
+);
+
 export default class Section extends Component {
 	static Content = SectionContent;
 
@@ -84,8 +88,10 @@ export default class Section extends Component {
 
 	static Heading = SectionHeading;
 
+	static Separator = SectionSeparator;
+
 	render() {
-		const { as, children, className, separator } = this.props;
+		const { as, children, className, separator, separatorClass } = this.props;
 
 		const Tag = sanitizeHTMLTag(as, [
 			'section',
@@ -95,24 +101,16 @@ export default class Section extends Component {
 			'header',
 		]);
 
-		const separatorMapping = {
-			DEFAULT: '',
-			top: 'border-t',
-			bottom: 'border-b',
-			'top-bottom': 'border-t border-b',
-		};
-
 		return (
 			<Tag className={className}>
 				<SectionContainer>
-					<div
-						className={classnames(
-							'grid gap-6 sm:grid-cols-3 lg:grid-cols-12 border-gray-300',
-							separatorMapping[separator] || separatorMapping.DEFAULT
-						)}
-					>
+					{separator === 'top' && (
+						<SectionSeparator className={classnames(separatorClass)} />
+					)}
+					<div className="grid gap-6 sm:grid-cols-3 lg:grid-cols-12">
 						{children}
 					</div>
+					{separator === 'bottom' && <SectionSeparator />}
 				</SectionContainer>
 			</Tag>
 		);

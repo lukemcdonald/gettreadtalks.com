@@ -3,48 +3,51 @@ import React, { Fragment } from 'react';
 import Card from '../card';
 import FauxLink from '../fauxLink';
 
-export default function Talk({ disable = [], talk }) {
-	disable.map((item) => (talk[item] = ''));
-
+export default function Talk({ talk }) {
 	return (
 		<Card>
-			{!disable.includes('avatar') &&
-				talk.speakers.map((speaker) => (
-					<Card.Avatar
-						key={speaker.id}
-						image={speaker.data?.avatar}
-						title={speaker.data?.title}
-					/>
-				))}
+			{talk?.speakers.map(
+				(speaker) =>
+					speaker?.avatar && (
+						<Card.Avatar
+							key={speaker.id}
+							image={speaker.data?.avatar}
+							alt={speaker.data?.title}
+						/>
+					)
+			)}
 
 			<div>
-				{talk.subtitle && (
+				{talk?.subtitle && (
 					<Card.SubTitle as="h3">{talk.subtitle}</Card.SubTitle>
 				)}
 
-				{talk.title && <Card.Title as="h2">{talk.title}</Card.Title>}
+				{talk?.title && <Card.Title as="h2">{talk.title}</Card.Title>}
 
 				<Card.Meta>
-					{!disable.includes('speaker') &&
-						talk.speakers.map(({ id, data, fields }) => (
-							<Fragment key={id}>
+					{talk?.speakers.map((speaker) => (
+						<Fragment key={speaker.id}>
+							{speaker.data?.title && speaker.fields?.slug && (
 								<span>
-									<Card.MetaLink key={id} to={fields.slug}>
-										{data.title}
+									<Card.MetaLink to={speaker.fields.slug}>
+										{speaker.data.title}
 									</Card.MetaLink>
 								</span>
+							)}
 
-								{talk.scripture && <span className="mx-1">&middot;</span>}
-							</Fragment>
-						))}
+							{talk?.scripture && <span className="mx-1">&middot;</span>}
+						</Fragment>
+					))}
 
-					{talk.scripture && <span>{talk.scripture}</span>}
+					{talk?.scripture && <span>{talk.scripture}</span>}
 				</Card.Meta>
 
 				{talk?.favorite && <Card.FeaturedLink to="/talks/featured/" />}
 			</div>
 
-			<FauxLink to={talk.slug}>{`Listen to ${talk.title}`}</FauxLink>
+			{talk?.slug && talk?.slug && (
+				<FauxLink to={talk.slug}>{`Listen to ${talk.title}`}</FauxLink>
+			)}
 		</Card>
 	);
 }

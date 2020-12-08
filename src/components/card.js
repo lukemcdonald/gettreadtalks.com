@@ -28,7 +28,7 @@ export const CardSubTitle = ({ children, className, as }) => {
 	return (
 		<Tag
 			className={classnames(
-				'text-red-600 text-xs tracking-wide uppercase mb-2 mt-1 font-bold',
+				'text-red-600 text-xs tracking-wide uppercase mb-2 mt-1 font-bold leading-none',
 				className
 			)}
 		>

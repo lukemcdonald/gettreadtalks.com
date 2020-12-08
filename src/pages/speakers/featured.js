@@ -39,7 +39,6 @@ export default function FeaturedSpeakersPage({ data, location }) {
 						className="grid gap-6 lg:grid lg:grid-cols-2 xl:grid-cols-3"
 						size="small"
 						speakers={speakers.nodes}
-						disable={['ministry']}
 					/>
 				</Section.Content>
 			</Section>
@@ -64,7 +63,6 @@ export const query = graphql`
 					firstName
 					lastName
 					role
-					ministry
 					website
 					avatar {
 						localFiles {

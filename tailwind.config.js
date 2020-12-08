@@ -30,6 +30,15 @@ module.exports = {
 				'65ch': '65ch',
 				'73ch': '73ch',
 			},
+			typography: (theme) => ({
+				DEFAULT: {
+					css: {
+						a: {
+							color: theme('colors.current'),
+						},
+					},
+				},
+			}),
 		},
 		aspectRatio: {
 			'16x9': [16, 9],

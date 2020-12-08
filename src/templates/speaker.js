@@ -52,84 +52,86 @@ export default function SingleSpeakerPage({ data, location, pageContext }) {
 				</Intro.Tagline>
 			</Intro>
 
-			<Section className="relative">
-				<TextCarousel text={`${speaker?.role || 'Ambassador'} for Christ`} />
-				<Section.Sidebar sticky>
+			<Section
+				className="bg-gray-900"
+				separator={!speaker.banner && 'top'}
+				separatorClass="border-gray-700"
+			>
+				{speaker.ministry && (
+					<Section.Sidebar>
+						<Section.Heading as="h2">Ministry</Section.Heading>
+
+						<p className="prose text-white">
+							<ConditionalWrapper
+								condition={speaker.website}
+								wrapper={(children) => (
+									<Link to={speaker.website}>{children}</Link>
+								)}
+							>
+								{speaker.ministry}
+							</ConditionalWrapper>
+						</p>
+					</Section.Sidebar>
+				)}
+
+				<Section.Content>
 					{speaker.description && (
 						<>
 							<Section.Heading as="h2">About</Section.Heading>
 
-							<Page.Title />
-
 							<div
-								className="mt-3 prose"
+								className="mt-3 prose text-white"
 								dangerouslySetInnerHTML={{
 									__html: speaker.description?.childMarkdownRemark.html,
 								}}
 							/>
 						</>
 					)}
-
-					{speaker.ministry && (
-						<>
-							<Section.Heading as="h3" className="mt-8">
-								Ministry
-							</Section.Heading>
-
-							<p className="prose">
-								<ConditionalWrapper
-									condition={speaker.website}
-									wrapper={(children) => (
-										<Link to={speaker.website}>{children}</Link>
-									)}
-								>
-									{speaker.ministry}
-								</ConditionalWrapper>
-							</p>
-						</>
-					)}
-				</Section.Sidebar>
-
-				<Section.Content>
-					{speaker.talks && (
-						<>
-							<Section.Heading>
-								<span>
-									{maybePluralize(speaker.talks.length, `Talk`, {
-										showCount: false,
-									})}
-								</span>
-							</Section.Heading>
-
-							<Talks
-								className="grid gap-6"
-								talks={speaker.talks}
-								disable={['avatar']}
-							/>
-						</>
-					)}
-
-					{speaker.clips && (
-						<>
-							<Section.Heading
-								className={classnames(speaker.talks ? 'mt-12' : '')}
-							>
-								<span>
-									{maybePluralize(speaker.clips.length, `Clip`, {
-										showCount: false,
-									})}
-								</span>
-							</Section.Heading>
-
-							<Clips
-								className="grid gap-6"
-								clips={speaker.clips}
-								disable={['avatar']}
-							/>
-						</>
-					)}
 				</Section.Content>
 			</Section>
+
+			{speaker?.talks && (
+				<Section className="relative">
+					<TextCarousel text={`${speaker?.role || 'Ambassador'} for Christ`} />
+					<Section.Sidebar sticky>
+						<Section.Heading>
+							{maybePluralize(speaker.talks.length, `Talk`, {
+								showCount: false,
+							})}
+						</Section.Heading>
+						<p className="prose">
+							Enjoy more talks by {speaker.role} {speaker.title}.
+						</p>
+					</Section.Sidebar>
+
+					<Section.Content>
+						<Talks className="grid gap-6" talks={speaker.talks} />
+					</Section.Content>
+				</Section>
+			)}
+
+			{speaker.clips && (
+				<Section separator={speaker.talks && 'top'}>
+					<Section.Sidebar sticky>
+						<Section.Heading>
+							<span>
+								{maybePluralize(speaker.clips.length, `Clip`, {
+									showCount: false,
+								})}
+							</span>
+						</Section.Heading>
+
+						<p className="prose">
+							Be encouraged by {speaker.clips.length > 1 ? 'these' : 'this'}{' '}
+							short Christ centered clips.
+						</p>
+					</Section.Sidebar>
+
+					<Section.Content>
+						<Clips className="grid gap-6" clips={speaker.clips} />
+					</Section.Content>
+				</Section>
+			)}
 		</>
 	);
 }
@@ -148,20 +150,19 @@ export const query = graphql`
 						html
 					}
 				}
-				avatar {
+				banner {
 					localFiles {
-						publicURL
 						childImageSharp {
-							fluid(maxWidth: 128) {
+							fluid(maxWidth: 1600, grayscale: true) {
 								...GatsbyImageSharpFluid_tracedSVG
 							}
 						}
 					}
 				}
-				banner {
+				avatar {
 					localFiles {
 						childImageSharp {
-							fluid(maxWidth: 1600, grayscale: true) {
+							fluid(maxWidth: 128) {
 								...GatsbyImageSharpFluid_tracedSVG
 							}
 						}
@@ -182,15 +183,6 @@ export const query = graphql`
 							}
 							data {
 								title
-								avatar {
-									localFiles {
-										childImageSharp {
-											fluid(maxWidth: 128) {
-												...GatsbyImageSharpFluid_tracedSVG
-											}
-										}
-									}
-								}
 							}
 						}
 					}
@@ -212,15 +204,6 @@ export const query = graphql`
 							}
 							data {
 								title
-								avatar {
-									localFiles {
-										childImageSharp {
-											fluid(maxWidth: 128) {
-												...GatsbyImageSharpFluid_tracedSVG
-											}
-										}
-									}
-								}
 							}
 						}
 					}
