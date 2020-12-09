@@ -60,13 +60,14 @@ export const SectionSidebar = ({ children, className, right, sticky }) => {
 	);
 };
 
-export const SectionHeading = ({ children, className, as }) => {
+export const SectionHeading = ({ children, className = '', as }) => {
 	const Tag = sanitizeHTMLTag(as, ['h1', 'h2', 'h3']);
 
 	return (
 		<Tag
 			className={classnames(
-				'mb-3 text-sm font-bold tracking-wide text-gray-500 uppercase lg:mb-2 lg:text-xs',
+				'mb-3 text-sm font-bold tracking-wide  uppercase lg:mb-2 lg:text-xs',
+				className.includes('text-gray-') || 'text-gray-500',
 				className
 			)}
 		>

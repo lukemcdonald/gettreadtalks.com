@@ -1,6 +1,5 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import classnames from 'classnames';
 import { maybePluralize } from '../utilities';
 
 import Avatar from '../components/avatar';
@@ -8,7 +7,6 @@ import Clips from '../components/clips';
 import ConditionalWrapper from '../components/wrapper';
 import Intro from '../components/intro';
 import Link from '../components/link';
-import Page from '../components/page';
 import Section from '../components/section';
 import SEO from '../components/seo';
 import SpeakersFilter from '../components/speakers/filter';
@@ -59,7 +57,9 @@ export default function SingleSpeakerPage({ data, location, pageContext }) {
 			>
 				{speaker.ministry && (
 					<Section.Sidebar>
-						<Section.Heading as="h2">Ministry</Section.Heading>
+						<Section.Heading as="h2" className="text-gray-400">
+							Ministry
+						</Section.Heading>
 
 						<p className="prose text-white">
 							<ConditionalWrapper
@@ -77,7 +77,9 @@ export default function SingleSpeakerPage({ data, location, pageContext }) {
 				<Section.Content>
 					{speaker.description && (
 						<>
-							<Section.Heading as="h2">About</Section.Heading>
+							<Section.Heading as="h2" className="text-gray-400">
+								About
+							</Section.Heading>
 
 							<div
 								className="mt-3 prose text-white"
