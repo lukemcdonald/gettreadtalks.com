@@ -30,7 +30,7 @@ export default function SinglePage({ data, location }) {
 					</div>
 
 					<div className="mt-10">
-						<RandomProduct size="small" />
+						<RandomProduct className="rounded" card size="small" />
 					</div>
 				</Section.Content>
 			</Section>

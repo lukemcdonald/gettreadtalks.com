@@ -1,0 +1,10 @@
+nav {
+  input:checked ~ div {
+    max-height: none;
+    @apply pb-6;
+  }
+
+  input:checked ~ label {
+    @apply text-red-600;
+  }
+}

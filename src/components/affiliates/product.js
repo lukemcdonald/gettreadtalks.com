@@ -50,7 +50,7 @@ class Product extends Component {
 			},
 		};
 
-		const styled = sizeMapping[size] || sizeMapping.DEFAULT;
+		const sizeStyles = sizeMapping[size] || sizeMapping.DEFAULT;
 
 		if (loading) {
 			return <div />;
@@ -60,23 +60,21 @@ class Product extends Component {
 			<ConditionalWrapper
 				condition={card}
 				wrapper={(children) => (
-					<Card className="relative bg-gray-800 border-none rounded">
-						{children}
-					</Card>
+					<Card className="relative border-none rounded">{children}</Card>
 				)}
 			>
 				<div
 					className={classnames(
 						'flex items-center',
 						card ? '' : 'flex-grow relative',
-						styled.container,
+						sizeStyles.container,
 						className
 					)}
 				>
 					{post.image && (
-						<figure className={classnames('w-16 mr-4', styled.image)}>
+						<figure className={classnames('w-16 mr-4', sizeStyles.image)}>
 							<Image
-								className="rounded-sm"
+								className={card ? 'rounded' : 'rounded-l'}
 								alt={post.title}
 								fluid={post.image.localFiles[0].childImageSharp.fluid}
 							/>
@@ -87,8 +85,7 @@ class Product extends Component {
 						<h3
 							className={classnames(
 								'text-lg font-bold leading-6',
-								styled.title,
-								card ? 'text-white' : ''
+								sizeStyles.title
 							)}
 						>
 							{post.title}
@@ -98,7 +95,7 @@ class Product extends Component {
 							<p
 								className={classnames(
 									'mt-px text-sm inline-block text-gray-400',
-									styled.subtitle
+									sizeStyles.subtitle
 								)}
 							>
 								{post.subtitle}
@@ -110,11 +107,7 @@ class Product extends Component {
 						{`View to ${post.title}`}
 					</FauxLink>
 
-					{disclosure && (
-						<div className="absolute bottom-0 right-0 px-1 mb-1 mr-1 text-xs text-gray-900 bg-gray-400 rounded-sm">
-							<Disclosure title="Affiliate" content={false} />
-						</div>
-					)}
+					{disclosure && <Disclosure title="Affiliate" />}
 				</div>
 			</ConditionalWrapper>
 		);

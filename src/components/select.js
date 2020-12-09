@@ -43,7 +43,7 @@ export default class Select extends Component {
 					}}
 				>
 					{({ handleChange, submitForm }) => (
-						<Form className="absolute inset-0 z-50 flex overflow-hidden opacity-0 -right-10">
+						<Form className="absolute inset-0 z-40 flex overflow-hidden opacity-0 -right-10">
 							<Field
 								as="select"
 								name="optionPath"

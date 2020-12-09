@@ -8,7 +8,7 @@ export default function Talk({ talk }) {
 		<Card>
 			{talk?.speakers.map(
 				(speaker) =>
-					speaker?.avatar && (
+					speaker.data?.avatar && (
 						<Card.Avatar
 							key={speaker.id}
 							image={speaker.data?.avatar}

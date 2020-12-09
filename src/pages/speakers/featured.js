@@ -35,11 +35,7 @@ export default function FeaturedSpeakersPage({ data, location }) {
 				</Section.Sidebar>
 
 				<Section.Content align="wide">
-					<Speakers
-						className="grid gap-6 lg:grid lg:grid-cols-2 xl:grid-cols-3"
-						size="small"
-						speakers={speakers.nodes}
-					/>
+					<Speakers className="xl:grid-cols-3" speakers={speakers.nodes} />
 				</Section.Content>
 			</Section>
 		</>

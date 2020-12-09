@@ -107,7 +107,7 @@ export default function SingleSpeakerPage({ data, location, pageContext }) {
 					</Section.Sidebar>
 
 					<Section.Content>
-						<Talks className="grid gap-6" talks={speaker.talks} />
+						<Talks talks={speaker.talks} />
 					</Section.Content>
 				</Section>
 			)}
@@ -130,7 +130,7 @@ export default function SingleSpeakerPage({ data, location, pageContext }) {
 					</Section.Sidebar>
 
 					<Section.Content>
-						<Clips className="grid gap-6" clips={speaker.clips} />
+						<Clips clips={speaker.clips} />
 					</Section.Content>
 				</Section>
 			)}

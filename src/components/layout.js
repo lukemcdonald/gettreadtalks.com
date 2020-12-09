@@ -32,9 +32,10 @@ export default function Layout({ children }) {
 							styles.svgBg
 						)}
 					/>
+
 					<div className="relative text-gray-700">
 						<Header siteTitle={data.site.siteMetadata.title} />
-						<main>{children}</main>
+						<main className="relative z-0">{children}</main>
 						<Footer siteTitle={data.site.siteMetadata.title} />
 						<RefTagger
 							customStyle={{

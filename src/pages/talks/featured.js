@@ -35,7 +35,7 @@ export default function FeaturedTalksPage({ data, location }) {
 				</Section.Sidebar>
 
 				<Section.Content>
-					<Talks className="grid gap-6" talks={talks.nodes} />
+					<Talks talks={talks.nodes} />
 				</Section.Content>
 			</Section>
 		</>

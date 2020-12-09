@@ -79,7 +79,7 @@ export default function Talk({ data, location }) {
 					</Section.Sidebar>
 
 					<Section.Content>
-						<Series className="grid gap-6" series={talk.series} />
+						<Series series={talk.series} />
 					</Section.Content>
 				</Section>
 			)}
@@ -98,7 +98,8 @@ export default function Talk({ data, location }) {
 					</Section.Sidebar>
 
 					<Section.Content>
-						<Talks className="grid gap-6" talks={shuffle(talks).slice(0, 5)} />
+						<Talks talks={shuffle(talks).slice(0, 5)} />
+
 						{talks.length > 5 && (
 							<p className="mt-6">
 								<Link

@@ -26,7 +26,7 @@ export default function SeriesPage({ data, location }) {
 				</Section.Sidebar>
 
 				<Section.Content>
-					<Series className="grid gap-6" series={series.nodes} />
+					<Series series={series.nodes} />
 				</Section.Content>
 			</Section>
 		</>

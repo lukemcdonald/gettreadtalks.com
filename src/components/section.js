@@ -29,7 +29,7 @@ export const SectionContent = ({ align, as, children, className }) => {
 	return (
 		<Tag
 			className={classnames(
-				'py-10 sm:col-span-2 lg:py-16',
+				'py-6 sm:col-span-2 lg:py-16',
 				`lg:col-start-${columns.start} lg:col-span-${columns.span}`,
 				className
 			)}
@@ -45,7 +45,7 @@ export const SectionSidebar = ({ children, className, right, sticky }) => {
 	return (
 		<div
 			className={classnames(
-				`border-b border-gray-300 py-10`,
+				`border-b border-gray-300 py-6`,
 				`sm:border-0`,
 				`md:${padding}-6`,
 				`lg:${padding}-10 lg:py-16 lg:col-span-3`,
@@ -108,7 +108,7 @@ export default class Section extends Component {
 					{separator === 'top' && (
 						<SectionSeparator className={classnames(separatorClass)} />
 					)}
-					<div className="grid gap-6 sm:grid-cols-3 lg:grid-cols-12">
+					<div className="grid gap-4 sm:gap-6 sm:grid-cols-3 lg:grid-cols-12">
 						{children}
 					</div>
 					{separator === 'bottom' && <SectionSeparator />}

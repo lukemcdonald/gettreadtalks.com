@@ -42,10 +42,7 @@ export default function IndexPage({ data, location }) {
 				</Section.Sidebar>
 
 				<Section.Content>
-					<Talks
-						className="grid gap-6"
-						talks={shuffle(talks.nodes).slice(0, 5)}
-					/>
+					<Talks talks={shuffle(talks.nodes).slice(0, 5)} />
 				</Section.Content>
 			</Section>
 
@@ -60,9 +57,8 @@ export default function IndexPage({ data, location }) {
 
 				<Section.Content align="wide">
 					<Speakers
+						className="xl:grid-cols-3"
 						speakers={shuffle(speakers.nodes).slice(0, 6)}
-						className="grid gap-6 lg:grid lg:grid-cols-2 xl:grid-cols-3"
-						size="small"
 					/>
 				</Section.Content>
 			</Section>

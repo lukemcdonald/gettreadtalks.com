@@ -48,16 +48,11 @@ export default function SpeakersPage({ data, location, pageContext }) {
 				</Section.Sidebar>
 
 				<Section.Content align="full">
-					<Speakers
-						className="grid gap-6 lg:grid lg:grid-cols-2 xl:grid-cols-4"
-						size="small"
-						speakers={speakers.nodes}
-					>
+					<Speakers className="xl:grid-cols-4" speakers={speakers.nodes}>
 						<Card className="items-start row-span-2 px-6 py-5">
 							<div>
 								<Page.Title>
 									<SpeakersFilter
-										className=""
 										speakers={speakers.nodes}
 										current={{
 											value: pageContext.slug,
@@ -102,7 +97,6 @@ export const pageQuery = graphql`
 					firstName
 					lastName
 					role
-					ministry
 					website
 					avatar {
 						localFiles {

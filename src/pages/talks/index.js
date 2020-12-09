@@ -46,7 +46,7 @@ export default function TalksPage({ data, location, pageContext }) {
 				</Section.Sidebar>
 
 				<Section.Content>
-					<Talks className="grid gap-6" talks={talks.nodes} />
+					<Talks talks={talks.nodes} />
 					{/* <Pagination pageContext={pageContext} /> */}
 				</Section.Content>
 			</Section>

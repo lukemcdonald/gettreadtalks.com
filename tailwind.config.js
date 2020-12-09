@@ -54,6 +54,7 @@ module.exports = {
 	variants: {
 		extend: {
 			aspectRatio: ['responsive'],
+			display: ['group-hover'],
 			opacity: ['disabled'],
 			zIndex: ['hover'],
 		},
