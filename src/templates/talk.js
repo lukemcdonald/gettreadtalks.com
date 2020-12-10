@@ -10,13 +10,16 @@ import SEO from '../components/seo';
 import Series from '../components/series';
 import Talks from '../components/talks';
 
-export default function Talk({ data, location }) {
+export default function Talk({ data, location, pageContext }) {
 	const { data: talk } = data.talk;
 	const { talks } = talk.speakers[0].data;
+
+	const moreTalks = talks.filter((meow) => meow.id !== pageContext.id);
+
 	const media = talk?.link?.childMarkdownRemark;
 	const mediaObject = media?.htmlAst.children[0].children[0];
 	const hasVideo = mediaObject.tagName === 'iframe';
-	const hasTalks = talks.length > 0;
+	const hasTalks = moreTalks.length > 0;
 	const hasSeries = talk?.series;
 
 	return (
@@ -98,7 +101,7 @@ export default function Talk({ data, location }) {
 					</Section.Sidebar>
 
 					<Section.Content>
-						<Talks talks={shuffle(talks).slice(0, 5)} />
+						<Talks talks={shuffle(moreTalks).slice(0, 5)} />
 
 						{talks.length > 5 && (
 							<p className="mt-6">

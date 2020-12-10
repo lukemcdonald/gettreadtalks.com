@@ -61,7 +61,7 @@ export default function SingleSpeakerPage({ data, location, pageContext }) {
 							Ministry
 						</Section.Heading>
 
-						<p className="prose text-white">
+						<p className="mt-3 prose text-white">
 							<ConditionalWrapper
 								condition={speaker.website}
 								wrapper={(children) => (
@@ -95,6 +95,7 @@ export default function SingleSpeakerPage({ data, location, pageContext }) {
 			{speaker?.talks && (
 				<Section className="relative">
 					<TextCarousel text={`${speaker?.role || 'Ambassador'} for Christ`} />
+
 					<Section.Sidebar sticky>
 						<Section.Heading>
 							{maybePluralize(speaker.talks.length, `Talk`, {
