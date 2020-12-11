@@ -68,7 +68,7 @@
     "react-load-script": "0.0.6",
     "remark-html": "^13.0.1",
     "striptags": "^3.1.1",
-    "tailwindcss": "^2.0.1",
+    "tailwindcss": "^2.0.2",
     "tailwindcss-aspect-ratio": "^3.0.0",
     "tailwindcss-responsive-embed": "^1.0.0"
   },

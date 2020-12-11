@@ -36,15 +36,6 @@ export default function SpeakersPage({ data, location, pageContext }) {
 							Christ and be blessed.
 						</p>
 					</div>
-
-					{/* <Pagination
-						className="mt-6"
-						pageSize={parseInt(process.env.GATSBY_PAGE_SIZE)}
-						totalCount={speakers.totalCount}
-						currentPage={pageContext.currentPage || 1}
-						base="/speakers"
-						showPageNumbers
-					/> */}
 				</Section.Sidebar>
 
 				<Section.Content align="full">

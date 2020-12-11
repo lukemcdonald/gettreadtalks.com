@@ -1,5 +1,4 @@
 import path from 'path';
-import { paginate } from 'gatsby-awesome-pagination';
 
 exports.onCreateNode = ({ node, actions }) => {
 	const { createNodeField } = actions;
@@ -146,21 +145,6 @@ async function createSpeakerPages({ graphql, actions, reporter }) {
 		return;
 	}
 
-	const pageSize = parseInt(process.env.GATSBY_PAGE_SIZE);
-	const pageCount = Math.ceil(data.speakers.totalCount / pageSize);
-
-	Array.from({ length: pageCount }).forEach((_, i) => {
-		actions.createPage({
-			path: `/speakers/${i + 1}`,
-			component: path.resolve(`./src/pages/speakers/index.js`),
-			context: {
-				skip: i * pageSize,
-				currentPage: i + 1,
-				pageSize,
-			},
-		});
-	});
-
 	data.speakers.nodes.forEach((post) => {
 		actions.createPage({
 			path: `${post.fields.slug}`,
@@ -177,6 +161,7 @@ async function createTalkPages({ graphql, actions, reporter }) {
 	const { data, errors } = await graphql(`
 		query {
 			talks: allAirtableTalk(filter: { data: { title: { ne: null } } }) {
+				totalCount
 				nodes {
 					id
 					fields {
@@ -192,6 +177,21 @@ async function createTalkPages({ graphql, actions, reporter }) {
 		return;
 	}
 
+	const pageSize = parseInt(process.env.GATSBY_PAGE_SIZE);
+	const pageCount = Math.ceil(data.talks.totalCount / pageSize);
+
+	Array.from({ length: pageCount }).forEach((_, i) => {
+		actions.createPage({
+			path: `/talks/${i + 1}`,
+			component: path.resolve(`./src/pages/talks/index.js`),
+			context: {
+				skip: i * pageSize,
+				currentPage: i + 1,
+				pageSize,
+			},
+		});
+	});
+
 	data.talks.nodes.forEach((post) => {
 		actions.createPage({
 			path: `${post.fields.slug}`,
@@ -202,16 +202,6 @@ async function createTalkPages({ graphql, actions, reporter }) {
 			},
 		});
 	});
-
-	// Paginate content pages.
-	// paginate({
-	// 	createPage: actions.createPage,
-	// 	items: data.talks.nodes,
-	// 	itemsPerPage: 12,
-	// 	component: path.resolve('./src/templates/talks.js'),
-	// 	pathPrefix: ({ pageNumber }) =>
-	// 		pageNumber === 0 ? `/talks` : `/talks/page`,
-	// });
 }
 
 async function createTopicPages({ graphql, actions, reporter }) {

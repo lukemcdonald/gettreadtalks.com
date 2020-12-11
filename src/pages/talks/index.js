@@ -3,6 +3,7 @@ import { graphql } from 'gatsby';
 import { maybePluralize } from '../../utilities';
 
 import Page from '../../components/page';
+import Pagination from '../../components/pagination';
 import Section from '../../components/section';
 import SEO from '../../components/seo';
 import Talks from '../../components/talks';
@@ -47,7 +48,14 @@ export default function TalksPage({ data, location, pageContext }) {
 
 				<Section.Content>
 					<Talks talks={talks.nodes} />
-					{/* <Pagination pageContext={pageContext} /> */}
+					<Pagination
+						className="w-full mt-4 sm:mt-6"
+						pageSize={parseInt(process.env.GATSBY_PAGE_SIZE)}
+						totalCount={talks.totalCount}
+						currentPage={pageContext.currentPage || 1}
+						base="/talks"
+						showPageNumbers
+					/>
 				</Section.Content>
 			</Section>
 		</>
@@ -55,8 +63,10 @@ export default function TalksPage({ data, location, pageContext }) {
 }
 
 export const query = graphql`
-	query($topic: [String]) {
+	query($pageSize: Int = 12, $skip: Int = 0, $topic: [String]) {
 		talks: allAirtableTalk(
+			skip: $skip
+			limit: $pageSize
 			filter: {
 				data: {
 					publishedDate: { ne: null }

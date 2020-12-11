@@ -56,6 +56,7 @@ module.exports = {
 			aspectRatio: ['responsive'],
 			display: ['group-hover'],
 			opacity: ['disabled'],
+			borderRadius: ['first', 'last'],
 			zIndex: ['hover'],
 		},
 	},
