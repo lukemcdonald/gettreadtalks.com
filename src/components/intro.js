@@ -52,7 +52,7 @@ export default class Intro extends Component {
 		return (
 			<section
 				className={classnames(
-					'relative flex bg-gray-900',
+					'relative flex bg-gray-900 text-center',
 					bgGradient ? styles.bgGradient : '',
 					className
 				)}

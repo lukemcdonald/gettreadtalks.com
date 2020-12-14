@@ -5,15 +5,13 @@ export default function Disclosure(props) {
 	const {
 		className = '',
 		title = `Ad`,
-		content = `We may earn a small commission for this endorsement, recommendation,
-  testimonial, and/or link to any products or services from this website.
-  Your purchase helps support the site.`,
+		content = `A small commission may be earned through links, endorsements, recommendations, and/or testimonials for any products shown on this site. Your purchase helps support the website.`,
 	} = props;
 
 	return (
 		<button
 			className={classnames(
-				'absolute bottom-0 right-0 px-1 mb-1 mr-1 text-sm rounded-sm group z-40 ',
+				'absolute bottom-0 right-0 px-1 mb-1 mr-1 text-xs rounded-sm group z-40 ',
 				className.includes('text-gray-') || 'text-gray-500',
 				className.includes('bg-gray-') || 'bg-gray-200',
 				className

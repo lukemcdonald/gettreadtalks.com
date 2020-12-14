@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classnames from 'classnames';
 
 import Link from './link';
@@ -15,13 +15,23 @@ const links = [
 ];
 
 export default function Nav({ className }) {
+	const [checked, setChecked] = useState(false);
+	const handleClick = () => setChecked(!checked);
+
 	return (
 		<nav className={classnames(styles.nav, className)}>
-			<input type="checkbox" id="menu-toggle-checkbox" className="hidden" />
+			<input
+				id="menu-toggle-checkbox"
+				type="checkbox"
+				className="hidden"
+				checked={checked}
+				readOnly
+			/>
 
 			<label
 				htmlFor="menu-toggle-checkbox"
 				className="cursor-pointer md:hidden"
+				onClick={handleClick}
 			>
 				<svg
 					className="w-6 h-6"
@@ -48,7 +58,7 @@ export default function Nav({ className }) {
 				<ul
 					className={classnames(
 						'bg-white shadow-lg mx-4 rounded divide-y',
-						'md:flex md:items-center md:space-x-6 md:bg-transparent md:shadow-none md:divide-none'
+						'md:flex md:items-center md:space-x-6 md:bg-transparent md:shadow-none md:divide-y-0'
 					)}
 				>
 					{links.map((link) => (
@@ -57,18 +67,20 @@ export default function Nav({ className }) {
 								to={link.path}
 								className="block px-4 py-2 text-lg font-medium md:inline-block md:py-0 md:px-0 hover:text-red-600"
 								activeClassName="uppercase font-extrabold text-red-600 tracking-tight"
+								onClick={handleClick}
 							>
 								{link.label}
 							</Link>
 						</li>
 					))}
 
-					<span className="hidden h-5 border-l border-gray-400 md:inline-block" />
+					<span className="hidden h-5 border-l border-gray-300 md:inline-block" />
 
 					<li>
 						<Link
 							className="block px-4 py-3 text-gray-700 hover:text-gray-900 md:py-0 md:px-0"
 							to="https://www.facebook.com/gettreadtalks"
+							onClick={handleClick}
 						>
 							<FacebookIcon className="w-5 fill-current " />
 						</Link>

@@ -50,6 +50,7 @@ export default class Link extends Component {
 			disabled,
 			to,
 			target,
+			onClick,
 		} = this.props;
 
 		// Tailor the following test to your environment.
@@ -65,6 +66,7 @@ export default class Link extends Component {
 				activeClassName={activeClassName}
 				rel="canonical"
 				disabled={disabled}
+				onClick={onClick}
 			>
 				{children}
 			</GatsbyLink>

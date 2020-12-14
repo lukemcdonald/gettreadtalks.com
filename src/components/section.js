@@ -45,7 +45,8 @@ export const SectionSidebar = ({ children, className, right, sticky }) => {
 	return (
 		<div
 			className={classnames(
-				`border-b border-gray-300 py-6`,
+				`pt-6 sm:py-6`,
+				// 'border-b border-gray-300',
 				`sm:border-0`,
 				`md:${padding}-6`,
 				`lg:${padding}-10 lg:py-16 lg:col-span-3`,
@@ -77,7 +78,7 @@ export const SectionHeading = ({ children, className = '', as }) => {
 };
 
 export const SectionSeparator = ({ className }) => (
-	<hr className={classnames('border-gray-200', className)} />
+	<hr className={classnames('border-gray-300 hidden', className)} />
 );
 
 export default class Section extends Component {
@@ -105,13 +106,15 @@ export default class Section extends Component {
 		return (
 			<Tag className={className}>
 				<SectionContainer>
-					{separator === 'top' && (
+					{(separator === 'top' || separator === 'top-bottom') && (
 						<SectionSeparator className={classnames(separatorClass)} />
 					)}
-					<div className="grid gap-4 sm:gap-6 sm:grid-cols-3 lg:grid-cols-12">
+					<div className="grid sm:gap-4 sm:gap-6 sm:grid-cols-3 lg:grid-cols-12">
 						{children}
 					</div>
-					{separator === 'bottom' && <SectionSeparator />}
+					{(separator === 'bottom' || separator === 'top-bottom') && (
+						<SectionSeparator className={classnames(separatorClass)} />
+					)}
 				</SectionContainer>
 			</Tag>
 		);
