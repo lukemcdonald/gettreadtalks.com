@@ -126,7 +126,11 @@ export default function SingleSpeakerPage({ data, location, pageContext }) {
 
 						<p className="prose">
 							Be encouraged by {speaker.clips.length > 1 ? 'these' : 'this'}{' '}
-							short Christ centered clips.
+							short Christ centered{' '}
+							{maybePluralize(speaker.clips.length, `clip`, {
+								showCount: false,
+							})}
+							.
 						</p>
 					</Section.Sidebar>
 
