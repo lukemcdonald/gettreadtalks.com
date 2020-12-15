@@ -27,7 +27,7 @@ export default function TalksPage({ data, location, pageContext }) {
 
 			<TextCarousel text="Jesus is Lord" />
 
-			<Section className="relative">
+			<Section>
 				<Section.Sidebar>
 					{isTopical && <Section.Heading as="h2">Talks On</Section.Heading>}
 

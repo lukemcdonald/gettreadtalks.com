@@ -1,7 +1,7 @@
 nav {
   input:checked ~ div {
     max-height: none;
-    @apply pb-6;
+    @apply pb-6 md:pb-0;
   }
 
   input:checked ~ label {
