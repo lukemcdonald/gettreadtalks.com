@@ -8,5 +8,5 @@ module.exports = {
 	image: '/default-seo-image.jpg',
 	twitterUsername: '@gettreadtalks',
 	themeColor: '#e62b1a',
-	backgroundColor: '#e5e7eb',
+	backgroundColor: '#ffffff',
 };
