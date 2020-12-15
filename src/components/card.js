@@ -92,7 +92,7 @@ export default class Card extends Component {
 		return (
 			<article
 				className={classnames(
-					'relative flex flex-grow p-4 text-gray-700 transition duration-300 bg-white border border-transparent shadow-sm hover:z-10 hover:border-red-600 hover:shadow-lg rounded',
+					'relative flex flex-grow p-4 text-left text-gray-700 transition duration-300 bg-white border border-transparent rounded shadow-sm hover:z-10 hover:border-red-600 hover:shadow-lg',
 					className.includes('items-') || 'items-center',
 					className
 				)}
