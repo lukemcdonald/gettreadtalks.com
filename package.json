@@ -12,7 +12,7 @@
     "url": "https://bitbucket.org/lukemcdonald/treadtalks-gatsby"
   },
   "scripts": {
-    "build": "cross-env NODE_OPTIONS='-r esm' gatsby build",
+    "build": "NODE_ENV=production cross-env NODE_OPTIONS='-r esm' gatsby build",
     "develop": "cross-env NODE_OPTIONS='-r esm' gatsby develop",
     "start": "npm run develop",
     "serve": "cross-env NODE_OPTIONS='-r esm' gatsby serve",

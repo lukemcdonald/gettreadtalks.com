@@ -18,10 +18,10 @@ export const SectionContent = ({ align, as, children, className }) => {
 	]);
 
 	const alignMapping = {
-		DEFUALT: { start: 4, span: 6 },
-		wide: { start: 4, span: 9 },
-		'wide--center': { start: 2, span: 10 },
-		full: { start: 1, span: 12 },
+		DEFUALT: { start: 'lg:col-start-4', span: 'lg:col-span-6' },
+		wide: { start: 'lg:col-start-4', span: 'lg:col-span-9' },
+		'wide--center': { start: 'lg:col-start-2', span: 'lg:col-span-10' },
+		full: { start: 'lg:col-start-1', span: 'lg:col-span-12' },
 	};
 
 	const columns = alignMapping[align] || alignMapping.DEFUALT;
@@ -30,7 +30,7 @@ export const SectionContent = ({ align, as, children, className }) => {
 		<Tag
 			className={classnames(
 				'py-6 sm:col-span-2 lg:py-16',
-				`lg:col-start-${columns.start} lg:col-span-${columns.span}`,
+				`${columns.start} ${columns.span}`,
 				className
 			)}
 		>
@@ -39,26 +39,22 @@ export const SectionContent = ({ align, as, children, className }) => {
 	);
 };
 
-export const SectionSidebar = ({ children, className, right, sticky }) => {
-	const padding = right ? 'pl' : 'pr';
-
-	return (
-		<div
-			className={classnames(
-				`pt-6 sm:py-6`,
-				`sm:border-0`,
-				`md:${padding}-6`,
-				`lg:${padding}-10 lg:py-16 lg:col-span-3`,
-				className
-			)}
-		>
-			<>
-				{sticky && <div className="sticky top-10">{children}</div>}
-				{!sticky && children}
-			</>
-		</div>
-	);
-};
+export const SectionSidebar = ({ children, className, right, sticky }) => (
+	<div
+		className={classnames(
+			`pt-6 sm:py-6`,
+			`sm:border-0`,
+			right ? 'md:pl-6 lg:pl-10' : 'md:pr-6 lg:pr-10',
+			`lg:py-16 lg:col-span-3`,
+			className
+		)}
+	>
+		<>
+			{sticky && <div className="sticky top-10">{children}</div>}
+			{!sticky && children}
+		</>
+	</div>
+);
 
 export const SectionHeading = ({ children, className = '', as }) => {
 	const Tag = sanitizeHTMLTag(as, ['h1', 'h2', 'h3']);
