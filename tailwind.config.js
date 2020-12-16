@@ -6,11 +6,7 @@ module.exports = {
 		purgeLayersByDefault: true,
 	},
 	purge: {
-		enabled: false,
 		content: ['./src/**/*.js', './src/**/*.css'],
-		options: {
-			whitelist: [],
-		},
 	},
 	theme: {
 		colors: {
