@@ -26,7 +26,7 @@ export default function SingleSeriesPage({ data, location }) {
 	);
 }
 
-export const pageQuery = graphql`
+export const query = graphql`
 	query($id: String!) {
 		series: airtableSerie(id: { eq: $id }) {
 			id
