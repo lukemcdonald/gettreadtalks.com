@@ -12,6 +12,7 @@ export default function SEO({ children, location, title, description, image }) {
 				siteMetadata {
 					title
 					description
+					image
 					twitterUsername
 				}
 			}
@@ -21,7 +22,7 @@ export default function SEO({ children, location, title, description, image }) {
 	const seo = {
 		title: striptags(title || site.siteMetadata.title),
 		description: trimText(striptags(description), 160),
-		image: image || 'logo.svg',
+		image: image || site.siteMetadata.image,
 	};
 
 	return (
@@ -57,7 +58,10 @@ export default function SEO({ children, location, title, description, image }) {
 			<meta name="twitter:image" content={seo.image} />
 			<meta name="twitter:title" content={seo.title} />
 			<meta name="twitter:description" content={seo.description} />
-			<meta name="twitter:creator" content="@treadtalks" />
+			<meta
+				name="twitter:creator"
+				content={site.siteMetadata?.twitterUsername}
+			/>
 
 			{/* Additions and Overrides */}
 			{children}
