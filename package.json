@@ -1,7 +1,7 @@
 {
   "name": "treadtalks-gatsby",
   "description": "TREAD Talks website built with Gatsby",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "author": "Luke McDonald <thelukemcdonald@gmail.com>",
   "keywords": [
     "gatsby"
@@ -35,7 +35,6 @@
     "dotenv": "^8.2.0",
     "formik": "^2.2.6",
     "gatsby": "^2.29.0",
-    "gatsby-awesome-pagination": "^0.3.6",
     "gatsby-background-image": "^1.3.1",
     "gatsby-background-image-es5": "^1.3.1",
     "gatsby-image": "^2.8.0",
