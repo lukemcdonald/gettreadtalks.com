@@ -2,8 +2,8 @@ module.exports = {
 	title: 'TREAD Talks',
 	siteUrl: 'https://gettreadtalks.com',
 	description:
-		'Workout your salvation with weekly sermons to elevate your spiritual heartbeat.',
-	tagline: 'Weekly sermons to elevate your spiritual heartbeat.',
+		'Exercise your inner man with Christ centered sermons to elevate your spiritual heartbeat.',
+	tagline: 'Exercise your inner.',
 	icon: 'static/favicon.png',
 	image: '/default-seo-image.jpg',
 	twitterUsername: '@gettreadtalks',
