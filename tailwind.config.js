@@ -1,23 +1,10 @@
 const colors = require('tailwindcss/colors');
 
 module.exports = {
-	future: {
-		removeDeprecatedGapUtilities: true,
-		purgeLayersByDefault: true,
-	},
 	purge: {
 		content: ['./src/**/*.js', './src/**/*.css'],
 	},
 	theme: {
-		colors: {
-			inherit: 'inherit',
-			transparent: 'transparent',
-			current: 'currentColor',
-			black: '#000',
-			white: '#fff',
-			gray: colors.coolGray,
-			red: colors.red,
-		},
 		extend: {
 			maxHeight: {
 				'screen-50': '50vh',
@@ -35,6 +22,15 @@ module.exports = {
 					},
 				},
 			}),
+		},
+		colors: {
+			inherit: 'inherit',
+			transparent: 'transparent',
+			current: 'currentColor',
+			black: '#000',
+			white: '#fff',
+			gray: colors.coolGray,
+			red: colors.red,
 		},
 		aspectRatio: {
 			'16x9': [16, 9],
