@@ -2,7 +2,7 @@ module.exports = {
 	title: 'TREAD Talks',
 	siteUrl: 'https://gettreadtalks.com',
 	description:
-		'Exercise your inner man with Christ centered sermons to elevate your spiritual heartbeat.',
+		'Exercise your inner man with Christ centered sermons to elevate your spiritual heartbeat while working out your physical one.',
 	tagline: 'Exercise your inner.',
 	icon: 'static/favicon.png',
 	image: '/default-seo-image.png',
