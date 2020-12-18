@@ -21,7 +21,10 @@ export default function SEO({ children, location, title, description, image }) {
 
 	const seo = {
 		title: striptags(title || site.siteMetadata.title),
-		description: trimText(striptags(description), 160),
+		description: trimText(
+			striptags(description || site.siteMetadata.description),
+			160
+		),
 		image: image || site.siteMetadata.image,
 	};
 
