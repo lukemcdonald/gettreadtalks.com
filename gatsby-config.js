@@ -2,9 +2,11 @@ import dotenv from 'dotenv';
 
 dotenv.config({ path: '.env' });
 
+const isProd = process.env.NODE_ENV === 'production';
+
 export default {
 	siteMetadata: {
-		siteUrl: 'https://gettreadtalks.com',
+		siteUrl: isProd ? 'https://gettreadtalks.com' : 'http://localhost:8000',
 		title: 'TREAD Talks',
 		description:
 			'Exercise your inner man with Christ centered sermons to elevate your spiritual heartbeat while working out your physical one.',
@@ -68,6 +70,9 @@ export default {
 								include: ['Vimeo', 'YouTube'],
 							},
 						},
+					},
+					{
+						resolve: `gatsby-remark-responsive-iframe`,
 					},
 				],
 			},
@@ -164,5 +169,78 @@ export default {
 			},
 		},
 		`gatsby-plugin-netlify`,
+		{
+			resolve: 'gatsby-plugin-feed',
+			options: {
+				query: `
+        {
+          site {
+            siteMetadata {
+              title
+              description
+              siteUrl
+              site_url: siteUrl
+            }
+          }
+        }
+      `,
+				feeds: [
+					{
+						serialize: ({ query: { site, allAirtableTalk } }) =>
+							allAirtableTalk.edges.map(({ node }) => {
+								const { link } = node.data;
+								const { html } = link.childMarkdownRemark;
+
+								return {
+									date: node.data.publishedDate,
+									title: `${node.data.title}`,
+									description: `Listen to "${node.data.title}" by ${node.data.speaker}.`,
+									url: site.siteMetadata.siteUrl + node.fields.slug,
+									guid: site.siteMetadata.siteUrl + node.fields.slug,
+									custom_elements: [
+										{
+											'content:encoded': `
+                      Talk by ${node.data.speaker}.
+
+                      ${html}
+                      `,
+										},
+									],
+								};
+							}),
+						query: `
+            {
+              allAirtableTalk(
+                limit: 1000
+                sort: { fields: data___publishedDate, order: DESC }
+                filter: { data: { publishedDate: { ne: null } } }
+              ) {
+                edges {
+                  node {
+                    fields {
+                      slug
+                    }
+                    data {
+                      title
+                      publishedDate
+                      scripture
+                      speaker
+                      link {
+                        childMarkdownRemark {
+                          html
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            `,
+						output: '/talks/rss.xml',
+						title: 'Talks',
+					},
+				],
+			},
+		},
 	],
 };

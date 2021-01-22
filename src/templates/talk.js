@@ -16,9 +16,10 @@ export default function Talk({ data, location, pageContext }) {
 
 	const moreTalks = talks.filter((meow) => meow.id !== pageContext.id);
 
-	const media = talk?.link?.childMarkdownRemark;
-	const mediaObject = media?.htmlAst.children[0].children[0];
-	const hasVideo = mediaObject.tagName === 'iframe';
+	const mediaObject = talk?.link?.childMarkdownRemark;
+	const media = mediaObject ? mediaObject.html : '';
+
+	const hasVideo = media.includes('<iframe');
 	const hasTalks = moreTalks.length > 0;
 	const hasSeries = talk?.series;
 
@@ -50,18 +51,18 @@ export default function Talk({ data, location, pageContext }) {
 				</Intro.Tagline>
 
 				{hasVideo && (
-					<figure
+					<div
 						className="mt-10 rounded shadow-lg embed-responsive aspect-ratio-16x9"
 						dangerouslySetInnerHTML={{
-							__html: media.html.replace(/<p>|<\/p>/g, ''),
+							__html: talk?.link?.childMarkdownRemark.html,
 						}}
 					/>
 				)}
 
 				{!hasVideo && (
-					<p className="mt-12 text-center">
+					<p className="mt-10 text-center">
 						<Link.Button
-							to={mediaObject.properties.href}
+							to={mediaObject.htmlAst.children[0].children[0].properties.href}
 							color="primary"
 							size="large"
 						>
@@ -131,7 +132,6 @@ export const query = graphql`
 					childMarkdownRemark {
 						html
 						htmlAst
-						rawMarkdownBody
 					}
 				}
 				scripture

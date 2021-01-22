@@ -9,9 +9,9 @@ import Talks from '../components/talks';
 export default function SingleClipPage({ data, location }) {
 	const { data: clip } = data.clip;
 
-	const media = clip?.link?.childMarkdownRemark;
-	const mediaObject = media?.htmlAst.children[0].children[0];
-	const hasVideo = mediaObject.tagName === 'iframe';
+	const mediaObject = clip?.link?.childMarkdownRemark;
+	const media = mediaObject ? mediaObject.html : '';
+	const hasVideo = media.includes('<iframe');
 
 	return (
 		<>
@@ -33,7 +33,7 @@ export default function SingleClipPage({ data, location }) {
 					<figure
 						className="relative z-10 mt-10 rounded-t shadow-lg embed-responsive aspect-ratio-16x9"
 						dangerouslySetInnerHTML={{
-							__html: media.html.replace(/<p>|<\/p>/g, ''),
+							__html: clip?.link?.childMarkdownRemark.html,
 						}}
 					/>
 				)}
@@ -67,7 +67,6 @@ export const query = graphql`
 					childMarkdownRemark {
 						html
 						htmlAst
-						rawMarkdownBody
 					}
 				}
 				speakers {
