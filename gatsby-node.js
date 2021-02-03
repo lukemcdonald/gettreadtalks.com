@@ -1,3 +1,5 @@
+import path from 'path';
+
 exports.onCreateNode = ({ node, actions }) => {
 	const { createNodeField } = actions;
 	const airtableTables = [
@@ -20,12 +22,12 @@ exports.onCreateNode = ({ node, actions }) => {
 		airtableTables.includes(node.internal.type) &&
 		Object.keys(node.data).length
 	) {
-		const { path, title } = node.data;
+		const { path: nodePath, title } = node.data;
 
 		createNodeField({
 			node,
 			name: `slug`,
-			value: path || title,
+			value: nodePath || title,
 		});
 	}
 };
@@ -49,12 +51,10 @@ async function createClipPages({ graphql, actions, reporter }) {
 		return;
 	}
 
-	const results = (data.clips || {}).nodes || [];
-
-	results.forEach((post) => {
+	data.clips.nodes.forEach((post) => {
 		actions.createPage({
-			path: post.fields.slug,
-			component: require.resolve(`./src/templates/clip.js`),
+			path: `${post.fields.slug}`,
+			component: path.resolve(`./src/templates/clip.js`),
 			context: {
 				id: post.id,
 				slug: post.fields.slug,
@@ -82,12 +82,10 @@ async function createPagePages({ graphql, actions, reporter }) {
 		return;
 	}
 
-	const results = (data.pages || {}).nodes || [];
-
-	results.forEach((post) => {
+	data.pages.nodes.forEach((post) => {
 		actions.createPage({
-			path: post.fields.slug,
-			component: require.resolve(`./src/templates/page.js`),
+			path: `${post.fields.slug}`,
+			component: path.resolve(`./src/templates/page.js`),
 			context: {
 				id: post.id,
 				slug: post.fields.slug,
@@ -115,12 +113,10 @@ async function createSeriesPages({ graphql, actions, reporter }) {
 		return;
 	}
 
-	const results = (data.series || {}).nodes || [];
-
-	results.forEach((post) => {
+	data.series.nodes.forEach((post) => {
 		actions.createPage({
-			path: post.fields.slug,
-			component: require.resolve(`./src/templates/series.js`),
+			path: `${post.fields.slug}`,
+			component: path.resolve(`./src/templates/series.js`),
 			context: {
 				id: post.id,
 				slug: post.fields.slug,
@@ -149,12 +145,10 @@ async function createSpeakerPages({ graphql, actions, reporter }) {
 		return;
 	}
 
-	const results = (data.speakers || {}).nodes || [];
-
-	results.forEach((post) => {
+	data.speakers.nodes.forEach((post) => {
 		actions.createPage({
-			path: post.fields.slug,
-			component: require.resolve(`./src/templates/speaker.js`),
+			path: `${post.fields.slug}`,
+			component: path.resolve(`./src/templates/speaker.js`),
 			context: {
 				id: post.id,
 				slug: post.fields.slug,
@@ -183,14 +177,13 @@ async function createTalkPages({ graphql, actions, reporter }) {
 		return;
 	}
 
-	const results = (data.talks || {}).nodes || [];
 	const pageSize = parseInt(process.env.GATSBY_PAGE_SIZE);
 	const pageCount = Math.ceil(data.talks.totalCount / pageSize);
 
 	Array.from({ length: pageCount }).forEach((_, i) => {
 		actions.createPage({
 			path: `/talks/${i + 1}`,
-			component: require.resolve(`./src/pages/talks/index.js`),
+			component: path.resolve(`./src/pages/talks/index.js`),
 			context: {
 				skip: i * pageSize,
 				currentPage: i + 1,
@@ -199,10 +192,10 @@ async function createTalkPages({ graphql, actions, reporter }) {
 		});
 	});
 
-	results.forEach((post) => {
+	data.talks.nodes.forEach((post) => {
 		actions.createPage({
-			path: post.fields.slug,
-			component: require.resolve(`./src/templates/talk.js`),
+			path: `${post.fields.slug}`,
+			component: path.resolve(`./src/templates/talk.js`),
 			context: {
 				id: post.id,
 				slug: post.fields.slug,
@@ -233,12 +226,10 @@ async function createTopicPages({ graphql, actions, reporter }) {
 		return;
 	}
 
-	const results = (data.topics || {}).nodes || [];
-
-	results.forEach((post) => {
+	data.topics.nodes.forEach((post) => {
 		actions.createPage({
-			path: post.fields.slug,
-			component: require.resolve(`./src/pages/talks/index.js`),
+			path: `${post.fields.slug}`,
+			component: path.resolve(`./src/pages/talks/index.js`),
 			context: {
 				id: post.id,
 				slug: post.fields.slug,
