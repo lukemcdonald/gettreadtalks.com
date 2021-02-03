@@ -1,14 +1,12 @@
 import dotenv from 'dotenv';
+import config from './config';
 
 dotenv.config({ path: '.env' });
 
 export default {
 	siteMetadata: {
-		siteUrl: 'https://gettreadtalks.com',
-		title: 'TREAD Talks',
-		description:
-			'Exercise your inner man with Christ centered sermons to elevate your spiritual heartbeat while working out your physical one.',
-		tagline: 'Exercise your inner man.',
+		keywords: 'sermon, workout, health, bible, pastor, speaker, talk, tread',
+		...config,
 	},
 	plugins: [
 		{
@@ -21,21 +19,9 @@ export default {
 		'gatsby-plugin-postcss',
 		'gatsby-plugin-react-helmet',
 		'gatsby-plugin-robots-txt',
-		'gatsby-plugin-sitemap',
 		'gatsby-plugin-sharp',
+		'gatsby-plugin-sitemap',
 		'gatsby-transformer-sharp',
-		{
-			resolve: `gatsby-plugin-manifest`,
-			options: {
-				name: 'TREAD Talks',
-				short_name: 'Sermons',
-				start_url: '/',
-				background_color: '#ffffff',
-				theme_color: '#e62b1a',
-				display: 'minimal-ui',
-				icon: 'static/favicon.png',
-			},
-		},
 		{
 			resolve: 'gatsby-plugin-react-svg',
 			options: {
@@ -70,6 +56,19 @@ export default {
 						},
 					},
 				],
+			},
+		},
+		{
+			resolve: `gatsby-plugin-manifest`,
+			options: {
+				name: config.title,
+				short_name: config.title,
+				description: config.description,
+				start_url: '/',
+				background_color: config.backgroundColor,
+				theme_color: config.themeColor,
+				display: 'minimal-ui',
+				icon: config.icon,
 			},
 		},
 		{
