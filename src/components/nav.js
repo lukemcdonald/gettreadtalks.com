@@ -71,6 +71,7 @@ export default function Nav({ className }) {
 							className="block px-4 py-3 text-gray-700 hover:text-gray-900 md:px-0 md:py-0"
 							to="https://www.facebook.com/gettreadtalks"
 							onClick={handleClick}
+							title="Facebook"
 						>
 							<Facebook className="w-6 h-6" />
 						</Link>
@@ -78,8 +79,9 @@ export default function Nav({ className }) {
 					<li>
 						<Link
 							className="block px-4 py-3 text-gray-700 hover:text-gray-900 md:px-0 md:py-0"
-							to="https://www.facebook.com/gettreadtalks"
+							to="https://gettreadtalks.com/rss.xml"
 							onClick={handleClick}
+							title="RSS Feed"
 						>
 							<RSS className="w-6 h-6" />
 						</Link>
