@@ -34,18 +34,18 @@ export default function Talk({ data, location, pageContext }) {
 			<Intro align="wide--center" bgGradient fullscreen>
 				<Intro.Title>{talk.title}</Intro.Title>
 
-				<Intro.Tagline className="flex justify-center space-x-2">
-					<span>
+				<Intro.Tagline className="sm:justify-center sm:flex sm:space-x-2">
+					<div>
 						<span className="text-gray-500">by</span>&nbsp;
 						<Link className="hover:underline" to={talk.speakers[0].fields.slug}>
 							{talk.speaker}
 						</Link>
-					</span>
+					</div>
 
 					{talk.scripture && (
 						<>
-							<span className="text-gray-500">&bull;</span>
-							<span>{talk.scripture}</span>
+							<div className="hidden text-gray-500 sm:block">&bull;</div>
+							<div className="hidden sm:block">{talk.scripture}</div>
 						</>
 					)}
 				</Intro.Tagline>
