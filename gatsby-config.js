@@ -176,34 +176,46 @@ export default {
 			resolve: 'gatsby-plugin-feed',
 			options: {
 				query: `
-        {
-          site {
-            siteMetadata {
-              title
-              description
-              siteUrl
-              site_url: siteUrl
+          {
+            site {
+              siteMetadata {
+                title
+                description
+                siteUrl
+                site_url: siteUrl
+              }
             }
           }
-        }
-      `,
+        `,
 				feeds: [
 					{
+						title: 'TREAD Talks',
+						description:
+							'Christ centered sermons to elevate your spiritual heartbeat.',
+						output: '/rss.xml',
+						site_url: 'https://gettreadtalks.com',
+						feed_url: 'https://gettreadtalks.com/rss.xml',
 						serialize: ({ query: { site, allAirtableTalk } }) =>
 							allAirtableTalk.edges.map(({ node }) => {
 								const { link } = node.data;
 								const { html } = link.childMarkdownRemark;
 
+								const url = site.siteMetadata.siteUrl + node.fields.slug;
+								const htmlSpeaker = `by ${node.data.speaker}`;
+								const htmlScripture = node.data.scripture
+									? ` from ${node.data.scripture}`
+									: '';
+
 								return {
 									date: node.data.publishedDate,
-									title: `${node.data.title}`,
-									description: `Listen to "${node.data.title}" by ${node.data.speaker}.`,
-									url: site.siteMetadata.siteUrl + node.fields.slug,
-									guid: site.siteMetadata.siteUrl + node.fields.slug,
+									title: node.data.title,
+									author: node.data.speaker,
+									description: `Listen to "<a href="${url}">${node.data.title}</a>" ${htmlSpeaker}${htmlScripture}`,
+									url,
+									guid: url,
 									custom_elements: [
 										{
-											'content:encoded': `
-                      Talk by ${node.data.speaker}.
+											'content:encoded': `${htmlSpeaker}${htmlScripture}.
 
                       ${html}
                       `,
@@ -239,8 +251,6 @@ export default {
               }
             }
             `,
-						output: '/talks/rss.xml',
-						title: 'Talks',
 					},
 				],
 			},
