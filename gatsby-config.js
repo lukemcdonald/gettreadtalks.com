@@ -1,6 +1,9 @@
 import dotenv from 'dotenv';
+// import clientConfig from './client-config';
 
-dotenv.config({ path: '.env' });
+dotenv.config({
+	path: `.env.${process.env.NODE_ENV || 'development'}`,
+});
 
 const isProd = process.env.NODE_ENV === 'production';
 
