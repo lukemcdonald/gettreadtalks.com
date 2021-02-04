@@ -1,10 +1,12 @@
 import React from 'react';
 import classnames from 'classnames';
 
-import Link from './link';
+import {
+	HiChevronLeft as ChevronLeft,
+	HiChevronRight as ChevronRight,
+} from 'react-icons/hi';
 
-import ChevronLeftIcon from '../assets/svgs/icon-chevron-left.svg';
-import ChevronRightIcon from '../assets/svgs/icon-chevron-right.svg';
+import Link from './link';
 
 export default function Pagination({
 	className,
@@ -48,7 +50,7 @@ export default function Pagination({
 					className={classnames('rounded-l', LinkCSS, PrevNextCSS)}
 				>
 					<span>
-						<ChevronLeftIcon />
+						<ChevronLeft />
 					</span>
 					<span className={classnames(showPreviousLabel ? 'pr-1' : 'sr-only')}>
 						Prev
@@ -76,7 +78,7 @@ export default function Pagination({
 					<span className={classnames(showNextLabel ? 'pl-1' : 'sr-only')}>
 						Next
 					</span>
-					<ChevronRightIcon />
+					<ChevronRight />
 				</Link>
 			)}
 		</nav>

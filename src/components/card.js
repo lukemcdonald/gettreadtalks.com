@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'gatsby';
+import { HiStar as Star } from 'react-icons/hi';
 import classnames from 'classnames';
-import { sanitizeHTMLTag } from '../utilities';
-import Avatar from './avatar';
 
+import { sanitizeHTMLTag } from '../utilities';
+
+import Avatar from './avatar';
 import styles from './card.module.css';
-import StarSVG from './svgs/star';
 
 export const CardTitle = ({ children, className, as }) => {
 	const Tag = sanitizeHTMLTag(as, ['h1', 'h2', 'h3']);
@@ -65,11 +66,11 @@ export const CardFeaturedLink = ({ className, to }) => (
 	<Link
 		to={to}
 		className={classnames(
-			'absolute z-20 w-5 h-5 text-gray-700 transition transform hover:text-red-600 rotate-12 -right-2 -top-2 hover:rotate-45',
+			'absolute z-20 text-gray-700 transition transform hover:text-red-600 rotate-12 -right-2 -top-2 hover:rotate-45',
 			className
 		)}
 	>
-		<StarSVG />
+		<Star className="w-5 h-5" />
 	</Link>
 );
 

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import classnames from 'classnames';
+import { IoLogoFacebook as Facebook, IoLogoRss as RSS } from 'react-icons/io';
+import { HiMenuAlt4 as Menu } from 'react-icons/hi';
 
 import Link from './link';
-
 import styles from './nav.module.css';
-import FacebookIcon from '../assets/svgs/icon-facebook.svg';
 
 const links = [
 	{ label: 'About', path: '/about/' },
@@ -30,23 +30,13 @@ export default function Nav({ className }) {
 
 			<label
 				htmlFor="menu-toggle-checkbox"
-				className="cursor-pointer md:hidden"
+				className="flex items-center leading-none tracking-wide cursor-pointer md:hidden"
 				onClick={handleClick}
 			>
-				<svg
-					className="w-6 h-6"
-					xmlns="http://www.w3.org/2000/svg"
-					fill="none"
-					viewBox="0 0 24 24"
-					stroke="currentColor"
-				>
-					<path
-						strokeLinecap="round"
-						strokeLinejoin="round"
-						strokeWidth={2}
-						d="M4 8h16M4 16h16"
-					/>
-				</svg>
+				<Menu className="w-6 h-6" />{' '}
+				<span className="inline-block ml-1 text-sm font-bold uppercase">
+					Menu
+				</span>
 			</label>
 
 			<div
@@ -74,15 +64,24 @@ export default function Nav({ className }) {
 						</li>
 					))}
 
-					<span className="hidden h-5 border-l border-gray-300 md:inline-block" />
+					<li className="hidden h-5 border-l border-gray-300 md:inline-block" />
 
 					<li>
 						<Link
-							className="block px-4 py-3 text-gray-700 hover:text-gray-900 md:py-0 md:px-0"
+							className="block px-4 py-3 text-gray-700 hover:text-gray-900 md:px-0 md:py-0"
 							to="https://www.facebook.com/gettreadtalks"
 							onClick={handleClick}
 						>
-							<FacebookIcon className="w-5 fill-current " />
+							<Facebook className="w-6 h-6" />
+						</Link>
+					</li>
+					<li>
+						<Link
+							className="block px-4 py-3 text-gray-700 hover:text-gray-900 md:px-0 md:py-0"
+							to="https://www.facebook.com/gettreadtalks"
+							onClick={handleClick}
+						>
+							<RSS className="w-6 h-6" />
 						</Link>
 					</li>
 				</ul>
