@@ -57,12 +57,6 @@ export default {
 			},
 		},
 		{
-			resolve: `gatsby-plugin-google-tagmanager`,
-			options: {
-				id: 'GTM-TZ97LN8',
-			},
-		},
-		{
 			resolve: `gatsby-transformer-remark`,
 			options: {
 				plugins: [

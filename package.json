@@ -42,7 +42,6 @@
     "gatsby-background-image-es5": "^1.4.0",
     "gatsby-image": "^2.11.0",
     "gatsby-plugin-feed": "^2.13.0",
-    "gatsby-plugin-google-tagmanager": "^2.11.0",
     "gatsby-plugin-manifest": "^2.12.0",
     "gatsby-plugin-netlify": "^2.11.0",
     "gatsby-plugin-postcss": "^3.7.0",
