@@ -2,7 +2,6 @@ import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 import classnames from 'classnames';
 
-import { RefTagger } from './refTagger';
 import Header from './header';
 import Footer from './footer';
 
@@ -37,18 +36,6 @@ export default function Layout({ children }) {
 						<Header siteTitle={data.site.siteMetadata.title} />
 						<main className="relative z-0">{children}</main>
 						<Footer siteTitle={data.site.siteMetadata.title} />
-						<RefTagger
-							customStyle={{
-								heading: {
-									backgroundColor: tailwind.theme.colors.gray[800],
-									color: tailwind.theme.colors.white,
-								},
-								body: {
-									backgroundColor: tailwind.theme.colors.red[600],
-									color: tailwind.theme.colors.gray[600],
-								},
-							}}
-						/>
 					</div>
 				</>
 			)}
