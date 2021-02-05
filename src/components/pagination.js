@@ -36,51 +36,57 @@ export default function Pagination({
 	);
 
 	return (
-		<nav
-			className={classnames(
-				'relative z-0 inline-flex shadow-sm -space-x-px',
-				className
-			)}
-			aria-label="Pagination"
-		>
-			{showPreviousNext && (
-				<Link
-					to={`${base}/${prevPage}`}
-					disabled={!hasPrevPage}
-					className={classnames('rounded-l', LinkCSS, PrevNextCSS)}
+		<>
+			{totalCount > pageSize && (
+				<nav
+					className={classnames(
+						'relative z-0 inline-flex shadow-sm -space-x-px',
+						className
+					)}
+					aria-label="Pagination"
 				>
-					<span>
-						<ChevronLeft />
-					</span>
-					<span className={classnames(showPreviousLabel ? 'pr-1' : 'sr-only')}>
-						Prev
-					</span>
-				</Link>
-			)}
+					{showPreviousNext && (
+						<Link
+							to={`${base}/${prevPage}`}
+							disabled={!hasPrevPage}
+							className={classnames('rounded-l', LinkCSS, PrevNextCSS)}
+						>
+							<span>
+								<ChevronLeft />
+							</span>
+							<span
+								className={classnames(showPreviousLabel ? 'pr-1' : 'sr-only')}
+							>
+								Prev
+							</span>
+						</Link>
+					)}
 
-			{showPageNumbers &&
-				Array.from({ length: totalPages }).map((_, i) => (
-					<Link
-						to={`${base}/${i > 0 ? i + 1 : ''}`}
-						activeClassName="text-red-600"
-						className={classnames(LinkCSS, NumbersCSS)}
-					>
-						{i + 1}
-					</Link>
-				))}
+					{showPageNumbers &&
+						Array.from({ length: totalPages }).map((_, i) => (
+							<Link
+								to={`${base}/${i > 0 ? i + 1 : ''}`}
+								activeClassName="text-red-600"
+								className={classnames(LinkCSS, NumbersCSS)}
+							>
+								{i + 1}
+							</Link>
+						))}
 
-			{showPreviousNext && (
-				<Link
-					to={`${base}/${nextPage}`}
-					disabled={!hasNextPage}
-					className={classnames('rounded-r', LinkCSS, PrevNextCSS)}
-				>
-					<span className={classnames(showNextLabel ? 'pl-1' : 'sr-only')}>
-						Next
-					</span>
-					<ChevronRight />
-				</Link>
+					{showPreviousNext && (
+						<Link
+							to={`${base}/${nextPage}`}
+							disabled={!hasNextPage}
+							className={classnames('rounded-r', LinkCSS, PrevNextCSS)}
+						>
+							<span className={classnames(showNextLabel ? 'pl-1' : 'sr-only')}>
+								Next
+							</span>
+							<ChevronRight />
+						</Link>
+					)}
+				</nav>
 			)}
-		</nav>
+		</>
 	);
 }
