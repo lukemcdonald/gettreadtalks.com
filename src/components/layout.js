@@ -7,8 +7,6 @@ import Footer from './footer';
 
 import styles from './layout.module.css';
 
-const tailwind = require(`../../tailwind.config`);
-
 const SITE_META_QUERY = graphql`
 	query {
 		site {
