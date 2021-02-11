@@ -80,7 +80,7 @@ export default function Nav({ className }) {
 					<li>
 						<Link
 							className="block px-4 py-3 text-gray-700 hover:text-gray-900 md:px-0 md:py-0"
-							to="https://treadtalks.ck.page/"
+							to="https://mailchi.mp/50e8781cd6b2/newsletter-landing-page"
 							onClick={handleClick}
 							title="Email Subscribe"
 						>
