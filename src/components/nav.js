@@ -72,6 +72,7 @@ export default function Nav({ className }) {
 							to="https://mailchi.mp/50e8781cd6b2/newsletter-landing-page"
 							onClick={handleClick}
 							title="Email Subscribe"
+							target="blank"
 						>
 							<Mail className="w-6 h-6" />
 						</Link>
@@ -83,6 +84,7 @@ export default function Nav({ className }) {
 							to="https://gettreadtalks.com/rss.xml"
 							onClick={handleClick}
 							title="RSS Feed"
+							target="blank"
 						>
 							<RSS className="w-6 h-6" />
 						</Link>
