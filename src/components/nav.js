@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import classnames from 'classnames';
-import { RiFacebookBoxFill as Facebook } from 'react-icons/ri';
 import { HiMenuAlt4 as Menu, HiMail as Mail } from 'react-icons/hi';
 import { TiRss as RSS } from 'react-icons/ti';
 
@@ -67,16 +66,6 @@ export default function Nav({ className }) {
 
 					<li className="hidden h-5 border-l border-gray-300 md:inline-block" />
 
-					<li>
-						<Link
-							className="block px-4 py-3 text-gray-700 hover:text-gray-900 md:px-0 md:py-0"
-							to="https://www.facebook.com/gettreadtalks"
-							onClick={handleClick}
-							title="Facebook"
-						>
-							<Facebook className="w-6 h-6" />
-						</Link>
-					</li>
 					<li>
 						<Link
 							className="block px-4 py-3 text-gray-700 hover:text-gray-900 md:px-0 md:py-0"
