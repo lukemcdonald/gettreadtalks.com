@@ -8,6 +8,9 @@ dotenv.config({
 const isProd = process.env.NODE_ENV === 'production';
 
 export default {
+	flags: {
+		FAST_REFRESH: true,
+	},
 	siteMetadata: {
 		siteUrl: isProd ? 'https://gettreadtalks.com' : 'http://localhost:8000',
 		title: 'TREAD Talks',
