@@ -20,6 +20,8 @@
  */
 
 @import "tailwindcss/components";
+@import "theme/components/card.css";
+@import "theme/components/primary-nav.css";
 @import "theme/components/slideshow.css";
 
 /**
@@ -28,3 +30,4 @@
  */
 
 @import "tailwindcss/utilities";
+@import "theme/utilities/background-images.css";

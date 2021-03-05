@@ -6,7 +6,6 @@ import classnames from 'classnames';
 import { sanitizeHTMLTag } from '../utilities';
 
 import Avatar from './avatar';
-import styles from './card.module.css';
 
 export const CardTitle = ({ children, className, as }) => {
 	const Tag = sanitizeHTMLTag(as, ['h1', 'h2', 'h3']);
@@ -41,8 +40,8 @@ export const CardSubTitle = ({ children, className, as }) => {
 export const CardMeta = ({ children, className }) => (
 	<div
 		className={classnames(
+			'card__meta',
 			'mt-px text-sm text-gray-500 inline-block',
-			styles.meta,
 			className
 		)}
 	>

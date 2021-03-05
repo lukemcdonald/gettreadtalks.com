@@ -3,8 +3,6 @@ import classnames from 'classnames';
 import BackgroundImage from 'gatsby-background-image';
 import Section from './section';
 
-import styles from './intro.module.css';
-
 export const IntroTitle = ({ children, className, size }) => {
 	const sizeMapping = {
 		DEFAULT: '',
@@ -53,7 +51,7 @@ export default class Intro extends Component {
 			<section
 				className={classnames(
 					'relative flex bg-gray-900 text-center',
-					bgGradient ? styles.bgGradient : '',
+					bgGradient ? 'bg-image-gradient' : '',
 					className
 				)}
 				style={{ minHeight: fullscreen ? 'calc(100vh - 116px)' : '300px' }}

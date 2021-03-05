@@ -4,7 +4,6 @@ import { HiMenuAlt4 as Menu, HiMail as Mail } from 'react-icons/hi';
 import { TiRss as RSS } from 'react-icons/ti';
 
 import Link from './link';
-import styles from './nav.module.css';
 
 const links = [
 	{ label: 'About', path: '/about/' },
@@ -19,7 +18,7 @@ export default function Nav({ className }) {
 	const handleClick = () => setChecked(!checked);
 
 	return (
-		<nav className={classnames(styles.nav, className)}>
+		<nav className={classnames('primary-nav', className)}>
 			<input
 				id="menu-toggle-checkbox"
 				type="checkbox"

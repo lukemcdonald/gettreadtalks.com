@@ -5,8 +5,6 @@ import classnames from 'classnames';
 import Header from './header';
 import Footer from './footer';
 
-import styles from './layout.module.css';
-
 const SITE_META_QUERY = graphql`
 	query {
 		site {
@@ -24,10 +22,7 @@ export default function Layout({ children }) {
 			render={(data) => (
 				<>
 					<div
-						className={classnames(
-							'fixed inset-0 bg-cover bg-gray-200 z-0',
-							styles.svgBg
-						)}
+						className="fixed inset-0 z-0 bg-gray-200 bg-cover bg-image-swirl"
 					/>
 
 					<div className="relative text-gray-700">
