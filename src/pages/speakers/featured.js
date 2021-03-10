@@ -43,7 +43,7 @@ export default function FeaturedSpeakersPage({ data, location }) {
 }
 
 export const query = graphql`
-	query {
+	{
 		speakers: allAirtableSpeaker(
 			filter: { data: { title: { ne: null }, favorite: { eq: true } } }
 			sort: { fields: data___lastName, order: ASC }
@@ -63,9 +63,11 @@ export const query = graphql`
 					avatar {
 						localFiles {
 							childImageSharp {
-								fluid(maxWidth: 128) {
-									...GatsbyImageSharpFluid_tracedSVG
-								}
+								gatsbyImageData(
+									width: 128
+									placeholder: TRACED_SVG
+									layout: CONSTRAINED
+								)
 							}
 						}
 					}

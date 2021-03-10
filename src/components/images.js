@@ -6,7 +6,7 @@ import React from 'react';
 import { graphql, StaticQuery } from 'gatsby';
 
 const imagesQuery = graphql`
-	query {
+	{
 		images: allFile(
 			filter: {
 				extension: { regex: "/jpeg|jpg|png/" }
@@ -17,9 +17,7 @@ const imagesQuery = graphql`
 				id
 				name
 				childImageSharp {
-					fluid(maxWidth: 1280) {
-						...GatsbyImageSharpFluid_tracedSVG
-					}
+					gatsbyImageData(placeholder: TRACED_SVG, layout: FULL_WIDTH)
 				}
 			}
 		}

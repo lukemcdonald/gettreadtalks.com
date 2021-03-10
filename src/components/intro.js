@@ -59,7 +59,7 @@ export default class Intro extends Component {
 				{imageSrc && (
 					<BackgroundImage
 						alt="Intro background image"
-						fluid={imageSrc?.childImageSharp?.fluid}
+						fluid={imageSrc?.childImageSharp?.gatsbyImageData}
 						className="flex items-center justify-center flex-grow"
 					>
 						<div className="absolute inset-0 z-0 opacity-80 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900" />

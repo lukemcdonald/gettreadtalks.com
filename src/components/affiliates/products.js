@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql, StaticQuery } from 'gatsby';
 
 const query = graphql`
-	query {
+	{
 		affiliates: allAirtableAffiliateLink(
 			filter: { data: { title: { ne: null } } }
 			sort: { fields: data___type, order: ASC }
@@ -29,9 +29,11 @@ const query = graphql`
 					image {
 						localFiles {
 							childImageSharp {
-								fluid(maxWidth: 128) {
-									...GatsbyImageSharpFluid_tracedSVG
-								}
+								gatsbyImageData(
+									width: 128
+									placeholder: TRACED_SVG
+									layout: CONSTRAINED
+								)
 							}
 						}
 					}

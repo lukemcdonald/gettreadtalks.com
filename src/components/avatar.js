@@ -1,14 +1,14 @@
 import React from 'react';
-import Img from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 
 export default function Avatar({ className, image, title }) {
 	return (
 		<>
 			{image?.localFiles?.[0] && (
-				<Img
+				<GatsbyImage
+					image={image.localFiles[0].childImageSharp.gatsbyImageData}
 					className={className}
 					alt={title}
-					fluid={image.localFiles[0].childImageSharp.fluid}
 				/>
 			)}
 		</>

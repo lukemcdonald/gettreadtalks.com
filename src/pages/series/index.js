@@ -34,7 +34,7 @@ export default function SeriesPage({ data, location }) {
 }
 
 export const query = graphql`
-	query {
+	{
 		series: allAirtableSerie(
 			filter: { data: { title: { ne: null } } }
 			sort: { fields: data___title, order: ASC }
@@ -57,9 +57,11 @@ export const query = graphql`
 							avatar {
 								localFiles {
 									childImageSharp {
-										fluid(maxWidth: 128) {
-											...GatsbyImageSharpFluid_tracedSVG
-										}
+										gatsbyImageData(
+											width: 128
+											placeholder: TRACED_SVG
+											layout: CONSTRAINED
+										)
 									}
 								}
 							}

@@ -160,18 +160,22 @@ export const query = graphql`
 				banner {
 					localFiles {
 						childImageSharp {
-							fluid(maxWidth: 1600, grayscale: true) {
-								...GatsbyImageSharpFluid_tracedSVG
-							}
+							gatsbyImageData(
+								placeholder: TRACED_SVG
+								transformOptions: { grayscale: true }
+								layout: FULL_WIDTH
+							)
 						}
 					}
 				}
 				avatar {
 					localFiles {
 						childImageSharp {
-							fluid(maxWidth: 128) {
-								...GatsbyImageSharpFluid_tracedSVG
-							}
+							gatsbyImageData(
+								width: 128
+								placeholder: TRACED_SVG
+								layout: CONSTRAINED
+							)
 						}
 					}
 				}

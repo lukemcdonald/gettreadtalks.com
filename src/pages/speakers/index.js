@@ -68,11 +68,8 @@ export default function SpeakersPage({ data, location, pageContext }) {
 }
 
 export const pageQuery = graphql`
-	# query($skip: Int = 0, $pageSize: Int = 12) {
-	query {
+	{
 		speakers: allAirtableSpeaker(
-			# skip: $skip
-			# limit: $pageSize
 			filter: { data: { title: { ne: null }, publishedTalksCount: { gte: 1 } } }
 			sort: { fields: data___lastName, order: ASC }
 		) {
@@ -92,9 +89,11 @@ export const pageQuery = graphql`
 					avatar {
 						localFiles {
 							childImageSharp {
-								fluid(maxWidth: 128) {
-									...GatsbyImageSharpFluid_tracedSVG
-								}
+								gatsbyImageData(
+									width: 128
+									placeholder: TRACED_SVG
+									layout: CONSTRAINED
+								)
 							}
 						}
 					}

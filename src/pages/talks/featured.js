@@ -43,7 +43,7 @@ export default function FeaturedTalksPage({ data, location }) {
 }
 
 export const query = graphql`
-	query {
+	{
 		talks: allAirtableTalk(
 			filter: { data: { favorite: { eq: true }, publishedDate: { ne: null } } }
 			sort: { fields: data___publishedDate, order: DESC }
@@ -64,9 +64,11 @@ export const query = graphql`
 							avatar {
 								localFiles {
 									childImageSharp {
-										fluid(maxWidth: 128) {
-											...GatsbyImageSharpFluid_tracedSVG
-										}
+										gatsbyImageData(
+											width: 128
+											placeholder: TRACED_SVG
+											layout: CONSTRAINED
+										)
 									}
 								}
 							}

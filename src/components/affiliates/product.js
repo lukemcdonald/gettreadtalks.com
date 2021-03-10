@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import classnames from 'classnames';
 
 import Card from '../card';
@@ -14,10 +14,10 @@ export default function Product(props) {
 			<div className={classnames('flex items-center', className)}>
 				{post.image && (
 					<figure className="w-16 mr-4">
-						<Image
+						<GatsbyImage
+							image={post.image.localFiles[0].childImageSharp.gatsbyImageData}
 							className="rounded-l sm:rounded-sm"
 							alt={post.title}
-							fluid={post.image.localFiles[0].childImageSharp.fluid}
 						/>
 					</figure>
 				)}

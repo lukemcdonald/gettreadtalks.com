@@ -79,7 +79,7 @@ export default function IndexPage({ data, location }) {
 }
 
 export const query = graphql`
-	query {
+	{
 		talks: allAirtableTalk(
 			filter: { data: { favorite: { eq: true }, publishedDate: { ne: null } } }
 			sort: { fields: data___publishedDate, order: DESC }
@@ -103,9 +103,11 @@ export const query = graphql`
 							avatar {
 								localFiles {
 									childImageSharp {
-										fluid(maxWidth: 128) {
-											...GatsbyImageSharpFluid_tracedSVG
-										}
+										gatsbyImageData(
+											width: 128
+											placeholder: TRACED_SVG
+											layout: CONSTRAINED
+										)
 									}
 								}
 							}
@@ -130,9 +132,11 @@ export const query = graphql`
 					avatar {
 						localFiles {
 							childImageSharp {
-								fluid(maxWidth: 128) {
-									...GatsbyImageSharpFluid_tracedSVG
-								}
+								gatsbyImageData(
+									width: 128
+									placeholder: TRACED_SVG
+									layout: CONSTRAINED
+								)
 							}
 						}
 					}
@@ -141,9 +145,11 @@ export const query = graphql`
 		}
 		file(relativePath: { eq: "billy-graham-preaching-header.jpg" }) {
 			childImageSharp {
-				fluid(grayscale: true) {
-					...GatsbyImageSharpFluid_tracedSVG
-				}
+				gatsbyImageData(
+					placeholder: TRACED_SVG
+					transformOptions: { grayscale: true }
+					layout: FULL_WIDTH
+				)
 			}
 		}
 	}

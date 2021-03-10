@@ -30,6 +30,7 @@ export default {
 		'gatsby-plugin-react-helmet',
 		'gatsby-plugin-robots-txt',
 		'gatsby-plugin-sitemap',
+		`gatsby-plugin-image`,
 		'gatsby-plugin-sharp',
 		'gatsby-transformer-sharp',
 		{

@@ -153,9 +153,11 @@ export const query = graphql`
 								avatar {
 									localFiles {
 										childImageSharp {
-											fluid(maxWidth: 128) {
-												...GatsbyImageSharpFluid_tracedSVG
-											}
+											gatsbyImageData(
+												width: 128
+												placeholder: TRACED_SVG
+												layout: CONSTRAINED
+											)
 										}
 									}
 								}
