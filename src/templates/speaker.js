@@ -29,7 +29,7 @@ export default function SingleSpeakerPage({ data, location, pageContext }) {
 			/>
 
 			<Intro image={speaker?.banner}>
-				<Intro.Title>
+				<Intro.Title className="flex flex-col">
 					<Avatar
 						className="block w-24 m-auto mb-4 border-4 border-white rounded-full shadow-lg"
 						image={speaker.avatar}
