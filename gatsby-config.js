@@ -19,13 +19,6 @@ export default {
 		tagline: 'Exercise your inner man.',
 	},
 	plugins: [
-		{
-			resolve: 'gatsby-background-image-es5',
-			options: {
-				// add your own characters to escape, replacing the default ':/'
-				specialChars: '/:', // needed for TailwindCSS
-			},
-		},
 		'gatsby-plugin-postcss',
 		'gatsby-plugin-react-helmet',
 		'gatsby-plugin-robots-txt',

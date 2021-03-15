@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
-import BackgroundImage from 'gatsby-background-image';
+
+import { GatsbyImage, StaticImage } from 'gatsby-plugin-image';
 import Section from './section';
 
 export const IntroTitle = ({ children, className, size }) => {
@@ -45,7 +46,9 @@ export default class Intro extends Component {
 			fullscreen,
 		} = this.props;
 
-		const imageSrc = image?.localFiles?.[0] || image;
+		const imageSrc =
+			image?.childImageSharp?.gatsbyImageData ||
+			image?.localFiles[0]?.childImageSharp?.gatsbyImageData;
 
 		return (
 			<section
@@ -57,20 +60,29 @@ export default class Intro extends Component {
 				style={{ minHeight: fullscreen ? 'calc(100vh - 116px)' : '300px' }}
 			>
 				{imageSrc && (
-					<BackgroundImage
-						alt="Intro background image"
-						fluid={imageSrc?.childImageSharp?.gatsbyImageData}
-						className="flex items-center justify-center flex-grow"
-					>
-						<div className="absolute inset-0 z-0 opacity-80 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900" />
+					<>
+						<div>
+							<GatsbyImage
+								className="absolute inset-0"
+								image={imageSrc}
+								alt="Intro background image"
+							/>
 
-						<Section.Content
-							className="relative px-4 sm:col-span-3"
-							align={align}
+							<div className="absolute inset-0 opacity-80 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900" />
+						</div>
+
+						<Section
+							as="div"
+							className="flex items-center justify-center flex-grow"
 						>
-							{children}
-						</Section.Content>
-					</BackgroundImage>
+							<Section.Content
+								className="relative px-4 sm:col-span-3"
+								align={align}
+							>
+								{children}
+							</Section.Content>
+						</Section>
+					</>
 				)}
 
 				{!imageSrc && (

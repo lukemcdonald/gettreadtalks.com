@@ -36,8 +36,6 @@
     "dotenv": "^8.2.0",
     "formik": "^2.2.6",
     "gatsby": "^3.0.4",
-    "gatsby-background-image": "^1.4.1",
-    "gatsby-background-image-es5": "^1.4.1",
     "gatsby-plugin-feed": "^3.0.0",
     "gatsby-plugin-image": "^1.0.0",
     "gatsby-plugin-manifest": "^3.0.0",
