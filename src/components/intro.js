@@ -62,11 +62,9 @@ export default class Intro extends Component {
 				{imageSrc && (
 					<>
 						<div>
-							<GatsbyImage
-								className="absolute inset-0"
-								image={imageSrc}
-								alt="Intro background image"
-							/>
+							<div className="absolute inset-0">
+								<GatsbyImage image={imageSrc} alt="Intro background image" />
+							</div>
 
 							<div className="absolute inset-0 opacity-80 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900" />
 						</div>
