@@ -60,36 +60,24 @@ export default class Intro extends Component {
 				style={{ minHeight: fullscreen ? 'calc(100vh - 116px)' : '300px' }}
 			>
 				{imageSrc && (
-					<>
-						<div className="absolute inset-0 grid overflow-hidden">
-							<GatsbyImage image={imageSrc} alt="Intro background image" />
-						</div>
-
-						<Section
-							as="div"
-							className="flex items-center justify-center flex-grow"
-						>
-							<div className="absolute inset-0 opacity-80 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900" />
-							<Section.Content
-								className="relative px-4 sm:col-span-3"
-								align={align}
-							>
-								{children}
-							</Section.Content>
-						</Section>
-					</>
+					<div className="absolute inset-0 grid overflow-hidden">
+						<GatsbyImage image={imageSrc} alt="Intro background image" />
+					</div>
 				)}
 
-				{!imageSrc && (
-					<Section
-						as="div"
-						className="flex items-center justify-center flex-grow overflow-hidden "
+				<Section
+					as="div"
+					className="flex items-center justify-center flex-grow"
+				>
+					<div className="absolute inset-0 opacity-80 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900" />
+
+					<Section.Content
+						className="relative px-4 sm:col-span-3"
+						align={align}
 					>
-						<Section.Content className="px-4 sm:col-span-3" align={align}>
-							{children}
-						</Section.Content>
-					</Section>
-				)}
+						{children}
+					</Section.Content>
+				</Section>
 			</section>
 		);
 	}
