@@ -57,7 +57,12 @@ export const CardMetaLink = ({ children, className, to }) => (
 
 export const CardAvatar = ({ image, title }) => (
 	<figure className="w-16 h-16 mr-4">
-		<Avatar className="w-16 h-16 rounded-full" image={image} alt={title} />
+		<Avatar
+			className="w-16 h-16"
+			imgClassName="rounded-full"
+			image={image}
+			alt={title}
+		/>
 	</figure>
 );
 
