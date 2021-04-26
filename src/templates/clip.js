@@ -11,6 +11,9 @@ export default function SingleClipPage({ data, location }) {
 
 	const mediaObject = clip?.link?.childMarkdownRemark;
 	const media = mediaObject ? mediaObject.html : '';
+	const mediaLink =
+		mediaObject?.htmlAst?.children[0]?.children[1]?.properties?.href;
+
 	const hasVideo = media.includes('<iframe');
 
 	return (
@@ -46,10 +49,8 @@ export default function SingleClipPage({ data, location }) {
 					/>
 				)}
 
-				{!hasVideo && (
-					<Link.Button to={mediaObject.properties.href}>
-						Listen to Clip &rarr;
-					</Link.Button>
+				{!hasVideo && mediaLink && (
+					<Link.Button to={mediaLink}>Listen to Clip &rarr;</Link.Button>
 				)}
 			</Intro>
 		</>

@@ -19,6 +19,9 @@ export default function Talk({ data, location, pageContext }) {
 	const mediaObject = talk?.link?.childMarkdownRemark;
 	const media = mediaObject ? mediaObject.html : '';
 
+	const mediaLink =
+		mediaObject?.htmlAst?.children[0]?.children[1]?.properties?.href;
+
 	const hasVideo = media.includes('<iframe');
 	const hasTalks = moreTalks.length > 0;
 	const hasSeries = talk?.series;
@@ -59,12 +62,13 @@ export default function Talk({ data, location, pageContext }) {
 					/>
 				)}
 
-				{!hasVideo && (
+				{!hasVideo && mediaLink && (
 					<p className="mt-10 text-center">
 						<Link.Button
-							to={mediaObject.htmlAst.children[0].children[0].properties.href}
+							to={mediaLink}
 							color="primary"
 							size="large"
+							className="hover:bg-red-700"
 						>
 							Listen to Talk &rarr;
 						</Link.Button>
