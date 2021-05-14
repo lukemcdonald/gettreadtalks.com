@@ -40,19 +40,17 @@ export default function SeriesCard({ series }) {
 
 					return hasMoreSpeakers ? (
 						<Link
-							className="relative z-20 text-white transition transform rounded-full hover:scale-110 hover:z-40 hover:shadow-lg"
+							className="relative z-20 flex items-center justify-end w-12 h-12 pr-2 text-sm font-medium leading-none text-white transition-all transform bg-gray-400 rounded-full hover:scale-110 hover:z-40 hover:shadow-lg hover:pr-4 hover:text-base ring-white ring-2"
 							key={series.slug}
 							to={series.slug}
 						>
-							<span className="flex items-center justify-end w-12 h-12 pr-2 text-sm font-medium bg-gray-400 rounded-full ring-white ring-2">
-								<span className="text-xs">+</span>
-								{moreSpeakersCount}
-								<span className="sr-only">Speakers</span>
-							</span>
+							<span className="text-xs">+</span>
+							<span>{moreSpeakersCount}</span>
+							<span className="sr-only">Speakers</span>
 						</Link>
 					) : (
 						<Link
-							className="relative z-30 transition transform rounded-full hover:scale-110 hover:z-40 hover:shadow-lg"
+							className="relative z-30 leading-none transition transform rounded-full hover:scale-110 hover:z-40 hover:shadow-lg"
 							key={speaker.fields.slug}
 							to={speaker.fields.slug}
 						>
