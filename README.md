@@ -7,7 +7,7 @@ learning.
 Site built using:
 
 * [Gatsby](https://www.gatsbyjs.com/)
-* [Airtable](https://airtable.com/) ([data table preview](https://airtable.com/shroZ8s2Ibm5KNSuM/tbloLM6PMNV8xMcFw))
+* [Airtable](https://airtable.com/) ([View Airtable base](https://airtable.com/shrhwAQPNSO8rUvHB))
 * [Tailwind CSS](https://tailwindcss.com/)
 * [React](https://reactjs.org/) 
 * [GraphQL](https://graphql.org/)
