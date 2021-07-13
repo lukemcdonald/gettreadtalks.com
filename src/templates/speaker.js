@@ -144,7 +144,7 @@ export default function SingleSpeakerPage({ data, location, pageContext }) {
 }
 
 export const query = graphql`
-	query($id: String!) {
+	query ($id: String!) {
 		speaker: airtableSpeaker(id: { eq: $id }) {
 			data {
 				title

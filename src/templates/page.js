@@ -39,7 +39,7 @@ export default function SinglePage({ data, location }) {
 }
 
 export const query = graphql`
-	query($id: String!) {
+	query ($id: String!) {
 		page: airtablePage(id: { eq: $id }) {
 			id
 			fields {

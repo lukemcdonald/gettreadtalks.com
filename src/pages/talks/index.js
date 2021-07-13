@@ -63,7 +63,7 @@ export default function TalksPage({ data, location, pageContext }) {
 }
 
 export const query = graphql`
-	query($pageSize: Int = 12, $skip: Int = 0, $topic: [String]) {
+	query ($pageSize: Int = 12, $skip: Int = 0, $topic: [String]) {
 		talks: allAirtableTalk(
 			skip: $skip
 			limit: $pageSize

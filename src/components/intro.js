@@ -37,14 +37,8 @@ export default class Intro extends Component {
 	static Tagline = IntroTagline;
 
 	render() {
-		const {
-			align,
-			bgGradient,
-			children,
-			className,
-			image,
-			fullscreen,
-		} = this.props;
+		const { align, bgGradient, children, className, image, fullscreen } =
+			this.props;
 
 		const imageSrc =
 			image?.childImageSharp?.gatsbyImageData ||

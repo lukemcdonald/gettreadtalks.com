@@ -126,7 +126,7 @@ export default function Talk({ data, location, pageContext }) {
 }
 
 export const query = graphql`
-	query($id: String!) {
+	query ($id: String!) {
 		talk: airtableTalk(id: { eq: $id }) {
 			id
 			data {

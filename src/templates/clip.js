@@ -58,7 +58,7 @@ export default function SingleClipPage({ data, location }) {
 }
 
 export const query = graphql`
-	query($id: String!) {
+	query ($id: String!) {
 		clip: airtableClip(id: { eq: $id }) {
 			id
 			data {
