@@ -28,4 +28,4 @@ function Disclosure(props) {
 	)
 }
 
-export default Disclosure
+export { Disclosure }

@@ -61,4 +61,4 @@ function Products({ children }) {
 	)
 }
 
-export default Products
+export { Products }

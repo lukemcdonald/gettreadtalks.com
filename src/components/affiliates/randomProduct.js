@@ -2,8 +2,8 @@ import React from 'react'
 
 import { getRandomObjectItem } from '../../utilities'
 
-import Products from './products'
-import Product from './product'
+import { Products } from './products'
+import { Product } from './product'
 
 function RandomProduct({ card, className, disclosure, size }) {
 	return (
@@ -25,4 +25,4 @@ function RandomProduct({ card, className, disclosure, size }) {
 	)
 }
 
-export default RandomProduct
+export { RandomProduct }

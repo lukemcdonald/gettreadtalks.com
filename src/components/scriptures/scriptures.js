@@ -33,4 +33,4 @@ function Scriptures({ children }) {
 	)
 }
 
-export default Scriptures
+export { Scriptures }

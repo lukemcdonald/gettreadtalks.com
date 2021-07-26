@@ -4,7 +4,7 @@ import { Field, Form, Formik } from 'formik'
 import classnames from 'classnames'
 import { HiChevronDown as ChevronDown } from 'react-icons/hi'
 
-import ConditionalWrapper from './wrapper'
+import { ConditionalWrapper } from './conditionalWrapper'
 
 export const SelectGroup = ({ label, options }) => (
 	<ConditionalWrapper
@@ -63,4 +63,4 @@ class Select extends Component {
 	}
 }
 
-export default Select
+export { Select }

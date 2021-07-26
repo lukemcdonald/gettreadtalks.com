@@ -6,7 +6,7 @@ import {
 	HiChevronRight as ChevronRight,
 } from 'react-icons/hi'
 
-import Link from './link'
+import { Link } from './link'
 
 function Pagination({
 	className,
@@ -91,4 +91,4 @@ function Pagination({
 	)
 }
 
-export default Pagination
+export { Pagination }

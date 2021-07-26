@@ -41,4 +41,4 @@ function TopicsFilter({ className, topics }) {
 	)
 }
 
-export default TopicsFilter
+export { TopicsFilter }

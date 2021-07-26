@@ -9,4 +9,4 @@ function Scripture({ scripture }) {
 	)
 }
 
-export default Scripture
+export { Scripture }

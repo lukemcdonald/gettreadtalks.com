@@ -1,5 +1,5 @@
 import React from 'react'
-import Section from './section'
+import { Section } from './section'
 
 import { getCurrentYear } from '../utilities'
 
@@ -21,4 +21,4 @@ function SiteFooter({ siteTitle }) {
 	)
 }
 
-export default SiteFooter
+export { SiteFooter }

@@ -3,7 +3,7 @@ import classnames from 'classnames'
 import { HiMenuAlt4 as Menu, HiMail as Mail } from 'react-icons/hi'
 import { TiRss as RSS } from 'react-icons/ti'
 
-import Link from './link'
+import { Link } from './link'
 
 const links = [
 	{ label: 'About', path: '/about/' },
@@ -94,4 +94,4 @@ function Nav({ className }) {
 	)
 }
 
-export default Nav
+export { Nav }

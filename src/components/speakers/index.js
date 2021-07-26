@@ -1,7 +1,7 @@
 import React from 'react'
 import classnames from 'classnames'
 
-import Speaker from './card'
+import { SpeakerCard } from './card'
 
 function Speakers({ children, className, speakers }) {
 	return (
@@ -14,10 +14,10 @@ function Speakers({ children, className, speakers }) {
 			{children}
 			{speakers.map(({ id, fields, data }) => {
 				const speaker = { id, ...fields, ...data }
-				return <Speaker key={id} speaker={speaker} />
+				return <SpeakerCard key={id} speaker={speaker} />
 			})}
 		</div>
 	)
 }
 
-export default Speakers
+export { Speakers }

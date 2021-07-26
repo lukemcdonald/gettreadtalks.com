@@ -67,4 +67,4 @@ function SEO({ children, location, title, description, image }) {
 	)
 }
 
-export default SEO
+export { SEO }

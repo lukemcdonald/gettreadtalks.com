@@ -2,11 +2,10 @@ import React from 'react'
 import { navigate } from 'gatsby'
 import { Field, Form, Formik } from 'formik'
 
-const ConditionalWrapper = ({ condition, wrapper, children }) =>
-	condition ? wrapper(children) : children
+import { ConditionalWrapper } from '../conditionalWrapper'
 
 function TopicsFilter(props) {
-	const { className, currentTopic, topics, label } = props
+	const { className, currentTopic, topics } = props
 
 	const options = []
 
@@ -58,4 +57,4 @@ function TopicsFilter(props) {
 	)
 }
 
-export default TopicsFilter
+export { TopicsFilter }

@@ -5,7 +5,7 @@ import classnames from 'classnames'
 
 import { sanitizeHTMLTag } from '../utilities'
 
-import Avatar from './avatar'
+import { Avatar } from './avatar'
 
 export const CardTitle = ({ children, className, as }) => {
 	const Tag = sanitizeHTMLTag(as, ['h1', 'h2', 'h3'])
@@ -108,4 +108,4 @@ class Card extends Component {
 	}
 }
 
-export default Card
+export { Card }

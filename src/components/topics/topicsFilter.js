@@ -45,4 +45,4 @@ function TopicsFilter(props) {
 	)
 }
 
-export default TopicsFilter
+export { TopicsFilter }

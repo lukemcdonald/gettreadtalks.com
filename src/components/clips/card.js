@@ -1,7 +1,7 @@
 import React from 'react'
 
-import Card from '../card'
-import FauxLink from '../fauxLink'
+import { Card } from '../card'
+import { FauxLink } from '../fauxLink'
 
 function ClipCard({ clip }) {
 	return (
@@ -36,4 +36,4 @@ function ClipCard({ clip }) {
 	)
 }
 
-export default ClipCard
+export { ClipCard }

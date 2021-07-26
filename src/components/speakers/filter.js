@@ -1,5 +1,5 @@
 import React from 'react'
-import Select from '../select'
+import { Select } from '../select'
 
 function SpeakersFilter({ className, current, label = 'Speakers', speakers }) {
 	return (
@@ -30,4 +30,4 @@ function SpeakersFilter({ className, current, label = 'Speakers', speakers }) {
 	)
 }
 
-export default SpeakersFilter
+export { SpeakersFilter }

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import SubNav from '../subNav'
+import { SubNav } from '../subNav'
 
 function TopicsPostNav() {
 	const links = [
@@ -13,4 +13,4 @@ function TopicsPostNav() {
 	return <SubNav title="Speaker Navigation" links={links} />
 }
 
-export default TopicsPostNav
+export { TopicsPostNav }

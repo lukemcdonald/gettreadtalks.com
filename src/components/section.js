@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import classnames from 'classnames'
 import { sanitizeHTMLTag } from '../utilities'
 
-export const SectionContainer = ({ className, children }) => (
+const SectionContainer = ({ className, children }) => (
 	<div className={classnames('container max-w-screen-xl', className)}>
 		{children}
 	</div>
 )
 
-export const SectionContent = ({ align, as, children, className }) => {
+const SectionContent = ({ align, as, children, className }) => {
 	const Tag = sanitizeHTMLTag(as, [
 		'div',
 		'article',
@@ -39,7 +39,7 @@ export const SectionContent = ({ align, as, children, className }) => {
 	)
 }
 
-export const SectionSidebar = ({ children, className, right, sticky }) => (
+const SectionSidebar = ({ children, className, right, sticky }) => (
 	<div
 		className={classnames(
 			`pt-6 sm:py-6`,
@@ -56,7 +56,7 @@ export const SectionSidebar = ({ children, className, right, sticky }) => (
 	</div>
 )
 
-export const SectionHeading = ({ children, className = '', as }) => {
+const SectionHeading = ({ children, className = '', as }) => {
 	const Tag = sanitizeHTMLTag(as, ['h1', 'h2', 'h3'])
 
 	return (
@@ -72,7 +72,7 @@ export const SectionHeading = ({ children, className = '', as }) => {
 	)
 }
 
-export const SectionSeparator = ({ className }) => (
+const SectionSeparator = ({ className }) => (
 	<hr className={classnames('border-gray-300', className)} />
 )
 
@@ -116,4 +116,4 @@ class Section extends Component {
 	}
 }
 
-export default Section
+export { Section }

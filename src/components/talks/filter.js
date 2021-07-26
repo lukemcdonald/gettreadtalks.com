@@ -1,5 +1,5 @@
 import React from 'react'
-import Select from '../select'
+import { Select } from '../select'
 
 function TalksFilter({ className, current, label = 'Talks', topics }) {
 	return (
@@ -28,4 +28,4 @@ function TalksFilter({ className, current, label = 'Talks', topics }) {
 	)
 }
 
-export default TalksFilter
+export { TalksFilter }

@@ -3,12 +3,12 @@ import { graphql } from 'gatsby'
 
 import { shuffle } from '../utilities'
 
-import Intro from '../components/intro'
-import Link from '../components/link'
-import Section from '../components/section'
-import SEO from '../components/seo'
-import Series from '../components/series'
-import Talks from '../components/talks'
+import { Intro } from '../components/intro'
+import { Link } from '../components/link'
+import { Section } from '../components/section'
+import { SEO } from '../components/seo'
+import { Series } from '../components/series'
+import { Talks } from '../components/talks'
 
 function Talk({ data, location, pageContext }) {
 	const { data: talk } = data.talk

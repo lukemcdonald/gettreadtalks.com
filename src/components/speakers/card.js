@@ -1,8 +1,8 @@
 import React from 'react'
 import { maybePluralize } from '../../utilities'
 
-import Card from '../card'
-import FauxLink from '../fauxLink'
+import { Card } from '../card'
+import { FauxLink } from '../fauxLink'
 
 function SpeakerCard({ speaker }) {
 	return (
@@ -50,4 +50,4 @@ function SpeakerCard({ speaker }) {
 	)
 }
 
-export default SpeakerCard
+export { SpeakerCard }

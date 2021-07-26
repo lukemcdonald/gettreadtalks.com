@@ -2,8 +2,8 @@ import React from 'react'
 import { StaticQuery, graphql } from 'gatsby'
 import classnames from 'classnames'
 
-import Header from './header'
-import Footer from './footer'
+import { SiteHeader } from './header'
+import { SiteFooter } from './footer'
 
 const SITE_META_QUERY = graphql`
 	query {
@@ -24,9 +24,9 @@ function Layout({ children }) {
 					<div className="fixed inset-0 z-0 bg-gray-200 bg-cover bg-image-swirl" />
 
 					<div className="relative text-gray-700">
-						<Header siteTitle={data.site.siteMetadata.title} />
+						<SiteHeader siteTitle={data.site.siteMetadata.title} />
 						<main className="relative z-0">{children}</main>
-						<Footer siteTitle={data.site.siteMetadata.title} />
+						<SiteFooter siteTitle={data.site.siteMetadata.title} />
 					</div>
 				</>
 			)}
@@ -34,4 +34,4 @@ function Layout({ children }) {
 	)
 }
 
-export default Layout
+export { Layout }

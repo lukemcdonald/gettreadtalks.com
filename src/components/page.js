@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import classnames from 'classnames'
 
-export const PageTitle = ({ children, className }) => (
+const PageTitle = ({ children, className }) => (
 	<h1 className={classnames('text-2xl text-gray-900', className)}>
 		{children}
 	</h1>
@@ -17,4 +17,4 @@ class Page extends Component {
 	}
 }
 
-export default Page
+export { Page }

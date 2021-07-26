@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import Logo from './svgs/logo'
-import SiteNav from './nav'
+import { Logo } from './svgs/logo'
+import { Nav as SiteNav } from './nav'
 
 function SiteHeader({ siteTitle }) {
 	return (
@@ -22,4 +22,4 @@ function SiteHeader({ siteTitle }) {
 	)
 }
 
-export default SiteHeader
+export { SiteHeader }

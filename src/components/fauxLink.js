@@ -1,5 +1,5 @@
 import React from 'react'
-import Link from './link'
+import { Link } from './link'
 
 function FauxLink({ children, to }) {
 	return (
@@ -9,4 +9,4 @@ function FauxLink({ children, to }) {
 	)
 }
 
-export default FauxLink
+export { FauxLink }

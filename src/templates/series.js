@@ -1,10 +1,10 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
-import Section from '../components/section'
-import SEO from '../components/seo'
-import Intro from '../components/intro'
-import Talks from '../components/talks'
+import { Section } from '../components/section'
+import { SEO } from '../components/seo'
+import { Intro } from '../components/intro'
+import { Talks } from '../components/talks'
 
 function SingleSeriesPage({ data, location }) {
 	const { data: series } = data.series

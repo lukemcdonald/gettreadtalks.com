@@ -23,4 +23,4 @@ function TextCarousel({ className, fontSize = '16vw', text }) {
 	)
 }
 
-export default TextCarousel
+export { TextCarousel }

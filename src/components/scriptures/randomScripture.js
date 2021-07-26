@@ -2,8 +2,8 @@ import React from 'react'
 
 import { getRandomObjectItem } from '../../utilities'
 
-import Scriptures from './scriptures'
-import Scripture from './scripture'
+import { Scriptures } from './scriptures'
+import { Scripture } from './scripture'
 
 function RandomScripture() {
 	return (
@@ -16,4 +16,4 @@ function RandomScripture() {
 	)
 }
 
-export default RandomScripture
+export { RandomScripture }

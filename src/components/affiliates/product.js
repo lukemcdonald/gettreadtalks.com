@@ -2,9 +2,9 @@ import React from 'react'
 import { GatsbyImage } from 'gatsby-plugin-image'
 import classnames from 'classnames'
 
-import Card from '../card'
-import Disclosure from './disclosure'
-import FauxLink from '../fauxLink'
+import { Card } from '../card'
+import { Disclosure } from './disclosure'
+import { FauxLink } from '../fauxLink'
 
 function Product(props) {
 	const { data: post, className } = props
@@ -42,4 +42,4 @@ function Product(props) {
 	)
 }
 
-export default Product
+export { Product }

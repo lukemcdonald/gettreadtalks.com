@@ -1,5 +1,5 @@
 import React from 'react'
-import SubNav from '../subNav'
+import { SubNav } from '../subNav'
 
 function TopicsNav({ title, topics }) {
 	const links = [
@@ -19,4 +19,4 @@ function TopicsNav({ title, topics }) {
 	return <SubNav title={title} links={links} />
 }
 
-export default TopicsNav
+export { TopicsNav }

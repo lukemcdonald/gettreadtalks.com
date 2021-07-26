@@ -16,4 +16,4 @@ function Avatar({ className, imgClassName, image, title }) {
 	)
 }
 
-export default Avatar
+export { Avatar }

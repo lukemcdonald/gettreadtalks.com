@@ -1,7 +1,7 @@
 import React from 'react'
 
-import Card from '../card'
-import FauxLink from '../fauxLink'
+import { Card } from '../card'
+import { FauxLink } from '../fauxLink'
 
 function TopicCard({ topic }) {
 	return (
@@ -25,4 +25,4 @@ function TopicCard({ topic }) {
 	)
 }
 
-export default TopicCard
+export { TopicCard }

@@ -1,6 +1,6 @@
 import React from 'react'
-import Link from './link'
-import Section from './section'
+import { Link } from './link'
+import { Section } from './section'
 
 function SubNav({ className, links = [], title }) {
 	return (
@@ -24,4 +24,4 @@ function SubNav({ className, links = [], title }) {
 	)
 }
 
-export default SubNav
+export { SubNav }

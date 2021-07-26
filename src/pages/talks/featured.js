@@ -1,11 +1,11 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
-import SEO from '../../components/seo'
-import Talks from '../../components/talks'
-import Section from '../../components/section'
-import Page from '../../components/page'
-import TalksFilter from '../../components/talks/filter'
+import { SEO } from '../../components/seo'
+import { Talks } from '../../components/talks'
+import { Section } from '../../components/section'
+import { Page } from '../../components/page'
+import { TalksFilter } from '../../components/talks/filter'
 
 function FeaturedTalksPage({ data, location }) {
 	const { talks, topics } = data

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import classnames from 'classnames'
 
 import { GatsbyImage, StaticImage } from 'gatsby-plugin-image'
-import Section from './section'
+import { Section } from './section'
 
 export const IntroTitle = ({ children, className, size }) => {
 	const sizeMapping = {
@@ -77,4 +77,4 @@ class Intro extends Component {
 	}
 }
 
-export default Intro
+export { Intro }

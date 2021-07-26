@@ -2,13 +2,13 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import { maybePluralize } from '../../utilities'
 
-import Page from '../../components/page'
-import Pagination from '../../components/pagination'
-import Section from '../../components/section'
-import SEO from '../../components/seo'
-import Talks from '../../components/talks'
-import TalksFilter from '../../components/talks/filter'
-import TextCarousel from '../../components/textCarousel'
+import { Page } from '../../components/page'
+import { Pagination } from '../../components/pagination'
+import { Section } from '../../components/section'
+import { SEO } from '../../components/seo'
+import { Talks } from '../../components/talks'
+import { TalksFilter } from '../../components/talks/filter'
+import { TextCarousel } from '../../components/textCarousel'
 
 function TalksPage({ data, location, pageContext }) {
 	const { talks, topics } = data

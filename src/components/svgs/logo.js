@@ -22,4 +22,4 @@ function Logo({ className, colors = {} }) {
 	)
 }
 
-export default Logo
+export { Logo }

@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react'
 
-import Card from '../card'
-import FauxLink from '../fauxLink'
+import { Card } from '../card'
+import { FauxLink } from '../fauxLink'
 
-function Talk({ talk }) {
+function TalkCard({ talk }) {
 	return (
 		<Card>
 			{talk?.speakers.map(
@@ -52,4 +52,4 @@ function Talk({ talk }) {
 	)
 }
 
-export default Talk
+export { TalkCard }

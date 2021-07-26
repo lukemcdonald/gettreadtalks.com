@@ -1,15 +1,15 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import { shuffle } from '../utilities'
-import RandomProduct from '../components/affiliates/randomProduct'
+import { RandomProduct } from '../components/affiliates/randomProduct'
 
-import Intro from '../components/intro'
-import Section from '../components/section'
-import SEO from '../components/seo'
-import Speakers from '../components/speakers'
-import Talks from '../components/talks'
-import TalksNav from '../components/talks/nav'
-import TextCarousel from '../components/textCarousel'
+import { Intro } from '../components/intro'
+import { Section } from '../components/section'
+import { SEO } from '../components/seo'
+import { Speakers } from '../components/speakers'
+import { Talks } from '../components/talks'
+import { TalksNav } from '../components/talks/nav'
+import { TextCarousel } from '../components/textCarousel'
 
 function IndexPage({ data, location }) {
 	const { talks, speakers } = data
