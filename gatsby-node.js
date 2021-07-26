@@ -248,7 +248,7 @@ async function createTopicPages({ graphql, actions, reporter }) {
 	})
 }
 
-export async function createPages(params) {
+async function createPages(params) {
 	await Promise.all([
 		createClipPages(params),
 		createPagePages(params),
@@ -258,3 +258,5 @@ export async function createPages(params) {
 		createTopicPages(params),
 	])
 }
+
+export { createPages }

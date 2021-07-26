@@ -1,4 +1,4 @@
-export const parseVideoUrl = (url) => {
+function parseVideoUrl(url) {
 	// - Supported YouTube URL formats:
 	//   - http://www.youtube.com/watch?v=My2FRPA3Gf8
 	//   - http://youtu.be/My2FRPA3Gf8
@@ -31,7 +31,20 @@ export const parseVideoUrl = (url) => {
 /**
  * @link https://depone.dev/video/
  */
-export const getVideoImage = (url) => {
+
+const getYoutubeVideoSrc = (videoID) =>
+	`https://img.youtube.com/vi/${videoID}/maxresdefault.jpg`
+
+const getVimeoImageSrc = (videoID) =>
+	fetch(`https://vimeo.com/api/v2/video/${videoID}.json`)
+		.then((response) => response.json())
+		.then((data) => {
+			const thumbSplit = data[0].thumbnail_large.split(/\d{3}(?=.jpg)/)
+			return `${thumbSplit[0]}1280x720${thumbSplit[1]}`
+		})
+		.catch((error) => console.log(error))
+
+function getVideoImage(url) {
 	const videoDetails = parseVideoUrl(url)
 	const videoType = videoDetails.type
 	const videoID = videoDetails.id
@@ -50,14 +63,4 @@ export const getVideoImage = (url) => {
 	return videoImage
 }
 
-const getYoutubeVideoSrc = (videoID) =>
-	`https://img.youtube.com/vi/${videoID}/maxresdefault.jpg`
-
-const getVimeoImageSrc = (videoID) =>
-	fetch(`https://vimeo.com/api/v2/video/${videoID}.json`)
-		.then((response) => response.json())
-		.then((data) => {
-			const thumbSplit = data[0].thumbnail_large.split(/\d{3}(?=.jpg)/)
-			return `${thumbSplit[0]}1280x720${thumbSplit[1]}`
-		})
-		.catch((error) => console.log(error))
+export { parseVideoUrl, getVideoImage }

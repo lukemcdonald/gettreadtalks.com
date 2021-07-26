@@ -1,14 +1,13 @@
-export const getCurrentYear = () => new Date().getFullYear()
+const getCurrentYear = () => new Date().getFullYear()
 
-export const getRandomIndex = (items) =>
-	items[parseInt(Math.random() * items.length)]
+const getRandomIndex = (items) => items[parseInt(Math.random() * items.length)]
 
-export const getRandomObjectItem = (items = {}) => {
+const getRandomObjectItem = (items = {}) => {
 	const keys = Object.keys(items)
 	return items[getRandomIndex(keys)]
 }
 
-export const trimText = (text, limit) => {
+const trimText = (text, limit) => {
 	if (text.length > limit) {
 		return `${text.slice(0, limit).trim()}...`
 	}
@@ -16,7 +15,7 @@ export const trimText = (text, limit) => {
 	return text
 }
 
-export const shuffle = (array) => {
+const shuffle = (array) => {
 	let currentIndex = array.length
 	let temporaryValue
 	let randomIndex
@@ -36,13 +35,13 @@ export const shuffle = (array) => {
 	return array
 }
 
-export const sanitizeHTMLTag = (tagname = '', whitelist = []) => {
+const sanitizeHTMLTag = (tagname = '', whitelist = []) => {
 	const sanitized = tagname ? tagname.toLowerCase() : ''
 	const tags = whitelist || [tagname]
 	return tags.includes(sanitized) ? sanitized : whitelist[0]
 }
 
-export const maybePluralize = (count, noun, args = {}) => {
+const maybePluralize = (count, noun, args = {}) => {
 	const defaults = {
 		suffix: 's',
 		showCount: true,
@@ -74,4 +73,14 @@ export const maybePluralize = (count, noun, args = {}) => {
 	}
 
 	return `${displayCount} ${noun}${count !== 1 ? options.suffix : ''}`
+}
+
+export {
+	getCurrentYear,
+	getRandomIndex,
+	getRandomObjectItem,
+	trimText,
+	shuffle,
+	sanitizeHTMLTag,
+	maybePluralize,
 }

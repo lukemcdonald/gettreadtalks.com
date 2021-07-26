@@ -33,6 +33,8 @@ function SeriesPage({ data, location }) {
 	)
 }
 
+export default SeriesPage
+
 export const query = graphql`
 	{
 		series: allAirtableSerie(
@@ -72,5 +74,3 @@ export const query = graphql`
 		}
 	}
 `
-
-export default SeriesPage

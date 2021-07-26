@@ -27,7 +27,6 @@ function IndexPage({ data, location }) {
 
 			<Section className="relative">
 				<TextCarousel text="Jesus Is King" />
-
 				<Section.Sidebar sticky>
 					<Section.Heading as="h2">Featured Talks</Section.Heading>
 
@@ -40,7 +39,6 @@ function IndexPage({ data, location }) {
 
 					<TalksNav title="More Talks" />
 				</Section.Sidebar>
-
 				<Section.Content>
 					<Talks talks={shuffle(talks.nodes).slice(0, 5)} />
 				</Section.Content>
