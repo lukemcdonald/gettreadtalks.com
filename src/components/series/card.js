@@ -5,7 +5,7 @@ import Card from '../card'
 import FauxLink from '../fauxLink'
 import Link from '../link'
 
-export default function SeriesCard({ series }) {
+function SeriesCard({ series }) {
 	const maxSpeakers = 3
 	const uniqueSpeakers = series.speakers.filter(
 		(speaker, index, self) =>
@@ -68,3 +68,5 @@ export default function SeriesCard({ series }) {
 		</Card>
 	)
 }
+
+export default SeriesCard

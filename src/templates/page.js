@@ -6,7 +6,7 @@ import Section from '../components/section'
 import RandomProduct from '../components/affiliates/randomProduct'
 import Page from '../components/page'
 
-export default function SinglePage({ data, location }) {
+function SinglePage({ data, location }) {
 	const { data: page } = data.page
 
 	return (
@@ -37,6 +37,8 @@ export default function SinglePage({ data, location }) {
 		</>
 	)
 }
+
+export default SinglePage
 
 export const query = graphql`
 	query ($id: String!) {

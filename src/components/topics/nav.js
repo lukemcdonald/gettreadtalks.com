@@ -1,7 +1,7 @@
 import React from 'react'
 import SubNav from '../subNav'
 
-export default function TopicsNav({ title, topics }) {
+function TopicsNav({ title, topics }) {
 	const links = [
 		{
 			text: 'All Topics',
@@ -18,3 +18,5 @@ export default function TopicsNav({ title, topics }) {
 
 	return <SubNav title={title} links={links} />
 }
+
+export default TopicsNav

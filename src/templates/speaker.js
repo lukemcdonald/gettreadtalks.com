@@ -13,7 +13,7 @@ import SpeakersFilter from '../components/speakers/filter'
 import Talks from '../components/talks'
 import TextCarousel from '../components/textCarousel'
 
-export default function SingleSpeakerPage({ data, location, pageContext }) {
+function SingleSpeakerPage({ data, location, pageContext }) {
 	const {
 		speakers,
 		speaker: { data: speaker },
@@ -142,6 +142,8 @@ export default function SingleSpeakerPage({ data, location, pageContext }) {
 		</>
 	)
 }
+
+export default SingleSpeakerPage
 
 export const query = graphql`
 	query ($id: String!) {

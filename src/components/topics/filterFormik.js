@@ -5,7 +5,7 @@ import { Field, Form, Formik } from 'formik'
 const ConditionalWrapper = ({ condition, wrapper, children }) =>
 	condition ? wrapper(children) : children
 
-export default function TopicsFilter(props) {
+function TopicsFilter(props) {
 	const { className, currentTopic, topics, label } = props
 
 	const options = []
@@ -57,3 +57,5 @@ export default function TopicsFilter(props) {
 		</div>
 	)
 }
+
+export default TopicsFilter

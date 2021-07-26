@@ -78,7 +78,7 @@ export const CardFeaturedLink = ({ className, to }) => (
 	</Link>
 )
 
-export default class Card extends Component {
+class Card extends Component {
 	static Avatar = CardAvatar
 
 	static FeaturedLink = CardFeaturedLink
@@ -107,3 +107,5 @@ export default class Card extends Component {
 		)
 	}
 }
+
+export default Card

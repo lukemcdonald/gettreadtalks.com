@@ -6,7 +6,7 @@ import SEO from '../../components/seo'
 import Series from '../../components/series'
 import Section from '../../components/section'
 
-export default function SeriesPage({ data, location }) {
+function SeriesPage({ data, location }) {
 	const { series } = data
 
 	return (
@@ -72,3 +72,5 @@ export const query = graphql`
 		}
 	}
 `
+
+export default SeriesPage

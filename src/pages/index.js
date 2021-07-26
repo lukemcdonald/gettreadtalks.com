@@ -11,7 +11,7 @@ import Talks from '../components/talks'
 import TalksNav from '../components/talks/nav'
 import TextCarousel from '../components/textCarousel'
 
-export default function IndexPage({ data, location }) {
+function IndexPage({ data, location }) {
 	const { talks, speakers } = data
 
 	return (
@@ -77,6 +77,8 @@ export default function IndexPage({ data, location }) {
 		</>
 	)
 }
+
+export default IndexPage
 
 export const query = graphql`
 	{

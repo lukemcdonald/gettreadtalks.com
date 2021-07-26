@@ -1,7 +1,7 @@
 import React from 'react'
 import classnames from 'classnames'
 
-export default function TextCarousel({ className, fontSize = '16vw', text }) {
+function TextCarousel({ className, fontSize = '16vw', text }) {
 	const string = text.split(' ')
 
 	return (
@@ -22,3 +22,5 @@ export default function TextCarousel({ className, fontSize = '16vw', text }) {
 		</div>
 	)
 }
+
+export default TextCarousel

@@ -7,7 +7,7 @@ export const PageTitle = ({ children, className }) => (
 	</h1>
 )
 
-export default class Page extends Component {
+class Page extends Component {
 	static Title = PageTitle
 
 	render() {
@@ -16,3 +16,5 @@ export default class Page extends Component {
 		return <div className={classnames('', className)}>{children}</div>
 	}
 }
+
+export default Page

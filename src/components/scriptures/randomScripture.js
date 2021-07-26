@@ -5,7 +5,7 @@ import { getRandomObjectItem } from '../../utilities'
 import Scriptures from './scriptures'
 import Scripture from './scripture'
 
-export default function RandomScripture() {
+function RandomScripture() {
 	return (
 		<Scriptures>
 			{(scriptures) => {
@@ -15,3 +15,5 @@ export default function RandomScripture() {
 		</Scriptures>
 	)
 }
+
+export default RandomScripture

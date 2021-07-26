@@ -13,7 +13,7 @@ const links = [
 	{ label: 'Talks', path: '/talks/' },
 ]
 
-export default function Nav({ className }) {
+function Nav({ className }) {
 	const [checked, setChecked] = useState(false)
 	const handleClick = () => setChecked(!checked)
 
@@ -93,3 +93,5 @@ export default function Nav({ className }) {
 		</nav>
 	)
 }
+
+export default Nav

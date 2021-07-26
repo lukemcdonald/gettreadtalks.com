@@ -1,7 +1,7 @@
 import React from 'react'
 import Topic from './card'
 
-export default function Topics({ className, topics }) {
+function Topics({ className, topics }) {
 	return (
 		<div className={className}>
 			{topics.map(({ id, fields, data }) => {
@@ -11,3 +11,5 @@ export default function Topics({ className, topics }) {
 		</div>
 	)
 }
+
+export default Topics

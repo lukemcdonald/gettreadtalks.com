@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Scripture({ scripture }) {
+function Scripture({ scripture }) {
 	return (
 		<blockquote>
 			<p className="inline italic">{scripture.content}</p>
@@ -8,3 +8,5 @@ export default function Scripture({ scripture }) {
 		</blockquote>
 	)
 }
+
+export default Scripture

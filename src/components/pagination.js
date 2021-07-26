@@ -8,7 +8,7 @@ import {
 
 import Link from './link'
 
-export default function Pagination({
+function Pagination({
 	className,
 	pageSize,
 	totalCount,
@@ -90,3 +90,5 @@ export default function Pagination({
 		</>
 	)
 }
+
+export default Pagination

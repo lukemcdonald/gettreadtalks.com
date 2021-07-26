@@ -31,7 +31,7 @@ export const IntroTagline = ({ children, className }) => (
 	</div>
 )
 
-export default class Intro extends Component {
+class Intro extends Component {
 	static Title = IntroTitle
 
 	static Tagline = IntroTagline
@@ -76,3 +76,5 @@ export default class Intro extends Component {
 		)
 	}
 }
+
+export default Intro

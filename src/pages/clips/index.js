@@ -6,7 +6,7 @@ import Page from '../../components/page'
 import Section from '../../components/section'
 import SEO from '../../components/seo'
 
-export default function ClipsPage({ data, location }) {
+function ClipsPage({ data, location }) {
 	const { clips } = data
 
 	return (
@@ -28,6 +28,8 @@ export default function ClipsPage({ data, location }) {
 		</>
 	)
 }
+
+export default ClipsPage
 
 export const query = graphql`
 	{

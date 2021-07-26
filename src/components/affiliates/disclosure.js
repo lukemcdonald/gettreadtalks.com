@@ -1,7 +1,7 @@
 import React from 'react'
 import classnames from 'classnames'
 
-export default function Disclosure(props) {
+function Disclosure(props) {
 	const {
 		className = '',
 		title = `Ad`,
@@ -27,3 +27,5 @@ export default function Disclosure(props) {
 		</button>
 	)
 }
+
+export default Disclosure

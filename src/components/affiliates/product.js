@@ -6,7 +6,7 @@ import Card from '../card'
 import Disclosure from './disclosure'
 import FauxLink from '../fauxLink'
 
-export default function Product(props) {
+function Product(props) {
 	const { data: post, className } = props
 
 	return (
@@ -41,3 +41,5 @@ export default function Product(props) {
 		</Card>
 	)
 }
+
+export default Product

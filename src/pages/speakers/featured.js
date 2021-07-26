@@ -7,7 +7,7 @@ import Section from '../../components/section'
 import Page from '../../components/page'
 import SpeakersFilter from '../../components/speakers/filter'
 
-export default function FeaturedSpeakersPage({ data, location }) {
+function FeaturedSpeakersPage({ data, location }) {
 	const { speakers } = data
 
 	return (
@@ -41,6 +41,8 @@ export default function FeaturedSpeakersPage({ data, location }) {
 		</>
 	)
 }
+
+export default FeaturedSpeakersPage
 
 export const query = graphql`
 	{

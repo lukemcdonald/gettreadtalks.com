@@ -39,7 +39,7 @@ export const LinkButton = ({
 
 // Since DOM elements <a> cannot receive activeClassName,
 // destructure the prop here and pass it only to GatsbyLink
-export default class Link extends Component {
+class Link extends Component {
 	static Button = LinkButton
 
 	render() {
@@ -77,3 +77,5 @@ export default class Link extends Component {
 		)
 	}
 }
+
+export default Link

@@ -9,7 +9,7 @@ import SpeakersFilter from '../../components/speakers/filter'
 import Card from '../../components/card'
 import TextCarousel from '../../components/textCarousel'
 
-export default function SpeakersPage({ data, location, pageContext }) {
+function SpeakersPage({ data, location, pageContext }) {
 	const { speakers } = data
 
 	return (
@@ -66,6 +66,8 @@ export default function SpeakersPage({ data, location, pageContext }) {
 		</>
 	)
 }
+
+export default SpeakersPage
 
 export const pageQuery = graphql`
 	{

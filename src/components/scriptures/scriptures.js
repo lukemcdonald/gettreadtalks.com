@@ -15,7 +15,7 @@ const query = graphql`
 	}
 `
 
-export default function Scriptures({ children }) {
+function Scriptures({ children }) {
 	return (
 		<StaticQuery query={query}>
 			{({ scriptures: { nodes } }) =>
@@ -32,3 +32,5 @@ export default function Scriptures({ children }) {
 		</StaticQuery>
 	)
 }
+
+export default Scriptures

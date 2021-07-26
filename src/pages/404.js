@@ -4,7 +4,7 @@ import SEO from '../components/seo'
 import Intro from '../components/intro'
 import Section from '../components/section'
 
-export default function NotFoundPage() {
+function NotFoundPage() {
 	return (
 		<>
 			<SEO title="404: Not found" />
@@ -35,3 +35,5 @@ export default function NotFoundPage() {
 		</>
 	)
 }
+
+export default NotFoundPage

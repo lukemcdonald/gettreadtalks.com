@@ -3,7 +3,7 @@ import React from 'react'
 import Card from '../card'
 import FauxLink from '../fauxLink'
 
-export default function ClipCard({ clip }) {
+function ClipCard({ clip }) {
 	return (
 		<Card className="rounded">
 			{clip.speakers.map(
@@ -35,3 +35,5 @@ export default function ClipCard({ clip }) {
 		</Card>
 	)
 }
+
+export default ClipCard

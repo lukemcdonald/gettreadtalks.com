@@ -10,7 +10,7 @@ import SEO from '../components/seo'
 import Series from '../components/series'
 import Talks from '../components/talks'
 
-export default function Talk({ data, location, pageContext }) {
+function Talk({ data, location, pageContext }) {
 	const { data: talk } = data.talk
 	const { talks } = talk.speakers[0].data
 
@@ -124,6 +124,8 @@ export default function Talk({ data, location, pageContext }) {
 		</>
 	)
 }
+
+export default Talk
 
 export const query = graphql`
 	query ($id: String!) {

@@ -5,7 +5,7 @@ import { getRandomObjectItem } from '../../utilities'
 import Products from './products'
 import Product from './product'
 
-export default function RandomProduct({ card, className, disclosure, size }) {
+function RandomProduct({ card, className, disclosure, size }) {
 	return (
 		<Products>
 			{(products) => {
@@ -24,3 +24,5 @@ export default function RandomProduct({ card, className, disclosure, size }) {
 		</Products>
 	)
 }
+
+export default RandomProduct

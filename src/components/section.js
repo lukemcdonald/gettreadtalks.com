@@ -76,7 +76,7 @@ export const SectionSeparator = ({ className }) => (
 	<hr className={classnames('border-gray-300', className)} />
 )
 
-export default class Section extends Component {
+class Section extends Component {
 	static Content = SectionContent
 
 	static Container = SectionContainer
@@ -115,3 +115,5 @@ export default class Section extends Component {
 		)
 	}
 }
+
+export default Section

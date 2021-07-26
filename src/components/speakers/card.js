@@ -4,7 +4,7 @@ import { maybePluralize } from '../../utilities'
 import Card from '../card'
 import FauxLink from '../fauxLink'
 
-export default function SpeakerCard({ speaker }) {
+function SpeakerCard({ speaker }) {
 	return (
 		<Card>
 			{speaker?.avatar && (
@@ -49,3 +49,5 @@ export default function SpeakerCard({ speaker }) {
 		</Card>
 	)
 }
+
+export default SpeakerCard

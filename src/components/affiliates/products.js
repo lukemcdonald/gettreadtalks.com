@@ -43,7 +43,7 @@ const query = graphql`
 	}
 `
 
-export default function Products({ children }) {
+function Products({ children }) {
 	return (
 		<StaticQuery query={query}>
 			{({ affiliates: { nodes } }) =>
@@ -60,3 +60,5 @@ export default function Products({ children }) {
 		</StaticQuery>
 	)
 }
+
+export default Products

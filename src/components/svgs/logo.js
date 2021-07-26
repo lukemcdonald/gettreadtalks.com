@@ -1,7 +1,7 @@
 import React from 'react'
 import classnames from 'classnames'
 
-export default function Logo({ className, colors = {} }) {
+function Logo({ className, colors = {} }) {
 	const { tread = '', talks = '' } = colors
 
 	return (
@@ -21,3 +21,5 @@ export default function Logo({ className, colors = {} }) {
 		</svg>
 	)
 }
+
+export default Logo

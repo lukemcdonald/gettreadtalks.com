@@ -10,7 +10,7 @@ import Talks from '../../components/talks'
 import TalksFilter from '../../components/talks/filter'
 import TextCarousel from '../../components/textCarousel'
 
-export default function TalksPage({ data, location, pageContext }) {
+function TalksPage({ data, location, pageContext }) {
 	const { talks, topics } = data
 	const isTopical = topics?.nodes && pageContext?.topic
 	const description = `Elevate your spiritual heartbeat with ${maybePluralize(
@@ -61,6 +61,8 @@ export default function TalksPage({ data, location, pageContext }) {
 		</>
 	)
 }
+
+export default TalksPage
 
 export const query = graphql`
 	query ($pageSize: Int = 12, $skip: Int = 0, $topic: [String]) {

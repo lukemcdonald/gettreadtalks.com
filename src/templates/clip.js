@@ -6,7 +6,7 @@ import Link from '../components/link'
 import SEO from '../components/seo'
 import Talks from '../components/talks'
 
-export default function SingleClipPage({ data, location }) {
+function SingleClipPage({ data, location }) {
 	const { data: clip } = data.clip
 
 	const mediaObject = clip?.link?.childMarkdownRemark
@@ -56,6 +56,8 @@ export default function SingleClipPage({ data, location }) {
 		</>
 	)
 }
+
+export default SingleClipPage
 
 export const query = graphql`
 	query ($id: String!) {

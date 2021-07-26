@@ -2,7 +2,7 @@ import React from 'react'
 
 import SubNav from '../subNav'
 
-export default function SpeakersPostNav({ data }) {
+function SpeakersPostNav({ data }) {
 	const { ministry, website } = data
 
 	const links = [
@@ -12,3 +12,5 @@ export default function SpeakersPostNav({ data }) {
 
 	return <SubNav title="Speaker Navigation" links={links} />
 }
+
+export default SpeakersPostNav

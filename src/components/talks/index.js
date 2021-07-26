@@ -3,7 +3,7 @@ import classnames from 'classnames'
 
 import Talk from './card'
 
-export default function Talks({ children, className, subtitle, talks }) {
+function Talks({ children, className, subtitle, talks }) {
 	return (
 		<div className={classnames('grid gap-4 sm:gap-6', className)}>
 			{talks.map(({ id, fields, data }) => {
@@ -14,3 +14,5 @@ export default function Talks({ children, className, subtitle, talks }) {
 		</div>
 	)
 }
+
+export default Talks

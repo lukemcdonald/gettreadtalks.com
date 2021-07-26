@@ -1,7 +1,7 @@
 import React from 'react'
 import { navigate } from 'gatsby'
 
-export default function TopicsFilter(props) {
+function TopicsFilter(props) {
 	const { className, currentTopic, options } = props
 
 	return (
@@ -44,3 +44,5 @@ export default function TopicsFilter(props) {
 		</div>
 	)
 }
+
+export default TopicsFilter

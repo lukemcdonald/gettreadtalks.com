@@ -3,7 +3,7 @@ import classnames from 'classnames'
 
 import Speaker from './card'
 
-export default function Speakers({ children, className, speakers }) {
+function Speakers({ children, className, speakers }) {
 	return (
 		<div
 			className={classnames(
@@ -19,3 +19,5 @@ export default function Speakers({ children, className, speakers }) {
 		</div>
 	)
 }
+
+export default Speakers

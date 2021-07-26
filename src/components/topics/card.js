@@ -3,7 +3,7 @@ import React from 'react'
 import Card from '../card'
 import FauxLink from '../fauxLink'
 
-export default function TopicCard({ topic }) {
+function TopicCard({ topic }) {
 	return (
 		<Card className="flex rounded">
 			<div>
@@ -24,3 +24,5 @@ export default function TopicCard({ topic }) {
 		</Card>
 	)
 }
+
+export default TopicCard

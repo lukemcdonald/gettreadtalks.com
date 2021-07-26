@@ -5,7 +5,7 @@ import striptags from 'striptags'
 
 import { trimText } from '../utilities'
 
-export default function SEO({ children, location, title, description, image }) {
+function SEO({ children, location, title, description, image }) {
 	const { site } = useStaticQuery(graphql`
 		query {
 			site {
@@ -66,3 +66,5 @@ export default function SEO({ children, location, title, description, image }) {
 		</Helmet>
 	)
 }
+
+export default SEO

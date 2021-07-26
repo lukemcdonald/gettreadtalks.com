@@ -25,7 +25,7 @@ export const SelectGroup = ({ label, options }) => (
 	</ConditionalWrapper>
 )
 
-export default class Select extends Component {
+class Select extends Component {
 	static Group = SelectGroup
 
 	render() {
@@ -62,3 +62,5 @@ export default class Select extends Component {
 		)
 	}
 }
+
+export default Select

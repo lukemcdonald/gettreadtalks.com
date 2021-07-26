@@ -3,7 +3,7 @@ import Section from './section'
 
 import { getCurrentYear } from '../utilities'
 
-export default function SiteFooter({ siteTitle }) {
+function SiteFooter({ siteTitle }) {
 	const year = getCurrentYear()
 	const copyright = `© ${siteTitle} ${year}`
 	return (
@@ -20,3 +20,5 @@ export default function SiteFooter({ siteTitle }) {
 		</Section>
 	)
 }
+
+export default SiteFooter

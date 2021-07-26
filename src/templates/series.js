@@ -6,7 +6,7 @@ import SEO from '../components/seo'
 import Intro from '../components/intro'
 import Talks from '../components/talks'
 
-export default function SingleSeriesPage({ data, location }) {
+function SingleSeriesPage({ data, location }) {
 	const { data: series } = data.series
 
 	return (
@@ -25,6 +25,8 @@ export default function SingleSeriesPage({ data, location }) {
 		</>
 	)
 }
+
+export default SingleSeriesPage
 
 export const query = graphql`
 	query ($id: String!) {

@@ -2,7 +2,7 @@ import React from 'react'
 import Link from './link'
 import Section from './section'
 
-export default function SubNav({ className, links = [], title }) {
+function SubNav({ className, links = [], title }) {
 	return (
 		<nav className={className}>
 			{title && <Section.Heading as="h2">{title}</Section.Heading>}
@@ -23,3 +23,5 @@ export default function SubNav({ className, links = [], title }) {
 		</nav>
 	)
 }
+
+export default SubNav

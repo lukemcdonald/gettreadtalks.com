@@ -7,7 +7,7 @@ import Section from '../../components/section'
 import Page from '../../components/page'
 import TalksFilter from '../../components/talks/filter'
 
-export default function FeaturedTalksPage({ data, location }) {
+function FeaturedTalksPage({ data, location }) {
 	const { talks, topics } = data
 
 	return (
@@ -41,6 +41,8 @@ export default function FeaturedTalksPage({ data, location }) {
 		</>
 	)
 }
+
+export default FeaturedTalksPage
 
 export const query = graphql`
 	{

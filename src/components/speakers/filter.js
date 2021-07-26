@@ -1,12 +1,7 @@
 import React from 'react'
 import Select from '../select'
 
-export default function SpeakersFilter({
-	className,
-	current,
-	label = 'Speakers',
-	speakers,
-}) {
+function SpeakersFilter({ className, current, label = 'Speakers', speakers }) {
 	return (
 		<Select label={label} className={className} current={current}>
 			<Select.Group
@@ -34,3 +29,5 @@ export default function SpeakersFilter({
 		</Select>
 	)
 }
+
+export default SpeakersFilter

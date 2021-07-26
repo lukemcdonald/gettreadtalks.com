@@ -15,7 +15,7 @@ const SITE_META_QUERY = graphql`
 	}
 `
 
-export default function Layout({ children }) {
+function Layout({ children }) {
 	return (
 		<StaticQuery
 			query={SITE_META_QUERY}
@@ -33,3 +33,5 @@ export default function Layout({ children }) {
 		/>
 	)
 }
+
+export default Layout
