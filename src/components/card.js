@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import { Link } from 'gatsby';
-import { HiStar as Star } from 'react-icons/hi';
-import classnames from 'classnames';
+import React, { Component } from 'react'
+import { Link } from 'gatsby'
+import { HiStar as Star } from 'react-icons/hi'
+import classnames from 'classnames'
 
-import { sanitizeHTMLTag } from '../utilities';
+import { sanitizeHTMLTag } from '../utilities'
 
-import Avatar from './avatar';
+import Avatar from './avatar'
 
 export const CardTitle = ({ children, className, as }) => {
-	const Tag = sanitizeHTMLTag(as, ['h1', 'h2', 'h3']);
+	const Tag = sanitizeHTMLTag(as, ['h1', 'h2', 'h3'])
 
 	return (
 		<Tag
@@ -19,11 +19,11 @@ export const CardTitle = ({ children, className, as }) => {
 		>
 			{children}
 		</Tag>
-	);
-};
+	)
+}
 
 export const CardSubTitle = ({ children, className, as }) => {
-	const Tag = sanitizeHTMLTag(as, ['h2', 'h3']);
+	const Tag = sanitizeHTMLTag(as, ['h2', 'h3'])
 
 	return (
 		<Tag
@@ -34,8 +34,8 @@ export const CardSubTitle = ({ children, className, as }) => {
 		>
 			{children}
 		</Tag>
-	);
-};
+	)
+}
 
 export const CardMeta = ({ children, className }) => (
 	<div
@@ -47,13 +47,13 @@ export const CardMeta = ({ children, className }) => (
 	>
 		{children}
 	</div>
-);
+)
 
 export const CardMetaLink = ({ children, className, to }) => (
 	<Link to={to} className={classnames('hover:underline', className)}>
 		{children}
 	</Link>
-);
+)
 
 export const CardAvatar = ({ image, title }) => (
 	<figure className="w-16 h-16 mr-4">
@@ -64,7 +64,7 @@ export const CardAvatar = ({ image, title }) => (
 			alt={title}
 		/>
 	</figure>
-);
+)
 
 export const CardFeaturedLink = ({ className, to }) => (
 	<Link
@@ -76,23 +76,23 @@ export const CardFeaturedLink = ({ className, to }) => (
 	>
 		<Star className="w-5 h-5" />
 	</Link>
-);
+)
 
 export default class Card extends Component {
-	static Avatar = CardAvatar;
+	static Avatar = CardAvatar
 
-	static FeaturedLink = CardFeaturedLink;
+	static FeaturedLink = CardFeaturedLink
 
-	static Meta = CardMeta;
+	static Meta = CardMeta
 
-	static MetaLink = CardMetaLink;
+	static MetaLink = CardMetaLink
 
-	static SubTitle = CardSubTitle;
+	static SubTitle = CardSubTitle
 
-	static Title = CardTitle;
+	static Title = CardTitle
 
 	render() {
-		const { children, className = '' } = this.props;
+		const { children, className = '' } = this.props
 
 		return (
 			<article
@@ -104,6 +104,6 @@ export default class Card extends Component {
 			>
 				{children}
 			</article>
-		);
+		)
 	}
 }

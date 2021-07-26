@@ -1,7 +1,7 @@
-import React, { Fragment } from 'react';
+import React, { Fragment } from 'react'
 
-import Card from '../card';
-import FauxLink from '../fauxLink';
+import Card from '../card'
+import FauxLink from '../fauxLink'
 
 export default function Talk({ talk }) {
 	return (
@@ -49,5 +49,5 @@ export default function Talk({ talk }) {
 				<FauxLink to={talk.slug}>{`Listen to ${talk.title}`}</FauxLink>
 			)}
 		</Card>
-	);
+	)
 }

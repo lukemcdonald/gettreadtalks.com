@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import classnames from 'classnames';
-import { HiMenuAlt4 as Menu, HiMail as Mail } from 'react-icons/hi';
-import { TiRss as RSS } from 'react-icons/ti';
+import React, { useState } from 'react'
+import classnames from 'classnames'
+import { HiMenuAlt4 as Menu, HiMail as Mail } from 'react-icons/hi'
+import { TiRss as RSS } from 'react-icons/ti'
 
-import Link from './link';
+import Link from './link'
 
 const links = [
 	{ label: 'About', path: '/about/' },
@@ -11,11 +11,11 @@ const links = [
 	{ label: 'Series', path: '/series/' },
 	{ label: 'Speakers', path: '/speakers/' },
 	{ label: 'Talks', path: '/talks/' },
-];
+]
 
 export default function Nav({ className }) {
-	const [checked, setChecked] = useState(false);
-	const handleClick = () => setChecked(!checked);
+	const [checked, setChecked] = useState(false)
+	const handleClick = () => setChecked(!checked)
 
 	return (
 		<nav className={classnames('primary-nav', className)}>
@@ -91,5 +91,5 @@ export default function Nav({ className }) {
 				</ul>
 			</div>
 		</nav>
-	);
+	)
 }

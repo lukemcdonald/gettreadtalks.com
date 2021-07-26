@@ -1,20 +1,22 @@
-import { useState } from 'react';
+import { useState } from 'react'
 
-export default function useForm(defaults) {
-	const [values, setValues] = useState(defaults);
+function useForm(defaults) {
+	const [values, setValues] = useState(defaults)
 
 	function updateValue(e) {
-		let { value } = e.target;
+		let { name, type, value } = e.target
 
-		if (e.target.type === 'number') {
-			value = parseInt(value);
+		if (type === 'number') {
+			value = parseInt(value)
 		}
 
 		setValues({
 			...values,
-			[e.target.name]: value,
-		});
+			[name]: value,
+		})
 	}
 
-	return { values, updateValue };
+	return { values, updateValue }
 }
+
+export { useForm }

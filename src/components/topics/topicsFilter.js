@@ -1,15 +1,15 @@
-import React from 'react';
-import { navigate } from 'gatsby';
+import React from 'react'
+import { navigate } from 'gatsby'
 
 export default function TopicsFilter(props) {
-	const { className, currentTopic, options } = props;
+	const { className, currentTopic, options } = props
 
 	return (
 		<div className={className}>
 			<Formik
 				initialValues={{ optionPath: currentTopic?.to || options[0].to }}
 				onSubmit={async (values) => {
-					navigate(values.optionPath);
+					navigate(values.optionPath)
 				}}
 			>
 				{({ handleChange, submitForm }) => (
@@ -19,8 +19,8 @@ export default function TopicsFilter(props) {
 							name="optionPath"
 							className="inline p-0 text-2xl bg-transparent border-none rounded cursor-pointer bg-none"
 							onChange={(e) => {
-								handleChange(e);
-								submitForm();
+								handleChange(e)
+								submitForm()
 							}}
 						>
 							{options.map((option) => (
@@ -42,5 +42,5 @@ export default function TopicsFilter(props) {
 				)}
 			</Formik>
 		</div>
-	);
+	)
 }

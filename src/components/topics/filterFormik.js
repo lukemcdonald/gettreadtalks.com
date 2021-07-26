@@ -1,28 +1,28 @@
-import React from 'react';
-import { navigate } from 'gatsby';
-import { Field, Form, Formik } from 'formik';
+import React from 'react'
+import { navigate } from 'gatsby'
+import { Field, Form, Formik } from 'formik'
 
 const ConditionalWrapper = ({ condition, wrapper, children }) =>
-	condition ? wrapper(children) : children;
+	condition ? wrapper(children) : children
 
 export default function TopicsFilter(props) {
-	const { className, currentTopic, topics, label } = props;
+	const { className, currentTopic, topics, label } = props
 
-	const options = [];
+	const options = []
 
 	topics.map((topic) =>
 		options.push({
 			text: topic.data.title,
 			to: topic.fields.slug,
 		})
-	);
+	)
 
 	return (
 		<div className={className}>
 			<Formik
 				initialValues={{ topicPath: currentTopic?.to || options[0].to }}
 				onSubmit={async (values) => {
-					navigate(values.topicPath);
+					navigate(values.topicPath)
 				}}
 			>
 				{({ handleChange, submitForm }) => (
@@ -32,8 +32,8 @@ export default function TopicsFilter(props) {
 							name="topicPath"
 							className="inline p-0 text-2xl bg-transparent border-none rounded cursor-pointer bg-none"
 							onChange={(e) => {
-								handleChange(e);
-								submitForm();
+								handleChange(e)
+								submitForm()
 							}}
 						>
 							{options.map((option) => (
@@ -55,5 +55,5 @@ export default function TopicsFilter(props) {
 				)}
 			</Formik>
 		</div>
-	);
+	)
 }

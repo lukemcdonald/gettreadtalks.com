@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 
-import SubNav from '../subNav';
+import SubNav from '../subNav'
 
 export default function TopicsPostNav() {
 	const links = [
@@ -8,7 +8,7 @@ export default function TopicsPostNav() {
 			text: '← All Topics',
 			to: '/topics/',
 		},
-	];
+	]
 
-	return <SubNav title="Speaker Navigation" links={links} />;
+	return <SubNav title="Speaker Navigation" links={links} />
 }

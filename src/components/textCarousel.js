@@ -1,8 +1,8 @@
-import React from 'react';
-import classnames from 'classnames';
+import React from 'react'
+import classnames from 'classnames'
 
 export default function TextCarousel({ className, fontSize = '16vw', text }) {
-	const string = text.split(' ');
+	const string = text.split(' ')
 
 	return (
 		<div className="absolute inset-0 z-0 hidden md:flex md:flex-col">
@@ -20,5 +20,5 @@ export default function TextCarousel({ className, fontSize = '16vw', text }) {
 				))}
 			</ul>
 		</div>
-	);
+	)
 }

@@ -1,18 +1,18 @@
-import React from 'react';
-import { graphql } from 'gatsby';
-import { shuffle } from '../utilities';
-import RandomProduct from '../components/affiliates/randomProduct';
+import React from 'react'
+import { graphql } from 'gatsby'
+import { shuffle } from '../utilities'
+import RandomProduct from '../components/affiliates/randomProduct'
 
-import Intro from '../components/intro';
-import Section from '../components/section';
-import SEO from '../components/seo';
-import Speakers from '../components/speakers';
-import Talks from '../components/talks';
-import TalksNav from '../components/talks/nav';
-import TextCarousel from '../components/textCarousel';
+import Intro from '../components/intro'
+import Section from '../components/section'
+import SEO from '../components/seo'
+import Speakers from '../components/speakers'
+import Talks from '../components/talks'
+import TalksNav from '../components/talks/nav'
+import TextCarousel from '../components/textCarousel'
 
 export default function IndexPage({ data, location }) {
-	const { talks, speakers } = data;
+	const { talks, speakers } = data
 
 	return (
 		<>
@@ -75,7 +75,7 @@ export default function IndexPage({ data, location }) {
 				</Section.Content>
 			</Section>
 		</>
-	);
+	)
 }
 
 export const query = graphql`
@@ -153,4 +153,4 @@ export const query = graphql`
 			}
 		}
 	}
-`;
+`

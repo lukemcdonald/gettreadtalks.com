@@ -1,13 +1,13 @@
-import React from 'react';
-import { graphql } from 'gatsby';
+import React from 'react'
+import { graphql } from 'gatsby'
 
-import SEO from '../components/seo';
-import Section from '../components/section';
-import RandomProduct from '../components/affiliates/randomProduct';
-import Page from '../components/page';
+import SEO from '../components/seo'
+import Section from '../components/section'
+import RandomProduct from '../components/affiliates/randomProduct'
+import Page from '../components/page'
 
 export default function SinglePage({ data, location }) {
-	const { data: page } = data.page;
+	const { data: page } = data.page
 
 	return (
 		<>
@@ -35,7 +35,7 @@ export default function SinglePage({ data, location }) {
 				</Section.Content>
 			</Section>
 		</>
-	);
+	)
 }
 
 export const query = graphql`
@@ -57,4 +57,4 @@ export const query = graphql`
 			}
 		}
 	}
-`;
+`

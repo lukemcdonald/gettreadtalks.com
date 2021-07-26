@@ -1,11 +1,11 @@
-import dotenv from 'dotenv';
+import dotenv from 'dotenv'
 // import clientConfig from './client-config';
 
 dotenv.config({
 	path: `.env.${process.env.NODE_ENV || 'development'}`,
-});
+})
 
-const isProd = process.env.NODE_ENV === 'production';
+const isProd = process.env.NODE_ENV === 'production'
 
 export default {
 	flags: {
@@ -188,14 +188,14 @@ export default {
 						feed_url: 'https://gettreadtalks.com/rss.xml',
 						serialize: ({ query: { site, allAirtableTalk } }) =>
 							allAirtableTalk.edges.map(({ node }) => {
-								const { link } = node.data;
-								const { html } = link.childMarkdownRemark;
+								const { link } = node.data
+								const { html } = link.childMarkdownRemark
 
-								const url = site.siteMetadata.siteUrl + node.fields.slug;
-								const htmlSpeaker = `by ${node.data.speaker}`;
+								const url = site.siteMetadata.siteUrl + node.fields.slug
+								const htmlSpeaker = `by ${node.data.speaker}`
 								const htmlScripture = node.data.scripture
 									? ` from ${node.data.scripture}`
-									: '';
+									: ''
 
 								return {
 									date: node.data.publishedDate,
@@ -212,7 +212,7 @@ export default {
                       `,
 										},
 									],
-								};
+								}
 							}),
 						query: `
             {
@@ -247,4 +247,4 @@ export default {
 			},
 		},
 	],
-};
+}

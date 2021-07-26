@@ -1,5 +1,5 @@
 exports.onCreateNode = ({ node, actions }) => {
-	const { createNodeField } = actions;
+	const { createNodeField } = actions
 	const airtableTables = [
 		'AirtableClip',
 		'AirtablePage',
@@ -7,7 +7,7 @@ exports.onCreateNode = ({ node, actions }) => {
 		'AirtableSpeaker',
 		'AirtableTalk',
 		'AirtableTopic',
-	];
+	]
 
 	/**
 	 * Create a slug value on the node fields property.
@@ -20,15 +20,15 @@ exports.onCreateNode = ({ node, actions }) => {
 		airtableTables.includes(node.internal.type) &&
 		Object.keys(node.data).length
 	) {
-		const { path, title } = node.data;
+		const { path, title } = node.data
 
 		createNodeField({
 			node,
 			name: `slug`,
 			value: path || title,
-		});
+		})
 	}
-};
+}
 
 async function createClipPages({ graphql, actions, reporter }) {
 	const { data, errors } = await graphql(`
@@ -42,14 +42,14 @@ async function createClipPages({ graphql, actions, reporter }) {
 				}
 			}
 		}
-	`);
+	`)
 
 	if (errors) {
-		reporter.panicOnBuild(`Error while running GraphQL query for Clips.`);
-		return;
+		reporter.panicOnBuild(`Error while running GraphQL query for Clips.`)
+		return
 	}
 
-	const results = (data.clips || {}).nodes || [];
+	const results = (data.clips || {}).nodes || []
 
 	results.forEach((post) => {
 		actions.createPage({
@@ -59,8 +59,8 @@ async function createClipPages({ graphql, actions, reporter }) {
 				id: post.id,
 				slug: post.fields.slug,
 			},
-		});
-	});
+		})
+	})
 }
 
 async function createPagePages({ graphql, actions, reporter }) {
@@ -75,14 +75,14 @@ async function createPagePages({ graphql, actions, reporter }) {
 				}
 			}
 		}
-	`);
+	`)
 
 	if (errors) {
-		reporter.panicOnBuild(`Error while running GraphQL query for Pages.`);
-		return;
+		reporter.panicOnBuild(`Error while running GraphQL query for Pages.`)
+		return
 	}
 
-	const results = (data.pages || {}).nodes || [];
+	const results = (data.pages || {}).nodes || []
 
 	results.forEach((post) => {
 		actions.createPage({
@@ -92,8 +92,8 @@ async function createPagePages({ graphql, actions, reporter }) {
 				id: post.id,
 				slug: post.fields.slug,
 			},
-		});
-	});
+		})
+	})
 }
 
 async function createSeriesPages({ graphql, actions, reporter }) {
@@ -108,14 +108,14 @@ async function createSeriesPages({ graphql, actions, reporter }) {
 				}
 			}
 		}
-	`);
+	`)
 
 	if (errors) {
-		reporter.panicOnBuild(`Error while running GraphQL query for Series.`);
-		return;
+		reporter.panicOnBuild(`Error while running GraphQL query for Series.`)
+		return
 	}
 
-	const results = (data.series || {}).nodes || [];
+	const results = (data.series || {}).nodes || []
 
 	results.forEach((post) => {
 		actions.createPage({
@@ -125,8 +125,8 @@ async function createSeriesPages({ graphql, actions, reporter }) {
 				id: post.id,
 				slug: post.fields.slug,
 			},
-		});
-	});
+		})
+	})
 }
 
 async function createSpeakerPages({ graphql, actions, reporter }) {
@@ -142,14 +142,14 @@ async function createSpeakerPages({ graphql, actions, reporter }) {
 				}
 			}
 		}
-	`);
+	`)
 
 	if (errors) {
-		reporter.panicOnBuild(`Error while running GraphQL query for Speakers.`);
-		return;
+		reporter.panicOnBuild(`Error while running GraphQL query for Speakers.`)
+		return
 	}
 
-	const results = (data.speakers || {}).nodes || [];
+	const results = (data.speakers || {}).nodes || []
 
 	results.forEach((post) => {
 		actions.createPage({
@@ -159,8 +159,8 @@ async function createSpeakerPages({ graphql, actions, reporter }) {
 				id: post.id,
 				slug: post.fields.slug,
 			},
-		});
-	});
+		})
+	})
 }
 
 async function createTalkPages({ graphql, actions, reporter }) {
@@ -176,16 +176,16 @@ async function createTalkPages({ graphql, actions, reporter }) {
 				}
 			}
 		}
-	`);
+	`)
 
 	if (errors) {
-		reporter.panicOnBuild(`Error while running GraphQL query for Talks.`);
-		return;
+		reporter.panicOnBuild(`Error while running GraphQL query for Talks.`)
+		return
 	}
 
-	const results = (data.talks || {}).nodes || [];
-	const pageSize = parseInt(process.env.GATSBY_PAGE_SIZE);
-	const pageCount = Math.ceil(data.talks.totalCount / pageSize);
+	const results = (data.talks || {}).nodes || []
+	const pageSize = parseInt(process.env.GATSBY_PAGE_SIZE)
+	const pageCount = Math.ceil(data.talks.totalCount / pageSize)
 
 	Array.from({ length: pageCount }).forEach((_, i) => {
 		actions.createPage({
@@ -196,8 +196,8 @@ async function createTalkPages({ graphql, actions, reporter }) {
 				currentPage: i + 1,
 				pageSize,
 			},
-		});
-	});
+		})
+	})
 
 	results.forEach((post) => {
 		actions.createPage({
@@ -207,8 +207,8 @@ async function createTalkPages({ graphql, actions, reporter }) {
 				id: post.id,
 				slug: post.fields.slug,
 			},
-		});
-	});
+		})
+	})
 }
 
 async function createTopicPages({ graphql, actions, reporter }) {
@@ -226,14 +226,14 @@ async function createTopicPages({ graphql, actions, reporter }) {
 				}
 			}
 		}
-	`);
+	`)
 
 	if (errors) {
-		reporter.panicOnBuild(`Error while running GraphQL query for Topics.`);
-		return;
+		reporter.panicOnBuild(`Error while running GraphQL query for Topics.`)
+		return
 	}
 
-	const results = (data.topics || {}).nodes || [];
+	const results = (data.topics || {}).nodes || []
 
 	results.forEach((post) => {
 		actions.createPage({
@@ -244,8 +244,8 @@ async function createTopicPages({ graphql, actions, reporter }) {
 				slug: post.fields.slug,
 				topic: post.data.title,
 			},
-		});
-	});
+		})
+	})
 }
 
 export async function createPages(params) {
@@ -256,5 +256,5 @@ export async function createPages(params) {
 		createSpeakerPages(params),
 		createTalkPages(params),
 		createTopicPages(params),
-	]);
+	])
 }

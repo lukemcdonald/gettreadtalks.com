@@ -1,5 +1,5 @@
-import React from 'react';
-import { graphql, StaticQuery } from 'gatsby';
+import React from 'react'
+import { graphql, StaticQuery } from 'gatsby'
 
 const query = graphql`
 	query {
@@ -13,7 +13,7 @@ const query = graphql`
 			}
 		}
 	}
-`;
+`
 
 export default function Scriptures({ children }) {
 	return (
@@ -30,5 +30,5 @@ export default function Scriptures({ children }) {
 				)
 			}
 		</StaticQuery>
-	);
+	)
 }

@@ -1,12 +1,12 @@
-import React from 'react';
-import classnames from 'classnames';
+import React from 'react'
+import classnames from 'classnames'
 
 import {
 	HiChevronLeft as ChevronLeft,
 	HiChevronRight as ChevronRight,
-} from 'react-icons/hi';
+} from 'react-icons/hi'
 
-import Link from './link';
+import Link from './link'
 
 export default function Pagination({
 	className,
@@ -19,21 +19,21 @@ export default function Pagination({
 	showPreviousLabel = false,
 	showNextLabel = false,
 }) {
-	const totalPages = Math.ceil(totalCount / pageSize);
-	const prevPage = currentPage - 1;
-	const nextPage = currentPage + 1;
+	const totalPages = Math.ceil(totalCount / pageSize)
+	const prevPage = currentPage - 1
+	const nextPage = currentPage + 1
 
-	const hasPrevPage = prevPage >= 1;
-	const hasNextPage = nextPage <= totalPages;
+	const hasPrevPage = prevPage >= 1
+	const hasNextPage = nextPage <= totalPages
 
 	const LinkCSS =
-		'flex-grow flex relative items-center justify-center py-2 text-sm font-medium bg-white hover:text-red-600';
-	const PrevNextCSS = 'px-2 text-gray-500 disabled:opacity-60';
+		'flex-grow flex relative items-center justify-center py-2 text-sm font-medium bg-white hover:text-red-600'
+	const PrevNextCSS = 'px-2 text-gray-500 disabled:opacity-60'
 	const NumbersCSS = classnames(
 		'px-4 text-gray-700',
 		!showPreviousNext && 'first:rounded-l last:rounded-r',
 		totalPages > 5 && 'hidden sm:flex'
-	);
+	)
 
 	return (
 		<>
@@ -88,5 +88,5 @@ export default function Pagination({
 				</nav>
 			)}
 		</>
-	);
+	)
 }

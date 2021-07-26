@@ -1,13 +1,13 @@
-import React from 'react';
-import { graphql } from 'gatsby';
+import React from 'react'
+import { graphql } from 'gatsby'
 
-import Page from '../../components/page';
-import SEO from '../../components/seo';
-import Series from '../../components/series';
-import Section from '../../components/section';
+import Page from '../../components/page'
+import SEO from '../../components/seo'
+import Series from '../../components/series'
+import Section from '../../components/section'
 
 export default function SeriesPage({ data, location }) {
-	const { series } = data;
+	const { series } = data
 
 	return (
 		<>
@@ -30,7 +30,7 @@ export default function SeriesPage({ data, location }) {
 				</Section.Content>
 			</Section>
 		</>
-	);
+	)
 }
 
 export const query = graphql`
@@ -71,4 +71,4 @@ export const query = graphql`
 			}
 		}
 	}
-`;
+`

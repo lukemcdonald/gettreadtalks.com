@@ -1,16 +1,16 @@
-import React from 'react';
-import Avatar from '../avatar';
+import React from 'react'
+import Avatar from '../avatar'
 
-import Card from '../card';
-import FauxLink from '../fauxLink';
-import Link from '../link';
+import Card from '../card'
+import FauxLink from '../fauxLink'
+import Link from '../link'
 
 export default function SeriesCard({ series }) {
-	const maxSpeakers = 3;
+	const maxSpeakers = 3
 	const uniqueSpeakers = series.speakers.filter(
 		(speaker, index, self) =>
 			index === self.findIndex((current) => current.id === speaker.id)
-	);
+	)
 
 	return (
 		<Card className="flex-col items-start sm:flex-row sm:items-center">
@@ -33,10 +33,10 @@ export default function SeriesCard({ series }) {
 					const moreSpeakersCount = Math.max(
 						0,
 						uniqueSpeakers.length - maxSpeakers
-					);
+					)
 
 					const hasMoreSpeakers =
-						moreSpeakersCount > 0 && index === moreSpeakersCount + 1;
+						moreSpeakersCount > 0 && index === moreSpeakersCount + 1
 
 					return hasMoreSpeakers ? (
 						<Link
@@ -60,11 +60,11 @@ export default function SeriesCard({ series }) {
 								alt={speaker.data.title}
 							/>
 						</Link>
-					);
+					)
 				})}
 			</div>
 
 			<FauxLink to={series.slug}>{`Series on ${series.title}`}</FauxLink>
 		</Card>
-	);
+	)
 }

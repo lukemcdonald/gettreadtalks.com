@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 
-import Card from '../card';
-import FauxLink from '../fauxLink';
+import Card from '../card'
+import FauxLink from '../fauxLink'
 
 export default function ClipCard({ clip }) {
 	return (
@@ -33,5 +33,5 @@ export default function ClipCard({ clip }) {
 
 			<FauxLink to={clip.slug}>{`Listen to ${clip.title}`}</FauxLink>
 		</Card>
-	);
+	)
 }

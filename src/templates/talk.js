@@ -1,30 +1,30 @@
-import React from 'react';
-import { graphql } from 'gatsby';
+import React from 'react'
+import { graphql } from 'gatsby'
 
-import { shuffle } from '../utilities';
+import { shuffle } from '../utilities'
 
-import Intro from '../components/intro';
-import Link from '../components/link';
-import Section from '../components/section';
-import SEO from '../components/seo';
-import Series from '../components/series';
-import Talks from '../components/talks';
+import Intro from '../components/intro'
+import Link from '../components/link'
+import Section from '../components/section'
+import SEO from '../components/seo'
+import Series from '../components/series'
+import Talks from '../components/talks'
 
 export default function Talk({ data, location, pageContext }) {
-	const { data: talk } = data.talk;
-	const { talks } = talk.speakers[0].data;
+	const { data: talk } = data.talk
+	const { talks } = talk.speakers[0].data
 
-	const moreTalks = talks.filter((meow) => meow.id !== pageContext.id);
+	const moreTalks = talks.filter((meow) => meow.id !== pageContext.id)
 
-	const mediaObject = talk?.link?.childMarkdownRemark;
-	const media = mediaObject ? mediaObject.html : '';
+	const mediaObject = talk?.link?.childMarkdownRemark
+	const media = mediaObject ? mediaObject.html : ''
 
 	const mediaLink =
-		mediaObject?.htmlAst?.children[0]?.children[1]?.properties?.href;
+		mediaObject?.htmlAst?.children[0]?.children[1]?.properties?.href
 
-	const hasVideo = media.includes('<iframe');
-	const hasTalks = moreTalks.length > 0;
-	const hasSeries = talk?.series;
+	const hasVideo = media.includes('<iframe')
+	const hasTalks = moreTalks.length > 0
+	const hasSeries = talk?.series
 
 	return (
 		<>
@@ -122,7 +122,7 @@ export default function Talk({ data, location, pageContext }) {
 				</Section>
 			)}
 		</>
-	);
+	)
 }
 
 export const query = graphql`
@@ -202,4 +202,4 @@ export const query = graphql`
 			}
 		}
 	}
-`;
+`

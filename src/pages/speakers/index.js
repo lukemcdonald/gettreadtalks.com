@@ -1,16 +1,16 @@
-import React from 'react';
-import { graphql } from 'gatsby';
+import React from 'react'
+import { graphql } from 'gatsby'
 
-import Page from '../../components/page';
-import SEO from '../../components/seo';
-import Speakers from '../../components/speakers';
-import Section from '../../components/section';
-import SpeakersFilter from '../../components/speakers/filter';
-import Card from '../../components/card';
-import TextCarousel from '../../components/textCarousel';
+import Page from '../../components/page'
+import SEO from '../../components/seo'
+import Speakers from '../../components/speakers'
+import Section from '../../components/section'
+import SpeakersFilter from '../../components/speakers/filter'
+import Card from '../../components/card'
+import TextCarousel from '../../components/textCarousel'
 
 export default function SpeakersPage({ data, location, pageContext }) {
-	const { speakers } = data;
+	const { speakers } = data
 
 	return (
 		<>
@@ -64,7 +64,7 @@ export default function SpeakersPage({ data, location, pageContext }) {
 				</Section.Content>
 			</Section>
 		</>
-	);
+	)
 }
 
 export const pageQuery = graphql`
@@ -104,4 +104,4 @@ export const pageQuery = graphql`
 			}
 		}
 	}
-`;
+`

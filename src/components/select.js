@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { navigate } from 'gatsby';
-import { Field, Form, Formik } from 'formik';
-import classnames from 'classnames';
-import { HiChevronDown as ChevronDown } from 'react-icons/hi';
+import React, { Component } from 'react'
+import { navigate } from 'gatsby'
+import { Field, Form, Formik } from 'formik'
+import classnames from 'classnames'
+import { HiChevronDown as ChevronDown } from 'react-icons/hi'
 
-import ConditionalWrapper from './wrapper';
+import ConditionalWrapper from './wrapper'
 
 export const SelectGroup = ({ label, options }) => (
 	<ConditionalWrapper
@@ -23,13 +23,13 @@ export const SelectGroup = ({ label, options }) => (
 			)
 		)}
 	</ConditionalWrapper>
-);
+)
 
 export default class Select extends Component {
-	static Group = SelectGroup;
+	static Group = SelectGroup
 
 	render() {
-		const { children, className, current, label } = this.props;
+		const { children, className, current, label } = this.props
 
 		return (
 			<div className={classnames('relative inline-block', className)}>
@@ -39,7 +39,7 @@ export default class Select extends Component {
 				<Formik
 					initialValues={{ optionPath: current.value || '' }}
 					onSubmit={async (values) => {
-						navigate(values.optionPath);
+						navigate(values.optionPath)
 					}}
 				>
 					{({ handleChange, submitForm }) => (
@@ -49,8 +49,8 @@ export default class Select extends Component {
 								name="optionPath"
 								className="flex-grow p-0 bg-transparent border-0 cursor-pointer bg-none "
 								onChange={(e) => {
-									handleChange(e);
-									submitForm();
+									handleChange(e)
+									submitForm()
 								}}
 							>
 								{children}
@@ -59,6 +59,6 @@ export default class Select extends Component {
 					)}
 				</Formik>
 			</div>
-		);
+		)
 	}
 }

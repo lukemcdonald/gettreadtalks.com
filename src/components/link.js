@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { Link as GatsbyLink } from 'gatsby';
-import classnames from 'classnames';
+import React, { Component } from 'react'
+import { Link as GatsbyLink } from 'gatsby'
+import classnames from 'classnames'
 
 export const LinkButton = ({
 	className,
@@ -13,12 +13,12 @@ export const LinkButton = ({
 	const colorMapping = {
 		DEFAULT: 'bg-gray-600 text-white hover:bg-gray-800',
 		primary: 'bg-red-600 text-white hover:bg-gray-800',
-	};
+	}
 
 	const sizeMapping = {
 		DEFAULT: 'py-2 px-4 text-base',
 		large: 'py-3 px-6 text-xl',
-	};
+	}
 
 	return (
 		<Link
@@ -34,13 +34,13 @@ export const LinkButton = ({
 		>
 			{children}
 		</Link>
-	);
-};
+	)
+}
 
 // Since DOM elements <a> cannot receive activeClassName,
 // destructure the prop here and pass it only to GatsbyLink
 export default class Link extends Component {
-	static Button = LinkButton;
+	static Button = LinkButton
 
 	render() {
 		const {
@@ -51,12 +51,12 @@ export default class Link extends Component {
 			to,
 			target,
 			onClick,
-		} = this.props;
+		} = this.props
 
 		// Tailor the following test to your environment.
 		// This example assumes that any internal link (intended for Gatsby)
 		// will start with exactly one slash, and that anything else is external.
-		const internal = /^\/(?!\/)/.test(to);
+		const internal = /^\/(?!\/)/.test(to)
 
 		// Use Gatsby Link for internal links, and <a> for others
 		return internal ? (
@@ -74,6 +74,6 @@ export default class Link extends Component {
 			<a className={className} href={to} target={target}>
 				{children}
 			</a>
-		);
+		)
 	}
 }

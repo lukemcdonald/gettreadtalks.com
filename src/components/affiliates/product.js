@@ -1,13 +1,13 @@
-import React from 'react';
-import { GatsbyImage } from 'gatsby-plugin-image';
-import classnames from 'classnames';
+import React from 'react'
+import { GatsbyImage } from 'gatsby-plugin-image'
+import classnames from 'classnames'
 
-import Card from '../card';
-import Disclosure from './disclosure';
-import FauxLink from '../fauxLink';
+import Card from '../card'
+import Disclosure from './disclosure'
+import FauxLink from '../fauxLink'
 
 export default function Product(props) {
-	const { data: post, className } = props;
+	const { data: post, className } = props
 
 	return (
 		<Card className="relative border-none rounded">
@@ -39,5 +39,5 @@ export default function Product(props) {
 				<Disclosure title="Affiliate" />
 			</div>
 		</Card>
-	);
+	)
 }

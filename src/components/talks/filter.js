@@ -1,12 +1,7 @@
-import React from 'react';
-import Select from '../select';
+import React from 'react'
+import Select from '../select'
 
-export default function TalksFilter({
-	className,
-	current,
-	label = 'Talks',
-	topics,
-}) {
+function TalksFilter({ className, current, label = 'Talks', topics }) {
 	return (
 		<Select label={label} className={className} current={current}>
 			<Select.Group
@@ -30,5 +25,7 @@ export default function TalksFilter({
 				}))}
 			/>
 		</Select>
-	);
+	)
 }
+
+export default TalksFilter

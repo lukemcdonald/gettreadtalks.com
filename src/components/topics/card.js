@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 
-import Card from '../card';
-import FauxLink from '../fauxLink';
+import Card from '../card'
+import FauxLink from '../fauxLink'
 
 export default function TopicCard({ topic }) {
 	return (
@@ -22,5 +22,5 @@ export default function TopicCard({ topic }) {
 
 			<FauxLink to={topic.slug}>{`Talks on ${topic.title}`}</FauxLink>
 		</Card>
-	);
+	)
 }

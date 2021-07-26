@@ -1,9 +1,9 @@
-import React from 'react';
-import Helmet from 'react-helmet';
-import { useStaticQuery, graphql } from 'gatsby';
-import striptags from 'striptags';
+import React from 'react'
+import Helmet from 'react-helmet'
+import { useStaticQuery, graphql } from 'gatsby'
+import striptags from 'striptags'
 
-import { trimText } from '../utilities';
+import { trimText } from '../utilities'
 
 export default function SEO({ children, location, title, description, image }) {
 	const { site } = useStaticQuery(graphql`
@@ -15,7 +15,7 @@ export default function SEO({ children, location, title, description, image }) {
 				}
 			}
 		}
-	`);
+	`)
 
 	const seo = {
 		title: striptags(title || site.siteMetadata.title),
@@ -24,7 +24,7 @@ export default function SEO({ children, location, title, description, image }) {
 			160
 		),
 		image: image || '/default-seo-image.png',
-	};
+	}
 
 	return (
 		<Helmet
@@ -64,5 +64,5 @@ export default function SEO({ children, location, title, description, image }) {
 			{/* Additions and Overrides */}
 			{children}
 		</Helmet>
-	);
+	)
 }

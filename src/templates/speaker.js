@@ -1,23 +1,23 @@
-import React from 'react';
-import { graphql } from 'gatsby';
-import { maybePluralize } from '../utilities';
+import React from 'react'
+import { graphql } from 'gatsby'
+import { maybePluralize } from '../utilities'
 
-import Avatar from '../components/avatar';
-import Clips from '../components/clips';
-import ConditionalWrapper from '../components/wrapper';
-import Intro from '../components/intro';
-import Link from '../components/link';
-import Section from '../components/section';
-import SEO from '../components/seo';
-import SpeakersFilter from '../components/speakers/filter';
-import Talks from '../components/talks';
-import TextCarousel from '../components/textCarousel';
+import Avatar from '../components/avatar'
+import Clips from '../components/clips'
+import ConditionalWrapper from '../components/wrapper'
+import Intro from '../components/intro'
+import Link from '../components/link'
+import Section from '../components/section'
+import SEO from '../components/seo'
+import SpeakersFilter from '../components/speakers/filter'
+import Talks from '../components/talks'
+import TextCarousel from '../components/textCarousel'
 
 export default function SingleSpeakerPage({ data, location, pageContext }) {
 	const {
 		speakers,
 		speaker: { data: speaker },
-	} = data;
+	} = data
 
 	return (
 		<>
@@ -140,7 +140,7 @@ export default function SingleSpeakerPage({ data, location, pageContext }) {
 				</Section>
 			)}
 		</>
-	);
+	)
 }
 
 export const query = graphql`
@@ -238,4 +238,4 @@ export const query = graphql`
 			}
 		}
 	}
-`;
+`

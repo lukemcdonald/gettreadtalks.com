@@ -1,25 +1,25 @@
-import React from 'react';
-import { graphql } from 'gatsby';
-import { maybePluralize } from '../../utilities';
+import React from 'react'
+import { graphql } from 'gatsby'
+import { maybePluralize } from '../../utilities'
 
-import Page from '../../components/page';
-import Pagination from '../../components/pagination';
-import Section from '../../components/section';
-import SEO from '../../components/seo';
-import Talks from '../../components/talks';
-import TalksFilter from '../../components/talks/filter';
-import TextCarousel from '../../components/textCarousel';
+import Page from '../../components/page'
+import Pagination from '../../components/pagination'
+import Section from '../../components/section'
+import SEO from '../../components/seo'
+import Talks from '../../components/talks'
+import TalksFilter from '../../components/talks/filter'
+import TextCarousel from '../../components/textCarousel'
 
 export default function TalksPage({ data, location, pageContext }) {
-	const { talks, topics } = data;
-	const isTopical = topics?.nodes && pageContext?.topic;
+	const { talks, topics } = data
+	const isTopical = topics?.nodes && pageContext?.topic
 	const description = `Elevate your spiritual heartbeat with ${maybePluralize(
 		talks.totalCount,
 		'Christ centered talk',
 		{
 			formatSmallNumbers: true,
 		}
-	)}${isTopical ? ` on ${pageContext.topic}` : ''}.`;
+	)}${isTopical ? ` on ${pageContext.topic}` : ''}.`
 
 	return (
 		<>
@@ -59,7 +59,7 @@ export default function TalksPage({ data, location, pageContext }) {
 				</Section.Content>
 			</Section>
 		</>
-	);
+	)
 }
 
 export const query = graphql`
@@ -125,4 +125,4 @@ export const query = graphql`
 			}
 		}
 	}
-`;
+`

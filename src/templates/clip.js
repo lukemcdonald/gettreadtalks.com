@@ -1,20 +1,20 @@
-import React from 'react';
-import { graphql } from 'gatsby';
+import React from 'react'
+import { graphql } from 'gatsby'
 
-import Intro from '../components/intro';
-import Link from '../components/link';
-import SEO from '../components/seo';
-import Talks from '../components/talks';
+import Intro from '../components/intro'
+import Link from '../components/link'
+import SEO from '../components/seo'
+import Talks from '../components/talks'
 
 export default function SingleClipPage({ data, location }) {
-	const { data: clip } = data.clip;
+	const { data: clip } = data.clip
 
-	const mediaObject = clip?.link?.childMarkdownRemark;
-	const media = mediaObject ? mediaObject.html : '';
+	const mediaObject = clip?.link?.childMarkdownRemark
+	const media = mediaObject ? mediaObject.html : ''
 	const mediaLink =
-		mediaObject?.htmlAst?.children[0]?.children[1]?.properties?.href;
+		mediaObject?.htmlAst?.children[0]?.children[1]?.properties?.href
 
-	const hasVideo = media.includes('<iframe');
+	const hasVideo = media.includes('<iframe')
 
 	return (
 		<>
@@ -54,7 +54,7 @@ export default function SingleClipPage({ data, location }) {
 				)}
 			</Intro>
 		</>
-	);
+	)
 }
 
 export const query = graphql`
@@ -113,4 +113,4 @@ export const query = graphql`
 			}
 		}
 	}
-`;
+`

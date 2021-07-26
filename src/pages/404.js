@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 
-import SEO from '../components/seo';
-import Intro from '../components/intro';
-import Section from '../components/section';
+import SEO from '../components/seo'
+import Intro from '../components/intro'
+import Section from '../components/section'
 
 export default function NotFoundPage() {
 	return (
@@ -33,5 +33,5 @@ export default function NotFoundPage() {
 				</figure>
 			</Intro>
 		</>
-	);
+	)
 }

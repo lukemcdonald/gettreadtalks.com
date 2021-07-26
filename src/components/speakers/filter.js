@@ -1,5 +1,5 @@
-import React from 'react';
-import Select from '../select';
+import React from 'react'
+import Select from '../select'
 
 export default function SpeakersFilter({
 	className,
@@ -32,5 +32,5 @@ export default function SpeakersFilter({
 				}))}
 			/>
 		</Select>
-	);
+	)
 }

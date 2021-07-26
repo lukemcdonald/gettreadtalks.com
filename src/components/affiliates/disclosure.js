@@ -1,12 +1,12 @@
-import React from 'react';
-import classnames from 'classnames';
+import React from 'react'
+import classnames from 'classnames'
 
 export default function Disclosure(props) {
 	const {
 		className = '',
 		title = `Ad`,
 		content = `A small commission may be earned through links, endorsements, recommendations, and/or testimonials for any products shown on this site. Your purchase helps support the website.`,
-	} = props;
+	} = props
 
 	return (
 		<button
@@ -25,5 +25,5 @@ export default function Disclosure(props) {
 				</div>
 			)}
 		</button>
-	);
+	)
 }

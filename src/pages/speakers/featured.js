@@ -1,14 +1,14 @@
-import React from 'react';
-import { graphql } from 'gatsby';
+import React from 'react'
+import { graphql } from 'gatsby'
 
-import SEO from '../../components/seo';
-import Speakers from '../../components/speakers';
-import Section from '../../components/section';
-import Page from '../../components/page';
-import SpeakersFilter from '../../components/speakers/filter';
+import SEO from '../../components/seo'
+import Speakers from '../../components/speakers'
+import Section from '../../components/section'
+import Page from '../../components/page'
+import SpeakersFilter from '../../components/speakers/filter'
 
 export default function FeaturedSpeakersPage({ data, location }) {
-	const { speakers } = data;
+	const { speakers } = data
 
 	return (
 		<>
@@ -39,7 +39,7 @@ export default function FeaturedSpeakersPage({ data, location }) {
 				</Section.Content>
 			</Section>
 		</>
-	);
+	)
 }
 
 export const query = graphql`
@@ -78,4 +78,4 @@ export const query = graphql`
 			}
 		}
 	}
-`;
+`

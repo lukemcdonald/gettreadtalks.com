@@ -1,9 +1,9 @@
-import React from 'react';
-import { StaticQuery, graphql } from 'gatsby';
-import classnames from 'classnames';
+import React from 'react'
+import { StaticQuery, graphql } from 'gatsby'
+import classnames from 'classnames'
 
-import Header from './header';
-import Footer from './footer';
+import Header from './header'
+import Footer from './footer'
 
 const SITE_META_QUERY = graphql`
 	query {
@@ -13,7 +13,7 @@ const SITE_META_QUERY = graphql`
 			}
 		}
 	}
-`;
+`
 
 export default function Layout({ children }) {
 	return (
@@ -31,5 +31,5 @@ export default function Layout({ children }) {
 				</>
 			)}
 		/>
-	);
+	)
 }

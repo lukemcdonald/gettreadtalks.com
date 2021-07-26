@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 export default function Scripture({ scripture }) {
 	return (
@@ -6,5 +6,5 @@ export default function Scripture({ scripture }) {
 			<p className="inline italic">{scripture.content}</p>
 			<cite className="inline">{scripture.verse}</cite>
 		</blockquote>
-	);
+	)
 }

@@ -1,8 +1,8 @@
-import React from 'react';
-import { maybePluralize } from '../../utilities';
+import React from 'react'
+import { maybePluralize } from '../../utilities'
 
-import Card from '../card';
-import FauxLink from '../fauxLink';
+import Card from '../card'
+import FauxLink from '../fauxLink'
 
 export default function SpeakerCard({ speaker }) {
 	return (
@@ -47,5 +47,5 @@ export default function SpeakerCard({ speaker }) {
 				<FauxLink to={speaker.slug}>{`Talks by ${speaker.title}`}</FauxLink>
 			)}
 		</Card>
-	);
+	)
 }

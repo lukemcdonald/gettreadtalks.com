@@ -10,54 +10,54 @@ export const parseVideoUrl = (url) => {
 	// - Also supports relative URLs:
 	//   - //player.vimeo.com/video/25451551
 
-	let type = '';
+	let type = ''
 
 	url.match(
 		/(http:|https:|)\/\/(player.|www.|m.)?(vimeo\.com|youtu(be\.com|\.be|be\.googleapis\.com))\/(video\/|embed\/|watch\?v=|v\/)?([A-Za-z0-9._%-]*)(\S+)?/
-	);
+	)
 
 	if (RegExp.$3.indexOf('youtu') > -1) {
-		type = 'youtube';
+		type = 'youtube'
 	} else if (RegExp.$3.indexOf('vimeo') > -1) {
-		type = 'vimeo';
+		type = 'vimeo'
 	}
 
 	return {
 		type,
 		id: RegExp.$6,
-	};
-};
+	}
+}
 
 /**
  * @link https://depone.dev/video/
  */
 export const getVideoImage = (url) => {
-	const videoDetails = parseVideoUrl(url);
-	const videoType = videoDetails.type;
-	const videoID = videoDetails.id;
+	const videoDetails = parseVideoUrl(url)
+	const videoType = videoDetails.type
+	const videoID = videoDetails.id
 	const videoImage = {
 		src: '',
-	};
+	}
 
 	if (videoType === 'youtube') {
-		videoImage.src = getYoutubeVideoSrc(videoID);
+		videoImage.src = getYoutubeVideoSrc(videoID)
 	}
 
 	if (videoType === 'vimeo') {
-		videoImage.src = getVimeoImageSrc(videoID);
+		videoImage.src = getVimeoImageSrc(videoID)
 	}
 
-	return videoImage;
-};
+	return videoImage
+}
 
 const getYoutubeVideoSrc = (videoID) =>
-	`https://img.youtube.com/vi/${videoID}/maxresdefault.jpg`;
+	`https://img.youtube.com/vi/${videoID}/maxresdefault.jpg`
 
 const getVimeoImageSrc = (videoID) =>
 	fetch(`https://vimeo.com/api/v2/video/${videoID}.json`)
 		.then((response) => response.json())
 		.then((data) => {
-			const thumbSplit = data[0].thumbnail_large.split(/\d{3}(?=.jpg)/);
-			return `${thumbSplit[0]}1280x720${thumbSplit[1]}`;
+			const thumbSplit = data[0].thumbnail_large.split(/\d{3}(?=.jpg)/)
+			return `${thumbSplit[0]}1280x720${thumbSplit[1]}`
 		})
-		.catch((error) => console.log(error));
+		.catch((error) => console.log(error))

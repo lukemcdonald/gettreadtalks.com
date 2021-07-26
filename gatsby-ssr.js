@@ -1,8 +1,8 @@
-import React from 'react';
-import Layout from './src/components/layout';
+import React from 'react'
+import Layout from './src/components/layout'
 
-import './src/assets/css/styles.css';
+import './src/assets/css/styles.css'
 
 export function wrapPageElement({ element, props }) {
-	return <Layout {...props}>{element}</Layout>;
+	return <Layout {...props}>{element}</Layout>
 }

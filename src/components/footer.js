@@ -1,11 +1,11 @@
-import React from 'react';
-import Section from './section';
+import React from 'react'
+import Section from './section'
 
-import { getCurrentYear } from '../utilities';
+import { getCurrentYear } from '../utilities'
 
 export default function SiteFooter({ siteTitle }) {
-	const year = getCurrentYear();
-	const copyright = `© ${siteTitle} ${year}`;
+	const year = getCurrentYear()
+	const copyright = `© ${siteTitle} ${year}`
 	return (
 		<Section as="footer" className="bg-gradient-to-t from-white">
 			<Section.Sidebar className="lg:hidden">
@@ -18,5 +18,5 @@ export default function SiteFooter({ siteTitle }) {
 				</p>
 			</Section.Content>
 		</Section>
-	);
+	)
 }

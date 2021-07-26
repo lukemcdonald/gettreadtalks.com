@@ -1,14 +1,14 @@
-import React from 'react';
-import { graphql } from 'gatsby';
+import React from 'react'
+import { graphql } from 'gatsby'
 
-import SEO from '../../components/seo';
-import Talks from '../../components/talks';
-import Section from '../../components/section';
-import Page from '../../components/page';
-import TalksFilter from '../../components/talks/filter';
+import SEO from '../../components/seo'
+import Talks from '../../components/talks'
+import Section from '../../components/section'
+import Page from '../../components/page'
+import TalksFilter from '../../components/talks/filter'
 
 export default function FeaturedTalksPage({ data, location }) {
-	const { talks, topics } = data;
+	const { talks, topics } = data
 
 	return (
 		<>
@@ -39,7 +39,7 @@ export default function FeaturedTalksPage({ data, location }) {
 				</Section.Content>
 			</Section>
 		</>
-	);
+	)
 }
 
 export const query = graphql`
@@ -96,4 +96,4 @@ export const query = graphql`
 			}
 		}
 	}
-`;
+`

@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import classnames from 'classnames';
+import React, { Component } from 'react'
+import classnames from 'classnames'
 
-import { GatsbyImage, StaticImage } from 'gatsby-plugin-image';
-import Section from './section';
+import { GatsbyImage, StaticImage } from 'gatsby-plugin-image'
+import Section from './section'
 
 export const IntroTitle = ({ children, className, size }) => {
 	const sizeMapping = {
 		DEFAULT: '',
 		large: 'lg:text-5xl lg:leading-tight lg:font-bold',
-	};
+	}
 
 	return (
 		<h1
@@ -20,8 +20,8 @@ export const IntroTitle = ({ children, className, size }) => {
 		>
 			{children}
 		</h1>
-	);
-};
+	)
+}
 
 export const IntroTagline = ({ children, className }) => (
 	<div
@@ -29,20 +29,20 @@ export const IntroTagline = ({ children, className }) => (
 	>
 		{children}
 	</div>
-);
+)
 
 export default class Intro extends Component {
-	static Title = IntroTitle;
+	static Title = IntroTitle
 
-	static Tagline = IntroTagline;
+	static Tagline = IntroTagline
 
 	render() {
 		const { align, bgGradient, children, className, image, fullscreen } =
-			this.props;
+			this.props
 
 		const imageSrc =
 			image?.childImageSharp?.gatsbyImageData ||
-			image?.localFiles[0]?.childImageSharp?.gatsbyImageData;
+			image?.localFiles[0]?.childImageSharp?.gatsbyImageData
 
 		return (
 			<section
@@ -73,6 +73,6 @@ export default class Intro extends Component {
 					</Section.Content>
 				</Section>
 			</section>
-		);
+		)
 	}
 }

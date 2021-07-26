@@ -1,6 +1,6 @@
-import React from 'react';
-import Link from './link';
-import Section from './section';
+import React from 'react'
+import Link from './link'
+import Section from './section'
 
 export default function SubNav({ className, links = [], title }) {
 	return (
@@ -21,5 +21,5 @@ export default function SubNav({ className, links = [], title }) {
 				))}
 			</ul>
 		</nav>
-	);
+	)
 }

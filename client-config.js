@@ -9,4 +9,4 @@ module.exports = {
 	twitterUsername: '@gettreadtalks',
 	themeColor: '#e62b1a',
 	backgroundColor: '#ffffff',
-};
+}

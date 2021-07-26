@@ -1,24 +1,24 @@
-import React from 'react';
-import useForm from '../../utilities/useForm';
+import React from 'react'
+import { useForm } from '../../utilities/useForm'
 
-export default function TopicsFilter({ className, topics }) {
+function TopicsFilter({ className, topics }) {
 	const options = [
 		{
 			text: 'All Topics',
 			to: '/talks/',
 		},
-	];
+	]
 
 	topics.map((topic) =>
 		options.push({
 			text: topic.data.title,
 			to: topic.fields.slug,
 		})
-	);
+	)
 
 	const { values, updateValue } = useForm({
 		topicPath: options[0].to,
-	});
+	})
 
 	return (
 		<form className={className}>
@@ -27,7 +27,7 @@ export default function TopicsFilter({ className, topics }) {
 				<select
 					name="topicPath"
 					onChange={(e) => {
-						updateValue();
+						updateValue()
 					}}
 				>
 					{options.map((option) => (
@@ -38,5 +38,7 @@ export default function TopicsFilter({ className, topics }) {
 				</select>
 			</fieldset>
 		</form>
-	);
+	)
 }
+
+export default TopicsFilter
