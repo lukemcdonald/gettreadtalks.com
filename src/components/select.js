@@ -6,7 +6,7 @@ import { HiChevronDown as ChevronDown } from 'react-icons/hi'
 
 import { ConditionalWrapper } from './conditionalWrapper'
 
-export const SelectGroup = ({ label, options }) => (
+const SelectGroup = ({ label, options }) => (
 	<ConditionalWrapper
 		condition={label}
 		wrapper={(children) => <optgroup label={label}>{children}</optgroup>}

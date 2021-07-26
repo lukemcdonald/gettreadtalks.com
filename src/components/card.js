@@ -7,7 +7,7 @@ import { sanitizeHTMLTag } from '../utilities'
 
 import { Avatar } from './avatar'
 
-export const CardTitle = ({ children, className, as }) => {
+const CardTitle = ({ children, className, as }) => {
 	const Tag = sanitizeHTMLTag(as, ['h1', 'h2', 'h3'])
 
 	return (
@@ -22,7 +22,7 @@ export const CardTitle = ({ children, className, as }) => {
 	)
 }
 
-export const CardSubTitle = ({ children, className, as }) => {
+const CardSubTitle = ({ children, className, as }) => {
 	const Tag = sanitizeHTMLTag(as, ['h2', 'h3'])
 
 	return (
@@ -37,7 +37,7 @@ export const CardSubTitle = ({ children, className, as }) => {
 	)
 }
 
-export const CardMeta = ({ children, className }) => (
+const CardMeta = ({ children, className }) => (
 	<div
 		className={classnames(
 			'card__meta',
@@ -49,13 +49,13 @@ export const CardMeta = ({ children, className }) => (
 	</div>
 )
 
-export const CardMetaLink = ({ children, className, to }) => (
+const CardMetaLink = ({ children, className, to }) => (
 	<Link to={to} className={classnames('hover:underline', className)}>
 		{children}
 	</Link>
 )
 
-export const CardAvatar = ({ image, title }) => (
+const CardAvatar = ({ image, title }) => (
 	<figure className="w-16 h-16 mr-4">
 		<Avatar
 			className="w-16 h-16"
@@ -66,7 +66,7 @@ export const CardAvatar = ({ image, title }) => (
 	</figure>
 )
 
-export const CardFeaturedLink = ({ className, to }) => (
+const CardFeaturedLink = ({ className, to }) => (
 	<Link
 		to={to}
 		className={classnames(

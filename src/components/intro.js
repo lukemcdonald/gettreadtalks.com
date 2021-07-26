@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import classnames from 'classnames'
 
-import { GatsbyImage, StaticImage } from 'gatsby-plugin-image'
+import { GatsbyImage } from 'gatsby-plugin-image'
 import { Section } from './section'
 
-export const IntroTitle = ({ children, className, size }) => {
+const IntroTitle = ({ children, className, size }) => {
 	const sizeMapping = {
 		DEFAULT: '',
 		large: 'lg:text-5xl lg:leading-tight lg:font-bold',
@@ -23,7 +23,7 @@ export const IntroTitle = ({ children, className, size }) => {
 	)
 }
 
-export const IntroTagline = ({ children, className }) => (
+const IntroTagline = ({ children, className }) => (
 	<div
 		className={classnames('mt-2 text-2xl font-light text-gray-400', className)}
 	>

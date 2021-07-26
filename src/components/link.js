@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link as GatsbyLink } from 'gatsby'
 import classnames from 'classnames'
 
-export const LinkButton = ({
+const LinkButton = ({
 	className,
 	activeClassName,
 	children,
