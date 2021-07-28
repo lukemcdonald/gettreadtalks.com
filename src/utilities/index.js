@@ -15,24 +15,17 @@ const trimText = (text, limit) => {
 	return text
 }
 
-const shuffle = (array) => {
-	let currentIndex = array.length
-	let temporaryValue
-	let randomIndex
-
-	// While there remain elements to shuffle...
-	while (currentIndex !== 0) {
-		// Pick a remaining element...
-		randomIndex = Math.floor(Math.random() * currentIndex)
-		currentIndex -= 1
-
-		// And swap it with the current element.
-		temporaryValue = array[currentIndex]
-		array[currentIndex] = array[randomIndex]
-		array[randomIndex] = temporaryValue
+function arrayShuffle(array = []) {
+	if (!Array.isArray(array)) {
+		throw new Error(
+			`Got a parameter of type ${typeof array} instead of an array`
+		)
 	}
 
 	return array
+		.map((a) => [Math.random(), a])
+		.sort((a, b) => a[0] - b[0])
+		.map((a) => a[1])
 }
 
 const sanitizeHTMLTag = (tagname = '', whitelist = []) => {
@@ -76,11 +69,11 @@ const maybePluralize = (count, noun, args = {}) => {
 }
 
 export {
+	arrayShuffle,
 	getCurrentYear,
 	getRandomIndex,
 	getRandomObjectItem,
 	trimText,
-	shuffle,
 	sanitizeHTMLTag,
 	maybePluralize,
 }

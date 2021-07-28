@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { graphql } from 'gatsby'
-import { shuffle } from '../utilities'
+import { arrayShuffle } from '../utilities'
 import { RandomProduct } from '../components/affiliates/randomProduct'
 
 import { Intro } from '../components/intro'
@@ -13,8 +13,13 @@ import { TextCarousel } from '../components/textCarousel'
 
 function IndexPage({ data, location }) {
 	const { talks, speakers } = data
-	const [randomTalks] = useState(() => shuffle(talks.nodes).slice(0, 5))
-	const [randomSpeakers] = useState(() => shuffle(speakers.nodes).slice(0, 6))
+	const [shuffledTalks, setShuffledTalks] = useState([])
+	const [shuffledSpeakers, setShuffledSpeakers] = useState([])
+
+	useEffect(() => {
+		setShuffledTalks(arrayShuffle(talks.nodes))
+		setShuffledSpeakers(arrayShuffle(speakers.nodes))
+	}, [])
 
 	return (
 		<>
@@ -42,7 +47,7 @@ function IndexPage({ data, location }) {
 					<TalksNav title="More Talks" />
 				</Section.Sidebar>
 				<Section.Content>
-					<Talks talks={randomTalks} />
+					<Talks talks={shuffledTalks.slice(0, 5)} />
 				</Section.Content>
 			</Section>
 
@@ -56,7 +61,10 @@ function IndexPage({ data, location }) {
 				</Section.Sidebar>
 
 				<Section.Content align="wide">
-					<Speakers className="xl:grid-cols-3" speakers={randomSpeakers} />
+					<Speakers
+						className="xl:grid-cols-3"
+						speakers={shuffledSpeakers.slice(0, 6)}
+					/>
 				</Section.Content>
 			</Section>
 

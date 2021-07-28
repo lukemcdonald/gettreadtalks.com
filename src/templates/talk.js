@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { graphql } from 'gatsby'
 
-import { shuffle } from '../utilities'
+import { arrayShuffle } from '../utilities'
 
 import { Intro } from '../components/intro'
 import { Link } from '../components/link'
@@ -14,7 +14,10 @@ function TalkPage({ data, location, pageContext }) {
 	const { data: talk } = data.talk
 	const { talks } = talk.speakers[0].data
 
-	const moreTalks = talks.filter((meow) => meow.id !== pageContext.id)
+	const [moreTalks] = useState(() =>
+		talks.filter((item) => item.id !== pageContext.id)
+	)
+	const [shuffledTalks] = useState(() => arrayShuffle(moreTalks || []))
 
 	const mediaObject = talk?.link?.childMarkdownRemark
 	const media = mediaObject ? mediaObject.html : ''
@@ -106,7 +109,7 @@ function TalkPage({ data, location, pageContext }) {
 					</Section.Sidebar>
 
 					<Section.Content>
-						<Talks talks={shuffle(moreTalks).slice(0, 5)} />
+						<Talks talks={shuffledTalks.slice(0, 5)} />
 
 						{talks.length > 5 && (
 							<p className="mt-6">
