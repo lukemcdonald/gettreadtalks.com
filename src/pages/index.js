@@ -6,7 +6,7 @@ import { RandomProduct } from '../components/affiliates/randomProduct'
 import { Intro } from '../components/intro'
 import { Section } from '../components/section'
 import { SEO } from '../components/seo'
-import { Speakers } from '../components/speakers'
+import { SpeakersList } from '../components/speakers/list'
 import { TalksList } from '../components/talks/list'
 import { TalksNav } from '../components/talks/nav'
 import { TextCarousel } from '../components/textCarousel'
@@ -61,7 +61,7 @@ function IndexPage({ data, location }) {
 				</Section.Sidebar>
 
 				<Section.Content align="wide">
-					<Speakers
+					<SpeakersList
 						className="xl:grid-cols-3"
 						speakers={shuffledSpeakers.slice(0, 6)}
 					/>

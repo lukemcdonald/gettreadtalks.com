@@ -2,7 +2,7 @@ import React from 'react'
 import { graphql } from 'gatsby'
 
 import { SEO } from '../../components/seo'
-import { Speakers } from '../../components/speakers'
+import { SpeakersList } from '../../components/speakers/list'
 import { Section } from '../../components/section'
 import { Page } from '../../components/page'
 import { SpeakersFilter } from '../../components/speakers/filter'
@@ -35,7 +35,7 @@ function FeaturedSpeakersPage({ data, location }) {
 				</Section.Sidebar>
 
 				<Section.Content align="wide">
-					<Speakers className="xl:grid-cols-3" speakers={speakers.nodes} />
+					<SpeakersList className="xl:grid-cols-3" speakers={speakers.nodes} />
 				</Section.Content>
 			</Section>
 		</>

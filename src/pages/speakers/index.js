@@ -3,7 +3,7 @@ import { graphql } from 'gatsby'
 
 import { Page } from '../../components/page'
 import { SEO } from '../../components/seo'
-import { Speakers } from '../../components/speakers'
+import { SpeakersList } from '../../components/speakers/list'
 import { Section } from '../../components/section'
 import { SpeakersFilter } from '../../components/speakers/filter'
 import { Card } from '../../components/card'
@@ -39,7 +39,7 @@ function SpeakersPage({ data, location, pageContext }) {
 				</Section.Sidebar>
 
 				<Section.Content align="full">
-					<Speakers className="xl:grid-cols-4" speakers={speakers.nodes}>
+					<SpeakersList className="xl:grid-cols-4" speakers={speakers.nodes}>
 						<Card className="items-start row-span-2 px-6 py-5">
 							<div>
 								<Page.Title>
@@ -60,7 +60,7 @@ function SpeakersPage({ data, location, pageContext }) {
 								</div>
 							</div>
 						</Card>
-					</Speakers>
+					</SpeakersList>
 				</Section.Content>
 			</Section>
 		</>
