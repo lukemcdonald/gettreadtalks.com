@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { Link } from 'gatsby'
 import { HiStar as Star } from 'react-icons/hi'
 import classnames from 'classnames'
+import { Link } from './link'
 
 import { sanitizeHTMLTag } from '../utilities'
 
@@ -55,7 +55,7 @@ const CardMetaLink = ({ children, className, to }) => (
 	</Link>
 )
 
-const CardAvatar = ({ image, title }) => (
+const CardAvatar = ({ image, title = '' }) => (
 	<figure className="w-16 h-16 mr-4">
 		<Avatar
 			className="w-16 h-16"
