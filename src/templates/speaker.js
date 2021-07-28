@@ -10,7 +10,7 @@ import { Link } from '../components/link'
 import { Section } from '../components/section'
 import { SEO } from '../components/seo'
 import { SpeakersFilter } from '../components/speakers/filter'
-import { Talks } from '../components/talks'
+import { TalksList } from '../components/talks/list'
 import { TextCarousel } from '../components/textCarousel'
 
 function SingleSpeakerPage({ data, location, pageContext }) {
@@ -108,7 +108,7 @@ function SingleSpeakerPage({ data, location, pageContext }) {
 					</Section.Sidebar>
 
 					<Section.Content>
-						<Talks talks={speaker.talks} />
+						<TalksList talks={speaker.talks} />
 					</Section.Content>
 				</Section>
 			)}

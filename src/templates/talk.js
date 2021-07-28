@@ -8,7 +8,7 @@ import { Link } from '../components/link'
 import { Section } from '../components/section'
 import { SEO } from '../components/seo'
 import { Series } from '../components/series'
-import { Talks } from '../components/talks'
+import { TalksList } from '../components/talks/list'
 
 function TalkPage({ data, location, pageContext }) {
 	const { data: talk } = data.talk
@@ -109,7 +109,7 @@ function TalkPage({ data, location, pageContext }) {
 					</Section.Sidebar>
 
 					<Section.Content>
-						<Talks talks={shuffledTalks.slice(0, 5)} />
+						<TalksList talks={shuffledTalks.slice(0, 5)} />
 
 						{talks.length > 5 && (
 							<p className="mt-6">

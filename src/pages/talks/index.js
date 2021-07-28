@@ -6,7 +6,7 @@ import { Page } from '../../components/page'
 import { Pagination } from '../../components/pagination'
 import { Section } from '../../components/section'
 import { SEO } from '../../components/seo'
-import { Talks } from '../../components/talks'
+import { TalksList } from '../../components/talks/list'
 import { TalksFilter } from '../../components/talks/filter'
 import { TextCarousel } from '../../components/textCarousel'
 
@@ -47,7 +47,7 @@ function TalksPage({ data, location, pageContext }) {
 				</Section.Sidebar>
 
 				<Section.Content>
-					<Talks talks={talks.nodes} />
+					<TalksList talks={talks.nodes} />
 					<Pagination
 						className="w-full mt-4 sm:mt-6"
 						pageSize={parseInt(process.env.GATSBY_PAGE_SIZE)}

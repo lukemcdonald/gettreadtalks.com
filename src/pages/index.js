@@ -7,7 +7,7 @@ import { Intro } from '../components/intro'
 import { Section } from '../components/section'
 import { SEO } from '../components/seo'
 import { Speakers } from '../components/speakers'
-import { Talks } from '../components/talks'
+import { TalksList } from '../components/talks/list'
 import { TalksNav } from '../components/talks/nav'
 import { TextCarousel } from '../components/textCarousel'
 
@@ -47,7 +47,7 @@ function IndexPage({ data, location }) {
 					<TalksNav title="More Talks" />
 				</Section.Sidebar>
 				<Section.Content>
-					<Talks talks={shuffledTalks.slice(0, 5)} />
+					<TalksList talks={shuffledTalks.slice(0, 5)} />
 				</Section.Content>
 			</Section>
 

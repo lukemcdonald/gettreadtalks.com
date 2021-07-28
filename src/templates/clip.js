@@ -4,7 +4,7 @@ import { graphql } from 'gatsby'
 import { Intro } from '../components/intro'
 import { Link } from '../components/link'
 import { SEO } from '../components/seo'
-import { Talks } from '../components/talks'
+import { Talks } from '../components/talks/list'
 
 function SingleClipPage({ data, location }) {
 	const { data: clip } = data.clip
