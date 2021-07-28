@@ -12,10 +12,9 @@ function SpeakersList({ children, className, speakers }) {
 			)}
 		>
 			{children}
-			{speakers.map(({ id, fields, data }) => {
-				const speaker = { id, ...fields, ...data }
-				return <SpeakerCard key={id} speaker={speaker} />
-			})}
+			{speakers.map(({ id, fields, data }) => (
+				<SpeakerCard key={id} speaker={{ id, ...fields, ...data }} />
+			))}
 		</div>
 	)
 }
