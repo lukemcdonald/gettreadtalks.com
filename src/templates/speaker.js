@@ -3,7 +3,7 @@ import { graphql } from 'gatsby'
 import { maybePluralize } from '../utilities'
 
 import { Avatar } from '../components/avatar'
-import { Clips } from '../components/clips'
+import { ClipsList } from '../components/clips/list'
 import { ConditionalWrapper } from '../components/conditionalWrapper'
 import { Intro } from '../components/intro'
 import { Link } from '../components/link'
@@ -135,7 +135,7 @@ function SingleSpeakerPage({ data, location, pageContext }) {
 					</Section.Sidebar>
 
 					<Section.Content>
-						<Clips clips={speaker.clips} />
+						<ClipsList clips={speaker.clips} />
 					</Section.Content>
 				</Section>
 			)}

@@ -3,7 +3,7 @@ import classnames from 'classnames'
 
 import { ClipCard } from './card'
 
-function Clips({ children, className, clips }) {
+function ClipsList({ children, className, clips }) {
 	return (
 		<div className={classnames('grid gap-4 sm:gap-6', className)}>
 			{clips.map(({ id, fields, data }) => {
@@ -15,4 +15,4 @@ function Clips({ children, className, clips }) {
 	)
 }
 
-export { Clips }
+export { ClipsList }

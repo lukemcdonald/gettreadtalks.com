@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
-import { Clips } from '../../components/clips'
+import { ClipsList } from '../../components/clips/list'
 import { Page } from '../../components/page'
 import { Section } from '../../components/section'
 import { SEO } from '../../components/seo'
@@ -22,7 +22,7 @@ function ClipsPage({ data, location }) {
 				</Section.Sidebar>
 
 				<Section.Content>
-					<Clips clips={clips.nodes} />
+					<ClipsList clips={clips.nodes} />
 				</Section.Content>
 			</Section>
 		</>
