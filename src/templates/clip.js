@@ -4,7 +4,7 @@ import { graphql } from 'gatsby'
 import { Intro } from '../components/intro'
 import { Link } from '../components/link'
 import { SEO } from '../components/seo'
-import { Talks } from '../components/talks/list'
+import { TalksList } from '../components/talks/list'
 
 function SingleClipPage({ data, location }) {
 	const { data: clip } = data.clip
@@ -42,7 +42,7 @@ function SingleClipPage({ data, location }) {
 				)}
 
 				{clip.talks && (
-					<Talks
+					<TalksList
 						className="-mt-1"
 						subtitle="Related Talk:"
 						talks={clip.talks}
