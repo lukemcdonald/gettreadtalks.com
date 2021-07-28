@@ -1,7 +1,7 @@
 import React from 'react'
 import { GatsbyImage } from 'gatsby-plugin-image'
 
-function Avatar({ className, imgClassName, image, title = '' }) {
+function Avatar({ className, imgClassName, image, alt }) {
 	return (
 		<>
 			{image?.localFiles?.[0] && (
@@ -9,7 +9,7 @@ function Avatar({ className, imgClassName, image, title = '' }) {
 					image={image.localFiles[0].childImageSharp.gatsbyImageData}
 					className={className}
 					imgClassName={imgClassName}
-					alt={title}
+					alt={alt}
 				/>
 			)}
 		</>

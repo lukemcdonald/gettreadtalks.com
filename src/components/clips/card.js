@@ -12,7 +12,7 @@ function ClipCard({ clip }) {
 						<Card.Avatar
 							key={speaker.id}
 							image={speaker.data?.avatar}
-							title={speaker.data?.title}
+							alt={speaker.data?.title}
 						/>
 					)
 			)}

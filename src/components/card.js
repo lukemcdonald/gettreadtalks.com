@@ -55,13 +55,13 @@ const CardMetaLink = ({ children, className, to }) => (
 	</Link>
 )
 
-const CardAvatar = ({ image, title = '' }) => (
+const CardAvatar = ({ image, alt }) => (
 	<figure className="w-16 h-16 mr-4">
 		<Avatar
 			className="w-16 h-16"
 			imgClassName="rounded-full"
 			image={image}
-			alt={title}
+			alt={alt}
 		/>
 	</figure>
 )

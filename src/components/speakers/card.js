@@ -8,7 +8,7 @@ function SpeakerCard({ speaker }) {
 	return (
 		<Card>
 			{speaker?.avatar && (
-				<Card.Avatar image={speaker.avatar} title={speaker.title} />
+				<Card.Avatar image={speaker.avatar} alt={speaker.title} />
 			)}
 
 			<div>
