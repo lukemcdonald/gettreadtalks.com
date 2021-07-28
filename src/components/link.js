@@ -43,35 +43,20 @@ class Link extends Component {
 	static Button = LinkButton
 
 	render() {
-		const {
-			className,
-			activeClassName = 'is-active',
-			children,
-			disabled,
-			to,
-			target,
-			onClick,
-		} = this.props
+		const { children, to, ...other } = this.props
 
-		// Tailor the following test to your environment.
-		// This example assumes that any internal link (intended for Gatsby)
-		// will start with exactly one slash, and that anything else is external.
 		const internal = /^\/(?!\/)/.test(to)
 
-		// Use Gatsby Link for internal links, and <a> for others
-		return internal ? (
-			<GatsbyLink
-				to={!disabled && to}
-				className={classnames(className, disabled ? 'opacity-60' : '')}
-				activeClassName={activeClassName}
-				rel="canonical"
-				disabled={disabled}
-				onClick={onClick}
-			>
-				{children}
-			</GatsbyLink>
-		) : (
-			<a className={className} href={to} target={target}>
+		if (internal) {
+			return (
+				<GatsbyLink to={to} rel="canonical" {...other}>
+					{children}
+				</GatsbyLink>
+			)
+		}
+
+		return (
+			<a href={to} {...other}>
 				{children}
 			</a>
 		)

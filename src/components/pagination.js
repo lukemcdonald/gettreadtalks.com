@@ -26,10 +26,11 @@ function Pagination({
 	const hasPrevPage = prevPage >= 1
 	const hasNextPage = nextPage <= totalPages
 
-	const LinkCSS =
+	const LINK_CSS =
 		'flex-grow flex relative items-center justify-center py-2 text-sm font-medium bg-white hover:text-red-600'
-	const PrevNextCSS = 'px-2 text-gray-500 disabled:opacity-60'
-	const NumbersCSS = classnames(
+	const PREV_NEXT_CSS = 'px-2 text-gray-500'
+	const DISABLED_CSS = 'pointer-events-none'
+	const NUMBERS_CSS = classnames(
 		'px-4 text-gray-700',
 		!showPreviousNext && 'first:rounded-l last:rounded-r',
 		totalPages > 5 && 'hidden sm:flex'
@@ -49,7 +50,12 @@ function Pagination({
 						<Link
 							to={`${base}/${prevPage}`}
 							disabled={!hasPrevPage}
-							className={classnames('rounded-l', LinkCSS, PrevNextCSS)}
+							className={classnames(
+								'rounded-l',
+								LINK_CSS,
+								PREV_NEXT_CSS,
+								!hasPrevPage && DISABLED_CSS
+							)}
 						>
 							<span>
 								<ChevronLeft />
@@ -65,9 +71,10 @@ function Pagination({
 					{showPageNumbers &&
 						Array.from({ length: totalPages }).map((_, i) => (
 							<Link
+								key={`page-${i || 0}`}
 								to={`${base}/${i > 0 ? i + 1 : ''}`}
 								activeClassName="text-red-600"
-								className={classnames(LinkCSS, NumbersCSS)}
+								className={classnames(LINK_CSS, NUMBERS_CSS)}
 							>
 								{i + 1}
 							</Link>
@@ -75,9 +82,13 @@ function Pagination({
 
 					{showPreviousNext && (
 						<Link
-							to={`${base}/${nextPage}`}
-							disabled={!hasNextPage}
-							className={classnames('rounded-r', LinkCSS, PrevNextCSS)}
+							to={`${base}/${nextPage || ''}`}
+							className={classnames(
+								'rounded-r',
+								LINK_CSS,
+								PREV_NEXT_CSS,
+								!hasNextPage && DISABLED_CSS
+							)}
 						>
 							<span className={classnames(showNextLabel ? 'pl-1' : 'sr-only')}>
 								Next
