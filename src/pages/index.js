@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { graphql } from 'gatsby'
 import { shuffle } from '../utilities'
 import { RandomProduct } from '../components/affiliates/randomProduct'
@@ -13,6 +13,8 @@ import { TextCarousel } from '../components/textCarousel'
 
 function IndexPage({ data, location }) {
 	const { talks, speakers } = data
+	const [randomTalks] = useState(() => shuffle(talks.nodes).slice(0, 5))
+	const [randomSpeakers] = useState(() => shuffle(speakers.nodes).slice(0, 6))
 
 	return (
 		<>
@@ -40,7 +42,7 @@ function IndexPage({ data, location }) {
 					<TalksNav title="More Talks" />
 				</Section.Sidebar>
 				<Section.Content>
-					<Talks talks={shuffle(talks.nodes).slice(0, 5)} />
+					<Talks talks={randomTalks} />
 				</Section.Content>
 			</Section>
 
@@ -54,10 +56,7 @@ function IndexPage({ data, location }) {
 				</Section.Sidebar>
 
 				<Section.Content align="wide">
-					<Speakers
-						className="xl:grid-cols-3"
-						speakers={shuffle(speakers.nodes).slice(0, 6)}
-					/>
+					<Speakers className="xl:grid-cols-3" speakers={randomSpeakers} />
 				</Section.Content>
 			</Section>
 
