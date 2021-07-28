@@ -3,7 +3,7 @@ import classnames from 'classnames'
 
 import { SeriesCard } from './card'
 
-function Series({ children, className, series }) {
+function SeriesList({ children, className, series }) {
 	return (
 		<div className={classnames('grid gap-4 sm:gap-6', className)}>
 			{series.map(({ id, fields, data }) => {
@@ -15,4 +15,4 @@ function Series({ children, className, series }) {
 	)
 }
 
-export { Series }
+export { SeriesList }

@@ -3,7 +3,7 @@ import { graphql } from 'gatsby'
 
 import { Page } from '../../components/page'
 import { SEO } from '../../components/seo'
-import { Series } from '../../components/series'
+import { SeriesList } from '../../components/series/list'
 import { Section } from '../../components/section'
 
 function SeriesPage({ data, location }) {
@@ -26,7 +26,7 @@ function SeriesPage({ data, location }) {
 				</Section.Sidebar>
 
 				<Section.Content>
-					<Series series={series.nodes} />
+					<SeriesList series={series.nodes} />
 				</Section.Content>
 			</Section>
 		</>

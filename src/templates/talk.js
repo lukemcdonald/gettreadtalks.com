@@ -7,7 +7,7 @@ import { Intro } from '../components/intro'
 import { Link } from '../components/link'
 import { Section } from '../components/section'
 import { SEO } from '../components/seo'
-import { Series } from '../components/series'
+import { SeriesList } from '../components/series/list'
 import { TalksList } from '../components/talks/list'
 
 function TalkPage({ data, location, pageContext }) {
@@ -90,7 +90,7 @@ function TalkPage({ data, location, pageContext }) {
 					</Section.Sidebar>
 
 					<Section.Content>
-						<Series series={talk.series} />
+						<SeriesList series={talk.series} />
 					</Section.Content>
 				</Section>
 			)}
