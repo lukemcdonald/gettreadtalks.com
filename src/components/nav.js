@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import classnames from 'classnames'
 import { HiMenuAlt4 as Menu, HiMail as Mail } from 'react-icons/hi'
 import { TiRss as RSS } from 'react-icons/ti'
-import { useAuth } from '../context/auth'
+import { useAuth, AuthProvider } from '../context/auth'
 import { useAsync } from '../utils/async'
 import { Link } from './link'
 
@@ -14,13 +14,32 @@ const links = [
 	{ label: 'Talks', path: '/talks/' },
 ]
 
-function Nav({ className }) {
-	const [checked, setChecked] = useState(false)
-	const handleClick = () => setChecked(!checked)
+function LoginLinks() {
 	const { run } = useAsync()
 	const { user, logout } = useAuth()
 
-	console.log(user)
+	return (
+		<>
+			{!user && (
+				<li>
+					<Link to="/login">Login</Link>
+				</li>
+			)}
+
+			{user && (
+				<li>
+					<button type="button" onClick={() => run(logout())}>
+						Logout
+					</button>
+				</li>
+			)}
+		</>
+	)
+}
+
+function Nav({ className }) {
+	const [checked, setChecked] = useState(false)
+	const handleClick = () => setChecked(!checked)
 
 	return (
 		<nav className={classnames('primary-nav', className)}>
@@ -93,12 +112,9 @@ function Nav({ className }) {
 							<RSS className="w-6 h-6" />
 						</Link>
 					</li>
-
-					<li>
-						<button type="button" onClick={() => run(logout())}>
-							Logout
-						</button>
-					</li>
+					<AuthProvider>
+						<LoginLinks />
+					</AuthProvider>
 				</ul>
 			</div>
 		</nav>
