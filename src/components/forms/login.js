@@ -1,12 +1,12 @@
+import { data } from 'autoprefixer'
 import React, { useState } from 'react'
 import { useAsync } from '../../utils/async'
 
 function LoginForm({ onSubmit, buttonText }) {
-	const { run } = useAsync()
+	const { isError, error, run } = useAsync()
 	const [state, setState] = useState({
 		email: '',
 		password: '',
-		error: null,
 	})
 
 	function handleSubmit(event) {
@@ -39,6 +39,7 @@ function LoginForm({ onSubmit, buttonText }) {
 					value={state.password}
 				/>
 			</div>
+			{isError && <div className="text-status-error">{error.message}</div>}
 			<div>
 				<button type="submit">{buttonText}</button>
 			</div>

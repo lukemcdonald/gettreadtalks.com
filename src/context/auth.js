@@ -11,7 +11,6 @@ function AuthProvider(props) {
 		data: user,
 		status,
 		error,
-		run,
 		setData,
 		isLoading,
 		isIdle,
@@ -23,28 +22,34 @@ function AuthProvider(props) {
 		firebase.auth().onAuthStateChanged((user) => setData(user))
 	}, [setData])
 
-	// const login = React.useCallback(
-	// 	(form) =>
-	// 		run(
-	// 			firebase
-	// 				.auth()
-	// 				.createUserWithEmailAndPassword(form.email, form.password)
-	// 				.then((user) => setData(user))
-	// 		),
-	// 	[setData, run]
-	// )
+	const login = React.useCallback(
+		(form) =>
+			firebase
+				.auth()
+				.signInWithEmailAndPassword(form.email, form.password)
+				.then((user) => {
+					setData(user)
+					navigate('/')
+				}),
+		[setData]
+	)
 
 	const register = React.useCallback(
 		(form) =>
 			firebase
 				.auth()
 				.createUserWithEmailAndPassword(form.email, form.password)
-				.then((user) => setData(user)),
-
-		[setData, run]
+				.then((user) => {
+					setData(user)
+					navigate('/login')
+				}),
+		[setData]
 	)
 
-	const value = React.useMemo(() => ({ register, user }), [register, user])
+	const value = React.useMemo(
+		() => ({ login, register, user }),
+		[login, register, user]
+	)
 
 	if (isLoading || isIdle) {
 		return <div>Loading...</div>

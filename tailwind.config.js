@@ -30,6 +30,11 @@ module.exports = {
 			current: 'currentColor',
 			black: '#000',
 			white: '#fff',
+			status: {
+				info: colors.blue[600],
+				error: colors.red[600],
+				success: colors.green[600],
+			},
 			gray: colors.coolGray,
 			red: colors.red,
 		},
