@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { maybePluralize } from '../utilities'
+import { maybePluralize } from '../utils'
 
 import { Avatar } from '../components/avatar'
 import { ClipsList } from '../components/clips/list'

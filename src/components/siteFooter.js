@@ -1,7 +1,7 @@
 import React from 'react'
 import { Section } from './section'
 
-import { getCurrentYear } from '../utilities'
+import { getCurrentYear } from '../utils'
 
 function SiteFooter({ siteTitle }) {
 	const year = getCurrentYear()

@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { maybePluralize } from '../../utilities'
+import { maybePluralize } from '../../utils'
 
 import { Page } from '../../components/page'
 import { Pagination } from '../../components/pagination'

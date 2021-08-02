@@ -3,7 +3,7 @@ import Helmet from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
 import striptags from 'striptags'
 
-import { trimText } from '../utilities'
+import { trimText } from '../utils'
 
 function SEO({ children, location, title, description, image }) {
 	const { site } = useStaticQuery(graphql`

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { getRandomObjectItem } from '../../utilities'
+import { getRandomObjectItem } from '../../utils'
 
 import { Scriptures } from './scriptures'
 import { Scripture } from './scripture'

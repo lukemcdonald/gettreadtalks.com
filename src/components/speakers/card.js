@@ -1,5 +1,5 @@
 import React from 'react'
-import { maybePluralize } from '../../utilities'
+import { maybePluralize } from '../../utils'
 
 import { Card } from '../card'
 import { FauxLink } from '../fauxLink'

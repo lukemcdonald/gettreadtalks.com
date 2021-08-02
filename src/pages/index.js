@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { graphql } from 'gatsby'
-import { arrayShuffle } from '../utilities'
+import { arrayShuffle } from '../utils'
 import { RandomProduct } from '../components/affiliates/randomProduct'
 
 import { Intro } from '../components/intro'

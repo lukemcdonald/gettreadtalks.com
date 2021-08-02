@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import classnames from 'classnames'
-import { sanitizeHTMLTag } from '../utilities'
+import { sanitizeHTMLTag } from '../utils'
 
 const SectionContainer = ({ className, children }) => (
 	<div className={classnames('container max-w-screen-xl', className)}>

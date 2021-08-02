@@ -3,7 +3,7 @@ import { HiStar as Star } from 'react-icons/hi'
 import classnames from 'classnames'
 import { Link } from './link'
 
-import { sanitizeHTMLTag } from '../utilities'
+import { sanitizeHTMLTag } from '../utils'
 
 import { Avatar } from './avatar'
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { graphql } from 'gatsby'
 
-import { arrayShuffle } from '../utilities'
+import { arrayShuffle } from '../utils'
 
 import { Intro } from '../components/intro'
 import { Link } from '../components/link'
