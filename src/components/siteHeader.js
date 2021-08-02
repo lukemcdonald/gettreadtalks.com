@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
+import { AuthProvider } from '../context/auth'
+
 import { Logo } from './svgs/logo'
 import { Nav as SiteNav } from './nav'
 
@@ -15,7 +17,9 @@ function SiteHeader({ siteTitle }) {
 						</Link>
 					</h1>
 
-					<SiteNav />
+					<AuthProvider>
+						<SiteNav />
+					</AuthProvider>
 				</div>
 			</div>
 		</header>

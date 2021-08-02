@@ -27,10 +27,8 @@ function AuthProvider(props) {
 			firebase
 				.auth()
 				.signInWithEmailAndPassword(form.email, form.password)
-				.then((user) => {
-					setData(user)
-					navigate('/')
-				}),
+				.then((user) => setData(user))
+				.then(() => navigate('/')),
 		[setData]
 	)
 
@@ -39,16 +37,24 @@ function AuthProvider(props) {
 			firebase
 				.auth()
 				.createUserWithEmailAndPassword(form.email, form.password)
-				.then((user) => {
-					setData(user)
-					navigate('/login')
-				}),
+				.then((user) => setData(user))
+				.then(() => navigate('/login')),
+		[setData]
+	)
+
+	const logout = React.useCallback(
+		() =>
+			firebase
+				.auth()
+				.signOut()
+				.then(() => setData(null))
+				.then(() => navigate('/login')),
 		[setData]
 	)
 
 	const value = React.useMemo(
-		() => ({ login, register, user }),
-		[login, register, user]
+		() => ({ login, logout, register, user }),
+		[login, logout, register, user]
 	)
 
 	if (isLoading || isIdle) {

@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import classnames from 'classnames'
 import { HiMenuAlt4 as Menu, HiMail as Mail } from 'react-icons/hi'
 import { TiRss as RSS } from 'react-icons/ti'
-
+import { useAuth } from '../context/auth'
+import { useAsync } from '../utils/async'
 import { Link } from './link'
 
 const links = [
@@ -16,6 +17,10 @@ const links = [
 function Nav({ className }) {
 	const [checked, setChecked] = useState(false)
 	const handleClick = () => setChecked(!checked)
+	const { run } = useAsync()
+	const { user, logout } = useAuth()
+
+	console.log(user)
 
 	return (
 		<nav className={classnames('primary-nav', className)}>
@@ -87,6 +92,12 @@ function Nav({ className }) {
 						>
 							<RSS className="w-6 h-6" />
 						</Link>
+					</li>
+
+					<li>
+						<button type="button" onClick={() => run(logout())}>
+							Logout
+						</button>
 					</li>
 				</ul>
 			</div>
