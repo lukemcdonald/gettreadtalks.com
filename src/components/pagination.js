@@ -1,5 +1,5 @@
 import React from 'react'
-import classnames from 'classnames'
+import classNames from 'classnames'
 
 import {
 	HiChevronLeft as ChevronLeft,
@@ -30,7 +30,7 @@ function Pagination({
 		'flex-grow flex relative items-center justify-center py-2 text-sm font-medium bg-white hover:text-red-600'
 	const PREV_NEXT_CSS = 'px-2 text-gray-500'
 	const DISABLED_CSS = 'pointer-events-none'
-	const NUMBERS_CSS = classnames(
+	const NUMBERS_CSS = classNames(
 		'px-4 text-gray-700',
 		!showPreviousNext && 'first:rounded-l last:rounded-r',
 		totalPages > 5 && 'hidden sm:flex'
@@ -40,7 +40,7 @@ function Pagination({
 		<>
 			{totalCount > pageSize && (
 				<nav
-					className={classnames(
+					className={classNames(
 						'relative z-0 inline-flex shadow-sm -space-x-px',
 						className
 					)}
@@ -50,7 +50,7 @@ function Pagination({
 						<Link
 							to={`${base}/${prevPage}`}
 							disabled={!hasPrevPage}
-							className={classnames(
+							className={classNames(
 								'rounded-l',
 								LINK_CSS,
 								PREV_NEXT_CSS,
@@ -61,7 +61,7 @@ function Pagination({
 								<ChevronLeft />
 							</span>
 							<span
-								className={classnames(showPreviousLabel ? 'pr-1' : 'sr-only')}
+								className={classNames(showPreviousLabel ? 'pr-1' : 'sr-only')}
 							>
 								Prev
 							</span>
@@ -74,7 +74,7 @@ function Pagination({
 								key={`page-${i || 0}`}
 								to={`${base}/${i > 0 ? i + 1 : ''}`}
 								activeClassName="text-red-600"
-								className={classnames(LINK_CSS, NUMBERS_CSS)}
+								className={classNames(LINK_CSS, NUMBERS_CSS)}
 							>
 								{i + 1}
 							</Link>
@@ -83,14 +83,14 @@ function Pagination({
 					{showPreviousNext && (
 						<Link
 							to={`${base}/${nextPage || ''}`}
-							className={classnames(
+							className={classNames(
 								'rounded-r',
 								LINK_CSS,
 								PREV_NEXT_CSS,
 								!hasNextPage && DISABLED_CSS
 							)}
 						>
-							<span className={classnames(showNextLabel ? 'pl-1' : 'sr-only')}>
+							<span className={classNames(showNextLabel ? 'pl-1' : 'sr-only')}>
 								Next
 							</span>
 							<ChevronRight />

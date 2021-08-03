@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { HiStar as Star } from 'react-icons/hi'
-import classnames from 'classnames'
+import classNames from 'classnames'
 import { Link } from './link'
 
 import { sanitizeHTMLTag } from '../utils'
@@ -12,7 +12,7 @@ const CardTitle = ({ children, className, as }) => {
 
 	return (
 		<Tag
-			className={classnames(
+			className={classNames(
 				'text-lg font-bold leading-6 text-gray-900',
 				className
 			)}
@@ -27,7 +27,7 @@ const CardSubTitle = ({ children, className, as }) => {
 
 	return (
 		<Tag
-			className={classnames(
+			className={classNames(
 				'text-red-600 text-xs tracking-wide uppercase mb-2 mt-1 font-bold leading-none',
 				className
 			)}
@@ -39,7 +39,7 @@ const CardSubTitle = ({ children, className, as }) => {
 
 const CardMeta = ({ children, className }) => (
 	<div
-		className={classnames(
+		className={classNames(
 			'card__meta',
 			'mt-px text-sm text-gray-500 inline-block',
 			className
@@ -50,7 +50,7 @@ const CardMeta = ({ children, className }) => (
 )
 
 const CardMetaLink = ({ children, className, to }) => (
-	<Link to={to} className={classnames('hover:underline', className)}>
+	<Link to={to} className={classNames('hover:underline', className)}>
 		{children}
 	</Link>
 )
@@ -69,7 +69,7 @@ const CardAvatar = ({ image, alt }) => (
 const CardFeaturedLink = ({ className, to }) => (
 	<Link
 		to={to}
-		className={classnames(
+		className={classNames(
 			'absolute z-20 text-gray-700 transition transform hover:text-red-600 rotate-12 -right-2 -top-2 hover:rotate-45',
 			className
 		)}
@@ -96,7 +96,7 @@ class Card extends Component {
 
 		return (
 			<article
-				className={classnames(
+				className={classNames(
 					'relative flex flex-grow p-4 text-left text-gray-700 transition duration-300 bg-white border border-transparent rounded shadow-sm hover:z-10 hover:border-red-600 hover:shadow-lg',
 					className.includes('items-') || 'items-center',
 					className

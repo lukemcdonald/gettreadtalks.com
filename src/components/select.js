@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { navigate } from 'gatsby'
 import { Field, Form, Formik } from 'formik'
-import classnames from 'classnames'
+import classNames from 'classnames'
 import { HiChevronDown as ChevronDown } from 'react-icons/hi'
 
 import { ConditionalWrapper } from './conditionalWrapper'
@@ -32,7 +32,7 @@ class Select extends Component {
 		const { children, className, current, label } = this.props
 
 		return (
-			<div className={classnames('relative inline-block', className)}>
+			<div className={classNames('relative inline-block', className)}>
 				<span>{current.label || label}</span>
 				<ChevronDown className="relative inline-block w-8 mb-px -mr-8" />
 

@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import classnames from 'classnames'
+import classNames from 'classnames'
 import { sanitizeHTMLTag } from '../utils'
 
 const SectionContainer = ({ className, children }) => (
-	<div className={classnames('container max-w-screen-xl', className)}>
+	<div className={classNames('container max-w-screen-xl', className)}>
 		{children}
 	</div>
 )
@@ -28,7 +28,7 @@ const SectionContent = ({ align, as, children, className }) => {
 
 	return (
 		<Tag
-			className={classnames(
+			className={classNames(
 				'py-6 sm:col-span-2 lg:py-16',
 				`${columns.start} ${columns.span}`,
 				className
@@ -41,7 +41,7 @@ const SectionContent = ({ align, as, children, className }) => {
 
 const SectionSidebar = ({ children, className, right, sticky }) => (
 	<div
-		className={classnames(
+		className={classNames(
 			`pt-6 sm:py-6`,
 			`sm:border-0`,
 			right ? 'md:pl-6 lg:pl-10' : 'md:pr-6 lg:pr-10',
@@ -61,7 +61,7 @@ const SectionHeading = ({ children, className = '', as }) => {
 
 	return (
 		<Tag
-			className={classnames(
+			className={classNames(
 				'mb-3 text-sm font-bold tracking-wide  uppercase lg:mb-2 lg:text-xs',
 				className.includes('text-gray-') || 'text-gray-500',
 				className
@@ -73,7 +73,7 @@ const SectionHeading = ({ children, className = '', as }) => {
 }
 
 const SectionSeparator = ({ className }) => (
-	<hr className={classnames('border-gray-300', className)} />
+	<hr className={classNames('border-gray-300', className)} />
 )
 
 class Section extends Component {
@@ -102,13 +102,13 @@ class Section extends Component {
 			<Tag className={className}>
 				<SectionContainer>
 					{(separator === 'top' || separator === 'top-bottom') && (
-						<SectionSeparator className={classnames(separatorClass)} />
+						<SectionSeparator className={classNames(separatorClass)} />
 					)}
 					<div className="grid sm:gap-6 sm:grid-cols-3 lg:grid-cols-12">
 						{children}
 					</div>
 					{(separator === 'bottom' || separator === 'top-bottom') && (
-						<SectionSeparator className={classnames(separatorClass)} />
+						<SectionSeparator className={classNames(separatorClass)} />
 					)}
 				</SectionContainer>
 			</Tag>

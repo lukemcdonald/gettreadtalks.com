@@ -1,6 +1,6 @@
 import React from 'react'
 import { GatsbyImage } from 'gatsby-plugin-image'
-import classnames from 'classnames'
+import classNames from 'classnames'
 
 import { Card } from '../card'
 import { Disclosure } from './disclosure'
@@ -11,7 +11,7 @@ function Product(props) {
 
 	return (
 		<Card className="relative border-none rounded">
-			<div className={classnames('flex items-center', className)}>
+			<div className={classNames('flex items-center', className)}>
 				{post.image && (
 					<figure className="w-16 mr-4">
 						<GatsbyImage

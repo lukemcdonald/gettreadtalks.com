@@ -1,5 +1,5 @@
 import React from 'react'
-import classnames from 'classnames'
+import classNames from 'classnames'
 import { MailIcon, RssIcon } from '@heroicons/react/solid'
 import { Link } from '../link'
 
@@ -19,7 +19,7 @@ const links = [
 function SocialMenu({ onClick }) {
 	return (
 		<ul
-			className={classnames(
+			className={classNames(
 				'hidden h-5 border-l border-gray-300 md:block',
 				'md:flex md:items-center md:space-x-3 px-3'
 			)}

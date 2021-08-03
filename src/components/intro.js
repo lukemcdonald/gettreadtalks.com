@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import classnames from 'classnames'
+import classNames from 'classnames'
 
 import { GatsbyImage } from 'gatsby-plugin-image'
 import { Section } from './section'
@@ -12,7 +12,7 @@ const IntroTitle = ({ children, className, size }) => {
 
 	return (
 		<h1
-			className={classnames(
+			className={classNames(
 				'text-4xl font-medium text-center text-white',
 				sizeMapping[size] || sizeMapping.DEFAULT,
 				className
@@ -25,7 +25,7 @@ const IntroTitle = ({ children, className, size }) => {
 
 const IntroTagline = ({ children, className }) => (
 	<div
-		className={classnames('mt-2 text-2xl font-light text-gray-400', className)}
+		className={classNames('mt-2 text-2xl font-light text-gray-400', className)}
 	>
 		{children}
 	</div>
@@ -46,7 +46,7 @@ class Intro extends Component {
 
 		return (
 			<section
-				className={classnames(
+				className={classNames(
 					'relative flex bg-gray-900 text-center',
 					bgGradient ? 'bg-image-gradient' : '',
 					className

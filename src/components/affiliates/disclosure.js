@@ -1,5 +1,5 @@
 import React from 'react'
-import classnames from 'classnames'
+import classNames from 'classnames'
 
 function Disclosure(props) {
 	const {
@@ -10,7 +10,7 @@ function Disclosure(props) {
 
 	return (
 		<button
-			className={classnames(
+			className={classNames(
 				'absolute bottom-0 right-0 px-1 mb-1 mr-1 text-xs rounded-sm group z-40 ',
 				className.includes('text-gray-') || 'text-gray-500',
 				className.includes('bg-gray-') || 'bg-gray-200',

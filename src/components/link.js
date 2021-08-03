@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link as GatsbyLink } from 'gatsby'
-import classnames from 'classnames'
+import classNames from 'classnames'
 
 const LinkButton = ({
 	className,
@@ -24,7 +24,7 @@ const LinkButton = ({
 		<Link
 			to={to}
 			activeClassName={activeClassName}
-			className={classnames(
+			className={classNames(
 				'rounded-full inline-block hover:shadow-lg transition duration-300',
 				colorMapping[color] || colorMapping.DEFAULT,
 				sizeMapping[size] || sizeMapping.DEFAULT,
