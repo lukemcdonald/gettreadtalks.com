@@ -1,8 +1,7 @@
 import React, { Fragment } from 'react'
 import classNames from 'classnames'
 import { Menu, Transition } from '@headlessui/react'
-import { UserCircleIcon } from '@heroicons/react/outline'
-import { ArrowRightIcon } from '@heroicons/react/solid'
+import { ArrowRightIcon, UserCircleIcon } from '@heroicons/react/solid'
 import Gravatar from 'react-gravatar'
 
 import { Link } from '../link'
@@ -52,17 +51,13 @@ function ProfileMenu() {
 			{({ open }) => (
 				<>
 					<div>
-						<Menu.Button
-							className={classNames(
-								'flex text-lg rounded-full',
-								'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-red-600 focus:ring-white'
-							)}
-						>
+						<Menu.Button className={classNames('flex text-lg rounded-full')}>
 							<span className="sr-only">Open user menu</span>
 							{user?.email ? (
 								<Gravatar
 									email={user.email}
-									className="w-10 h-10 rounded-full"
+									className="w-10 h-10 rounded-full filter drop-shadow-md"
+									default="mp"
 								/>
 							) : (
 								<UserCircleIcon className="w-10 h-10 rounded-full" />
