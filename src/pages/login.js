@@ -2,27 +2,49 @@ import React from 'react'
 import { useAuth } from '../context/auth'
 
 import { Link } from '../components/link'
-import { Section } from '../components/section'
-import { Page } from '../components/page'
 import { LoginForm } from '../components/forms/login'
+import { Page } from '../components/page'
+import { Section } from '../components/section'
+import { SEO } from '../components/seo'
 
-function RegisterPage() {
-	const { login, user } = useAuth()
+function RegisterPage({ location }) {
+	const { login } = useAuth()
 
 	return (
-		<Section>
-			<Section.Content>
-				<div className="prose">
-					<Page.Title>Login</Page.Title>
-					<LoginForm onSubmit={login} buttonText="Login" />
-					{!user && (
+		<>
+			<SEO title="Sign in" location={location} />
+
+			<Section>
+				<Section.Sidebar>
+					<Page.Title>Sign in to your account</Page.Title>
+
+					<div className="mt-2 prose">
 						<p>
-							Don't have an account? <Link to="/register">Register here!</Link>
+							Or <Link to="/register">register for a free account &rarr;</Link>
 						</p>
-					)}
-				</div>
-			</Section.Content>
-		</Section>
+					</div>
+				</Section.Sidebar>
+
+				<Section.Content>
+					<div className="relative z-10 flex items-center justify-center flex-auto">
+						<div className="w-full max-w-md">
+							<LoginForm onSubmit={login} buttonText="Sign in to account" />
+
+							<div className="mt-6 prose text-center">
+								<p>
+									<Link
+										to="/password/reset"
+										className="text-sm underline hover:text-gray-900"
+									>
+										Forgot password?
+									</Link>
+								</p>
+							</div>
+						</div>
+					</div>
+				</Section.Content>
+			</Section>
+		</>
 	)
 }
 

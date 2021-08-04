@@ -3,25 +3,40 @@ import { useAuth } from '../context/auth'
 
 import { Link } from '../components/link'
 import { Section } from '../components/section'
+import { SEO } from '../components/seo'
 import { Page } from '../components/page'
 import { LoginForm } from '../components/forms/login'
 
-function RegisterPage() {
-	const { register, user } = useAuth()
+function RegisterPage({ location }) {
+	const { register } = useAuth()
+
 	return (
-		<Section>
-			<Section.Content>
-				<div className="prose">
-					<Page.Title>Register</Page.Title>
-					<LoginForm onSubmit={register} buttonText="Register" />
-					{!user && (
+		<>
+			<SEO title="Register" location={location} />
+
+			<Section>
+				<Section.Sidebar>
+					<Page.Title>Register your account</Page.Title>
+
+					<div className="mt-2 prose">
 						<p>
-							Already have an account? <Link to="/login">Login here!</Link>
+							Or <Link to="/login">sign in to your account &rarr;</Link>
 						</p>
-					)}
-				</div>
-			</Section.Content>
-		</Section>
+					</div>
+				</Section.Sidebar>
+
+				<Section.Content>
+					<div className="relative z-10 flex items-center justify-center flex-auto">
+						<div className="w-full max-w-md">
+							<LoginForm
+								onSubmit={register}
+								buttonText="Register your account"
+							/>
+						</div>
+					</div>
+				</Section.Content>
+			</Section>
+		</>
 	)
 }
 
