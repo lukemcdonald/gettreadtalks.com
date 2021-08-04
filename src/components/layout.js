@@ -1,8 +1,8 @@
 import React from 'react'
 import { StaticQuery, graphql } from 'gatsby'
 
-import { SiteHeader } from './siteHeader'
-import { SiteFooter } from './siteFooter'
+import { SiteHeader } from 'components/siteHeader'
+import { SiteFooter } from 'components/siteFooter'
 
 const SITE_META_QUERY = graphql`
 	query {

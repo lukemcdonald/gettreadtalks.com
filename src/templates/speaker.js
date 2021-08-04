@@ -1,17 +1,17 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { maybePluralize } from '../utils'
 
-import { Avatar } from '../components/avatar'
-import { ClipsList } from '../components/clips/list'
-import { ConditionalWrapper } from '../components/conditionalWrapper'
-import { Intro } from '../components/intro'
-import { Link } from '../components/link'
-import { Section } from '../components/section'
-import { SEO } from '../components/seo'
-import { SpeakersFilter } from '../components/speakers/filter'
-import { TalksList } from '../components/talks/list'
-import { TextCarousel } from '../components/textCarousel'
+import { Avatar } from 'components/avatar'
+import { ClipsList } from 'components/clips/list'
+import { ConditionalWrapper } from 'components/conditionalWrapper'
+import { Intro } from 'components/intro'
+import { Link } from 'components/link'
+import { Section } from 'components/section'
+import { SEO } from 'components/seo'
+import { SpeakersFilter } from 'components/speakers/filter'
+import { TalksList } from 'components/talks/list'
+import { TextCarousel } from 'components/textCarousel'
+import { maybePluralize } from 'utils/misc'
 
 function SingleSpeakerPage({ data, location, pageContext }) {
 	const {

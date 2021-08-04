@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import classNames from 'classnames'
 
 import { GatsbyImage } from 'gatsby-plugin-image'
-import { Section } from './section'
+import { Section } from 'components/section'
 
 const IntroTitle = ({ children, className, size }) => {
 	const sizeMapping = {

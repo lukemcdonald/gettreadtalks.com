@@ -2,7 +2,7 @@ import React from 'react'
 import { navigate } from 'gatsby'
 import { Field, Form, Formik } from 'formik'
 
-import { ConditionalWrapper } from '../conditionalWrapper'
+import { ConditionalWrapper } from 'components/conditionalWrapper'
 
 function TopicsFilter(props) {
 	const { className, currentTopic, topics } = props

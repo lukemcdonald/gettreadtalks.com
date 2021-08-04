@@ -1,9 +1,8 @@
 import React from 'react'
 
-import { getRandomObjectItem } from '../../utils'
-
-import { Products } from './products'
-import { Product } from './product'
+import { Products } from 'components/affiliates/products'
+import { Product } from 'components/affiliates/product'
+import { getRandomObjectItem } from 'utils/misc'
 
 function RandomProduct({ card, className, disclosure, size }) {
 	return (

@@ -1,9 +1,9 @@
 import React from 'react'
-import { Avatar } from '../avatar'
 
-import { Card } from '../card'
-import { FauxLink } from '../fauxLink'
-import { Link } from '../link'
+import { Avatar } from 'components/avatar'
+import { Card } from 'components/card'
+import { FauxLink } from 'components/fauxLink'
+import { Link } from 'components/link'
 
 function SeriesCard({ series }) {
 	const maxSpeakers = 3

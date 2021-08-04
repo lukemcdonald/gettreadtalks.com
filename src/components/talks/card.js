@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 
-import { Card } from '../card'
-import { FauxLink } from '../fauxLink'
+import { Card } from 'components/card'
+import { FauxLink } from 'components/fauxLink'
 
 function TalkCard({ talk }) {
 	return (

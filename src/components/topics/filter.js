@@ -1,5 +1,5 @@
 import React from 'react'
-import { useForm } from '../../utilities/useForm'
+import { useForm } from 'utils/useForm'
 
 function TopicsFilter({ className, topics }) {
 	const options = [

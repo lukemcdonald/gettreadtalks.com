@@ -1,5 +1,5 @@
 import React from 'react'
-import { TopicCard } from './card'
+import { TopicCard } from 'components/topics/card'
 
 function Topics({ className, topics }) {
 	return (

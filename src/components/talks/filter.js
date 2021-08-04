@@ -1,5 +1,6 @@
 import React from 'react'
-import { Select } from '../select'
+
+import { Select } from 'components/select'
 
 function TalksFilter({ className, current, label = 'Talks', topics }) {
 	return (

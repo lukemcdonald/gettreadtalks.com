@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { graphql } from 'gatsby'
-import { arrayShuffle } from '../utils'
-import { RandomProduct } from '../components/affiliates/randomProduct'
 
-import { Intro } from '../components/intro'
-import { Section } from '../components/section'
-import { SEO } from '../components/seo'
-import { SpeakersList } from '../components/speakers/list'
-import { TalksList } from '../components/talks/list'
-import { TalksNav } from '../components/talks/nav'
-import { TextCarousel } from '../components/textCarousel'
+import { arrayShuffle } from 'utils/misc'
+
+import { Intro } from 'components/intro'
+import { RandomProduct } from 'components/affiliates/randomProduct'
+import { Section } from 'components/section'
+import { SEO } from 'components/seo'
+import { SpeakersList } from 'components/speakers/list'
+import { TalksList } from 'components/talks/list'
+import { TalksNav } from 'components/talks/nav'
+import { TextCarousel } from 'components/textCarousel'
 
 function IndexPage({ data, location }) {
 	const { talks, speakers } = data

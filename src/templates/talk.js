@@ -1,14 +1,13 @@
 import React, { useState } from 'react'
 import { graphql } from 'gatsby'
 
-import { arrayShuffle } from '../utils'
-
-import { Intro } from '../components/intro'
-import { Link } from '../components/link'
-import { Section } from '../components/section'
-import { SEO } from '../components/seo'
-import { SeriesList } from '../components/series/list'
-import { TalksList } from '../components/talks/list'
+import { Intro } from 'components/intro'
+import { Link } from 'components/link'
+import { Section } from 'components/section'
+import { SEO } from 'components/seo'
+import { SeriesList } from 'components/series/list'
+import { TalksList } from 'components/talks/list'
+import { arrayShuffle } from 'utils/misc'
 
 function TalkPage({ data, location, pageContext }) {
 	const { data: talk } = data.talk

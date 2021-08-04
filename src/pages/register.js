@@ -1,12 +1,13 @@
 import React from 'react'
 import { navigate } from 'gatsby'
-import { useAuth } from '../context/auth'
 
-import { Link } from '../components/link'
-import { Section } from '../components/section'
-import { SEO } from '../components/seo'
-import { Page } from '../components/page'
-import { LoginForm } from '../components/forms/login'
+import { useAuth } from 'context/auth'
+
+import { Link } from 'components/link'
+import { Section } from 'components/section'
+import { SEO } from 'components/seo'
+import { Page } from 'components/page'
+import { LoginForm } from 'components/forms/login'
 
 function RegisterPage({ location }) {
 	const { register, user } = useAuth()

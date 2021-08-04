@@ -1,13 +1,13 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
-import { Page } from '../../components/page'
-import { SEO } from '../../components/seo'
-import { SpeakersList } from '../../components/speakers/list'
-import { Section } from '../../components/section'
-import { SpeakersFilter } from '../../components/speakers/filter'
-import { Card } from '../../components/card'
-import { TextCarousel } from '../../components/textCarousel'
+import { Card } from 'components/card'
+import { Page } from 'components/page'
+import { Section } from 'components/section'
+import { SEO } from 'components/seo'
+import { SpeakersList } from 'components/speakers/list'
+import { SpeakersFilter } from 'components/speakers/filter'
+import { TextCarousel } from 'components/textCarousel'
 
 function SpeakersPage({ data, location, pageContext }) {
 	const { speakers } = data

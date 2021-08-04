@@ -2,7 +2,8 @@ import React from 'react'
 import classNames from 'classnames'
 import { Disclosure } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
-import { Link } from '../link'
+
+import { Link } from 'components/link'
 
 function MobileMenu({ navigation }) {
 	return (

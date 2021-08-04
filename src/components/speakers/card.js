@@ -1,8 +1,9 @@
 import React from 'react'
-import { maybePluralize } from '../../utils'
 
-import { Card } from '../card'
-import { FauxLink } from '../fauxLink'
+import { maybePluralize } from 'utils/misc'
+
+import { Card } from 'components/card'
+import { FauxLink } from 'components/fauxLink'
 
 function SpeakerCard({ speaker }) {
 	return (

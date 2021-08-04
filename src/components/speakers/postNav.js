@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { SubNav } from '../subNav'
+import { SubNav } from 'components/subNav'
 
 function SpeakersPostNav({ data }) {
 	const { ministry, website } = data

@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { SEO } from '../components/seo'
-import { Intro } from '../components/intro'
+import { SEO } from 'components/seo'
+import { Intro } from 'components/intro'
 
 function NotFoundPage() {
 	return (

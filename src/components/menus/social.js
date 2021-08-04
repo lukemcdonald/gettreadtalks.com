@@ -1,7 +1,8 @@
 import React from 'react'
 import classNames from 'classnames'
 import { MailIcon, RssIcon } from '@heroicons/react/solid'
-import { Link } from '../link'
+
+import { Link } from 'components/link'
 
 const links = [
 	{

@@ -1,5 +1,6 @@
 import React from 'react'
-import { Select } from '../select'
+
+import { Select } from 'components/select'
 
 function SpeakersFilter({ className, current, label = 'Speakers', speakers }) {
 	return (

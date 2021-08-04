@@ -1,10 +1,10 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
-import { SEO } from '../components/seo'
-import { Section } from '../components/section'
-import { RandomProduct } from '../components/affiliates/randomProduct'
-import { Page } from '../components/page'
+import { SEO } from 'components/seo'
+import { Section } from 'components/section'
+import { RandomProduct } from 'components/affiliates/randomProduct'
+import { Page } from 'components/page'
 
 function SinglePage({ data, location }) {
 	const { data: page } = data.page

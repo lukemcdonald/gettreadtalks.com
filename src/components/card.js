@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import { HiStar as Star } from 'react-icons/hi'
 import classNames from 'classnames'
-import { Link } from './link'
+import { Link } from 'components/link'
 
-import { sanitizeHTMLTag } from '../utils'
-
-import { Avatar } from './avatar'
+import { Avatar } from 'components/avatar'
+import { sanitizeHTMLTag } from 'utils/misc'
 
 const CardTitle = ({ children, className, as }) => {
 	const Tag = sanitizeHTMLTag(as, ['h1', 'h2', 'h3'])

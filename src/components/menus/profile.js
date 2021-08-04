@@ -4,9 +4,9 @@ import { Menu, Transition } from '@headlessui/react'
 import { ArrowRightIcon, UserCircleIcon } from '@heroicons/react/solid'
 import Gravatar from 'react-gravatar'
 
-import { Link } from '../link'
-import { useAuth } from '../../context/auth'
-import { useAsync } from '../../utils/async'
+import { Link } from 'components/link'
+import { useAuth } from 'context/auth'
+import { useAsync } from 'utils/async'
 
 function styleMenu(item = '', args = {}) {
 	const { active, type } = args

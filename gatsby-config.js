@@ -27,6 +27,7 @@ export default {
 		'gatsby-plugin-sharp',
 		'gatsby-transformer-sharp',
 		`gatsby-plugin-netlify`,
+		'gatsby-plugin-resolve-src',
 		{
 			resolve: `gatsby-plugin-manifest`,
 			options: {

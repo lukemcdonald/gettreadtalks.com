@@ -1,7 +1,7 @@
 import React from 'react'
 import classNames from 'classnames'
 
-import { TalkCard } from './card'
+import { TalkCard } from 'components/talks/card'
 
 function TalksList({ children, className, subtitle, talks }) {
 	return (

@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import classNames from 'classnames'
 import { ExclamationCircleIcon } from '@heroicons/react/solid'
-import { useAsync } from '../../utils/async'
-import styles from './styles'
+import { useAsync } from 'utils/async'
+
+import styles from 'components/forms/styles'
 
 function LoginForm({ className, buttonText, onSubmit, context = {} }) {
 	const { isError, error, run } = useAsync()

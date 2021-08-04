@@ -1,9 +1,8 @@
 import React from 'react'
 
-import { getRandomObjectItem } from '../../utils'
-
-import { Scriptures } from './scriptures'
-import { Scripture } from './scripture'
+import { Scriptures } from 'components/scriptures/scriptures'
+import { Scripture } from 'components/scriptures/scripture'
+import { getRandomObjectItem } from 'utils/misc'
 
 function RandomScripture() {
 	return (

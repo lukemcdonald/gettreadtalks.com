@@ -1,11 +1,12 @@
 import React from 'react'
-import { useAuth } from '../../context/auth'
 
-import { LoginForm } from '../../components/forms/login'
-import { Link } from '../../components/link'
-import { Page } from '../../components/page'
-import { SEO } from '../../components/seo'
-import { Section } from '../../components/section'
+import { useAuth } from 'context/auth'
+
+import { LoginForm } from 'components/forms/login'
+import { Link } from 'components/link'
+import { Page } from 'components/page'
+import { SEO } from 'components/seo'
+import { Section } from 'components/section'
 
 function ResetPassword({ location }) {
 	const { resetPassword } = useAuth()

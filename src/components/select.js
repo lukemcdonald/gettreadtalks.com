@@ -4,7 +4,7 @@ import { Field, Form, Formik } from 'formik'
 import classNames from 'classnames'
 import { HiChevronDown as ChevronDown } from 'react-icons/hi'
 
-import { ConditionalWrapper } from './conditionalWrapper'
+import { ConditionalWrapper } from 'components/conditionalWrapper'
 
 const SelectGroup = ({ label, options }) => (
 	<ConditionalWrapper

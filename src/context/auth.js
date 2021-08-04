@@ -1,7 +1,8 @@
 import React from 'react'
 import { navigate } from 'gatsby'
 import firebase from 'gatsby-plugin-firebase'
-import { useAsync } from '../utils/async'
+
+import { useAsync } from 'utils/async'
 
 const AuthContext = React.createContext({})
 AuthContext.displayName = 'AuthContext'

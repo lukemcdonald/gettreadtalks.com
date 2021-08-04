@@ -1,11 +1,11 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
-import { SEO } from '../../components/seo'
-import { SpeakersList } from '../../components/speakers/list'
-import { Section } from '../../components/section'
-import { Page } from '../../components/page'
-import { SpeakersFilter } from '../../components/speakers/filter'
+import { Page } from 'components/page'
+import { Section } from 'components/section'
+import { SEO } from 'components/seo'
+import { SpeakersFilter } from 'components/speakers/filter'
+import { SpeakersList } from 'components/speakers/list'
 
 function FeaturedSpeakersPage({ data, location }) {
 	const { speakers } = data
