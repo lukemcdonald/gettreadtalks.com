@@ -1,4 +1,5 @@
 import React from 'react'
+import { navigate } from 'gatsby'
 import { useAuth } from '../context/auth'
 
 import { Link } from '../components/link'
@@ -8,7 +9,12 @@ import { Section } from '../components/section'
 import { SEO } from '../components/seo'
 
 function LoginPage({ location }) {
-	const { login } = useAuth()
+	const { login, user } = useAuth()
+
+	if (user) {
+		navigate('/account')
+	}
+
 	return (
 		<>
 			<SEO title="Sign in" location={location} />

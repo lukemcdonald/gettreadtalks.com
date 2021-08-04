@@ -1,4 +1,5 @@
 import React from 'react'
+import { navigate } from 'gatsby'
 import { useAuth } from '../context/auth'
 
 import { Link } from '../components/link'
@@ -8,7 +9,11 @@ import { Page } from '../components/page'
 import { LoginForm } from '../components/forms/login'
 
 function RegisterPage({ location }) {
-	const { register } = useAuth()
+	const { register, user } = useAuth()
+
+	if (user) {
+		navigate('/account')
+	}
 
 	return (
 		<>

@@ -29,7 +29,7 @@ function AuthProvider(props) {
 				.auth()
 				.signInWithEmailAndPassword(form.email, form.password)
 				.then((user) => setData(user))
-				.then(() => navigate('/')),
+				.then(() => navigate('/account')),
 		[setData]
 	)
 
@@ -39,7 +39,7 @@ function AuthProvider(props) {
 				.auth()
 				.createUserWithEmailAndPassword(form.email, form.password)
 				.then((user) => setData(user))
-				.then(() => navigate('/login')),
+				.then(() => navigate('/account')),
 		[setData]
 	)
 
