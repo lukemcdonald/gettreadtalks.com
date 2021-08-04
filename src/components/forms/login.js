@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import classNames from 'classnames'
+import { ExclamationCircleIcon } from '@heroicons/react/solid'
 import { useAsync } from '../../utils/async'
-import formStyles from './index'
+import styles from './styles'
 
-function LoginForm({ className, onSubmit, buttonText }) {
+function LoginForm({ className, buttonText, onSubmit, context = {} }) {
 	const { isError, error, run } = useAsync()
 	const [state, setState] = useState({
 		email: '',
@@ -25,10 +26,15 @@ function LoginForm({ className, onSubmit, buttonText }) {
 			onSubmit={handleSubmit}
 			className={classNames('p-10 bg-white rounded shadow-sm', className)}
 		>
-			{isError && <div className={formStyles.error}>{error.message}</div>}
+			{isError && (
+				<div className={classNames(styles.error, 'flex items-center')}>
+					<ExclamationCircleIcon className="w-10 h-10 mr-2" />
+					<p>{error.message}</p>
+				</div>
+			)}
 
-			<div className={formStyles.formRow}>
-				<label htmlFor="email" className={formStyles.label}>
+			<div className={styles.formRow}>
+				<label htmlFor="email" className={styles.label}>
 					Email address
 				</label>
 				<input
@@ -37,13 +43,17 @@ function LoginForm({ className, onSubmit, buttonText }) {
 					type="text"
 					onChange={handleChange}
 					value={state.email}
-					className={formStyles.input}
-					required
+					className={styles.input}
 				/>
 			</div>
 
-			<div className={formStyles.formRow}>
-				<label htmlFor="password" className={formStyles.label}>
+			<div
+				className={classNames(
+					styles.formRow,
+					context.pathname === '/password/reset' ? 'hidden' : ''
+				)}
+			>
+				<label htmlFor="password" className={styles.label}>
 					Password
 				</label>
 				<input
@@ -52,13 +62,12 @@ function LoginForm({ className, onSubmit, buttonText }) {
 					type="password"
 					onChange={handleChange}
 					value={state.password}
-					className={formStyles.input}
-					required
+					className={styles.input}
 				/>
 			</div>
 
-			<div className={formStyles.formRow}>
-				<button type="submit" className={formStyles.button}>
+			<div className={styles.formRow}>
+				<button type="submit" className={styles.button}>
 					{buttonText}
 				</button>
 			</div>

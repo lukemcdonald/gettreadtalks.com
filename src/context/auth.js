@@ -18,9 +18,10 @@ function AuthProvider(props) {
 		isSuccess,
 	} = useAsync()
 
-	React.useEffect(() => {
-		firebase.auth().onAuthStateChanged((user) => setData(user))
-	}, [setData])
+	React.useEffect(
+		() => firebase.auth().onAuthStateChanged((user) => setData(user)),
+		[setData]
+	)
 
 	const login = React.useCallback(
 		(form) =>
@@ -52,9 +53,19 @@ function AuthProvider(props) {
 		[setData]
 	)
 
+	const resetPassword = React.useCallback(
+		(form) =>
+			firebase
+				.auth()
+				.sendPasswordResetEmail(form.email)
+				.then(() => setData(null))
+				.then(() => navigate('/login')),
+		[setData]
+	)
+
 	const value = React.useMemo(
-		() => ({ login, logout, register, user }),
-		[login, logout, register, user]
+		() => ({ login, logout, register, resetPassword, user }),
+		[login, logout, register, resetPassword, user]
 	)
 
 	if (isLoading || isIdle) {

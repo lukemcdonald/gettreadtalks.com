@@ -7,9 +7,8 @@ import { Page } from '../components/page'
 import { Section } from '../components/section'
 import { SEO } from '../components/seo'
 
-function RegisterPage({ location }) {
+function LoginPage({ location }) {
 	const { login } = useAuth()
-
 	return (
 		<>
 			<SEO title="Sign in" location={location} />
@@ -20,7 +19,8 @@ function RegisterPage({ location }) {
 
 					<div className="mt-2 prose">
 						<p>
-							Or <Link to="/register">register for a free account &rarr;</Link>
+							Don't have an account?{' '}
+							<Link to="/register">Get access &rarr;</Link>
 						</p>
 					</div>
 				</Section.Sidebar>
@@ -48,4 +48,4 @@ function RegisterPage({ location }) {
 	)
 }
 
-export default RegisterPage
+export default LoginPage

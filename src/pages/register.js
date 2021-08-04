@@ -16,9 +16,13 @@ function RegisterPage({ location }) {
 
 			<Section>
 				<Section.Sidebar>
-					<Page.Title>Register your account</Page.Title>
+					<Page.Title>Create your account</Page.Title>
 
 					<div className="mt-2 prose">
+						<p>
+							Create a free account and enjoy the benefits of bookmarking your
+							own talks on TREAD Talks.
+						</p>
 						<p>
 							Or <Link to="/login">sign in to your account &rarr;</Link>
 						</p>
