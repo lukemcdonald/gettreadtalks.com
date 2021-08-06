@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import classNames from 'classnames'
 import { ExclamationCircleIcon } from '@heroicons/react/solid'
-import { useAsync } from 'utils/async'
+import { useAsync } from 'hooks/useAsync'
 
 import styles from 'components/forms/styles'
 

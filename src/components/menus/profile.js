@@ -6,7 +6,7 @@ import Gravatar from 'react-gravatar'
 
 import { Link } from 'components/link'
 import { useAuth } from 'context/auth'
-import { useAsync } from 'utils/async'
+import { useAsync } from 'hooks/useAsync'
 
 function styleMenu(item = '', args = {}) {
 	const { active, type } = args
