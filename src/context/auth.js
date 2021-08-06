@@ -4,6 +4,8 @@ import firebase from 'gatsby-plugin-firebase'
 
 import { useAsync } from 'utils/async'
 
+import { FullPageLogo, FullPageErrorFallback } from 'components/loader'
+
 const AuthContext = React.createContext({})
 AuthContext.displayName = 'AuthContext'
 
@@ -70,16 +72,11 @@ function AuthProvider(props) {
 	)
 
 	if (isLoading || isIdle) {
-		return <div>Loading...</div>
+		return <FullPageLogo />
 	}
 
 	if (isError) {
-		return (
-			<div role="alert">
-				<p>Uh oh... There's a problem. Try refreshing the app.</p>
-				<pre>{error.message}</pre>
-			</div>
-		)
+		return <FullPageErrorFallback error={error} />
 	}
 
 	if (isSuccess) {
