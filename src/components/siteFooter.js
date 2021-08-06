@@ -1,10 +1,8 @@
 import React from 'react'
 import { Section } from 'components/section'
 
-import { getCurrentYear } from 'utils/misc'
-
 function SiteFooter({ siteTitle }) {
-	const year = getCurrentYear()
+	const year = new Date().getFullYear()
 	const copyright = `© ${siteTitle} ${year}`
 	return (
 		<Section as="footer" className="bg-gradient-to-t from-white">

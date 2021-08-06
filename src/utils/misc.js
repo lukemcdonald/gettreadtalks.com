@@ -1,5 +1,3 @@
-const getCurrentYear = () => new Date().getFullYear()
-
 const getRandomIndex = (items) => items[parseInt(Math.random() * items.length)]
 
 const getRandomObjectItem = (items = {}) => {
@@ -70,7 +68,6 @@ const maybePluralize = (count, noun, args = {}) => {
 
 export {
 	arrayShuffle,
-	getCurrentYear,
 	getRandomIndex,
 	getRandomObjectItem,
 	trimText,
