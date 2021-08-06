@@ -1,36 +1,21 @@
 import React from 'react'
 import Helmet from 'react-helmet'
-import { useStaticQuery, graphql } from 'gatsby'
 import striptags from 'striptags'
 
+import { useSiteMetadata } from 'hooks/useSiteMetadata'
 import { trimText } from 'utils/misc'
 
 function SEO({ children, location, title, description, image }) {
-	const { site } = useStaticQuery(graphql`
-		query {
-			site {
-				siteMetadata {
-					title
-					description
-				}
-			}
-		}
-	`)
+	const { title: siteTitle, description: siteDescription } = useSiteMetadata()
 
 	const seo = {
-		title: striptags(title || site.siteMetadata.title),
-		description: trimText(
-			striptags(description || site.siteMetadata.description),
-			160
-		),
+		title: striptags(title || siteTitle),
+		description: trimText(striptags(description || siteDescription), 160),
 		image: image || '/default-seo-image.png',
 	}
 
 	return (
-		<Helmet
-			htmlAttributes={{ lang: 'en' }}
-			titleTemplate={`%s — ${site.siteMetadata.title}`}
-		>
+		<Helmet htmlAttributes={{ lang: 'en' }} titleTemplate={`%s — ${siteTitle}`}>
 			<title>{seo.title}</title>
 
 			{/* Fav Icons */}
@@ -47,11 +32,7 @@ function SEO({ children, location, title, description, image }) {
 			{location && <meta property="og:url" content={location.href} />}
 			<meta property="og:image" content={seo.image} />
 			<meta property="og:title" content={seo.title} key="ogtitle" />
-			<meta
-				property="og:site_name"
-				content={site.siteMetadata.title}
-				key="ogsitename"
-			/>
+			<meta property="og:site_name" content={siteTitle} key="ogsitename" />
 			<meta property="og:description" content={seo.description} key="ogdesc" />
 
 			{/* Twitter */}
