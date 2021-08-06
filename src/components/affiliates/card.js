@@ -6,9 +6,7 @@ import { Card } from 'components/card'
 import { Disclosure } from 'components/affiliates/disclosure'
 import { FauxLink } from 'components/fauxLink'
 
-function Product(props) {
-	const { data: post, className } = props
-
+function AffiliateLinkCard({ data: post, className }) {
 	return (
 		<Card className="relative border-none rounded">
 			<div className={classNames('flex items-center', className)}>
@@ -36,10 +34,16 @@ function Product(props) {
 					{`View to ${post.title}`}
 				</FauxLink>
 
-				<Disclosure title="Affiliate" />
+				<Disclosure title="Affiliate">
+					<p>
+						A small commission may be earned through links, endorsements,
+						recommendations, and/or testimonials for any products shown on this
+						site. Your purchase helps support the website.
+					</p>
+				</Disclosure>
 			</div>
 		</Card>
 	)
 }
 
-export { Product }
+export { AffiliateLinkCard }

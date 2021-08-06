@@ -1,9 +1,8 @@
-import React from 'react'
-import { graphql, StaticQuery } from 'gatsby'
+import { graphql, useStaticQuery } from 'gatsby'
 
-const query = graphql`
+const affiliateLinksQuery = graphql`
 	{
-		affiliates: allAirtableAffiliateLink(
+		links: allAirtableAffiliateLink(
 			filter: { data: { title: { ne: null } } }
 			sort: { fields: data___type, order: ASC }
 		) {
@@ -43,22 +42,17 @@ const query = graphql`
 	}
 `
 
-function Products({ children }) {
-	return (
-		<StaticQuery query={query}>
-			{({ affiliates: { nodes } }) =>
-				children(
-					nodes.reduce(
-						(allLinks, node, index) => ({
-							...allLinks,
-							[index]: node.data,
-						}),
-						{}
-					)
-				)
-			}
-		</StaticQuery>
-	)
+function useAffiliateLinks() {
+	const data = useStaticQuery(affiliateLinksQuery)
+
+	const links = data.links.nodes.map(({ id, data }) => ({
+		id,
+		...data,
+	}))
+
+	const randomLink = links[Math.floor(Math.random() * links.length)]
+
+	return { links, randomLink }
 }
 
-export { Products }
+export { useAffiliateLinks }

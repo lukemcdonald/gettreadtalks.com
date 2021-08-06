@@ -1,13 +1,16 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
+import { useAffiliateLinks } from 'hooks/useAffiliateLinks'
+
 import { SEO } from 'components/seo'
 import { Section } from 'components/section'
-import { RandomProduct } from 'components/affiliates/randomProduct'
+import { AffiliateLinkCard } from 'components/affiliates/card'
 import { Page } from 'components/page'
 
 function SinglePage({ data, location }) {
 	const { data: page } = data.page
+	const { randomLink } = useAffiliateLinks()
 
 	return (
 		<>
@@ -30,7 +33,7 @@ function SinglePage({ data, location }) {
 					</div>
 
 					<div className="mt-10">
-						<RandomProduct className="rounded" card />
+						<AffiliateLinkCard data={randomLink} className="rounded" />
 					</div>
 				</Section.Content>
 			</Section>
