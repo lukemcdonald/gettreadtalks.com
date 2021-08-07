@@ -1,10 +1,6 @@
 import React from 'react'
 import classNames from 'classnames'
-
-import {
-	HiChevronLeft as ChevronLeft,
-	HiChevronRight as ChevronRight,
-} from 'react-icons/hi'
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/solid'
 
 import { Link } from 'components/link'
 
@@ -58,7 +54,7 @@ function Pagination({
 							)}
 						>
 							<span>
-								<ChevronLeft />
+								<ChevronLeftIcon className="w-5 h-5" />
 							</span>
 							<span
 								className={classNames(showPreviousLabel ? 'pr-1' : 'sr-only')}
@@ -93,7 +89,7 @@ function Pagination({
 							<span className={classNames(showNextLabel ? 'pl-1' : 'sr-only')}>
 								Next
 							</span>
-							<ChevronRight />
+							<ChevronRightIcon className="w-5 h-5" />
 						</Link>
 					)}
 				</nav>

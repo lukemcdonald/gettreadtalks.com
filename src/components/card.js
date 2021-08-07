@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { HiStar as Star } from 'react-icons/hi'
+import { StarIcon } from '@heroicons/react/solid'
 import classNames from 'classnames'
 import { Link } from 'components/link'
 
@@ -57,7 +57,7 @@ const CardMetaLink = ({ children, className, to }) => (
 const CardAvatar = ({ image, alt }) => (
 	<figure className="w-16 h-16 mr-4">
 		<Avatar
-			className="w-16 h-16"
+			className="w-16 h-16 rounded-full"
 			imgClassName="rounded-full"
 			image={image}
 			alt={alt}
@@ -73,7 +73,7 @@ const CardFeaturedLink = ({ className, to }) => (
 			className
 		)}
 	>
-		<Star className="w-5 h-5" />
+		<StarIcon className="w-5 h-5" />
 	</Link>
 )
 

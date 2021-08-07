@@ -1,10 +1,3 @@
-const getRandomIndex = (items) => items[parseInt(Math.random() * items.length)]
-
-const getRandomObjectItem = (items = {}) => {
-	const keys = Object.keys(items)
-	return items[getRandomIndex(keys)]
-}
-
 const trimText = (text, limit) => {
 	if (text.length > limit) {
 		return `${text.slice(0, limit).trim()}...`
@@ -66,11 +59,4 @@ const maybePluralize = (count, noun, args = {}) => {
 	return `${displayCount} ${noun}${count !== 1 ? options.suffix : ''}`
 }
 
-export {
-	arrayShuffle,
-	getRandomIndex,
-	getRandomObjectItem,
-	trimText,
-	sanitizeHTMLTag,
-	maybePluralize,
-}
+export { arrayShuffle, trimText, sanitizeHTMLTag, maybePluralize }

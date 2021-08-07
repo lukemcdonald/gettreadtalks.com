@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { navigate } from 'gatsby'
 import { Field, Form, Formik } from 'formik'
 import classNames from 'classnames'
-import { HiChevronDown as ChevronDown } from 'react-icons/hi'
+import { ChevronDownIcon } from '@heroicons/react/solid'
 
 import { ConditionalWrapper } from 'components/conditionalWrapper'
 
@@ -34,7 +34,7 @@ class Select extends Component {
 		return (
 			<div className={classNames('relative inline-block', className)}>
 				<span>{current.label || label}</span>
-				<ChevronDown className="relative inline-block w-8 mb-px -mr-8" />
+				<ChevronDownIcon className="relative inline-block w-8 mb-px -mr-8" />
 
 				<Formik
 					initialValues={{ optionPath: current.value || '' }}
