@@ -3,6 +3,7 @@ import { navigate } from 'gatsby'
 import firebase from 'gatsby-plugin-firebase'
 
 import { useAsync } from 'hooks/useAsync'
+import { useUsers } from 'hooks/useUsers'
 
 import { FullPageLogo, FullPageErrorFallback } from 'components/loader'
 
@@ -21,8 +22,10 @@ function AuthProvider(props) {
 		isSuccess,
 	} = useAsync()
 
+	const { createUser } = useUsers()
+
 	React.useEffect(
-		() => firebase.auth().onAuthStateChanged((user) => setData(user)),
+		() => firebase.auth().onAuthStateChanged((_user) => setData(_user)),
 		[setData]
 	)
 
@@ -31,7 +34,7 @@ function AuthProvider(props) {
 			firebase
 				.auth()
 				.signInWithEmailAndPassword(form.email, form.password)
-				.then((user) => setData(user))
+				.then((_user) => setData(_user))
 				.then(() => navigate('/account')),
 		[setData]
 	)
@@ -41,9 +44,12 @@ function AuthProvider(props) {
 			firebase
 				.auth()
 				.createUserWithEmailAndPassword(form.email, form.password)
-				.then((user) => setData(user))
+				.then((_user) => {
+					setData(_user)
+					createUser(_user.user)
+				})
 				.then(() => navigate('/account')),
-		[setData]
+		[setData, createUser]
 	)
 
 	const logout = React.useCallback(
