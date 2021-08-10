@@ -43,6 +43,7 @@ function TalkCard({ talk }) {
 				</Card.Meta>
 
 				{talk?.favorite && <Card.FeaturedLink to="/talks/featured/" />}
+				<div className="relative z-50">{talk.id}</div>
 			</div>
 
 			{talk?.slug && talk?.slug && (

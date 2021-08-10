@@ -1,8 +1,9 @@
+import React from 'react'
 import firebase from 'gatsby-plugin-firebase'
 import { useAsync } from 'hooks/useAsync'
 
 function useUsers() {
-	const db = firebase.firestore()
+	const firestore = firebase.firestore()
 
 	const {
 		data: profile,
@@ -15,103 +16,152 @@ function useUsers() {
 		isSuccess,
 	} = useAsync()
 
-	async function createUser(id) {
-		const userData = {
-			creationTime: new Date(),
-		}
+	const createUser = React.useCallback(
+		(id, userData, args) => {
+			const updates = {
+				creationTime: new Date(),
+				...(userData || {}),
+			}
+			return firestore
+				.collection('users')
+				.doc(id)
+				.set(updates, args || { merge: true })
+				.then(() => firestore.collection('users').doc(id).get())
+				.then((doc) =>
+					setData({
+						id: doc.id,
+						...doc.data(),
+					})
+				)
+		},
+		[firestore, setData]
+	)
 
-		await db.collection('users').doc(id).set(userData, { merge: true })
+	const readAllUsers = React.useCallback(
+		() =>
+			firestore
+				.collection('users')
+				.get()
+				.then((snapshot) => {
+					const users = snapshot.docs.map((doc) => ({
+						id: doc.id,
+						...doc.data(),
+					}))
+					setData(users)
+				}),
+		[firestore, setData]
+	)
 
-		setData(id)
-		// console.log(id)
-		return id
-	}
+	const readUserById = React.useCallback(
+		(id) =>
+			firestore
+				.collection('users')
+				.doc(id)
+				.get()
+				.then((doc) =>
+					setData({
+						id: doc.id,
+						...doc.data(),
+					})
+				),
+		[firestore, setData]
+	)
 
-	async function readAllUsers() {
-		const snapshot = await db.collection('users').get()
-		const users = snapshot.docs.map((doc) => ({
-			id: doc.id,
-			...doc.data(),
-		}))
+	const readUserByField = React.useCallback(
+		(field) =>
+			firestore
+				.collection('users')
+				.limit(1)
+				.where(field.tostring(), '==', field)
+				.get()
+				.then((snapshot) => {
+					const doc = snapshot.docs[0]
+					setData({
+						id: doc.id,
+						...doc.data(),
+					})
+				}),
+		[firestore, setData]
+	)
 
-		setData(users)
-		// console.log(users)
-		return users
-	}
+	const setUser = React.useCallback(
+		(id, updates, args) =>
+			firestore
+				.collection('users')
+				.doc(id)
+				.set(updates, args || { merge: true })
+				.then(() => firestore.collection('users').doc(id).get())
+				.then((doc) =>
+					setData({
+						id: doc.id,
+						...doc.data(),
+					})
+				),
+		[firestore, setData]
+	)
 
-	async function readUserById(id) {
-		const doc = await db.collection('users').doc(id).get()
-		const user = {
-			id: doc.id,
-			...doc.data(),
-		}
+	const updateUser = React.useCallback(
+		(id, updates) =>
+			firestore
+				.collection('users')
+				.doc(id)
+				.update(updates)
+				.then(() => firestore.collection('users').doc(id).get())
+				.then((doc) =>
+					setData({
+						id: doc.id,
+						...doc.data(),
+					})
+				),
+		[firestore, setData]
+	)
 
-		setData(user)
-		// console.log(user)
-		return user
-	}
+	const deleteUserById = React.useCallback(
+		(id) =>
+			firestore
+				.collection('users')
+				.doc(id)
+				.delete()
+				.then(() => setData(null)),
+		[firestore, setData]
+	)
 
-	async function readUserByName(name) {
-		const snapshot = await db
-			.collection('users')
-			.limit(1)
-			.where('name', '==', name)
-			.get()
+	const value = React.useMemo(
+		() => ({
+			createUser,
+			readAllUsers,
+			readUserById,
+			readUserByField,
+			updateUser,
+			setUser,
+			deleteUserById,
+			profile,
+			error,
+			status,
+			isLoading,
+			isIdle,
+			isError,
+			isSuccess,
+		}),
+		[
+			createUser,
+			readAllUsers,
+			readUserById,
+			readUserByField,
+			updateUser,
+			setUser,
+			deleteUserById,
+			profile,
+			error,
+			status,
+			isLoading,
+			isIdle,
+			isError,
+			isSuccess,
+		]
+	)
 
-		const doc = snapshot.docs[0]
-
-		const user = {
-			id: doc.id,
-			...doc.data(),
-		}
-
-		setData(user)
-		// console.log(user)
-		return user
-	}
-
-	async function setUser(id, updates, args) {
-		await db
-			.collection('users')
-			.doc(id)
-			.set(updates, args || { merge: true })
-
-		setData(id)
-		// console.log(id)
-		return id
-	}
-
-	// returns void
-	async function updateUser(id, updates) {
-		await db.collection('users').doc(id).update(updates)
-		const doc = await db.collection('users').doc(id).get()
-
-		const user = {
-			id: doc.id,
-			...doc.data(),
-		}
-		setData(user)
-		// console.log(user)
-		return user
-	}
-
-	// returns void
-	async function deleteUserById(id) {
-		await db.collection('users').doc(id).delete()
-
-		setData(id)
-		// console.log(id)
-		return id
-	}
-
-	return {
-		deleteUserById,
-		readUserById,
-		readAllUsers,
-		createUser,
-		setUser,
-		updateUser,
-	}
+	return value
 }
 
 export { useUsers }
