@@ -1,15 +1,30 @@
-import React from 'react'
 import firebase from 'gatsby-plugin-firebase'
+import { useAsync } from 'hooks/useAsync'
 
 function useUsers() {
 	const db = firebase.firestore()
 
-	function createUser(user) {
+	const {
+		data: profile,
+		status,
+		error,
+		setData,
+		isLoading,
+		isIdle,
+		isError,
+		isSuccess,
+	} = useAsync()
+
+	async function createUser(id) {
 		const userData = {
 			creationTime: new Date(),
 		}
 
-		db.collection('users').doc(user.uid).set(userData, { merge: true })
+		await db.collection('users').doc(id).set(userData, { merge: true })
+
+		setData(id)
+		// console.log(id)
+		return id
 	}
 
 	async function readAllUsers() {
@@ -19,7 +34,8 @@ function useUsers() {
 			...doc.data(),
 		}))
 
-		console.log(users)
+		setData(users)
+		// console.log(users)
 		return users
 	}
 
@@ -30,7 +46,8 @@ function useUsers() {
 			...doc.data(),
 		}
 
-		console.log(user)
+		setData(user)
+		// console.log(user)
 		return user
 	}
 
@@ -48,21 +65,20 @@ function useUsers() {
 			...doc.data(),
 		}
 
-		console.log(user)
+		setData(user)
+		// console.log(user)
 		return user
 	}
 
-	function setUser(user) {
-		const userData = {
-			updatedTime: new Date(),
-			favoriteTalks: [
-				'6cac2356-23a9-5f80-8283-02d201e371e5',
-				'5c2c77dd-1bca-557e-a14a-c5f2273a5a1d',
-				'932efc94-bacd-5ea9-a494-5b80120bb279',
-			],
-		}
+	async function setUser(id, updates, args) {
+		await db
+			.collection('users')
+			.doc(id)
+			.set(updates, args || { merge: true })
 
-		db.collection('users').doc(user.uid).set(userData, { merge: true })
+		setData(id)
+		// console.log(id)
+		return id
 	}
 
 	// returns void
@@ -74,8 +90,8 @@ function useUsers() {
 			id: doc.id,
 			...doc.data(),
 		}
-
-		console.log(user)
+		setData(user)
+		// console.log(user)
 		return user
 	}
 
@@ -83,7 +99,8 @@ function useUsers() {
 	async function deleteUserById(id) {
 		await db.collection('users').doc(id).delete()
 
-		console.log(id)
+		setData(id)
+		// console.log(id)
 		return id
 	}
 
