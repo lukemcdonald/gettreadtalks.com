@@ -46,7 +46,7 @@ function AuthProvider(props) {
 				.createUserWithEmailAndPassword(form.email, form.password)
 				.then((_user) => {
 					setData(_user)
-					createUser(_user.user)
+					createUser(_user.user.uid)
 				})
 				.then(() => navigate('/account')),
 		[setData, createUser]
