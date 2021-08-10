@@ -92,7 +92,7 @@ function ProfileMenu() {
 							<Menu.Item>
 								{({ active }) => (
 									<Link
-										to="/account/profile"
+										to="/account/settings"
 										className={styleMenu('item', { active })}
 									>
 										Profile

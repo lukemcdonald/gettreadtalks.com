@@ -23,13 +23,13 @@ function AccountPage({ location }) {
 
 			<Section>
 				<Section.Sidebar>
-					<Page.Title>Settings</Page.Title>
+					<Page.Title>Settings Page</Page.Title>
 
 					<div className="mt-2 prose">Sidebar</div>
 				</Section.Sidebar>
 
 				<Section.Content>
-					<p>Contnet area</p>
+					<p>Content area</p>
 				</Section.Content>
 			</Section>
 		</>
