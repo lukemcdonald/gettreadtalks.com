@@ -1,10 +1,12 @@
-import React, { Component } from 'react'
-import { StarIcon } from '@heroicons/react/solid'
+import React, { Component, useEffect, useState } from 'react'
+import { HeartIcon as HeartOutlineIcon } from '@heroicons/react/outline'
+import { HeartIcon, StarIcon } from '@heroicons/react/solid'
 import classNames from 'classnames'
-import { Link } from 'components/link'
+
+import { sanitizeHTMLTag } from 'utils/misc'
 
 import { Avatar } from 'components/avatar'
-import { sanitizeHTMLTag } from 'utils/misc'
+import { Link } from 'components/link'
 
 const CardTitle = ({ children, className, as }) => {
 	const Tag = sanitizeHTMLTag(as, ['h1', 'h2', 'h3'])
@@ -77,8 +79,33 @@ const CardFeaturedLink = ({ className, to }) => (
 	</Link>
 )
 
+const CardFavoriteButton = ({ className, onClick, isFavorite = false }) => {
+	const [active, setActive] = useState()
+
+	React.useEffect(() => {
+		setActive(isFavorite)
+	}, [isFavorite])
+
+	function handleClick() {
+		setActive(!active)
+		onClick()
+	}
+
+	return (
+		<button className={className} type="button" onClick={handleClick}>
+			{active ? (
+				<HeartIcon className="w-full h-full" />
+			) : (
+				<HeartOutlineIcon className="w-full h-full" />
+			)}
+		</button>
+	)
+}
+
 class Card extends Component {
 	static Avatar = CardAvatar
+
+	static FavoriteButton = CardFavoriteButton
 
 	static FeaturedLink = CardFeaturedLink
 

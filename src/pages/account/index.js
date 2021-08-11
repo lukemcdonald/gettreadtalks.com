@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { navigate } from 'gatsby'
 
 import { useAuth } from 'context/auth'
@@ -6,13 +6,15 @@ import { Page } from 'components/page'
 import { Section } from 'components/section'
 import { SEO } from 'components/seo'
 
-import { useUsers } from 'hooks/useUsers'
+import { useUsers } from 'context/users'
 import styles from 'components/styles'
 import { useAsync } from 'hooks/useAsync'
+import { useUsersFavoriteTalks } from 'hooks/useUsersFavoriteTalks'
 
 function AccountPage({ location }) {
 	const { user } = useAuth()
-	const { run, isLoading } = useAsync()
+	const { run } = useAsync()
+	const { addFavoriteTalk } = useUsersFavoriteTalks()
 	const {
 		deleteUserById,
 		readUserById,
@@ -24,24 +26,6 @@ function AccountPage({ location }) {
 
 	if (!user) {
 		navigate('/login')
-	}
-
-	useEffect(() => {
-		run(readUserById(user.uid))
-	}, [readUserById, run, user])
-
-	function addFeaturedTalk(userId, talkId) {
-		const talks = profile.favoriteTalks || []
-
-		if (talks.includes(talkId)) {
-			return
-		}
-
-		run(
-			updateUser(userId, {
-				favoriteTalks: [talkId, ...talks],
-			})
-		)
 	}
 
 	return (
@@ -57,35 +41,27 @@ function AccountPage({ location }) {
 							className={styles.button}
 							type="button"
 							onClick={() =>
-								addFeaturedTalk(
-									user.uid,
-									'0502e2f8-feb2-5dd9-8fc2-5482a26b38fa'
-								)
+								addFavoriteTalk({
+									id: '0502e2f8-feb2-5dd9-8fc2-5482a26b38fa',
+								})
 							}
 						>
-							Add featured talk
+							Add 0502e2f8
 						</button>
-						<hr />
+
 						<button
 							className={styles.button}
 							type="button"
 							onClick={() =>
-								setUser(
-									user.uid,
-									{
-										updatedTime: new Date(),
-										favoriteTalks: [
-											'6cac2356-23a9-5f80-8283-02d201e371e5',
-											'5c2c77dd-1bca-557e-a14a-c5f2273a5a1d',
-											'932efc94-bacd-5ea9-a494-5b80120bb279',
-										],
-									},
-									{ merge: false }
-								)
+								addFavoriteTalk({
+									id: 'a4378110-f90c-5546-b2b5-78690ae1b1ff',
+								})
 							}
 						>
-							Reset user
+							Add a4378110
 						</button>
+
+						<hr />
 
 						<button
 							className={styles.button}
@@ -98,6 +74,14 @@ function AccountPage({ location }) {
 							}
 						>
 							Update user
+						</button>
+
+						<button
+							className={styles.button}
+							type="button"
+							onClick={() => setUser(user.uid, {}, { merge: false })}
+						>
+							Reset user
 						</button>
 
 						<button
@@ -119,6 +103,27 @@ function AccountPage({ location }) {
 						<button
 							className={styles.button}
 							type="button"
+							onClick={() =>
+								setUser(
+									user.uid,
+									{
+										updatedTime: new Date(),
+										favoriteTalks: [
+											'6cac2356-23a9-5f80-8283-02d201e371e5',
+											'5c2c77dd-1bca-557e-a14a-c5f2273a5a1d',
+											'932efc94-bacd-5ea9-a494-5b80120bb279',
+										],
+									},
+									{ merge: false }
+								)
+							}
+						>
+							Add default data
+						</button>
+
+						<button
+							className={styles.button}
+							type="button"
 							onClick={() => deleteUserById(user.uid)}
 						>
 							Delete user by ID
@@ -128,6 +133,7 @@ function AccountPage({ location }) {
 
 				<Section.Content>
 					<h2 className="text-xl font-bold">Profile Data</h2>
+					{console.log('Account', profile)}
 					{profile && (
 						<pre className="mt-6">
 							<ul className="prose">

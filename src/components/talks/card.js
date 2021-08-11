@@ -3,9 +3,35 @@ import React, { Fragment } from 'react'
 import { Card } from 'components/card'
 import { FauxLink } from 'components/fauxLink'
 
+import { useUsersFavoriteTalks } from 'hooks/useUsersFavoriteTalks'
+import { useUsers } from 'context/users'
+
 function TalkCard({ talk }) {
+	const { toggleFavoriteTalk } = useUsersFavoriteTalks(talk)
+	const [talkId, setTalkId] = React.useState(talk.id)
+	const [favorite, setFavorite] = React.useState(false)
+	const { profile } = useUsers()
+
+	React.useEffect(() => {
+		if (!profile) {
+			return
+		}
+
+		if (
+			profile?.favoriteTalks &&
+			profile.favoriteTalks.some((id) => id === talkId)
+		) {
+			setFavorite(true)
+		}
+	}, [profile, talkId])
+
 	return (
 		<Card>
+			<Card.FavoriteButton
+				className="absolute bottom-0 right-0 z-50 w-8 h-8 p-1 m-1 text-gray-300 rounded hover:text-red-600"
+				onClick={() => toggleFavoriteTalk({ id: talkId })}
+				isFavorite={favorite}
+			/>
 			{talk?.speakers.map(
 				(speaker) =>
 					speaker.data?.avatar && (

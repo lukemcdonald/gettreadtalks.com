@@ -3,7 +3,6 @@ import { navigate } from 'gatsby'
 import firebase from 'gatsby-plugin-firebase'
 
 import { useAsync } from 'hooks/useAsync'
-import { useUsers } from 'hooks/useUsers'
 
 import { FullPageLogo, FullPageErrorFallback } from 'components/loader'
 
@@ -11,6 +10,8 @@ const AuthContext = React.createContext({})
 AuthContext.displayName = 'AuthContext'
 
 function AuthProvider(props) {
+	const firestore = firebase.firestore()
+
 	const {
 		data: user,
 		status,
@@ -22,11 +23,25 @@ function AuthProvider(props) {
 		isSuccess,
 	} = useAsync()
 
-	const { createUser } = useUsers()
-
 	React.useEffect(
 		() => firebase.auth().onAuthStateChanged((_user) => setData(_user)),
 		[setData]
+	)
+
+	const updateUsersCollection = React.useCallback(
+		(id, updates, args) =>
+			firestore
+				.collection('users')
+				.doc(id)
+				.set(updates, args || { merge: true })
+				.then(() => firestore.collection('users').doc(id).get())
+				.then((doc) =>
+					setData({
+						id: doc.id,
+						...doc.data(),
+					})
+				),
+		[firestore, setData]
 	)
 
 	const login = React.useCallback(
@@ -46,10 +61,10 @@ function AuthProvider(props) {
 				.createUserWithEmailAndPassword(form.email, form.password)
 				.then((_user) => {
 					setData(_user)
-					createUser(_user.user.uid)
+					updateUsersCollection(_user.user.uid, { creationTime: new Date() })
 				})
 				.then(() => navigate('/account')),
-		[setData, createUser]
+		[setData, updateUsersCollection]
 	)
 
 	const logout = React.useCallback(

@@ -1,9 +1,15 @@
 import React from 'react'
 import firebase from 'gatsby-plugin-firebase'
 import { useAsync } from 'hooks/useAsync'
+import { useAuth } from 'context/auth'
+import { Spinner, ErrorFallback } from 'components/loader'
 
-function useUsers() {
+const UsersContext = React.createContext({})
+UsersContext.displayName = 'UsersContext'
+
+function UsersProvider(props) {
 	const firestore = firebase.firestore()
+	const { user } = useAuth()
 
 	const {
 		data: profile,
@@ -16,26 +22,20 @@ function useUsers() {
 		isSuccess,
 	} = useAsync()
 
-	const createUser = React.useCallback(
-		(id, userData, args) => {
-			const updates = {
-				creationTime: new Date(),
-				...(userData || {}),
-			}
+	React.useEffect(() => {
+		if (user) {
 			return firestore
 				.collection('users')
-				.doc(id)
-				.set(updates, args || { merge: true })
-				.then(() => firestore.collection('users').doc(id).get())
+				.doc(user.uid)
+				.get()
 				.then((doc) =>
 					setData({
 						id: doc.id,
 						...doc.data(),
 					})
 				)
-		},
-		[firestore, setData]
-	)
+		}
+	}, [firestore, setData, user])
 
 	const readAllUsers = React.useCallback(
 		() =>
@@ -128,7 +128,6 @@ function useUsers() {
 
 	const value = React.useMemo(
 		() => ({
-			createUser,
 			readAllUsers,
 			readUserById,
 			readUserByField,
@@ -136,15 +135,8 @@ function useUsers() {
 			setUser,
 			deleteUserById,
 			profile,
-			error,
-			status,
-			isLoading,
-			isIdle,
-			isError,
-			isSuccess,
 		}),
 		[
-			createUser,
 			readAllUsers,
 			readUserById,
 			readUserByField,
@@ -152,16 +144,30 @@ function useUsers() {
 			setUser,
 			deleteUserById,
 			profile,
-			error,
-			status,
-			isLoading,
-			isIdle,
-			isError,
-			isSuccess,
 		]
 	)
 
-	return value
+	if (isLoading || isIdle) {
+		return <Spinner className="w-16 h-16 text-red-600" />
+	}
+
+	if (isError) {
+		return <ErrorFallback error={error} />
+	}
+
+	if (isSuccess) {
+		return <UsersContext.Provider value={value} {...props} />
+	}
+
+	throw new Error(`Unhandled status: ${status}`)
 }
 
-export { useUsers }
+function useUsers() {
+	const context = React.useContext(UsersContext)
+	if (context === undefined) {
+		throw new Error(`useUsers must be used within UsersProvider`)
+	}
+	return context
+}
+
+export { UsersProvider, useUsers }

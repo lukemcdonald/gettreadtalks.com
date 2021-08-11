@@ -2,7 +2,7 @@ import React from 'react'
 import classNames from 'classnames'
 import { Logo } from 'components/svgs/logo'
 
-function Spinner({ className, ...props }) {
+export function Spinner({ className, ...props }) {
 	return (
 		<div
 			className={classNames(
@@ -14,7 +14,7 @@ function Spinner({ className, ...props }) {
 	)
 }
 
-function FullPageSpinner() {
+export function FullPageSpinner() {
 	return (
 		<div className="flex flex-col items-center justify-center h-screen">
 			<Spinner className="w-16 h-16 text-red-600" />
@@ -22,7 +22,7 @@ function FullPageSpinner() {
 	)
 }
 
-function FullPageLogo() {
+export function FullPageLogo() {
 	return (
 		<div className="flex flex-col items-center justify-center h-screen">
 			<Logo className="h-10 animate-bounce" />
@@ -30,16 +30,22 @@ function FullPageLogo() {
 	)
 }
 
-function FullPageErrorFallback({ error }) {
+export function ErrorFallback({ error }) {
 	return (
-		<div
-			role="alert"
-			className="flex flex-col items-center justify-center h-screen"
-		>
+		<div>
 			<p>Uh oh... There's a problem. Try refreshing the app.</p>
 			<pre>{error.message}</pre>
 		</div>
 	)
 }
 
-export { Spinner, FullPageLogo, FullPageSpinner, FullPageErrorFallback }
+export function FullPageErrorFallback({ error }) {
+	return (
+		<div
+			role="alert"
+			className="flex flex-col items-center justify-center h-screen"
+		>
+			<ErrorFallback error={error} />
+		</div>
+	)
+}
