@@ -1,4 +1,9 @@
-const trimText = (text, limit) => {
+export const callAll =
+	(...fns) =>
+	(...args) =>
+		fns.forEach((fn) => fn?.(...args))
+
+export const trimText = (text, limit) => {
 	if (text.length > limit) {
 		return `${text.slice(0, limit).trim()}...`
 	}
@@ -6,7 +11,7 @@ const trimText = (text, limit) => {
 	return text
 }
 
-function arrayShuffle(array = []) {
+export function arrayShuffle(array = []) {
 	if (!Array.isArray(array)) {
 		throw new Error(
 			`Got a parameter of type ${typeof array} instead of an array`
@@ -19,13 +24,13 @@ function arrayShuffle(array = []) {
 		.map((a) => a[1])
 }
 
-const sanitizeHTMLTag = (tagname = '', whitelist = []) => {
+export const sanitizeHTMLTag = (tagname = '', whitelist = []) => {
 	const sanitized = tagname ? tagname.toLowerCase() : ''
 	const tags = whitelist || [tagname]
 	return tags.includes(sanitized) ? sanitized : whitelist[0]
 }
 
-const maybePluralize = (count, noun, args = {}) => {
+export const maybePluralize = (count, noun, args = {}) => {
 	const defaults = {
 		suffix: 's',
 		showCount: true,
@@ -58,5 +63,3 @@ const maybePluralize = (count, noun, args = {}) => {
 
 	return `${displayCount} ${noun}${count !== 1 ? options.suffix : ''}`
 }
-
-export { arrayShuffle, trimText, sanitizeHTMLTag, maybePluralize }

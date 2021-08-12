@@ -23,18 +23,20 @@ function UsersProvider(props) {
 	} = useAsync()
 
 	React.useEffect(() => {
-		if (user) {
-			return firestore
-				.collection('users')
-				.doc(user.uid)
-				.get()
-				.then((doc) =>
-					setData({
-						id: doc.id,
-						...doc.data(),
-					})
-				)
+		if (!user) {
+			return null
 		}
+
+		firestore
+			.collection('users')
+			.doc(user.uid)
+			.get()
+			.then((doc) =>
+				setData({
+					id: doc.id,
+					...doc.data(),
+				})
+			)
 	}, [firestore, setData, user])
 
 	const readAllUsers = React.useCallback(

@@ -1,37 +1,31 @@
 import React, { Fragment } from 'react'
+import classNames from 'classnames'
 
 import { Card } from 'components/card'
 import { FauxLink } from 'components/fauxLink'
 
-import { useUsersFavoriteTalks } from 'hooks/useUsersFavoriteTalks'
-import { useUsers } from 'context/users'
+import {
+	HeartIcon,
+	FavoriteTalkToggleButton,
+} from 'components/talks/toggleFavorite'
 
 function TalkCard({ talk }) {
-	const { toggleFavoriteTalk } = useUsersFavoriteTalks(talk)
-	const [talkId, setTalkId] = React.useState(talk.id)
-	const [favorite, setFavorite] = React.useState(false)
-	const { profile } = useUsers()
-
-	React.useEffect(() => {
-		if (!profile) {
-			return
-		}
-
-		if (
-			profile?.favoriteTalks &&
-			profile.favoriteTalks.some((id) => id === talkId)
-		) {
-			setFavorite(true)
-		}
-	}, [profile, talkId])
-
 	return (
 		<Card>
-			<Card.FavoriteButton
-				className="absolute bottom-0 right-0 z-50 w-8 h-8 p-1 m-1 text-gray-300 rounded hover:text-red-600"
-				onClick={() => toggleFavoriteTalk({ id: talkId })}
-				isFavorite={favorite}
-			/>
+			<FavoriteTalkToggleButton talk={talk}>
+				{({ checked }) => (
+					<HeartIcon
+						className={classNames(
+							checked
+								? 'text-red-600 hover:ring-red-600'
+								: 'text-gray-400 hover:text-red-600',
+							'relative inline-flex items-center w-8 h-8 p-1 rounded-full z-50 ring-2 ring-transparent'
+						)}
+						checked={checked}
+					/>
+				)}
+			</FavoriteTalkToggleButton>
+
 			{talk?.speakers.map(
 				(speaker) =>
 					speaker.data?.avatar && (

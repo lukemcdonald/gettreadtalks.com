@@ -24,7 +24,7 @@ function AuthProvider(props) {
 	} = useAsync()
 
 	React.useEffect(
-		() => firebase.auth().onAuthStateChanged((_user) => setData(_user)),
+		() => firebase.auth().onAuthStateChanged((creds) => setData(creds)),
 		[setData]
 	)
 
@@ -49,7 +49,7 @@ function AuthProvider(props) {
 			firebase
 				.auth()
 				.signInWithEmailAndPassword(form.email, form.password)
-				.then((_user) => setData(_user))
+				.then((creds) => setData(creds))
 				.then(() => navigate('/account')),
 		[setData]
 	)
@@ -59,9 +59,9 @@ function AuthProvider(props) {
 			firebase
 				.auth()
 				.createUserWithEmailAndPassword(form.email, form.password)
-				.then((_user) => {
-					setData(_user)
-					updateUsersCollection(_user.user.uid, { creationTime: new Date() })
+				.then((creds) => {
+					setData(creds)
+					updateUsersCollection(creds.user.uid, { creationTime: new Date() })
 				})
 				.then(() => navigate('/account')),
 		[setData, updateUsersCollection]

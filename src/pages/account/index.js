@@ -7,14 +7,14 @@ import { Section } from 'components/section'
 import { SEO } from 'components/seo'
 
 import { useUsers } from 'context/users'
-import styles from 'components/styles'
 import { useAsync } from 'hooks/useAsync'
-import { useUsersFavoriteTalks } from 'hooks/useUsersFavoriteTalks'
+import { useFavoriteTalk } from 'hooks/useFavoriteTalk'
+import styles from 'components/styles'
 
 function AccountPage({ location }) {
 	const { user } = useAuth()
 	const { run } = useAsync()
-	const { addFavoriteTalk } = useUsersFavoriteTalks()
+	const { addFavorite, removeFavorite, updateFavorite } = useFavoriteTalk()
 	const {
 		deleteUserById,
 		readUserById,
@@ -41,7 +41,7 @@ function AccountPage({ location }) {
 							className={styles.button}
 							type="button"
 							onClick={() =>
-								addFavoriteTalk({
+								addFavorite({
 									id: '0502e2f8-feb2-5dd9-8fc2-5482a26b38fa',
 								})
 							}
@@ -53,12 +53,36 @@ function AccountPage({ location }) {
 							className={styles.button}
 							type="button"
 							onClick={() =>
-								addFavoriteTalk({
+								addFavorite({
 									id: 'a4378110-f90c-5546-b2b5-78690ae1b1ff',
 								})
 							}
 						>
 							Add a4378110
+						</button>
+
+						<button
+							className={styles.button}
+							type="button"
+							onClick={() =>
+								removeFavorite({
+									id: 'a4378110-f90c-5546-b2b5-78690ae1b1ff',
+								})
+							}
+						>
+							Remove a4378110
+						</button>
+
+						<button
+							className={styles.button}
+							type="button"
+							onClick={() =>
+								updateFavorite({
+									id: 'a4378110-f90c-5546-b2b5-78690ae1b1ff',
+								})
+							}
+						>
+							Toggle a4378110
 						</button>
 
 						<hr />
@@ -142,11 +166,14 @@ function AccountPage({ location }) {
 										<strong>{key}:</strong>
 										{key === 'favoriteTalks' && profile[key] && (
 											<ol>
-												{profile[key].map((data, index) => (
-													<li key={`favoriteTalk-${index}`}>
-														{data.toString()}
-													</li>
-												))}
+												{profile[key].map(
+													(data, index) =>
+														data && (
+															<li key={`favoriteTalk-${index}`}>
+																{data.toString()}
+															</li>
+														)
+												)}
 											</ol>
 										)}
 

@@ -1,6 +1,16 @@
 import React, { useState } from 'react'
 import { graphql } from 'gatsby'
+import classNames from 'classnames'
 
+import {
+	FavoriteTalkToggle,
+	FavoriteToggle,
+} from 'components/talks/favoriteToggle'
+
+import {
+	HeartIcon,
+	FavoriteTalkToggleButton,
+} from 'components/talks/toggleFavorite'
 import { Intro } from 'components/intro'
 import { Link } from 'components/link'
 import { Section } from 'components/section'
@@ -10,13 +20,16 @@ import { TalksList } from 'components/talks/list'
 import { arrayShuffle } from 'utils/misc'
 
 function TalkPage({ data, location, pageContext }) {
-	const { data: talk } = data.talk
+	const talk = {
+		id: data.talk.id,
+		...data.talk.data,
+	}
 	const { talks } = talk.speakers[0].data
 
-	const [moreTalks] = useState(() =>
-		talks.filter((item) => item.id !== pageContext.id)
+	const [moreTalks] = useState(
+		() => talks.filter((item) => item.id !== pageContext.id) || []
 	)
-	const [shuffledTalks] = useState(() => arrayShuffle(moreTalks || []))
+	const [shuffledTalks] = useState(() => arrayShuffle(moreTalks))
 
 	const mediaObject = talk?.link?.childMarkdownRemark
 	const media = mediaObject ? mediaObject.html : ''
@@ -37,6 +50,29 @@ function TalkPage({ data, location, pageContext }) {
 			/>
 
 			<Intro align="wide--center" bgGradient fullscreen>
+				<FavoriteTalkToggleButton talk={talk}>
+					{({ checked }) => (
+						<HeartIcon
+							className={classNames(
+								checked
+									? 'text-red-600 hover:text-red-600'
+									: 'text-gray-700 hover:text-red-600',
+								'relative inline-flex items-center w-8 h-8 p-1 rounded-full bg-gray-200'
+							)}
+							checked={checked}
+						/>
+					)}
+				</FavoriteTalkToggleButton>
+
+				<FavoriteToggle
+					talk={talk}
+					className="w-8 h-8 p-1 bg-gray-200"
+					classNameToggle={{
+						on: 'text-red-600 hover:text-red-600',
+						off: 'text-gray-700 hover:text-red-600',
+					}}
+				/>
+
 				<Intro.Title>{talk.title}</Intro.Title>
 
 				<Intro.Tagline className="sm:justify-center sm:flex sm:space-x-2">

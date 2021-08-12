@@ -16,23 +16,25 @@ const userFavoriteTalksQuery = graphql`
 	}
 `
 
-function useUsersFavoriteTalks() {
+function useFavoriteTalk() {
 	const { run } = useAsync()
 	const { user } = useAuth()
 	const { updateUser, profile } = useUsers()
 	const [favoriteTalks, setFavoriteTalks] = React.useState([])
 
 	React.useEffect(() => {
-		if (profile) {
-			setFavoriteTalks(profile.favoriteTalks)
+		if (!profile) {
+			return null
 		}
+
+		setFavoriteTalks(profile.favoriteTalks)
 	}, [profile])
 
-	const isFavoriteTalk = (talk) =>
+	const isFavorite = (talk) =>
 		favoriteTalks && favoriteTalks.some((id) => id === talk.id)
 
-	function addFavoriteTalk(talk) {
-		if (isFavoriteTalk(talk)) {
+	function addFavorite(talk) {
+		if (isFavorite(talk)) {
 			return
 		}
 
@@ -43,8 +45,8 @@ function useUsersFavoriteTalks() {
 		)
 	}
 
-	function removeFavoriteTalk(talk) {
-		if (!isFavoriteTalk(talk)) {
+	function removeFavorite(talk) {
+		if (!isFavorite(talk)) {
 			return
 		}
 
@@ -55,18 +57,16 @@ function useUsersFavoriteTalks() {
 		)
 	}
 
-	function toggleFavoriteTalk(talk) {
-		return isFavoriteTalk(talk)
-			? removeFavoriteTalk(talk)
-			: addFavoriteTalk(talk)
+	function updateFavorite(talk) {
+		return isFavorite(talk) ? removeFavorite(talk) : addFavorite(talk)
 	}
 
 	return {
-		addFavoriteTalk,
-		removeFavoriteTalk,
-		toggleFavoriteTalk,
-		isFavoriteTalk,
+		addFavorite,
+		removeFavorite,
+		updateFavorite,
+		isFavorite,
 	}
 }
 
-export { useUsersFavoriteTalks }
+export { useFavoriteTalk }
