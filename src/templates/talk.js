@@ -1,16 +1,8 @@
 import React, { useState } from 'react'
 import { graphql } from 'gatsby'
-import classNames from 'classnames'
 
-import {
-	FavoriteTalkToggle,
-	FavoriteToggle,
-} from 'components/talks/favoriteToggle'
+import { FavoriteToggle } from 'components/talks/favoriteToggle'
 
-import {
-	HeartIcon,
-	FavoriteTalkToggleButton,
-} from 'components/talks/toggleFavorite'
 import { Intro } from 'components/intro'
 import { Link } from 'components/link'
 import { Section } from 'components/section'
@@ -50,20 +42,6 @@ function TalkPage({ data, location, pageContext }) {
 			/>
 
 			<Intro align="wide--center" bgGradient fullscreen>
-				<FavoriteTalkToggleButton talk={talk}>
-					{({ checked }) => (
-						<HeartIcon
-							className={classNames(
-								checked
-									? 'text-red-600 hover:text-red-600'
-									: 'text-gray-700 hover:text-red-600',
-								'relative inline-flex items-center w-8 h-8 p-1 rounded-full bg-gray-200'
-							)}
-							checked={checked}
-						/>
-					)}
-				</FavoriteTalkToggleButton>
-
 				<FavoriteToggle
 					talk={talk}
 					className="w-8 h-8 p-1 bg-gray-200"

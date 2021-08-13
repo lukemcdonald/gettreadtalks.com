@@ -1,30 +1,20 @@
 import React, { Fragment } from 'react'
-import classNames from 'classnames'
 
 import { Card } from 'components/card'
 import { FauxLink } from 'components/fauxLink'
-
-import {
-	HeartIcon,
-	FavoriteTalkToggleButton,
-} from 'components/talks/toggleFavorite'
+import { FavoriteToggle } from 'components/talks/favoriteToggle'
 
 function TalkCard({ talk }) {
 	return (
 		<Card>
-			<FavoriteTalkToggleButton talk={talk}>
-				{({ checked }) => (
-					<HeartIcon
-						className={classNames(
-							checked
-								? 'text-red-600 hover:ring-red-600'
-								: 'text-gray-400 hover:text-red-600',
-							'relative inline-flex items-center w-8 h-8 p-1 rounded-full z-50 ring-2 ring-transparent'
-						)}
-						checked={checked}
-					/>
-				)}
-			</FavoriteTalkToggleButton>
+			<FavoriteToggle
+				talk={talk}
+				className="relative z-50 w-8 h-8 p-1 text-gray-400 hover:text-red-600"
+				classNameToggle={{
+					on: 'text-red-600',
+					off: 'text-gray-400 hover:text-red-600',
+				}}
+			/>
 
 			{talk?.speakers.map(
 				(speaker) =>
