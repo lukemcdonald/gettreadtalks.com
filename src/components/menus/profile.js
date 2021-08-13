@@ -25,9 +25,9 @@ function styleMenu(item = '', args = {}) {
 
 function ProfileMenu() {
 	const { run } = useAsync()
-	const { user, logout } = useAuth()
+	const { isUser, profile, logout } = useAuth()
 
-	if (!user) {
+	if (!isUser) {
 		return (
 			<>
 				<span className="inline-block ml-3 mr-1 border-l border-gray-400 sm:hidden md:block">
@@ -53,9 +53,9 @@ function ProfileMenu() {
 					<div>
 						<Menu.Button className={classNames('flex text-lg rounded-full')}>
 							<span className="sr-only">Open user menu</span>
-							{user?.email ? (
+							{profile?.email ? (
 								<Gravatar
-									email={user.email}
+									email={profile.email}
 									className="w-10 h-10 rounded-full filter drop-shadow-md"
 									default="mp"
 								/>

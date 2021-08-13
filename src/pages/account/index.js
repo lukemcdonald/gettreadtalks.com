@@ -12,7 +12,7 @@ import { useFavoriteTalk } from 'hooks/useFavoriteTalk'
 import styles from 'components/styles'
 
 function AccountPage({ location }) {
-	const { user } = useAuth()
+	const { isUser } = useAuth()
 	const { run } = useAsync()
 	const { addFavorite, removeFavorite, updateFavorite } = useFavoriteTalk()
 	const {
@@ -21,10 +21,10 @@ function AccountPage({ location }) {
 		readAllUsers,
 		setUser,
 		updateUser,
-		profile,
+		user,
 	} = useUsers()
 
-	if (!user) {
+	if (!isUser) {
 		navigate('/login')
 	}
 
@@ -91,7 +91,7 @@ function AccountPage({ location }) {
 							className={styles.button}
 							type="button"
 							onClick={() =>
-								updateUser(user.uid, {
+								updateUser(user.id, {
 									name: 'Luke McDonald',
 									age: 39,
 								})
@@ -103,7 +103,7 @@ function AccountPage({ location }) {
 						<button
 							className={styles.button}
 							type="button"
-							onClick={() => setUser(user.uid, {}, { merge: false })}
+							onClick={() => setUser(user.id, {}, { merge: false })}
 						>
 							Reset user
 						</button>
@@ -111,15 +111,7 @@ function AccountPage({ location }) {
 						<button
 							className={styles.button}
 							type="button"
-							onClick={() => readAllUsers()}
-						>
-							Read all users
-						</button>
-
-						<button
-							className={styles.button}
-							type="button"
-							onClick={() => run(readUserById(user.uid))}
+							onClick={() => run(readUserById(user.id))}
 						>
 							Read user by ID
 						</button>
@@ -129,7 +121,7 @@ function AccountPage({ location }) {
 							type="button"
 							onClick={() =>
 								setUser(
-									user.uid,
+									user.id,
 									{
 										updatedTime: new Date(),
 										favoriteTalks: [
@@ -148,7 +140,7 @@ function AccountPage({ location }) {
 						<button
 							className={styles.button}
 							type="button"
-							onClick={() => deleteUserById(user.uid)}
+							onClick={() => deleteUserById(user.id)}
 						>
 							Delete user by ID
 						</button>
@@ -157,16 +149,15 @@ function AccountPage({ location }) {
 
 				<Section.Content>
 					<h2 className="text-xl font-bold">Profile Data</h2>
-					{console.log('Account', profile)}
-					{profile && (
+					{user && (
 						<pre className="mt-6">
 							<ul className="prose">
-								{Object.keys(profile).map((key) => (
+								{Object.keys(user).map((key) => (
 									<li key={key}>
 										<strong>{key}:</strong>
-										{key === 'favoriteTalks' && profile[key] && (
+										{key === 'favoriteTalks' && user[key] && (
 											<ol>
-												{profile[key].map(
+												{user[key].map(
 													(data, index) =>
 														data && (
 															<li key={`favoriteTalk-${index}`}>
@@ -177,7 +168,7 @@ function AccountPage({ location }) {
 											</ol>
 										)}
 
-										{key !== 'favoriteTalks' && profile[key].toString()}
+										{key !== 'favoriteTalks' && user[key].toString()}
 									</li>
 								))}
 							</ul>

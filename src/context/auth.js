@@ -13,7 +13,7 @@ function AuthProvider(props) {
 	const firestore = firebase.firestore()
 
 	const {
-		data: user,
+		data: profile,
 		status,
 		error,
 		setData,
@@ -87,9 +87,11 @@ function AuthProvider(props) {
 		[setData]
 	)
 
+	const isUser = isSuccess
+
 	const value = React.useMemo(
-		() => ({ login, logout, register, resetPassword, user }),
-		[login, logout, register, resetPassword, user]
+		() => ({ login, logout, register, resetPassword, isUser, profile }),
+		[login, logout, register, resetPassword, isUser, profile]
 	)
 
 	if (isLoading || isIdle) {

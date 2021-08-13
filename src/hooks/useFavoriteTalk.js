@@ -18,17 +18,16 @@ const userFavoriteTalksQuery = graphql`
 
 function useFavoriteTalk() {
 	const { run } = useAsync()
-	const { user } = useAuth()
-	const { updateUser, profile } = useUsers()
+	const { updateUser, user } = useUsers()
 	const [favoriteTalks, setFavoriteTalks] = React.useState([])
 
 	React.useEffect(() => {
-		if (!profile) {
-			return null
+		if (!user) {
+			return
 		}
 
-		setFavoriteTalks(profile.favoriteTalks)
-	}, [profile])
+		setFavoriteTalks(user.favoriteTalks)
+	}, [user])
 
 	const isFavorite = (talk) =>
 		favoriteTalks && favoriteTalks.some((id) => id === talk.id)
@@ -39,7 +38,7 @@ function useFavoriteTalk() {
 		}
 
 		run(
-			updateUser(user.uid, {
+			updateUser(user.id, {
 				favoriteTalks: [talk.id, ...(favoriteTalks || [])],
 			})
 		)
@@ -51,7 +50,7 @@ function useFavoriteTalk() {
 		}
 
 		run(
-			updateUser(user.uid, {
+			updateUser(user.id, {
 				favoriteTalks: favoriteTalks.filter((id) => id !== talk.id),
 			})
 		)

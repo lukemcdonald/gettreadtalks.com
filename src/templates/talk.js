@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { graphql } from 'gatsby'
 
 import { FavoriteToggle } from 'components/talks/favoriteToggle'
-
 import { Intro } from 'components/intro'
 import { Link } from 'components/link'
 import { Section } from 'components/section'

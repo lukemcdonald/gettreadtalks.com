@@ -10,9 +10,9 @@ import { Section } from 'components/section'
 import { SEO } from 'components/seo'
 
 function LoginPage({ location }) {
-	const { login, user } = useAuth()
+	const { login, isUser } = useAuth()
 
-	if (user) {
+	if (isUser) {
 		navigate('/account')
 	}
 

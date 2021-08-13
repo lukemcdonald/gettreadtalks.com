@@ -8,11 +8,11 @@ const AuthenticatedApp = React.lazy(() =>
 const UnauthenticatedApp = React.lazy(() => import('appUnauthenticated'))
 
 function App({ children }) {
-	const { user } = useAuth()
+	const { profile } = useAuth()
 
 	return (
 		<React.Suspense fallback={<FullPageLogo />}>
-			{user ? (
+			{profile ? (
 				<AuthenticatedApp>{children}</AuthenticatedApp>
 			) : (
 				<UnauthenticatedApp>{children}</UnauthenticatedApp>

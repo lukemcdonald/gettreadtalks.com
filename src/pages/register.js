@@ -10,9 +10,9 @@ import { Page } from 'components/page'
 import { LoginForm } from 'components/forms/login'
 
 function RegisterPage({ location }) {
-	const { register, user } = useAuth()
+	const { register, isUser } = useAuth()
 
-	if (user) {
+	if (isUser) {
 		navigate('/account')
 	}
 

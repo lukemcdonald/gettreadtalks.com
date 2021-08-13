@@ -9,10 +9,10 @@ UsersContext.displayName = 'UsersContext'
 
 function UsersProvider(props) {
 	const firestore = firebase.firestore()
-	const { user } = useAuth()
+	const { profile } = useAuth()
 
 	const {
-		data: profile,
+		data: user,
 		status,
 		error,
 		setData,
@@ -23,13 +23,13 @@ function UsersProvider(props) {
 	} = useAsync()
 
 	React.useEffect(() => {
-		if (!user) {
+		if (!profile) {
 			return null
 		}
 
 		firestore
 			.collection('users')
-			.doc(user.uid)
+			.doc(profile.uid)
 			.get()
 			.then((doc) =>
 				setData({
@@ -37,7 +37,7 @@ function UsersProvider(props) {
 					...doc.data(),
 				})
 			)
-	}, [firestore, setData, user])
+	}, [firestore, setData, profile])
 
 	const readAllUsers = React.useCallback(
 		() =>
@@ -130,23 +130,14 @@ function UsersProvider(props) {
 
 	const value = React.useMemo(
 		() => ({
-			readAllUsers,
 			readUserById,
 			readUserByField,
 			updateUser,
 			setUser,
 			deleteUserById,
-			profile,
+			user,
 		}),
-		[
-			readAllUsers,
-			readUserById,
-			readUserByField,
-			updateUser,
-			setUser,
-			deleteUserById,
-			profile,
-		]
+		[readUserById, readUserByField, updateUser, setUser, deleteUserById, user]
 	)
 
 	if (isLoading || isIdle) {

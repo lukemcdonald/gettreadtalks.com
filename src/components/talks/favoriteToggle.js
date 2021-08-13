@@ -1,12 +1,15 @@
 import React from 'react'
-import { useFavoriteTalk } from 'hooks/useFavoriteTalk'
-import { Toggle, ToggleOn, ToggleOff, ToggleButton } from 'components/toggle'
+import classNames from 'classnames'
 import { HeartIcon as HeartOutlineIcon } from '@heroicons/react/outline'
 import { HeartIcon as HeartSolidIcon } from '@heroicons/react/solid'
-import classNames from 'classnames'
+
+import { useFavoriteTalk } from 'hooks/useFavoriteTalk'
+import { Toggle, ToggleOn, ToggleOff, ToggleButton } from 'components/toggle'
+import { useUsers } from 'context/users'
 
 function FavoriteToggle({ classNameToggle = {}, talk, ...props }) {
 	const [enabled, setEnabled] = React.useState(false)
+	const { user } = useUsers()
 	const { isFavorite, updateFavorite } = useFavoriteTalk()
 
 	// Set default enabled state if talk is in favorite.
@@ -14,6 +17,10 @@ function FavoriteToggle({ classNameToggle = {}, talk, ...props }) {
 		const _isFavorite = isFavorite(talk)
 		setEnabled(_isFavorite)
 	}, [enabled, isFavorite, talk])
+
+	if (!user) {
+		return
+	}
 
 	return (
 		<Toggle>

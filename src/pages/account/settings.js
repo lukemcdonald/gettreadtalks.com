@@ -10,12 +10,16 @@ import { Page } from 'components/page'
 import { Section } from 'components/section'
 import { SEO } from 'components/seo'
 
-function AccountPage({ location }) {
-	const { user } = useAuth()
+import { Toggle, ToggleOn, ToggleOff, ToggleButton } from 'components/toggle'
 
-	if (!user) {
+function AccountPage({ location }) {
+	const { isUser } = useAuth()
+
+	if (!isUser) {
 		navigate('/login')
 	}
+
+	const talk = { id: 'a4378110-f90c-5546-b2b5-78690ae1b1ff' }
 
 	return (
 		<>
@@ -30,6 +34,12 @@ function AccountPage({ location }) {
 
 				<Section.Content>
 					<p>Content area</p>
+					<Toggle>
+						<ToggleButton onChange={() => console.log('onChange fired')}>
+							<ToggleOn>Unfavorite</ToggleOn>
+							<ToggleOff>Favorite</ToggleOff>
+						</ToggleButton>
+					</Toggle>
 				</Section.Content>
 			</Section>
 		</>
