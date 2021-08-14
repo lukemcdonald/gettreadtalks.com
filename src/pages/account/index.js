@@ -1,3 +1,14 @@
+// @todo: Make favorite talks page.
+// Maybe make favorite talks link to a talk archive page
+// with the user id in url. Use the user ID from the URL to
+// get and display favorite talks. Alternatively, just the page query
+// or useStaticQuery here.
+// e.g. http://localhost:8000/talks/favorite/T1yhOR7AalS0rgHqOz4qEihHoKG3
+
+// @todo: Make finished talks page.
+// Implementation might would be similar to how favorite talks would work.
+// e.g. http://localhost:8000/talks/history/T1yhOR7AalS0rgHqOz4qEihHoKG3
+
 import React, { useEffect, useState } from 'react'
 import { navigate, graphql } from 'gatsby'
 
@@ -6,17 +17,13 @@ import { Section } from 'components/section'
 import { SEO } from 'components/seo'
 import { TalksList } from 'components/talks/list'
 
-import { useAsync } from 'hooks/useAsync'
 import { useAuth } from 'context/auth'
-import { useFavoriteTalk } from 'hooks/useFavoriteTalk'
+import { FavoriteTalksTestControls } from 'hooks/useFavoriteTalk'
 import { useUsers } from 'context/users'
-import styles from 'components/styles'
 
 function AccountPage({ data, location }) {
-	const { run } = useAsync()
 	const { isUser } = useAuth()
-	const { deleteUserById, readUserById, setUser, updateUser, user } = useUsers()
-	const { addFavorite, removeFavorite, updateFavorite } = useFavoriteTalk()
+	const { user } = useUsers()
 	const { talks } = data
 
 	const [favoriteTalks, setFavoriteTalks] = useState([])
@@ -32,6 +39,7 @@ function AccountPage({ data, location }) {
 			return
 		}
 
+		// @todo: Make sure order is set to the last favorite talk listed first.
 		const favorites = talks.nodes.filter(({ id }) =>
 			user.favoriteTalks.includes(id)
 		)
@@ -46,118 +54,7 @@ function AccountPage({ data, location }) {
 			<Section>
 				<Section.Sidebar>
 					<Page.Title>Your Account</Page.Title>
-
-					<div className="flex flex-col gap-4 mt-4">
-						<button
-							className={styles.button}
-							type="button"
-							onClick={() =>
-								addFavorite({
-									id: '0502e2f8-feb2-5dd9-8fc2-5482a26b38fa',
-								})
-							}
-						>
-							Add 0502e2f8
-						</button>
-
-						<button
-							className={styles.button}
-							type="button"
-							onClick={() =>
-								addFavorite({
-									id: 'a4378110-f90c-5546-b2b5-78690ae1b1ff',
-								})
-							}
-						>
-							Add a4378110
-						</button>
-
-						<button
-							className={styles.button}
-							type="button"
-							onClick={() =>
-								removeFavorite({
-									id: 'a4378110-f90c-5546-b2b5-78690ae1b1ff',
-								})
-							}
-						>
-							Remove a4378110
-						</button>
-
-						<button
-							className={styles.button}
-							type="button"
-							onClick={() =>
-								updateFavorite({
-									id: 'a4378110-f90c-5546-b2b5-78690ae1b1ff',
-								})
-							}
-						>
-							Toggle a4378110
-						</button>
-
-						<hr />
-
-						<button
-							className={styles.button}
-							type="button"
-							onClick={() =>
-								updateUser(user.id, {
-									name: 'Luke McDonald',
-									age: 39,
-								})
-							}
-						>
-							Update user
-						</button>
-
-						<button
-							className={styles.button}
-							type="button"
-							onClick={() =>
-								setUser(user.id, { favoriteTalks: [] }, { merge: false })
-							}
-						>
-							Reset user
-						</button>
-
-						<button
-							className={styles.button}
-							type="button"
-							onClick={() => run(readUserById(user.id))}
-						>
-							Read user by ID
-						</button>
-
-						<button
-							className={styles.button}
-							type="button"
-							onClick={() =>
-								setUser(
-									user.id,
-									{
-										updatedTime: new Date(),
-										favoriteTalks: [
-											'6cac2356-23a9-5f80-8283-02d201e371e5',
-											'5c2c77dd-1bca-557e-a14a-c5f2273a5a1d',
-											'932efc94-bacd-5ea9-a494-5b80120bb279',
-										],
-									},
-									{ merge: false }
-								)
-							}
-						>
-							Add default data
-						</button>
-
-						<button
-							className={styles.button}
-							type="button"
-							onClick={() => deleteUserById(user.id)}
-						>
-							Delete user by ID
-						</button>
-					</div>
+					<FavoriteTalksTestControls />
 				</Section.Sidebar>
 
 				<Section.Content>
