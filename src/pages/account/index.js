@@ -1,32 +1,43 @@
-import React from 'react'
-import { navigate } from 'gatsby'
+import React, { useEffect, useState } from 'react'
+import { navigate, graphql } from 'gatsby'
 
-import { useAuth } from 'context/auth'
 import { Page } from 'components/page'
 import { Section } from 'components/section'
 import { SEO } from 'components/seo'
+import { TalksList } from 'components/talks/list'
 
-import { useUsers } from 'context/users'
 import { useAsync } from 'hooks/useAsync'
+import { useAuth } from 'context/auth'
 import { useFavoriteTalk } from 'hooks/useFavoriteTalk'
+import { useUsers } from 'context/users'
 import styles from 'components/styles'
 
-function AccountPage({ location }) {
-	const { isUser } = useAuth()
+function AccountPage({ data, location }) {
 	const { run } = useAsync()
+	const { isUser } = useAuth()
+	const { deleteUserById, readUserById, setUser, updateUser, user } = useUsers()
 	const { addFavorite, removeFavorite, updateFavorite } = useFavoriteTalk()
-	const {
-		deleteUserById,
-		readUserById,
-		readAllUsers,
-		setUser,
-		updateUser,
-		user,
-	} = useUsers()
+	const { talks } = data
+
+	const [favoriteTalks, setFavoriteTalks] = useState([])
 
 	if (!isUser) {
 		navigate('/login')
 	}
+
+	useEffect(() => {
+		console.log('rendering')
+
+		if (!talks || !user?.favoriteTalks) {
+			return
+		}
+
+		const favorites = talks.nodes.filter(({ id }) =>
+			user.favoriteTalks.includes(id)
+		)
+
+		setFavoriteTalks(favorites)
+	}, [talks, user])
 
 	return (
 		<>
@@ -103,7 +114,9 @@ function AccountPage({ location }) {
 						<button
 							className={styles.button}
 							type="button"
-							onClick={() => setUser(user.id, {}, { merge: false })}
+							onClick={() =>
+								setUser(user.id, { favoriteTalks: [] }, { merge: false })
+							}
 						>
 							Reset user
 						</button>
@@ -148,7 +161,8 @@ function AccountPage({ location }) {
 				</Section.Sidebar>
 
 				<Section.Content>
-					<h2 className="text-xl font-bold">Profile Data</h2>
+					<h2 className="text-xl font-bold">Favorite Talks</h2>
+					{favoriteTalks && <TalksList talks={favoriteTalks} />}
 					{user && (
 						<pre className="mt-6">
 							<ul className="prose">
@@ -181,3 +195,46 @@ function AccountPage({ location }) {
 }
 
 export default AccountPage
+
+export const query = graphql`
+	query {
+		talks: allAirtableTalk(
+			filter: { data: { publishedDate: { ne: null } } }
+			sort: { fields: data___publishedDate, order: DESC }
+		) {
+			totalCount
+			nodes {
+				id
+				fields {
+					slug
+				}
+				data {
+					title
+					favorite
+					publishedDate(formatString: "YYYYMMDD")
+					scripture
+					speakers {
+						id
+						fields {
+							slug
+						}
+						data {
+							title
+							avatar {
+								localFiles {
+									childImageSharp {
+										gatsbyImageData(
+											width: 128
+											placeholder: TRACED_SVG
+											layout: CONSTRAINED
+										)
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+`

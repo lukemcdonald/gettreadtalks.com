@@ -87,6 +87,8 @@ function AuthProvider(props) {
 		[setData]
 	)
 
+	// @todo: Add button to delete account along with removing user from users collection.
+
 	const isUser = isSuccess
 
 	const value = React.useMemo(
