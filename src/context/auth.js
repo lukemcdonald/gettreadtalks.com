@@ -15,7 +15,6 @@ function AuthProvider(props) {
 		data: profile,
 		status,
 		error,
-		run,
 		setData,
 		isLoading,
 		isIdle,
@@ -54,15 +53,13 @@ function AuthProvider(props) {
 				.createUserWithEmailAndPassword(form.email, form.password)
 				.then((creds) => {
 					setData(creds)
-					run(
-						updateUsersCollection(creds.user.uid, {
-							creationTime: new Date(),
-							favoriteTalks: [],
-						})
-					)
+					updateUsersCollection(creds.user.uid, {
+						creationTime: new Date(),
+						favoriteTalks: [],
+					})
 				})
 				.then(() => navigate('/account')),
-		[run, setData, updateUsersCollection]
+		[setData, updateUsersCollection]
 	)
 
 	const logout = React.useCallback(

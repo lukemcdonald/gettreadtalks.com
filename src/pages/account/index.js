@@ -32,8 +32,6 @@ function AccountPage({ data, location }) {
 	}
 
 	useEffect(() => {
-		console.log('rendering')
-
 		if (!talks || !user?.favoriteTalks) {
 			return null
 		}
