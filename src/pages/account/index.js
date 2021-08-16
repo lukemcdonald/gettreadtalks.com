@@ -22,11 +22,10 @@ import { FavoriteTalksTestControls } from 'hooks/useFavoriteTalk'
 import { useUsers } from 'context/users'
 
 function AccountPage({ data, location }) {
+	const [favoriteTalks, setFavoriteTalks] = useState([])
 	const { isUser } = useAuth()
 	const { user } = useUsers()
 	const { talks } = data
-
-	const [favoriteTalks, setFavoriteTalks] = useState([])
 
 	if (!isUser) {
 		navigate('/login')
@@ -36,7 +35,7 @@ function AccountPage({ data, location }) {
 		console.log('rendering')
 
 		if (!talks || !user?.favoriteTalks) {
-			return
+			return null
 		}
 
 		// @todo: Make sure order is set to the last favorite talk listed first.

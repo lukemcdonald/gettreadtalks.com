@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import classNames from 'classnames'
-import { ExclamationCircleIcon } from '@heroicons/react/solid'
+import { FormErrorMessage } from 'components/forms/lib/errorMessage'
 import { useAsync } from 'hooks/useAsync'
 
 import styles from 'components/forms/styles'
@@ -27,12 +27,7 @@ function LoginForm({ className, buttonText, onSubmit, context = {} }) {
 			onSubmit={handleSubmit}
 			className={classNames('p-10 bg-white rounded shadow-sm', className)}
 		>
-			{isError && (
-				<div className={classNames(styles.error, 'flex items-center')}>
-					<ExclamationCircleIcon className="w-10 h-10 mr-2" />
-					<p>{error.message}</p>
-				</div>
-			)}
+			{isError && <FormErrorMessage error={error} />}
 
 			<div className={styles.formRow}>
 				<label htmlFor="email" className={styles.label}>

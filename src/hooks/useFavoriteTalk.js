@@ -2,6 +2,7 @@ import React from 'react'
 import { useAsync } from 'hooks/useAsync'
 import { useUsers } from 'context/users'
 import styles from 'components/styles'
+import { DeactivateAccountButton } from 'components/account/deactivateAccountButton'
 
 function useFavoriteTalk() {
 	const { run } = useAsync()
@@ -10,7 +11,7 @@ function useFavoriteTalk() {
 
 	React.useEffect(() => {
 		if (!user) {
-			return
+			return null
 		}
 
 		setFavoriteTalks(user.favoriteTalks)
@@ -21,7 +22,7 @@ function useFavoriteTalk() {
 
 	function addFavorite(talk) {
 		if (isFavorite(talk)) {
-			return
+			return null
 		}
 
 		run(
@@ -33,7 +34,7 @@ function useFavoriteTalk() {
 
 	function removeFavorite(talk) {
 		if (!isFavorite(talk)) {
-			return
+			return null
 		}
 
 		run(
@@ -57,7 +58,7 @@ function useFavoriteTalk() {
 
 function FavoriteTalksTestControls() {
 	const { run } = useAsync()
-	const { updateUser, setUser, readUserById, deleteUserById, user } = useUsers()
+	const { updateUser, setUser, readUserById, user } = useUsers()
 	const { addFavorite, removeFavorite, updateFavorite } = useFavoriteTalk()
 
 	return (
@@ -116,10 +117,12 @@ function FavoriteTalksTestControls() {
 				className={styles.button}
 				type="button"
 				onClick={() =>
-					updateUser(user.id, {
-						name: 'Luke McDonald',
-						age: 39,
-					})
+					run(
+						updateUser(user.id, {
+							name: 'Luke McDonald',
+							age: 39,
+						})
+					)
 				}
 			>
 				Update user
@@ -129,7 +132,7 @@ function FavoriteTalksTestControls() {
 				className={styles.button}
 				type="button"
 				onClick={() =>
-					setUser(user.id, { favoriteTalks: [] }, { merge: false })
+					run(setUser(user.id, { favoriteTalks: [] }, { merge: false }))
 				}
 			>
 				Reset user
@@ -147,35 +150,31 @@ function FavoriteTalksTestControls() {
 				className={styles.button}
 				type="button"
 				onClick={() =>
-					setUser(
-						user.id,
-						{
-							updatedTime: new Date(),
-							favoriteTalks: [
-								'6cac2356-23a9-5f80-8283-02d201e371e5',
-								'5c2c77dd-1bca-557e-a14a-c5f2273a5a1d',
-								'932efc94-bacd-5ea9-a494-5b80120bb279',
-								'434a4cdb-ef50-5ba1-bfbe-1f098fe2d259',
-								'09cbb694-c494-57c4-af08-f185d30c238b',
-								'397e8946-8d5b-5d06-9129-4e903736ae18',
-								'a8a213f6-3b3d-53d8-9b2e-77cb1ca33c67',
-								'46f048a1-5a75-5240-897a-c23e0dd28475',
-							],
-						},
-						{ merge: false }
+					run(
+						setUser(
+							user.id,
+							{
+								updatedTime: new Date(),
+								favoriteTalks: [
+									'6cac2356-23a9-5f80-8283-02d201e371e5',
+									'5c2c77dd-1bca-557e-a14a-c5f2273a5a1d',
+									'932efc94-bacd-5ea9-a494-5b80120bb279',
+									'434a4cdb-ef50-5ba1-bfbe-1f098fe2d259',
+									'09cbb694-c494-57c4-af08-f185d30c238b',
+									'397e8946-8d5b-5d06-9129-4e903736ae18',
+									'a8a213f6-3b3d-53d8-9b2e-77cb1ca33c67',
+									'46f048a1-5a75-5240-897a-c23e0dd28475',
+								],
+							},
+							{ merge: false }
+						)
 					)
 				}
 			>
 				Add default data
 			</button>
 
-			<button
-				className={styles.button}
-				type="button"
-				onClick={() => deleteUserById(user.id)}
-			>
-				Delete user by ID
-			</button>
+			<DeactivateAccountButton id={user?.id} />
 		</div>
 	)
 }

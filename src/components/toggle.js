@@ -48,7 +48,7 @@ function ToggleButton({ checked, ...props }) {
 	const { on, setOn, getToggleProps } = useToggle()
 
 	React.useEffect(() => {
-		if (checked === null) return
+		if (checked === null) return null
 		setOn(checked)
 	}, [checked, setOn])
 

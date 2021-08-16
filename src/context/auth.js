@@ -1,9 +1,8 @@
 import React from 'react'
-import { navigate } from 'gatsby'
 import firebase from 'gatsby-plugin-firebase'
+import { navigate } from 'gatsby'
 
 import { useAsync } from 'hooks/useAsync'
-
 import { FullPageLogo, FullPageErrorFallback } from 'components/loader'
 
 const AuthContext = React.createContext({})
@@ -16,6 +15,7 @@ function AuthProvider(props) {
 		data: profile,
 		status,
 		error,
+		run,
 		setData,
 		isLoading,
 		isIdle,
@@ -33,15 +33,8 @@ function AuthProvider(props) {
 			firestore
 				.collection('users')
 				.doc(id)
-				.set(updates, args || { merge: true })
-				.then(() => firestore.collection('users').doc(id).get())
-				.then((doc) =>
-					setData({
-						id: doc.id,
-						...doc.data(),
-					})
-				),
-		[firestore, setData]
+				.set(updates, args || { merge: true }),
+		[firestore]
 	)
 
 	const login = React.useCallback(
@@ -61,10 +54,15 @@ function AuthProvider(props) {
 				.createUserWithEmailAndPassword(form.email, form.password)
 				.then((creds) => {
 					setData(creds)
-					updateUsersCollection(creds.user.uid, { creationTime: new Date() })
+					run(
+						updateUsersCollection(creds.user.uid, {
+							creationTime: new Date(),
+							favoriteTalks: [],
+						})
+					)
 				})
 				.then(() => navigate('/account')),
-		[setData, updateUsersCollection]
+		[run, setData, updateUsersCollection]
 	)
 
 	const logout = React.useCallback(
@@ -87,13 +85,35 @@ function AuthProvider(props) {
 		[setData]
 	)
 
-	// @todo: Add button to delete account along with removing user from users collection.
+	const unregister = React.useCallback(
+		(form) => {
+			const user = firebase.auth().currentUser
+			const credential = firebase.auth.EmailAuthProvider.credential(
+				user.email,
+				form.password
+			)
+			return user
+				.reauthenticateWithCredential(credential)
+				.then(() => user.delete().then(() => setData(null)))
+				.then(() => navigate('/'))
+		},
+		[setData]
+	)
 
-	const isUser = isSuccess
+	// @todo: Add button to delete account along with removing user from users collection.
+	const isUser = profile
 
 	const value = React.useMemo(
-		() => ({ login, logout, register, resetPassword, isUser, profile }),
-		[login, logout, register, resetPassword, isUser, profile]
+		() => ({
+			login,
+			logout,
+			register,
+			unregister,
+			resetPassword,
+			isUser,
+			profile,
+		}),
+		[login, logout, register, unregister, resetPassword, isUser, profile]
 	)
 
 	if (isLoading || isIdle) {

@@ -19,7 +19,7 @@ function FavoriteToggle({ classNameToggle = {}, talk, ...props }) {
 	}, [enabled, isFavorite, talk])
 
 	if (!user) {
-		return
+		return null
 	}
 
 	return (
