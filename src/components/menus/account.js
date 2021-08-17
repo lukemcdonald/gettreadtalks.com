@@ -28,8 +28,8 @@ function AccountMenu() {
 					<Link
 						to={to}
 						key={title}
-						className="flex items-center px-2 py-2 mb-1 rounded-md hover:text-red-600"
-						activeClassName="text-gray-900"
+						className="flex items-center px-2 py-2 mb-1 rounded-md hover:text-gray-800"
+						activeClassName="text-red-600"
 					>
 						{icon && <div className="w-6 h-6 mr-3 opacity-70">{icon}</div>}
 						{title}

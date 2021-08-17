@@ -38,6 +38,7 @@ function DeactivateAccountForm({ className, buttonText, onSubmit }) {
 					onChange={handleChange}
 					value={state.password}
 					className={formStyles.input}
+					initialfocus="true"
 				/>
 			</div>
 
