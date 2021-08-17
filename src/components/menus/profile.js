@@ -84,7 +84,10 @@ function ProfileMenu() {
 						>
 							<Menu.Item>
 								{({ active }) => (
-									<Link to="/account" className={styleMenu('item', { active })}>
+									<Link
+										to="/account/"
+										className={styleMenu('item', { active })}
+									>
 										Your Account
 									</Link>
 								)}
@@ -92,10 +95,20 @@ function ProfileMenu() {
 							<Menu.Item>
 								{({ active }) => (
 									<Link
-										to="/account/settings"
+										to="/account/favorites/"
 										className={styleMenu('item', { active })}
 									>
-										Profile
+										Favorite
+									</Link>
+								)}
+							</Menu.Item>
+							<Menu.Item>
+								{({ active }) => (
+									<Link
+										to="/account/finished/"
+										className={styleMenu('item', { active })}
+									>
+										Finished
 									</Link>
 								)}
 							</Menu.Item>

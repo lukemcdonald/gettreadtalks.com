@@ -3,7 +3,8 @@ import classNames from 'classnames'
 import { FormErrorMessage } from 'components/forms/lib/errorMessage'
 import { useAsync } from 'hooks/useAsync'
 
-import styles from 'components/forms/styles'
+import styles from 'components/styles'
+import formStyles from 'components/styles/form'
 
 function LoginForm({ className, buttonText, onSubmit, context = {} }) {
 	const { isError, error, run } = useAsync()
@@ -29,8 +30,8 @@ function LoginForm({ className, buttonText, onSubmit, context = {} }) {
 		>
 			{isError && <FormErrorMessage error={error} />}
 
-			<div className={styles.formRow}>
-				<label htmlFor="email" className={styles.label}>
+			<div className={formStyles.formRow}>
+				<label htmlFor="email" className={formStyles.label}>
 					Email address
 				</label>
 				<input
@@ -39,17 +40,17 @@ function LoginForm({ className, buttonText, onSubmit, context = {} }) {
 					type="text"
 					onChange={handleChange}
 					value={state.email}
-					className={styles.input}
+					className={formStyles.input}
 				/>
 			</div>
 
 			<div
 				className={classNames(
-					styles.formRow,
+					formStyles.formRow,
 					context.pathname === '/password/reset' ? 'hidden' : ''
 				)}
 			>
-				<label htmlFor="password" className={styles.label}>
+				<label htmlFor="password" className={formStyles.label}>
 					Password
 				</label>
 				<input
@@ -58,11 +59,11 @@ function LoginForm({ className, buttonText, onSubmit, context = {} }) {
 					type="password"
 					onChange={handleChange}
 					value={state.password}
-					className={styles.input}
+					className={formStyles.input}
 				/>
 			</div>
 
-			<div className={styles.formRow}>
+			<div className={formStyles.formRow}>
 				<button type="submit" className={styles.button}>
 					{buttonText}
 				</button>

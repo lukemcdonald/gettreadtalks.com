@@ -1,7 +1,7 @@
 import React from 'react'
 import classNames from 'classnames'
 import { ExclamationCircleIcon } from '@heroicons/react/solid'
-import styles from 'components/forms/styles'
+import styles from 'components/styles/form'
 
 function FormErrorMessage({ error }) {
 	return (

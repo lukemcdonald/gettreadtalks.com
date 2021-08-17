@@ -3,7 +3,9 @@ import classNames from 'classnames'
 
 import { useAsync } from 'hooks/useAsync'
 import { FormErrorMessage } from 'components/forms/lib/errorMessage'
-import styles from 'components/forms/styles'
+
+import styles from 'components/styles'
+import formStyles from 'components/styles/form'
 
 function DeactivateAccountForm({ className, buttonText, onSubmit }) {
 	const { isError, error } = useAsync()
@@ -25,8 +27,8 @@ function DeactivateAccountForm({ className, buttonText, onSubmit }) {
 		<form onSubmit={handleSubmit} className={className}>
 			{isError && <FormErrorMessage error={error} />}
 
-			<div className={classNames(styles.formRow)}>
-				<label htmlFor="password" className={styles.label}>
+			<div className={classNames(formStyles.formRow)}>
+				<label htmlFor="password" className={formStyles.label}>
 					Password
 				</label>
 				<input
@@ -35,12 +37,20 @@ function DeactivateAccountForm({ className, buttonText, onSubmit }) {
 					type="password"
 					onChange={handleChange}
 					value={state.password}
-					className={styles.input}
+					className={formStyles.input}
 				/>
 			</div>
 
-			<div className={styles.formRow}>
-				<button type="submit" className={styles.button}>
+			<div className={formStyles.formRow}>
+				<button
+					type="submit"
+					className={classNames(
+						styles.button,
+						state.password
+							? 'bg-red-600'
+							: 'bg-opacity-80 pointer-events-none cursor-not-allowed'
+					)}
+				>
 					{buttonText}
 				</button>
 			</div>

@@ -5,11 +5,9 @@ dotenv.config({
 	path: `.env.${process.env.NODE_ENV || 'development'}`,
 })
 
-const isProd = process.env.NODE_ENV === 'production'
-
 export default {
 	siteMetadata: {
-		siteUrl: isProd ? 'https://gettreadtalks.com' : 'http://localhost:8000',
+		siteUrl: 'https://gettreadtalks.com',
 		title: 'TREAD Talks',
 		description:
 			'Exercise your inner man with Christ centered sermons to elevate your spiritual heartbeat while working out your physical one.',

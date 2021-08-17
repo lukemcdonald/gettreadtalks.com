@@ -163,4 +163,34 @@ function useUsers() {
 	return context
 }
 
-export { UsersProvider, useUsers }
+// Use for testing.
+function UsersDataDisplay(user) {
+	if (!user) {
+		return null
+	}
+	return (
+		<pre className="mt-6">
+			<ul className="prose">
+				{Object.keys(user).map((key) => (
+					<li key={key}>
+						<strong>{key}:</strong>
+						{key === 'favoriteTalks' && user[key] && (
+							<ol>
+								{user[key].map(
+									(data, index) =>
+										data && (
+											<li key={`favoriteTalk-${index}`}>{data.toString()}</li>
+										)
+								)}
+							</ol>
+						)}
+
+						{key !== 'favoriteTalks' && user[key].toString()}
+					</li>
+				))}
+			</ul>
+		</pre>
+	)
+}
+
+export { UsersProvider, useUsers, UsersDataDisplay }

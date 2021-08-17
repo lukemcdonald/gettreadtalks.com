@@ -2,14 +2,7 @@ import React, { Component } from 'react'
 import { Link as GatsbyLink } from 'gatsby'
 import classNames from 'classnames'
 
-const LinkButton = ({
-	className,
-	activeClassName,
-	children,
-	color,
-	size,
-	to,
-}) => {
+const LinkButton = ({ className, children, color, size, to, ...props }) => {
 	const colorMapping = {
 		DEFAULT: 'bg-gray-600 text-white hover:bg-gray-800',
 		primary: 'bg-red-600 text-white hover:bg-gray-800',
@@ -23,14 +16,13 @@ const LinkButton = ({
 	return (
 		<Link
 			to={to}
-			activeClassName={activeClassName}
 			className={classNames(
 				'rounded-full inline-block hover:shadow-lg transition duration-300',
 				colorMapping[color] || colorMapping.DEFAULT,
 				sizeMapping[size] || sizeMapping.DEFAULT,
-
 				className
 			)}
+			{...props}
 		>
 			{children}
 		</Link>

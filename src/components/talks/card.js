@@ -7,15 +7,6 @@ import { FavoriteToggle } from 'components/talks/favoriteToggle'
 function TalkCard({ talk }) {
 	return (
 		<Card>
-			<FavoriteToggle
-				talk={talk}
-				className="relative z-50 w-8 h-8 p-1 text-gray-400 hover:text-red-600"
-				classNameToggle={{
-					on: 'text-red-600',
-					off: 'text-gray-400 hover:text-red-600',
-				}}
-			/>
-
 			{talk?.speakers.map(
 				(speaker) =>
 					speaker.data?.avatar && (
@@ -53,7 +44,6 @@ function TalkCard({ talk }) {
 				</Card.Meta>
 
 				{talk?.favorite && <Card.FeaturedLink to="/talks/featured/" />}
-				<div className="relative z-50">{talk.id}</div>
 			</div>
 
 			{talk?.slug && talk?.slug && (
