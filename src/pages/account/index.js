@@ -9,7 +9,7 @@
 // Implementation might would be similar to how favorite talks would work.
 // e.g. http://localhost:8000/talks/history/T1yhOR7AalS0rgHqOz4qEihHoKG3
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { navigate, graphql } from 'gatsby'
 
 import { Page } from 'components/page'
@@ -36,12 +36,25 @@ function AccountPage({ data, location }) {
 			return null
 		}
 
-		// @todo: Make sure order is set to the last favorite talk listed first.
+		// Get user favorites from all talks.
 		const favorites = talks.nodes.filter(({ id }) =>
 			user.favoriteTalks.includes(id)
 		)
 
-		setFavoriteTalks(favorites)
+		// Update order of favorites to match order of user favorites.
+		// The latest favorited talk should be shown first.
+		let sortedFavorites = []
+		user.favoriteTalks.map((id) => {
+			const favoriteIndex = favorites.findIndex((fav) => fav.id === id)
+
+			if (favorites[favoriteIndex].id === id) {
+				sortedFavorites = [...sortedFavorites, favorites[favoriteIndex]]
+			}
+
+			return sortedFavorites
+		})
+
+		setFavoriteTalks(sortedFavorites)
 	}, [talks, user])
 
 	return (
