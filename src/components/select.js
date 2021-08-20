@@ -47,7 +47,7 @@ class Select extends Component {
 							<Field
 								as="select"
 								name="optionPath"
-								className="flex-grow p-0 bg-transparent border-0 cursor-pointer bg-none "
+								className="flex-grow p-0 bg-transparent border-0 cursor-pointer bg-none"
 								onChange={(e) => {
 									handleChange(e)
 									submitForm()

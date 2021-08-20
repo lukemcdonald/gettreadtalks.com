@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react'
 import classNames from 'classnames'
 import { Menu, Transition } from '@headlessui/react'
-import { ArrowRightIcon, UserCircleIcon } from '@heroicons/react/solid'
-import Gravatar from 'react-gravatar'
+import { UserCircleIcon } from '@heroicons/react/outline'
+import { ArrowRightIcon } from '@heroicons/react/solid'
 
 import { Link } from 'components/link'
 import { useAuth } from 'context/auth'
@@ -53,15 +53,7 @@ function ProfileMenu() {
 					<div>
 						<Menu.Button className={classNames('flex text-lg rounded-full')}>
 							<span className="sr-only">Open user menu</span>
-							{profile?.email ? (
-								<Gravatar
-									email={profile.email}
-									className="w-10 h-10 rounded-full filter drop-shadow-md"
-									default="mp"
-								/>
-							) : (
-								<UserCircleIcon className="w-10 h-10 rounded-full" />
-							)}
+							<UserCircleIcon className="w-8 h-8 rounded-full" />
 						</Menu.Button>
 					</div>
 
@@ -98,7 +90,7 @@ function ProfileMenu() {
 										to="/account/favorites/"
 										className={styleMenu('item', { active })}
 									>
-										Favorite
+										Favorites
 									</Link>
 								)}
 							</Menu.Item>

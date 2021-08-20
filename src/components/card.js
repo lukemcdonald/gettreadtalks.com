@@ -92,13 +92,21 @@ class Card extends Component {
 	static Title = CardTitle
 
 	render() {
-		const { children, className = '' } = this.props
+		const {
+			children,
+			className = '',
+			display = 'boxed',
+			hoverStyles = 'true',
+		} = this.props
 
 		return (
 			<article
 				className={classNames(
-					'relative flex flex-grow p-4 text-left text-gray-700 transition duration-300 bg-white border border-transparent rounded shadow-sm hover:z-10 hover:border-red-600 hover:shadow-lg',
+					'relative flex flex-grow text-left text-gray-700 transition duration-300  border border-transparent rounded',
 					className.includes('items-') || 'items-center',
+					display === 'boxed' && 'p-4 bg-white shadow-sm',
+					hoverStyles === 'true' &&
+						'hover:z-10 hover:border-red-600 hover:shadow-lg',
 					className
 				)}
 			>
