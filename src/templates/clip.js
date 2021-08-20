@@ -25,7 +25,7 @@ function SingleClipPage({ data, location }) {
 
 				<Intro.Tagline className="flex justify-center space-x-2">
 					<span>
-						<span className="text-gray-500">by</span>&nbsp;
+						<span>by</span>&nbsp;
 						<Link className="hover:underline" to={clip.speakers[0].fields.slug}>
 							{clip.speakers[0].data.title}
 						</Link>

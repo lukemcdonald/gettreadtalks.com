@@ -2,9 +2,9 @@ import React from 'react'
 
 import { Select } from 'components/select'
 
-function TalksFilter({ className, current, label = 'Talks', topics }) {
+function TalksFilter({ className, current, label, topics }) {
 	return (
-		<Select label={label} className={className} current={current}>
+		<Select label={label || 'Talks'} className={className} current={current}>
 			<Select.Group
 				options={[
 					{

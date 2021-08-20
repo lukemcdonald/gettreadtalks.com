@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { graphql } from 'gatsby'
+import { MailIcon, ExternalLinkIcon } from '@heroicons/react/outline'
 
 import { FavoriteToggle } from 'components/talks/favoriteToggle'
 import { Intro } from 'components/intro'
@@ -41,31 +42,15 @@ function TalkPage({ data, location, pageContext }) {
 			/>
 
 			<Intro align="wide--center" bgGradient fullscreen>
-				<FavoriteToggle
-					talk={talk}
-					className="w-8 h-8 p-1 bg-gray-200"
-					classNameToggle={{
-						on: 'text-red-600 hover:text-red-600',
-						off: 'text-gray-700 hover:text-red-600',
-					}}
-				/>
-
 				<Intro.Title>{talk.title}</Intro.Title>
 
 				<Intro.Tagline className="sm:justify-center sm:flex sm:space-x-2">
 					<div>
-						<span className="text-gray-500">by</span>&nbsp;
+						<span>by</span>&nbsp;
 						<Link className="hover:underline" to={talk.speakers[0].fields.slug}>
 							{talk.speaker}
 						</Link>
 					</div>
-
-					{talk.scripture && (
-						<>
-							<div className="hidden text-gray-500 sm:block">&bull;</div>
-							<div className="hidden sm:block">{talk.scripture}</div>
-						</>
-					)}
 				</Intro.Tagline>
 
 				{hasVideo && (
@@ -90,6 +75,71 @@ function TalkPage({ data, location, pageContext }) {
 					</p>
 				)}
 			</Intro>
+
+			<Section
+				className="text-white bg-gray-900"
+				separator="top"
+				separatorClass="border-gray-700"
+			>
+				<Section.Sidebar>
+					<Section.Heading as="h2" className="text-gray-400">
+						Actions
+					</Section.Heading>
+
+					<div className="flex mt-3">
+						<FavoriteToggle
+							talk={talk}
+							className="relative w-10 h-10 mb-2 mr-2"
+							classNameToggle={{
+								on: 'rounded-full p-2 bg-red-600',
+								off: 'rounded-full p-2 bg-gray-600 hover:bg-red-600',
+							}}
+						/>
+
+						<a
+							href={`mailto:?subject=${encodeURIComponent(
+								talk.title
+							)}&body=${encodeURIComponent(window.location.href)}`}
+							className="inline-block w-10 h-10 mb-2 mr-2"
+						>
+							<MailIcon className="p-2 bg-gray-600 rounded-full hover:bg-gray-800" />
+						</a>
+					</div>
+				</Section.Sidebar>
+
+				<Section.Content>
+					<Section.Heading as="h2" className="text-gray-400">
+						Topics
+					</Section.Heading>
+
+					<div className="mt-3">
+						{talk?.topics.map(({ data, fields }) => (
+							<Link.Button className="mb-2 mr-2" to={fields.slug}>
+								{data.title}
+							</Link.Button>
+						))}
+					</div>
+				</Section.Content>
+
+				{talk.scripture && (
+					<Section.Sidebar className="pb-6">
+						<Section.Heading as="h2" className="text-gray-400">
+							Scripture
+						</Section.Heading>
+						<div className="prose text-white">
+							<Link.Button
+								to={`https://www.biblegateway.com/passage/?search=${encodeURI(
+									talk.scripture
+								)}&version=esv`}
+								className="inline-flex items-center"
+							>
+								<span>{talk.scripture}</span>
+								<ExternalLinkIcon className="w-5 h-5 ml-2" />
+							</Link.Button>
+						</div>
+					</Section.Sidebar>
+				)}
+			</Section>
 
 			{hasSeries && (
 				<Section separator={hasTalks && 'bottom'}>
@@ -214,6 +264,14 @@ export const query = graphql`
 								}
 							}
 						}
+					}
+				}
+				topics {
+					data {
+						title
+					}
+					fields {
+						slug
 					}
 				}
 			}

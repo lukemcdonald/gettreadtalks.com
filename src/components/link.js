@@ -22,6 +22,7 @@ const LinkButton = ({ className, children, color, size, to, ...props }) => {
 				sizeMapping[size] || sizeMapping.DEFAULT,
 				className
 			)}
+			style={{ textDecoration: 'none' }} // Needed when 'prose' typography is applied.
 			{...props}
 		>
 			{children}
