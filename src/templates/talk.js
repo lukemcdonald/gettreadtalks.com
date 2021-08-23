@@ -114,7 +114,11 @@ function TalkPage({ data, location, pageContext }) {
 
 					<div className="mt-3">
 						{talk?.topics.map(({ data, fields }) => (
-							<Link.Button className="mb-2 mr-2" to={fields.slug}>
+							<Link.Button
+								key={fields.slug}
+								className="mb-2 mr-2"
+								to={fields.slug}
+							>
 								{data.title}
 							</Link.Button>
 						))}

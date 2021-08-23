@@ -2,7 +2,6 @@ import React, { Fragment } from 'react'
 
 import { Card } from 'components/card'
 import { FauxLink } from 'components/fauxLink'
-import { FavoriteToggle } from 'components/talks/favoriteToggle'
 
 function TalkCard({ talk }) {
 	return (
