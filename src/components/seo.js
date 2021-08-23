@@ -2,7 +2,7 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import striptags from 'striptags'
 
-import { useSiteMetadata } from 'hooks/useSiteMetadata'
+import { useSiteMetadata } from 'hooks/site-metadata'
 import { trimText } from 'utils/misc'
 
 function SEO({ children, location, title, description, image }) {

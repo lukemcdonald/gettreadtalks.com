@@ -2,7 +2,7 @@ import React from 'react'
 import firebase from 'gatsby-plugin-firebase'
 import { navigate } from 'gatsby'
 
-import { useAsync } from 'hooks/useAsync'
+import { useAsync } from 'hooks/async'
 import { FullPageLogo, FullPageErrorFallback } from 'components/loader'
 
 const AuthContext = React.createContext({})

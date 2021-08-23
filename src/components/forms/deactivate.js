@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import classNames from 'classnames'
 
-import { useAsync } from 'hooks/useAsync'
-import { FormErrorMessage } from 'components/forms/lib/errorMessage'
+import { useAsync } from 'hooks/async'
+import { FormErrorMessage } from 'components/forms/lib/error-message'
 
 import styles from 'components/styles'
 import formStyles from 'components/styles/form'

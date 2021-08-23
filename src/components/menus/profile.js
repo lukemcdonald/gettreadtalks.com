@@ -6,7 +6,7 @@ import { ArrowRightIcon } from '@heroicons/react/solid'
 
 import { Link } from 'components/link'
 import { useAuth } from 'context/auth'
-import { useAsync } from 'hooks/useAsync'
+import { useAsync } from 'hooks/async'
 
 function styleMenu(item = '', args = {}) {
 	const { active, type } = args
@@ -25,7 +25,7 @@ function styleMenu(item = '', args = {}) {
 
 function ProfileMenu() {
 	const { run } = useAsync()
-	const { isUser, profile, logout } = useAuth()
+	const { isUser, logout } = useAuth()
 
 	if (!isUser) {
 		return (

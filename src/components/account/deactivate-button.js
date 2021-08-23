@@ -5,7 +5,7 @@ import { Dialog } from '@headlessui/react'
 import { DeactivateAccountForm } from 'components/forms/deactivate'
 import { useAuth } from 'context/auth'
 import { useUsers } from 'context/users'
-import { useAsync } from 'hooks/useAsync'
+import { useAsync } from 'hooks/async'
 import styles from 'components/styles'
 
 function DeactivateAccountButton({ className, buttonText = 'Deactivate' }) {

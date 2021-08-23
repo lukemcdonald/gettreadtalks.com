@@ -7,7 +7,7 @@ import { Section } from 'components/section'
 import { SEO } from 'components/seo'
 import { SpeakersList } from 'components/speakers/list'
 import { SpeakersFilter } from 'components/speakers/filter'
-import { TextCarousel } from 'components/textCarousel'
+import { TextCarousel } from 'components/text-carousel'
 
 function SpeakersPage({ data, location }) {
 	const { speakers } = data

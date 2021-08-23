@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { CheckIcon, HeartIcon, UserIcon } from '@heroicons/react/outline'
 
 import { Link } from 'components/link'
-import { DeactivateAccountButton } from 'components/account/deactivateButton'
+import { DeactivateAccountButton } from 'components/account/deactivate-button'
 
 function AccountMenu() {
 	const [navigation] = useState({

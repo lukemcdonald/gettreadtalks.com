@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 
-import { useAsync } from 'hooks/useAsync'
+import { useAsync } from 'hooks/async'
 
 const userFavoriteTalksQuery = graphql`
 	query {

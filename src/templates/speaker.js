@@ -3,14 +3,14 @@ import { graphql } from 'gatsby'
 
 import { Avatar } from 'components/avatar'
 import { ClipsList } from 'components/clips/list'
-import { ConditionalWrapper } from 'components/conditionalWrapper'
+import { ConditionalWrapper } from 'components/conditional-wrapper'
 import { Intro } from 'components/intro'
 import { Link } from 'components/link'
 import { Section } from 'components/section'
 import { SEO } from 'components/seo'
 import { SpeakersFilter } from 'components/speakers/filter'
 import { TalksList } from 'components/talks/list'
-import { TextCarousel } from 'components/textCarousel'
+import { TextCarousel } from 'components/text-carousel'
 import { maybePluralize } from 'utils/misc'
 
 function SingleSpeakerPage({ data, location, pageContext }) {

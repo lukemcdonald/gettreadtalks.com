@@ -9,7 +9,7 @@ import { Section } from 'components/section'
 import { SEO } from 'components/seo'
 import { TalksFilter } from 'components/talks/filter'
 import { TalksList } from 'components/talks/list'
-import { TextCarousel } from 'components/textCarousel'
+import { TextCarousel } from 'components/text-carousel'
 
 function TalksPage({ data, location, pageContext }) {
 	const { talks, topics } = data

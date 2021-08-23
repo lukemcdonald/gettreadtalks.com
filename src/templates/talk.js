@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { graphql } from 'gatsby'
 import { MailIcon, ExternalLinkIcon } from '@heroicons/react/outline'
 
-import { FavoriteToggle } from 'components/talks/favoriteToggle'
+import { FavoriteToggle } from 'components/talks/favorite-toggle'
 import { Intro } from 'components/intro'
 import { Link } from 'components/link'
 import { Section } from 'components/section'

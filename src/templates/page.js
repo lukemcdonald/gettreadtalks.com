@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
-import { useAffiliateLinks } from 'hooks/useAffiliateLinks'
+import { useAffiliateLinks } from 'hooks/affiliate-links'
 
 import { SEO } from 'components/seo'
 import { Section } from 'components/section'

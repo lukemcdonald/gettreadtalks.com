@@ -1,6 +1,6 @@
 import React from 'react'
 import firebase from 'gatsby-plugin-firebase'
-import { useAsync } from 'hooks/useAsync'
+import { useAsync } from 'hooks/async'
 import { useAuth } from 'context/auth'
 import { Spinner, ErrorFallback } from 'components/loader'
 

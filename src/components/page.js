@@ -13,7 +13,7 @@ class Page extends Component {
 	render() {
 		const { children, className } = this.props
 
-		return <div className={classNames('', className)}>{children}</div>
+		return <div className={className}>{children}</div>
 	}
 }
 

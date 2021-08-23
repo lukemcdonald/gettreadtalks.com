@@ -3,7 +3,7 @@ import classNames from 'classnames'
 import { HeartIcon as HeartOutlineIcon } from '@heroicons/react/outline'
 import { HeartIcon as HeartSolidIcon } from '@heroicons/react/solid'
 
-import { useFavoriteTalk } from 'hooks/useFavoriteTalk'
+import { useFavoriteTalk } from 'hooks/favorite-talk'
 import { Toggle, ToggleOn, ToggleOff, ToggleButton } from 'components/toggle'
 import { useUsers } from 'context/users'
 

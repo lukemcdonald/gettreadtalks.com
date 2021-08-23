@@ -1,5 +1,5 @@
 import React from 'react'
-import { SiteNavigation } from 'components/siteNavigation'
+import { SiteNavigation } from 'components/site-navigation'
 
 function SiteHeader({ siteTitle }) {
 	return (

@@ -3,9 +3,9 @@ import { useAuth } from 'context/auth'
 import { FullPageLogo } from 'components/loader'
 
 const AuthenticatedApp = React.lazy(() =>
-	import(/* webpackPrefetch: true */ 'appAuthenticated')
+	import(/* webpackPrefetch: true */ 'authenticated-app')
 )
-const UnauthenticatedApp = React.lazy(() => import('appUnauthenticated'))
+const UnauthenticatedApp = React.lazy(() => import('unauthenticated-app'))
 
 function App({ children }) {
 	const { profile } = useAuth()
