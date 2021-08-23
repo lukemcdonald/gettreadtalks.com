@@ -1,6 +1,58 @@
-exports.onCreateNode = ({ node, actions }) => {
+const slugify = require('@sindresorhus/slugify')
+
+function onCreateAirtableNode({ node, actions }) {
 	const { createNodeField } = actions
-	const airtableTables = [
+	const { type } = node.internal
+	const args = { decamelize: false }
+	let slug = ''
+
+	if (type === 'AirtableClip') {
+		const { path, speaker, title } = node.data
+		slug =
+			path || `/clips/${slugify(speaker[0], args)}/${slugify(title, args)}/`
+	}
+
+	if (type === 'AirtablePage') {
+		const { path, title } = node.data
+		slug = path || `/${slugify(title, args)}/`
+	}
+
+	if (type === 'AirtableSerie') {
+		const { path, title } = node.data
+		slug = path || `/series/${slugify(title, args)}/`
+	}
+
+	if (type === 'AirtableSpeaker') {
+		const { path, title } = node.data
+		slug = path || `/speakers/${slugify(title, args)}/`
+	}
+
+	if (type === 'AirtableTalk') {
+		const { speaker, title, path } = node.data
+		slug =
+			path || `/talks/${slugify(speaker[0], args)}/${slugify(title, args)}/`
+	}
+
+	if (type === 'AirtableTopic') {
+		const { path, title } = node.data
+		slug = path || `/topics/${slugify(title, args)}/`
+	}
+
+	createNodeField({
+		name: 'id',
+		node,
+		value: node.recordId,
+	})
+
+	createNodeField({
+		name: 'slug',
+		node,
+		value: slug,
+	})
+}
+
+const onCreateNode = ({ node, actions }) => {
+	const airtableTypes = [
 		'AirtableClip',
 		'AirtablePage',
 		'AirtableSerie',
@@ -10,23 +62,16 @@ exports.onCreateNode = ({ node, actions }) => {
 	]
 
 	/**
-	 * Create a slug value on the node fields property.
+	 * Create data on the node fields property.
 	 *
-	 * 1. Node is an Airtable type
-	 * 2. Node type is a whitelisted Airtable
-	 * 3. Node data is not empty (empty table row in Airtable)
+	 * 1. Node type is a whitelisted Airtable
+	 * 2. Node data is not empty (empty table row in Airtable)
 	 */
 	if (
-		airtableTables.includes(node.internal.type) &&
+		airtableTypes.includes(node.internal.type) &&
 		Object.keys(node.data).length
 	) {
-		const { path, title } = node.data
-
-		createNodeField({
-			node,
-			name: `slug`,
-			value: path || title,
-		})
+		onCreateAirtableNode({ node, actions })
 	}
 }
 
@@ -259,4 +304,7 @@ async function createPages(params) {
 	])
 }
 
-export { createPages }
+module.exports = {
+	createPages,
+	onCreateNode,
+}

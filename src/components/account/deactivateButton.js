@@ -22,6 +22,9 @@ function DeactivateAccountButton({ className, buttonText = 'Deactivate' }) {
 		setIsOpen(true)
 	}
 
+	// @todo: Delete user collection data when unregister completes.
+	// This current functionality doesn't work as user collection is
+	// removed if a wrong password is given.
 	function handleOnSubmit(form) {
 		run(unregister(form))
 		run(deleteUserById(user?.id))
