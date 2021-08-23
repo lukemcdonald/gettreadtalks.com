@@ -33,7 +33,7 @@ function SingleSpeakerPage({ data, location, pageContext }) {
 					<Avatar
 						className="block w-24 m-auto mb-4 border-4 border-white rounded-full shadow-lg"
 						image={speaker.avatar}
-						title={speaker.title}
+						alt={speaker.title}
 					/>
 
 					<SpeakersFilter
