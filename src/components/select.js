@@ -29,7 +29,7 @@ class Select extends Component {
 	static Group = SelectGroup
 
 	render() {
-		const { children, className, current, label } = this.props
+		const { children, className, current = {}, label } = this.props
 
 		return (
 			<div className={classNames('relative inline-block', className)}>

@@ -9,7 +9,7 @@ import { SpeakersList } from 'components/speakers/list'
 import { SpeakersFilter } from 'components/speakers/filter'
 import { TextCarousel } from 'components/textCarousel'
 
-function SpeakersPage({ data, location, pageContext }) {
+function SpeakersPage({ data, location }) {
 	const { speakers } = data
 
 	return (
@@ -19,37 +19,12 @@ function SpeakersPage({ data, location, pageContext }) {
 			<TextCarousel text="Repent and Believe" />
 
 			<Section>
-				<Section.Sidebar className="hidden" sticky>
-					<Page.Title>
-						<SpeakersFilter
-							speakers={speakers.nodes}
-							current={{
-								value: pageContext.slug,
-								label: pageContext.speaker,
-							}}
-						/>
-					</Page.Title>
-
-					<div className="mt-2 prose">
-						<p>
-							Listen to <em>{speakers.totalCount}</em> faithful ambassadors of
-							Christ and be blessed.
-						</p>
-					</div>
-				</Section.Sidebar>
-
 				<Section.Content align="full">
 					<SpeakersList className="xl:grid-cols-4" speakers={speakers.nodes}>
 						<Card className="items-start row-span-2 px-6 py-5">
 							<div>
 								<Page.Title>
-									<SpeakersFilter
-										speakers={speakers.nodes}
-										current={{
-											value: pageContext.slug,
-											label: pageContext.speaker,
-										}}
-									/>
+									<SpeakersFilter speakers={speakers.nodes} />
 								</Page.Title>
 
 								<div className="mt-2 prose">
