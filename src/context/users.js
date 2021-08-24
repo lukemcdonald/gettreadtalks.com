@@ -2,7 +2,7 @@ import React from 'react'
 import firebase from 'gatsby-plugin-firebase'
 import { useAsync } from 'hooks/async'
 import { useAuth } from 'context/auth'
-import { Spinner, ErrorFallback } from 'components/loader'
+import { FullPageLogo, FullPageErrorFallback } from 'components/loader'
 
 const UsersContext = React.createContext({})
 UsersContext.displayName = 'UsersContext'
@@ -141,11 +141,11 @@ function UsersProvider(props) {
 	)
 
 	if (isLoading || isIdle) {
-		return <Spinner className="w-16 h-16 text-red-600" />
+		return <FullPageLogo />
 	}
 
 	if (isError) {
-		return <ErrorFallback error={error} />
+		return <FullPageErrorFallback error={error} />
 	}
 
 	if (isSuccess) {
