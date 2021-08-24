@@ -138,7 +138,7 @@ function TalkPage({ data, location, pageContext }) {
 								className="inline-flex items-center"
 							>
 								<span>{talk.scripture}</span>
-								<ExternalLinkIcon className="w-5 h-5 ml-2" />
+								<ExternalLinkIcon className="w-5 h-5 ml-2 opacity-80" />
 							</Link.Button>
 						</div>
 					</Section.Sidebar>

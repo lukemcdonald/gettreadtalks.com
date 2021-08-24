@@ -89,15 +89,18 @@ function AuthProvider(props) {
 				user.email,
 				form.password
 			)
-			return user
-				.reauthenticateWithCredential(credential)
-				.then(() => user.delete().then(() => setData(null)))
-				.then(() => navigate('/'))
+
+			return user.reauthenticateWithCredential(credential).then(() =>
+				firestore
+					.collection('users')
+					.doc(user.uid)
+					.delete()
+					.addOnSuccessListener(user.delete().then(() => setData(null)))
+			)
 		},
-		[setData]
+		[firestore, setData]
 	)
 
-	// @todo: Add button to delete account along with removing user from users collection.
 	const isUser = profile
 
 	const value = React.useMemo(
