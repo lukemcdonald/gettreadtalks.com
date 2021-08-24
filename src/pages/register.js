@@ -14,6 +14,7 @@ function RegisterPage({ location }) {
 
 	if (isUser) {
 		navigate('/account')
+		return null
 	}
 
 	return (

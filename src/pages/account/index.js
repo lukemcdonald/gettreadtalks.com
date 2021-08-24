@@ -1,10 +1,10 @@
 import React from 'react'
 import { navigate } from 'gatsby'
+import Gravatar from 'react-gravatar'
 
 import { Page } from 'components/page'
 import { Section } from 'components/section'
 import { SEO } from 'components/seo'
-import Gravatar from 'react-gravatar'
 import { Card } from 'components/card'
 
 import { useAuth } from 'context/auth'
@@ -15,6 +15,7 @@ function AccountPage({ location }) {
 
 	if (!isUser) {
 		navigate('/login')
+		return null
 	}
 
 	return (

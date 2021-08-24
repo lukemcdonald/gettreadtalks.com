@@ -17,11 +17,6 @@ function AccountFavoritesPage({ data, location }) {
 	const { talks } = data
 
 	useEffect(() => {
-		if (!isUser) navigate('/login')
-		return null
-	})
-
-	useEffect(() => {
 		if (!talks || !user?.favoriteTalks) return null
 
 		// Get user favorites from all talks.
@@ -44,6 +39,11 @@ function AccountFavoritesPage({ data, location }) {
 
 		setFavoriteTalks(sortedFavorites)
 	}, [talks, user])
+
+	if (!isUser) {
+		navigate('/login')
+		return null
+	}
 
 	return (
 		<>

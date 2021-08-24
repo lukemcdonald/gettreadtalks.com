@@ -14,6 +14,7 @@ function LoginPage({ location }) {
 
 	if (isUser) {
 		navigate('/account')
+		return null
 	}
 
 	return (

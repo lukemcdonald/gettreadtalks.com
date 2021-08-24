@@ -10,10 +10,10 @@ import { useAuth } from 'context/auth'
 function AccountFinishedPage({ location }) {
 	const { isUser } = useAuth()
 
-	useEffect(() => {
-		if (!isUser) navigate('/login')
+	if (!isUser) {
+		navigate('/login')
 		return null
-	})
+	}
 
 	return (
 		<>
