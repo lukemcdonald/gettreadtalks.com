@@ -9,6 +9,7 @@ const AuthContext = React.createContext({})
 AuthContext.displayName = 'AuthContext'
 
 function AuthProvider(props) {
+	const auth = firebase.auth()
 	const firestore = firebase.firestore()
 
 	const {
@@ -23,7 +24,7 @@ function AuthProvider(props) {
 	} = useAsync()
 
 	React.useEffect(
-		() => firebase.auth().onAuthStateChanged((creds) => setData(creds)),
+		() => auth.onAuthStateChanged((creds) => setData(creds)),
 		[setData]
 	)
 
@@ -38,18 +39,16 @@ function AuthProvider(props) {
 
 	const login = React.useCallback(
 		(form) =>
-			firebase
-				.auth()
+			auth
 				.signInWithEmailAndPassword(form.email, form.password)
 				.then((creds) => setData(creds))
 				.then(() => navigate('/account')),
-		[setData]
+		[auth, setData]
 	)
 
 	const register = React.useCallback(
 		(form) =>
-			firebase
-				.auth()
+			auth
 				.createUserWithEmailAndPassword(form.email, form.password)
 				.then((creds) => {
 					setData(creds)
@@ -59,32 +58,30 @@ function AuthProvider(props) {
 					})
 				})
 				.then(() => navigate('/account')),
-		[setData, updateUsersCollection]
+		[auth, setData, updateUsersCollection]
 	)
 
 	const logout = React.useCallback(
 		() =>
-			firebase
-				.auth()
+			auth
 				.signOut()
 				.then(() => setData(null))
 				.then(() => navigate('/login')),
-		[setData]
+		[auth, setData]
 	)
 
 	const resetPassword = React.useCallback(
 		(form) =>
-			firebase
-				.auth()
+			auth
 				.sendPasswordResetEmail(form.email)
 				.then(() => setData(null))
 				.then(() => navigate('/login')),
-		[setData]
+		[auth, setData]
 	)
 
 	const unregister = React.useCallback(
 		(form) => {
-			const user = firebase.auth().currentUser
+			const user = auth.currentUser
 			const credential = firebase.auth.EmailAuthProvider.credential(
 				user.email,
 				form.password
@@ -98,7 +95,7 @@ function AuthProvider(props) {
 					.addOnSuccessListener(user.delete().then(() => setData(null)))
 			)
 		},
-		[firestore, setData]
+		[auth, firestore, setData]
 	)
 
 	const isUser = profile
