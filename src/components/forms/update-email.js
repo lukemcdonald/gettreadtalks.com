@@ -1,22 +1,21 @@
 import React, { useState } from 'react'
 import classNames from 'classnames'
-
-import { useAsync } from 'hooks/async'
 import { FormErrorMessage } from 'components/forms/lib/error-message'
+import { useAsync } from 'hooks/async'
 
 import styles from 'components/styles'
 import formStyles from 'components/styles/form'
 
-function DeactivateAccountForm({ className, buttonText, onSubmit }) {
-	const { isError, error } = useAsync()
+function UpdateEmailForm({ className, buttonText, onSubmit }) {
+	const { isError, error, run } = useAsync()
 	const [state, setState] = useState({
-		password: '',
+		email: '',
 	})
 
 	function handleSubmit(event) {
 		event.preventDefault()
-		const { password } = state
-		onSubmit({ password })
+		const { email } = state
+		run(onSubmit({ email }))
 	}
 
 	function handleChange(event) {
@@ -27,36 +26,27 @@ function DeactivateAccountForm({ className, buttonText, onSubmit }) {
 		<form onSubmit={handleSubmit} className={className}>
 			{isError && <FormErrorMessage error={error} />}
 
-			<div className={classNames(formStyles.formRow)}>
-				<label htmlFor="password" className={formStyles.label}>
-					Password
+			<div className={formStyles.formRow}>
+				<label htmlFor="email" className={formStyles.label}>
+					Email address
 				</label>
 				<input
-					id="password"
-					autoComplete="password"
-					type="password"
+					id="email"
+					autoComplete="email"
+					type="text"
 					onChange={handleChange}
-					value={state.password}
+					value={state.email}
 					className={formStyles.input}
-					initialfocus="true"
 				/>
 			</div>
 
 			<div className={formStyles.formRow}>
-				<button
-					type="submit"
-					className={classNames(
-						styles.button,
-						state.password
-							? 'bg-red-600'
-							: 'bg-opacity-80 pointer-events-none cursor-not-allowed'
-					)}
-				>
-					{buttonText}
+				<button type="submit" className={styles.button}>
+					{buttonText || 'Submit'}
 				</button>
 			</div>
 		</form>
 	)
 }
 
-export { DeactivateAccountForm }
+export { UpdateEmailForm }

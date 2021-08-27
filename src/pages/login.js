@@ -9,6 +9,8 @@ import { Page } from 'components/page'
 import { Section } from 'components/section'
 import { SEO } from 'components/seo'
 
+import formStyles from 'components/styles/form'
+
 function LoginPage({ location }) {
 	const { login, isUser } = useAuth()
 
@@ -36,7 +38,11 @@ function LoginPage({ location }) {
 				<Section.Content>
 					<div className="relative z-10 flex items-center justify-center flex-auto">
 						<div className="w-full max-w-md">
-							<LoginForm onSubmit={login} buttonText="Sign in to account" />
+							<LoginForm
+								className={formStyles.boxed}
+								onSubmit={login}
+								buttonText="Sign in to account"
+							/>
 
 							<div className="mt-6 prose text-center">
 								<p>

@@ -1,47 +1,39 @@
-import React, { useState } from 'react'
-import { CheckIcon, HeartIcon, UserIcon } from '@heroicons/react/outline'
+import React from 'react'
+import {
+	CheckCircleIcon as CheckIcon,
+	HeartIcon,
+	UserCircleIcon as UserIcon,
+} from '@heroicons/react/outline'
 
 import { Link } from 'components/link'
-import { DeactivateAccountButton } from 'components/account/deactivate-button'
+import classNames from 'classnames'
 
-function AccountMenu() {
-	const [navigation] = useState({
-		Account: {
-			to: '/account/',
-			icon: <UserIcon />,
-		},
-		Favorites: {
-			to: '/account/favorites/',
-			icon: <HeartIcon />,
-		},
-		Finished: {
-			to: '/account/finished/',
-			icon: <CheckIcon />,
-		},
-	})
+const navigation = [
+	{ name: 'Favorites', to: '/account/favorites/', icon: HeartIcon },
+	{ name: 'Completed', to: '/account/finished/', icon: CheckIcon },
+	{ name: 'Account Settings', to: '/account/', icon: UserIcon },
+]
 
+function AccountMenu({ className }) {
 	return (
-		<div className="font-medium text-gray-600">
-			{Object.keys(navigation).map((title) => {
-				const { to, icon } = navigation[title]
-				return (
-					<Link
-						to={to}
-						key={title}
-						className="flex items-center px-2 py-2 mb-1 rounded-md"
-						activeClassName="text-red-600"
-					>
-						{icon && <div className="w-6 h-6 mr-3 opacity-70">{icon}</div>}
-						{title}
-					</Link>
-				)
-			})}
-			<hr className="mt-4 mb-2 border-t border-gray-200" />
-			<DeactivateAccountButton
-				className="px-2 py-2 hover:text-red-600"
-				buttonText="Deactivate Account"
-			/>
-		</div>
+		<nav
+			className={classNames('space-y-1 font-medium text-gray-900', className)}
+		>
+			{navigation.map((item) => (
+				<Link
+					key={item.name}
+					to={item.to}
+					className="flex items-center px-2 py-2 rounded-md group hover:text-red-600"
+					activeClassName="text-red-600"
+				>
+					<item.icon
+						className="flex-shrink-0 w-6 h-6 mr-3 -ml-1 text-gray-400 group-hover:text-red-600"
+						aria-hidden="true"
+					/>
+					<span className="truncate">{item.name}</span>
+				</Link>
+			))}
+		</nav>
 	)
 }
 

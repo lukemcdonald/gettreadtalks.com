@@ -1,61 +1,135 @@
 import React, { Fragment } from 'react'
 import classNames from 'classnames'
 import { Menu, Transition } from '@headlessui/react'
-import { UserCircleIcon } from '@heroicons/react/outline'
-import { ArrowRightIcon } from '@heroicons/react/solid'
+import {
+	LoginIcon,
+	LogoutIcon,
+	HeartIcon,
+	CheckCircleIcon as CheckIcon,
+	UserCircleIcon as UserIcon,
+} from '@heroicons/react/outline'
+import { ChevronDownIcon } from '@heroicons/react/solid'
 
 import { Link } from 'components/link'
 import { useAuth } from 'context/auth'
 import { useAsync } from 'hooks/async'
+import { AccountProfileCard } from 'components/account/profile-card'
 
-function styleMenu(item = '', args = {}) {
+function styleMenuItem(item = '', args = {}) {
 	const { active, type } = args
 
 	switch (item) {
 		case 'item':
 			return classNames(
-				active ? 'bg-gray-100' : '',
+				active ? 'bg-gray-50' : '',
 				type === 'button' ? 'w-full text-left' : '',
-				'block px-3 py-2 text-sm text-gray-600 rounded',
-				'hover:text-gray-900'
+				'block p-2 text-sm text-gray-600 rounded group flex items-center',
+				'hover:text-red-600'
+			)
+		case 'icon':
+			return classNames(
+				active ? '' : '',
+				'w-5 h-5 mr-3 flex-none text-gray-400',
+				'group-hover:text-red-600'
 			)
 		default:
 	}
 }
 
-function ProfileMenu() {
-	const { run } = useAsync()
-	const { isUser, logout } = useAuth()
-
-	if (!isUser) {
-		return (
-			<>
-				<span className="inline-block ml-3 mr-1 border-l border-gray-400 sm:hidden md:block">
-					&nbsp;
-				</span>
-				<Link
-					to="/login"
-					className={classNames(
-						'px-3 py-1 rounded-md text-lg font-medium text-gray-900 flex items-center',
-						'hover:text-red-600'
-					)}
-				>
-					Sign in <ArrowRightIcon className="w-4 h-4 flex-none ml-1.5" />
+const UnauthenticatedMenu = () => (
+	<div className="p-1">
+		<Menu.Item>
+			{({ active }) => (
+				<Link to="/login/" className={styleMenuItem('item', { active })}>
+					<LoginIcon className={styleMenuItem('icon', { active })} /> Sign in
 				</Link>
-			</>
-		)
-	}
+			)}
+		</Menu.Item>
+		<Menu.Item>
+			{({ active }) => (
+				<Link to="/register/" className={styleMenuItem('item', { active })}>
+					<UserIcon className={styleMenuItem('icon', { active })} /> Create an
+					account
+				</Link>
+			)}
+		</Menu.Item>
+	</div>
+)
+
+const AuthenticatedMenu = () => {
+	const { logout, profile } = useAuth()
+	const { run } = useAsync()
 
 	return (
-		<Menu as="div" className="relative ml-3">
+		<>
+			<div className="px-3.5 py-3">
+				<AccountProfileCard profile={profile} showAvatar="hide" />
+			</div>
+			<div className="p-1">
+				<Menu.Item>
+					{({ active }) => (
+						<Link
+							to="/account/favorites/"
+							className={styleMenuItem('item', { active })}
+						>
+							<HeartIcon className={styleMenuItem('icon', { active })} />{' '}
+							Favorites
+						</Link>
+					)}
+				</Menu.Item>
+				<Menu.Item>
+					{({ active }) => (
+						<Link
+							to="/account/finished/"
+							className={styleMenuItem('item', { active })}
+						>
+							<CheckIcon className={styleMenuItem('icon', { active })} />{' '}
+							Completed
+						</Link>
+					)}
+				</Menu.Item>
+			</div>
+			<div className="p-1">
+				<Menu.Item>
+					{({ active }) => (
+						<Link to="/account/" className={styleMenuItem('item', { active })}>
+							<UserIcon className={styleMenuItem('icon', { active })} /> Account
+							Settings
+						</Link>
+					)}
+				</Menu.Item>
+				<Menu.Item>
+					{({ active }) => (
+						<button
+							type="button"
+							onClick={() => run(logout())}
+							className={styleMenuItem('item', {
+								active,
+								type: 'button',
+							})}
+						>
+							<LogoutIcon className={styleMenuItem('icon', { active })} /> Sign
+							out
+						</button>
+					)}
+				</Menu.Item>
+			</div>
+		</>
+	)
+}
+
+function ProfileMenu() {
+	const { isUser } = useAuth()
+
+	return (
+		<Menu as="div" className="relative pl-6 ml-4 border-l border-gray-300">
 			{({ open }) => (
 				<>
-					<div>
-						<Menu.Button className={classNames('flex text-lg rounded-full')}>
-							<span className="sr-only">Open user menu</span>
-							<UserCircleIcon className="w-8 h-8 rounded-full" />
-						</Menu.Button>
-					</div>
+					<Menu.Button className="flex items-center text-lg font-medium text-gray-900">
+						<span className="flex items-center">
+							Account <ChevronDownIcon className="w-5 h-5 ml-2" />
+						</span>
+					</Menu.Button>
 
 					<Transition
 						show={open}
@@ -68,53 +142,12 @@ function ProfileMenu() {
 						leaveTo="transform opacity-0 scale-95"
 					>
 						<Menu.Items
-							static
 							className={classNames(
-								'absolute right-0 w-48 p-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5',
+								'absolute right-0 w-60 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 divide-y divide-gray-100',
 								'focus:outline-none'
 							)}
 						>
-							<Menu.Item>
-								{({ active }) => (
-									<Link
-										to="/account/"
-										className={styleMenu('item', { active })}
-									>
-										Your Account
-									</Link>
-								)}
-							</Menu.Item>
-							<Menu.Item>
-								{({ active }) => (
-									<Link
-										to="/account/favorites/"
-										className={styleMenu('item', { active })}
-									>
-										Favorites
-									</Link>
-								)}
-							</Menu.Item>
-							<Menu.Item>
-								{({ active }) => (
-									<Link
-										to="/account/finished/"
-										className={styleMenu('item', { active })}
-									>
-										Finished
-									</Link>
-								)}
-							</Menu.Item>
-							<Menu.Item>
-								{({ active }) => (
-									<button
-										type="button"
-										onClick={() => run(logout())}
-										className={styleMenu('item', { active, type: 'button' })}
-									>
-										Sign out
-									</button>
-								)}
-							</Menu.Item>
+							{isUser ? <AuthenticatedMenu /> : <UnauthenticatedMenu />}
 						</Menu.Items>
 					</Transition>
 				</>

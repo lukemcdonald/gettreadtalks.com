@@ -1,3 +1,4 @@
+// todo: this could probably use a basic email form with resetPassword as the onSubmit
 import React from 'react'
 
 import { useAuth } from 'context/auth'

@@ -1,3 +1,5 @@
+const boxed = 'bg-white shadow-sm rounded-md space-y-6 bg-white p-6'
+
 const error = 'text-status-error pb-6 mb-6 text-sm border-b border-gray-100'
 
 const formRow = 'block'
@@ -8,6 +10,7 @@ const input =
 const label = 'inline-block font-medium mb-1'
 
 export default {
+	boxed,
 	error,
 	formRow,
 	input,

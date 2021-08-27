@@ -6,17 +6,24 @@ import { useAsync } from 'hooks/async'
 import styles from 'components/styles'
 import formStyles from 'components/styles/form'
 
-function LoginForm({ className, buttonText, onSubmit, context = {} }) {
-	const { isError, error, run } = useAsync()
+function UpdatePasswordForm({ className, buttonText, onSubmit }) {
+	const { error: asyncError, run } = useAsync()
+	const [error, setError] = useAsync(asyncError)
 	const [state, setState] = useState({
-		email: '',
 		password: '',
+		password2: '',
 	})
 
 	function handleSubmit(event) {
 		event.preventDefault()
-		const { email, password } = state
-		run(onSubmit({ email, password }))
+		const { password, password2 } = state
+
+		if (password2 !== password) {
+			setError('Passwords do not match')
+			return null
+		}
+
+		run(onSubmit({ password, password2 }))
 	}
 
 	function handleChange(event) {
@@ -25,37 +32,32 @@ function LoginForm({ className, buttonText, onSubmit, context = {} }) {
 
 	return (
 		<form onSubmit={handleSubmit} className={className}>
-			{isError && <FormErrorMessage error={error} />}
+			{error && <FormErrorMessage error={error} />}
 
 			<div className={formStyles.formRow}>
-				<label htmlFor="email" className={formStyles.label}>
-					Email address
-				</label>
-				<input
-					id="email"
-					autoComplete="email"
-					type="text"
-					onChange={handleChange}
-					value={state.email}
-					className={formStyles.input}
-				/>
-			</div>
-
-			<div
-				className={classNames(
-					formStyles.formRow,
-					context.pathname === '/password/reset' ? 'hidden' : ''
-				)}
-			>
 				<label htmlFor="password" className={formStyles.label}>
 					Password
 				</label>
 				<input
 					id="password"
 					autoComplete="password"
-					type="password"
+					type="text"
 					onChange={handleChange}
 					value={state.password}
+					className={formStyles.input}
+				/>
+			</div>
+
+			<div className={formStyles.formRow}>
+				<label htmlFor="password2" className={formStyles.label}>
+					Verify Password
+				</label>
+				<input
+					id="password2"
+					autoComplete="password2"
+					type="text"
+					onChange={handleChange}
+					value={state.password2}
 					className={formStyles.input}
 				/>
 			</div>
@@ -69,4 +71,4 @@ function LoginForm({ className, buttonText, onSubmit, context = {} }) {
 	)
 }
 
-export { LoginForm }
+export { UpdatePasswordForm }

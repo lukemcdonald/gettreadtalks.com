@@ -1,22 +1,22 @@
 import React, { useState } from 'react'
 import classNames from 'classnames'
-import { FormErrorMessage } from 'components/forms/lib/error-message'
+
 import { useAsync } from 'hooks/async'
+import { FormErrorMessage } from 'components/forms/lib/error-message'
 
 import styles from 'components/styles'
 import formStyles from 'components/styles/form'
 
-function LoginForm({ className, buttonText, onSubmit, context = {} }) {
-	const { isError, error, run } = useAsync()
+function DeactivateAccountForm({ className, buttonText, onSubmit }) {
+	const { isError, error } = useAsync()
 	const [state, setState] = useState({
-		email: '',
 		password: '',
 	})
 
 	function handleSubmit(event) {
 		event.preventDefault()
-		const { email, password } = state
-		run(onSubmit({ email, password }))
+		const { password } = state
+		onSubmit({ password })
 	}
 
 	function handleChange(event) {
@@ -27,26 +27,7 @@ function LoginForm({ className, buttonText, onSubmit, context = {} }) {
 		<form onSubmit={handleSubmit} className={className}>
 			{isError && <FormErrorMessage error={error} />}
 
-			<div className={formStyles.formRow}>
-				<label htmlFor="email" className={formStyles.label}>
-					Email address
-				</label>
-				<input
-					id="email"
-					autoComplete="email"
-					type="text"
-					onChange={handleChange}
-					value={state.email}
-					className={formStyles.input}
-				/>
-			</div>
-
-			<div
-				className={classNames(
-					formStyles.formRow,
-					context.pathname === '/password/reset' ? 'hidden' : ''
-				)}
-			>
+			<div className={classNames(formStyles.formRow)}>
 				<label htmlFor="password" className={formStyles.label}>
 					Password
 				</label>
@@ -57,11 +38,20 @@ function LoginForm({ className, buttonText, onSubmit, context = {} }) {
 					onChange={handleChange}
 					value={state.password}
 					className={formStyles.input}
+					initialfocus="true"
 				/>
 			</div>
 
 			<div className={formStyles.formRow}>
-				<button type="submit" className={styles.button}>
+				<button
+					type="submit"
+					className={classNames(
+						styles.button,
+						state.password
+							? 'bg-red-600'
+							: 'bg-opacity-80 pointer-events-none cursor-not-allowed'
+					)}
+				>
 					{buttonText || 'Submit'}
 				</button>
 			</div>
@@ -69,4 +59,4 @@ function LoginForm({ className, buttonText, onSubmit, context = {} }) {
 	)
 }
 
-export { LoginForm }
+export { DeactivateAccountForm }

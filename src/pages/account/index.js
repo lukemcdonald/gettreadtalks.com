@@ -1,17 +1,22 @@
+// todo: Setup Firebase functionality to handle email and password updates onClick event handlers.
+
 import React from 'react'
 import { navigate } from 'gatsby'
-import Gravatar from 'react-gravatar'
 
 import { Page } from 'components/page'
 import { Section } from 'components/section'
 import { SEO } from 'components/seo'
-import { Card } from 'components/card'
 
 import { useAuth } from 'context/auth'
 import { AccountMenu } from 'components/menus/account'
+import { DeactivateAccountButton } from 'components/account/deactivate-button'
+import { UpdateEmailForm } from 'components/forms/update-email'
+import { UpdatePasswordForm } from 'components/forms/update-password'
+
+import formStyles from 'components/styles/form'
 
 function AccountPage({ location }) {
-	const { isUser, profile } = useAuth()
+	const { isUser } = useAuth()
 
 	if (!isUser) {
 		navigate('/login')
@@ -23,33 +28,30 @@ function AccountPage({ location }) {
 			<SEO title="Your Account" location={location} />
 
 			<Section>
-				<Section.Sidebar>
+				<Section.Sidebar className="space-y-6">
 					<AccountMenu />
 				</Section.Sidebar>
 
 				<Section.Content>
-					<Page.Title>Your Account</Page.Title>
+					<Page.Title>Account Settings</Page.Title>
+					<p className="mt-2">
+						Manage the email address and password associated with your account.
+					</p>
 
-					<div className="mt-6">
-						<Card display="none" hoverStyles="none">
-							{profile?.email && (
-								<Gravatar
-									email={profile.email}
-									className="w-16 h-16 mr-4 rounded-full"
-									default="mp"
-								/>
-							)}
-
-							<div>
-								<Card.Title>
-									{profile?.displayName || profile.email.split('@')[0]}
-								</Card.Title>
-								<Card.Meta>{profile.email}</Card.Meta>
-							</div>
-						</Card>
+					<div className="mt-6 space-y-6">
+						<div className={formStyles.boxed}>
+							<UpdateEmailForm />
+						</div>
+						<div className={formStyles.boxed}>
+							<UpdatePasswordForm />
+						</div>
+						<div className="mt-6">
+							<DeactivateAccountButton
+								className="bg-red-600"
+								buttonText="Deactivate Account"
+							/>
+						</div>
 					</div>
-
-					<hr className="my-6 border-t border-gray-200" />
 				</Section.Content>
 			</Section>
 		</>

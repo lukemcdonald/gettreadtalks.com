@@ -1,3 +1,7 @@
+// todo: Add a proper footer section with links to paegs: summary of essential beliefs, testimonials, scriptures, technology/uses, affiliate links, social media, newsletter signup, etc.
+
+// todo: Make sticky footer for pages with little content.
+
 import React from 'react'
 import { Section } from 'components/section'
 

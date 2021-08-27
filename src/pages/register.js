@@ -8,6 +8,7 @@ import { Section } from 'components/section'
 import { SEO } from 'components/seo'
 import { Page } from 'components/page'
 import { LoginForm } from 'components/forms/login'
+import formStyles from 'components/styles/form'
 
 function RegisterPage({ location }) {
 	const { register, isUser } = useAuth()
@@ -40,6 +41,7 @@ function RegisterPage({ location }) {
 					<div className="relative z-10 flex items-center justify-center flex-auto">
 						<div className="w-full max-w-md">
 							<LoginForm
+								className={formStyles.boxed}
 								onSubmit={register}
 								buttonText="Register your account"
 							/>

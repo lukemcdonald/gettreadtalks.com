@@ -2,16 +2,14 @@ import React, { Fragment, useState } from 'react'
 import classNames from 'classnames'
 import { XIcon } from '@heroicons/react/solid'
 import { Dialog } from '@headlessui/react'
-import { DeactivateAccountForm } from 'components/forms/deactivate'
+import { DeactivateAccountForm } from 'components/forms/deactivate-account'
 import { useAuth } from 'context/auth'
-import { useUsers } from 'context/users'
 import { useAsync } from 'hooks/async'
 import styles from 'components/styles'
 
 function DeactivateAccountButton({ className, buttonText = 'Deactivate' }) {
 	const [isOpen, setIsOpen] = useState(false)
 	const { unregister } = useAuth()
-	const { user, deleteUserById } = useUsers()
 	const { run } = useAsync()
 
 	function closeModal() {
@@ -31,7 +29,7 @@ function DeactivateAccountButton({ className, buttonText = 'Deactivate' }) {
 			<button
 				type="button"
 				onClick={openModal}
-				className={classNames(styles.textButton, className)}
+				className={classNames(styles.button, className)}
 			>
 				{buttonText}
 			</button>

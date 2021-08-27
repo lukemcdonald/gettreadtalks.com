@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { navigate, graphql } from 'gatsby'
+import { HeartIcon } from '@heroicons/react/outline'
 
 import { Page } from 'components/page'
 import { Section } from 'components/section'
 import { SEO } from 'components/seo'
 import { TalksList } from 'components/talks/list'
+import { Link } from 'components/link'
 
 import { useAuth } from 'context/auth'
 import { useUsers } from 'context/users'
@@ -55,17 +57,24 @@ function AccountFavoritesPage({ data, location }) {
 				</Section.Sidebar>
 
 				<Section.Content>
-					<Page.Title>Your Favorites</Page.Title>
-
-					<hr className="my-6 border-t border-gray-200" />
-
 					{!Array.isArray(favoriteTalks) || !favoriteTalks.length ? (
-						<p>
-							You have not added any talks to your favorites list. To favorite a
-							talk, click on the ♡ when on the the talk page.
-						</p>
+						<Link
+							to="/talks/"
+							type="button"
+							className="relative block w-full p-12 text-center border-2 border-gray-300 border-dashed rounded-lg hover:border-gray-400"
+						>
+							<Page.Title>No Favorites</Page.Title>
+							<p className="mt-2">
+								Click the{' '}
+								{<HeartIcon className="inline w-6 h-6 text-gray-400" />} to save
+								an item to your favorites list.
+							</p>
+						</Link>
 					) : (
-						<TalksList talks={favoriteTalks} />
+						<div className="divide-y divide-gray-200">
+							<Page.Title>Your Favorites</Page.Title>
+							<TalksList talks={favoriteTalks} />
+						</div>
 					)}
 				</Section.Content>
 			</Section>
