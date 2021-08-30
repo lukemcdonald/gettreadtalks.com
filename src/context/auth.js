@@ -95,14 +95,12 @@ function AuthProvider(props) {
 				form.password
 			)
 
-			// todo: An JS error occurs that addOnSuccessListener is not a function. I need to ensure the user collection and auth account is removed here. Not sure on the best way to do that yet. The current functionality works but does throw that error.
-			return user.reauthenticateWithCredential(credential).then(() =>
-				db
-					.collection('users')
-					.doc(user.uid)
-					.delete()
-					.addOnSuccessListener(user.delete().then(() => setData(null)))
-			)
+			return user.reauthenticateWithCredential(credential).then(async () => {
+				await db.collection('users').doc(user.uid).delete()
+				await user.delete().then(() => setData(null))
+				navigate('/')
+				return null
+			})
 		},
 		[auth, db, setData]
 	)
