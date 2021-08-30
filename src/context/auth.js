@@ -10,7 +10,7 @@ AuthContext.displayName = 'AuthContext'
 
 function AuthProvider(props) {
 	const auth = firebase.auth()
-	const firestore = firebase.firestore()
+	const db = firebase.firestore()
 
 	const {
 		data: profile,
@@ -25,16 +25,16 @@ function AuthProvider(props) {
 
 	React.useEffect(
 		() => auth.onAuthStateChanged((creds) => setData(creds)),
-		[setData]
+		[auth, setData]
 	)
 
 	const updateUsersCollection = React.useCallback(
 		(id, updates, args) =>
-			firestore
+			db
 				.collection('users')
 				.doc(id)
 				.set(updates, args || { merge: true }),
-		[firestore]
+		[db]
 	)
 
 	const login = React.useCallback(
@@ -87,15 +87,16 @@ function AuthProvider(props) {
 				form.password
 			)
 
+			// todo: An JS error occurs that addOnSuccessListener is not a function. I need to ensure the user collection and auth account is removed here. Not sure on the best way to do that yet. The current functionality works but does throw that error.
 			return user.reauthenticateWithCredential(credential).then(() =>
-				firestore
+				db
 					.collection('users')
 					.doc(user.uid)
 					.delete()
 					.addOnSuccessListener(user.delete().then(() => setData(null)))
 			)
 		},
-		[auth, firestore, setData]
+		[auth, db, setData]
 	)
 
 	const isUser = profile

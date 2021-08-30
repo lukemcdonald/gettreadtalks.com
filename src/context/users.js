@@ -8,7 +8,7 @@ const UsersContext = React.createContext({})
 UsersContext.displayName = 'UsersContext'
 
 function UsersProvider(props) {
-	const firestore = firebase.firestore()
+	const db = firebase.firestore()
 	const { profile } = useAuth()
 
 	const {
@@ -27,8 +27,7 @@ function UsersProvider(props) {
 			return null
 		}
 
-		firestore
-			.collection('users')
+		db.collection('users')
 			.doc(profile.uid)
 			.get()
 			.then((doc) =>
@@ -37,11 +36,11 @@ function UsersProvider(props) {
 					...doc.data(),
 				})
 			)
-	}, [firestore, setData, profile])
+	}, [db, setData, profile])
 
 	const readAllUsers = React.useCallback(
 		() =>
-			firestore
+			db
 				.collection('users')
 				.get()
 				.then((snapshot) => {
@@ -51,12 +50,12 @@ function UsersProvider(props) {
 					}))
 					setData(users)
 				}),
-		[firestore, setData]
+		[db, setData]
 	)
 
 	const readUserById = React.useCallback(
 		(id) =>
-			firestore
+			db
 				.collection('users')
 				.doc(id)
 				.get()
@@ -66,12 +65,12 @@ function UsersProvider(props) {
 						...doc.data(),
 					})
 				),
-		[firestore, setData]
+		[db, setData]
 	)
 
 	const readUserByField = React.useCallback(
 		(field) =>
-			firestore
+			db
 				.collection('users')
 				.limit(1)
 				.where(field.tostring(), '==', field)
@@ -83,49 +82,49 @@ function UsersProvider(props) {
 						...doc.data(),
 					})
 				}),
-		[firestore, setData]
+		[db, setData]
 	)
 
 	const setUser = React.useCallback(
 		(id, updates, args) =>
-			firestore
+			db
 				.collection('users')
 				.doc(id)
 				.set(updates, args || { merge: true })
-				.then(() => firestore.collection('users').doc(id).get())
+				.then(() => db.collection('users').doc(id).get())
 				.then((doc) =>
 					setData({
 						id: doc.id,
 						...doc.data(),
 					})
 				),
-		[firestore, setData]
+		[db, setData]
 	)
 
 	const updateUser = React.useCallback(
 		(id, updates) =>
-			firestore
+			db
 				.collection('users')
 				.doc(id)
 				.update(updates)
-				.then(() => firestore.collection('users').doc(id).get())
+				.then(() => db.collection('users').doc(id).get())
 				.then((doc) =>
 					setData({
 						id: doc.id,
 						...doc.data(),
 					})
 				),
-		[firestore, setData]
+		[db, setData]
 	)
 
 	const deleteUserById = React.useCallback(
 		(id) =>
-			firestore
+			db
 				.collection('users')
 				.doc(id)
 				.delete()
 				.then(() => setData(null)),
-		[firestore, setData]
+		[db, setData]
 	)
 
 	const value = React.useMemo(
