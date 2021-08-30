@@ -8,6 +8,14 @@ import { FullPageLogo, FullPageErrorFallback } from 'components/loader'
 const AuthContext = React.createContext({})
 AuthContext.displayName = 'AuthContext'
 
+function useAuth() {
+	const context = React.useContext(AuthContext)
+	if (context === undefined) {
+		throw new Error(`useAuth must be used within a AuthProvider`)
+	}
+	return context
+}
+
 function AuthProvider(props) {
 	const auth = firebase.auth()
 	const db = firebase.firestore()
@@ -127,14 +135,6 @@ function AuthProvider(props) {
 	}
 
 	throw new Error(`Unhandled status: ${status}`)
-}
-
-function useAuth() {
-	const context = React.useContext(AuthContext)
-	if (context === undefined) {
-		throw new Error(`useAuth must be used within a AuthProvider`)
-	}
-	return context
 }
 
 export { AuthProvider, useAuth }
