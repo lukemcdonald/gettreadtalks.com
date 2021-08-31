@@ -7,7 +7,7 @@ import { Link } from 'components/link'
 import { Section } from 'components/section'
 import { SEO } from 'components/seo'
 import { Page } from 'components/page'
-import { LoginForm } from 'components/forms/login'
+import { LoginForm } from 'components/account/login-form'
 import formStyles from 'components/styles/form'
 
 function RegisterPage({ location }) {
@@ -41,7 +41,7 @@ function RegisterPage({ location }) {
 					<div className="relative z-10 flex items-center justify-center flex-auto">
 						<div className="w-full max-w-md">
 							<LoginForm
-								className={formStyles.boxed}
+								className={formStyles.fieldset}
 								onSubmit={register}
 								buttonText="Register your account"
 							/>

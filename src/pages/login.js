@@ -4,7 +4,7 @@ import { navigate } from 'gatsby'
 import { useAuth } from 'context/auth'
 
 import { Link } from 'components/link'
-import { LoginForm } from 'components/forms/login'
+import { LoginForm } from 'components/account/login-form'
 import { Page } from 'components/page'
 import { Section } from 'components/section'
 import { SEO } from 'components/seo'
@@ -39,7 +39,7 @@ function LoginPage({ location }) {
 					<div className="relative z-10 flex items-center justify-center flex-auto">
 						<div className="w-full max-w-md">
 							<LoginForm
-								className={formStyles.boxed}
+								className={formStyles.fieldset}
 								onSubmit={login}
 								buttonText="Sign in to account"
 							/>

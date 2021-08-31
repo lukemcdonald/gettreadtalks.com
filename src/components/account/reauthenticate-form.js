@@ -1,22 +1,27 @@
 import React, { useState } from 'react'
 import classNames from 'classnames'
-import { FormErrorMessage } from 'components/forms/lib/error-message'
+
 import { useAsync } from 'hooks/async'
+import { FormErrorMessage } from 'components/account/lib/error-message'
 
 import styles from 'components/styles'
 import formStyles from 'components/styles/form'
+import { useAuth } from 'context/auth'
 
-function LoginForm({ className, buttonText, onSubmit, context = {} }) {
+function ReauthenticateForm({ className, buttonText, onSubmit }) {
 	const { isError, error, run } = useAsync()
+	const { profile, reauthenticate } = useAuth()
 	const [state, setState] = useState({
-		email: '',
 		password: '',
 	})
 
-	function handleSubmit(event) {
+	async function handleSubmit(event) {
 		event.preventDefault()
-		const { email, password } = state
-		run(onSubmit({ email, password }))
+		console.log('ReauthenticateForm', event)
+		const credentials = await run(
+			reauthenticate({ email: profile.email, password: state.password })
+		)
+		onSubmit(credentials)
 	}
 
 	function handleChange(event) {
@@ -27,26 +32,7 @@ function LoginForm({ className, buttonText, onSubmit, context = {} }) {
 		<form onSubmit={handleSubmit} className={className}>
 			{isError && <FormErrorMessage error={error} />}
 
-			<div className={formStyles.formRow}>
-				<label htmlFor="email" className={formStyles.label}>
-					Email address
-				</label>
-				<input
-					id="email"
-					autoComplete="email"
-					type="text"
-					onChange={handleChange}
-					value={state.email}
-					className={formStyles.input}
-				/>
-			</div>
-
-			<div
-				className={classNames(
-					formStyles.formRow,
-					context.pathname === '/password/reset' ? 'hidden' : ''
-				)}
-			>
+			<div className={classNames(formStyles.formRow)}>
 				<label htmlFor="password" className={formStyles.label}>
 					Password
 				</label>
@@ -56,12 +42,13 @@ function LoginForm({ className, buttonText, onSubmit, context = {} }) {
 					type="password"
 					onChange={handleChange}
 					value={state.password}
-					className={formStyles.input}
+					className={formStyles.field}
+					initialfocus="true"
 				/>
 			</div>
 
 			<div className={formStyles.formRow}>
-				<button type="submit" className={styles.button}>
+				<button type="submit" className={classNames(styles.button)}>
 					{buttonText || 'Submit'}
 				</button>
 			</div>
@@ -69,4 +56,4 @@ function LoginForm({ className, buttonText, onSubmit, context = {} }) {
 	)
 }
 
-export { LoginForm }
+export { ReauthenticateForm }

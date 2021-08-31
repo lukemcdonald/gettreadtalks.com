@@ -87,22 +87,57 @@ function AuthProvider(props) {
 		[auth, setData]
 	)
 
-	const unregister = React.useCallback(
-		(form) => {
-			const user = auth.currentUser
+	const reauthenticate = React.useCallback(
+		({ email, password }) => {
 			const credential = firebase.auth.EmailAuthProvider.credential(
-				user.email,
-				form.password
+				email,
+				password
 			)
 
-			return user.reauthenticateWithCredential(credential).then(async () => {
-				await db.collection('users').doc(user.uid).delete()
-				await user.delete().then(() => setData(null))
+			return auth.currentUser.reauthenticateWithCredential(credential)
+		},
+		[auth]
+	)
+
+	const unregister = React.useCallback(
+		(form) => {
+			const { currentUser } = auth
+			reauthenticate({
+				email: currentUser.email,
+				password: form.password,
+			}).then(async () => {
+				await db.collection('users').doc(currentUser.uid).delete()
+				await currentUser.delete().then(() => setData(null))
 				navigate('/')
 				return null
 			})
 		},
-		[auth, db, setData]
+		[auth, db, reauthenticate, setData]
+	)
+
+	const updateSettings = React.useCallback(
+		({ credentials, updates }) => {
+			const { currentUser } = auth
+
+			console.log({ credentials, updates })
+
+			return reauthenticate({
+				email: currentUser.email,
+				password: credentials.password,
+			}).then(() => {
+				// todo: display message when email has successfully been updated.
+				if (updates.email) {
+					currentUser
+						.updateEmail(updates.email)
+						.then(() => setData({ ...profile, email: updates.email }))
+				}
+				// todo: display message when password has successfully been updated.
+				if (updates.password) {
+					currentUser.updatePassword(updates.password)
+				}
+			})
+		},
+		[auth, reauthenticate]
 	)
 
 	const isUser = profile
@@ -114,10 +149,22 @@ function AuthProvider(props) {
 			register,
 			unregister,
 			resetPassword,
+			updateSettings,
+			reauthenticate,
 			isUser,
 			profile,
 		}),
-		[login, logout, register, unregister, resetPassword, isUser, profile]
+		[
+			login,
+			logout,
+			register,
+			unregister,
+			resetPassword,
+			updateSettings,
+			reauthenticate,
+			isUser,
+			profile,
+		]
 	)
 
 	if (isLoading || isIdle) {

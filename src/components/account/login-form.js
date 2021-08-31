@@ -1,21 +1,22 @@
 import React, { useState } from 'react'
 import classNames from 'classnames'
-import { FormErrorMessage } from 'components/forms/lib/error-message'
+import { FormErrorMessage } from 'components/account/lib/error-message'
 import { useAsync } from 'hooks/async'
 
 import styles from 'components/styles'
 import formStyles from 'components/styles/form'
 
-function UpdateEmailForm({ className, buttonText, onSubmit }) {
+function LoginForm({ className, buttonText, onSubmit, hiddenFields = [] }) {
 	const { isError, error, run } = useAsync()
 	const [state, setState] = useState({
 		email: '',
+		password: '',
 	})
 
 	function handleSubmit(event) {
 		event.preventDefault()
-		const { email } = state
-		run(onSubmit({ email }))
+		const { email, password } = state
+		run(onSubmit({ email, password }))
 	}
 
 	function handleChange(event) {
@@ -26,7 +27,12 @@ function UpdateEmailForm({ className, buttonText, onSubmit }) {
 		<form onSubmit={handleSubmit} className={className}>
 			{isError && <FormErrorMessage error={error} />}
 
-			<div className={formStyles.formRow}>
+			<div
+				className={classNames(
+					formStyles.formRow,
+					hiddenFields.includes('email') ? 'hidden' : ''
+				)}
+			>
 				<label htmlFor="email" className={formStyles.label}>
 					Email address
 				</label>
@@ -36,7 +42,26 @@ function UpdateEmailForm({ className, buttonText, onSubmit }) {
 					type="text"
 					onChange={handleChange}
 					value={state.email}
-					className={formStyles.input}
+					className={formStyles.field}
+				/>
+			</div>
+
+			<div
+				className={classNames(
+					formStyles.formRow,
+					hiddenFields.includes('password') ? 'hidden' : ''
+				)}
+			>
+				<label htmlFor="password" className={formStyles.label}>
+					Password
+				</label>
+				<input
+					id="password"
+					autoComplete="password"
+					type="password"
+					onChange={handleChange}
+					value={state.password}
+					className={formStyles.field}
 				/>
 			</div>
 
@@ -49,4 +74,4 @@ function UpdateEmailForm({ className, buttonText, onSubmit }) {
 	)
 }
 
-export { UpdateEmailForm }
+export { LoginForm }

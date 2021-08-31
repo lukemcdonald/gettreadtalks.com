@@ -2,7 +2,7 @@ import React from 'react'
 import { useAsync } from 'hooks/async'
 import { useUsers } from 'context/users'
 import styles from 'components/styles'
-import { DeactivateAccountButton } from 'components/account/deactivate-button'
+import { DeactivateAccountButton } from 'components/account/deactivate-dialog'
 
 function useFavoriteTalk() {
 	const { run } = useAsync()

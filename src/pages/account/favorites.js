@@ -1,3 +1,4 @@
+// todo: Display five random featured talks as recomendations.
 import React, { useEffect, useState } from 'react'
 import { navigate, graphql } from 'gatsby'
 import { HeartIcon } from '@heroicons/react/outline'

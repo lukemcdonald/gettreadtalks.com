@@ -13,7 +13,7 @@ import { ChevronDownIcon } from '@heroicons/react/solid'
 import { Link } from 'components/link'
 import { useAuth } from 'context/auth'
 import { useAsync } from 'hooks/async'
-import { AccountProfileCard } from 'components/account/profile-card'
+import { ProfileCard } from 'components/account/profile-card'
 
 function styleMenuItem(item = '', args = {}) {
 	const { active, type } = args
@@ -63,7 +63,7 @@ const AuthenticatedMenu = () => {
 	return (
 		<>
 			<div className="px-3.5 py-3">
-				<AccountProfileCard profile={profile} showAvatar="hide" />
+				<ProfileCard profile={profile} showAvatar="hide" />
 			</div>
 			<div className="p-1">
 				<Menu.Item>

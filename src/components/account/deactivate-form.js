@@ -2,13 +2,13 @@ import React, { useState } from 'react'
 import classNames from 'classnames'
 
 import { useAsync } from 'hooks/async'
-import { FormErrorMessage } from 'components/forms/lib/error-message'
+import { FormErrorMessage } from 'components/account/lib/error-message'
 
 import styles from 'components/styles'
 import formStyles from 'components/styles/form'
 
-function DeactivateAccountForm({ className, buttonText, onSubmit }) {
-	const { isError, error } = useAsync()
+function DeactivateForm({ className, buttonText, onSubmit }) {
+	const { isError, error, run } = useAsync()
 	const [state, setState] = useState({
 		password: '',
 	})
@@ -16,7 +16,7 @@ function DeactivateAccountForm({ className, buttonText, onSubmit }) {
 	function handleSubmit(event) {
 		event.preventDefault()
 		const { password } = state
-		onSubmit({ password })
+		run(onSubmit({ password }))
 	}
 
 	function handleChange(event) {
@@ -37,7 +37,7 @@ function DeactivateAccountForm({ className, buttonText, onSubmit }) {
 					type="password"
 					onChange={handleChange}
 					value={state.password}
-					className={formStyles.input}
+					className={formStyles.field}
 					initialfocus="true"
 				/>
 			</div>
@@ -59,4 +59,4 @@ function DeactivateAccountForm({ className, buttonText, onSubmit }) {
 	)
 }
 
-export { DeactivateAccountForm }
+export { DeactivateForm }

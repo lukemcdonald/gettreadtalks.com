@@ -27,6 +27,7 @@ function FavoriteToggle({ classNameToggle = {}, talk, ...props }) {
 			<ToggleButton
 				checked={enabled}
 				onChange={() => updateFavorite(talk)}
+				className="relative inline-flex items-center rounded-full"
 				{...props}
 			>
 				<span className="sr-only">Add to favorites</span>

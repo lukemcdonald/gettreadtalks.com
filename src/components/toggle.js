@@ -19,10 +19,7 @@ function Toggle({ children }) {
 	const toggle = () => setOn(!on)
 
 	const getToggleProps = ({ onChange, className, ...props } = {}) => ({
-		className: classNames(
-			'relative inline-flex items-center rounded-full',
-			className
-		),
+		className: classNames('', className),
 		onChange: callAll(onChange, toggle),
 		...props,
 	})

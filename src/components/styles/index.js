@@ -5,7 +5,7 @@ const textButton =
 
 const button = classNames(
 	textButton,
-	'px-4 py-2 bg-gray-600 hover:bg-opacity-80 text-white rounded-md'
+	'px-4 py-2 text-gray-700 bg-gray-200 hover:bg-opacity-80 rounded-md'
 )
 
 export default { textButton, button }

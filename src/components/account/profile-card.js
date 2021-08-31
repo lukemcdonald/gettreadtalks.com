@@ -1,7 +1,7 @@
 import React from 'react'
 import Gravatar from 'react-gravatar'
 
-function AccountProfileCard({ profile, showAvatar = 'show' }) {
+function ProfileCard({ profile, showAvatar = 'show' }) {
 	return (
 		<div className="flex items-center">
 			{showAvatar !== 'hide' && (
@@ -24,4 +24,4 @@ function AccountProfileCard({ profile, showAvatar = 'show' }) {
 	)
 }
 
-export { AccountProfileCard }
+export { ProfileCard }

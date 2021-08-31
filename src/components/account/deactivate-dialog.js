@@ -1,8 +1,8 @@
-import React, { Fragment, useState } from 'react'
+import React, { useState } from 'react'
 import classNames from 'classnames'
 import { XIcon } from '@heroicons/react/solid'
 import { Dialog } from '@headlessui/react'
-import { DeactivateAccountForm } from 'components/forms/deactivate-account'
+import { DeactivateForm } from 'components/account/deactivate-form'
 import { useAuth } from 'context/auth'
 import { useAsync } from 'hooks/async'
 import styles from 'components/styles'
@@ -67,7 +67,7 @@ function DeactivateAccountButton({ className, buttonText = 'Deactivate' }) {
 						</div>
 
 						<div className="mt-4">
-							<DeactivateAccountForm
+							<DeactivateForm
 								onSubmit={handleOnSubmit}
 								buttonText="Deactivate my account"
 							/>

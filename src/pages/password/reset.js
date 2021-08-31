@@ -3,11 +3,13 @@ import React from 'react'
 
 import { useAuth } from 'context/auth'
 
-import { LoginForm } from 'components/forms/login'
+import { LoginForm } from 'components/account/login-form'
 import { Link } from 'components/link'
 import { Page } from 'components/page'
 import { SEO } from 'components/seo'
 import { Section } from 'components/section'
+
+import formStyles from 'components/styles/form'
 
 function ResetPassword({ location }) {
 	const { resetPassword } = useAuth()
@@ -29,12 +31,15 @@ function ResetPassword({ location }) {
 				</Section.Sidebar>
 
 				<Section.Content>
-					<div>
-						<LoginForm
-							context={location}
-							onSubmit={resetPassword}
-							buttonText="Reset your password"
-						/>
+					<div className="relative z-10 flex items-center justify-center flex-auto">
+						<div className="w-full max-w-md">
+							<LoginForm
+								className={formStyles.fieldset}
+								onSubmit={resetPassword}
+								buttonText="Reset your password"
+								hiddenFields={['password']}
+							/>
+						</div>
 					</div>
 				</Section.Content>
 			</Section>
