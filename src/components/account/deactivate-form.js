@@ -42,16 +42,10 @@ function DeactivateForm({ className, buttonText, onSubmit }) {
 				/>
 			</div>
 
-			<div className={formStyles.formRow}>
-				<button
-					type="submit"
-					className={classNames(
-						styles.button,
-						state.password
-							? 'bg-red-600'
-							: 'bg-opacity-80 pointer-events-none cursor-not-allowed'
-					)}
-				>
+			<div
+				className={classNames(formStyles.formRow, !state.password && 'hidden')}
+			>
+				<button type="submit" className={styles.dangerButton}>
 					{buttonText || 'Submit'}
 				</button>
 			</div>

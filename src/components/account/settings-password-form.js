@@ -1,92 +1,79 @@
 import React, { useState } from 'react'
+import * as Yup from 'yup'
 import { ErrorMessage, Formik, Field, Form } from 'formik'
-import { FormErrorMessage } from 'components/account/lib/error-message'
-import { useAsync } from 'hooks/async'
 import { EyeIcon, EyeOffIcon } from '@heroicons/react/outline'
+
+import { useAsync } from 'hooks/async'
+import { useAuth } from 'context/auth'
+import { Toggle, ToggleButton, ToggleOff, ToggleOn } from 'components/toggle'
+import { FormErrorMessage } from 'components/account/lib/error-message'
 
 import styles from 'components/styles'
 import formStyles from 'components/styles/form'
-import { useAuth } from 'context/auth'
-import { Toggle, ToggleButton, ToggleOff, ToggleOn } from 'components/toggle'
 
 function SettingsPasswordForm({ className, buttonText, onSubmit }) {
 	const { isError, error, run } = useAsync()
 	const { profile } = useAuth()
+	const [showAuth, setShowAuth] = useState(false)
 	const [showPassword, setShowPassword] = useState(false)
+
+	function toggleShowPassword() {
+		setShowPassword(!showPassword)
+	}
 
 	const initialValues = {
 		password: '',
-		newPassword: '',
+		confirmPassword: '',
+		authPassword: '',
+	}
+
+	const validationSchema = Yup.object({
+		password: Yup.string().min(8, 'Must be atleast eight characters long.'),
+		confirmPassword: Yup.string().oneOf(
+			[Yup.ref('password'), null],
+			'Passwords must match.'
+		),
+		authPassword: Yup.string().required(
+			'Enter your current password to update your password.'
+		),
+	})
+
+	function validate(values) {
+		if (values.password && values.confirmPassword) {
+			setShowAuth(values.password === values.confirmPassword)
+		}
 	}
 
 	function handleSubmit(values) {
-		const credentials = {
-			email: profile.email,
-			password: values.password,
-		}
-
-		const updates = {
-			newPassword: values.newPassword,
-		}
-
-		run(onSubmit({ credentials, updates }))
-	}
-
-	function validate(values) {
-		const errors = {}
-
-		if (!values.password) {
-			errors.password = 'Your current account password is required.'
-		}
-
-		if (!values.newPassword) {
-			errors.newPassword = 'New password cannot be empty.'
-		}
-
-		return errors
-	}
-
-	function toggleShowPassword() {
-		console.log(showPassword)
-		setShowPassword(!showPassword)
+		run(
+			onSubmit({
+				credentials: {
+					email: profile.email,
+					password: values.authPassword,
+				},
+				updates: {
+					password: values.password,
+				},
+			})
+		)
 	}
 
 	return (
 		<Formik
 			initialValues={initialValues}
-			mapPropsToErrors={(props) => console.log(props)}
-			validate={validate}
-			onSubmit={handleSubmit}
+			validationSchema={validationSchema}
+			validate={(v) => validate(v)}
+			onSubmit={(v) => handleSubmit(v)}
 		>
 			<Form className={className}>
-				{isError && <FormErrorMessage error={error} />}
+				{isError && <div className={formStyles.fieldError}>{error}</div>}
 
 				<div className={formStyles.formRow}>
 					<label htmlFor="password" className={formStyles.label}>
-						Current Password
-					</label>
-
-					<Field name="password" type="password" className={formStyles.field} />
-
-					<ErrorMessage
-						name="password"
-						component="div"
-						className={formStyles.fieldError}
-					/>
-				</div>
-
-				<div className={formStyles.formRow}>
-					<label htmlFor="newPassword" className={formStyles.label}>
 						New password
 					</label>
 
-					{/* <Field
-						name="newPassword"
-						type="password"
-						className={formStyles.field}
-					/> */}
-
-					<Field name="newPassword">
+					<Field name="password">
 						{({ field }) => (
 							<div className="relative">
 								<input
@@ -97,7 +84,7 @@ function SettingsPasswordForm({ className, buttonText, onSubmit }) {
 								<Toggle>
 									<ToggleButton
 										checked={showPassword}
-										onChange={toggleShowPassword}
+										onChange={() => toggleShowPassword()}
 										className="absolute top-0 bottom-0 right-0 p-2 text-gray-400 transition-colors border-l border-gray-300 w-9 hover:text-gray-600"
 									>
 										<ToggleOff>
@@ -115,17 +102,57 @@ function SettingsPasswordForm({ className, buttonText, onSubmit }) {
 					</Field>
 
 					<ErrorMessage
-						name="newPassword"
+						name="password"
 						component="div"
 						className={formStyles.fieldError}
 					/>
 				</div>
 
 				<div className={formStyles.formRow}>
-					<button type="submit" className={styles.button}>
-						{buttonText || 'Submit'}
-					</button>
+					<label htmlFor="confirmPassword" className={formStyles.label}>
+						Confirm new password
+					</label>
+
+					<Field
+						name="confirmPassword"
+						type="password"
+						className={formStyles.field}
+					/>
+
+					<ErrorMessage
+						name="confirmPassword"
+						component="div"
+						className={formStyles.fieldError}
+					/>
 				</div>
+
+				{showAuth && (
+					<>
+						<div className={formStyles.formRow}>
+							<label htmlFor="authPassword" className={formStyles.label}>
+								Current password
+							</label>
+
+							<Field
+								name="authPassword"
+								type="password"
+								className={formStyles.field}
+							/>
+
+							<ErrorMessage
+								name="authPassword"
+								component="div"
+								className={formStyles.fieldError}
+							/>
+						</div>
+
+						<div className={formStyles.formRow}>
+							<button type="submit" className={styles.button}>
+								{buttonText || 'Submit'}
+							</button>
+						</div>
+					</>
+				)}
 			</Form>
 		</Formik>
 	)

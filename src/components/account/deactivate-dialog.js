@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import classNames from 'classnames'
 import { XIcon } from '@heroicons/react/solid'
 import { Dialog } from '@headlessui/react'
@@ -9,6 +9,7 @@ import styles from 'components/styles'
 
 function DeactivateAccountButton({ className, buttonText = 'Deactivate' }) {
 	const [isOpen, setIsOpen] = useState(false)
+	const closeButtonRef = useRef(null)
 	const { unregister } = useAuth()
 	const { run } = useAsync()
 
@@ -37,11 +38,12 @@ function DeactivateAccountButton({ className, buttonText = 'Deactivate' }) {
 			<Dialog
 				as="div"
 				className="fixed inset-0 z-50 overflow-y-auto"
-				onClose={closeModal}
+				onClose={() => closeModal()}
+				initialFocus={closeButtonRef}
 				open={isOpen}
 			>
 				<div className="min-h-screen px-4 text-center">
-					<Dialog.Overlay className="fixed inset-0 backdrop-blur" />
+					<Dialog.Overlay className="fixed inset-0 bg-gray-100 bg-opacity-90" />
 
 					{/* This element is to trick the browser into centering the modal contents. */}
 					<span
@@ -68,7 +70,7 @@ function DeactivateAccountButton({ className, buttonText = 'Deactivate' }) {
 
 						<div className="mt-4">
 							<DeactivateForm
-								onSubmit={handleOnSubmit}
+								onSubmit={() => handleOnSubmit()}
 								buttonText="Deactivate my account"
 							/>
 						</div>
@@ -78,9 +80,10 @@ function DeactivateAccountButton({ className, buttonText = 'Deactivate' }) {
 								type="button"
 								className={classNames(
 									styles.textButton,
-									'inline-flex justify-center p-2 text-gray-600 bg-gray-100 hover:bg-red-100 hover:text-red-900 rounded-full'
+									'inline-flex justify-center p-2 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-full'
 								)}
 								onClick={closeModal}
+								ref={closeButtonRef}
 							>
 								<XIcon className="w-4 h-4" />
 							</button>

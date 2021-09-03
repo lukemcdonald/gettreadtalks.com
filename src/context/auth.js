@@ -137,7 +137,7 @@ function AuthProvider(props) {
 				}
 			})
 		},
-		[auth, reauthenticate]
+		[auth, profile, reauthenticate, setData]
 	)
 
 	const isUser = profile
