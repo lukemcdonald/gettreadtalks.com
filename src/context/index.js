@@ -3,9 +3,14 @@
 import React from 'react'
 
 import { AuthProvider } from 'context/auth'
+import { NotificationProvider } from 'context/notifications'
 
 function AppProviders({ children }) {
-	return <AuthProvider>{children}</AuthProvider>
+	return (
+		<AuthProvider>
+			<NotificationProvider>{children}</NotificationProvider>
+		</AuthProvider>
+	)
 }
 
 export { AppProviders }
