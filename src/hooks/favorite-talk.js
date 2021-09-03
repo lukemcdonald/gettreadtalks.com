@@ -1,12 +1,17 @@
 import React from 'react'
+import { HeartIcon, XCircleIcon } from '@heroicons/react/outline'
+
 import { useAsync } from 'hooks/async'
 import { useUsers } from 'context/users'
-import styles from 'components/styles'
 import { DeactivateAccountButton } from 'components/account/deactivate-dialog'
+import { useNotification } from 'context/notifications'
+
+import styles from 'components/styles'
 
 function useFavoriteTalk() {
 	const { run } = useAsync()
 	const { updateUser, user } = useUsers()
+	const { dispatch: notification } = useNotification()
 	const [favoriteTalks, setFavoriteTalks] = React.useState([])
 
 	React.useEffect(() => {
@@ -20,28 +25,51 @@ function useFavoriteTalk() {
 	const isFavorite = (talk) =>
 		favoriteTalks && favoriteTalks.some((id) => id === talk.id)
 
-	function addFavorite(talk) {
+	async function addFavorite(talk) {
 		if (isFavorite(talk)) {
 			return null
 		}
 
-		run(
+		await run(
 			updateUser(user.id, {
 				favoriteTalks: [talk.id, ...(favoriteTalks || [])],
 			})
 		)
+
+		notification({
+			type: 'add',
+			message: {
+				title: talk.title,
+				text: `Has been added to your favorites.`,
+				icon: {
+					name: HeartIcon,
+					className: 'text-red-600',
+				},
+			},
+		})
 	}
 
-	function removeFavorite(talk) {
+	async function removeFavorite(talk) {
 		if (!isFavorite(talk)) {
 			return null
 		}
 
-		run(
+		await run(
 			updateUser(user.id, {
 				favoriteTalks: favoriteTalks.filter((id) => id !== talk.id),
 			})
 		)
+
+		notification({
+			type: 'add',
+			message: {
+				title: talk.title,
+				text: `Has been removed from your favorites.`,
+				icon: {
+					name: XCircleIcon,
+				},
+			},
+		})
 	}
 
 	function updateFavorite(talk) {

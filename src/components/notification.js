@@ -41,14 +41,14 @@ function Notification({ message = {}, onClose }) {
 									</p>
 								)}
 
-								{message.description && (
+								{message.text && (
 									<p
 										className={classNames(
 											'text-sm text-gray-500',
 											message.title && 'mt-1'
 										)}
 									>
-										{message.description}
+										{message.text}
 									</p>
 								)}
 							</div>

@@ -19,11 +19,7 @@ const Favorites = React.createContext()
 Favorites.displayName = 'Favorites'
 
 function FavoritesProvider(props) {
-	const { run, data, error, isLoading } = useAsync()
-
-	React.useEffect(() => {
-		// run()
-	}, [run])
+	const { data, error, isLoading } = useAsync()
 
 	const value = React.useMemo(
 		() => ({ data, error, isLoading }),

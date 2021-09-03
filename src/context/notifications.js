@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { Notification } from 'components/notification'
 
 const NotificationContext = React.createContext()
@@ -11,20 +11,19 @@ const actionTypes = {
 
 function notificationReducer(state, { type, message }) {
 	switch (type) {
-		case actionTypes.add: {
+		case actionTypes.add:
 			return {
 				messages: [
 					...state.messages,
 					{
 						id: new Date().getTime(),
 						title: message.title || null,
-						description: message.description || null,
+						text: message.text || null,
 						icon: message.icon || null,
 					},
 				],
 			}
-		}
-		case 'remove':
+		case actionTypes.remove:
 			return {
 				messages: state.messages.filter(
 					(_message) => _message.id !== message.id
