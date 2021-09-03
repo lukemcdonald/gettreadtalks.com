@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import { Notification } from 'components/notification'
 
 const NotificationContext = React.createContext()
@@ -17,9 +17,7 @@ function notificationReducer(state, { type, message }) {
 					...state.messages,
 					{
 						id: new Date().getTime(),
-						title: message.title || null,
-						text: message.text || null,
-						icon: message.icon || null,
+						...message,
 					},
 				],
 			}

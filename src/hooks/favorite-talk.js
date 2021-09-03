@@ -36,17 +36,20 @@ function useFavoriteTalk() {
 			})
 		)
 
-		notification({
-			type: 'add',
-			message: {
-				title: talk.title,
-				text: `Has been added to your favorites.`,
-				icon: {
-					name: HeartIcon,
-					className: 'text-red-600',
-				},
+		const message = {
+			id: new Date().getTime(),
+			title: talk.title,
+			text: 'Has been added to your favorites.',
+			icon: {
+				name: HeartIcon,
+				className: 'text-red-600',
 			},
-		})
+		}
+
+		notification({ type: 'add', message })
+		setTimeout(() => {
+			notification({ type: 'remove', message })
+		}, 5000)
 	}
 
 	async function removeFavorite(talk) {
@@ -60,16 +63,19 @@ function useFavoriteTalk() {
 			})
 		)
 
-		notification({
-			type: 'add',
-			message: {
-				title: talk.title,
-				text: `Has been removed from your favorites.`,
-				icon: {
-					name: XCircleIcon,
-				},
+		const message = {
+			id: new Date().getTime(),
+			title: talk.title,
+			text: `Has been removed from your favorites.`,
+			icon: {
+				name: XCircleIcon,
 			},
-		})
+		}
+
+		notification({ type: 'add', message })
+		setTimeout(() => {
+			notification({ type: 'remove', message })
+		}, 5000)
 	}
 
 	function updateFavorite(talk) {
