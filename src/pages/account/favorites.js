@@ -1,4 +1,5 @@
 // todo: Display five random featured talks as recomendations.
+// todo: Display tabs for favorite talks, clips, speakers.
 import React, { useEffect, useState } from 'react'
 import { navigate, graphql } from 'gatsby'
 import { HeartIcon } from '@heroicons/react/outline'
@@ -64,7 +65,7 @@ function AccountFavoritesPage({ data, location }) {
 							type="button"
 							className="relative block w-full p-12 text-center border-2 border-gray-300 border-dashed rounded-lg hover:border-gray-400"
 						>
-							<Page.Title>No Favorites</Page.Title>
+							<Page.Title>Favorites</Page.Title>
 							<p className="mt-2">
 								Click the{' '}
 								{<HeartIcon className="inline w-6 h-6 text-gray-400" />} to save
@@ -73,8 +74,10 @@ function AccountFavoritesPage({ data, location }) {
 						</Link>
 					) : (
 						<div className="divide-y divide-gray-200">
-							<Page.Title>Your Favorites</Page.Title>
-							<TalksList talks={favoriteTalks} />
+							<Page.Title>Your favorite talks:</Page.Title>
+							<div className="mt-5">
+								<TalksList talks={favoriteTalks} />
+							</div>
 						</div>
 					)}
 				</Section.Content>

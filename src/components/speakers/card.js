@@ -1,13 +1,33 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { maybePluralize } from 'utils/misc'
 
 import { Card } from 'components/card'
 import { FauxLink } from 'components/fauxLink'
+import { useUsers } from 'context/users'
 
 function SpeakerCard({ speaker }) {
+	const [icons, setIcons] = useState(() =>
+		speaker?.favorite ? [{ type: 'featured', to: '/speakers/featured/' }] : []
+	)
+
+	const { user } = useUsers()
+
+	useEffect(() => {
+		if (
+			user &&
+			user?.favoriteSpeakers &&
+			user.favoriteSpeakers.includes(speaker.id)
+		) {
+			setIcons((icons) => [
+				{ type: 'favorite', to: '/account/favorites/' },
+				...icons,
+			])
+		}
+	}, [speaker, user])
+
 	return (
-		<Card>
+		<Card icons={icons}>
 			{speaker?.avatar && (
 				<Card.Avatar image={speaker.avatar} alt={speaker.title} />
 			)}
@@ -40,8 +60,6 @@ function SpeakerCard({ speaker }) {
 
 					{speaker?.talks && maybePluralize(speaker.talks.length, 'Talk')}
 				</Card.Meta>
-
-				{speaker?.favorite && <Card.FeaturedLink to="/speakers/featured/" />}
 			</div>
 
 			{speaker?.slug && speaker?.title && (

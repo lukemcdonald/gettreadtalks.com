@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
-import { StarIcon } from '@heroicons/react/solid'
+import {
+	HeartIcon,
+	StarIcon,
+	CheckCircleIcon as CheckIcon,
+} from '@heroicons/react/outline'
 import classNames from 'classnames'
 
 import { sanitizeHTMLTag } from 'utils/misc'
@@ -66,22 +70,45 @@ const CardAvatar = ({ image, alt }) => (
 	</figure>
 )
 
-const CardFeaturedLink = ({ className, to }) => (
-	<Link
-		to={to}
+const CardIcon = ({ className, to, type }) => {
+	const iconStyles = 'w-7 h-7 transition-colors p-1'
+
+	return (
+		<Link to={to} className={classNames('rounded-full', className)}>
+			{type === 'favorite' && (
+				<HeartIcon className={classNames(iconStyles, 'hover:text-red-600')} />
+			)}
+			{type === 'featured' && (
+				<StarIcon className={classNames(iconStyles, 'hover:text-gray-600')} />
+			)}
+			{type === 'finished' && (
+				<CheckIcon
+					className={classNames(iconStyles, 'hover:text-status-success')}
+				/>
+			)}
+		</Link>
+	)
+}
+
+const CardIcons = ({ className, icons = [] }) => (
+	<div
 		className={classNames(
-			'absolute z-20 text-gray-700 transition transform hover:text-red-600 rotate-12 -right-2 -top-2 hover:rotate-45',
+			'absolute z-20 text-gray-300 transition transform top-0 bottom-0 right-0 flex flex-col p-1',
 			className
 		)}
 	>
-		<StarIcon className="w-5 h-5" />
-	</Link>
+		{icons.map(({ to, type }, index) => (
+			<CardIcon key={index} to={to} type={type} />
+		))}
+	</div>
 )
 
 class Card extends Component {
 	static Avatar = CardAvatar
 
-	static FeaturedLink = CardFeaturedLink
+	static Icon = CardIcon
+
+	static Icons = CardIcons
 
 	static Meta = CardMeta
 
@@ -95,6 +122,7 @@ class Card extends Component {
 		const {
 			children,
 			className = '',
+			icons = [],
 			display = 'boxed',
 			hoverStyles = 'true',
 		} = this.props
@@ -102,15 +130,18 @@ class Card extends Component {
 		return (
 			<article
 				className={classNames(
-					'relative flex flex-grow text-left text-gray-700 transition duration-300  border border-transparent rounded',
+					'relative flex flex-grow text-left text-gray-700 transition duration-300 border border-transparent rounded',
 					className.includes('items-') || 'items-center',
 					display === 'boxed' && 'p-4 bg-white shadow-sm',
 					hoverStyles === 'true' &&
 						'hover:z-10 hover:border-red-600 hover:shadow-lg',
+					icons && 'pr-9',
 					className
 				)}
 			>
 				{children}
+
+				{icons && <CardIcons icons={icons} />}
 			</article>
 		)
 	}

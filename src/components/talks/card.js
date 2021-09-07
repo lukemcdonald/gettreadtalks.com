@@ -1,11 +1,28 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 
 import { Card } from 'components/card'
 import { FauxLink } from 'components/fauxLink'
+import { useUsers } from 'context/users'
 
 function TalkCard({ talk }) {
+	const [icons, setIcons] = useState(() =>
+		talk?.favorite ? [{ type: 'featured', to: '/talks/featured/' }] : []
+	)
+
+	const { user } = useUsers()
+
+	useEffect(() => {
+		if (user && user?.favoriteTalks && user.favoriteTalks.includes(talk.id)) {
+			setIcons((icons) => [
+				{ type: 'favorite', to: '/account/favorites/' },
+				{ type: 'finished', to: '/account/finished/' },
+				...icons,
+			])
+		}
+	}, [talk, user])
+
 	return (
-		<Card>
+		<Card icons={icons}>
 			{talk?.speakers.map(
 				(speaker) =>
 					speaker.data?.avatar && (
@@ -41,8 +58,6 @@ function TalkCard({ talk }) {
 
 					{talk?.scripture && <span>{talk.scripture}</span>}
 				</Card.Meta>
-
-				{talk?.favorite && <Card.FeaturedLink to="/talks/featured/" />}
 			</div>
 
 			{talk?.slug && talk?.slug && (
