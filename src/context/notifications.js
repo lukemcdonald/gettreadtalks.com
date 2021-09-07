@@ -37,7 +37,16 @@ function NotificationProvider({ children }) {
 	const [state, dispatch] = React.useReducer(notificationReducer, {
 		messages: [],
 	})
-	const value = { state, dispatch }
+
+	const notify = React.useCallback((message) => {
+		const id = new Date().getTime()
+		dispatch({ type: 'add', message: { id, ...message } })
+		setTimeout(() => {
+			dispatch({ type: 'remove', message: { id, ...message } })
+		}, 5000)
+	}, [])
+
+	const value = { state, dispatch, notify }
 
 	return (
 		<NotificationContext.Provider value={value}>

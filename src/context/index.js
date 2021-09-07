@@ -7,9 +7,9 @@ import { NotificationProvider } from 'context/notifications'
 
 function AppProviders({ children }) {
 	return (
-		<AuthProvider>
-			<NotificationProvider>{children}</NotificationProvider>
-		</AuthProvider>
+		<NotificationProvider>
+			<AuthProvider>{children}</AuthProvider>
+		</NotificationProvider>
 	)
 }
 

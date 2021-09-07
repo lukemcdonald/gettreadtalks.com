@@ -11,7 +11,7 @@ import styles from 'components/styles'
 function useFavoriteTalk() {
 	const { run } = useAsync()
 	const { updateUser, user } = useUsers()
-	const { dispatch: notification } = useNotification()
+	const { notify } = useNotification()
 	const [favoriteTalks, setFavoriteTalks] = React.useState([])
 
 	React.useEffect(() => {
@@ -36,20 +36,14 @@ function useFavoriteTalk() {
 			})
 		)
 
-		const message = {
-			id: new Date().getTime(),
+		notify({
 			title: talk.title,
 			text: 'Has been added to your favorites.',
 			icon: {
 				name: HeartIcon,
 				className: 'text-red-600',
 			},
-		}
-
-		notification({ type: 'add', message })
-		setTimeout(() => {
-			notification({ type: 'remove', message })
-		}, 5000)
+		})
 	}
 
 	async function removeFavorite(talk) {
@@ -63,19 +57,13 @@ function useFavoriteTalk() {
 			})
 		)
 
-		const message = {
-			id: new Date().getTime(),
+		notify({
 			title: talk.title,
 			text: `Has been removed from your favorites.`,
 			icon: {
 				name: XCircleIcon,
 			},
-		}
-
-		notification({ type: 'add', message })
-		setTimeout(() => {
-			notification({ type: 'remove', message })
-		}, 5000)
+		})
 	}
 
 	function updateFavorite(talk) {
