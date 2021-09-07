@@ -1,8 +1,10 @@
 import React from 'react'
 import firebase from 'gatsby-plugin-firebase'
 import { navigate } from 'gatsby'
+import { UserCircleIcon } from '@heroicons/react/outline'
 
 import { useAsync } from 'hooks/async'
+import { useNotification } from 'context/notifications'
 import { FullPageLogo, FullPageErrorFallback } from 'components/loader'
 
 const AuthContext = React.createContext({})
@@ -17,6 +19,8 @@ function useAuth() {
 }
 
 function AuthProvider(props) {
+	const { notify } = useNotification()
+
 	const auth = firebase.auth()
 	const db = firebase.firestore()
 
@@ -49,8 +53,11 @@ function AuthProvider(props) {
 		(form) =>
 			auth
 				.signInWithEmailAndPassword(form.email, form.password)
-				.then((creds) => setData(creds))
-				.then(() => navigate('/account')),
+				.then((creds) => {
+					setData(creds)
+					navigate('/account')
+					return null
+				}),
 		[auth, setData]
 	)
 
@@ -71,20 +78,29 @@ function AuthProvider(props) {
 
 	const logout = React.useCallback(
 		() =>
-			auth
-				.signOut()
-				.then(() => setData(null))
-				.then(() => navigate('/login')),
+			auth.signOut().then(() => {
+				setData(null)
+				navigate('/login')
+				return null
+			}),
 		[auth, setData]
 	)
 
 	const resetPassword = React.useCallback(
 		(form) =>
-			auth
-				.sendPasswordResetEmail(form.email)
-				.then(() => setData(null))
-				.then(() => navigate('/login')),
-		[auth, setData]
+			auth.sendPasswordResetEmail(form.email).then(() => {
+				setData(null)
+				navigate('/login')
+				notify({
+					title: 'Email sent',
+					text: 'An email to reset your password has been sent.',
+					icon: {
+						name: UserCircleIcon,
+					},
+				})
+				return null
+			}),
+		[auth, notify, setData]
 	)
 
 	const reauthenticate = React.useCallback(
@@ -108,36 +124,55 @@ function AuthProvider(props) {
 			}).then(async () => {
 				await db.collection('users').doc(currentUser.uid).delete()
 				await currentUser.delete().then(() => setData(null))
+				notify({
+					title: 'Account updated',
+					text: 'Your account has successfully been unregisterd.',
+					icon: {
+						name: UserCircleIcon,
+					},
+				})
 				navigate('/')
 				return null
 			})
 		},
-		[auth, db, reauthenticate, setData]
+		[auth, db, notify, reauthenticate, setData]
 	)
 
 	const updateSettings = React.useCallback(
 		({ credentials, updates }) => {
 			const { currentUser } = auth
 
-			console.log({ credentials, updates })
-
 			return reauthenticate({
 				email: currentUser.email,
 				password: credentials.password,
 			}).then(() => {
-				// todo: display message when email has successfully been updated.
 				if (updates.email) {
-					currentUser
-						.updateEmail(updates.email)
-						.then(() => setData({ ...profile, email: updates.email }))
+					currentUser.updateEmail(updates.email).then(() =>
+						notify({
+							title: 'Email updated',
+							text: 'Your email address has been updated.',
+							icon: {
+								name: UserCircleIcon,
+							},
+						})
+					)
 				}
-				// todo: display message when password has successfully been updated.
+
 				if (updates.password) {
-					currentUser.updatePassword(updates.password)
+					currentUser.updatePassword(updates.password).then(() => {
+						setData(profile)
+						notify({
+							title: 'Password updated',
+							text: 'Your password has been updated.',
+							icon: {
+								name: UserCircleIcon,
+							},
+						})
+					})
 				}
 			})
 		},
-		[auth, profile, reauthenticate, setData]
+		[auth, notify, profile, reauthenticate, setData]
 	)
 
 	const isUser = profile

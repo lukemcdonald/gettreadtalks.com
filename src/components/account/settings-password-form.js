@@ -44,8 +44,8 @@ function SettingsPasswordForm({ className, buttonText, onSubmit }) {
 		}
 	}
 
-	function handleSubmit(values) {
-		run(
+	async function handleSubmit(values, actions) {
+		await run(
 			onSubmit({
 				credentials: {
 					email: profile.email,
@@ -56,6 +56,8 @@ function SettingsPasswordForm({ className, buttonText, onSubmit }) {
 				},
 			})
 		)
+		actions.resetForm({})
+		setShowAuth(false)
 	}
 
 	return (
@@ -63,10 +65,10 @@ function SettingsPasswordForm({ className, buttonText, onSubmit }) {
 			initialValues={initialValues}
 			validationSchema={validationSchema}
 			validate={(v) => validate(v)}
-			onSubmit={(v) => handleSubmit(v)}
+			onSubmit={(v, a) => handleSubmit(v, a)}
 		>
 			<Form className={className}>
-				{isError && <div className={formStyles.fieldError}>{error}</div>}
+				{isError && <FormErrorMessage error={error} />}
 
 				<div className={formStyles.formRow}>
 					<label htmlFor="password" className={formStyles.label}>
