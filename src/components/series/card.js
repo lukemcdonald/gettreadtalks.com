@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Avatar } from 'components/avatar'
-import { Card } from 'components/card'
+import { Card, CardWrapper, CardTitle, CardText } from 'components/card'
 import { FauxLink } from 'components/fauxLink'
 import { Link } from 'components/link'
 
@@ -13,20 +13,22 @@ function SeriesCard({ series }) {
 	)
 
 	return (
-		<Card className="flex-col items-start sm:flex-row sm:items-center">
-			<div className="flex-grow">
-				<Card.Title as="h2">{series.title}</Card.Title>
+		<CardWrapper className="flex-col items-start sm:flex-row sm:items-center">
+			<Link to={series.slug} className="flex-grow">
+				<span className="absolute inset-0 z-0" aria-hidden="true" />
+
+				<CardTitle as="h2">{series.title}</CardTitle>
 
 				{series.publishedTalksCount && (
-					<Card.Meta>
+					<CardText>
 						<span>
 							{series.publishedTalksCount === 1
 								? `${series.publishedTalksCount} Talk`
 								: `${series.publishedTalksCount} Talks`}
 						</span>
-					</Card.Meta>
+					</CardText>
 				)}
-			</div>
+			</Link>
 
 			<div className="flex mt-2 -space-x-4 sm:mt-0">
 				{uniqueSpeakers.slice(0, maxSpeakers + 1).map((speaker, index) => {
@@ -63,9 +65,7 @@ function SeriesCard({ series }) {
 					)
 				})}
 			</div>
-
-			<FauxLink to={series.slug}>{`Series on ${series.title}`}</FauxLink>
-		</Card>
+		</CardWrapper>
 	)
 }
 

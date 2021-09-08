@@ -12,7 +12,7 @@ function SingleClipPage({ data, location }) {
 	const mediaObject = clip?.link?.childMarkdownRemark
 	const media = mediaObject ? mediaObject.html : ''
 	const mediaLink =
-		mediaObject?.htmlAst?.children[0]?.children[1]?.properties?.href
+		mediaObject?.htmlAst?.children?.[0]?.children[1]?.properties?.href
 
 	const hasVideo = media.includes('<iframe')
 
@@ -72,15 +72,7 @@ export const query = graphql`
 						htmlAst
 					}
 				}
-				speakers {
-					id
-					fields {
-						slug
-					}
-					data {
-						title
-					}
-				}
+				speaker
 				talks {
 					id
 					fields {

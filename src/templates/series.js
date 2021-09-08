@@ -46,13 +46,9 @@ export const query = graphql`
 						favorite
 						path
 						scripture
+						speaker
 						speakers {
-							id
-							fields {
-								slug
-							}
 							data {
-								title
 								avatar {
 									localFiles {
 										childImageSharp {

@@ -1,7 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
-import { Card } from 'components/card'
 import { Page } from 'components/page'
 import { Section } from 'components/section'
 import { SEO } from 'components/seo'
@@ -21,7 +20,7 @@ function SpeakersPage({ data, location }) {
 			<Section>
 				<Section.Content align="full">
 					<SpeakersList className="xl:grid-cols-4" speakers={speakers.nodes}>
-						<Card className="items-start row-span-2 px-6 py-5">
+						<div className="items-start row-span-2 px-6 py-5 'relative flex flex-grow p-4 text-left text-gray-700 transition duration-300 bg-white border border-transparent rounded shadow-sm">
 							<div>
 								<Page.Title>
 									<SpeakersFilter speakers={speakers.nodes} />
@@ -34,7 +33,7 @@ function SpeakersPage({ data, location }) {
 									</p>
 								</div>
 							</div>
-						</Card>
+						</div>
 					</SpeakersList>
 				</Section.Content>
 			</Section>

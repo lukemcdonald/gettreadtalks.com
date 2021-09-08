@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {
 	HeartIcon,
 	StarIcon,
@@ -11,7 +11,7 @@ import { sanitizeHTMLTag } from 'utils/misc'
 import { Avatar } from 'components/avatar'
 import { Link } from 'components/link'
 
-const CardTitle = ({ children, className, as }) => {
+function CardTitle({ children, className, as }) {
 	const Tag = sanitizeHTMLTag(as, ['h1', 'h2', 'h3'])
 
 	return (
@@ -26,7 +26,7 @@ const CardTitle = ({ children, className, as }) => {
 	)
 }
 
-const CardSubTitle = ({ children, className, as }) => {
+function CardSubTitle({ children, className, as }) {
 	const Tag = sanitizeHTMLTag(as, ['h2', 'h3'])
 
 	return (
@@ -41,36 +41,31 @@ const CardSubTitle = ({ children, className, as }) => {
 	)
 }
 
-const CardMeta = ({ children, className }) => (
-	<div
-		className={classNames(
-			'card__meta',
-			'mt-px text-sm text-gray-500 inline-block',
-			className
-		)}
-	>
-		{children}
-	</div>
-)
+function CardText({ children, className }) {
+	return (
+		<div
+			className={classNames(
+				'inline-block mt-px space-x-1 text-sm text-gray-500',
+				className
+			)}
+		>
+			{children}
+		</div>
+	)
+}
 
-const CardMetaLink = ({ children, className, to }) => (
-	<Link to={to} className={classNames('hover:underline', className)}>
-		{children}
-	</Link>
-)
-
-const CardAvatar = ({ image, alt }) => (
-	<figure className="w-16 h-16 mr-4">
+function CardAvatar({ image, alt }) {
+	return (
 		<Avatar
-			className="w-16 h-16 rounded-full"
+			className="flex-shrink-0 w-16 h-16 rounded-full"
 			imgClassName="rounded-full"
 			image={image}
 			alt={alt}
 		/>
-	</figure>
-)
+	)
+}
 
-const CardIcon = ({ className, to, type }) => {
+function CardIcon({ className, to, type }) {
 	const iconStyles = 'w-7 h-7 transition-colors p-1'
 
 	return (
@@ -90,61 +85,56 @@ const CardIcon = ({ className, to, type }) => {
 	)
 }
 
-const CardIcons = ({ className, icons = [] }) => (
-	<div
-		className={classNames(
-			'absolute z-20 text-gray-300 transition transform top-0 bottom-0 right-0 flex flex-col p-1',
-			className
-		)}
-	>
-		{icons.map(({ to, type }, index) => (
-			<CardIcon key={index} to={to} type={type} />
-		))}
-	</div>
-)
+function CardIcons({ className, icons = [], as }) {
+	const Tag = sanitizeHTMLTag(as, ['article', 'div'])
 
-class Card extends Component {
-	static Avatar = CardAvatar
-
-	static Icon = CardIcon
-
-	static Icons = CardIcons
-
-	static Meta = CardMeta
-
-	static MetaLink = CardMetaLink
-
-	static SubTitle = CardSubTitle
-
-	static Title = CardTitle
-
-	render() {
-		const {
-			children,
-			className = '',
-			icons = [],
-			display = 'boxed',
-			hoverStyles = 'true',
-		} = this.props
-
-		return (
-			<article
-				className={classNames(
-					'relative flex flex-grow text-left text-gray-700 transition duration-300 border border-transparent rounded',
-					className.includes('items-') || 'items-center',
-					display === 'boxed' && 'p-4 bg-white shadow-sm',
-					hoverStyles === 'true' &&
-						'hover:z-10 hover:border-red-600 hover:shadow-lg',
-					icons && 'pr-9',
-					className
-				)}
-			>
-				{children}
-
-				{icons && <CardIcons icons={icons} />}
-			</article>
-		)
-	}
+	return (
+		<Tag
+			className={classNames(
+				'absolute z-20 text-gray-300 transition transform top-0 bottom-0 right-0 flex flex-col p-1',
+				className
+			)}
+		>
+			{icons.map(({ to, type }, index) => (
+				<CardIcon key={index} to={to} type={type} />
+			))}
+		</Tag>
+	)
 }
 
-export { Card }
+function CardWrapper({ children, className }) {
+	return (
+		<article
+			className={classNames(
+				'relative flex items-center flex-grow p-4 space-x-3 text-left text-gray-700 transition duration-300 bg-white border border-transparent rounded shadow-sm',
+				'hover:border-red-600 hover:shadow-lg',
+				className
+			)}
+		>
+			{children}
+		</article>
+	)
+}
+
+function Card(props) {
+	const { avatar, className, icons = [], subtitle, text, title, to } = props
+
+	return (
+		<CardWrapper className={classNames(icons && 'pr-9', className)}>
+			{avatar && <CardAvatar image={avatar} alt="" />}
+
+			<div className="flex-1 min-w-0">
+				<Link to={to} className="focus:outline-none">
+					<span className="absolute inset-0 z-0" aria-hidden="true" />
+					{subtitle && <CardSubTitle as="h3">{subtitle}</CardSubTitle>}
+					{title && <CardTitle as="h2">{title}</CardTitle>}
+					{text && <CardText>{text}</CardText>}
+				</Link>
+			</div>
+
+			{icons && <CardIcons icons={icons} />}
+		</CardWrapper>
+	)
+}
+
+export { Card, CardWrapper, CardAvatar, CardTitle, CardText }

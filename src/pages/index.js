@@ -103,13 +103,9 @@ export const query = graphql`
 					title
 					publishedDate(formatString: "YYYYMMDD")
 					scripture
+					speaker
 					speakers {
-						id
-						fields {
-							slug
-						}
 						data {
-							title
 							avatar {
 								localFiles {
 									childImageSharp {

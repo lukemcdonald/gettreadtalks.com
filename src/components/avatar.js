@@ -1,19 +1,9 @@
 import React from 'react'
 import { GatsbyImage } from 'gatsby-plugin-image'
 
-function Avatar({ className, imgClassName, image, alt }) {
-	return (
-		<>
-			{image?.localFiles?.[0] && (
-				<GatsbyImage
-					image={image.localFiles[0].childImageSharp.gatsbyImageData}
-					className={className}
-					imgClassName={imgClassName}
-					alt={alt}
-				/>
-			)}
-		</>
-	)
+function Avatar({ image, ...props }) {
+	const avatar = image?.localFiles?.[0].childImageSharp.gatsbyImageData || image
+	return <GatsbyImage image={avatar} {...props} />
 }
 
 export { Avatar }

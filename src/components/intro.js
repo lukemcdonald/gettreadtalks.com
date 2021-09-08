@@ -42,7 +42,7 @@ class Intro extends Component {
 
 		const imageSrc =
 			image?.childImageSharp?.gatsbyImageData ||
-			image?.localFiles[0]?.childImageSharp?.gatsbyImageData
+			image?.localFiles?.[0]?.childImageSharp?.gatsbyImageData
 
 		return (
 			<section
