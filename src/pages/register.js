@@ -14,7 +14,7 @@ function RegisterPage({ location }) {
 	const { register, isUser } = useAuth()
 
 	if (isUser) {
-		navigate('/account')
+		navigate('/account/')
 		return null
 	}
 

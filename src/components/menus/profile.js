@@ -56,6 +56,35 @@ const UnauthenticatedMenu = () => (
 	</div>
 )
 
+function ProfileMenuItem({ as, to, title, icon: Icon, onClick }) {
+	const types = {
+		link: ({ active, children }) => (
+			<Link to={to} className={styleMenuItem('item', { active })}>
+				{children}
+			</Link>
+		),
+		button: ({ active, children }) => (
+			<button
+				type="button"
+				onClick={onClick}
+				className={styleMenuItem('item', { active, type: 'button' })}
+			>
+				{children}
+			</button>
+		),
+	}
+	const Item = as === 'button' ? types.button : types.link
+	return (
+		<Menu.Item>
+			{({ active }) => (
+				<Item active={active}>
+					<Icon className={styleMenuItem('icon', { active })} />
+					<span>{title}</span>
+				</Item>
+			)}
+		</Menu.Item>
+	)
+}
 const AuthenticatedMenu = () => {
 	const { logout, profile } = useAuth()
 	const { run } = useAsync()
@@ -66,53 +95,26 @@ const AuthenticatedMenu = () => {
 				<ProfileCard profile={profile} showAvatar="hide" />
 			</div>
 			<div className="p-1">
-				<Menu.Item>
-					{({ active }) => (
-						<Link
-							to="/account/favorites/"
-							className={styleMenuItem('item', { active })}
-						>
-							<HeartIcon className={styleMenuItem('icon', { active })} />{' '}
-							Favorites
-						</Link>
-					)}
-				</Menu.Item>
-				<Menu.Item>
-					{({ active }) => (
-						<Link
-							to="/account/finished/"
-							className={styleMenuItem('item', { active })}
-						>
-							<CheckIcon className={styleMenuItem('icon', { active })} />{' '}
-							Completed
-						</Link>
-					)}
-				</Menu.Item>
+				<ProfileMenuItem
+					to="/account/favorites/"
+					icon={HeartIcon}
+					title="Favorites"
+				/>
+				<ProfileMenuItem
+					to="/account/finished/"
+					icon={CheckIcon}
+					title="Completed"
+				/>
 			</div>
 			<div className="p-1">
-				<Menu.Item>
-					{({ active }) => (
-						<Link to="/account/" className={styleMenuItem('item', { active })}>
-							<UserIcon className={styleMenuItem('icon', { active })} /> Account
-							Settings
-						</Link>
-					)}
-				</Menu.Item>
-				<Menu.Item>
-					{({ active }) => (
-						<button
-							type="button"
-							onClick={() => run(logout())}
-							className={styleMenuItem('item', {
-								active,
-								type: 'button',
-							})}
-						>
-							<LogoutIcon className={styleMenuItem('icon', { active })} /> Sign
-							out
-						</button>
-					)}
-				</Menu.Item>
+				<ProfileMenuItem to="/account/" icon={UserIcon} title="Settings" />
+				<ProfileMenuItem
+					to="/account/"
+					icon={LogoutIcon}
+					title="Sign out"
+					as="button"
+					onClick={() => run(logout())}
+				/>
 			</div>
 		</>
 	)

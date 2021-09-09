@@ -18,7 +18,7 @@ function AccountPage({ location }) {
 	const { isUser, profile, updateSettings } = useAuth()
 
 	if (!isUser) {
-		navigate('/login')
+		navigate('/login/')
 		return null
 	}
 

@@ -55,7 +55,7 @@ function AuthProvider(props) {
 				.signInWithEmailAndPassword(form.email, form.password)
 				.then((creds) => {
 					setData(creds)
-					navigate('/account')
+					navigate('/account/')
 					return null
 				}),
 		[auth, setData]
@@ -72,7 +72,7 @@ function AuthProvider(props) {
 						favoriteTalks: [],
 					})
 				})
-				.then(() => navigate('/account')),
+				.then(() => navigate('/account/')),
 		[auth, setData, updateUsersCollection]
 	)
 
@@ -80,7 +80,7 @@ function AuthProvider(props) {
 		() =>
 			auth.signOut().then(() => {
 				setData(null)
-				navigate('/login')
+				navigate('/login/')
 				return null
 			}),
 		[auth, setData]
@@ -90,7 +90,7 @@ function AuthProvider(props) {
 		(form) =>
 			auth.sendPasswordResetEmail(form.email).then(() => {
 				setData(null)
-				navigate('/login')
+				navigate('/login/')
 				notify({
 					title: 'Email sent',
 					text: 'An email to reset your password has been sent.',

@@ -15,14 +15,9 @@ import { TextCarousel } from 'components/text-carousel'
 
 function IndexPage({ data, location }) {
 	const { talks, speakers } = data
-	const [shuffledTalks, setShuffledTalks] = useState([])
-	const [shuffledSpeakers, setShuffledSpeakers] = useState([])
+	const [shuffledTalks] = useState(() => arrayShuffle(talks.nodes))
+	const [shuffledSpeakers] = useState(() => arrayShuffle(speakers.nodes))
 	const { randomLink } = useAffiliateLinks()
-
-	useEffect(() => {
-		setShuffledTalks(arrayShuffle(talks.nodes))
-		setShuffledSpeakers(arrayShuffle(speakers.nodes))
-	}, [])
 
 	return (
 		<>

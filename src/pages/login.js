@@ -15,7 +15,7 @@ function LoginPage({ location }) {
 	const { login, isUser } = useAuth()
 
 	if (isUser) {
-		navigate('/account')
+		navigate('/account/')
 		return null
 	}
 

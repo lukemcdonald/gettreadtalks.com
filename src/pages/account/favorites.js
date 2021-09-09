@@ -45,7 +45,7 @@ function AccountFavoritesPage({ data, location }) {
 	}, [talks, user])
 
 	if (!isUser) {
-		navigate('/login')
+		navigate('/login/')
 		return null
 	}
 
