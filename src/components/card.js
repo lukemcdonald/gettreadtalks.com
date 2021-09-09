@@ -1,14 +1,10 @@
 import React from 'react'
-import {
-	HeartIcon,
-	StarIcon,
-	CheckCircleIcon as CheckIcon,
-} from '@heroicons/react/outline'
+import { HeartIcon, StarIcon, CheckIcon } from '@heroicons/react/solid'
 import classNames from 'classnames'
 
 import { sanitizeHTMLTag } from 'utils/misc'
 
-import { Avatar } from 'components/avatar'
+import { Image } from 'components/image'
 import { Link } from 'components/link'
 
 function CardTitle({ children, className, as }) {
@@ -54,49 +50,57 @@ function CardText({ children, className }) {
 	)
 }
 
-function CardAvatar({ image, alt }) {
-	return (
-		<Avatar
-			className="flex-shrink-0 w-16 h-16 rounded-full"
-			imgClassName="rounded-full"
-			image={image}
-			alt={alt}
-		/>
-	)
-}
-
 function CardIcon({ className, to, type }) {
-	const iconStyles = 'w-7 h-7 transition-colors p-1'
+	const icons = {
+		favorite: {
+			title: 'Favorite',
+			icon: HeartIcon,
+			style: 'text-favorite-700 bg-favorite-100 hover:bg-favorite-200',
+			to: to || '/account/favorites/',
+		},
+		featured: {
+			title: 'Featured',
+			icon: StarIcon,
+			style: 'text-featured-700 bg-featured-100 hover:bg-featured-200',
+			to: to || '/talks/featured/',
+		},
+		finished: {
+			title: 'Finished',
+			icon: CheckIcon,
+			style: 'text-finished-700 bg-finished-100 hover:bg-finished-200',
+			to: to || '/account/finished/',
+		},
+	}
+
+	const item = icons[type]
 
 	return (
-		<Link to={to} className={classNames('rounded-full', className)}>
-			{type === 'favorite' && (
-				<HeartIcon className={classNames(iconStyles, 'hover:text-red-600')} />
-			)}
-			{type === 'featured' && (
-				<StarIcon className={classNames(iconStyles, 'hover:text-gray-600')} />
-			)}
-			{type === 'finished' && (
-				<CheckIcon
-					className={classNames(iconStyles, 'hover:text-status-success')}
-				/>
-			)}
+		<Link to={item.to} className={classNames('rounded-full', className)}>
+			<span
+				className={classNames(
+					'flex items-center pl-1 pr-1.5 py-0.5 text-xs font-medium rounded-full space-x-1',
+					item.style
+				)}
+			>
+				<item.icon className="w-3.5 h-3.5 transition-colors" />
+				<span>{item.title}</span>
+			</span>
 		</Link>
 	)
 }
 
 function CardIcons({ className, icons = [], as }) {
-	const Tag = sanitizeHTMLTag(as, ['article', 'div'])
+	const Tag = sanitizeHTMLTag(as, ['div', 'span'])
+	let filteredIcons = icons
+
+	if (icons.includes('favorite') && icons.includes('featured')) {
+		filteredIcons = icons.filter((item) => item !== 'featured')
+	}
 
 	return (
-		<Tag
-			className={classNames(
-				'absolute z-20 text-gray-300 transition transform top-0 bottom-0 right-0 flex flex-col p-1',
-				className
-			)}
-		>
-			{icons.map(({ to, type }, index) => (
-				<CardIcon key={index} to={to} type={type} />
+		<Tag className={className}>
+			{filteredIcons.map((type, index) => (
+				<CardIcon key={index} type={type} />
 			))}
 		</Tag>
 	)
@@ -106,8 +110,9 @@ function CardWrapper({ children, className }) {
 	return (
 		<article
 			className={classNames(
-				'relative flex items-center flex-grow p-4 space-x-3 text-left text-gray-700 transition duration-300 bg-white border border-transparent rounded shadow-sm',
-				'hover:border-red-600 hover:shadow-lg',
+				'relative flex items-center flex-grow p-4 space-x-3 text-left text-gray-700 transition duration-300 bg-white rounded shadow-sm',
+				'ring-2 ring-transparent hover:ring-white',
+				'hover:shadow-lg',
 				className
 			)}
 		>
@@ -116,25 +121,76 @@ function CardWrapper({ children, className }) {
 	)
 }
 
+function CardImage({ className, image, alt, ...props }) {
+	return (
+		<>
+			{image && (
+				<Image
+					image={image}
+					className={classNames(
+						'flex-shrink-0',
+						className || 'w-16 h-16 rounded-full'
+					)}
+					{...props}
+				/>
+			)}
+		</>
+	)
+}
+
+function CardContent({ to, icons = [], subtitle, title, text }) {
+	return (
+		<div className="items-center flex-1 min-w-0">
+			<Link to={to} className="focus:outline-none">
+				<span className="absolute inset-0 z-0" aria-hidden="true" />
+				{subtitle && <CardSubTitle as="h3">{subtitle}</CardSubTitle>}
+				{title && (
+					<CardTitle as="h2">
+						<span className={classNames('inline', icons.length > 0 && 'mr-2')}>
+							{title}
+						</span>
+						{icons?.length > 0 && (
+							<CardIcons
+								className="relative z-10 inline-flex space-x-2 top-px"
+								icons={icons}
+							/>
+						)}
+					</CardTitle>
+				)}
+				{text && <CardText>{text}</CardText>}
+			</Link>
+		</div>
+	)
+}
+
 function Card(props) {
-	const { avatar, className, icons = [], subtitle, text, title, to } = props
+	const {
+		image,
+		imageAlt,
+		className,
+		icons,
+		subtitle,
+		text,
+		title,
+		to,
+		children,
+	} = props
 
 	return (
-		<CardWrapper className={classNames(icons && 'pr-9', className)}>
-			{avatar && <CardAvatar image={avatar} alt="" />}
+		<CardWrapper className={className}>
+			<CardImage image={image} alt={imageAlt} />
 
-			<div className="flex-1 min-w-0">
-				<Link to={to} className="focus:outline-none">
-					<span className="absolute inset-0 z-0" aria-hidden="true" />
-					{subtitle && <CardSubTitle as="h3">{subtitle}</CardSubTitle>}
-					{title && <CardTitle as="h2">{title}</CardTitle>}
-					{text && <CardText>{text}</CardText>}
-				</Link>
-			</div>
+			<CardContent
+				to={to}
+				icons={icons}
+				subtitle={subtitle}
+				title={title}
+				text={text}
+			/>
 
-			{icons && <CardIcons icons={icons} />}
+			{children}
 		</CardWrapper>
 	)
 }
 
-export { Card, CardWrapper, CardAvatar, CardTitle, CardText }
+export { Card, CardWrapper, CardImage, CardContent, CardTitle, CardText }

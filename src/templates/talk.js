@@ -254,18 +254,9 @@ export const query = graphql`
 							}
 							data {
 								title
+								speaker
 								favorite
 								publishedDate(formatString: "YYYYMMDD")
-								scripture
-								speakers {
-									id
-									fields {
-										slug
-									}
-									data {
-										title
-									}
-								}
 							}
 						}
 					}

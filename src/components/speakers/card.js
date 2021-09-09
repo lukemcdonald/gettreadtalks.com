@@ -24,7 +24,7 @@ function SpeakerCard({ speaker }) {
 	return (
 		<Card
 			to={speaker.slug}
-			avatar={speaker?.avatar || null}
+			image={speaker?.avatar || null}
 			title={speaker.title}
 			text={speaker?.role}
 			icons={icons}

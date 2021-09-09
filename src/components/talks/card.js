@@ -4,23 +4,23 @@ import { useUsers } from 'context/users'
 
 function TalkCard({ talk }) {
 	const { user } = useUsers()
-	const [icons, setIcons] = useState(() =>
-		talk?.favorite ? [{ type: 'featured', to: '/talks/featured/' }] : []
-	)
+	let icons = talk?.favorite ? ['featured'] : []
 
-	useEffect(() => {
-		if (user && user?.favoriteTalks && user.favoriteTalks.includes(talk.id)) {
-			setIcons((icons) => [
-				{ type: 'favorite', to: '/account/favorites/' },
-				...icons,
-			])
-		}
-	}, [talk.id, user])
+	if (user && user?.favoriteTalks && user.favoriteTalks.includes(talk.id)) {
+		icons = ['favorite', ...icons]
+	}
+
+	// const [icons, setIcons] = useState(() => (talk?.favorite ? ['featured'] : []))
+	// useEffect(() => {
+	// 	if (user && user?.favoriteTalks && user.favoriteTalks.includes(talk.id)) {
+	// 		setIcons((icons) => ['favorite', ...icons])
+	// 	}
+	// }, [talk, user])
 
 	return (
 		<Card
 			to={talk.slug}
-			avatar={talk?.speakers?.[0].data?.avatar || null}
+			image={talk?.speakers?.[0].data?.avatar || null}
 			subtitle={talk?.subtitle || null}
 			title={talk.title}
 			text={talk.speaker}

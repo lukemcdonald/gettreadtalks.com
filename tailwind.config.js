@@ -35,6 +35,21 @@ module.exports = {
 				error: colors.red[600],
 				success: colors.green[600],
 			},
+			favorite: {
+				100: colors.red[100],
+				200: colors.red[200],
+				700: colors.red[700],
+			},
+			featured: {
+				100: colors.blue[100],
+				200: colors.blue[200],
+				700: colors.blue[700],
+			},
+			finished: {
+				100: colors.green[100],
+				200: colors.green[200],
+				700: colors.green[700],
+			},
 			gray: colors.coolGray,
 			red: colors.red,
 		},

@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
-import { Avatar } from 'components/avatar'
+import { Image } from 'components/image'
 import { ClipsList } from 'components/clips/list'
 import { ConditionalWrapper } from 'components/conditional-wrapper'
 import { Intro } from 'components/intro'
@@ -30,7 +30,7 @@ function SingleSpeakerPage({ data, location, pageContext }) {
 
 			<Intro image={speaker?.banner}>
 				<Intro.Title className="flex flex-col">
-					<Avatar
+					<Image
 						className="block w-24 m-auto mb-4 border-4 border-white rounded-full shadow-lg"
 						image={speaker.avatar}
 						alt={speaker.title}

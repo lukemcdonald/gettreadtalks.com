@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Avatar } from 'components/avatar'
+import { Image } from 'components/image'
 import { Card, CardWrapper, CardTitle, CardText } from 'components/card'
 import { FauxLink } from 'components/fauxLink'
 import { Link } from 'components/link'
@@ -56,7 +56,7 @@ function SeriesCard({ series }) {
 							key={speaker.fields.slug}
 							to={speaker.fields.slug}
 						>
-							<Avatar
+							<Image
 								className="block w-12 h-12 rounded-full ring-white ring-2"
 								image={speaker.data.avatar}
 								alt={speaker.data.title}
