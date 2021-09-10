@@ -1,3 +1,4 @@
+// todo: update Firebase functionality to version 9 (currently version 8)
 import React from 'react'
 import { useAsync } from 'hooks/async'
 import { FullPageLogo, FullPageErrorFallback } from 'components/loader'

@@ -71,6 +71,7 @@ function AuthProvider(props) {
 					updateUsersCollection(creds.user.uid, {
 						creationTime: new Date(),
 						favoriteTalks: [],
+						finishedTalks: [],
 					})
 				})
 				.then(() => navigate('/account/')),

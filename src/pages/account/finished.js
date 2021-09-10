@@ -1,5 +1,5 @@
-// todo: Implement finsihed content functionality.
-
+// todo: Display five random featured talks as recomendations.
+// todo: Display tabs for finished talks, clips, speakers.
 import React, { useEffect, useState } from 'react'
 import { navigate, graphql } from 'gatsby'
 import { CheckCircleIcon as CheckIcon } from '@heroicons/react/outline'
@@ -29,13 +29,13 @@ function AccountFinishedPage({ data, location }) {
 		)
 
 		// Update order of finished to match order of user finished.
-		// The latest favorited talk should be shown first.
+		// The latest finished talk should be shown first.
 		let sortedFinished = []
 		user.finishedTalks.map((id) => {
-			const favoriteIndex = finished.findIndex((fav) => fav.id === id)
+			const finishedIndex = finished.findIndex((fav) => fav.id === id)
 
-			if (finished[favoriteIndex].id === id) {
-				sortedFinished = [...sortedFinished, finished[favoriteIndex]]
+			if (finished[finishedIndex].id === id) {
+				sortedFinished = [...sortedFinished, finished[finishedIndex]]
 			}
 
 			return sortedFinished
@@ -51,7 +51,7 @@ function AccountFinishedPage({ data, location }) {
 
 	return (
 		<>
-			<SEO title="Favorite Talks" location={location} />
+			<SEO title="Finished Talks" location={location} />
 
 			<Section>
 				<Section.Sidebar>
@@ -65,17 +65,19 @@ function AccountFinishedPage({ data, location }) {
 							type="button"
 							className="relative block w-full p-12 text-center border-2 border-gray-300 border-dashed rounded-lg hover:border-gray-400"
 						>
-							<Page.Title>Finished Content</Page.Title>
+							<Page.Title>Finished</Page.Title>
 							<p className="mt-2">
 								Click the{' '}
-								{<CheckIcon className="inline w-6 h-6 text-gray-400" />} to mark
-								an item as finished.
+								{<CheckIcon className="inline w-6 h-6 text-gray-400" />} to save
+								an item to your finished list.
 							</p>
 						</Link>
 					) : (
 						<div className="divide-y divide-gray-200">
-							<Page.Title>Your Finished Talks</Page.Title>
-							<TalksList talks={finishedTalks} />
+							<Page.Title>Your finished talks:</Page.Title>
+							<div className="mt-5">
+								<TalksList talks={finishedTalks} />
+							</div>
 						</div>
 					)}
 				</Section.Content>

@@ -11,7 +11,7 @@ import classNames from 'classnames'
 const navigation = [
 	{ name: 'Account Settings', to: '/account/', icon: UserIcon },
 	{ name: 'Favorites', to: '/account/favorites/', icon: HeartIcon },
-	{ name: 'Completed', to: '/account/finished/', icon: CheckIcon },
+	{ name: 'Finished', to: '/account/finished/', icon: CheckIcon },
 ]
 
 function AccountMenu({ className }) {

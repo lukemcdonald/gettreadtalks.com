@@ -103,7 +103,7 @@ const AuthenticatedMenu = () => {
 				<ProfileMenuItem
 					to="/account/finished/"
 					icon={CheckIcon}
-					title="Completed"
+					title="Finished"
 				/>
 			</div>
 			<div className="p-1">

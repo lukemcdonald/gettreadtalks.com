@@ -78,12 +78,12 @@ function CardIcon({ className, to, type }) {
 		<Link to={item.to} className={classNames('rounded-full', className)}>
 			<span
 				className={classNames(
-					'flex items-center pl-1 pr-1.5 py-0.5 text-xs font-medium rounded-full space-x-1',
+					'flex items-center px-1 py-1 text-xs font-medium rounded-full space-x-1 group',
 					item.style
 				)}
 			>
 				<item.icon className="w-3.5 h-3.5 transition-colors" />
-				<span>{item.title}</span>
+				<span className="hidden pr-1">{item.title}</span>
 			</span>
 		</Link>
 	)
@@ -151,7 +151,7 @@ function CardContent({ to, icons = [], subtitle, title, text }) {
 						</span>
 						{icons?.length > 0 && (
 							<CardIcons
-								className="relative z-10 inline-flex space-x-2 top-px"
+								className="relative z-10 inline-flex space-x-1 top-px"
 								icons={icons}
 							/>
 						)}

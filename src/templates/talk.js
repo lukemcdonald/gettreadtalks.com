@@ -3,6 +3,7 @@ import { graphql } from 'gatsby'
 import { MailIcon, ExternalLinkIcon } from '@heroicons/react/outline'
 
 import { FavoriteToggle } from 'components/talks/favorite-toggle'
+import { FinishedToggle } from 'components/talks/finished-toggle'
 import { Intro } from 'components/intro'
 import { Link } from 'components/link'
 import { Section } from 'components/section'
@@ -91,8 +92,17 @@ function TalkPage({ data, location, pageContext }) {
 							talk={talk}
 							className="relative w-10 h-10 mb-2 mr-2"
 							classNameToggle={{
-								on: 'rounded-full p-2 bg-red-600',
-								off: 'rounded-full p-2 bg-gray-600 hover:bg-red-600',
+								on: 'rounded-full p-2 bg-favorite-700',
+								off: 'rounded-full p-2 bg-gray-600 hover:bg-favorite-700',
+							}}
+						/>
+
+						<FinishedToggle
+							talk={talk}
+							className="relative w-10 h-10 mb-2 mr-2"
+							classNameToggle={{
+								on: 'rounded-full p-2 bg-finished-700',
+								off: 'rounded-full p-2 bg-gray-600 hover:bg-finished-700',
 							}}
 						/>
 
