@@ -1,9 +1,9 @@
 import React from 'react'
-import firebase from 'gatsby-plugin-firebase'
 import { navigate } from 'gatsby'
 import { UserCircleIcon } from '@heroicons/react/outline'
 
 import { useAsync } from 'hooks/async'
+import { useFirebase } from 'context/firebase'
 import { useNotification } from 'context/notifications'
 import { FullPageLogo, FullPageErrorFallback } from 'components/loader'
 
@@ -20,6 +20,7 @@ function useAuth() {
 
 function AuthProvider(props) {
 	const { notify } = useNotification()
+	const { firebase } = useFirebase()
 
 	const auth = firebase.auth()
 	const db = firebase.firestore()
@@ -112,7 +113,7 @@ function AuthProvider(props) {
 
 			return auth.currentUser.reauthenticateWithCredential(credential)
 		},
-		[auth]
+		[auth, firebase]
 	)
 
 	const unregister = React.useCallback(

@@ -3,12 +3,15 @@
 import React from 'react'
 
 import { AuthProvider } from 'context/auth'
+import { FirebaseProvider } from 'context/firebase'
 import { NotificationProvider } from 'context/notifications'
 
 function AppProviders({ children }) {
 	return (
 		<NotificationProvider>
-			<AuthProvider>{children}</AuthProvider>
+			<FirebaseProvider>
+				<AuthProvider>{children}</AuthProvider>
+			</FirebaseProvider>
 		</NotificationProvider>
 	)
 }

@@ -1,6 +1,4 @@
 import React from 'react'
-import 'firebase/auth'
-import 'firebase/firestore'
 import { App } from './src/app'
 import { AppProviders } from './src/context'
 

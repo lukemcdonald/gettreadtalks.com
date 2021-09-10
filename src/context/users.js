@@ -1,15 +1,18 @@
 import React from 'react'
-import firebase from 'gatsby-plugin-firebase'
-import { useAsync } from 'hooks/async'
+
 import { useAuth } from 'context/auth'
+import { useAsync } from 'hooks/async'
+import { useFirebase } from 'context/firebase'
 import { FullPageLogo, FullPageErrorFallback } from 'components/loader'
 
 const UsersContext = React.createContext({})
 UsersContext.displayName = 'UsersContext'
 
 function UsersProvider(props) {
-	const db = firebase.firestore()
 	const { profile } = useAuth()
+	const { firebase } = useFirebase()
+
+	const db = firebase.firestore()
 
 	const {
 		data: user,
@@ -162,34 +165,4 @@ function useUsers() {
 	return context
 }
 
-// Use for testing.
-function UsersDataDisplay(user) {
-	if (!user) {
-		return null
-	}
-	return (
-		<pre className="mt-6">
-			<ul className="prose">
-				{Object.keys(user).map((key) => (
-					<li key={key}>
-						<strong>{key}:</strong>
-						{key === 'favoriteTalks' && user[key] && (
-							<ol>
-								{user[key].map(
-									(data, index) =>
-										data && (
-											<li key={`favoriteTalk-${index}`}>{data.toString()}</li>
-										)
-								)}
-							</ol>
-						)}
-
-						{key !== 'favoriteTalks' && user[key].toString()}
-					</li>
-				))}
-			</ul>
-		</pre>
-	)
-}
-
-export { UsersProvider, useUsers, UsersDataDisplay }
+export { UsersProvider, useUsers }
