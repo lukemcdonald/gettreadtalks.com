@@ -55,6 +55,7 @@ export const query = graphql`
 				data {
 					title
 					publishedDate(formatString: "YYYYMMDD")
+					favorite
 					scripture
 					speaker
 					speakers {
