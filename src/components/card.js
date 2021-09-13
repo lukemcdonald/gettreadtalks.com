@@ -54,21 +54,21 @@ function CardIcon({ className, to, type }) {
 	const icons = {
 		favorite: {
 			title: 'Favorite',
-			icon: HeartIcon,
 			style: 'text-favorite-700 bg-favorite-100 hover:bg-favorite-200',
 			to: to || '/account/favorites/',
+			icon: (props) => <HeartIcon {...props} />,
 		},
 		featured: {
 			title: 'Featured',
-			icon: StarIcon,
 			style: 'text-featured-700 bg-featured-100 hover:bg-featured-200',
 			to: to || '/talks/featured/',
+			icon: (props) => <StarIcon {...props} />,
 		},
 		finished: {
 			title: 'Finished',
-			icon: CheckIcon,
 			style: 'text-finished-700 bg-finished-100 hover:bg-finished-200',
 			to: to || '/account/finished/',
+			icon: (props) => <CheckIcon {...props} />,
 		},
 	}
 
@@ -141,24 +141,26 @@ function CardImage({ className, image, alt, ...props }) {
 function CardContent({ to, icons = [], subtitle, title, text }) {
 	return (
 		<div className="items-center flex-1 min-w-0">
-			<Link to={to} className="focus:outline-none">
-				<span className="absolute inset-0 z-0" aria-hidden="true" />
-				{subtitle && <CardSubTitle as="h3">{subtitle}</CardSubTitle>}
-				{title && (
-					<CardTitle as="h2">
-						<span className={classNames('inline', icons.length > 0 && 'mr-2')}>
-							{title}
-						</span>
-						{icons?.length > 0 && (
-							<CardIcons
-								className="relative z-10 inline-flex space-x-1 top-px"
-								icons={icons}
-							/>
-						)}
+			{subtitle && <CardSubTitle as="h3">{subtitle}</CardSubTitle>}
+			<div>
+				<Link to={to} className="inline focus:outline-none">
+					<span className="absolute inset-0 z-0" aria-hidden="true" />
+					<CardTitle
+						as="h2"
+						className={classNames('inline', icons.length > 0 && 'mr-2')}
+					>
+						{title}
 					</CardTitle>
+				</Link>
+				{icons?.length > 0 && (
+					<CardIcons
+						className="relative z-10 inline-flex space-x-1 top-px"
+						icons={icons}
+					/>
 				)}
-				{text && <CardText>{text}</CardText>}
-			</Link>
+			</div>
+
+			{text && <CardText>{text}</CardText>}
 		</div>
 	)
 }

@@ -22,12 +22,7 @@ function Notification({ message = {}, onClose }) {
 					<div className="p-4">
 						<div className="flex items-start">
 							<div className="flex-shrink-0">
-								{message.icon && (
-									<message.icon.name
-										className={classNames('w-6 h-6', message.icon?.className)}
-										aria-hidden="true"
-									/>
-								)}
+								<message.icon className="w-6 h-6" aria-hidden="true" />
 							</div>
 							<div
 								className={classNames(

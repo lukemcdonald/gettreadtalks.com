@@ -96,9 +96,7 @@ function AuthProvider(props) {
 				notify({
 					title: 'Email sent',
 					text: 'An email to reset your password has been sent.',
-					icon: {
-						name: UserCircleIcon,
-					},
+					icon: (props) => <UserCircleIcon {...props} />,
 				})
 				return null
 			}),
@@ -129,9 +127,7 @@ function AuthProvider(props) {
 				notify({
 					title: 'Account updated',
 					text: 'Your account has successfully been unregisterd.',
-					icon: {
-						name: UserCircleIcon,
-					},
+					icon: (props) => <UserCircleIcon {...props} />,
 				})
 				navigate('/')
 				return null
@@ -153,9 +149,7 @@ function AuthProvider(props) {
 						notify({
 							title: 'Email updated',
 							text: 'Your email address has been updated.',
-							icon: {
-								name: UserCircleIcon,
-							},
+							icon: (props) => <UserCircleIcon {...props} />,
 						})
 					)
 				}
@@ -166,9 +160,7 @@ function AuthProvider(props) {
 						notify({
 							title: 'Password updated',
 							text: 'Your password has been updated.',
-							icon: {
-								name: UserCircleIcon,
-							},
+							icon: (props) => <UserCircleIcon {...props} />,
 						})
 					})
 				}

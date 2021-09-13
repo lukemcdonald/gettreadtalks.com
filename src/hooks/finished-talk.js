@@ -1,4 +1,5 @@
 import React from 'react'
+import classNames from 'classnames'
 import {
 	CheckCircleIcon as CheckIcon,
 	XCircleIcon,
@@ -39,10 +40,12 @@ function useFinishedTalk() {
 		notify({
 			title: talk.title,
 			text: 'Has been marked as finished.',
-			icon: {
-				name: CheckIcon,
-				className: 'text-finished-700',
-			},
+			icon: ({ className, ...props }) => (
+				<CheckIcon
+					className={classNames(className, 'text-finished-700')}
+					{...props}
+				/>
+			),
 		})
 	}
 
@@ -59,10 +62,8 @@ function useFinishedTalk() {
 
 		notify({
 			title: talk.title,
-			text: `Has been marked as unfinished.`,
-			icon: {
-				name: XCircleIcon,
-			},
+			text: 'Has been marked as unfinished.',
+			icon: (props) => <XCircleIcon {...props} />,
 		})
 	}
 

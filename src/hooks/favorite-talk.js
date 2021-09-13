@@ -1,4 +1,5 @@
 import React from 'react'
+import classNames from 'classnames'
 import { HeartIcon, XCircleIcon } from '@heroicons/react/outline'
 
 import { useAsync } from 'hooks/async'
@@ -36,10 +37,12 @@ function useFavoriteTalk() {
 		notify({
 			title: talk.title,
 			text: 'Has been added to your favorites.',
-			icon: {
-				name: HeartIcon,
-				className: 'text-favorite-700',
-			},
+			icon: ({ className, ...props }) => (
+				<HeartIcon
+					className={classNames(className, 'text-favorite-700')}
+					{...props}
+				/>
+			),
 		})
 	}
 
@@ -56,10 +59,8 @@ function useFavoriteTalk() {
 
 		notify({
 			title: talk.title,
-			text: `Has been removed from your favorites.`,
-			icon: {
-				name: XCircleIcon,
-			},
+			text: 'Has been removed from your favorites.',
+			icon: (props) => <XCircleIcon {...props} />,
 		})
 	}
 

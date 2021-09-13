@@ -8,12 +8,12 @@ const links = [
 	{
 		name: 'Email Subscribe',
 		to: 'https://mailchi.mp/50e8781cd6b2/newsletter-landing-page',
-		icon: <MailIcon className="w-6 h-6" />,
+		icon: (props) => <MailIcon {...props} />,
 	},
 	{
 		name: 'RSS Feed',
 		to: 'https://gettreadtalks.com/rss.xml',
-		icon: <RssIcon className="w-6 h-6" />,
+		icon: (props) => <RssIcon {...props} />,
 	},
 ]
 
@@ -34,7 +34,7 @@ function SocialMenu({ onClick }) {
 						title="Email Subscribe"
 						target="blank"
 					>
-						{link.icon}
+						<link.icon className="w-6 h-6" />
 					</Link>
 				</li>
 			))}
