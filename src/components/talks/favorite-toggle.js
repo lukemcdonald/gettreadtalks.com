@@ -12,11 +12,9 @@ function FavoriteToggle({ classNameToggle = {}, talk, ...props }) {
 	const { user } = useUsers()
 	const { isFavorite, updateFavorite } = useFavoriteTalk()
 
-	// Set default enabled state if talk is in favorite.
 	React.useEffect(() => {
-		const _isFavorite = isFavorite(talk)
-		setEnabled(_isFavorite)
-	}, [enabled, isFavorite, talk])
+		setEnabled(isFavorite(talk))
+	}, [isFavorite, talk])
 
 	if (!user) {
 		return null

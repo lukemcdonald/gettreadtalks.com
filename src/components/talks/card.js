@@ -1,17 +1,19 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Card } from 'components/card'
-import { useUsers } from 'context/users'
+import { useFavoriteTalk } from 'hooks/favorite-talk'
+import { useFinishedTalk } from 'hooks/finished-talk'
 
 function TalkCard({ talk }) {
-	const { user } = useUsers()
+	const { isFavorite } = useFavoriteTalk()
+	const { isFinished } = useFinishedTalk()
 	let icons = talk?.favorite ? ['featured'] : []
 
-	if (user && user?.finishedTalks && user.finishedTalks.includes(talk.id)) {
-		icons = ['finished', ...icons]
+	if (isFavorite(talk)) {
+		icons = ['favorite', ...icons]
 	}
 
-	if (user && user?.favoriteTalks && user.favoriteTalks.includes(talk.id)) {
-		icons = ['favorite', ...icons]
+	if (isFinished(talk)) {
+		icons = ['finished', ...icons]
 	}
 
 	return (

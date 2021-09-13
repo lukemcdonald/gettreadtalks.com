@@ -12,11 +12,9 @@ function FinishedToggle({ classNameToggle = {}, talk, ...props }) {
 	const { user } = useUsers()
 	const { isFinished, updateFinished } = useFinishedTalk()
 
-	// Set default enabled state if talk is in finished.
 	React.useEffect(() => {
-		const _isFinished = isFinished(talk)
-		setEnabled(_isFinished)
-	}, [enabled, isFinished, talk])
+		setEnabled(isFinished(talk))
+	}, [isFinished, talk])
 
 	if (!user) {
 		return null
