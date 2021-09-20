@@ -27,7 +27,7 @@ function SingleClipPage({ data, location }) {
 					<span>
 						<span>by</span>&nbsp;
 						<Link className="hover:underline" to={clip.speakers[0].fields.slug}>
-							{clip.speakers[0].data.title}
+							{clip.speaker}
 						</Link>
 					</span>
 				</Intro.Tagline>
@@ -73,35 +73,10 @@ export const query = graphql`
 					}
 				}
 				speaker
-				talks {
+				speakers {
 					id
 					fields {
 						slug
-					}
-					data {
-						title
-						publishedDate(formatString: "YYYYMMDD")
-						scripture
-						speakers {
-							id
-							fields {
-								slug
-							}
-							data {
-								title
-								avatar {
-									localFiles {
-										childImageSharp {
-											gatsbyImageData(
-												width: 128
-												placeholder: TRACED_SVG
-												layout: CONSTRAINED
-											)
-										}
-									}
-								}
-							}
-						}
 					}
 				}
 			}
