@@ -5,7 +5,7 @@ import { Card } from 'components/card'
 function SpeakerCard({ speaker }) {
 	const { user } = useUsers()
 	const [icons, setIcons] = useState(() =>
-		speaker?.favorite ? [{ type: 'featured', to: '/speakers/featured/' }] : []
+		speaker?.favorite ? ['featured'] : []
 	)
 
 	useEffect(() => {
@@ -14,10 +14,7 @@ function SpeakerCard({ speaker }) {
 			user?.favoriteSpeakers &&
 			user.favoriteSpeakers.includes(speaker.id)
 		) {
-			setIcons((icons) => [
-				{ type: 'favorite', to: '/account/favorites/' },
-				...icons,
-			])
+			setIcons((icons) => ['favorite', ...icons])
 		}
 	}, [speaker, user])
 
