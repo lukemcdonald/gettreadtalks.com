@@ -1,11 +1,8 @@
-import dotenv from 'dotenv'
-// import clientConfig from './client-config';
-
-dotenv.config({
+require('dotenv').config({
 	path: `.env.${process.env.NODE_ENV || 'development'}`,
 })
 
-export default {
+module.exports = {
 	siteMetadata: {
 		siteUrl: 'https://gettreadtalks.com',
 		title: 'TREAD Talks',

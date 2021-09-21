@@ -1,8 +1,12 @@
 {
   "compilerOptions": {
     "baseUrl": "./src",
+    "noEmit": true
   },
   "include": [
-    "src"
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }

@@ -1,4 +1,8 @@
 const colors = require('tailwindcss/colors')
+const tailwindForms = require('@tailwindcss/forms')
+const tailwindTypography = require('@tailwindcss/typography')
+const tailwindEmbeds = require('tailwindcss-responsive-embed')
+const tailwindAspectRatio = require('tailwindcss-aspect-ratio')
 
 module.exports = {
 	mode: 'jit',
@@ -75,9 +79,9 @@ module.exports = {
 		},
 	},
 	plugins: [
-		require('@tailwindcss/forms'),
-		require('@tailwindcss/typography'),
-		require('tailwindcss-responsive-embed'),
-		require('tailwindcss-aspect-ratio'),
+		tailwindForms,
+		tailwindTypography,
+		tailwindEmbeds,
+		tailwindAspectRatio,
 	],
 }

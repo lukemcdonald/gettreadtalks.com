@@ -1,9 +1,16 @@
+const autoprefixer = require(`autoprefixer`)
+const postcssCustomProperties = require('postcss-custom-properties')
+
+const postcssImport = require(`postcss-import`)
+const postcssNested = require(`postcss-nested`)
+const tailwindcss = require(`tailwindcss`)
+
 module.exports = {
 	plugins: [
-		require(`postcss-import`),
-		require(`tailwindcss`),
-		require(`postcss-nested`),
-		require('postcss-custom-properties'),
-		require(`autoprefixer`),
+		postcssImport,
+		tailwindcss,
+		postcssNested,
+		postcssCustomProperties,
+		autoprefixer,
 	],
 }
