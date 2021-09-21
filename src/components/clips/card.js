@@ -5,9 +5,9 @@ function ClipCard({ clip }) {
 	return (
 		<Card
 			to={clip.slug}
-			image={clip?.speakers?.[0].data?.avatar || null}
+			image={clip?.speakers?.[0].data.avatar || null}
 			title={clip.title}
-			text={clip.speaker}
+			text={clip?.speakers?.[0].data.title || null}
 		/>
 	)
 }

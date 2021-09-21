@@ -9,6 +9,11 @@ import { TalksList } from 'components/talks/list'
 function SingleClipPage({ data, location }) {
 	const { data: clip } = data.clip
 
+	const speaker = {
+		...clip.speakers[0].data,
+		...clip.speakers[0].fields,
+	}
+
 	const mediaObject = clip?.link?.childMarkdownRemark
 	const media = mediaObject ? mediaObject.html : ''
 	const mediaLink =
@@ -26,8 +31,8 @@ function SingleClipPage({ data, location }) {
 				<Intro.Tagline className="flex justify-center space-x-2">
 					<span>
 						<span>by</span>&nbsp;
-						<Link className="hover:underline" to={clip.speakers[0].fields.slug}>
-							{clip.speaker}
+						<Link className="hover:underline" to={speaker.slug}>
+							{speaker.title}
 						</Link>
 					</span>
 				</Intro.Tagline>
@@ -72,11 +77,29 @@ export const query = graphql`
 						htmlAst
 					}
 				}
-				speaker
 				speakers {
 					id
 					fields {
 						slug
+					}
+					data {
+						title
+					}
+				}
+				talks {
+					id
+					fields {
+						slug
+					}
+					data {
+						title
+						speakers {
+							data {
+								title
+							}
+						}
+						favorite
+						publishedDate(formatString: "YYYYMMDD")
 					}
 				}
 			}

@@ -13,14 +13,15 @@ import { TalksList } from 'components/talks/list'
 import { arrayShuffle } from 'utils/misc'
 
 function TalkPage({ data, location, pageContext }) {
-	const talk = {
-		id: data.talk.id,
-		...data.talk.data,
+	const { data: talk } = data.talk
+
+	const speaker = {
+		...talk.speakers[0].data,
+		...talk.speakers[0].fields,
 	}
-	const { talks } = talk.speakers[0].data
 
 	const [moreTalks] = useState(
-		() => talks.filter((item) => item.id !== pageContext.id) || []
+		() => speaker.talks.filter((item) => item.id !== pageContext.id) || []
 	)
 	const [shuffledTalks] = useState(() => arrayShuffle(moreTalks))
 
@@ -37,8 +38,8 @@ function TalkPage({ data, location, pageContext }) {
 	return (
 		<>
 			<SEO
-				title={`${talk.title} by ${talk.speaker}`}
-				description={`Listen to ${talk.title} by ${talk.speaker} from ${talk.scripture}.`}
+				title={`${talk.title} by ${speaker.title}`}
+				description={`Listen to ${talk.title} by ${speaker.title} from ${talk.scripture}.`}
 				location={location}
 			/>
 
@@ -48,8 +49,8 @@ function TalkPage({ data, location, pageContext }) {
 				<Intro.Tagline className="sm:justify-center sm:flex sm:space-x-2">
 					<div>
 						<span>by</span>&nbsp;
-						<Link className="hover:underline" to={talk.speakers[0].fields.slug}>
-							{talk.speaker}
+						<Link className="hover:underline" to={speaker.slug}>
+							{speaker.title}
 						</Link>
 					</div>
 				</Intro.Tagline>
@@ -178,8 +179,9 @@ function TalkPage({ data, location, pageContext }) {
 
 						<div className="prose">
 							<p>
-								Enjoy {talks.length >= 2 ? 'more talks' : 'another talk'} by{' '}
-								{talk.speaker}.
+								Enjoy{' '}
+								{speaker.talks.length >= 2 ? 'more talks' : 'another talk'} by{' '}
+								{speaker.title}.
 							</p>
 						</div>
 					</Section.Sidebar>
@@ -187,13 +189,10 @@ function TalkPage({ data, location, pageContext }) {
 					<Section.Content>
 						<TalksList talks={shuffledTalks.slice(0, 5)} />
 
-						{talks.length > 5 && (
+						{speaker.talks.length > 5 && (
 							<p className="mt-6">
-								<Link
-									className="font-medium hover:underline"
-									to={talk.speakers[0].fields.slug}
-								>
-									More by {talk.speaker} &rarr;
+								<Link className="font-medium hover:underline" to={speaker.slug}>
+									More by {speaker.title} &rarr;
 								</Link>
 							</p>
 						)}
@@ -250,13 +249,13 @@ export const query = graphql`
 						}
 					}
 				}
-				speaker
 				speakers {
 					id
 					fields {
 						slug
 					}
 					data {
+						title
 						talks {
 							id
 							fields {
@@ -264,7 +263,11 @@ export const query = graphql`
 							}
 							data {
 								title
-								speaker
+								speakers {
+									data {
+										title
+									}
+								}
 								favorite
 								publishedDate(formatString: "YYYYMMDD")
 							}

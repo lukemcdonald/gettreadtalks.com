@@ -1,8 +1,7 @@
 import React from 'react'
 
 import { Image } from 'components/image'
-import { Card, CardWrapper, CardTitle, CardText } from 'components/card'
-import { FauxLink } from 'components/fauxLink'
+import { CardWrapper, CardTitle, CardText } from 'components/card'
 import { Link } from 'components/link'
 
 function SeriesCard({ series }) {

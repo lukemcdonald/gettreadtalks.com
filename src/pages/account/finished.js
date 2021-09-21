@@ -105,9 +105,9 @@ export const query = graphql`
 					favorite
 					publishedDate(formatString: "YYYYMMDD")
 					scripture
-					speaker
 					speakers {
 						data {
+							title
 							avatar {
 								localFiles {
 									childImageSharp {

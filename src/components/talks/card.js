@@ -6,6 +6,7 @@ import { useFinishedTalk } from 'hooks/finished-talk'
 function TalkCard({ talk }) {
 	const { isFavorite } = useFavoriteTalk()
 	const { isFinished } = useFinishedTalk()
+	const speaker = talk?.speakers?.[0].data
 	let icons = talk?.favorite ? ['featured'] : []
 
 	if (isFavorite(talk)) {
@@ -19,10 +20,10 @@ function TalkCard({ talk }) {
 	return (
 		<Card
 			to={talk.slug}
-			image={talk?.speakers?.[0].data?.avatar || null}
-			subtitle={talk?.subtitle || null}
+			image={speaker.avatar}
+			subtitle={talk.subtitle}
 			title={talk.title}
-			text={talk.speaker}
+			text={speaker.title}
 			icons={icons}
 		/>
 	)

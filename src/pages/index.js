@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { graphql } from 'gatsby'
 
 import { arrayShuffle } from 'utils/misc'
@@ -98,9 +98,9 @@ export const query = graphql`
 					title
 					publishedDate(formatString: "YYYYMMDD")
 					scripture
-					speaker
 					speakers {
 						data {
+							title
 							avatar {
 								localFiles {
 									childImageSharp {

@@ -210,7 +210,11 @@ export const query = graphql`
 						favorite
 						path
 						scripture
-						speaker
+						speakers {
+							data {
+								title
+							}
+						}
 					}
 				}
 			}

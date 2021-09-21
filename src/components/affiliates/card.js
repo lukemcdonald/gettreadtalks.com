@@ -1,12 +1,9 @@
 import React from 'react'
-import classNames from 'classnames'
 
 import { CardWrapper, CardImage, CardContent } from 'components/card'
 import { Disclosure } from 'components/affiliates/disclosure'
-import { FauxLink } from 'components/fauxLink'
-import { Image } from 'components/image'
 
-function AffiliateLinkCard({ data: post, className }) {
+function AffiliateLinkCard({ data: post }) {
 	return (
 		<CardWrapper>
 			<CardImage
