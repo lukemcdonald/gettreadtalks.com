@@ -17,6 +17,7 @@ function ResetPassword({ location }) {
 	return (
 		<>
 			<SEO title="Password Reset" location={location} />
+
 			<Section>
 				<Section.Sidebar>
 					<Page.Title>Reset your password</Page.Title>
