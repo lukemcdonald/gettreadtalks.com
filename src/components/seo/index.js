@@ -13,7 +13,7 @@ function SEO({ children, location, title, description, image }) {
 		title: striptags(title || siteTitle),
 		description: trimText(striptags(description || siteDescription), 160),
 		image: image || '/default-seo-image.png',
-		url: location.href || {},
+		url: location?.href || {},
 	}
 
 	return (

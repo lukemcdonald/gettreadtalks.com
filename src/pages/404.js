@@ -3,10 +3,10 @@ import React from 'react'
 import { SEO } from 'components/seo'
 import { Intro } from 'components/intro'
 
-function NotFoundPage() {
+function NotFoundPage({ location }) {
 	return (
 		<>
-			<SEO title="404: Not found" />
+			<SEO title="404: Not found" location={location} />
 
 			<Intro>
 				<Intro.Title>Are you lost?</Intro.Title>
