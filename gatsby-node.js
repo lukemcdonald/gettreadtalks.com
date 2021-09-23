@@ -7,9 +7,10 @@ function onCreateAirtableNode({ node, actions }) {
 	let slug = ''
 
 	if (type === 'AirtableClip') {
-		const { path, speaker, title } = node.data
+		const { path, speakers, title } = node.data
 		slug =
-			path || `/clips/${slugify(speaker[0], args)}/${slugify(title, args)}/`
+			path ||
+			`/clips/${slugify(speakers[0].data.title, args)}/${slugify(title, args)}/`
 	}
 
 	if (type === 'AirtablePage') {
@@ -28,9 +29,10 @@ function onCreateAirtableNode({ node, actions }) {
 	}
 
 	if (type === 'AirtableTalk') {
-		const { speaker, title, path } = node.data
+		const { speakers, title, path } = node.data
 		slug =
-			path || `/talks/${slugify(speaker[0], args)}/${slugify(title, args)}/`
+			path ||
+			`/talks/${slugify(speakers[0].data.title, args)}/${slugify(title, args)}/`
 	}
 
 	if (type === 'AirtableTopic') {
