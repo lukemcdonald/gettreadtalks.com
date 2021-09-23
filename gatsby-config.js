@@ -14,7 +14,6 @@ module.exports = {
 		'gatsby-plugin-postcss',
 		'gatsby-plugin-react-helmet',
 		'gatsby-plugin-robots-txt',
-		'gatsby-plugin-sitemap',
 		`gatsby-plugin-image`,
 		'gatsby-plugin-sharp',
 		'gatsby-transformer-sharp',
@@ -154,6 +153,123 @@ module.exports = {
 						separateNodeType: true,
 					},
 				],
+			},
+		},
+		{
+			resolve: 'gatsby-plugin-sitemap',
+			options: {
+				query: `{
+		      site {
+		        siteMetadata {
+		          siteUrl
+		        }
+		      }
+          clips: allAirtableClip(filter: { data: { title: { ne: null } } }) {
+            nodes {
+              fields {
+                slug
+              }
+              data {
+                publishedDate
+              }
+            }
+          }
+          pages: allAirtablePage(filter: { data: { title: { ne: null } } }) {
+            nodes {
+              fields {
+                slug
+              }
+            }
+          }
+          series: allAirtableSerie(filter: { data: { title: { ne: null } } }) {
+            nodes {
+              fields {
+                slug
+              }
+            }
+          }
+          speakers: allAirtableSpeaker(filter: { data: { title: { ne: null } } }) {
+            nodes {
+              fields {
+                slug
+              }
+            }
+          }
+          talks: allAirtableTalk(filter: { data: { title: { ne: null } } }) {
+            nodes {
+              fields {
+                slug
+              }
+              data {
+                publishedDate
+              }
+            }
+          }
+          topics: allAirtableTopic(filter: { data: { title: { ne: null } } }) {
+            nodes {
+              fields {
+                slug
+              }
+            }
+          }
+		    }`,
+				resolveSiteUrl: ({
+					site: {
+						siteMetadata: { siteUrl },
+					},
+				}) => siteUrl,
+				resolvePages: ({
+					clips: { nodes: allClips },
+					pages: { nodes: allPages },
+					series: { nodes: allSeries },
+					speakers: { nodes: allSpeakers },
+					talks: { nodes: allTalks },
+					topics: { nodes: allTopics },
+				}) => {
+					const clips = allClips.map((post) => ({
+						path: post.fields.slug,
+						lastmod: post.data.publishedDate,
+					}))
+
+					const pages = allPages.map((post) => ({
+						path: post.fields.slug,
+					}))
+
+					const series = allSeries.map((post) => ({
+						path: post.fields.slug,
+					}))
+
+					const speakers = allSpeakers.map((post) => ({
+						path: post.fields.slug,
+					}))
+
+					const talks = allTalks.map((post) => ({
+						path: post.fields.slug,
+						lastmod: post.data.publishedDate,
+					}))
+
+					const topics = allTopics.map((post) => ({
+						path: post.fields.slug,
+					}))
+
+					const home = {
+						path: '/',
+					}
+
+					return [
+						...clips,
+						...pages,
+						...series,
+						...speakers,
+						...talks,
+						...topics,
+						home,
+					]
+				},
+				serialize: ({ path, lastmod }) => ({
+					url: path,
+					lastmod,
+				}),
 			},
 		},
 		{
