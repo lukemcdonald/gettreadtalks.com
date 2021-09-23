@@ -7,10 +7,11 @@ learning.
 Site built using:
 
 * [Gatsby](https://www.gatsbyjs.com/)
+* [Firebase](https://firebase.google.com/)
 * [Airtable](https://airtable.com/) ([View Airtable base](https://airtable.com/shrhwAQPNSO8rUvHB))
 * [Tailwind CSS](https://tailwindcss.com/)
 * [React](https://reactjs.org/) 
 * [GraphQL](https://graphql.org/)
-* [Netlify](https://www.netlify.com/)
-* [Zappier](https://zapier.com/)
-* [Buffer](https://buffer.com/)
+* [Netlify](https://www.netlify.com/) (Deploy site)
+* [Zappier](https://zapier.com/) (Auto deploy changes from Airtable to Netlify and Buffer)
+* [Buffer](https://buffer.com/) (Auto publish content to social media)
