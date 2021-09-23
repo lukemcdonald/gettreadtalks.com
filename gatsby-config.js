@@ -185,7 +185,7 @@ module.exports = {
 								const { html } = link.childMarkdownRemark
 
 								const url = site.siteMetadata.siteUrl + node.fields.slug
-								const htmlSpeaker = `by ${node.data.speaker}`
+								const htmlSpeaker = `by ${node.data.speakers[0].data.title}`
 								const htmlScripture = node.data.scripture
 									? ` from ${node.data.scripture}`
 									: ''
@@ -193,7 +193,7 @@ module.exports = {
 								return {
 									date: node.data.publishedDate,
 									title: node.data.title,
-									author: node.data.speaker,
+									author: node.data.speakers[0].data.title,
 									description: `Listen to "<a href="${url}">${node.data.title}</a>" ${htmlSpeaker}${htmlScripture}`,
 									url,
 									guid: url,
@@ -223,7 +223,11 @@ module.exports = {
                       title
                       publishedDate
                       scripture
-                      speaker
+                      speakers {
+                        data {
+                          title
+                        }
+                      }
                       link {
                         childMarkdownRemark {
                           html
