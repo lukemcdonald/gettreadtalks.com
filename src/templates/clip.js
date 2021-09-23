@@ -70,7 +70,6 @@ export const query = graphql`
 			id
 			data {
 				title
-				path
 				link {
 					childMarkdownRemark {
 						html

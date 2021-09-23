@@ -44,7 +44,6 @@ export const query = graphql`
 					data {
 						title
 						favorite
-						path
 						scripture
 						speakers {
 							data {

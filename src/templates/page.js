@@ -52,7 +52,6 @@ export const query = graphql`
 			}
 			data {
 				title
-				path
 				content {
 					childMarkdownRemark {
 						excerpt

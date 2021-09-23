@@ -4,40 +4,35 @@ function onCreateAirtableNode({ node, actions }) {
 	const { createNodeField } = actions
 	const { type } = node.internal
 	const args = { decamelize: false }
+	const title = slugify(node.data.title, args)
 	let slug = ''
 
 	if (type === 'AirtableClip') {
-		const { path, speakers, title } = node.data
-		slug =
-			path ||
-			`/clips/${slugify(speakers[0].data.title, args)}/${slugify(title, args)}/`
+		// todo: Find a way to get foreign-key field info for speakers and remove use of speaker field value.
+		const speaker = slugify(node.data.speaker[0], args)
+		slug = `/clips/${speaker}/${title}/`
 	}
 
 	if (type === 'AirtablePage') {
-		const { path, title } = node.data
-		slug = path || `/${slugify(title, args)}/`
+		slug = `/${title}/`
 	}
 
 	if (type === 'AirtableSerie') {
-		const { path, title } = node.data
-		slug = path || `/series/${slugify(title, args)}/`
+		slug = `/series/${title}/`
 	}
 
 	if (type === 'AirtableSpeaker') {
-		const { path, title } = node.data
-		slug = path || `/speakers/${slugify(title, args)}/`
+		slug = `/speakers/${title}/`
 	}
 
 	if (type === 'AirtableTalk') {
-		const { speakers, title, path } = node.data
-		slug =
-			path ||
-			`/talks/${slugify(speakers[0].data.title, args)}/${slugify(title, args)}/`
+		// todo: Find a way to get foreign-key field info for speakers and remove use of speaker field value.
+		const speaker = slugify(node.data.speaker[0], args)
+		slug = `/talks/${speaker}/${title}/`
 	}
 
 	if (type === 'AirtableTopic') {
-		const { path, title } = node.data
-		slug = path || `/topics/${slugify(title, args)}/`
+		slug = `/topics/${title}/`
 	}
 
 	createNodeField({

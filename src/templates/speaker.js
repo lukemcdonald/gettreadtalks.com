@@ -188,7 +188,6 @@ export const query = graphql`
 					}
 					data {
 						title
-						path
 						speakers {
 							id
 							fields {
@@ -208,7 +207,6 @@ export const query = graphql`
 					data {
 						title
 						favorite
-						path
 						scripture
 						speakers {
 							data {
