@@ -13,7 +13,10 @@ import { TalksList } from 'components/talks/list'
 import { arrayShuffle } from 'utils/misc'
 
 function TalkPage({ data, location, pageContext }) {
-	const { data: talk } = data.talk
+	const talk = {
+		id: data.talk.id,
+		...data.talk.data,
+	}
 
 	const speaker = {
 		...talk.speakers[0].data,
