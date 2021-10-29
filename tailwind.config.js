@@ -1,15 +1,12 @@
 const colors = require('tailwindcss/colors')
-const tailwindForms = require('@tailwindcss/forms')
-const tailwindTypography = require('@tailwindcss/typography')
-const tailwindEmbeds = require('tailwindcss-responsive-embed')
-const tailwindAspectRatio = require('tailwindcss-aspect-ratio')
 
 module.exports = {
-	// the NODE_ENV thing is for https://github.com/Acidic9/prettier-plugin-tailwind/issues/29
-	mode: process.env.NODE_ENV ? 'jit' : undefined,
-	purge: {
-		content: ['./src/**/*.js', './src/**/*.css'],
-	},
+  purge: {
+    enabled: process.env.NODE_ENV === 'production',
+    content: ['./src/**/*.+(css|js)'],
+  },
+  mode: process.env.NODE_ENV ? 'jit' : undefined,
+  darkMode: false, // or 'media' or 'class'
 	theme: {
 		extend: {
 			maxHeight: {
@@ -80,9 +77,9 @@ module.exports = {
 		},
 	},
 	plugins: [
-		tailwindForms,
-		tailwindTypography,
-		tailwindEmbeds,
-		tailwindAspectRatio,
+		require('@tailwindcss/forms'),
+		require('@tailwindcss/typography'),
+		require('tailwindcss-responsive-embed'),
+		require('tailwindcss-aspect-ratio'),
 	],
 }

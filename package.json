@@ -1,11 +1,9 @@
 {
   "name": "treadtalks-gatsby",
-  "description": "TREAD Talks website built with Gatsby",
+  "description": "A Gatsby version of gettreadtalks.com",
   "version": "2.0.0",
-  "author": "Luke McDonald <thelukemcdonald@gmail.com>",
-  "keywords": [
-    "gatsby"
-  ],
+  "author": "Luke McDonald (https://lukemcdonald.com/)",
+  "keywords": [],
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -13,10 +11,12 @@
   },
   "scripts": {
     "build": "NODE_ENV=production cross-env NODE_OPTIONS='-r esm' gatsby build",
+    "clean": "gatsby clean",
     "develop": "cross-env NODE_OPTIONS='-r esm' gatsby develop",
-    "start": "npm run develop",
     "serve": "cross-env NODE_OPTIONS='-r esm' gatsby serve",
-    "clean": "gatsby clean"
+    "start": "npm run develop",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "@headlessui/react": "^1.4.1",
@@ -25,7 +25,6 @@
     "@sindresorhus/slugify": "^1.1.0",
     "@tailwindcss/forms": "^0.3.3",
     "@tailwindcss/typography": "^0.4.1",
-    "autoprefixer": "^10.3.4",
     "classnames": "^2.3.1",
     "dotenv": "^10.0.0",
     "firebase": "^8.10.0",
@@ -47,11 +46,7 @@
     "gatsby-source-filesystem": "^3.14.0",
     "gatsby-transformer-remark": "^4.11.0",
     "gatsby-transformer-sharp": "^3.14.0",
-    "postcss": "^8.3.6",
-    "postcss-cli": "^8.3.1",
-    "postcss-custom-properties": "^11.0.0",
     "postcss-import": "^14.0.2",
-    "postcss-nested": "^5.0.6",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-gravatar": "^2.6.3",
@@ -63,28 +58,19 @@
     "yup": "^0.32.9"
   },
   "devDependencies": {
-    "@babel/core": "^7.15.8",
-    "@babel/eslint-parser": "^7.15.8",
-    "babel-eslint": "^10.1.0",
+    "autoprefixer": "^10.3.7",
     "cross-env": "^7.0.3",
     "eslint": "^8.0.1",
-    "eslint-config-airbnb": "^18.2.1",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-config-wesbos": "lukemcdonald/eslint-config-wesbos",
-    "eslint-plugin-html": "^6.2.0",
-    "eslint-plugin-import": "^2.24.2",
-    "eslint-plugin-jsx-a11y": "^6.4.1",
-    "eslint-plugin-prettier": "^3.4.1",
-    "eslint-plugin-react": "^7.26.0",
-    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-config-kentcdodds": "^19.2.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "esm": "^3.2.25",
-    "prettier": "^2.4.1",
-    "prettier-plugin-tailwind": "^2.2.12"
+    "postcss": "^8.3.6",
+    "postcss-cli": "^8.3.1",
+    "prettier": "^2.4.1"
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
+  "eslintIgnore": [
+    "node_modules",
+    "build",
+    "public"
   ]
 }
