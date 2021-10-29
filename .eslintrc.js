@@ -12,6 +12,10 @@ module.exports = {
     'react/jsx-filename-extension': 'off',
     'react/jsx-pascal-case': 'off', // Allow for uppercase SEO component
 
+    'react/jsx-no-useless-fragment': 'off',
+    'consistent-return': 'off',
+    'react/no-unescaped-entities': 'off',
+
     // Options: https://prettier.io/docs/en/options.html
     'prettier/prettier': [
       'error',

@@ -123,6 +123,7 @@ function UsersProvider(props) {
 
   const value = React.useMemo(
     () => ({
+      readAllUsers,
       readUserById,
       readUserByField,
       updateUser,
@@ -130,7 +131,7 @@ function UsersProvider(props) {
       deleteUserById,
       user,
     }),
-    [readUserById, readUserByField, updateUser, setUser, deleteUserById, user],
+    [readAllUsers, readUserById, readUserByField, updateUser, setUser, deleteUserById, user],
   )
 
   if (isLoading || isIdle) {

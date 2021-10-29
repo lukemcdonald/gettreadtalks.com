@@ -29,6 +29,7 @@ function styleMenuItem(item = '', args = {}) {
     case 'icon':
       return classNames(active ? '' : '', 'w-5 h-5 mr-3 flex-none text-gray-400', 'group-hover:text-primary-600')
     default:
+      throw new Error(`Unknown menu item type: ${item}`)
   }
 }
 

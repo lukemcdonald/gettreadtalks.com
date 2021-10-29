@@ -223,7 +223,7 @@ async function createTalkPages({ graphql, actions, reporter }) {
   }
 
   const results = (data.talks || {}).nodes || []
-  const pageSize = parseInt(process.env.GATSBY_PAGE_SIZE)
+  const pageSize = parseInt(process.env.GATSBY_PAGE_SIZE, 8)
   const pageCount = Math.ceil(data.talks.totalCount / pageSize)
 
   Array.from({ length: pageCount }).forEach((_, i) => {

@@ -59,5 +59,5 @@ export const maybePluralize = (count, noun, args = {}) => {
     displayCount = ''
   }
 
-  return `${displayCount} ${noun}${count !== 1 ? options.suffix : ''}`
+  return `${displayCount} ${noun}${count <= 1 ? '' : options.suffix}`
 }

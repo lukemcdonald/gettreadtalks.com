@@ -51,7 +51,7 @@ function TalksPage({ data, location, pageContext }) {
           <TalksList talks={talks.nodes} />
           <Pagination
             className="w-full mt-4 sm:mt-6"
-            pageSize={parseInt(process.env.GATSBY_PAGE_SIZE)}
+            pageSize={parseInt(process.env.GATSBY_PAGE_SIZE, 8)}
             totalCount={talks.totalCount}
             currentPage={pageContext.currentPage || 1}
             base="/talks"
