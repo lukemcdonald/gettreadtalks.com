@@ -12,54 +12,46 @@ import { SEO } from 'components/seo'
 import formStyles from 'components/styles/form'
 
 function LoginPage({ location }) {
-	const { login, isUser } = useAuth()
+  const { login, isUser } = useAuth()
 
-	if (isUser) {
-		navigate('/account/')
-		return null
-	}
+  if (isUser) {
+    navigate('/account/')
+    return null
+  }
 
-	return (
-		<>
-			<SEO title="Sign in" location={location} />
+  return (
+    <>
+      <SEO title="Sign in" location={location} />
 
-			<Section>
-				<Section.Sidebar>
-					<Page.Title>Sign in to your account</Page.Title>
+      <Section>
+        <Section.Sidebar>
+          <Page.Title>Sign in to your account</Page.Title>
 
-					<div className="mt-2 prose">
-						<p>
-							Don't have an account?{' '}
-							<Link to="/register">Get access &rarr;</Link>
-						</p>
-					</div>
-				</Section.Sidebar>
+          <div className="mt-2 prose">
+            <p>
+              Don't have an account? <Link to="/register">Get access &rarr;</Link>
+            </p>
+          </div>
+        </Section.Sidebar>
 
-				<Section.Content>
-					<div className="relative z-10 flex items-center justify-center flex-auto">
-						<div className="w-full max-w-md">
-							<LoginForm
-								className={formStyles.fieldset}
-								onSubmit={login}
-								buttonText="Sign in to account"
-							/>
+        <Section.Content>
+          <div className="relative z-10 flex items-center justify-center flex-auto">
+            <div className="w-full max-w-md">
+              <LoginForm className={formStyles.fieldset} onSubmit={login} buttonText="Sign in to account" />
 
-							<div className="mt-6 prose text-center">
-								<p>
-									<Link
-										to="/password/reset"
-										className="text-sm underline hover:text-gray-900"
-									>
-										Forgot password?
-									</Link>
-								</p>
-							</div>
-						</div>
-					</div>
-				</Section.Content>
-			</Section>
-		</>
-	)
+              <div className="mt-6 prose text-center">
+                <p>
+                  <Link to="/password/reset" className="text-sm underline hover:text-gray-900">
+                    Forgot password?
+                  </Link>
+                </p>
+              </div>
+            </div>
+          </div>
+        </Section.Content>
+      </Section>
+    </>
+  )
 }
 
 export default LoginPage

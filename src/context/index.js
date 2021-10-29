@@ -7,13 +7,13 @@ import { FirebaseProvider } from 'context/firebase'
 import { NotificationProvider } from 'context/notifications'
 
 function AppProviders({ children }) {
-	return (
-		<NotificationProvider>
-			<FirebaseProvider>
-				<AuthProvider>{children}</AuthProvider>
-			</FirebaseProvider>
-		</NotificationProvider>
-	)
+  return (
+    <NotificationProvider>
+      <FirebaseProvider>
+        <AuthProvider>{children}</AuthProvider>
+      </FirebaseProvider>
+    </NotificationProvider>
+  )
 }
 
 export { AppProviders }

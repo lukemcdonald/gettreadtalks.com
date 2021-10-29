@@ -8,40 +8,36 @@ import { useUsers } from 'context/users'
 import { Toggle, ToggleOn, ToggleOff, ToggleButton } from 'components/toggle'
 
 function FavoriteToggle({ classNameToggle = {}, talk, ...props }) {
-	const [enabled, setEnabled] = React.useState(false)
-	const { user } = useUsers()
-	const { isFavorite, updateFavorite } = useFavoriteTalk()
+  const [enabled, setEnabled] = React.useState(false)
+  const { user } = useUsers()
+  const { isFavorite, updateFavorite } = useFavoriteTalk()
 
-	React.useEffect(() => {
-		setEnabled(isFavorite(talk))
-	}, [isFavorite, talk])
+  React.useEffect(() => {
+    setEnabled(isFavorite(talk))
+  }, [isFavorite, talk])
 
-	if (!user) {
-		return null
-	}
+  if (!user) {
+    return null
+  }
 
-	return (
-		<Toggle>
-			<ToggleButton
-				checked={enabled}
-				onChange={() => updateFavorite(talk)}
-				className="relative inline-flex items-center rounded-full"
-				{...props}
-			>
-				<span className="sr-only">Add to favorites</span>
-				<ToggleOn>
-					<HeartSolidIcon
-						className={classNames('w-full h-full', classNameToggle?.on)}
-					/>
-				</ToggleOn>
-				<ToggleOff>
-					<HeartOutlineIcon
-						className={classNames('w-full h-full', classNameToggle?.off)}
-					/>
-				</ToggleOff>
-			</ToggleButton>
-		</Toggle>
-	)
+  return (
+    <Toggle>
+      <ToggleButton
+        checked={enabled}
+        onChange={() => updateFavorite(talk)}
+        className="relative inline-flex items-center rounded-full"
+        {...props}
+      >
+        <span className="sr-only">Add to favorites</span>
+        <ToggleOn>
+          <HeartSolidIcon className={classNames('w-full h-full', classNameToggle?.on)} />
+        </ToggleOn>
+        <ToggleOff>
+          <HeartOutlineIcon className={classNames('w-full h-full', classNameToggle?.off)} />
+        </ToggleOff>
+      </ToggleButton>
+    </Toggle>
+  )
 }
 
 export { FavoriteToggle }

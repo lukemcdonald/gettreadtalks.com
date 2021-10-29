@@ -7,101 +7,92 @@ import { SEO } from 'components/seo'
 import { TalksList } from 'components/talks/list'
 
 function SingleClipPage({ data, location }) {
-	const { data: clip } = data.clip
+  const { data: clip } = data.clip
 
-	const speaker = {
-		...clip.speakers[0].data,
-		...clip.speakers[0].fields,
-	}
+  const speaker = {
+    ...clip.speakers[0].data,
+    ...clip.speakers[0].fields,
+  }
 
-	const mediaObject = clip?.link?.childMarkdownRemark
-	const media = mediaObject ? mediaObject.html : ''
-	const mediaLink =
-		mediaObject?.htmlAst?.children?.[0]?.children[1]?.properties?.href
+  const mediaObject = clip?.link?.childMarkdownRemark
+  const media = mediaObject ? mediaObject.html : ''
+  const mediaLink = mediaObject?.htmlAst?.children?.[0]?.children[1]?.properties?.href
 
-	const hasVideo = media.includes('<iframe')
+  const hasVideo = media.includes('<iframe')
 
-	return (
-		<>
-			<SEO title={clip.title} location={location} />
+  return (
+    <>
+      <SEO title={clip.title} location={location} />
 
-			<Intro align="wide--center" bgGradient fullscreen>
-				<Intro.Title>{clip.title}</Intro.Title>
+      <Intro align="wide--center" bgGradient fullscreen>
+        <Intro.Title>{clip.title}</Intro.Title>
 
-				<Intro.Tagline className="flex justify-center space-x-2">
-					<span>
-						<span>by</span>&nbsp;
-						<Link className="hover:underline" to={speaker.slug}>
-							{speaker.title}
-						</Link>
-					</span>
-				</Intro.Tagline>
+        <Intro.Tagline className="flex justify-center space-x-2">
+          <span>
+            <span>by</span>&nbsp;
+            <Link className="hover:underline" to={speaker.slug}>
+              {speaker.title}
+            </Link>
+          </span>
+        </Intro.Tagline>
 
-				{hasVideo && (
-					<figure
-						className="relative z-10 mt-10 rounded-t shadow-lg embed-responsive aspect-ratio-16x9"
-						dangerouslySetInnerHTML={{
-							__html: clip?.link?.childMarkdownRemark.html,
-						}}
-					/>
-				)}
+        {hasVideo && (
+          <figure
+            className="relative z-10 mt-10 rounded-t shadow-lg embed-responsive aspect-ratio-16x9"
+            dangerouslySetInnerHTML={{
+              __html: clip?.link?.childMarkdownRemark.html,
+            }}
+          />
+        )}
 
-				{clip.talks && (
-					<TalksList
-						className="-mt-1"
-						subtitle="Related Talk:"
-						talks={clip.talks}
-					/>
-				)}
+        {clip.talks && <TalksList className="-mt-1" subtitle="Related Talk:" talks={clip.talks} />}
 
-				{!hasVideo && mediaLink && (
-					<Link.Button to={mediaLink}>Listen to Clip &rarr;</Link.Button>
-				)}
-			</Intro>
-		</>
-	)
+        {!hasVideo && mediaLink && <Link.Button to={mediaLink}>Listen to Clip &rarr;</Link.Button>}
+      </Intro>
+    </>
+  )
 }
 
 export default SingleClipPage
 
 export const query = graphql`
-	query ($id: String!) {
-		clip: airtableClip(id: { eq: $id }) {
-			id
-			data {
-				title
-				link {
-					childMarkdownRemark {
-						html
-						htmlAst
-					}
-				}
-				speakers {
-					id
-					fields {
-						slug
-					}
-					data {
-						title
-					}
-				}
-				talks {
-					id
-					fields {
-						slug
-					}
-					data {
-						title
-						speakers {
-							data {
-								title
-							}
-						}
-						favorite
-						publishedDate(formatString: "YYYYMMDD")
-					}
-				}
-			}
-		}
-	}
+  query ($id: String!) {
+    clip: airtableClip(id: { eq: $id }) {
+      id
+      data {
+        title
+        link {
+          childMarkdownRemark {
+            html
+            htmlAst
+          }
+        }
+        speakers {
+          id
+          fields {
+            slug
+          }
+          data {
+            title
+          }
+        }
+        talks {
+          id
+          fields {
+            slug
+          }
+          data {
+            title
+            speakers {
+              data {
+                title
+              }
+            }
+            favorite
+            publishedDate(formatString: "YYYYMMDD")
+          }
+        }
+      }
+    }
+  }
 `

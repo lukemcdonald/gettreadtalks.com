@@ -10,94 +10,78 @@ import styles from 'components/styles'
 import formStyles from 'components/styles/form'
 
 function SettingsEmailForm({ className, buttonText, onSubmit }) {
-	const { isError, error, run } = useAsync()
-	const { profile } = useAuth()
-	const [showAuth, setShowAuth] = useState(false)
+  const { isError, error, run } = useAsync()
+  const { profile } = useAuth()
+  const [showAuth, setShowAuth] = useState(false)
 
-	const initialValues = {
-		email: profile?.email || '',
-		password: '',
-	}
+  const initialValues = {
+    email: profile?.email || '',
+    password: '',
+  }
 
-	const validationSchema = Yup.object({
-		email: Yup.string()
-			.email('Invalid email address')
-			.required('Email required.'),
-		password: Yup.string().required(
-			'Your current password is required to update the email.'
-		),
-	})
+  const validationSchema = Yup.object({
+    email: Yup.string().email('Invalid email address').required('Email required.'),
+    password: Yup.string().required('Your current password is required to update the email.'),
+  })
 
-	function validate(values) {
-		if (values.email) {
-			setShowAuth(values.email.toLowerCase() !== profile.email.toLowerCase())
-		}
-	}
+  function validate(values) {
+    if (values.email) {
+      setShowAuth(values.email.toLowerCase() !== profile.email.toLowerCase())
+    }
+  }
 
-	function handleSubmit(values) {
-		run(
-			onSubmit({
-				credentials: {
-					email: profile.email,
-					password: values.password,
-				},
-				updates: {
-					email: values.email,
-				},
-			})
-		)
-	}
+  function handleSubmit(values) {
+    run(
+      onSubmit({
+        credentials: {
+          email: profile.email,
+          password: values.password,
+        },
+        updates: {
+          email: values.email,
+        },
+      }),
+    )
+  }
 
-	return (
-		<Formik
-			initialValues={initialValues}
-			validationSchema={validationSchema}
-			validate={(v) => validate(v)}
-			onSubmit={(v) => handleSubmit(v)}
-		>
-			<Form className={className}>
-				{isError && <FormErrorMessage error={error} />}
+  return (
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      validate={(v) => validate(v)}
+      onSubmit={(v) => handleSubmit(v)}
+    >
+      <Form className={className}>
+        {isError && <FormErrorMessage error={error} />}
 
-				<div className={formStyles.formRow}>
-					<label htmlFor="email" className={formStyles.label && 'hidden'}>
-						Email address
-					</label>
-					<Field name="email" type="email" className={formStyles.field} />
-					<ErrorMessage
-						name="email"
-						component="div"
-						className={formStyles.fieldError}
-					/>
-				</div>
+        <div className={formStyles.formRow}>
+          <label htmlFor="email" className={formStyles.label && 'hidden'}>
+            Email address
+          </label>
+          <Field name="email" type="email" className={formStyles.field} />
+          <ErrorMessage name="email" component="div" className={formStyles.fieldError} />
+        </div>
 
-				{showAuth && (
-					<>
-						<div className={formStyles.formRow}>
-							<label htmlFor="password" className={formStyles.label}>
-								Password
-							</label>
-							<Field
-								name="password"
-								type="password"
-								className={formStyles.field}
-							/>
-							<ErrorMessage
-								name="password"
-								component="div"
-								className={formStyles.fieldError}
-							/>
-						</div>
+        {showAuth && (
+          <>
+            <div className={formStyles.formRow}>
+              <label htmlFor="password" className={formStyles.label}>
+                Password
+              </label>
+              <Field name="password" type="password" className={formStyles.field} />
+              <ErrorMessage name="password" component="div" className={formStyles.fieldError} />
+            </div>
 
-						<div className={formStyles.formRow}>
-							<button type="submit" className={styles.button}>
-								{buttonText || 'Submit'}
-							</button>
-						</div>
-					</>
-				)}
-			</Form>
-		</Formik>
-	)
+            <div className={formStyles.formRow}>
+              <button type="submit" className={styles.button}>
+                {buttonText || 'Submit'}
+              </button>
+            </div>
+          </>
+        )}
+      </Form>
+    </Formik>
+  )
 }
 
 export { SettingsEmailForm }

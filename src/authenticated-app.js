@@ -4,11 +4,11 @@ import Layout from 'components/layout'
 import { UsersProvider } from 'context/users'
 
 function AuthenticatedApp({ children }) {
-	return (
-		<UsersProvider>
-			<Layout>{children}</Layout>
-		</UsersProvider>
-	)
+  return (
+    <UsersProvider>
+      <Layout>{children}</Layout>
+    </UsersProvider>
+  )
 }
 
 export default AuthenticatedApp

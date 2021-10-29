@@ -1,22 +1,22 @@
 import { useState } from 'react'
 
 function useForm(defaults) {
-	const [values, setValues] = useState(defaults)
+  const [values, setValues] = useState(defaults)
 
-	function updateValue(e) {
-		let { name, type, value } = e.target
+  function updateValue(e) {
+    let { name, type, value } = e.target
 
-		if (type === 'number') {
-			value = parseInt(value)
-		}
+    if (type === 'number') {
+      value = parseInt(value)
+    }
 
-		setValues({
-			...values,
-			[name]: value,
-		})
-	}
+    setValues({
+      ...values,
+      [name]: value,
+    })
+  }
 
-	return { values, updateValue }
+  return { values, updateValue }
 }
 
 export { useForm }

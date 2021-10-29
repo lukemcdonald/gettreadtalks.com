@@ -7,73 +7,69 @@ import { useUsers } from 'context/users'
 import { useNotification } from 'context/notifications'
 
 function useFavoriteTalk() {
-	const { run } = useAsync()
-	const { updateUser, user } = useUsers()
-	const { notify } = useNotification()
-	const [favoriteTalks, setFavoriteTalks] = React.useState([])
+  const { run } = useAsync()
+  const { updateUser, user } = useUsers()
+  const { notify } = useNotification()
+  const [favoriteTalks, setFavoriteTalks] = React.useState([])
 
-	React.useEffect(() => {
-		if (!user) {
-			return null
-		}
+  React.useEffect(() => {
+    if (!user) {
+      return null
+    }
 
-		setFavoriteTalks(user.favoriteTalks)
-	}, [user])
+    setFavoriteTalks(user.favoriteTalks)
+  }, [user])
 
-	const isFavorite = (talk) =>
-		favoriteTalks && favoriteTalks.some((id) => id === talk.id)
+  const isFavorite = (talk) => favoriteTalks && favoriteTalks.some((id) => id === talk.id)
 
-	async function addFavorite(talk) {
-		if (isFavorite(talk)) {
-			return null
-		}
+  async function addFavorite(talk) {
+    if (isFavorite(talk)) {
+      return null
+    }
 
-		await run(
-			updateUser(user.id, {
-				favoriteTalks: [talk.id, ...(favoriteTalks || [])],
-			})
-		)
+    await run(
+      updateUser(user.id, {
+        favoriteTalks: [talk.id, ...(favoriteTalks || [])],
+      }),
+    )
 
-		notify({
-			title: talk.title,
-			text: 'Has been added to your favorites.',
-			icon: ({ className, ...props }) => (
-				<HeartIcon
-					className={classNames(className, 'text-favorite-700')}
-					{...props}
-				/>
-			),
-		})
-	}
+    notify({
+      title: talk.title,
+      text: 'Has been added to your favorites.',
+      icon: ({ className, ...props }) => (
+        <HeartIcon className={classNames(className, 'text-favorite-700')} {...props} />
+      ),
+    })
+  }
 
-	async function removeFavorite(talk) {
-		if (!isFavorite(talk)) {
-			return null
-		}
+  async function removeFavorite(talk) {
+    if (!isFavorite(talk)) {
+      return null
+    }
 
-		await run(
-			updateUser(user.id, {
-				favoriteTalks: favoriteTalks.filter((id) => id !== talk.id),
-			})
-		)
+    await run(
+      updateUser(user.id, {
+        favoriteTalks: favoriteTalks.filter((id) => id !== talk.id),
+      }),
+    )
 
-		notify({
-			title: talk.title,
-			text: 'Has been removed from your favorites.',
-			icon: (props) => <XCircleIcon {...props} />,
-		})
-	}
+    notify({
+      title: talk.title,
+      text: 'Has been removed from your favorites.',
+      icon: (props) => <XCircleIcon {...props} />,
+    })
+  }
 
-	function updateFavorite(talk) {
-		return isFavorite(talk) ? removeFavorite(talk) : addFavorite(talk)
-	}
+  function updateFavorite(talk) {
+    return isFavorite(talk) ? removeFavorite(talk) : addFavorite(talk)
+  }
 
-	return {
-		addFavorite,
-		removeFavorite,
-		updateFavorite,
-		isFavorite,
-	}
+  return {
+    addFavorite,
+    removeFavorite,
+    updateFavorite,
+    isFavorite,
+  }
 }
 
 export { useFavoriteTalk }
