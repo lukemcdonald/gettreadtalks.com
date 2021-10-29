@@ -18,27 +18,6 @@
     "serve": "cross-env NODE_OPTIONS='-r esm' gatsby serve",
     "clean": "gatsby clean"
   },
-  "eslintConfig": {
-    "extends": [
-      "wesbos"
-    ],
-    "rules": {
-      "react/jsx-props-no-spreading": "off",
-      "react/prop-types": 0,
-      "no-shadow": "off",
-      "no-void": "off"
-    },
-    "settings": {
-      "import/resolver": {
-        "node": {
-          "moduleDirectory": [
-            "node_modules",
-            "src"
-          ]
-        }
-      }
-    }
-  },
   "dependencies": {
     "@headlessui/react": "^1.4.1",
     "@heroicons/react": "^1.0.4",
@@ -84,9 +63,11 @@
     "yup": "^0.32.9"
   },
   "devDependencies": {
+    "@babel/core": "^7.15.8",
+    "@babel/eslint-parser": "^7.15.8",
     "babel-eslint": "^10.1.0",
     "cross-env": "^7.0.3",
-    "eslint": "^7.32.0",
+    "eslint": "^8.0.1",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-wesbos": "lukemcdonald/eslint-config-wesbos",
@@ -97,7 +78,8 @@
     "eslint-plugin-react": "^7.26.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "esm": "^3.2.25",
-    "prettier": "^2.4.1"
+    "prettier": "^2.4.1",
+    "prettier-plugin-tailwind": "^2.2.12"
   },
   "browserslist": [
     ">0.2%",
