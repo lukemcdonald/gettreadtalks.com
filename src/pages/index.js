@@ -23,7 +23,7 @@ function IndexPage({ data, location }) {
 		<>
 			<SEO title="Excercise Your Inner Man" location={location} />
 
-			<Intro image={data.intoImage} fullscreen>
+			<Intro image={data.introImage} fullscreen>
 				<Intro.Title size="large">Workout your salvation.</Intro.Title>
 				<Intro.Tagline>
 					<p>Christ centered sermons to elevate your spiritual heartbeat.</p>
@@ -66,7 +66,7 @@ function IndexPage({ data, location }) {
 				</Section.Content>
 			</Section>
 
-			<Section separator="top-bottom">
+			<Section separator="top">
 				<Section.Sidebar>
 					<Section.Heading>Featured Product</Section.Heading>
 					<p className="prose">
@@ -144,7 +144,7 @@ export const query = graphql`
 				}
 			}
 		}
-		intoImage: file(relativePath: { eq: "billy-graham-preaching-header.jpg" }) {
+		introImage: file(relativePath: { eq: "billy-graham-preaching-header.jpg" }) {
 			childImageSharp {
 				gatsbyImageData(
 					placeholder: TRACED_SVG
