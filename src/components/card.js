@@ -28,7 +28,7 @@ function CardSubTitle({ children, className, as }) {
 	return (
 		<Tag
 			className={classNames(
-				'text-red-600 text-xs tracking-wide uppercase mb-2 mt-1 font-bold leading-none',
+				'text-primary-600 text-xs tracking-wide uppercase mb-2 mt-1 font-bold leading-none',
 				className
 			)}
 		>

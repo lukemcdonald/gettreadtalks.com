@@ -3,7 +3,7 @@ import { SiteNavigation } from 'components/site-navigation'
 
 function SiteHeader({ siteTitle }) {
 	return (
-		<header className="relative z-50 border-t-4 border-red-600 bg-gradient-to-b from-gray-50">
+		<header className="relative z-50 border-t-4 border-primary-600 bg-gradient-to-b from-gray-50">
 			<div className="container max-w-screen-xl py-6 md:py-10">
 				<SiteNavigation siteTitle={siteTitle} />
 			</div>

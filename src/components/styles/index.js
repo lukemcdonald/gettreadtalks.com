@@ -11,7 +11,7 @@ const button = classNames(
 
 const dangerButton = classNames(
 	buttonStyle,
-	'text-red-700 bg-red-100 hover:bg-red-200'
+	'text-primary-700 bg-primary-100 hover:bg-primary-200'
 )
 
 export default { button, dangerButton, textButton }

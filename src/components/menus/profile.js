@@ -24,13 +24,13 @@ function styleMenuItem(item = '', args = {}) {
 				active ? 'bg-gray-50' : '',
 				type === 'button' ? 'w-full text-left' : '',
 				'block p-2 text-sm text-gray-600 rounded group flex items-center',
-				'hover:text-red-600'
+				'hover:text-primary-600'
 			)
 		case 'icon':
 			return classNames(
 				active ? '' : '',
 				'w-5 h-5 mr-3 flex-none text-gray-400',
-				'group-hover:text-red-600'
+				'group-hover:text-primary-600'
 			)
 		default:
 	}

@@ -13,9 +13,9 @@ function PrimaryMenu({ navigation }) {
 						to={item.to}
 						className={classNames(
 							'px-3 py-1 rounded-md text-lg font-medium text-gray-900',
-							'hover:text-red-600'
+							'hover:text-primary-600'
 						)}
-						activeClassName="uppercase font-extrabold text-red-600 tracking-tight"
+						activeClassName="uppercase font-extrabold text-primary-600 tracking-tight"
 					>
 						{item.name}
 					</Link>

@@ -86,7 +86,7 @@ function AccountPage({ location }) {
 								</div>
 								<div className="mt-5">
 									<DeactivateAccountButton
-										className="text-red-700 bg-red-100 hover:bg-red-200"
+										className="text-primary-700 bg-primary-100 hover:bg-primary-200"
 										buttonText="Delete account"
 									/>
 								</div>

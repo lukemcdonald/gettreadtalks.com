@@ -5,7 +5,8 @@ const tailwindEmbeds = require('tailwindcss-responsive-embed')
 const tailwindAspectRatio = require('tailwindcss-aspect-ratio')
 
 module.exports = {
-	mode: 'jit',
+	// the NODE_ENV thing is for https://github.com/Acidic9/prettier-plugin-tailwind/issues/29
+	mode: process.env.NODE_ENV ? 'jit' : undefined,
 	purge: {
 		content: ['./src/**/*.js', './src/**/*.css'],
 	},
@@ -55,7 +56,7 @@ module.exports = {
 				700: colors.green[700],
 			},
 			gray: colors.coolGray,
-			red: colors.red,
+			primary: colors.red,
 		},
 		aspectRatio: {
 			'16x9': [16, 9],

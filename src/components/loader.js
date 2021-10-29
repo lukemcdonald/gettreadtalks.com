@@ -6,7 +6,7 @@ export function Spinner({ className, ...props }) {
 	return (
 		<div
 			className={classNames(
-				'rounded-full w-10 h-10 my-24 mx-auto bg-red-600 animate-pulse',
+				'rounded-full w-10 h-10 my-24 mx-auto bg-primary-600 animate-pulse',
 				className
 			)}
 			{...props}
@@ -17,7 +17,7 @@ export function Spinner({ className, ...props }) {
 export function FullPageSpinner() {
 	return (
 		<div className="flex flex-col items-center justify-center h-screen">
-			<Spinner className="w-16 h-16 text-red-600" />
+			<Spinner className="w-16 h-16 text-primary-600" />
 		</div>
 	)
 }

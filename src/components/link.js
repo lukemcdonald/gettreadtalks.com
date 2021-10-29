@@ -5,7 +5,7 @@ import classNames from 'classnames'
 const LinkButton = ({ className, children, color, size, to, ...props }) => {
 	const colorMapping = {
 		DEFAULT: 'bg-gray-600 text-white hover:bg-gray-800',
-		primary: 'bg-red-600 text-white hover:bg-gray-800',
+		primary: 'bg-primary-600 text-white hover:bg-gray-800',
 	}
 
 	const sizeMapping = {

@@ -5,6 +5,6 @@ nav {
   }
 
   input:checked ~ label {
-    @apply text-red-600;
+    @apply text-primary-600;
   }
 }

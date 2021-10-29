@@ -73,7 +73,7 @@ function TalkPage({ data, location, pageContext }) {
 							to={mediaLink}
 							color="primary"
 							size="large"
-							className="hover:bg-red-700"
+							className="hover:bg-primary-700"
 						>
 							Listen to Talk &rarr;
 						</Link.Button>

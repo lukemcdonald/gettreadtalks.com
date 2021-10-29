@@ -23,7 +23,7 @@ function Pagination({
 	const hasNextPage = nextPage <= totalPages
 
 	const LINK_CSS =
-		'flex-grow flex relative items-center justify-center py-2 text-sm font-medium bg-white hover:text-red-600'
+		'flex-grow flex relative items-center justify-center py-2 text-sm font-medium bg-white hover:text-primary-600'
 	const PREV_NEXT_CSS = 'px-2 text-gray-500'
 	const DISABLED_CSS = 'pointer-events-none'
 	const NUMBERS_CSS = classNames(
@@ -69,7 +69,7 @@ function Pagination({
 							<Link
 								key={`page-${i || 0}`}
 								to={`${base}/${i > 0 ? i + 1 : ''}`}
-								activeClassName="text-red-600"
+								activeClassName="text-primary-600"
 								className={classNames(LINK_CSS, NUMBERS_CSS)}
 							>
 								{i + 1}
