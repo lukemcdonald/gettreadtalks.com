@@ -1,4 +1,3 @@
-/* This example requires Tailwind CSS v2.0+ */
 import React from 'react'
 import { Disclosure } from '@headlessui/react'
 
@@ -9,11 +8,10 @@ import { PrimaryMenu } from 'components/menus/primary'
 import { ProfileMenu } from 'components/menus/profile'
 
 const primaryNav = [
-  { name: 'About', to: '/about/' },
-  { name: 'Clips', to: '/clips/' },
-  { name: 'Series', to: '/series/' },
-  { name: 'Speakers', to: '/speakers/' },
   { name: 'Talks', to: '/talks/' },
+  { name: 'Speakers', to: '/speakers/' },
+  { name: 'Series', to: '/series/' },
+  { name: 'Clips', to: '/clips/' },
 ]
 
 function SiteNavigation({ siteTitle }) {
@@ -48,4 +46,14 @@ function SiteNavigation({ siteTitle }) {
   )
 }
 
-export { SiteNavigation }
+function SiteHeader({ siteTitle }) {
+  return (
+    <header className="relative z-50 border-t-4 border-primary-600 bg-gradient-to-b from-gray-50">
+      <div className="container max-w-screen-xl py-6 md:py-10">
+        <SiteNavigation siteTitle={siteTitle} />
+      </div>
+    </header>
+  )
+}
+
+export { SiteHeader, SiteNavigation }

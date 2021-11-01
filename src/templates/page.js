@@ -1,16 +1,12 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
-import { useAffiliateLinks } from 'hooks/affiliate-links'
-
 import { SEO } from 'components/seo'
 import { Section } from 'components/section'
-import { AffiliateLinkCard } from 'components/affiliates/card'
 import { Page } from 'components/page'
 
 function SinglePage({ data, location }) {
   const { data: page } = data.page
-  const { randomLink } = useAffiliateLinks()
 
   return (
     <>
@@ -26,10 +22,6 @@ function SinglePage({ data, location }) {
                 __html: page.content.childMarkdownRemark.html,
               }}
             />
-          </div>
-
-          <div className="mt-10">
-            <AffiliateLinkCard data={randomLink} className="rounded" />
           </div>
         </Section.Content>
       </Section>
