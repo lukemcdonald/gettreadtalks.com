@@ -52,6 +52,7 @@ function SeriesCard({ series }) {
             >
               <Image
                 className="block w-12 h-12 rounded-full ring-white ring-2"
+                imgClassName="rounded-full"
                 image={speaker.data.avatar}
                 alt={speaker.data.title}
               />

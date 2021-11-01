@@ -32,6 +32,7 @@ function SingleSpeakerPage({ data, location, pageContext }) {
         <Intro.Title className="flex flex-col">
           <Image
             className="block w-24 m-auto mb-4 border-4 border-white rounded-full shadow-lg"
+            imgClassName="rounded-full"
             image={speaker.avatar}
             alt={speaker.title}
           />

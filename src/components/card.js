@@ -110,6 +110,7 @@ function CardImage({ className, image, alt, ...props }) {
         <Image
           image={image}
           className={classNames('flex-shrink-0', className || 'w-16 h-16 rounded-full')}
+          imgClassName="rounded-full"
           {...props}
         />
       )}
