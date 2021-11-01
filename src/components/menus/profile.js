@@ -27,7 +27,7 @@ function styleMenuItem(item = '', args = {}) {
         'hover:text-primary-600',
       )
     case 'icon':
-      return classNames(active ? '' : '', 'w-5 h-5 mr-3 flex-none text-gray-400', 'group-hover:text-primary-600')
+      return classNames(active ? '' : '', 'w-5 h-5 mr-3 flex-none text-gray-500', 'group-hover:text-primary-600')
     default:
       throw new Error(`Unknown menu item type: ${item}`)
   }
@@ -102,12 +102,14 @@ function ProfileMenu() {
   const { isUser } = useAuth()
 
   return (
-    <Menu as="div" className="relative pl-6 ml-4 border-l border-gray-300">
+    <Menu as="div" className="relative md:pl-6 md:ml-4 md:border-l md:border-gray-300">
       {({ open }) => (
         <>
           <Menu.Button className="flex items-center text-lg font-medium text-gray-900">
             <span className="flex items-center">
-              Account <ChevronDownIcon className="w-5 h-5 ml-2" />
+              <span className="hidden lg:block">Account</span>
+              <UserIcon className="w-8 h-8 lg:hidden" />
+              <ChevronDownIcon className="hidden w-5 h-5 lg:block lg:ml-1" />
             </span>
           </Menu.Button>
 
