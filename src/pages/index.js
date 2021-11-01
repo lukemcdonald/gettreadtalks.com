@@ -4,8 +4,6 @@ import { graphql } from 'gatsby'
 import { arrayShuffle } from 'utils/misc'
 
 import { Intro } from 'components/intro'
-import { AffiliateLinkCard } from 'components/affiliates/card'
-import { useAffiliateLinks } from 'hooks/affiliate-links'
 import { Section } from 'components/section'
 import { SEO } from 'components/seo'
 import { SpeakersList } from 'components/speakers/list'
@@ -17,7 +15,6 @@ function IndexPage({ data, location }) {
   const { talks, speakers } = data
   const [shuffledTalks] = useState(() => arrayShuffle(talks.nodes))
   const [shuffledSpeakers] = useState(() => arrayShuffle(speakers.nodes))
-  const { randomLink } = useAffiliateLinks()
 
   return (
     <>
@@ -57,16 +54,6 @@ function IndexPage({ data, location }) {
 
         <Section.Content align="wide">
           <SpeakersList className="xl:grid-cols-3" speakers={shuffledSpeakers.slice(0, 6)} />
-        </Section.Content>
-      </Section>
-
-      <Section separator="top">
-        <Section.Sidebar>
-          <Section.Heading>Featured Product</Section.Heading>
-          <p className="prose">Sometimes you come across great products. This is one of them.</p>
-        </Section.Sidebar>
-        <Section.Content>
-          <AffiliateLinkCard data={randomLink} />
         </Section.Content>
       </Section>
     </>
