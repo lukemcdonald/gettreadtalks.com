@@ -82,7 +82,7 @@ function TalkPage({ data, location, pageContext }) {
           <div className="flex mt-3">
             <FavoriteToggle
               talk={talk}
-              className="relative w-10 h-10 mb-2 mr-2"
+              className="w-10 h-10 mb-2 mr-2"
               classNameToggle={{
                 on: 'rounded-full p-2 bg-favorite-700',
                 off: 'rounded-full p-2 bg-gray-600 hover:bg-favorite-700',
@@ -91,7 +91,7 @@ function TalkPage({ data, location, pageContext }) {
 
             <FinishedToggle
               talk={talk}
-              className="relative w-10 h-10 mb-2 mr-2"
+              className="w-10 h-10 mb-2 mr-2"
               classNameToggle={{
                 on: 'rounded-full p-2 bg-finished-700',
                 off: 'rounded-full p-2 bg-gray-600 hover:bg-finished-700',
@@ -102,9 +102,9 @@ function TalkPage({ data, location, pageContext }) {
               href={`mailto:?subject=${encodeURIComponent(talk.title)}&body=${encodeURIComponent(
                 window.location.href,
               )}`}
-              className="inline-block w-10 h-10 mb-2 mr-2"
+              className="w-10 h-10 mb-2"
             >
-              <MailIcon className="p-2 bg-gray-600 rounded-full hover:bg-gray-800" />
+              <MailIcon className="w-full h-full p-2 bg-gray-600 rounded-full hover:bg-gray-800" />
             </a>
           </div>
         </Section.Sidebar>
