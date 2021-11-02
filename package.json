@@ -10,8 +10,7 @@
     "url": "https://github.com/lukemcdonald/gettreadtalks.com"
   },
   "engines": {
-    "node": "16",
-    "npm": "7"
+    "node": "16"
   },
   "scripts": {
     "build": "NODE_ENV=production cross-env NODE_OPTIONS='-r esm' gatsby build",
