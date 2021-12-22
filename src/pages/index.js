@@ -18,7 +18,7 @@ function IndexPage({ data, location }) {
 
   return (
     <>
-      <SEO title="Excercise Your Inner Man" location={location} />
+      <SEO title="Exercise Your Inner Man" location={location} />
 
       <Intro image={data.introImage} fullscreen>
         <Intro.Title size="large">Workout your salvation.</Intro.Title>
