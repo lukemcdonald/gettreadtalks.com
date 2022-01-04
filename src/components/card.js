@@ -71,7 +71,7 @@ function CardIcon({ className, to, type }) {
   )
 }
 
-function CardIcons({ className, icons = [], as }) {
+function CardIcons({ className, icons = [], as, context = '' }) {
   const Tag = sanitizeHTMLTag(as, ['div', 'span'])
   let filteredIcons = icons
 
@@ -81,9 +81,15 @@ function CardIcons({ className, icons = [], as }) {
 
   return (
     <Tag className={className}>
-      {filteredIcons.map((type, index) => (
-        <CardIcon key={index} type={type} />
-      ))}
+      {filteredIcons.map((type, index) => {
+        let linkTo
+
+        if (context && type === 'featured') {
+          linkTo = `/${context}/featured/`
+        }
+
+        return <CardIcon key={index} type={type} context={context} to={linkTo} />
+      })}
     </Tag>
   )
 }
@@ -118,7 +124,11 @@ function CardImage({ className, image, alt, ...props }) {
   )
 }
 
-function CardContent({ to, icons = [], subtitle, title, text }) {
+function CardContent({ to = '', icons = [], subtitle, title, text }) {
+  // Set context to the value between the first and second forward slash.
+  // For example,"/speakers/john-piper/" would be "speakers"
+  const context = to.slice(1, to.indexOf('/', 1)) || null
+
   return (
     <div className="items-center flex-1 min-w-0">
       {subtitle && <CardSubTitle as="h3">{subtitle}</CardSubTitle>}
@@ -129,7 +139,9 @@ function CardContent({ to, icons = [], subtitle, title, text }) {
             {title}
           </CardTitle>
         </Link>
-        {icons?.length > 0 && <CardIcons className="relative z-10 inline-flex space-x-1 top-px" icons={icons} />}
+        {icons?.length > 0 && (
+          <CardIcons className="relative z-10 inline-flex space-x-1 top-px" icons={icons} context={context} />
+        )}
       </div>
 
       {text && <CardText>{text}</CardText>}
