@@ -28,7 +28,7 @@ function SettingsPasswordForm({ className, buttonText, onSubmit }) {
   }
 
   const validationSchema = Yup.object({
-    password: Yup.string().min(8, 'Must be atleast eight characters long.'),
+    password: Yup.string().min(8, 'Must be at least eight characters long.'),
     confirmPassword: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match.'),
     authPassword: Yup.string().required('Enter your current password to update your password.'),
   })
