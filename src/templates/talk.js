@@ -29,7 +29,7 @@ function TalkPage({ data, location, pageContext }) {
   const mediaObject = talk?.link?.childMarkdownRemark
   const media = mediaObject ? mediaObject.html : ''
 
-  const mediaLink = mediaObject?.htmlAst?.children[0]?.children[1]?.properties?.href
+  const mediaLink = mediaObject?.htmlAst?.children[0]?.children[0]?.properties?.href
 
   const hasVideo = media.includes('<iframe')
   const hasTalks = moreTalks.length > 0

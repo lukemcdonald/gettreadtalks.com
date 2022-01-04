@@ -16,7 +16,7 @@ function SingleClipPage({ data, location }) {
 
   const mediaObject = clip?.link?.childMarkdownRemark
   const media = mediaObject ? mediaObject.html : ''
-  const mediaLink = mediaObject?.htmlAst?.children?.[0]?.children[1]?.properties?.href
+  const mediaLink = mediaObject?.htmlAst?.children?.[0]?.children[0]?.properties?.href
 
   const hasVideo = media.includes('<iframe')
 
