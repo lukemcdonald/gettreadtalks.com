@@ -37,7 +37,6 @@ class Link extends Component {
 
   render() {
     const { children, to, ...other } = this.props
-
     const internal = /^\/(?!\/)/.test(to)
 
     if (internal) {

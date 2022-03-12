@@ -11,9 +11,9 @@ function MobileMenu({ navigation }) {
       {navigation.map((item) => (
         <Link
           key={item.name}
-          to={item.href}
+          to={item.to}
           className={classNames('block px-3 py-2 rounded text-base font-medium text-gray-900', 'hover:bg-gray-100')}
-          activeClassName="bg-gray-900 text-white"
+          activeClassName="bg-gray-900 text-white hover:bg-gray-900"
         >
           {item.name}
         </Link>
