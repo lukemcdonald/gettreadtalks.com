@@ -38,7 +38,7 @@ function SingleClipPage({ data, location }) {
 
         {hasVideo && (
           <figure
-            className="relative z-10 mt-10 rounded-t shadow-lg embed-responsive aspect-ratio-16x9"
+            className="relative z-10 mt-10 rounded-t shadow-lg aspect-w-16 aspect-h-9"
             dangerouslySetInnerHTML={{
               __html: clip?.link?.childMarkdownRemark.html,
             }}

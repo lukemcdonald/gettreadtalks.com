@@ -1,12 +1,7 @@
 const colors = require('tailwindcss/colors')
 
 module.exports = {
-  purge: {
-    enabled: process.env.NODE_ENV === 'production',
-    content: ['./src/**/*.+(css|js)'],
-  },
-  mode: process.env.NODE_ENV ? 'jit' : undefined,
-  darkMode: false, // or 'media' or 'class'
+  content: ['./src/**/*.{css,js}'],
   theme: {
     extend: {
       maxHeight: {
@@ -52,7 +47,7 @@ module.exports = {
         200: colors.green[200],
         700: colors.green[700],
       },
-      gray: colors.coolGray,
+      gray: colors.gray,
       primary: colors.red,
     },
     aspectRatio: {
@@ -66,20 +61,5 @@ module.exports = {
       },
     }),
   },
-  variants: {
-    extend: {
-      aspectRatio: ['responsive'],
-      borderRadius: ['first', 'last'],
-      display: ['group-hover'],
-      opacity: ['disabled'],
-      padding: ['hover'],
-      zIndex: ['hover'],
-    },
-  },
-  plugins: [
-    require('@tailwindcss/forms'),
-    require('@tailwindcss/typography'),
-    require('tailwindcss-responsive-embed'),
-    require('tailwindcss-aspect-ratio'),
-  ],
+  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography'), require('@tailwindcss/aspect-ratio')],
 }

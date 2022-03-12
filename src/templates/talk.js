@@ -57,7 +57,7 @@ function TalkPage({ data, location, pageContext }) {
 
         {hasVideo && (
           <div
-            className="mt-10 rounded shadow-lg embed-responsive aspect-ratio-16x9"
+            className="mt-10 rounded shadow-lg aspect-w-16 aspect-h-9"
             dangerouslySetInnerHTML={{
               __html: talk?.link?.childMarkdownRemark.html,
             }}
