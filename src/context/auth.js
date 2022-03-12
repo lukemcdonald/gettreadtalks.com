@@ -3,6 +3,7 @@ import { navigate } from 'gatsby'
 import { UserCircleIcon } from '@heroicons/react/outline'
 
 import { useAsync } from 'hooks/async'
+import { useMemoObject } from 'hooks/memo-object'
 import { useFirebase } from 'context/firebase'
 import { useNotification } from 'context/notifications'
 import { FullPageLogo, FullPageErrorFallback } from 'components/loader'
@@ -154,20 +155,17 @@ function AuthProvider(props) {
 
   const isUser = profile
 
-  const value = React.useMemo(
-    () => ({
-      login,
-      logout,
-      register,
-      unregister,
-      resetPassword,
-      updateSettings,
-      reauthenticate,
-      isUser,
-      profile,
-    }),
-    [login, logout, register, unregister, resetPassword, updateSettings, reauthenticate, isUser, profile],
-  )
+  const value = useMemoObject({
+    login,
+    logout,
+    register,
+    unregister,
+    resetPassword,
+    updateSettings,
+    reauthenticate,
+    isUser,
+    profile,
+  })
 
   if (isLoading || isIdle) {
     return <FullPageLogo />

@@ -1,8 +1,9 @@
 import React from 'react'
 
 import { useAuth } from 'context/auth'
-import { useAsync } from 'hooks/async'
 import { useFirebase } from 'context/firebase'
+import { useAsync } from 'hooks/async'
+import { useMemoObject } from 'hooks/memo-object'
 import { FullPageLogo, FullPageErrorFallback } from 'components/loader'
 
 const UsersContext = React.createContext({})
@@ -121,18 +122,15 @@ function UsersProvider(props) {
     [db, setData],
   )
 
-  const value = React.useMemo(
-    () => ({
-      readAllUsers,
-      readUserById,
-      readUserByField,
-      updateUser,
-      setUser,
-      deleteUserById,
-      user,
-    }),
-    [readAllUsers, readUserById, readUserByField, updateUser, setUser, deleteUserById, user],
-  )
+  const value = useMemoObject({
+    readAllUsers,
+    readUserById,
+    readUserByField,
+    updateUser,
+    setUser,
+    deleteUserById,
+    user,
+  })
 
   if (isLoading || isIdle) {
     return <FullPageLogo />
