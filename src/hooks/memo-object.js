@@ -15,6 +15,6 @@ import { useMemo } from 'react'
  */
 
 export function useMemoObject(object) {
-	const dependencies = Array.isArray(object) ? object : Object.values(object)
-	return useMemo(() => object, dependencies)
+  const dependencies = Array.isArray(object) ? object : Object.values(object)
+  return useMemo(() => object, dependencies)
 }

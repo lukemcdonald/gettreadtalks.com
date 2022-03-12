@@ -27,7 +27,7 @@ function LoginPage({ location }) {
         <Section.Sidebar>
           <Page.Title>Sign in to your account</Page.Title>
 
-          <div className="mt-2 prose">
+          <div className="prose mt-2">
             <p>
               Don't have an account? <Link to="/register">Get access &rarr;</Link>
             </p>
@@ -35,11 +35,11 @@ function LoginPage({ location }) {
         </Section.Sidebar>
 
         <Section.Content>
-          <div className="relative z-10 flex items-center justify-center flex-auto">
+          <div className="relative z-10 flex flex-auto items-center justify-center">
             <div className="w-full max-w-md">
               <LoginForm className={formStyles.fieldset} onSubmit={login} buttonText="Sign in to account" />
 
-              <div className="mt-6 prose text-center">
+              <div className="prose mt-6 text-center">
                 <p>
                   <Link to="/password/reset" className="text-sm underline hover:text-gray-900">
                     Forgot password?

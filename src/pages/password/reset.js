@@ -21,7 +21,7 @@ function ResetPassword({ location }) {
       <Section>
         <Section.Sidebar>
           <Page.Title>Reset your password</Page.Title>
-          <div className="mt-2 prose">
+          <div className="prose mt-2">
             <p>Enter your email and we'll send you a link to reset your password.</p>
             <p>
               Or <Link to="/login">sign in to your account &rarr;</Link>
@@ -30,7 +30,7 @@ function ResetPassword({ location }) {
         </Section.Sidebar>
 
         <Section.Content>
-          <div className="relative z-10 flex items-center justify-center flex-auto">
+          <div className="relative z-10 flex flex-auto items-center justify-center">
             <div className="w-full max-w-md">
               <LoginForm
                 className={formStyles.fieldset}

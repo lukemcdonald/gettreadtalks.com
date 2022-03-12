@@ -19,7 +19,7 @@ function CardSubTitle({ children, className, as }) {
   return (
     <Tag
       className={classNames(
-        'text-primary-600 text-xs tracking-wide uppercase mb-2 mt-1 font-bold leading-none',
+        'mb-2 mt-1 text-xs font-bold uppercase leading-none tracking-wide text-primary-600',
         className,
       )}
     >
@@ -29,7 +29,7 @@ function CardSubTitle({ children, className, as }) {
 }
 
 function CardText({ children, className }) {
-  return <div className={classNames('inline-block mt-px space-x-1 text-sm text-gray-500', className)}>{children}</div>
+  return <div className={classNames('mt-px inline-block space-x-1 text-sm text-gray-500', className)}>{children}</div>
 }
 
 function CardIcon({ className, to, type }) {
@@ -60,11 +60,11 @@ function CardIcon({ className, to, type }) {
     <Link to={item.to} className={classNames('rounded-full', className)}>
       <span
         className={classNames(
-          'flex items-center px-1 py-1 text-xs font-medium rounded-full space-x-1 group',
+          'group flex items-center space-x-1 rounded-full px-1 py-1 text-xs font-medium',
           item.style,
         )}
       >
-        <item.icon className="w-3.5 h-3.5 transition-colors" />
+        <item.icon className="h-3.5 w-3.5 transition-colors" />
         <span className="hidden pr-1">{item.title}</span>
       </span>
     </Link>
@@ -98,7 +98,7 @@ function CardWrapper({ children, className }) {
   return (
     <article
       className={classNames(
-        'relative flex items-center flex-grow p-4 space-x-3 text-left text-gray-700 transition duration-300 bg-white rounded shadow-sm',
+        'relative flex flex-grow items-center space-x-3 rounded bg-white p-4 text-left text-gray-700 shadow-sm transition duration-300',
         'ring-2 ring-transparent hover:ring-white',
         'hover:shadow-lg',
         className,
@@ -115,7 +115,7 @@ function CardImage({ className, image, alt, ...props }) {
       {image && (
         <Image
           image={image}
-          className={classNames('flex-shrink-0', className || 'w-16 h-16 rounded-full')}
+          className={classNames('flex-shrink-0', className || 'h-16 w-16 rounded-full')}
           imgClassName="rounded-full"
           {...props}
         />
@@ -130,7 +130,7 @@ function CardContent({ to = '', icons = [], subtitle, title, text }) {
   const context = to.slice(1, to.indexOf('/', 1)) || null
 
   return (
-    <div className="items-center flex-1 min-w-0">
+    <div className="min-w-0 flex-1 items-center">
       {subtitle && <CardSubTitle as="h3">{subtitle}</CardSubTitle>}
       <div>
         <Link to={to} className="inline focus:outline-none">
@@ -140,7 +140,7 @@ function CardContent({ to = '', icons = [], subtitle, title, text }) {
           </CardTitle>
         </Link>
         {icons?.length > 0 && (
-          <CardIcons className="relative z-10 inline-flex space-x-1 top-px" icons={icons} context={context} />
+          <CardIcons className="relative top-px z-10 inline-flex space-x-1" icons={icons} context={context} />
         )}
       </div>
 

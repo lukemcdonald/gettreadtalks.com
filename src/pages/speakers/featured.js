@@ -26,7 +26,7 @@ function FeaturedSpeakersPage({ data, location }) {
             />
           </Page.Title>
 
-          <div className="mt-2 prose">
+          <div className="prose mt-2">
             <p>
               Here are <em>{speakers.totalCount}</em> hand picked stewards of Gods word to help get you going.
             </p>

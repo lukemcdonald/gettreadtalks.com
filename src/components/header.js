@@ -19,14 +19,14 @@ function SiteNavigation({ siteTitle }) {
     <Disclosure as="nav">
       {({ open }) => (
         <>
-          <div className="relative flex items-center justify-between h-16">
+          <div className="relative flex h-16 items-center justify-between">
             <div className="absolute inset-y-0 left-0 flex items-center md:hidden">
               <MobileMenuButton open={open} />
             </div>
 
-            <h1 className="flex items-center justify-center flex-1 md:items-stretch md:justify-start">
-              <Link to="/" className="flex items-center flex-shrink-0">
-                <Logo className="block w-auto h-6 md:h-8" />
+            <h1 className="flex flex-1 items-center justify-center md:items-stretch md:justify-start">
+              <Link to="/" className="flex flex-shrink-0 items-center">
+                <Logo className="block h-6 w-auto md:h-8" />
                 <span className="sr-only">{siteTitle}</span>
               </Link>
             </h1>

@@ -78,15 +78,15 @@ function SettingsPasswordForm({ className, buttonText, onSubmit }) {
                   <ToggleButton
                     checked={showPassword}
                     onChange={() => toggleShowPassword()}
-                    className="absolute top-0 bottom-0 right-0 p-2 text-gray-400 transition-colors border-l border-gray-300 w-9 hover:text-gray-600"
+                    className="absolute top-0 bottom-0 right-0 w-9 border-l border-gray-300 p-2 text-gray-400 transition-colors hover:text-gray-600"
                   >
                     <ToggleOff>
                       <span className="sr-only">Show password</span>
-                      <EyeIcon className="w-full h-full" />
+                      <EyeIcon className="h-full w-full" />
                     </ToggleOff>
                     <ToggleOn>
                       <span className="sr-only">Hide password</span>
-                      <EyeOffIcon className="w-full h-full text-gray-600" />
+                      <EyeOffIcon className="h-full w-full text-gray-600" />
                     </ToggleOn>
                   </ToggleButton>
                 </Toggle>

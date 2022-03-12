@@ -52,9 +52,9 @@ function NotificationProvider({ children }) {
 
       <div
         aria-live="assertive"
-        className="fixed inset-0 z-50 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start"
+        className="pointer-events-none fixed inset-0 z-50 flex items-end px-4 py-6 sm:items-start sm:p-6"
       >
-        <div className="flex flex-col items-center w-full space-y-4 sm:items-end">
+        <div className="flex w-full flex-col items-center space-y-4 sm:items-end">
           {state.messages.map((message) => (
             <Notification key={message.id} message={message} onClose={() => dispatch({ type: 'remove', message })} />
           ))}

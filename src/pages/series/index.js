@@ -17,7 +17,7 @@ function SeriesPage({ data, location }) {
         <Section.Sidebar sticky>
           <Page.Title>Series</Page.Title>
 
-          <div className="mt-2 prose">
+          <div className="prose mt-2">
             <p>Each series includes talks given by one or more speakers on the same topic or book of the Bible.</p>
           </div>
         </Section.Sidebar>

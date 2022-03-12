@@ -31,7 +31,7 @@ function SingleSpeakerPage({ data, location, pageContext }) {
       <Intro image={speaker?.banner}>
         <Intro.Title className="flex flex-col">
           <Image
-            className="block w-24 m-auto mb-4 border-4 border-white rounded-full shadow-lg"
+            className="m-auto mb-4 block w-24 rounded-full border-4 border-white shadow-lg"
             imgClassName="rounded-full"
             image={speaker.avatar}
             alt={speaker.title}
@@ -56,7 +56,7 @@ function SingleSpeakerPage({ data, location, pageContext }) {
               Ministry
             </Section.Heading>
 
-            <p className="mt-3 prose text-white">
+            <p className="prose mt-3 text-white">
               <ConditionalWrapper
                 condition={speaker.website}
                 wrapper={(children) => <Link to={speaker.website}>{children}</Link>}
@@ -75,7 +75,7 @@ function SingleSpeakerPage({ data, location, pageContext }) {
               </Section.Heading>
 
               <div
-                className="mt-3 prose text-white"
+                className="prose mt-3 text-white"
                 dangerouslySetInnerHTML={{
                   __html: speaker.description?.childMarkdownRemark.html,
                 }}

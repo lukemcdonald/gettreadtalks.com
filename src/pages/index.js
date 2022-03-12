@@ -32,7 +32,7 @@ function IndexPage({ data, location }) {
         <Section.Sidebar sticky>
           <Section.Heading as="h2">Featured Talks</Section.Heading>
 
-          <div className="mb-8 prose">
+          <div className="prose mb-8">
             <p>
               <strong>Don't know what to listen to?</strong> Try starting with one of these favorites.
             </p>

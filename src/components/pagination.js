@@ -36,7 +36,7 @@ function Pagination({
     <>
       {totalCount > pageSize && (
         <nav
-          className={classNames('relative z-0 inline-flex shadow-sm -space-x-px', className)}
+          className={classNames('relative z-0 inline-flex -space-x-px shadow-sm', className)}
           aria-label="Pagination"
         >
           {showPreviousNext && (
@@ -46,7 +46,7 @@ function Pagination({
               className={classNames('rounded-l', LINK_CSS, PREV_NEXT_CSS, !hasPrevPage && DISABLED_CSS)}
             >
               <span>
-                <ChevronLeftIcon className="w-5 h-5" />
+                <ChevronLeftIcon className="h-5 w-5" />
               </span>
               <span className={classNames(showPreviousLabel ? 'pr-1' : 'sr-only')}>Prev</span>
             </Link>
@@ -70,7 +70,7 @@ function Pagination({
               className={classNames('rounded-r', LINK_CSS, PREV_NEXT_CSS, !hasNextPage && DISABLED_CSS)}
             >
               <span className={classNames(showNextLabel ? 'pl-1' : 'sr-only')}>Next</span>
-              <ChevronRightIcon className="w-5 h-5" />
+              <ChevronRightIcon className="h-5 w-5" />
             </Link>
           )}
         </nav>

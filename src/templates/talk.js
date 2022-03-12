@@ -46,7 +46,7 @@ function TalkPage({ data, location, pageContext }) {
       <Intro align="wide--center" bgGradient fullscreen>
         <Intro.Title>{talk.title}</Intro.Title>
 
-        <Intro.Tagline className="sm:justify-center sm:flex sm:space-x-2">
+        <Intro.Tagline className="sm:flex sm:justify-center sm:space-x-2">
           <div>
             <span>by</span>&nbsp;
             <Link className="hover:underline" to={speaker.slug}>
@@ -57,7 +57,7 @@ function TalkPage({ data, location, pageContext }) {
 
         {hasVideo && (
           <div
-            className="mt-10 rounded shadow-lg aspect-w-16 aspect-h-9"
+            className="aspect-w-16 aspect-h-9 mt-10 rounded shadow-lg"
             dangerouslySetInnerHTML={{
               __html: talk?.link?.childMarkdownRemark.html,
             }}
@@ -73,16 +73,16 @@ function TalkPage({ data, location, pageContext }) {
         )}
       </Intro>
 
-      <Section className="text-white bg-gray-900" separator="top" separatorClass="border-gray-700">
+      <Section className="bg-gray-900 text-white" separator="top" separatorClass="border-gray-700">
         <Section.Sidebar>
           <Section.Heading as="h2" className="text-gray-400">
             Actions
           </Section.Heading>
 
-          <div className="flex mt-3">
+          <div className="mt-3 flex">
             <FavoriteToggle
               talk={talk}
-              className="w-10 h-10 mb-2 mr-2"
+              className="mb-2 mr-2 h-10 w-10"
               classNameToggle={{
                 on: 'rounded-full p-2 bg-favorite-700',
                 off: 'rounded-full p-2 bg-gray-600 hover:bg-favorite-700',
@@ -91,7 +91,7 @@ function TalkPage({ data, location, pageContext }) {
 
             <FinishedToggle
               talk={talk}
-              className="w-10 h-10 mb-2 mr-2"
+              className="mb-2 mr-2 h-10 w-10"
               classNameToggle={{
                 on: 'rounded-full p-2 bg-finished-700',
                 off: 'rounded-full p-2 bg-gray-600 hover:bg-finished-700',
@@ -102,9 +102,9 @@ function TalkPage({ data, location, pageContext }) {
               href={`mailto:?subject=${encodeURIComponent(talk.title)}&body=${encodeURIComponent(
                 window.location.href,
               )}`}
-              className="w-10 h-10 mb-2"
+              className="mb-2 h-10 w-10"
             >
-              <MailIcon className="w-full h-full p-2 bg-gray-600 rounded-full hover:bg-gray-800" />
+              <MailIcon className="h-full w-full rounded-full bg-gray-600 p-2 hover:bg-gray-800" />
             </a>
           </div>
         </Section.Sidebar>
@@ -134,7 +134,7 @@ function TalkPage({ data, location, pageContext }) {
                 className="inline-flex items-center"
               >
                 <span>{talk.scripture}</span>
-                <ExternalLinkIcon className="w-5 h-5 ml-2 opacity-80" />
+                <ExternalLinkIcon className="ml-2 h-5 w-5 opacity-80" />
               </Link.Button>
             </div>
           </Section.Sidebar>

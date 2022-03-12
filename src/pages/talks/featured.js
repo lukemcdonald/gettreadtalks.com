@@ -26,7 +26,7 @@ function FeaturedTalksPage({ data, location }) {
             />
           </Page.Title>
 
-          <div className="mt-2 prose">
+          <div className="prose mt-2">
             <p>Choose one of these featured talks to elevate your spiritual heartbeat.</p>
           </div>
         </Section.Sidebar>

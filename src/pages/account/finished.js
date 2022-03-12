@@ -61,11 +61,11 @@ function AccountFinishedPage({ data, location }) {
             <Link
               to="/talks/"
               type="button"
-              className="relative block w-full p-12 text-center border-2 border-gray-300 border-dashed rounded-lg hover:border-gray-400"
+              className="relative block w-full rounded-lg border-2 border-dashed border-gray-300 p-12 text-center hover:border-gray-400"
             >
               <Page.Title>Finished</Page.Title>
               <p className="mt-2">
-                Click the {<CheckIcon className="inline w-6 h-6 text-gray-400" />} to save an item to your finished
+                Click the {<CheckIcon className="inline h-6 w-6 text-gray-400" />} to save an item to your finished
                 list.
               </p>
             </Link>

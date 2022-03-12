@@ -5,7 +5,7 @@ import { Logo } from 'components/svgs/logo'
 export function Spinner({ className, ...props }) {
   return (
     <div
-      className={classNames('rounded-full w-10 h-10 my-24 mx-auto bg-primary-600 animate-pulse', className)}
+      className={classNames('my-24 mx-auto h-10 w-10 animate-pulse rounded-full bg-primary-600', className)}
       {...props}
     />
   )
@@ -13,15 +13,15 @@ export function Spinner({ className, ...props }) {
 
 export function FullPageSpinner() {
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
-      <Spinner className="w-16 h-16 text-primary-600" />
+    <div className="flex h-screen flex-col items-center justify-center">
+      <Spinner className="h-16 w-16 text-primary-600" />
     </div>
   )
 }
 
 export function FullPageLogo() {
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
+    <div className="flex h-screen flex-col items-center justify-center">
       <Logo className="h-10 animate-bounce" />
     </div>
   )
@@ -38,7 +38,7 @@ export function ErrorFallback({ error }) {
 
 export function FullPageErrorFallback({ error }) {
   return (
-    <div role="alert" className="flex flex-col items-center justify-center h-screen">
+    <div role="alert" className="flex h-screen flex-col items-center justify-center">
       <ErrorFallback error={error} />
     </div>
   )

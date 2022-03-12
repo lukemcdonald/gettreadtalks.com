@@ -17,7 +17,7 @@ const LinkButton = ({ className, children, color, size, to, ...props }) => {
     <Link
       to={to}
       className={classNames(
-        'rounded-full inline-block hover:shadow-lg transition duration-300',
+        'inline-block rounded-full transition duration-300 hover:shadow-lg',
         colorMapping[color] || colorMapping.DEFAULT,
         sizeMapping[size] || sizeMapping.DEFAULT,
         className,

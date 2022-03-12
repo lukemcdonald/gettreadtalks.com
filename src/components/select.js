@@ -31,7 +31,7 @@ class Select extends Component {
     return (
       <div className={classNames('relative inline-block', className)}>
         <span>{current.label || label}</span>
-        <ChevronDownIcon className="relative inline-block w-8 mb-px -mr-8" />
+        <ChevronDownIcon className="relative mb-px -mr-8 inline-block w-8" />
 
         <Formik
           initialValues={{ optionPath: current.value || '' }}
@@ -40,11 +40,11 @@ class Select extends Component {
           }}
         >
           {({ handleChange, submitForm }) => (
-            <Form className="absolute inset-0 z-40 flex overflow-hidden opacity-0 -right-10">
+            <Form className="absolute inset-0 -right-10 z-40 flex overflow-hidden opacity-0">
               <Field
                 as="select"
                 name="optionPath"
-                className="flex-grow p-0 bg-transparent border-0 cursor-pointer bg-none"
+                className="flex-grow cursor-pointer border-0 bg-transparent bg-none p-0"
                 onChange={(e) => {
                   handleChange(e)
                   submitForm()

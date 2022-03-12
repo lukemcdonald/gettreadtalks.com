@@ -29,10 +29,10 @@ function AccountMenu({ className }) {
         <Link
           key={item.name}
           to={item.to}
-          className="flex items-center px-2 py-2 rounded-md group"
+          className="group flex items-center rounded-md px-2 py-2"
           activeClassName="text-gray-900 hover:text-gray-900 opacity-100"
         >
-          <item.icon className="flex-shrink-0 w-6 h-6 mr-3 -ml-1 group-hover:text-gray-900" aria-hidden="true" />
+          <item.icon className="mr-3 -ml-1 h-6 w-6 flex-shrink-0 group-hover:text-gray-900" aria-hidden="true" />
           <span className="truncate">{item.name}</span>
         </Link>
       ))}

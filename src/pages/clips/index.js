@@ -16,7 +16,7 @@ function ClipsPage({ data, location }) {
       <Section>
         <Section.Sidebar sticky>
           <Page.Title>Clips</Page.Title>
-          <div className="mt-2 prose">
+          <div className="prose mt-2">
             <p>Be encouraged by these short Christ centered clips.</p>
           </div>
         </Section.Sidebar>

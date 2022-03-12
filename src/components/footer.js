@@ -54,7 +54,7 @@ const navigation = {
 
 function WidgetTitle({ className, title }) {
   return (
-    <h3 className={classNames('text-sm font-semibold tracking-wider text-gray-400 uppercase', className)}>{title}</h3>
+    <h3 className={classNames('text-sm font-semibold uppercase tracking-wider text-gray-400', className)}>{title}</h3>
   )
 }
 
@@ -85,7 +85,7 @@ function AffiliateLinkWidget({ className, title, data }) {
   return (
     <div className={className}>
       <WidgetTitle title={title || affiliate.title} />
-      <div className="relative inline-block mt-4">
+      <div className="relative mt-4 inline-block">
         <Link className="inline-block" to={affiliate.link}>
           <Image image={affiliate.image} imgClassName="rounded-sm" />
           {title && <h3 className="sr-only">{affiliate.title}</h3>}
@@ -106,7 +106,7 @@ function SiteFooter({ siteTitle }) {
 
   return (
     <footer className="bg-white" aria-labelledby="footer-heading">
-      <div className="px-4 py-12 mx-auto max-w-7xl sm:px-6 lg:py-16 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:py-16 lg:px-8">
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
           <div className="grid grid-cols-2 gap-8 xl:col-span-2">
             <div className="md:grid md:grid-cols-2 md:gap-8">
@@ -128,16 +128,16 @@ function SiteFooter({ siteTitle }) {
             onSubmit={addToMailchimp}
           />
         </div>
-        <div className="pt-8 mt-8 border-t border-gray-200 md:flex md:items-center md:justify-between">
+        <div className="mt-8 border-t border-gray-200 pt-8 md:flex md:items-center md:justify-between">
           <div className="flex space-x-6 md:order-2">
             {navigation.social.map((item) => (
               <a key={item.name} href={item.href} className="text-gray-400 hover:text-gray-500">
                 <span className="sr-only">{item.name}</span>
-                <item.icon className="w-6 h-6" aria-hidden="true" />
+                <item.icon className="h-6 w-6" aria-hidden="true" />
               </a>
             ))}
           </div>
-          <p className="mt-8 text-base text-gray-400 md:mt-0 md:order-1">
+          <p className="mt-8 text-base text-gray-400 md:order-1 md:mt-0">
             &copy; {`${siteTitle} ${new Date().getFullYear()}`}
           </p>
         </div>

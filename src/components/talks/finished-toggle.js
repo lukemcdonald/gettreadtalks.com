@@ -25,10 +25,10 @@ function FinishedToggle({ classNameToggle = {}, talk, ...props }) {
       <ToggleButton checked={enabled} onChange={() => updateFinished(talk)} {...props}>
         <span className="sr-only">Save as finished</span>
         <ToggleOn>
-          <CheckSolidIcon className={classNames('w-full h-full', classNameToggle?.on)} />
+          <CheckSolidIcon className={classNames('h-full w-full', classNameToggle?.on)} />
         </ToggleOn>
         <ToggleOff>
-          <CheckOutlineIcon className={classNames('w-full h-full', classNameToggle?.off)} />
+          <CheckOutlineIcon className={classNames('h-full w-full', classNameToggle?.off)} />
         </ToggleOff>
       </ToggleButton>
     </Toggle>

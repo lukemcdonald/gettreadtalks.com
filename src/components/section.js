@@ -31,7 +31,7 @@ const SectionSidebar = ({ children, className, right, sticky }) => (
       `pt-6 sm:py-6`,
       `sm:border-0`,
       right ? 'md:pl-6 lg:pl-10' : 'md:pr-6 lg:pr-10',
-      `lg:py-16 lg:col-span-3`,
+      `lg:col-span-3 lg:py-16`,
       className,
     )}
   >
@@ -46,7 +46,7 @@ const SectionHeading = ({ children, className = '', as }) => {
   return (
     <Tag
       className={classNames(
-        'mb-3 text-sm font-bold tracking-wide  uppercase lg:mb-2 lg:text-xs',
+        'mb-3 text-sm font-bold uppercase  tracking-wide lg:mb-2 lg:text-xs',
         className.includes('text-gray-') || 'text-gray-500',
         className,
       )}
@@ -80,7 +80,7 @@ class Section extends Component {
           {(separator === 'top' || separator === 'top-bottom') && (
             <SectionSeparator className={classNames(separatorClass)} />
           )}
-          <div className="grid sm:gap-6 sm:grid-cols-3 lg:grid-cols-12">{children}</div>
+          <div className="grid sm:grid-cols-3 sm:gap-6 lg:grid-cols-12">{children}</div>
           {(separator === 'bottom' || separator === 'top-bottom') && (
             <SectionSeparator className={classNames(separatorClass)} />
           )}

@@ -20,13 +20,13 @@ function SpeakersPage({ data, location }) {
       <Section>
         <Section.Content align="full">
           <SpeakersList className="xl:grid-cols-4" speakers={speakers.nodes}>
-            <div className="items-start row-span-2 px-6 py-5 'relative flex flex-grow p-4 text-left text-gray-700 transition duration-300 bg-white border border-transparent rounded shadow-sm">
+            <div className="'relative row-span-2 flex flex-grow items-start rounded border border-transparent bg-white p-4 px-6 py-5 text-left text-gray-700 shadow-sm transition duration-300">
               <div>
                 <Page.Title>
                   <SpeakersFilter speakers={speakers.nodes} />
                 </Page.Title>
 
-                <div className="mt-2 prose">
+                <div className="prose mt-2">
                   <p>
                     Listen to <em>{speakers.totalCount}</em> faithful ambassadors of Christ and be blessed.
                   </p>

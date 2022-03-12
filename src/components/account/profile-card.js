@@ -5,14 +5,14 @@ function ProfileCard({ profile, showAvatar = 'show' }) {
   return (
     <div className="flex items-center">
       {showAvatar !== 'hide' && (
-        <div className="flex-shrink-0 mr-4 ">
-          <Gravatar email={profile.email} className="w-12 h-12 rounded-full" default="mp" />
+        <div className="mr-4 flex-shrink-0 ">
+          <Gravatar email={profile.email} className="h-12 w-12 rounded-full" default="mp" />
         </div>
       )}
 
       <p className="truncate">
-        <span className="block mb-0.5 text-xs text-gray-500">Signed in as</span>
-        <span className="block text-sm font-semibold truncate">{profile.email}</span>
+        <span className="mb-0.5 block text-xs text-gray-500">Signed in as</span>
+        <span className="block truncate text-sm font-semibold">{profile.email}</span>
       </p>
     </div>
   )

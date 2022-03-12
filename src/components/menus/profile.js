@@ -102,14 +102,14 @@ function ProfileMenu() {
   const { isUser } = useAuth()
 
   return (
-    <Menu as="div" className="relative md:pl-6 md:ml-4 md:border-l md:border-gray-300">
+    <Menu as="div" className="relative md:ml-4 md:border-l md:border-gray-300 md:pl-6">
       {({ open }) => (
         <>
           <Menu.Button className="flex items-center text-lg font-medium text-gray-900">
             <span className="flex items-center">
               <span className="hidden lg:block">Account</span>
-              <UserIcon className="w-8 h-8 lg:hidden" />
-              <ChevronDownIcon className="hidden w-5 h-5 lg:block lg:ml-1" />
+              <UserIcon className="h-8 w-8 lg:hidden" />
+              <ChevronDownIcon className="hidden h-5 w-5 lg:ml-1 lg:block" />
             </span>
           </Menu.Button>
 
@@ -125,7 +125,7 @@ function ProfileMenu() {
           >
             <Menu.Items
               className={classNames(
-                'absolute right-0 w-60 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 divide-y divide-gray-100',
+                'absolute right-0 mt-2 w-60 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5',
                 'focus:outline-none',
               )}
             >

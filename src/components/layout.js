@@ -10,7 +10,7 @@ function Layout({ children }) {
 
   return (
     <>
-      <div className="fixed inset-0 z-0 bg-gray-200 bg-cover bg-image-swirl" />
+      <div className="bg-image-swirl fixed inset-0 z-0 bg-gray-200 bg-cover" />
 
       <div className="relative text-gray-700">
         <SiteHeader siteTitle={title} />

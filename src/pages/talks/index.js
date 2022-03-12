@@ -42,7 +42,7 @@ function TalksPage({ data, location, pageContext }) {
             />
           </Page.Title>
 
-          <div className="mt-2 prose">
+          <div className="prose mt-2">
             <p>{description}</p>
           </div>
         </Section.Sidebar>
@@ -50,7 +50,7 @@ function TalksPage({ data, location, pageContext }) {
         <Section.Content>
           <TalksList talks={talks.nodes} />
           <Pagination
-            className="w-full mt-4 sm:mt-6"
+            className="mt-4 w-full sm:mt-6"
             pageSize={parseInt(process.env.GATSBY_PAGE_SIZE, 8)}
             totalCount={talks.totalCount}
             currentPage={pageContext.currentPage || 1}

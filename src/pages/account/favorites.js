@@ -61,11 +61,11 @@ function AccountFavoritesPage({ data, location }) {
             <Link
               to="/talks/"
               type="button"
-              className="relative block w-full p-12 text-center border-2 border-gray-300 border-dashed rounded-lg hover:border-gray-400"
+              className="relative block w-full rounded-lg border-2 border-dashed border-gray-300 p-12 text-center hover:border-gray-400"
             >
               <Page.Title>Favorites</Page.Title>
               <p className="mt-2">
-                Click the {<HeartIcon className="inline w-6 h-6 text-gray-400" />} to save an item to your favorites
+                Click the {<HeartIcon className="inline h-6 w-6 text-gray-400" />} to save an item to your favorites
                 list.
               </p>
             </Link>

@@ -13,7 +13,7 @@ const IntroTitle = ({ children, className, size }) => {
   return (
     <h1
       className={classNames(
-        'text-4xl font-medium text-center text-white',
+        'text-center text-4xl font-medium text-white',
         sizeMapping[size] || sizeMapping.DEFAULT,
         className,
       )}
@@ -52,8 +52,8 @@ class Intro extends Component {
           </div>
         )}
 
-        <Section as="div" className="flex items-center justify-center flex-grow">
-          <div className="absolute inset-0 opacity-80 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900" />
+        <Section as="div" className="flex flex-grow items-center justify-center">
+          <div className="absolute inset-0 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 opacity-80" />
 
           <Section.Content className="relative px-4 sm:col-span-3" align={align}>
             {children}

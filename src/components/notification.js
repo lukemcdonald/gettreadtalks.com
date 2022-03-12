@@ -17,11 +17,11 @@ function Notification({ message = {}, onClose }) {
       leaveFrom="opacity-100"
       leaveTo="opacity-0"
     >
-      <div className="w-full max-w-sm overflow-hidden bg-white rounded-lg shadow-lg pointer-events-auto ring-1 ring-black ring-opacity-5 ">
+      <div className="pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5 ">
         <div className="p-4">
           <div className="flex items-start">
             <div className="flex-shrink-0">
-              <message.icon className="w-6 h-6" aria-hidden="true" />
+              <message.icon className="h-6 w-6" aria-hidden="true" />
             </div>
             <div className={classNames('w-0 flex-1 pt-0.5', message.icon ? 'ml-3' : 'ml-1')}>
               {message.title && <p className="text-sm font-medium text-gray-900">{message.title}</p>}
@@ -30,14 +30,14 @@ function Notification({ message = {}, onClose }) {
                 <p className={classNames('text-sm text-gray-500', message.title && 'mt-1')}>{message.text}</p>
               )}
             </div>
-            <div className="flex flex-shrink-0 ml-4">
+            <div className="ml-4 flex flex-shrink-0">
               <button
                 type="button"
-                className="inline-flex text-gray-400 bg-white rounded-md hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="focus:ring-indigo-500 inline-flex rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2"
                 onClick={() => (onClose ? onClose() : setShow(false))}
               >
                 <span className="sr-only">Close</span>
-                <XIcon className="w-5 h-5" aria-hidden="true" />
+                <XIcon className="h-5 w-5" aria-hidden="true" />
               </button>
             </div>
           </div>

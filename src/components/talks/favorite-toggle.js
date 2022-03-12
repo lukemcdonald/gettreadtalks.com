@@ -30,10 +30,10 @@ function FavoriteToggle({ classNameToggle = {}, talk, ...props }) {
       >
         <span className="sr-only">Add to favorites</span>
         <ToggleOn>
-          <HeartSolidIcon className={classNames('w-full h-full', classNameToggle?.on)} />
+          <HeartSolidIcon className={classNames('h-full w-full', classNameToggle?.on)} />
         </ToggleOn>
         <ToggleOff>
-          <HeartOutlineIcon className={classNames('w-full h-full', classNameToggle?.off)} />
+          <HeartOutlineIcon className={classNames('h-full w-full', classNameToggle?.off)} />
         </ToggleOff>
       </ToggleButton>
     </Toggle>

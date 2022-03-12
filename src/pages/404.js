@@ -15,7 +15,7 @@ function NotFoundPage({ location }) {
           <p>Sorry, but the page you are looking for cannot be found nor has it evolved into something else.</p>
         </Intro.Tagline>
 
-        <figure className="mt-10 rounded shadow-lg aspect-w-16 aspect-h-9">
+        <figure className="aspect-w-16 aspect-h-9 mt-10 rounded shadow-lg">
           <iframe
             title="Steve Lawson's Gospel Presentation"
             className="rounded"

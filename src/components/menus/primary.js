@@ -5,13 +5,13 @@ import { Link } from 'components/link'
 
 function PrimaryMenu({ navigation }) {
   return (
-    <div className="hidden md:block md:ml-6">
+    <div className="hidden md:ml-6 md:block">
       <div className="flex space-x-2">
         {navigation.map((item) => (
           <Link
             key={item.name}
             to={item.to}
-            className={classNames('px-3 py-1 rounded-md text-lg font-medium text-gray-900', 'hover:text-primary-600')}
+            className={classNames('rounded-md px-3 py-1 text-lg font-medium text-gray-900', 'hover:text-primary-600')}
             activeClassName="uppercase font-extrabold text-primary-600 tracking-tight"
           >
             {item.name}

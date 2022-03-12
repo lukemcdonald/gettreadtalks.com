@@ -46,7 +46,7 @@ function DeactivateAccountButton({ className, buttonText = 'Deactivate' }) {
             &#8203;
           </span>
 
-          <div className="relative inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+          <div className="relative my-8 inline-block w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
             <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
               {buttonText}
             </Dialog.Title>
@@ -67,12 +67,12 @@ function DeactivateAccountButton({ className, buttonText = 'Deactivate' }) {
                 type="button"
                 className={classNames(
                   styles.textButton,
-                  'inline-flex justify-center p-2 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-full',
+                  'inline-flex justify-center rounded-full bg-gray-100 p-2 text-gray-700 hover:bg-gray-200',
                 )}
                 onClick={closeModal}
                 ref={closeButtonRef}
               >
-                <XIcon className="w-4 h-4" />
+                <XIcon className="h-4 w-4" />
               </button>
             </div>
           </div>

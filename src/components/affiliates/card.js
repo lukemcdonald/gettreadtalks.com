@@ -9,7 +9,7 @@ function AffiliateLinkCard({ data: post }) {
       <CardImage
         as="figure"
         image={post.image}
-        className="w-16 mr-1"
+        className="mr-1 w-16"
         imgClassName="rounded-l sm:rounded-sm"
         alt={post.title}
       />

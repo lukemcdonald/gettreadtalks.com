@@ -22,7 +22,7 @@ function SocialMenu({ onClick }) {
     <ul
       className={classNames(
         'hidden h-5 border-l border-gray-300 md:block',
-        'md:flex md:items-center md:space-x-3 px-3',
+        'px-3 md:flex md:items-center md:space-x-3',
       )}
     >
       {links.map((link) => (
@@ -34,7 +34,7 @@ function SocialMenu({ onClick }) {
             title="Email Subscribe"
             target="blank"
           >
-            <link.icon className="w-6 h-6" />
+            <link.icon className="h-6 w-6" />
           </Link>
         </li>
       ))}

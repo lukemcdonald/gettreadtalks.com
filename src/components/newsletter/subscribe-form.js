@@ -45,7 +45,7 @@ function SubscribeForm({ className, title, text, buttonText, onSubmit }) {
 
   return (
     <div className={className}>
-      <h3 className="text-sm font-semibold tracking-wider text-gray-400 uppercase">{title}</h3>
+      <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-400">{title}</h3>
       <p className="mt-4 text-base text-gray-500">{text}</p>
 
       <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={(v, a) => handleSubmit(v, a)}>
@@ -68,7 +68,7 @@ function SubscribeForm({ className, title, text, buttonText, onSubmit }) {
           </div>
 
           <div className="sm:mt-px sm:ml-3 sm:flex-shrink-0">
-            <button type="submit" className={classNames(styles.button, 'w-full flex items-center justify-center')}>
+            <button type="submit" className={classNames(styles.button, 'flex w-full items-center justify-center')}>
               {buttonText || 'Notify me'}
             </button>
           </div>

@@ -8,7 +8,7 @@ function TextCarousel({ className, fontSize = '16vw', text }) {
     <div className="absolute inset-0 z-0 hidden md:flex md:flex-col">
       <ul
         className={classNames(
-          'sticky px-12 font-black leading-none tracking-tighter text-gray-200 uppercase transform css-slideshow overflow-hidden',
+          'css-slideshow sticky transform overflow-hidden px-12 font-black uppercase leading-none tracking-tighter text-gray-200',
           className,
         )}
         style={{ fontSize }}
