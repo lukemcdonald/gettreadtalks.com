@@ -19,18 +19,18 @@ module.exports = {
     'gatsby-transformer-sharp',
     `gatsby-plugin-netlify`,
     'gatsby-plugin-resolve-src',
-    {
-      resolve: `gatsby-plugin-manifest`,
-      options: {
-        name: 'TREAD Talks',
-        short_name: 'Sermons',
-        start_url: '/',
-        background_color: '#ffffff',
-        theme_color: '#e62b1a',
-        display: 'minimal-ui',
-        icon: 'static/favicon.png',
-      },
-    },
+    // {
+    //   resolve: `gatsby-plugin-manifest`,
+    //   options: {
+    //     name: 'TREAD Talks',
+    //     short_name: 'Sermons',
+    //     start_url: '/',
+    //     background_color: '#ffffff',
+    //     theme_color: '#e62b1a',
+    //     display: 'minimal-ui',
+    //     icon: 'static/favicon.png',
+    //   },
+    // },
     {
       resolve: 'gatsby-plugin-mailchimp',
       options: {
