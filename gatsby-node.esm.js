@@ -1,4 +1,4 @@
-const slugify = require('@sindresorhus/slugify')
+const slugify = require('slugify')
 
 function onCreateAirtableNode({ node, actions }) {
   const { createNodeField } = actions
@@ -44,7 +44,7 @@ function onCreateAirtableNode({ node, actions }) {
   createNodeField({
     name: 'slug',
     node,
-    value: slug,
+    value: slug.toLowerCase(),
   })
 }
 
