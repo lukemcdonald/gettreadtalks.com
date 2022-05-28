@@ -303,6 +303,7 @@ module.exports = {
                 const htmlScripture = node.data.scripture ? ` from ${node.data.scripture}` : ''
 
                 return {
+                  ...node.data,
                   date: node.data.publishedDate,
                   title: node.data.title,
                   author: node.data.speakers[0].data.title,
