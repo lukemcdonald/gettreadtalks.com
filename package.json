@@ -13,10 +13,11 @@
     "build": "NODE_ENV=production cross-env NODE_OPTIONS='-r esm' gatsby build",
     "clean": "gatsby clean",
     "develop": "cross-env NODE_OPTIONS='-r esm' gatsby develop",
-    "serve": "cross-env NODE_OPTIONS='-r esm' gatsby serve",
-    "start": "npm run develop",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "preinstall": "npx only-allow yarn",
+    "serve": "cross-env NODE_OPTIONS='-r esm' gatsby serve",
+    "start": "npm run develop"
   },
   "dependencies": {
     "@headlessui/react": "^1.5.0",
