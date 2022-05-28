@@ -1,16 +1,18 @@
-import React from 'react'
-import { HeartIcon, StarIcon, CheckIcon } from '@heroicons/react/solid'
+import { CheckIcon, HeartIcon, StarIcon } from '@heroicons/react/solid'
 import classNames from 'classnames'
+import React from 'react'
 
-import { sanitizeHTMLTag } from 'utils/misc'
-
-import { Image } from 'components/image'
-import { Link } from 'components/link'
+import { Image, Link } from '~/components'
+import { sanitizeHTMLTag } from '~/utils/misc'
 
 function CardTitle({ children, className, as }) {
   const Tag = sanitizeHTMLTag(as, ['h1', 'h2', 'h3'])
 
-  return <Tag className={classNames('text-lg font-bold leading-6 text-gray-900', className)}>{children}</Tag>
+  return (
+    <Tag className={classNames('text-lg font-bold leading-6 text-gray-900', className)}>
+      {children}
+    </Tag>
+  )
 }
 
 function CardSubTitle({ children, className, as }) {
@@ -29,7 +31,11 @@ function CardSubTitle({ children, className, as }) {
 }
 
 function CardText({ children, className }) {
-  return <div className={classNames('mt-px inline-block space-x-1 text-sm text-gray-500', className)}>{children}</div>
+  return (
+    <div className={classNames('mt-px inline-block space-x-1 text-sm text-gray-500', className)}>
+      {children}
+    </div>
+  )
 }
 
 function CardIcon({ className, to, type }) {
@@ -140,7 +146,11 @@ function CardContent({ to = '', icons = [], subtitle, title, text }) {
           </CardTitle>
         </Link>
         {icons.length > 0 && (
-          <CardIcons className="relative top-px z-10 inline-flex space-x-1" icons={icons} context={context} />
+          <CardIcons
+            className="relative top-px z-10 inline-flex space-x-1"
+            icons={icons}
+            context={context}
+          />
         )}
       </div>
 

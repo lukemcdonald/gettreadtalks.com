@@ -1,11 +1,9 @@
-import React from 'react'
 import { graphql } from 'gatsby'
+import React from 'react'
 
-import { Page } from 'components/page'
-import { Section } from 'components/section'
-import { SEO } from 'components/seo'
-import { SpeakersFilter } from 'components/speakers/filter'
-import { SpeakersList } from 'components/speakers/list'
+import { Page, SEO, Section } from '~/components'
+import { SpeakersFilter } from '~/components/speakers/filter'
+import { SpeakersList } from '~/components/speakers/list'
 
 function FeaturedSpeakersPage({ data, location }) {
   const { speakers } = data
@@ -28,7 +26,8 @@ function FeaturedSpeakersPage({ data, location }) {
 
           <div className="prose mt-2">
             <p>
-              Here are <em>{speakers.totalCount}</em> hand picked stewards of Gods word to help get you going.
+              Here are <em>{speakers.totalCount}</em> hand picked stewards of Gods word to help get
+              you going.
             </p>
           </div>
         </Section.Sidebar>

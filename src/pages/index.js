@@ -1,15 +1,12 @@
-import React, { useState } from 'react'
 import { graphql } from 'gatsby'
+import React, { useState } from 'react'
 
-import { arrayShuffle } from 'utils/misc'
-
-import { Intro } from 'components/intro'
-import { Section } from 'components/section'
-import { SEO } from 'components/seo'
-import { SpeakersList } from 'components/speakers/list'
-import { TalksList } from 'components/talks/list'
-import { TalksNav } from 'components/talks/nav'
-import { TextCarousel } from 'components/text-carousel'
+import { Intro, SEO, Section } from '~/components'
+import { SpeakersList } from '~/components/speakers/list'
+import { TalksList } from '~/components/talks/list'
+import { TalksNav } from '~/components/talks/nav'
+import { TextCarousel } from '~/components/text-carousel'
+import { arrayShuffle } from '~/utils/misc'
 
 function IndexPage({ data, location }) {
   const { talks, speakers } = data
@@ -34,7 +31,8 @@ function IndexPage({ data, location }) {
 
           <div className="prose mb-8">
             <p>
-              <strong>Don't know what to listen to?</strong> Try starting with one of these favorites.
+              <strong>Don't know what to listen to?</strong> Try starting with one of these
+              favorites.
             </p>
           </div>
 
@@ -49,7 +47,9 @@ function IndexPage({ data, location }) {
         <Section.Sidebar sticky>
           <Section.Heading as="h2">Featured Speakers</Section.Heading>
 
-          <p className="prose">Have you listened to one of these faithful ministers of the Gospel?</p>
+          <p className="prose">
+            Have you listened to one of these faithful ministers of the Gospel?
+          </p>
         </Section.Sidebar>
 
         <Section.Content align="wide">
@@ -117,7 +117,11 @@ export const query = graphql`
     }
     introImage: file(relativePath: { eq: "billy-graham-preaching-header.jpg" }) {
       childImageSharp {
-        gatsbyImageData(placeholder: TRACED_SVG, transformOptions: { grayscale: true }, layout: FULL_WIDTH)
+        gatsbyImageData(
+          placeholder: TRACED_SVG
+          transformOptions: { grayscale: true }
+          layout: FULL_WIDTH
+        )
       }
     }
   }

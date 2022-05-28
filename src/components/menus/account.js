@@ -1,8 +1,12 @@
-import React from 'react'
-import { CheckCircleIcon as CheckIcon, HeartIcon, UserCircleIcon as UserIcon } from '@heroicons/react/outline'
-
-import { Link } from 'components/link'
+import {
+  CheckCircleIcon as CheckIcon,
+  HeartIcon,
+  UserCircleIcon as UserIcon,
+} from '@heroicons/react/outline'
 import classNames from 'classnames'
+import React from 'react'
+
+import { Link } from '~/components'
 
 const navigation = [
   {
@@ -32,7 +36,10 @@ function AccountMenu({ className }) {
           className="group flex items-center rounded-md px-2 py-2"
           activeClassName="text-gray-900 hover:text-gray-900 opacity-100"
         >
-          <item.icon className="mr-3 -ml-1 h-6 w-6 flex-shrink-0 group-hover:text-gray-900" aria-hidden="true" />
+          <item.icon
+            className="mr-3 -ml-1 h-6 w-6 flex-shrink-0 group-hover:text-gray-900"
+            aria-hidden="true"
+          />
           <span className="truncate">{item.name}</span>
         </Link>
       ))}

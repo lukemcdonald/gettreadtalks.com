@@ -1,7 +1,8 @@
 import React from 'react'
-import { Card } from 'components/card'
-import { useFavoriteTalk } from 'hooks/favorite-talk'
-import { useFinishedTalk } from 'hooks/finished-talk'
+
+import { Card } from '~/components/card'
+import { useFavoriteTalk } from '~/hooks/favorite-talk'
+import { useFinishedTalk } from '~/hooks/finished-talk'
 
 function TalkCard({ talk }) {
   const { isFavorite } = useFavoriteTalk()

@@ -1,17 +1,13 @@
-import React from 'react'
 import { graphql } from 'gatsby'
+import React from 'react'
 
-import { Image } from 'components/image'
-import { ClipsList } from 'components/clips/list'
-import { ConditionalWrapper } from 'components/conditional-wrapper'
-import { Intro } from 'components/intro'
-import { Link } from 'components/link'
-import { Section } from 'components/section'
-import { SEO } from 'components/seo'
-import { SpeakersFilter } from 'components/speakers/filter'
-import { TalksList } from 'components/talks/list'
-import { TextCarousel } from 'components/text-carousel'
-import { maybePluralize } from 'utils/misc'
+import { Image, Intro, Link, SEO, Section } from '~/components'
+import { ClipsList } from '~/components/clips/list'
+import { ConditionalWrapper } from '~/components/conditional-wrapper'
+import { SpeakersFilter } from '~/components/speakers/filter'
+import { TalksList } from '~/components/talks/list'
+import { TextCarousel } from '~/components/text-carousel'
+import { maybePluralize } from '~/utils/misc'
 
 function SingleSpeakerPage({ data, location, pageContext }) {
   const {
@@ -49,7 +45,11 @@ function SingleSpeakerPage({ data, location, pageContext }) {
         <Intro.Tagline className="text-center">{speaker?.role || ''}</Intro.Tagline>
       </Intro>
 
-      <Section className="bg-gray-900" separator={!speaker.banner && 'top'} separatorClass="border-gray-700">
+      <Section
+        className="bg-gray-900"
+        separator={!speaker.banner && 'top'}
+        separatorClass="border-gray-700"
+      >
         {speaker.ministry && (
           <Section.Sidebar>
             <Section.Heading as="h2" className="text-gray-400">
@@ -154,7 +154,11 @@ export const query = graphql`
         banner {
           localFiles {
             childImageSharp {
-              gatsbyImageData(placeholder: TRACED_SVG, transformOptions: { grayscale: true }, layout: FULL_WIDTH)
+              gatsbyImageData(
+                placeholder: TRACED_SVG
+                transformOptions: { grayscale: true }
+                layout: FULL_WIDTH
+              )
             }
           }
         }

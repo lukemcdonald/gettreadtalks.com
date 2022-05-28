@@ -14,11 +14,17 @@ module.exports = {
     'gatsby-plugin-postcss',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-robots-txt',
-    `gatsby-plugin-image`,
+    'gatsby-plugin-image',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
-    `gatsby-plugin-netlify`,
-    'gatsby-plugin-resolve-src',
+    'gatsby-plugin-netlify',
+    {
+      resolve: 'gatsby-plugin-tsconfig-paths',
+      options: {
+        baseUrl: '.',
+      },
+    },
+    // 'gatsby-plugin-resolve-src',
     // {
     //   resolve: `gatsby-plugin-manifest`,
     //   options: {

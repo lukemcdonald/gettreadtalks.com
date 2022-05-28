@@ -1,7 +1,7 @@
-import React from 'react'
 import classNames from 'classnames'
+import React from 'react'
 
-import { SeriesCard } from 'components/series/card'
+import { SeriesCard } from '~/components/series/card'
 
 function SeriesList({ children, className, series }) {
   return (

@@ -1,8 +1,7 @@
 import React from 'react'
 
-import { Image } from 'components/image'
-import { CardWrapper, CardTitle, CardText } from 'components/card'
-import { Link } from 'components/link'
+import { Image, Link } from '~/components'
+import { CardText, CardTitle, CardWrapper } from '~/components/card'
 
 function SeriesCard({ series }) {
   const maxSpeakers = 3

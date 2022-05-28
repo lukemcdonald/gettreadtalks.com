@@ -1,17 +1,15 @@
 // todo: Hook up Formik and make it work with MailChimp
-import React from 'react'
-import { ErrorMessage, Formik, Field, Form } from 'formik'
-import * as Yup from 'yup'
 import { MailIcon } from '@heroicons/react/outline'
-
-import { useNotification } from 'context/notifications'
-
-import { FormErrorMessage } from 'components/account/lib/error-message'
-import { useAsync } from 'hooks/async'
-
-import formStyles from 'components/styles/form'
-import styles from 'components/styles'
 import classNames from 'classnames'
+import { ErrorMessage, Field, Form, Formik } from 'formik'
+import React from 'react'
+import * as Yup from 'yup'
+
+import { FormErrorMessage } from '~/components/account/lib/error-message'
+import styles from '~/components/styles'
+import formStyles from '~/components/styles/form'
+import { useNotification } from '~/context/notifications'
+import { useAsync } from '~/hooks/async'
 
 function SubscribeForm({ className, title, text, buttonText, onSubmit }) {
   const { isError, error, run } = useAsync()
@@ -34,7 +32,10 @@ function SubscribeForm({ className, title, text, buttonText, onSubmit }) {
           text: data.msg,
           icon: ({ className, ...props }) => (
             <MailIcon
-              className={classNames(className, data.result === 'error' ? 'text-status-error' : 'text-status-success')}
+              className={classNames(
+                className,
+                data.result === 'error' ? 'text-status-error' : 'text-status-success',
+              )}
               {...props}
             />
           ),
@@ -48,7 +49,11 @@ function SubscribeForm({ className, title, text, buttonText, onSubmit }) {
       <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-400">{title}</h3>
       <p className="mt-4 text-base text-gray-500">{text}</p>
 
-      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={(v, a) => handleSubmit(v, a)}>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={(v, a) => handleSubmit(v, a)}
+      >
         <Form className="mt-4 sm:flex sm:max-w-md">
           {isError && <FormErrorMessage error={error} />}
 
@@ -68,7 +73,10 @@ function SubscribeForm({ className, title, text, buttonText, onSubmit }) {
           </div>
 
           <div className="sm:mt-px sm:ml-3 sm:flex-shrink-0">
-            <button type="submit" className={classNames(styles.button, 'flex w-full items-center justify-center')}>
+            <button
+              type="submit"
+              className={classNames(styles.button, 'flex w-full items-center justify-center')}
+            >
               {buttonText || 'Notify me'}
             </button>
           </div>

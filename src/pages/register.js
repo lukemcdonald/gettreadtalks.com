@@ -1,14 +1,10 @@
-import React from 'react'
 import { navigate } from 'gatsby'
+import React from 'react'
 
-import { useAuth } from 'context/auth'
-
-import { Link } from 'components/link'
-import { Section } from 'components/section'
-import { SEO } from 'components/seo'
-import { Page } from 'components/page'
-import { LoginForm } from 'components/account/login-form'
-import formStyles from 'components/styles/form'
+import { Link, Page, SEO, Section } from '~/components'
+import { LoginForm } from '~/components/account/login-form'
+import formStyles from '~/components/styles/form'
+import { useAuth } from '~/context/auth'
 
 function RegisterPage({ location }) {
   const { register, isUser } = useAuth()
@@ -27,7 +23,10 @@ function RegisterPage({ location }) {
           <Page.Title>Create your account</Page.Title>
 
           <div className="prose mt-2">
-            <p>Create a free account and enjoy the benefits of bookmarking your own talks on TREAD Talks.</p>
+            <p>
+              Create a free account and enjoy the benefits of bookmarking your own talks on TREAD
+              Talks.
+            </p>
             <p>
               Or <Link to="/login">sign in to your account &rarr;</Link>
             </p>
@@ -37,7 +36,11 @@ function RegisterPage({ location }) {
         <Section.Content>
           <div className="relative z-10 flex flex-auto items-center justify-center">
             <div className="w-full max-w-md">
-              <LoginForm className={formStyles.fieldset} onSubmit={register} buttonText="Register your account" />
+              <LoginForm
+                className={formStyles.fieldset}
+                onSubmit={register}
+                buttonText="Register your account"
+              />
             </div>
           </div>
         </Section.Content>

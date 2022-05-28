@@ -1,11 +1,9 @@
-import React from 'react'
 import { graphql } from 'gatsby'
+import React from 'react'
 
-import { Page } from 'components/page'
-import { Section } from 'components/section'
-import { SEO } from 'components/seo'
-import { TalksFilter } from 'components/talks/filter'
-import { TalksList } from 'components/talks/list'
+import { Page, SEO, Section } from '~/components'
+import { TalksFilter } from '~/components/talks/filter'
+import { TalksList } from '~/components/talks/list'
 
 function FeaturedTalksPage({ data, location }) {
   const { talks, topics } = data

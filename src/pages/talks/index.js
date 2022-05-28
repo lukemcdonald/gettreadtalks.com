@@ -1,15 +1,12 @@
-import React from 'react'
 import { graphql } from 'gatsby'
+import React from 'react'
 
-import { maybePluralize } from 'utils/misc'
-
-import { Page } from 'components/page'
-import { Pagination } from 'components/pagination'
-import { Section } from 'components/section'
-import { SEO } from 'components/seo'
-import { TalksFilter } from 'components/talks/filter'
-import { TalksList } from 'components/talks/list'
-import { TextCarousel } from 'components/text-carousel'
+import { Page, SEO, Section } from '~/components'
+import { Pagination } from '~/components/pagination'
+import { TalksFilter } from '~/components/talks/filter'
+import { TalksList } from '~/components/talks/list'
+import { TextCarousel } from '~/components/text-carousel'
+import { maybePluralize } from '~/utils/misc'
 
 function TalksPage({ data, location, pageContext }) {
   const { talks, topics } = data
@@ -70,7 +67,12 @@ export const query = graphql`
     talks: allAirtableTalk(
       skip: $skip
       limit: $pageSize
-      filter: { data: { publishedDate: { ne: null }, topics: { elemMatch: { data: { title: { in: $topic } } } } } }
+      filter: {
+        data: {
+          publishedDate: { ne: null }
+          topics: { elemMatch: { data: { title: { in: $topic } } } }
+        }
+      }
       sort: { fields: data___publishedDate, order: DESC }
     ) {
       totalCount

@@ -1,7 +1,6 @@
 import React from 'react'
 
-import { SEO } from 'components/seo'
-import { Intro } from 'components/intro'
+import { Intro, SEO } from '~/components'
 
 function NotFoundPage({ location }) {
   return (
@@ -12,7 +11,10 @@ function NotFoundPage({ location }) {
         <Intro.Title>Are you lost?</Intro.Title>
 
         <Intro.Tagline>
-          <p>Sorry, but the page you are looking for cannot be found nor has it evolved into something else.</p>
+          <p>
+            Sorry, but the page you are looking for cannot be found nor has it evolved into
+            something else.
+          </p>
         </Intro.Tagline>
 
         <figure className="aspect-w-16 aspect-h-9 mt-10 rounded shadow-lg">

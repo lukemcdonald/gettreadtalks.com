@@ -3,30 +3,29 @@
  * -----------------------------------------------------------------------------
  */
 
-@import "theme/_variables.css";
+@import 'theme/_variables.css';
 
 /**
  * Base
  * -----------------------------------------------------------------------------
  */
 
-@import "tailwindcss/base";
-@import "theme/base/general.css";
-
+@import 'tailwindcss/base';
+@import 'theme/base/general.css';
 
 /**
  * Components
  * -----------------------------------------------------------------------------
  */
 
-@import "tailwindcss/components";
-@import "theme/components/primary-nav.css";
-@import "theme/components/slideshow.css";
+@import 'tailwindcss/components';
+@import 'theme/components/primary-nav.css';
+@import 'theme/components/slideshow.css';
 
 /**
  * Utilites
  * -----------------------------------------------------------------------------
  */
 
-@import "tailwindcss/utilities";
-@import "theme/utilities/background-images.css";
+@import 'tailwindcss/utilities';
+@import 'theme/utilities/background-images.css';

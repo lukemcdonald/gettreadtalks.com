@@ -1,18 +1,14 @@
 // todo: Display five random featured talks as recomendations.
 // todo: Display tabs for finished talks, clips, speakers.
-import React, { useEffect, useState } from 'react'
-import { navigate, graphql } from 'gatsby'
 import { CheckCircleIcon as CheckIcon } from '@heroicons/react/outline'
+import { graphql, navigate } from 'gatsby'
+import React, { useEffect, useState } from 'react'
 
-import { Page } from 'components/page'
-import { Section } from 'components/section'
-import { SEO } from 'components/seo'
-import { TalksList } from 'components/talks/list'
-import { Link } from 'components/link'
-
-import { useAuth } from 'context/auth'
-import { useUsers } from 'context/users'
-import { AccountMenu } from 'components/menus/account'
+import { Link, Page, SEO, Section } from '~/components'
+import { AccountMenu } from '~/components/menus/account'
+import { TalksList } from '~/components/talks/list'
+import { useAuth } from '~/context/auth'
+import { useUsers } from '~/context/users'
 
 function AccountFinishedPage({ data, location }) {
   const [finishedTalks, setFinishedTalks] = useState([])
@@ -65,8 +61,8 @@ function AccountFinishedPage({ data, location }) {
             >
               <Page.Title>Finished</Page.Title>
               <p className="mt-2">
-                Click the {<CheckIcon className="inline h-6 w-6 text-gray-400" />} to save an item to your finished
-                list.
+                Click the {<CheckIcon className="inline h-6 w-6 text-gray-400" />} to save an item
+                to your finished list.
               </p>
             </Link>
           ) : (

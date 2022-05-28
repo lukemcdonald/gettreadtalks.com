@@ -1,15 +1,14 @@
+import { EyeIcon, EyeOffIcon } from '@heroicons/react/outline'
+import { ErrorMessage, Field, Form, Formik } from 'formik'
 import React, { useState } from 'react'
 import * as Yup from 'yup'
-import { ErrorMessage, Formik, Field, Form } from 'formik'
-import { EyeIcon, EyeOffIcon } from '@heroicons/react/outline'
 
-import { useAsync } from 'hooks/async'
-import { useAuth } from 'context/auth'
-import { Toggle, ToggleButton, ToggleOff, ToggleOn } from 'components/toggle'
-import { FormErrorMessage } from 'components/account/lib/error-message'
-
-import styles from 'components/styles'
-import formStyles from 'components/styles/form'
+import { FormErrorMessage } from '~/components/account/lib/error-message'
+import styles from '~/components/styles'
+import formStyles from '~/components/styles/form'
+import { Toggle, ToggleButton, ToggleOff, ToggleOn } from '~/components/toggle'
+import { useAuth } from '~/context/auth'
+import { useAsync } from '~/hooks/async'
 
 function SettingsPasswordForm({ className, buttonText, onSubmit }) {
   const { isError, error, run } = useAsync()
@@ -73,7 +72,11 @@ function SettingsPasswordForm({ className, buttonText, onSubmit }) {
           <Field name="password">
             {({ field }) => (
               <div className="relative">
-                <input type={showPassword ? 'text' : 'password'} className={formStyles.field} {...field} />
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  className={formStyles.field}
+                  {...field}
+                />
                 <Toggle>
                   <ToggleButton
                     checked={showPassword}

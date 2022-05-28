@@ -1,10 +1,8 @@
-import React from 'react'
 import { graphql } from 'gatsby'
+import React from 'react'
 
-import { Page } from 'components/page'
-import { SEO } from 'components/seo'
-import { SeriesList } from 'components/series/list'
-import { Section } from 'components/section'
+import { Page, SEO, Section } from '~/components'
+import { SeriesList } from '~/components/series/list'
 
 function SeriesPage({ data, location }) {
   const { series } = data
@@ -18,7 +16,10 @@ function SeriesPage({ data, location }) {
           <Page.Title>Series</Page.Title>
 
           <div className="prose mt-2">
-            <p>Each series includes talks given by one or more speakers on the same topic or book of the Bible.</p>
+            <p>
+              Each series includes talks given by one or more speakers on the same topic or book of
+              the Bible.
+            </p>
           </div>
         </Section.Sidebar>
 
@@ -34,7 +35,10 @@ export default SeriesPage
 
 export const query = graphql`
   {
-    series: allAirtableSerie(filter: { data: { title: { ne: null } } }, sort: { fields: data___title, order: ASC }) {
+    series: allAirtableSerie(
+      filter: { data: { title: { ne: null } } }
+      sort: { fields: data___title, order: ASC }
+    ) {
       nodes {
         id
         fields {

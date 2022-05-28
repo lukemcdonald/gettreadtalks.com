@@ -1,12 +1,10 @@
-import React from 'react'
 import { graphql } from 'gatsby'
+import React from 'react'
 
-import { Page } from 'components/page'
-import { Section } from 'components/section'
-import { SEO } from 'components/seo'
-import { SpeakersList } from 'components/speakers/list'
-import { SpeakersFilter } from 'components/speakers/filter'
-import { TextCarousel } from 'components/text-carousel'
+import { Page, SEO, Section } from '~/components'
+import { SpeakersFilter } from '~/components/speakers/filter'
+import { SpeakersList } from '~/components/speakers/list'
+import { TextCarousel } from '~/components/text-carousel'
 
 function SpeakersPage({ data, location }) {
   const { speakers } = data
@@ -28,7 +26,8 @@ function SpeakersPage({ data, location }) {
 
                 <div className="prose mt-2">
                   <p>
-                    Listen to <em>{speakers.totalCount}</em> faithful ambassadors of Christ and be blessed.
+                    Listen to <em>{speakers.totalCount}</em> faithful ambassadors of Christ and be
+                    blessed.
                   </p>
                 </div>
               </div>

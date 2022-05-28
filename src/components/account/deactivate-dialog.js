@@ -1,11 +1,12 @@
-import React, { useState, useRef } from 'react'
-import classNames from 'classnames'
-import { XIcon } from '@heroicons/react/solid'
 import { Dialog } from '@headlessui/react'
-import { DeactivateForm } from 'components/account/deactivate-form'
-import { useAuth } from 'context/auth'
-import { useAsync } from 'hooks/async'
-import styles from 'components/styles'
+import { XIcon } from '@heroicons/react/solid'
+import classNames from 'classnames'
+import React, { useRef, useState } from 'react'
+
+import { DeactivateForm } from '~/components/account/deactivate-form'
+import styles from '~/components/styles'
+import { useAuth } from '~/context/auth'
+import { useAsync } from '~/hooks/async'
 
 function DeactivateAccountButton({ className, buttonText = 'Deactivate' }) {
   const [isOpen, setIsOpen] = useState(false)
@@ -53,13 +54,16 @@ function DeactivateAccountButton({ className, buttonText = 'Deactivate' }) {
 
             <div className="mt-2">
               <p className="text-sm text-gray-500">
-                All of your data will be permanently removed and cannot be undone. Enter your password to confirm this
-                action.
+                All of your data will be permanently removed and cannot be undone. Enter your
+                password to confirm this action.
               </p>
             </div>
 
             <div className="mt-4">
-              <DeactivateForm onSubmit={() => handleOnSubmit()} buttonText="Deactivate my account" />
+              <DeactivateForm
+                onSubmit={() => handleOnSubmit()}
+                buttonText="Deactivate my account"
+              />
             </div>
 
             <div className="absolute top-2 right-2">

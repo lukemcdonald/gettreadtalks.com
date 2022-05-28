@@ -1,12 +1,12 @@
 // todo: Use Formik
 // https://devdojo.com/semirteskeredzic/create-forms-with-formik-and-firebase
-import React, { useState } from 'react'
 import classNames from 'classnames'
-import { FormErrorMessage } from 'components/account/lib/error-message'
-import { useAsync } from 'hooks/async'
+import React, { useState } from 'react'
 
-import styles from 'components/styles'
-import formStyles from 'components/styles/form'
+import { FormErrorMessage } from '~/components/account/lib/error-message'
+import styles from '~/components/styles'
+import formStyles from '~/components/styles/form'
+import { useAsync } from '~/hooks/async'
 
 function LoginForm({ className, buttonText, onSubmit, hiddenFields = [] }) {
   const { isError, error, run } = useAsync()
@@ -29,7 +29,9 @@ function LoginForm({ className, buttonText, onSubmit, hiddenFields = [] }) {
     <form onSubmit={handleSubmit} className={className}>
       {isError && <FormErrorMessage error={error} />}
 
-      <div className={classNames(formStyles.formRow, hiddenFields.includes('email') ? 'hidden' : '')}>
+      <div
+        className={classNames(formStyles.formRow, hiddenFields.includes('email') ? 'hidden' : '')}
+      >
         <label htmlFor="email" className={formStyles.label}>
           Email address
         </label>
@@ -43,7 +45,12 @@ function LoginForm({ className, buttonText, onSubmit, hiddenFields = [] }) {
         />
       </div>
 
-      <div className={classNames(formStyles.formRow, hiddenFields.includes('password') ? 'hidden' : '')}>
+      <div
+        className={classNames(
+          formStyles.formRow,
+          hiddenFields.includes('password') ? 'hidden' : '',
+        )}
+      >
         <label htmlFor="password" className={formStyles.label}>
           Password
         </label>

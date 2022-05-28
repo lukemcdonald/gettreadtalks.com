@@ -1,7 +1,8 @@
 // todo: update Firebase functionality to version 9 (currently version 8)
 import React from 'react'
-import { useAsync } from 'hooks/async'
-import { FullPageLogo, FullPageErrorFallback } from 'components/loader'
+
+import { FullPageErrorFallback, FullPageLogo } from '~/components/loader'
+import { useAsync } from '~/hooks/async'
 
 const FirebaseContext = React.createContext({})
 FirebaseContext.displayName = 'FirebaseContext'
@@ -33,7 +34,16 @@ async function getFirebase() {
 }
 
 function FirebaseProvider(props) {
-  const { data: firebase, status, error, setData, isLoading, isIdle, isError, isSuccess } = useAsync()
+  const {
+    data: firebase,
+    status,
+    error,
+    setData,
+    isLoading,
+    isIdle,
+    isError,
+    isSuccess,
+  } = useAsync()
 
   React.useEffect(() => {
     getFirebase().then((client) => setData(client))

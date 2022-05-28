@@ -1,11 +1,11 @@
-import React from 'react'
 import { Disclosure } from '@headlessui/react'
+import React from 'react'
 
-import { Link } from 'components/link'
-import { Logo } from 'components/svgs/logo'
-import { MobileMenu, MobileMenuButton } from 'components/menus/mobile'
-import { PrimaryMenu } from 'components/menus/primary'
-import { ProfileMenu } from 'components/menus/profile'
+import { Link } from '~/components'
+import { MobileMenu, MobileMenuButton } from '~/components/menus/mobile'
+import { PrimaryMenu } from '~/components/menus/primary'
+import { ProfileMenu } from '~/components/menus/profile'
+import { Logo } from '~/components/svgs/logo'
 
 const primaryNav = [
   { name: 'Talks', to: '/talks/' },

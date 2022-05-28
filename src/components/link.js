@@ -1,6 +1,24 @@
-import React, { Component } from 'react'
-import { Link as GatsbyLink } from 'gatsby'
 import classNames from 'classnames'
+import { Link as GatsbyLink } from 'gatsby'
+import React from 'react'
+
+function Link({ children, to, ...other }) {
+  const internal = /^\/(?!\/)/.test(to)
+
+  if (internal) {
+    return (
+      <GatsbyLink to={to} rel="canonical" {...other}>
+        {children}
+      </GatsbyLink>
+    )
+  }
+
+  return (
+    <a href={to} {...other}>
+      {children}
+    </a>
+  )
+}
 
 const LinkButton = ({ className, children, color, size, to, ...props }) => {
   const colorMapping = {
@@ -30,29 +48,6 @@ const LinkButton = ({ className, children, color, size, to, ...props }) => {
   )
 }
 
-// Since DOM elements <a> cannot receive activeClassName,
-// destructure the prop here and pass it only to GatsbyLink
-class Link extends Component {
-  static Button = LinkButton
-
-  render() {
-    const { children, to, ...other } = this.props
-    const internal = /^\/(?!\/)/.test(to)
-
-    if (internal) {
-      return (
-        <GatsbyLink to={to} rel="canonical" {...other}>
-          {children}
-        </GatsbyLink>
-      )
-    }
-
-    return (
-      <a href={to} {...other}>
-        {children}
-      </a>
-    )
-  }
-}
-
-export { Link }
+export default Object.assign(Link, {
+  Button: LinkButton,
+})

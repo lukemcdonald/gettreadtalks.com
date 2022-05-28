@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { useUsers } from 'context/users'
-import { Card } from 'components/card'
+
+import { Card } from '~/components/card'
+import { useUsers } from '~/context/users'
 
 function SpeakerCard({ speaker }) {
   const { user } = useUsers()
@@ -12,7 +13,15 @@ function SpeakerCard({ speaker }) {
     }
   }, [speaker, user])
 
-  return <Card to={speaker.slug} image={speaker.avatar} title={speaker.title} text={speaker.role} icons={icons} />
+  return (
+    <Card
+      to={speaker.slug}
+      image={speaker.avatar}
+      title={speaker.title}
+      text={speaker.role}
+      icons={icons}
+    />
+  )
 }
 
 export { SpeakerCard }

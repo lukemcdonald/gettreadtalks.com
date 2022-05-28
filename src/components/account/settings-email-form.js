@@ -1,13 +1,12 @@
+import { ErrorMessage, Field, Form, Formik } from 'formik'
 import React, { useState } from 'react'
-import { ErrorMessage, Formik, Field, Form } from 'formik'
 import * as Yup from 'yup'
 
-import { FormErrorMessage } from 'components/account/lib/error-message'
-import { useAsync } from 'hooks/async'
-import { useAuth } from 'context/auth'
-
-import styles from 'components/styles'
-import formStyles from 'components/styles/form'
+import { FormErrorMessage } from '~/components/account/lib/error-message'
+import styles from '~/components/styles'
+import formStyles from '~/components/styles/form'
+import { useAuth } from '~/context/auth'
+import { useAsync } from '~/hooks/async'
 
 function SettingsEmailForm({ className, buttonText, onSubmit }) {
   const { isError, error, run } = useAsync()

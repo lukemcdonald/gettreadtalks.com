@@ -1,12 +1,33 @@
-import React, { Component } from 'react'
 import classNames from 'classnames'
-import { sanitizeHTMLTag } from 'utils/misc'
+import React from 'react'
 
-const SectionContainer = ({ className, children }) => (
+import { sanitizeHTMLTag } from '~/utils/misc'
+
+function Section({ as, children, className, separator, separatorClass }) {
+  const Tag = sanitizeHTMLTag(as, ['section', 'article', 'div', 'footer', 'header'])
+
+  return (
+    <Tag className={className}>
+      <SectionContainer>
+        {(separator === 'top' || separator === 'top-bottom') && (
+          <SectionSeparator className={classNames(separatorClass)} />
+        )}
+
+        <div className="grid sm:grid-cols-3 sm:gap-6 lg:grid-cols-12">{children}</div>
+
+        {(separator === 'bottom' || separator === 'top-bottom') && (
+          <SectionSeparator className={classNames(separatorClass)} />
+        )}
+      </SectionContainer>
+    </Tag>
+  )
+}
+
+export const SectionContainer = ({ className, children }) => (
   <div className={classNames('container max-w-screen-xl', className)}>{children}</div>
 )
 
-const SectionContent = ({ align, as, children, className }) => {
+export const SectionContent = ({ align, as, children, className }) => {
   const Tag = sanitizeHTMLTag(as, ['div', 'article', 'footer', 'header', 'section'])
 
   const alignMapping = {
@@ -19,13 +40,19 @@ const SectionContent = ({ align, as, children, className }) => {
   const columns = alignMapping[align] || alignMapping.DEFUALT
 
   return (
-    <Tag className={classNames('py-6 sm:col-span-2 lg:py-16', `${columns.start} ${columns.span}`, className)}>
+    <Tag
+      className={classNames(
+        'py-6 sm:col-span-2 lg:py-16',
+        `${columns.start} ${columns.span}`,
+        className,
+      )}
+    >
       {children}
     </Tag>
   )
 }
 
-const SectionSidebar = ({ children, className, right, sticky }) => (
+export const SectionSidebar = ({ children, className, right, sticky }) => (
   <div
     className={classNames(
       `pt-6 sm:py-6`,
@@ -40,7 +67,7 @@ const SectionSidebar = ({ children, className, right, sticky }) => (
   </div>
 )
 
-const SectionHeading = ({ children, className = '', as }) => {
+export const SectionHeading = ({ children, className = '', as }) => {
   const Tag = sanitizeHTMLTag(as, ['h1', 'h2', 'h3'])
 
   return (
@@ -56,38 +83,14 @@ const SectionHeading = ({ children, className = '', as }) => {
   )
 }
 
-const SectionSeparator = ({ className }) => <hr className={classNames('border-gray-300', className)} />
+export const SectionSeparator = ({ className }) => (
+  <hr className={classNames('border-gray-300', className)} />
+)
 
-class Section extends Component {
-  static Content = SectionContent
-
-  static Container = SectionContainer
-
-  static Sidebar = SectionSidebar
-
-  static Heading = SectionHeading
-
-  static Separator = SectionSeparator
-
-  render() {
-    const { as, children, className, separator, separatorClass } = this.props
-
-    const Tag = sanitizeHTMLTag(as, ['section', 'article', 'div', 'footer', 'header'])
-
-    return (
-      <Tag className={className}>
-        <SectionContainer>
-          {(separator === 'top' || separator === 'top-bottom') && (
-            <SectionSeparator className={classNames(separatorClass)} />
-          )}
-          <div className="grid sm:grid-cols-3 sm:gap-6 lg:grid-cols-12">{children}</div>
-          {(separator === 'bottom' || separator === 'top-bottom') && (
-            <SectionSeparator className={classNames(separatorClass)} />
-          )}
-        </SectionContainer>
-      </Tag>
-    )
-  }
-}
-
-export { Section }
+export default Object.assign(Section, {
+  Content: SectionContent,
+  Container: SectionContainer,
+  Sidebar: SectionSidebar,
+  Heading: SectionHeading,
+  Separator: SectionSeparator,
+})

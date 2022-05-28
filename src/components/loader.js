@@ -1,11 +1,15 @@
-import React from 'react'
 import classNames from 'classnames'
-import { Logo } from 'components/svgs/logo'
+import React from 'react'
+
+import { Logo } from '~/components/svgs/logo'
 
 export function Spinner({ className, ...props }) {
   return (
     <div
-      className={classNames('my-24 mx-auto h-10 w-10 animate-pulse rounded-full bg-primary-600', className)}
+      className={classNames(
+        'my-24 mx-auto h-10 w-10 animate-pulse rounded-full bg-primary-600',
+        className,
+      )}
       {...props}
     />
   )

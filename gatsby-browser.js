@@ -1,8 +1,8 @@
 import React from 'react'
-import { App } from './src/app'
-import { AppProviders } from './src/context'
 
+import { App } from './src/app'
 import './src/assets/css/styles.css'
+import { AppProviders } from './src/context'
 
 function wrapPageElement({ element, props }) {
   return (

@@ -1,10 +1,8 @@
-import React from 'react'
 import { graphql } from 'gatsby'
+import React from 'react'
 
-import { ClipsList } from 'components/clips/list'
-import { Page } from 'components/page'
-import { Section } from 'components/section'
-import { SEO } from 'components/seo'
+import { Page, SEO, Section } from '~/components'
+import { ClipsList } from '~/components/clips/list'
 
 function ClipsPage({ data, location }) {
   const { clips } = data

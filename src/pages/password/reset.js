@@ -1,15 +1,10 @@
 // todo: this could probably use a basic email form with resetPassword as the onSubmit
 import React from 'react'
 
-import { useAuth } from 'context/auth'
-
-import { LoginForm } from 'components/account/login-form'
-import { Link } from 'components/link'
-import { Page } from 'components/page'
-import { SEO } from 'components/seo'
-import { Section } from 'components/section'
-
-import formStyles from 'components/styles/form'
+import { Link, Page, SEO, Section } from '~/components'
+import { LoginForm } from '~/components/account/login-form'
+import formStyles from '~/components/styles/form'
+import { useAuth } from '~/context/auth'
 
 function ResetPassword({ location }) {
   const { resetPassword } = useAuth()

@@ -26,9 +26,15 @@ function useAsync(initialState) {
 
   const safeSetState = useSafeDispatch(setState)
 
-  const setData = React.useCallback((data) => safeSetState({ data, status: 'resolved' }), [safeSetState])
+  const setData = React.useCallback(
+    (data) => safeSetState({ data, status: 'resolved' }),
+    [safeSetState],
+  )
 
-  const setError = React.useCallback((error) => safeSetState({ error, status: 'rejected' }), [safeSetState])
+  const setError = React.useCallback(
+    (error) => safeSetState({ error, status: 'rejected' }),
+    [safeSetState],
+  )
 
   const reset = React.useCallback(() => safeSetState(initialStateRef.current), [safeSetState])
 

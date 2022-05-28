@@ -1,9 +1,8 @@
 import React from 'react'
 
-import { useSiteMetadata } from 'hooks/site-metadata'
-
-import { SiteHeader } from 'components/header'
-import { SiteFooter } from 'components/footer'
+import { SiteFooter } from '~/components/footer'
+import { SiteHeader } from '~/components/header'
+import { useSiteMetadata } from '~/hooks/site-metadata'
 
 function Layout({ children }) {
   const { title } = useSiteMetadata()

@@ -1,16 +1,18 @@
-import React from 'react'
 import { graphql } from 'gatsby'
+import React from 'react'
 
-import { SEO } from 'components/seo'
-import { Section } from 'components/section'
-import { Page } from 'components/page'
+import { Page, SEO, Section } from '~/components'
 
 function SinglePage({ data, location }) {
   const { data: page } = data.page
 
   return (
     <>
-      <SEO title={page.title} description={page.content.childMarkdownRemark.excerpt} location={location} />
+      <SEO
+        title={page.title}
+        description={page.content.childMarkdownRemark.excerpt}
+        location={location}
+      />
 
       <Section>
         <Section.Content as="article">

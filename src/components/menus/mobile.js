@@ -1,9 +1,9 @@
-import React from 'react'
-import classNames from 'classnames'
 import { Disclosure } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
+import classNames from 'classnames'
+import React from 'react'
 
-import { Link } from 'components/link'
+import { Link } from '~/components'
 
 function MobileMenu({ navigation }) {
   return (
@@ -12,7 +12,10 @@ function MobileMenu({ navigation }) {
         <Link
           key={item.name}
           to={item.to}
-          className={classNames('block rounded px-3 py-2 text-base font-medium text-gray-900', 'hover:bg-gray-100')}
+          className={classNames(
+            'block rounded px-3 py-2 text-base font-medium text-gray-900',
+            'hover:bg-gray-100',
+          )}
           activeClassName="bg-gray-900 text-white hover:bg-gray-900"
         >
           {item.name}

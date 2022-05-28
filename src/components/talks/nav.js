@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { SubNav } from 'components/sub-nav'
+import { SubNav } from '~/components/sub-nav'
 
 function TalksNav({ title }) {
   const links = [

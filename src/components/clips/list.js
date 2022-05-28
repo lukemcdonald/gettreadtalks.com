@@ -1,7 +1,7 @@
-import React from 'react'
 import classNames from 'classnames'
+import React from 'react'
 
-import { ClipCard } from 'components/clips/card'
+import { ClipCard } from '~/components/clips/card'
 
 function ClipsList({ children, className, clips }) {
   return (

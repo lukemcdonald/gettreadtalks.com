@@ -1,7 +1,7 @@
-import React, { Fragment, useState } from 'react'
 import { Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/solid'
 import classNames from 'classnames'
+import React, { Fragment, useState } from 'react'
 
 function Notification({ message = {}, onClose }) {
   const [show, setShow] = useState(true)
@@ -24,10 +24,14 @@ function Notification({ message = {}, onClose }) {
               <message.icon className="h-6 w-6" aria-hidden="true" />
             </div>
             <div className={classNames('w-0 flex-1 pt-0.5', message.icon ? 'ml-3' : 'ml-1')}>
-              {message.title && <p className="text-sm font-medium text-gray-900">{message.title}</p>}
+              {message.title && (
+                <p className="text-sm font-medium text-gray-900">{message.title}</p>
+              )}
 
               {message.text && (
-                <p className={classNames('text-sm text-gray-500', message.title && 'mt-1')}>{message.text}</p>
+                <p className={classNames('text-sm text-gray-500', message.title && 'mt-1')}>
+                  {message.text}
+                </p>
               )}
             </div>
             <div className="ml-4 flex flex-shrink-0">

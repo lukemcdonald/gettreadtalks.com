@@ -1,13 +1,16 @@
-import React, { Component } from 'react'
-import { navigate } from 'gatsby'
-import { Field, Form, Formik } from 'formik'
-import classNames from 'classnames'
 import { ChevronDownIcon } from '@heroicons/react/solid'
+import classNames from 'classnames'
+import { Field, Form, Formik } from 'formik'
+import { navigate } from 'gatsby'
+import React, { Component } from 'react'
 
-import { ConditionalWrapper } from 'components/conditional-wrapper'
+import { ConditionalWrapper } from '~/components/conditional-wrapper'
 
 const SelectGroup = ({ label, options }) => (
-  <ConditionalWrapper condition={label} wrapper={(children) => <optgroup label={label}>{children}</optgroup>}>
+  <ConditionalWrapper
+    condition={label}
+    wrapper={(children) => <optgroup label={label}>{children}</optgroup>}
+  >
     {options.map(({ label: text, value, separator, index }) =>
       separator ? (
         <option key={`${separator}-${index}`} disabled>

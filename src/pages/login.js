@@ -1,15 +1,10 @@
-import React from 'react'
 import { navigate } from 'gatsby'
+import React from 'react'
 
-import { useAuth } from 'context/auth'
-
-import { Link } from 'components/link'
-import { LoginForm } from 'components/account/login-form'
-import { Page } from 'components/page'
-import { Section } from 'components/section'
-import { SEO } from 'components/seo'
-
-import formStyles from 'components/styles/form'
+import { Link, Page, SEO, Section } from '~/components'
+import { LoginForm } from '~/components/account/login-form'
+import formStyles from '~/components/styles/form'
+import { useAuth } from '~/context/auth'
 
 function LoginPage({ location }) {
   const { login, isUser } = useAuth()
@@ -37,7 +32,11 @@ function LoginPage({ location }) {
         <Section.Content>
           <div className="relative z-10 flex flex-auto items-center justify-center">
             <div className="w-full max-w-md">
-              <LoginForm className={formStyles.fieldset} onSubmit={login} buttonText="Sign in to account" />
+              <LoginForm
+                className={formStyles.fieldset}
+                onSubmit={login}
+                buttonText="Sign in to account"
+              />
 
               <div className="prose mt-6 text-center">
                 <p>

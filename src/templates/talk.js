@@ -1,16 +1,13 @@
-import React, { useState } from 'react'
+import { ExternalLinkIcon, MailIcon } from '@heroicons/react/outline'
 import { graphql } from 'gatsby'
-import { MailIcon, ExternalLinkIcon } from '@heroicons/react/outline'
+import React, { useState } from 'react'
 
-import { FavoriteToggle } from 'components/talks/favorite-toggle'
-import { FinishedToggle } from 'components/talks/finished-toggle'
-import { Intro } from 'components/intro'
-import { Link } from 'components/link'
-import { Section } from 'components/section'
-import { SEO } from 'components/seo'
-import { SeriesList } from 'components/series/list'
-import { TalksList } from 'components/talks/list'
-import { arrayShuffle } from 'utils/misc'
+import { Intro, Link, SEO, Section } from '~/components'
+import { SeriesList } from '~/components/series/list'
+import { FavoriteToggle } from '~/components/talks/favorite-toggle'
+import { FinishedToggle } from '~/components/talks/finished-toggle'
+import { TalksList } from '~/components/talks/list'
+import { arrayShuffle } from '~/utils/misc'
 
 function TalkPage({ data, location, pageContext }) {
   const talk = {
@@ -23,7 +20,9 @@ function TalkPage({ data, location, pageContext }) {
     ...talk.speakers[0].fields,
   }
 
-  const [moreTalks] = useState(() => speaker.talks.filter((item) => item.id !== pageContext.id) || [])
+  const [moreTalks] = useState(
+    () => speaker.talks.filter((item) => item.id !== pageContext.id) || [],
+  )
   const [shuffledTalks] = useState(() => arrayShuffle(moreTalks))
 
   const mediaObject = talk?.link?.childMarkdownRemark
@@ -66,7 +65,12 @@ function TalkPage({ data, location, pageContext }) {
 
         {!hasVideo && mediaLink && (
           <p className="mt-10 text-center">
-            <Link.Button to={mediaLink} color="primary" size="large" className="hover:bg-primary-700">
+            <Link.Button
+              to={mediaLink}
+              color="primary"
+              size="large"
+              className="hover:bg-primary-700"
+            >
               Listen to Talk &rarr;
             </Link.Button>
           </p>
@@ -130,7 +134,9 @@ function TalkPage({ data, location, pageContext }) {
             </Section.Heading>
             <div className="prose text-white">
               <Link.Button
-                to={`https://www.biblegateway.com/passage/?search=${encodeURI(talk.scripture)}&version=esv`}
+                to={`https://www.biblegateway.com/passage/?search=${encodeURI(
+                  talk.scripture,
+                )}&version=esv`}
                 className="inline-flex items-center"
               >
                 <span>{talk.scripture}</span>
@@ -164,7 +170,8 @@ function TalkPage({ data, location, pageContext }) {
 
             <div className="prose">
               <p>
-                Enjoy {speaker.talks.length >= 2 ? 'more talks' : 'another talk'} by {speaker.title}.
+                Enjoy {speaker.talks.length >= 2 ? 'more talks' : 'another talk'} by {speaker.title}
+                .
               </p>
             </div>
           </Section.Sidebar>

@@ -1,18 +1,14 @@
 // todo: Display five random featured talks as recomendations.
 // todo: Display tabs for favorite talks, clips, speakers.
-import React, { useEffect, useState } from 'react'
-import { navigate, graphql } from 'gatsby'
 import { HeartIcon } from '@heroicons/react/outline'
+import { graphql, navigate } from 'gatsby'
+import React, { useEffect, useState } from 'react'
 
-import { Page } from 'components/page'
-import { Section } from 'components/section'
-import { SEO } from 'components/seo'
-import { TalksList } from 'components/talks/list'
-import { Link } from 'components/link'
-
-import { useAuth } from 'context/auth'
-import { useUsers } from 'context/users'
-import { AccountMenu } from 'components/menus/account'
+import { Link, Page, SEO, Section } from '~/components'
+import { AccountMenu } from '~/components/menus/account'
+import { TalksList } from '~/components/talks/list'
+import { useAuth } from '~/context/auth'
+import { useUsers } from '~/context/users'
 
 function AccountFavoritesPage({ data, location }) {
   const [favoriteTalks, setFavoriteTalks] = useState([])
@@ -65,8 +61,8 @@ function AccountFavoritesPage({ data, location }) {
             >
               <Page.Title>Favorites</Page.Title>
               <p className="mt-2">
-                Click the {<HeartIcon className="inline h-6 w-6 text-gray-400" />} to save an item to your favorites
-                list.
+                Click the {<HeartIcon className="inline h-6 w-6 text-gray-400" />} to save an item
+                to your favorites list.
               </p>
             </Link>
           ) : (

@@ -1,7 +1,7 @@
-import React from 'react'
 import classNames from 'classnames'
+import React from 'react'
 
-import { SpeakerCard } from 'components/speakers/card'
+import { SpeakerCard } from '~/components/speakers/card'
 
 function SpeakersList({ children, className, speakers }) {
   return (

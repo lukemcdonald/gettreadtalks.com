@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
 import classNames from 'classnames'
+import React, { useState } from 'react'
 
-import { useAsync } from 'hooks/async'
-import { FormErrorMessage } from 'components/account/lib/error-message'
-
-import styles from 'components/styles'
-import formStyles from 'components/styles/form'
+import { FormErrorMessage } from '~/components/account/lib/error-message'
+import styles from '~/components/styles'
+import formStyles from '~/components/styles/form'
+import { useAsync } from '~/hooks/async'
 
 function DeactivateForm({ className, buttonText, onSubmit }) {
   const { isError, error, run } = useAsync()

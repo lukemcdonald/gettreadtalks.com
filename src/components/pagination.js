@@ -1,8 +1,8 @@
-import React from 'react'
-import classNames from 'classnames'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/solid'
+import classNames from 'classnames'
+import React from 'react'
 
-import { Link } from 'components/link'
+import { Link } from '~/components'
 
 function Pagination({
   className,
@@ -43,7 +43,12 @@ function Pagination({
             <Link
               to={`${base}/${prevPage}`}
               disabled={!hasPrevPage}
-              className={classNames('rounded-l', LINK_CSS, PREV_NEXT_CSS, !hasPrevPage && DISABLED_CSS)}
+              className={classNames(
+                'rounded-l',
+                LINK_CSS,
+                PREV_NEXT_CSS,
+                !hasPrevPage && DISABLED_CSS,
+              )}
             >
               <span>
                 <ChevronLeftIcon className="h-5 w-5" />
@@ -67,7 +72,12 @@ function Pagination({
           {showPreviousNext && (
             <Link
               to={`${base}/${nextPage || ''}`}
-              className={classNames('rounded-r', LINK_CSS, PREV_NEXT_CSS, !hasNextPage && DISABLED_CSS)}
+              className={classNames(
+                'rounded-r',
+                LINK_CSS,
+                PREV_NEXT_CSS,
+                !hasNextPage && DISABLED_CSS,
+              )}
             >
               <span className={classNames(showNextLabel ? 'pl-1' : 'sr-only')}>Next</span>
               <ChevronRightIcon className="h-5 w-5" />

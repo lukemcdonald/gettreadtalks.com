@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Helmet } from 'react-helmet'
 
-export default React.memo(({ defaultTitle, title, url }) => {
+const SchemaOrg = ({ defaultTitle, title, url }) => {
   const baseSchema = [
     {
       '@context': 'http://schema.org',
@@ -20,4 +20,6 @@ export default React.memo(({ defaultTitle, title, url }) => {
       <script type="application/ld+json">{JSON.stringify(schema)}</script>
     </Helmet>
   )
-})
+}
+
+export default React.memo(SchemaOrg)

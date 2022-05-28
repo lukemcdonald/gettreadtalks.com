@@ -1,12 +1,12 @@
-import React from 'react'
-import { navigate } from 'gatsby'
 import { UserCircleIcon } from '@heroicons/react/outline'
+import { navigate } from 'gatsby'
+import React from 'react'
 
-import { useAsync } from 'hooks/async'
-import { useMemoObject } from 'hooks/memo-object'
-import { useFirebase } from 'context/firebase'
-import { useNotification } from 'context/notifications'
-import { FullPageLogo, FullPageErrorFallback } from 'components/loader'
+import { FullPageErrorFallback, FullPageLogo } from '~/components/loader'
+import { useFirebase } from '~/context/firebase'
+import { useNotification } from '~/context/notifications'
+import { useAsync } from '~/hooks/async'
+import { useMemoObject } from '~/hooks/memo-object'
 
 const AuthContext = React.createContext({})
 AuthContext.displayName = 'AuthContext'
@@ -26,7 +26,16 @@ function AuthProvider(props) {
   const auth = firebase.auth()
   const db = firebase.firestore()
 
-  const { data: profile, status, error, setData, isLoading, isIdle, isError, isSuccess } = useAsync()
+  const {
+    data: profile,
+    status,
+    error,
+    setData,
+    isLoading,
+    isIdle,
+    isError,
+    isSuccess,
+  } = useAsync()
 
   React.useEffect(() => auth.onAuthStateChanged((creds) => setData(creds)), [auth, setData])
 

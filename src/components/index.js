@@ -1,0 +1,6 @@
+export { default as Image } from './image'
+export { default as Intro } from './intro'
+export { default as Link } from './link'
+export { default as Page } from './page'
+export { default as Section } from './section'
+export { SEO } from './seo'

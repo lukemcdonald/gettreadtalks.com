@@ -1,7 +1,8 @@
-import React from 'react'
-import { useField } from 'formik'
-import formStyles from 'components/styles/form'
 import classNames from 'classnames'
+import { useField } from 'formik'
+import React from 'react'
+
+import formStyles from '~/components/styles/form'
 
 function TextInput({ label, ...props }) {
   const [field] = useField(props)
@@ -25,7 +26,12 @@ function Checkbox({ children, ...props }) {
 
   return (
     <label className={classNames(formStyles.label, styles?.label)} htmlFor={name}>
-      <input className={classNames(formStyles.field, styles?.input)} type="checkbox" {...field} {...props} />
+      <input
+        className={classNames(formStyles.field, styles?.input)}
+        type="checkbox"
+        {...field}
+        {...props}
+      />
       {children}
     </label>
   )

@@ -1,7 +1,8 @@
-import * as React from 'react'
 import { Switch } from '@headlessui/react'
-import { callAll } from 'utils/misc'
 import classNames from 'classnames'
+import * as React from 'react'
+
+import { callAll } from '~/utils/misc'
 
 const ToggleContext = React.createContext()
 ToggleContext.displayName = 'ToggleContext'
@@ -26,7 +27,11 @@ function Toggle({ children }) {
     ...props,
   })
 
-  return <ToggleContext.Provider value={{ on, toggle, setOn, getToggleProps }}>{children}</ToggleContext.Provider>
+  return (
+    <ToggleContext.Provider value={{ on, toggle, setOn, getToggleProps }}>
+      {children}
+    </ToggleContext.Provider>
+  )
 }
 
 function ToggleOn({ children }) {

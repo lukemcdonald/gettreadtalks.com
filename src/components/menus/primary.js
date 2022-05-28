@@ -1,7 +1,7 @@
-import React from 'react'
 import classNames from 'classnames'
+import React from 'react'
 
-import { Link } from 'components/link'
+import { Link } from '~/components'
 
 function PrimaryMenu({ navigation }) {
   return (
@@ -11,7 +11,10 @@ function PrimaryMenu({ navigation }) {
           <Link
             key={item.name}
             to={item.to}
-            className={classNames('rounded-md px-3 py-1 text-lg font-medium text-gray-900', 'hover:text-primary-600')}
+            className={classNames(
+              'rounded-md px-3 py-1 text-lg font-medium text-gray-900',
+              'hover:text-primary-600',
+            )}
             activeClassName="uppercase font-extrabold text-primary-600 tracking-tight"
           >
             {item.name}

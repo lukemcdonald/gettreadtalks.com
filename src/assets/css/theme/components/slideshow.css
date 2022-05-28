@@ -4,15 +4,31 @@
     opacity: 0;
   }
 
-  .css-slideshow > *:nth-child(1) {animation-delay: 0s}
-  .css-slideshow > *:nth-child(2) {animation-delay: 4s}
-  .css-slideshow > *:nth-child(3) {animation-delay: 8s}
+  .css-slideshow > *:nth-child(1) {
+    animation-delay: 0s;
+  }
+  .css-slideshow > *:nth-child(2) {
+    animation-delay: 4s;
+  }
+  .css-slideshow > *:nth-child(3) {
+    animation-delay: 8s;
+  }
 
   @keyframes slideshow-opacity {
-    0% {opacity: 0.0}
-    10% {opacity: 1.0}
-    33.33% {opacity: 1.0}
-    47.33% {opacity: 0.0}
-    100% {opacity: 0.0}
+    0% {
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    33.33% {
+      opacity: 1;
+    }
+    47.33% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
   }
 }

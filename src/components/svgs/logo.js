@@ -1,5 +1,5 @@
-import React from 'react'
 import classNames from 'classnames'
+import React from 'react'
 
 function Logo({ className, colors = {} }) {
   const { tread = '', talks = '' } = colors

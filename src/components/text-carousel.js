@@ -1,5 +1,5 @@
-import React from 'react'
 import classNames from 'classnames'
+import React from 'react'
 
 function TextCarousel({ className, fontSize = '16vw', text }) {
   const string = text.split(' ')

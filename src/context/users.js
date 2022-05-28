@@ -1,10 +1,10 @@
 import React from 'react'
 
-import { useAuth } from 'context/auth'
-import { useFirebase } from 'context/firebase'
-import { useAsync } from 'hooks/async'
-import { useMemoObject } from 'hooks/memo-object'
-import { FullPageLogo, FullPageErrorFallback } from 'components/loader'
+import { FullPageErrorFallback, FullPageLogo } from '~/components/loader'
+import { useAuth } from '~/context/auth'
+import { useFirebase } from '~/context/firebase'
+import { useAsync } from '~/hooks/async'
+import { useMemoObject } from '~/hooks/memo-object'
 
 const UsersContext = React.createContext({})
 UsersContext.displayName = 'UsersContext'

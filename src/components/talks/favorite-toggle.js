@@ -1,11 +1,11 @@
-import React from 'react'
-import classNames from 'classnames'
 import { HeartIcon as HeartOutlineIcon } from '@heroicons/react/outline'
 import { HeartIcon as HeartSolidIcon } from '@heroicons/react/solid'
+import classNames from 'classnames'
+import React from 'react'
 
-import { useFavoriteTalk } from 'hooks/favorite-talk'
-import { useUsers } from 'context/users'
-import { Toggle, ToggleOn, ToggleOff, ToggleButton } from 'components/toggle'
+import { Toggle, ToggleButton, ToggleOff, ToggleOn } from '~/components/toggle'
+import { useUsers } from '~/context/users'
+import { useFavoriteTalk } from '~/hooks/favorite-talk'
 
 function FavoriteToggle({ classNameToggle = {}, talk, ...props }) {
   const [enabled, setEnabled] = React.useState(false)

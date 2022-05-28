@@ -1,6 +1,6 @@
 import React from 'react'
-import { Link } from 'components/link'
-import { Section } from 'components/section'
+
+import { Link, Section } from '~/components'
 
 function SubNav({ className, links = [], title }) {
   return (

@@ -13,9 +13,10 @@
     "build": "NODE_ENV=production gatsby build",
     "clean": "gatsby clean",
     "develop": "gatsby develop",
-    "lint": "eslint .",
     "format": "prettier --write .",
+    "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint .",
     "lint:fix": "eslint . --fix",
+    "predeploy": "npm run build",
     "preinstall": "npx only-allow yarn",
     "serve": "gatsby serve",
     "start": "npm run develop"
@@ -40,7 +41,6 @@
     "gatsby-plugin-postcss": "^5.15.0",
     "gatsby-plugin-react-helmet": "^5.15.0",
     "gatsby-plugin-react-svg": "^3.1.0",
-    "gatsby-plugin-resolve-src": "^2.1.0",
     "gatsby-plugin-robots-txt": "^1.7.1",
     "gatsby-plugin-sharp": "^4.15.0",
     "gatsby-plugin-sitemap": "^5.15.0",
@@ -59,11 +59,13 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
+    "@remix-run/eslint-config": "^1.5.1",
+    "@trivago/prettier-plugin-sort-imports": "^3.2.0",
     "autoprefixer": "^10.4.7",
     "eslint": "^8.16.0",
-    "eslint-config-kentcdodds": "^20.2.0",
     "eslint-config-prettier": "^8.5.0",
     "esm": "^3.2.25",
+    "gatsby-plugin-tsconfig-paths": "^1.0.5",
     "postcss": "^8.4.14",
     "postcss-cli": "^9.1.0",
     "prettier": "^2.6.2",
@@ -71,8 +73,8 @@
     "tailwindcss": "^3.0.24"
   },
   "eslintIgnore": [
-    "node_modules",
-    "build",
-    "public"
+    "/node_modules",
+    "/build",
+    "/public"
   ]
 }

@@ -1,13 +1,12 @@
-import React from 'react'
-import { RssIcon, MailIcon } from '@heroicons/react/outline'
-import { Disclosure } from 'components/affiliates/disclosure'
+import { MailIcon, RssIcon } from '@heroicons/react/outline'
 import classNames from 'classnames'
 import addToMailchimp from 'gatsby-plugin-mailchimp'
+import React from 'react'
 
-import { Image } from 'components/image'
-import { Link } from 'components/link'
-import { SubscribeForm } from 'components/newsletter/subscribe-form'
-import { useAffiliateLinks } from 'hooks/affiliate-links'
+import { Image, Link } from '~/components'
+import { Disclosure } from '~/components/affiliates/disclosure'
+import { SubscribeForm } from '~/components/newsletter/subscribe-form'
+import { useAffiliateLinks } from '~/hooks/affiliate-links'
 
 const navigation = {
   company: [
@@ -54,7 +53,14 @@ const navigation = {
 
 function WidgetTitle({ className, title }) {
   return (
-    <h3 className={classNames('text-sm font-semibold uppercase tracking-wider text-gray-400', className)}>{title}</h3>
+    <h3
+      className={classNames(
+        'text-sm font-semibold uppercase tracking-wider text-gray-400',
+        className,
+      )}
+    >
+      {title}
+    </h3>
   )
 }
 
@@ -92,8 +98,9 @@ function AffiliateLinkWidget({ className, title, data }) {
         </Link>
         <Disclosure title="Affiliate">
           <p>
-            A small commission may be earned through links, endorsements, recommendations, and/or testimonials for any
-            products shown on this site. Your purchase helps support the website.
+            A small commission may be earned through links, endorsements, recommendations, and/or
+            testimonials for any products shown on this site. Your purchase helps support the
+            website.
           </p>
         </Disclosure>
       </div>
@@ -111,7 +118,11 @@ function SiteFooter({ siteTitle }) {
           <div className="grid grid-cols-2 gap-8 xl:col-span-2">
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <NavigationWidget title="Engage" navigation={navigation.content} />
-              <NavigationWidget className="mt-12 md:mt-0" title="General" navigation={navigation.company} />
+              <NavigationWidget
+                className="mt-12 md:mt-0"
+                title="General"
+                navigation={navigation.company}
+              />
             </div>
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <NavigationWidget title="Resources" navigation={navigation.resources} />

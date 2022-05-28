@@ -1,5 +1,6 @@
 import React from 'react'
-import { Notification } from 'components/notification'
+
+import { Notification } from '~/components/notification'
 
 const NotificationContext = React.createContext()
 NotificationContext.displayName = 'NotificationContext'
@@ -56,7 +57,11 @@ function NotificationProvider({ children }) {
       >
         <div className="flex w-full flex-col items-center space-y-4 sm:items-end">
           {state.messages.map((message) => (
-            <Notification key={message.id} message={message} onClose={() => dispatch({ type: 'remove', message })} />
+            <Notification
+              key={message.id}
+              message={message}
+              onClose={() => dispatch({ type: 'remove', message })}
+            />
           ))}
         </div>
       </div>

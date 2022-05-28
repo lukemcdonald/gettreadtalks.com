@@ -1,18 +1,14 @@
 // todo: Setup Firebase functionality to handle email and password updates onClick event handlers.
-
-import React from 'react'
 import { navigate } from 'gatsby'
+import React from 'react'
 
-import { Section } from 'components/section'
-import { SEO } from 'components/seo'
-
-import { useAuth } from 'context/auth'
-import { AccountMenu } from 'components/menus/account'
-import { DeactivateAccountButton } from 'components/account/deactivate-dialog'
-
-import { ProfileCard } from 'components/account/profile-card'
-import { SettingsEmailForm } from 'components/account/settings-email-form'
-import { SettingsPasswordForm } from 'components/account/settings-password-form'
+import { SEO, Section } from '~/components'
+import { DeactivateAccountButton } from '~/components/account/deactivate-dialog'
+import { ProfileCard } from '~/components/account/profile-card'
+import { SettingsEmailForm } from '~/components/account/settings-email-form'
+import { SettingsPasswordForm } from '~/components/account/settings-password-form'
+import { AccountMenu } from '~/components/menus/account'
+import { useAuth } from '~/context/auth'
 
 function AccountPage({ location }) {
   const { isUser, profile, updateSettings } = useAuth()

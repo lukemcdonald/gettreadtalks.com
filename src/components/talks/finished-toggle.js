@@ -1,11 +1,11 @@
-import React from 'react'
-import classNames from 'classnames'
 import { CheckIcon as CheckOutlineIcon } from '@heroicons/react/outline'
 import { CheckIcon as CheckSolidIcon } from '@heroicons/react/solid'
+import classNames from 'classnames'
+import React from 'react'
 
-import { useFinishedTalk } from 'hooks/finished-talk'
-import { useUsers } from 'context/users'
-import { Toggle, ToggleOn, ToggleOff, ToggleButton } from 'components/toggle'
+import { Toggle, ToggleButton, ToggleOff, ToggleOn } from '~/components/toggle'
+import { useUsers } from '~/context/users'
+import { useFinishedTalk } from '~/hooks/finished-talk'
 
 function FinishedToggle({ classNameToggle = {}, talk, ...props }) {
   const [enabled, setEnabled] = React.useState(false)

@@ -1,19 +1,19 @@
-import React, { Fragment } from 'react'
-import classNames from 'classnames'
 import { Menu, Transition } from '@headlessui/react'
 import {
+  CheckCircleIcon as CheckIcon,
+  HeartIcon,
   LoginIcon,
   LogoutIcon,
-  HeartIcon,
-  CheckCircleIcon as CheckIcon,
   UserCircleIcon as UserIcon,
 } from '@heroicons/react/outline'
 import { ChevronDownIcon } from '@heroicons/react/solid'
+import classNames from 'classnames'
+import React, { Fragment } from 'react'
 
-import { Link } from 'components/link'
-import { useAuth } from 'context/auth'
-import { useAsync } from 'hooks/async'
-import { ProfileCard } from 'components/account/profile-card'
+import { Link } from '~/components'
+import { ProfileCard } from '~/components/account/profile-card'
+import { useAuth } from '~/context/auth'
+import { useAsync } from '~/hooks/async'
 
 function styleMenuItem(item = '', args = {}) {
   const { active, type } = args
@@ -27,7 +27,11 @@ function styleMenuItem(item = '', args = {}) {
         'hover:text-primary-600',
       )
     case 'icon':
-      return classNames(active ? '' : '', 'w-5 h-5 mr-3 flex-none text-gray-500', 'group-hover:text-primary-600')
+      return classNames(
+        active ? '' : '',
+        'w-5 h-5 mr-3 flex-none text-gray-500',
+        'group-hover:text-primary-600',
+      )
     default:
       throw new Error(`Unknown menu item type: ${item}`)
   }
@@ -60,7 +64,11 @@ function ProfileMenuItem({ as, to, title, icon: Icon, onClick }) {
       </Link>
     ),
     button: ({ active, children }) => (
-      <button type="button" onClick={onClick} className={styleMenuItem('item', { active, type: 'button' })}>
+      <button
+        type="button"
+        onClick={onClick}
+        className={styleMenuItem('item', { active, type: 'button' })}
+      >
         {children}
       </button>
     ),
@@ -92,7 +100,13 @@ const AuthenticatedMenu = () => {
       </div>
       <div className="p-1">
         <ProfileMenuItem to="/account/" icon={UserIcon} title="Settings" />
-        <ProfileMenuItem to="/account/" icon={LogoutIcon} title="Sign out" as="button" onClick={() => run(logout())} />
+        <ProfileMenuItem
+          to="/account/"
+          icon={LogoutIcon}
+          title="Sign out"
+          as="button"
+          onClick={() => run(logout())}
+        />
       </div>
     </>
   )

@@ -1,5 +1,6 @@
 import React from 'react'
-import { Card } from 'components/card'
+
+import { Card } from '~/components/card'
 
 function ClipCard({ clip }) {
   return (

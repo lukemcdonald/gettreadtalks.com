@@ -1,10 +1,10 @@
-import React from 'react'
-import classNames from 'classnames'
 import { CheckCircleIcon as CheckIcon, XCircleIcon } from '@heroicons/react/outline'
+import classNames from 'classnames'
+import React from 'react'
 
-import { useAsync } from 'hooks/async'
-import { useUsers } from 'context/users'
-import { useNotification } from 'context/notifications'
+import { useNotification } from '~/context/notifications'
+import { useUsers } from '~/context/users'
+import { useAsync } from '~/hooks/async'
 
 function useFinishedTalk() {
   const { run } = useAsync()
