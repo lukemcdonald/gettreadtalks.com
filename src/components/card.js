@@ -139,7 +139,7 @@ function CardContent({ to = '', icons = [], subtitle, title, text }) {
             {title}
           </CardTitle>
         </Link>
-        {icons?.length > 0 && (
+        {icons.length > 0 && (
           <CardIcons className="relative top-px z-10 inline-flex space-x-1" icons={icons} context={context} />
         )}
       </div>

@@ -46,7 +46,7 @@
     "gatsby-remark-responsive-iframe": "^5.15.0",
     "gatsby-source-airtable": "^2.3.0",
     "gatsby-source-filesystem": "^4.15.0",
-    "gatsby-transformer-remark": "^4.11.0",
+    "gatsby-transformer-remark": "^5.15.0",
     "gatsby-transformer-sharp": "^4.15.0",
     "postcss-import": "^14.1.0",
     "react": "^17.0.2",

@@ -6,13 +6,7 @@ import { Disclosure } from 'components/affiliates/disclosure'
 function AffiliateLinkCard({ data: post }) {
   return (
     <CardWrapper>
-      <CardImage
-        as="figure"
-        image={post.image}
-        className="mr-1 w-16"
-        imgClassName="rounded-l sm:rounded-sm"
-        alt={post.title}
-      />
+      <CardImage image={post.image} className="mr-1 w-16" imgClassName="rounded-l sm:rounded-sm" alt={post.title} />
       <CardContent to={post.link.childMarkdownRemark.rawMarkdownBody} title={post.title} text={post.subtitle} />
       <Disclosure title="Affiliate" className="absolute bottom-0 right-1">
         <p>
