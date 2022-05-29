@@ -23,8 +23,8 @@ function styleMenuItem(item = '', args = {}) {
       return classNames(
         active ? 'bg-gray-50' : '',
         type === 'button' ? 'w-full text-left' : '',
-        'block p-2 text-sm text-gray-600 rounded group flex items-center',
-        'hover:text-primary-600',
+        'p-2 text-sm text-gray-600 rounded group flex items-center',
+        'hover:text-gray-900 hover:bg-gray-100',
       )
     case 'icon':
       return classNames(
@@ -73,7 +73,9 @@ function ProfileMenuItem({ as, to, title, icon: Icon, onClick }) {
       </button>
     ),
   }
+
   const Item = as === 'button' ? types.button : types.link
+
   return (
     <Menu.Item>
       {({ active }) => (

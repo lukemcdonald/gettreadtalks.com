@@ -1,5 +1,5 @@
-import { Popover } from '@headlessui/react'
-import React from 'react'
+import { Popover, Transition } from '@headlessui/react'
+import React, { Fragment } from 'react'
 
 import { Link } from '~/components'
 import { MobileMenu, MobileMenuButton } from '~/components/menus/mobile'
@@ -37,9 +37,20 @@ function SiteNavigation({ siteTitle }) {
             </div>
           </div>
 
-          <Popover.Panel className="md:hidden">
-            {({ close }) => <MobileMenu navigation={primaryNav} onClick={close} />}
-          </Popover.Panel>
+          <Transition
+            show={open}
+            as={Fragment}
+            enter="transition ease-out duration-100"
+            enterFrom="opacity-0 scale-95"
+            enterTo="opacity-100 scale-100"
+            leave="transition ease-in duration-75"
+            leaveFrom="opacity-100 scale-100"
+            leaveTo="opacity-0 scale-95"
+          >
+            <Popover.Panel className="md:hidden">
+              {({ close }) => <MobileMenu navigation={primaryNav} onClick={close} />}
+            </Popover.Panel>
+          </Transition>
         </>
       )}
     </Popover>
