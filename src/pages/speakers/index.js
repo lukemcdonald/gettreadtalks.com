@@ -1,9 +1,10 @@
 import { graphql } from 'gatsby'
 import React from 'react'
 
-import { Page, SEO, Section } from '~/components'
-import { SpeakersFilter } from '~/components/speakers/filter'
-import { SpeakersList } from '~/components/speakers/list'
+import { Page } from '~/components/page'
+import { Section } from '~/components/section'
+import { SEO } from '~/components/seo'
+import { SpeakerFilter, SpeakerList } from '~/components/speaker'
 import { TextCarousel } from '~/components/text-carousel'
 
 function SpeakersPage({ data, location }) {
@@ -17,11 +18,11 @@ function SpeakersPage({ data, location }) {
 
       <Section>
         <Section.Content align="full">
-          <SpeakersList className="xl:grid-cols-4" speakers={speakers.nodes}>
+          <SpeakerList className="xl:grid-cols-4" speakers={speakers.nodes}>
             <div className="'relative row-span-2 flex flex-grow items-start rounded border border-transparent bg-white p-4 px-6 py-5 text-left text-gray-700 shadow-sm transition duration-300">
               <div>
                 <Page.Title>
-                  <SpeakersFilter speakers={speakers.nodes} />
+                  <SpeakerFilter speakers={speakers.nodes} />
                 </Page.Title>
 
                 <div className="prose mt-2">
@@ -32,7 +33,7 @@ function SpeakersPage({ data, location }) {
                 </div>
               </div>
             </div>
-          </SpeakersList>
+          </SpeakerList>
         </Section.Content>
       </Section>
     </>

@@ -1,8 +1,10 @@
 import { graphql } from 'gatsby'
 import React from 'react'
 
-import { Page, SEO, Section } from '~/components'
-import { SeriesList } from '~/components/series/list'
+import { Page } from '~/components/page'
+import { Section } from '~/components/section'
+import { SEO } from '~/components/seo'
+import { SeriesList } from '~/components/series'
 
 function SeriesPage({ data, location }) {
   const { series } = data

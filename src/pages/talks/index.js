@@ -1,10 +1,11 @@
 import { graphql } from 'gatsby'
 import React from 'react'
 
-import { Page, SEO, Section } from '~/components'
+import { Page } from '~/components/page'
 import { Pagination } from '~/components/pagination'
-import { TalksFilter } from '~/components/talks/filter'
-import { TalksList } from '~/components/talks/list'
+import { Section } from '~/components/section'
+import { SEO } from '~/components/seo'
+import { TalkFilter, TalkList } from '~/components/talk'
 import { TextCarousel } from '~/components/text-carousel'
 import { maybePluralize } from '~/utils/misc'
 
@@ -27,10 +28,10 @@ function TalksPage({ data, location, pageContext }) {
 
       <Section>
         <Section.Sidebar>
-          {isTopical && <Section.Heading as="h2">Talks On</Section.Heading>}
+          {isTopical && <Section.Title as="h2">Talks On</Section.Title>}
 
           <Page.Title>
-            <TalksFilter
+            <TalkFilter
               topics={topics.nodes}
               current={{
                 value: pageContext.slug,
@@ -45,7 +46,7 @@ function TalksPage({ data, location, pageContext }) {
         </Section.Sidebar>
 
         <Section.Content>
-          <TalksList talks={talks.nodes} />
+          <TalkList talks={talks.nodes} />
           <Pagination
             className="mt-4 w-full sm:mt-6"
             pageSize={parseInt(process.env.GATSBY_PAGE_SIZE, 8)}

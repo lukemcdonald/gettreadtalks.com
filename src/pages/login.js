@@ -1,8 +1,11 @@
 import { navigate } from 'gatsby'
 import React from 'react'
 
-import { Link, Page, SEO, Section } from '~/components'
 import { LoginForm } from '~/components/account/login-form'
+import { Link } from '~/components/link'
+import { Page } from '~/components/page'
+import { Section } from '~/components/section'
+import { SEO } from '~/components/seo'
 import formStyles from '~/components/styles/form'
 import { useAuth } from '~/context/auth'
 

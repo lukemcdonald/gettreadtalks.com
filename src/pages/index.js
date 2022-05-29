@@ -1,10 +1,11 @@
 import { graphql } from 'gatsby'
 import React, { useState } from 'react'
 
-import { Intro, SEO, Section } from '~/components'
-import { SpeakersList } from '~/components/speakers/list'
-import { TalksList } from '~/components/talks/list'
-import { TalksNav } from '~/components/talks/nav'
+import { Intro } from '~/components/intro'
+import { Section } from '~/components/section'
+import { SEO } from '~/components/seo'
+import { SpeakerList } from '~/components/speaker'
+import { TalkList, TalkNav } from '~/components/talk'
 import { TextCarousel } from '~/components/text-carousel'
 import { arrayShuffle } from '~/utils/misc'
 
@@ -27,7 +28,7 @@ function IndexPage({ data, location }) {
       <Section className="relative">
         <TextCarousel text="Jesus Is King" />
         <Section.Sidebar sticky>
-          <Section.Heading as="h2">Featured Talks</Section.Heading>
+          <Section.Title as="h2">Featured Talks</Section.Title>
 
           <div className="prose mb-8">
             <p>
@@ -36,16 +37,16 @@ function IndexPage({ data, location }) {
             </p>
           </div>
 
-          <TalksNav title="More Talks" />
+          <TalkNav title="More Talks" />
         </Section.Sidebar>
         <Section.Content>
-          <TalksList talks={shuffledTalks.slice(0, 5)} />
+          <TalkList talks={shuffledTalks.slice(0, 5)} />
         </Section.Content>
       </Section>
 
       <Section separator="top">
         <Section.Sidebar sticky>
-          <Section.Heading as="h2">Featured Speakers</Section.Heading>
+          <Section.Title as="h2">Featured Speakers</Section.Title>
 
           <p className="prose">
             Have you listened to one of these faithful ministers of the Gospel?
@@ -53,7 +54,7 @@ function IndexPage({ data, location }) {
         </Section.Sidebar>
 
         <Section.Content align="wide">
-          <SpeakersList className="xl:grid-cols-3" speakers={shuffledSpeakers.slice(0, 6)} />
+          <SpeakerList className="xl:grid-cols-3" speakers={shuffledSpeakers.slice(0, 6)} />
         </Section.Content>
       </Section>
     </>

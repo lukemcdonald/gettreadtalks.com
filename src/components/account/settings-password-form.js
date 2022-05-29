@@ -6,7 +6,7 @@ import * as Yup from 'yup'
 import { FormErrorMessage } from '~/components/account/lib/error-message'
 import styles from '~/components/styles'
 import formStyles from '~/components/styles/form'
-import { Toggle, ToggleButton, ToggleOff, ToggleOn } from '~/components/toggle'
+import { Toggle } from '~/components/toggle'
 import { useAuth } from '~/context/auth'
 import { useAsync } from '~/hooks/async'
 
@@ -78,20 +78,20 @@ function SettingsPasswordForm({ className, buttonText, onSubmit }) {
                   {...field}
                 />
                 <Toggle>
-                  <ToggleButton
+                  <Toggle.Button
                     checked={showPassword}
                     onChange={() => toggleShowPassword()}
                     className="absolute top-0 bottom-0 right-0 w-9 border-l border-gray-300 p-2 text-gray-400 transition-colors hover:text-gray-600"
                   >
-                    <ToggleOff>
+                    <Toggle.Off>
                       <span className="sr-only">Show password</span>
                       <EyeIcon className="h-full w-full" />
-                    </ToggleOff>
-                    <ToggleOn>
+                    </Toggle.Off>
+                    <Toggle.On>
                       <span className="sr-only">Hide password</span>
                       <EyeOffIcon className="h-full w-full text-gray-600" />
-                    </ToggleOn>
-                  </ToggleButton>
+                    </Toggle.On>
+                  </Toggle.Button>
                 </Toggle>
               </div>
             )}

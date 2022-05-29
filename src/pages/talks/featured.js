@@ -1,9 +1,10 @@
 import { graphql } from 'gatsby'
 import React from 'react'
 
-import { Page, SEO, Section } from '~/components'
-import { TalksFilter } from '~/components/talks/filter'
-import { TalksList } from '~/components/talks/list'
+import { Page } from '~/components/page'
+import { Section } from '~/components/section'
+import { SEO } from '~/components/seo'
+import { TalkFilter, TalkList } from '~/components/talk'
 
 function FeaturedTalksPage({ data, location }) {
   const { talks, topics } = data
@@ -15,7 +16,7 @@ function FeaturedTalksPage({ data, location }) {
       <Section>
         <Section.Sidebar sticky>
           <Page.Title className="relative">
-            <TalksFilter
+            <TalkFilter
               topics={topics.nodes}
               current={{
                 label: '★ Talks',
@@ -30,7 +31,7 @@ function FeaturedTalksPage({ data, location }) {
         </Section.Sidebar>
 
         <Section.Content>
-          <TalksList talks={talks.nodes} />
+          <TalkList talks={talks.nodes} />
         </Section.Content>
       </Section>
     </>

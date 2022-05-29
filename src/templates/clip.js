@@ -1,8 +1,10 @@
 import { graphql } from 'gatsby'
 import React from 'react'
 
-import { Intro, Link, SEO } from '~/components'
-import { TalksList } from '~/components/talks/list'
+import { Intro } from '~/components/intro'
+import { Link } from '~/components/link'
+import { SEO } from '~/components/seo'
+import { TalkList } from '~/components/talk'
 
 function SingleClipPage({ data, location }) {
   const { data: clip } = data.clip
@@ -43,7 +45,7 @@ function SingleClipPage({ data, location }) {
           />
         )}
 
-        {clip.talks && <TalksList className="-mt-1" subtitle="Related Talk:" talks={clip.talks} />}
+        {clip.talks && <TalkList className="-mt-1" subtitle="Related Talk:" talks={clip.talks} />}
 
         {!hasVideo && mediaLink && <Link.Button to={mediaLink}>Listen to Clip &rarr;</Link.Button>}
       </Intro>

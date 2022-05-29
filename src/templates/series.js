@@ -1,8 +1,10 @@
 import { graphql } from 'gatsby'
 import React from 'react'
 
-import { Intro, SEO, Section } from '~/components'
-import { TalksList } from '~/components/talks/list'
+import { Intro } from '~/components/intro'
+import { Section } from '~/components/section'
+import { SEO } from '~/components/seo'
+import { TalkList } from '~/components/talk'
 
 function SingleSeriesPage({ data, location }) {
   const { data: series } = data.series
@@ -17,7 +19,7 @@ function SingleSeriesPage({ data, location }) {
 
       <Section>
         <Section.Content>
-          <TalksList talks={series.talks} />
+          <TalkList talks={series.talks} />
         </Section.Content>
       </Section>
     </>

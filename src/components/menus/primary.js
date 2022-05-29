@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import React from 'react'
 
-import { Link } from '~/components'
+import { Link } from '~/components/link'
 
 function PrimaryMenu({ navigation }) {
   return (

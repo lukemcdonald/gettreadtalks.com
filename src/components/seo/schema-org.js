@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Helmet } from 'react-helmet'
 
-const SchemaOrg = ({ defaultTitle, title, url }) => {
+function SchemaOrg({ defaultTitle, title, url }) {
   const baseSchema = [
     {
       '@context': 'http://schema.org',

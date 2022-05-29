@@ -2,12 +2,13 @@
 import { navigate } from 'gatsby'
 import React from 'react'
 
-import { SEO, Section } from '~/components'
 import { DeactivateAccountButton } from '~/components/account/deactivate-dialog'
 import { ProfileCard } from '~/components/account/profile-card'
 import { SettingsEmailForm } from '~/components/account/settings-email-form'
 import { SettingsPasswordForm } from '~/components/account/settings-password-form'
 import { AccountMenu } from '~/components/menus/account'
+import { Section } from '~/components/section'
+import { SEO } from '~/components/seo'
 import { useAuth } from '~/context/auth'
 
 function AccountPage({ location }) {

@@ -1,11 +1,15 @@
 import { graphql } from 'gatsby'
 import React from 'react'
 
-import { Image, Intro, Link, SEO, Section } from '~/components'
-import { ClipsList } from '~/components/clips/list'
+import { ClipList } from '~/components/clip'
 import { ConditionalWrapper } from '~/components/conditional-wrapper'
-import { SpeakersFilter } from '~/components/speakers/filter'
-import { TalksList } from '~/components/talks/list'
+import { Image } from '~/components/image'
+import { Intro } from '~/components/intro'
+import { Link } from '~/components/link'
+import { Section } from '~/components/section'
+import { SEO } from '~/components/seo'
+import { SpeakerFilter } from '~/components/speaker'
+import { TalkList } from '~/components/talk'
 import { TextCarousel } from '~/components/text-carousel'
 import { maybePluralize } from '~/utils/misc'
 
@@ -33,7 +37,7 @@ function SingleSpeakerPage({ data, location, pageContext }) {
             alt={speaker.title}
           />
 
-          <SpeakersFilter
+          <SpeakerFilter
             speakers={speakers.nodes}
             current={{
               value: pageContext.slug,
@@ -52,9 +56,9 @@ function SingleSpeakerPage({ data, location, pageContext }) {
       >
         {speaker.ministry && (
           <Section.Sidebar>
-            <Section.Heading as="h2" className="text-gray-400">
+            <Section.Title as="h2" className="text-gray-400">
               Ministry
-            </Section.Heading>
+            </Section.Title>
 
             <p className="prose mt-3 text-white">
               <ConditionalWrapper
@@ -70,9 +74,9 @@ function SingleSpeakerPage({ data, location, pageContext }) {
         <Section.Content>
           {speaker.description && (
             <>
-              <Section.Heading as="h2" className="text-gray-400">
+              <Section.Title as="h2" className="text-gray-400">
                 About
-              </Section.Heading>
+              </Section.Title>
 
               <div
                 className="prose mt-3 text-white"
@@ -90,18 +94,18 @@ function SingleSpeakerPage({ data, location, pageContext }) {
           <TextCarousel text={`${speaker?.role || 'Ambassador'} for Christ`} />
 
           <Section.Sidebar sticky>
-            <Section.Heading>
+            <Section.Title>
               {maybePluralize(speaker.talks.length, `Talk`, {
                 showCount: false,
               })}
-            </Section.Heading>
+            </Section.Title>
             <p className="prose">
               Enjoy more talks by {speaker.role} {speaker.title}.
             </p>
           </Section.Sidebar>
 
           <Section.Content>
-            <TalksList talks={speaker.talks} />
+            <TalkList talks={speaker.talks} />
           </Section.Content>
         </Section>
       )}
@@ -109,13 +113,13 @@ function SingleSpeakerPage({ data, location, pageContext }) {
       {speaker.clips && (
         <Section separator={speaker.talks && 'top'}>
           <Section.Sidebar sticky>
-            <Section.Heading>
+            <Section.Title>
               <span>
                 {maybePluralize(speaker.clips.length, `Clip`, {
                   showCount: false,
                 })}
               </span>
-            </Section.Heading>
+            </Section.Title>
 
             <p className="prose">
               Be encouraged by {speaker.clips.length > 1 ? 'these' : 'this'} short Christ centered{' '}
@@ -127,7 +131,7 @@ function SingleSpeakerPage({ data, location, pageContext }) {
           </Section.Sidebar>
 
           <Section.Content>
-            <ClipsList clips={speaker.clips} />
+            <ClipList clips={speaker.clips} />
           </Section.Content>
         </Section>
       )}

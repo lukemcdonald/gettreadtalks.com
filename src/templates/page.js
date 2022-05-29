@@ -1,7 +1,9 @@
 import { graphql } from 'gatsby'
 import React from 'react'
 
-import { Page, SEO, Section } from '~/components'
+import { Page } from '~/components/page'
+import { Section } from '~/components/section'
+import { SEO } from '~/components/seo'
 
 function SinglePage({ data, location }) {
   const { data: page } = data.page

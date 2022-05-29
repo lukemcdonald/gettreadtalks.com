@@ -4,9 +4,12 @@ import { CheckCircleIcon as CheckIcon } from '@heroicons/react/outline'
 import { graphql, navigate } from 'gatsby'
 import React, { useEffect, useState } from 'react'
 
-import { Link, Page, SEO, Section } from '~/components'
+import { Link } from '~/components/link'
 import { AccountMenu } from '~/components/menus/account'
-import { TalksList } from '~/components/talks/list'
+import { Page } from '~/components/page'
+import { Section } from '~/components/section'
+import { SEO } from '~/components/seo'
+import { TalkList } from '~/components/talk'
 import { useAuth } from '~/context/auth'
 import { useUsers } from '~/context/users'
 
@@ -69,7 +72,7 @@ function AccountFinishedPage({ data, location }) {
             <div className="divide-y divide-gray-200">
               <Page.Title>Your finished talks:</Page.Title>
               <div className="mt-5">
-                <TalksList talks={finishedTalks} />
+                <TalkList talks={finishedTalks} />
               </div>
             </div>
           )}

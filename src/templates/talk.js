@@ -2,11 +2,12 @@ import { ExternalLinkIcon, MailIcon } from '@heroicons/react/outline'
 import { graphql } from 'gatsby'
 import React, { useState } from 'react'
 
-import { Intro, Link, SEO, Section } from '~/components'
-import { SeriesList } from '~/components/series/list'
-import { FavoriteToggle } from '~/components/talks/favorite-toggle'
-import { FinishedToggle } from '~/components/talks/finished-toggle'
-import { TalksList } from '~/components/talks/list'
+import { Intro } from '~/components/intro'
+import { Link } from '~/components/link'
+import { Section } from '~/components/section'
+import { SEO } from '~/components/seo'
+import { SeriesList } from '~/components/series'
+import { FavoriteToggle, FinishedToggle, TalkList } from '~/components/talk'
 import { arrayShuffle } from '~/utils/misc'
 
 function TalkPage({ data, location, pageContext }) {
@@ -79,9 +80,9 @@ function TalkPage({ data, location, pageContext }) {
 
       <Section className="bg-gray-900 text-white" separator="top" separatorClass="border-gray-700">
         <Section.Sidebar>
-          <Section.Heading as="h2" className="text-gray-400">
+          <Section.Title as="h2" className="text-gray-400">
             Actions
-          </Section.Heading>
+          </Section.Title>
 
           <div className="mt-3 flex">
             <FavoriteToggle
@@ -114,9 +115,9 @@ function TalkPage({ data, location, pageContext }) {
         </Section.Sidebar>
 
         <Section.Content>
-          <Section.Heading as="h2" className="text-gray-400">
+          <Section.Title as="h2" className="text-gray-400">
             Topics
-          </Section.Heading>
+          </Section.Title>
 
           <div className="mt-3">
             {talk?.topics.map(({ data, fields }) => (
@@ -129,9 +130,9 @@ function TalkPage({ data, location, pageContext }) {
 
         {talk.scripture && (
           <Section.Sidebar className="pb-6">
-            <Section.Heading as="h2" className="text-gray-400">
+            <Section.Title as="h2" className="text-gray-400">
               Scripture
-            </Section.Heading>
+            </Section.Title>
             <div className="prose text-white">
               <Link.Button
                 to={`https://www.biblegateway.com/passage/?search=${encodeURI(
@@ -150,7 +151,7 @@ function TalkPage({ data, location, pageContext }) {
       {hasSeries && (
         <Section separator={hasTalks && 'bottom'}>
           <Section.Sidebar sticky>
-            <Section.Heading as="h2">Series</Section.Heading>
+            <Section.Title as="h2">Series</Section.Title>
 
             <div className="prose">
               <p>This talk is part of a series of related talks.</p>
@@ -166,7 +167,7 @@ function TalkPage({ data, location, pageContext }) {
       {hasTalks && (
         <Section>
           <Section.Sidebar sticky>
-            <Section.Heading as="h2">Talks</Section.Heading>
+            <Section.Title as="h2">Talks</Section.Title>
 
             <div className="prose">
               <p>
@@ -177,7 +178,7 @@ function TalkPage({ data, location, pageContext }) {
           </Section.Sidebar>
 
           <Section.Content>
-            <TalksList talks={shuffledTalks.slice(0, 5)} />
+            <TalkList talks={shuffledTalks.slice(0, 5)} />
 
             {speaker.talks.length > 5 && (
               <p className="mt-6">

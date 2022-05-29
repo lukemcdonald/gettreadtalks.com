@@ -1,9 +1,10 @@
 import { graphql } from 'gatsby'
 import React from 'react'
 
-import { Page, SEO, Section } from '~/components'
-import { SpeakersFilter } from '~/components/speakers/filter'
-import { SpeakersList } from '~/components/speakers/list'
+import { Page } from '~/components/page'
+import { Section } from '~/components/section'
+import { SEO } from '~/components/seo'
+import { SpeakerFilter, SpeakerList } from '~/components/speaker'
 
 function FeaturedSpeakersPage({ data, location }) {
   const { speakers } = data
@@ -15,7 +16,7 @@ function FeaturedSpeakersPage({ data, location }) {
       <Section>
         <Section.Sidebar sticky>
           <Page.Title>
-            <SpeakersFilter
+            <SpeakerFilter
               speakers={speakers.nodes}
               current={{
                 value: '/speakers/featured/',
@@ -33,7 +34,7 @@ function FeaturedSpeakersPage({ data, location }) {
         </Section.Sidebar>
 
         <Section.Content align="wide">
-          <SpeakersList className="xl:grid-cols-3" speakers={speakers.nodes} />
+          <SpeakerList className="xl:grid-cols-3" speakers={speakers.nodes} />
         </Section.Content>
       </Section>
     </>

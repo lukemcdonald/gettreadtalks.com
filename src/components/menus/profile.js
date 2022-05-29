@@ -10,7 +10,7 @@ import { ChevronDownIcon } from '@heroicons/react/solid'
 import classNames from 'classnames'
 import React, { Fragment } from 'react'
 
-import { Link } from '~/components'
+import { Link } from '~/components/link'
 import { ProfileCard } from '~/components/account/profile-card'
 import { useAuth } from '~/context/auth'
 import { useAsync } from '~/hooks/async'
