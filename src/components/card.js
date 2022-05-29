@@ -104,7 +104,7 @@ function CardWrapper({ children, className }) {
   return (
     <article
       className={classNames(
-        'relative flex flex-grow items-center space-x-3 rounded bg-white p-4 text-left text-gray-700 shadow-sm transition duration-300',
+        'relative flex flex-grow space-x-3 rounded bg-white p-4 text-left text-gray-700 shadow-sm transition duration-300 def:items-center',
         'ring-2 ring-transparent hover:ring-white',
         'hover:shadow-lg',
         className,
@@ -115,7 +115,7 @@ function CardWrapper({ children, className }) {
   )
 }
 
-function CardImage({ className, image, alt, ...props }) {
+function CardImage({ className, image, ...props }) {
   return (
     <>
       {image && (
