@@ -73,8 +73,7 @@ export const SectionHeading = ({ children, className = '', as }) => {
   return (
     <Tag
       className={classNames(
-        'mb-3 text-sm font-bold uppercase  tracking-wide lg:mb-2 lg:text-xs',
-        className.includes('text-gray-') || 'text-gray-500',
+        'mb-3 text-sm font-bold uppercase def:text-gray-500 tracking-wide lg:mb-2 lg:text-xs',
         className,
       )}
     >

@@ -7,10 +7,7 @@ function Disclosure({ children, className = '', title }) {
   return (
     <div
       className={classNames(
-        'z-40 mb-1 mr-1 rounded-sm px-1 text-xs',
-        className.includes('absolute') || 'absolute bottom-0 right-0',
-        className.includes('text-gray-') || 'text-gray-500',
-        className.includes('bg-gray-') || 'bg-gray-200',
+        'z-40 mb-1 mr-1 rounded-sm px-1 text-xs def:absolute def:bottom-0 def:right-0 def:text-gray-500 def:bg-gray-200',
         className,
       )}
     >
