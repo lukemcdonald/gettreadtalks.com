@@ -1,4 +1,4 @@
-import { Disclosure } from '@headlessui/react'
+import { Popover } from '@headlessui/react'
 import React from 'react'
 
 import { Link } from '~/components'
@@ -16,7 +16,7 @@ const primaryNav = [
 
 function SiteNavigation({ siteTitle }) {
   return (
-    <Disclosure as="nav">
+    <Popover as="nav">
       {({ open }) => (
         <>
           <div className="relative flex h-16 items-center justify-between">
@@ -37,12 +37,12 @@ function SiteNavigation({ siteTitle }) {
             </div>
           </div>
 
-          <Disclosure.Panel className="md:hidden">
-            <MobileMenu navigation={primaryNav} />
-          </Disclosure.Panel>
+          <Popover.Panel className="md:hidden">
+            {({ close }) => <MobileMenu navigation={primaryNav} onClick={close} />}
+          </Popover.Panel>
         </>
       )}
-    </Disclosure>
+    </Popover>
   )
 }
 

@@ -1,11 +1,11 @@
-import { Disclosure } from '@headlessui/react'
+import { Popover } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import classNames from 'classnames'
 import React from 'react'
 
 import { Link } from '~/components'
 
-function MobileMenu({ navigation }) {
+function MobileMenu({ navigation, onClick }) {
   return (
     <div className="absolute right-6 left-6 mt-2 space-y-1 rounded-md bg-white px-1 py-2 shadow-lg ring-1 ring-black ring-opacity-5 sm:w-48">
       {navigation.map((item) => (
@@ -17,6 +17,7 @@ function MobileMenu({ navigation }) {
             'hover:bg-gray-100',
           )}
           activeClassName="bg-gray-900 text-white hover:bg-gray-900"
+          onClick={onClick}
         >
           {item.name}
         </Link>
@@ -27,7 +28,7 @@ function MobileMenu({ navigation }) {
 
 function MobileMenuButton({ open }) {
   return (
-    <Disclosure.Button
+    <Popover.Button
       className={classNames(
         'inline-flex items-center justify-center rounded-md p-2 text-gray-900',
         'hover:ring-2 hover:ring-inset hover:ring-gray-900',
@@ -40,7 +41,7 @@ function MobileMenuButton({ open }) {
       ) : (
         <MenuIcon className="block h-6 w-6" aria-hidden="true" />
       )}
-    </Disclosure.Button>
+    </Popover.Button>
   )
 }
 
