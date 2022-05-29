@@ -1,4 +1,5 @@
 const colors = require('tailwindcss/colors')
+const plugin = require('tailwindcss/plugin')
 
 module.exports = {
   content: ['./src/**/*.{css,js}'],
@@ -65,5 +66,6 @@ module.exports = {
     require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
     require('@tailwindcss/aspect-ratio'),
+    plugin(({ addVariant }) => addVariant('def', ':where(&)')),
   ],
 }
