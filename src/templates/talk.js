@@ -115,17 +115,21 @@ function TalkPage({ data, location, pageContext }) {
         </Section.Sidebar>
 
         <Section.Content>
-          <Section.Title as="h2" className="text-gray-400">
-            Topics
-          </Section.Title>
+          {talk?.topics?.length > 0 && (
+            <>
+              <Section.Title as="h2" className="text-gray-400">
+                Topics
+              </Section.Title>
 
-          <div className="mt-3">
-            {talk?.topics?.map(({ data, fields }) => (
-              <Link.Button key={fields.slug} className="mb-2 mr-2" to={fields.slug}>
-                {data.title}
-              </Link.Button>
-            ))}
-          </div>
+              <div className="mt-3">
+                {talk.topics.map(({ data, fields }) => (
+                  <Link.Button key={fields.slug} className="mb-2 mr-2" to={fields.slug}>
+                    {data.title}
+                  </Link.Button>
+                ))}
+              </div>
+            </>
+          )}
         </Section.Content>
 
         {talk.scripture && (
