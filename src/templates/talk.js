@@ -118,7 +118,7 @@ function TalkPage({ data, location, pageContext }) {
           {talk?.topics?.length > 0 && (
             <>
               <Section.Title as="h2" className="text-gray-400">
-                Topics
+                {talk.topics.length > 1 ? 'Topics' : 'Topic'}
               </Section.Title>
 
               <div className="mt-3">
