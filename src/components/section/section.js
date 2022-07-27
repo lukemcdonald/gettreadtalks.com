@@ -1,4 +1,3 @@
-import classNames from 'classnames'
 import React from 'react'
 
 import { sanitizeHTMLTag } from '~/utils/misc'
@@ -16,13 +15,13 @@ function Section({ as, children, className, separator, separatorClass }) {
     <Tag className={className}>
       <SectionWrapper>
         {(separator === 'top' || separator === 'top-bottom') && (
-          <SectionSeparator className={classNames(separatorClass)} />
+          <SectionSeparator className={separatorClass} />
         )}
 
         <div className="grid sm:grid-cols-3 sm:gap-6 lg:grid-cols-12">{children}</div>
 
         {(separator === 'bottom' || separator === 'top-bottom') && (
-          <SectionSeparator className={classNames(separatorClass)} />
+          <SectionSeparator className={separatorClass} />
         )}
       </SectionWrapper>
     </Tag>
