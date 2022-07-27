@@ -120,7 +120,7 @@ function TalkPage({ data, location, pageContext }) {
           </Section.Title>
 
           <div className="mt-3">
-            {talk?.topics.map(({ data, fields }) => (
+            {talk?.topics?.map(({ data, fields }) => (
               <Link.Button key={fields.slug} className="mb-2 mr-2" to={fields.slug}>
                 {data.title}
               </Link.Button>
