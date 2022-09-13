@@ -20,12 +20,12 @@ function TalkCard({ talk }) {
 
   return (
     <Card
-      to={talk.slug}
+      icons={icons}
       image={speaker.avatar}
       subtitle={talk.subtitle}
-      title={talk.title}
       text={speaker.title}
-      icons={icons}
+      title={talk.title}
+      to={talk.slug}
     />
   )
 }

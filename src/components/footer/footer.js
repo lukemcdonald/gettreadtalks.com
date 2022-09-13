@@ -1,3 +1,4 @@
+import { HeartIcon } from '@heroicons/react/outline'
 import addToMailchimp from 'gatsby-plugin-mailchimp'
 import React from 'react'
 
@@ -49,6 +50,15 @@ function Footer({ siteTitle }) {
           </div>
           <p className="mt-8 text-base text-gray-400 md:order-1 md:mt-0">
             &copy; {`${siteTitle} ${new Date().getFullYear()}`}
+          </p>
+          <p className="mt-8 text-base text-gray-400 md:order-1 md:mt-0">
+            Made with&nbsp;
+            <a className="inline-block group" href="https://lukemcdonald.com">
+              {
+                <HeartIcon className="w-6 h-6 inline-block group-hover:text-primary-600 relative bottom-[2px]" />
+              }{' '}
+              by Luke McDonald
+            </a>
           </p>
         </div>
       </div>
