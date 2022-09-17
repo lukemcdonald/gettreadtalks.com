@@ -19,7 +19,8 @@
     "predeploy": "npm run build",
     "preinstall": "npx only-allow yarn",
     "serve": "gatsby serve",
-    "start": "npm run develop"
+    "start": "npm run develop",
+    "ci": "rm -rf node_modules && yarn install --frozen-lockfile"
   },
   "dependencies": {
     "@headlessui/react": "^1.6.6",
