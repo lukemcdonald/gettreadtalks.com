@@ -18,32 +18,25 @@ function AccountFinishedPage({ data, location }) {
   const { isUser } = useAuth()
   const { user } = useUsers()
   const { talks } = data
+  const { finishedTalks: userFinishedTalks } = user || []
+  const hasFinishedTalks = Array.isArray(finishedTalks) && finishedTalks.length
 
   useEffect(() => {
-    if (!talks || !user?.finishedTalks) return null
+    if (talks && userFinishedTalks) {
+      // Get finished user talks.
+      const finished = talks.nodes.filter(({ id }) => userFinishedTalks.includes(id))
 
-    // Get user finished from all talks.
-    const finished = talks.nodes.filter(({ id }) => user.finishedTalks.includes(id))
+      // Update finished talks to match order of user finished; latest finished talk shown first.
+      const sortedFinished = finished.slice().sort((a, b) => {
+        return userFinishedTalks.indexOf(a?.id) - userFinishedTalks.indexOf(b?.id)
+      })
 
-    // Update order of finished to match order of user finished.
-    // The latest finished talk should be shown first.
-    let sortedFinished = []
-    user.finishedTalks.map((id) => {
-      const finishedIndex = finished.findIndex((fav) => fav.id === id)
-
-      if (finished[finishedIndex].id === id) {
-        sortedFinished = [...sortedFinished, finished[finishedIndex]]
-      }
-
-      return sortedFinished
-    })
-
-    setFinishedTalks(sortedFinished)
-  }, [talks, user])
+      setFinishedTalks(sortedFinished)
+    }
+  }, [talks, userFinishedTalks])
 
   if (!isUser) {
     navigate('/login/')
-    return null
   }
 
   return (
@@ -56,11 +49,20 @@ function AccountFinishedPage({ data, location }) {
         </Section.Sidebar>
 
         <Section.Content>
-          {!Array.isArray(finishedTalks) || !finishedTalks.length ? (
+          {hasFinishedTalks && (
+            <div className="divide-y divide-gray-200">
+              <Page.Title>Your finished talks:</Page.Title>
+              <div className="mt-5">
+                <TalkList talks={finishedTalks} />
+              </div>
+            </div>
+          )}
+
+          {!hasFinishedTalks && (
             <Link
+              className="relative block w-full rounded-lg border-2 border-dashed border-gray-300 p-12 text-center hover:border-gray-400"
               to="/talks/"
               type="button"
-              className="relative block w-full rounded-lg border-2 border-dashed border-gray-300 p-12 text-center hover:border-gray-400"
             >
               <Page.Title>Finished</Page.Title>
               <p className="mt-2">
@@ -68,13 +70,6 @@ function AccountFinishedPage({ data, location }) {
                 to your finished list.
               </p>
             </Link>
-          ) : (
-            <div className="divide-y divide-gray-200">
-              <Page.Title>Your finished talks:</Page.Title>
-              <div className="mt-5">
-                <TalkList talks={finishedTalks} />
-              </div>
-            </div>
           )}
         </Section.Content>
       </Section>

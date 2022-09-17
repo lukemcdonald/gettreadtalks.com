@@ -18,32 +18,25 @@ function AccountFavoritesPage({ data, location }) {
   const { isUser } = useAuth()
   const { user } = useUsers()
   const { talks } = data
+  const { favoriteTalks: userFavoriteTalks } = user || []
+  const hasFavoriteTalks = Array.isArray(favoriteTalks) && favoriteTalks.length
 
   useEffect(() => {
-    if (!talks || !user?.favoriteTalks) return null
+    if (talks && userFavoriteTalks) {
+      // Get favorite user talks.
+      const favorites = talks.nodes.filter(({ id }) => userFavoriteTalks.includes(id))
 
-    // Get user favorites from all talks.
-    const favorites = talks.nodes.filter(({ id }) => user.favoriteTalks.includes(id))
+      // Update favorite talks to match order of user favorites; latest favorited talk shown first.
+      const sortedFavorites = favorites.slice().sort((a, b) => {
+        return userFavoriteTalks.indexOf(a?.id) - userFavoriteTalks.indexOf(b?.id)
+      })
 
-    // Update order of favorites to match order of user favorites.
-    // The latest favorited talk should be shown first.
-    let sortedFavorites = []
-    user.favoriteTalks.map((id) => {
-      const favoriteIndex = favorites.findIndex((fav) => fav.id === id)
-
-      if (favorites[favoriteIndex].id === id) {
-        sortedFavorites = [...sortedFavorites, favorites[favoriteIndex]]
-      }
-
-      return sortedFavorites
-    })
-
-    setFavoriteTalks(sortedFavorites)
-  }, [talks, user])
+      setFavoriteTalks(sortedFavorites)
+    }
+  }, [talks, userFavoriteTalks])
 
   if (!isUser) {
     navigate('/login/')
-    return null
   }
 
   return (
@@ -56,11 +49,20 @@ function AccountFavoritesPage({ data, location }) {
         </Section.Sidebar>
 
         <Section.Content>
-          {!Array.isArray(favoriteTalks) || !favoriteTalks.length ? (
+          {hasFavoriteTalks && (
+            <div className="divide-y divide-gray-200">
+              <Page.Title>Your favorite talks:</Page.Title>
+              <div className="mt-5">
+                <TalkList talks={favoriteTalks} />
+              </div>
+            </div>
+          )}
+
+          {!hasFavoriteTalks && (
             <Link
+              className="relative block w-full rounded-lg border-2 border-dashed border-gray-300 p-12 text-center hover:border-gray-400"
               to="/talks/"
               type="button"
-              className="relative block w-full rounded-lg border-2 border-dashed border-gray-300 p-12 text-center hover:border-gray-400"
             >
               <Page.Title>Favorites</Page.Title>
               <p className="mt-2">
@@ -68,13 +70,6 @@ function AccountFavoritesPage({ data, location }) {
                 to your favorites list.
               </p>
             </Link>
-          ) : (
-            <div className="divide-y divide-gray-200">
-              <Page.Title>Your favorite talks:</Page.Title>
-              <div className="mt-5">
-                <TalkList talks={favoriteTalks} />
-              </div>
-            </div>
           )}
         </Section.Content>
       </Section>
