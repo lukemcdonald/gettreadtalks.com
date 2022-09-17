@@ -1,17 +1,17 @@
 import { Menu, Transition } from '@headlessui/react'
+import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import {
   CheckCircleIcon as CheckIcon,
   HeartIcon,
-  LoginIcon,
-  LogoutIcon,
+  ArrowRightOnRectangleIcon as LoginIcon,
+  ArrowLeftOnRectangleIcon as LogoutIcon,
   UserCircleIcon as UserIcon,
-} from '@heroicons/react/outline'
-import { ChevronDownIcon } from '@heroicons/react/solid'
+} from '@heroicons/react/24/outline'
 import classNames from 'classnames'
 import React, { Fragment } from 'react'
 
-import { Link } from '~/components/link'
 import { ProfileCard } from '~/components/account/profile-card'
+import { Link } from '~/components/link'
 import { useAuth } from '~/context/auth'
 import { useAsync } from '~/hooks/async'
 
@@ -125,7 +125,7 @@ function ProfileMenu() {
             <span className="flex items-center">
               <span className="hidden lg:block">Account</span>
               <UserIcon className="h-8 w-8 lg:hidden" />
-              <ChevronDownIcon className="hidden h-5 w-5 lg:ml-1 lg:block" />
+              <ChevronDownIcon className="hidden h-6 w-6 lg:ml-1 lg:block" />
             </span>
           </Menu.Button>
 

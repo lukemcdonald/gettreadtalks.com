@@ -1,4 +1,4 @@
-import { EyeIcon, EyeOffIcon } from '@heroicons/react/outline'
+import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 import React, { useState } from 'react'
 import * as Yup from 'yup'
@@ -89,7 +89,7 @@ function SettingsPasswordForm({ className, buttonText, onSubmit }) {
                     </Toggle.Off>
                     <Toggle.On>
                       <span className="sr-only">Hide password</span>
-                      <EyeOffIcon className="h-full w-full text-gray-600" />
+                      <EyeSlashIcon className="h-full w-full text-gray-600" />
                     </Toggle.On>
                   </Toggle.Button>
                 </Toggle>

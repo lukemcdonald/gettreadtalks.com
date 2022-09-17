@@ -1,4 +1,4 @@
-import { ExclamationCircleIcon } from '@heroicons/react/solid'
+import { ExclamationCircleIcon } from '@heroicons/react/24/solid'
 import classNames from 'classnames'
 import React from 'react'
 

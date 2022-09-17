@@ -1,5 +1,5 @@
 import { Dialog } from '@headlessui/react'
-import { XIcon } from '@heroicons/react/solid'
+import { XMarkIcon as CloseIcon } from '@heroicons/react/20/solid'
 import classNames from 'classnames'
 import React, { useRef, useState } from 'react'
 
@@ -76,7 +76,7 @@ function DeactivateAccountButton({ className, buttonText = 'Deactivate' }) {
                 onClick={closeModal}
                 ref={closeButtonRef}
               >
-                <XIcon className="h-4 w-4" />
+                <CloseIcon className="h-4 w-4" />
               </button>
             </div>
           </div>

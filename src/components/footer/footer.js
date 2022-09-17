@@ -1,4 +1,4 @@
-import { HeartIcon } from '@heroicons/react/outline'
+import { HeartIcon } from '@heroicons/react/24/outline'
 import addToMailchimp from 'gatsby-plugin-mailchimp'
 import React from 'react'
 

@@ -1,5 +1,5 @@
 import { Transition } from '@headlessui/react'
-import { XIcon } from '@heroicons/react/solid'
+import { XMarkIcon as CloseIcon } from '@heroicons/react/24/solid'
 import classNames from 'classnames'
 import React, { Fragment, useState } from 'react'
 
@@ -41,7 +41,7 @@ function Notification({ message = {}, onClose }) {
                 onClick={() => (onClose ? onClose() : setShow(false))}
               >
                 <span className="sr-only">Close</span>
-                <XIcon className="h-5 w-5" aria-hidden="true" />
+                <CloseIcon className="h-5 w-5" aria-hidden="true" />
               </button>
             </div>
           </div>

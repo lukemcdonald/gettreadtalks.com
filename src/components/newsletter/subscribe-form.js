@@ -1,5 +1,5 @@
 // todo: Hook up Formik and make it work with MailChimp
-import { MailIcon } from '@heroicons/react/outline'
+import { EnvelopeIcon as EmailIcon } from '@heroicons/react/24/outline'
 import classNames from 'classnames'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 import React from 'react'
@@ -31,7 +31,7 @@ function SubscribeForm({ className, title, text, buttonText, onSubmit }) {
           title: data.result === 'error' ? 'Error!' : 'Success!',
           text: data.msg,
           icon: ({ className, ...props }) => (
-            <MailIcon
+            <EmailIcon
               className={classNames(
                 className,
                 data.result === 'error' ? 'text-status-error' : 'text-status-success',

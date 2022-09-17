@@ -1,6 +1,6 @@
 // todo: Display five random featured talks as recomendations.
 // todo: Display tabs for finished talks, clips, speakers.
-import { CheckCircleIcon as CheckIcon } from '@heroicons/react/outline'
+import { CheckCircleIcon as CheckIcon } from '@heroicons/react/24/outline'
 import { graphql, navigate } from 'gatsby'
 import React, { useEffect, useState } from 'react'
 

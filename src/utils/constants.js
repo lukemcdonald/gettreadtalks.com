@@ -1,27 +1,27 @@
 import {
-  CheckCircleIcon,
-  HeartIcon,
-  MailIcon,
+  UserCircleIcon as AccountIcon,
+  EnvelopeIcon as EmailIcon,
+  HeartIcon as FavoritesIcon,
+  CheckCircleIcon as FinishedIcon,
   RssIcon,
-  UserCircleIcon,
-} from '@heroicons/react/outline'
+} from '@heroicons/react/24/outline'
 import React from 'react'
 
 export const ACCOUNT_NAV = [
   {
     name: 'Account Settings',
     to: '/account/',
-    icon: (props) => <UserCircleIcon {...props} />,
+    icon: (props) => <AccountIcon {...props} />,
   },
   {
     name: 'Favorites',
     to: '/account/favorites/',
-    icon: (props) => <HeartIcon {...props} />,
+    icon: (props) => <FavoritesIcon {...props} />,
   },
   {
     name: 'Finished',
     to: '/account/finished/',
-    icon: (props) => <CheckCircleIcon {...props} />,
+    icon: (props) => <FinishedIcon {...props} />,
   },
 ]
 
@@ -55,7 +55,7 @@ export const SOCIAL_NAV = [
   {
     name: 'Email Subscribe',
     href: 'https://mailchi.mp/50e8781cd6b2/newsletter-landing-page',
-    icon: (props) => <MailIcon {...props} />,
+    icon: (props) => <EmailIcon {...props} />,
   },
   {
     name: 'RSS Feed',

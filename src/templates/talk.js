@@ -1,4 +1,7 @@
-import { ExternalLinkIcon, MailIcon } from '@heroicons/react/outline'
+import {
+  EnvelopeIcon as EmailIcon,
+  ArrowTopRightOnSquareIcon as ExternalLinkIcon,
+} from '@heroicons/react/24/outline'
 import { graphql } from 'gatsby'
 import React, { useState } from 'react'
 
@@ -109,7 +112,7 @@ function TalkPage({ data, location, pageContext }) {
               )}`}
               className="mb-2 h-10 w-10"
             >
-              <MailIcon className="h-full w-full rounded-full bg-gray-600 p-2 hover:bg-gray-800" />
+              <EmailIcon className="h-full w-full rounded-full bg-gray-600 p-2 hover:bg-gray-800" />
             </a>
           </div>
         </Section.Sidebar>

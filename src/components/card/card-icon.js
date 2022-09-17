@@ -1,4 +1,4 @@
-import { CheckIcon, HeartIcon, StarIcon } from '@heroicons/react/solid'
+import { CheckIcon, HeartIcon, StarIcon } from '@heroicons/react/20/solid'
 import classNames from 'classnames'
 import React from 'react'
 

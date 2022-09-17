@@ -1,5 +1,5 @@
-import { CheckIcon as CheckOutlineIcon } from '@heroicons/react/outline'
-import { CheckIcon as CheckSolidIcon } from '@heroicons/react/solid'
+import { CheckIcon as CheckOutlineIcon } from '@heroicons/react/24/outline'
+import { CheckIcon as CheckSolidIcon } from '@heroicons/react/24/solid'
 import classNames from 'classnames'
 import React from 'react'
 

@@ -1,4 +1,4 @@
-import { CheckCircleIcon as CheckIcon, XCircleIcon } from '@heroicons/react/outline'
+import { CheckCircleIcon as CheckIcon, XCircleIcon as CloseIcon } from '@heroicons/react/24/outline'
 import classNames from 'classnames'
 import React from 'react'
 
@@ -56,7 +56,7 @@ function useFinishedTalk() {
     notify({
       title: talk.title,
       text: 'Has been marked as unfinished.',
-      icon: (props) => <XCircleIcon {...props} />,
+      icon: (props) => <CloseIcon {...props} />,
     })
   }
 

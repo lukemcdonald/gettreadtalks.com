@@ -1,4 +1,4 @@
-import { UserCircleIcon } from '@heroicons/react/outline'
+import { UserCircleIcon } from '@heroicons/react/24/outline'
 import { navigate } from 'gatsby'
 import React from 'react'
 

@@ -1,4 +1,4 @@
-import { MailIcon, RssIcon } from '@heroicons/react/solid'
+import { EnvelopeIcon as EmailIcon, RssIcon } from '@heroicons/react/24/solid'
 import classNames from 'classnames'
 import React from 'react'
 
@@ -8,7 +8,7 @@ const links = [
   {
     name: 'Email Subscribe',
     to: 'https://mailchi.mp/50e8781cd6b2/newsletter-landing-page',
-    icon: (props) => <MailIcon {...props} />,
+    icon: (props) => <EmailIcon {...props} />,
   },
   {
     name: 'RSS Feed',

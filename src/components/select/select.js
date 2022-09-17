@@ -1,4 +1,4 @@
-import { ChevronDownIcon } from '@heroicons/react/solid'
+import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import classNames from 'classnames'
 import { Field, Form, Formik } from 'formik'
 import { navigate } from 'gatsby'
@@ -10,7 +10,7 @@ function Select({ children, className, current = {}, label }) {
   return (
     <div className={classNames('relative inline-block', className)}>
       <span>{current.label || label}</span>
-      <ChevronDownIcon className="relative mb-px -mr-8 inline-block w-8" />
+      <ChevronDownIcon className="relative mb-px inline-block w-8" />
 
       <Formik
         initialValues={{ optionPath: current.value || '' }}
