@@ -1,0 +1,67 @@
+{
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "@remix-run/eslint-config",
+    "@remix-run/eslint-config/node",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": ["@typescript-eslint"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+
+  "rules": {
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/consistent-type-definitions": ["error", "interface"],
+    "multiline-ternary": 0,
+    "no-shadow": 0,
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off"
+  },
+
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"],
+        "moduleDirectory": ["node_modules", "src/"]
+      }
+    }
+  },
+
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "processor": "@graphql-eslint/graphql",
+      "parser": "@typescript-eslint/parser",
+      "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+      "env": {
+        "es6": true
+      }
+    },
+    {
+      "files": ["*.graphql"],
+      "parser": "@graphql-eslint/eslint-plugin",
+      "plugins": ["@graphql-eslint"],
+      "rules": {
+        "@graphql-eslint/no-anonymous-operations": "error",
+        "@graphql-eslint/naming-convention": [
+          "error",
+          {
+            "OperationDefinition": {
+              "style": "PascalCase",
+              "forbiddenPrefixes": ["Query", "Mutation", "Subscription", "Get"],
+              "forbiddenSuffixes": ["Query", "Mutation", "Subscription"]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,8 +1,17 @@
+/** @type {import('tailwindcss').Config} */
+
 const colors = require('tailwindcss/colors')
 const plugin = require('tailwindcss/plugin')
 
 module.exports = {
-  content: ['./src/**/*.{css,js}'],
+  content: [
+    // Note: https://github.com/gatsbyjs/gatsby/issues/35775
+    './src/assets/**/*.css',
+    './src/components/**/*.{js,jsx,ts,tsx}',
+    './src/context/**/*.{js,jsx,ts,tsx}',
+    './src/pages/**/*.{js,jsx,ts,tsx}',
+    './src/templates/**/*.{js,jsx,ts,tsx}',
+  ],
   theme: {
     extend: {
       maxHeight: {
