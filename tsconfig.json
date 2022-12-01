@@ -1,22 +1,28 @@
 {
   "compilerOptions": {
-    "lib": ["DOM", "DOM.Iterable", "ES2019"],
-    "isolatedModules": true,
-    "esModuleInterop": true,
-    "jsx": "react-jsx",
-    "module": "ES2020",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "target": "ES2019",
-    "strict": true,
-    "baseUrl": ".",
-    "paths": {
-      "~/*": ["./src/*"]
-    },
-    "skipLibCheck": true,
-    "noEmit": true,
     "allowJs": true,
-    "forceConsistentCasingInFileNames": true
+    "baseUrl": ".",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "lib": ["DOM", "DOM.Iterable", "ES2019"],
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "paths": { "~/*": ["./src/*"] },
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "ES2019",
+    "noUnusedLocals": true
   },
-  "exclude": ["node_modules", "public", ".cache"]
+  "include": [
+    "./gatsby-browser.tsx",
+    "./gatsby-config.ts",
+    "./gatsby-node.ts",
+    "./gatsby-ssr.tsx",
+    "./plugins/**/*",
+    "./src/**/*"
+  ]
 }

@@ -1,0 +1,37 @@
+import React from 'react'
+import { Link as GatsbyLink } from 'gatsby'
+import type { TUnknown } from '~/utils/types/shared'
+
+import LinkButton from './link-button'
+
+interface Props {
+  children: React.ReactNode
+  to: string
+  [key: string]: TUnknown
+}
+
+function Link({ children, to, ...props }: Props) {
+  if (typeof to !== 'string') {
+    return null
+  }
+
+  const internal = /^\/(?!\/)/.test(to)
+
+  if (internal) {
+    return (
+      <GatsbyLink to={to} rel="canonical" {...props}>
+        {children}
+      </GatsbyLink>
+    )
+  }
+
+  return (
+    <a href={to} {...props}>
+      {children}
+    </a>
+  )
+}
+
+export default Object.assign(Link, {
+  Button: LinkButton,
+})

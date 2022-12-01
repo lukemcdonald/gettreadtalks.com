@@ -13,4 +13,7 @@ node_modules/
 
 .env*
 
-README-IDEAS.md
+src/gatsby-types.d.ts
+
+# Local Netlify folder
+.netlify
