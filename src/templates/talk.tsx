@@ -102,7 +102,7 @@ function TalkPage({ data, location, pageContext }: Props) {
         ) : null}
       </Intro>
 
-      <Section className="bg-gray-900 text-white" separator="top">
+      <Section className="bg-gray-900 text-white" separator="top" separatorClass="border-gray-700">
         <Section.Sidebar>
           <Section.Title as="h2" className="text-gray-400">
             Actions

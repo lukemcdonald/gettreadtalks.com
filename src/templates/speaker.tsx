@@ -63,7 +63,11 @@ function SingleSpeakerPage({ data, location, pageContext }: Props) {
         <Intro.Tagline className="text-center">{speaker?.role || ''}</Intro.Tagline>
       </Intro>
 
-      <Section className="bg-gray-900" separator={speaker.banner ? null : 'top'}>
+      <Section
+        className="bg-gray-900"
+        separator={speaker.banner ? null : 'top'}
+        separatorClass="border-gray-700"
+      >
         {speaker.ministry ? (
           <Section.Sidebar>
             <Section.Title as="h2" className="text-gray-400">

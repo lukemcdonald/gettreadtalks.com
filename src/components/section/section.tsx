@@ -19,18 +19,14 @@ interface Props {
   separatorClass?: string
 }
 
-function Section({
-  as,
-  children,
-  className,
-  separator,
-  separatorClass = 'border-gray-700',
-}: Props) {
+function Section({ as, children, className, separator, separatorClass }: Props) {
   const Tag = sanitizeHTMLTag(as, Array.from(allowedTags)) as React.ElementType
   const border = {
     top: separator === 'top' || separator === 'top-bottom',
     bottom: separator === 'bottom' || separator === 'top-bottom',
   }
+
+  console.log({ separatorClass })
 
   return (
     <Tag className={className}>
