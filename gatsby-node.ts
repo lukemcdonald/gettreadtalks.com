@@ -11,6 +11,7 @@ const onCreateAirtableNode = ({ node, actions }: CreateNodeArgs) => {
   const slugifyArgs = {
     lower: true,
     remove: /[*+~.()'"!:@]/g,
+    strict: true,
   }
   const data = node.data as {
     slug: string
