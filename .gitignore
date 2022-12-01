@@ -8,8 +8,8 @@ node_modules/
 
 *.log
 
-# package-lock.json
-# yarn.lock
+package-lock.json
+yarn.lock
 
 .env*
 
