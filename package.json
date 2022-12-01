@@ -10,9 +10,12 @@
     "url": "https://github.com/lukemcdonald/gettreadtalks.com"
   },
   "scripts": {
-    "build": "NODE_ENV=production gatsby build",
+    "build": "NODE_ENV=production run-s build:*",
+    "build:gatsby": "gatsby build",
+    "ci": "rm -rf node_modules && yarn install --frozen-lockfile",
     "clean": "gatsby clean",
-    "dev": "gatsby develop",
+    "dev": "run-p dev:*",
+    "dev:gatsby": "gatsby develop",
     "format": "prettier --write .",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint .",
     "lint:fix": "eslint . --fix",
@@ -20,8 +23,8 @@
     "preinstall": "npx only-allow yarn",
     "serve": "gatsby serve",
     "start": "$npm_execpath run dev",
-    "test": "tsc --noEmit",
-    "ci": "rm -rf node_modules && yarn install --frozen-lockfile"
+    "typecheck": "tsc -b",
+    "validate": "run-p lint typecheck"
   },
   "dependencies": {
     "@headlessui/react": "^1.6.6",
@@ -78,6 +81,7 @@
     "esm": "^3.2.25",
     "gatsby-plugin-tsconfig-paths": "^1.0.5",
     "husky": "^8.0.1",
+    "npm-run-all": "^4.1.5",
     "postcss": "^8.4.14",
     "postcss-cli": "^9.1.0",
     "prettier": "^2.7.1",
