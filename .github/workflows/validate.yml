@@ -10,26 +10,26 @@ permissions:
   contents: read
 
 jobs:
-  lint:
-    name: ⬣ ESLint
-    runs-on: ubuntu-latest
-    steps:
-      - name: 🛑 Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.11.0
+  # lint:
+  #   name: ⬣ ESLint
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: 🛑 Cancel Previous Runs
+  #       uses: styfle/cancel-workflow-action@0.11.0
 
-      - name: ⬇️ Checkout repo
-        uses: actions/checkout@v3
+  #     - name: ⬇️ Checkout repo
+  #       uses: actions/checkout@v3
 
-      - name: ⎔ Setup node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18.x
+  #     - name: ⎔ Setup node
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 18.x
 
-      - name: 📥 Download deps
-        uses: bahmutov/npm-install@v1
+  #     - name: 📥 Download deps
+  #       uses: bahmutov/npm-install@v1
 
-      - name: 🔬 Lint
-        run: yarn eslint . --ext .js,.jsx,.ts,.tsx
+  #     - name: 🔬 Lint
+  #       run: yarn eslint . --ext .ts,.tsx
 
   typecheck:
     name: ʦ TypeScript
