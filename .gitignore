@@ -8,12 +8,11 @@ node_modules/
 
 *.log
 
-# package-lock.json
-# yarn.lock
+package-lock.json
 
 .env*
 
-src/gatsby-types.d.ts
+# src/gatsby-types.d.ts
 
 # Local Netlify folder
 .netlify

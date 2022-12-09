@@ -3,3 +3,5 @@
 /public
 /build
 /node_modules
+/static
+gatsby-types.d.ts
