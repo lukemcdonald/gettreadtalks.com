@@ -29,7 +29,7 @@ jobs:
         uses: bahmutov/npm-install@v1
 
       - name: 🔬 Lint
-        run: eslint . --ext .js,.jsx,.ts,.tsx
+        run: yarn eslint . --ext .js,.jsx,.ts,.tsx
 
   typecheck:
     name: ʦ TypeScript
