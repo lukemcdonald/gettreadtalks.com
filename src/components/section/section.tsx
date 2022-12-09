@@ -26,6 +26,8 @@ function Section({ as, children, className, separator, separatorClass }: Props) 
     bottom: separator === 'bottom' || separator === 'top-bottom',
   }
 
+  console.log({ separatorClass })
+
   return (
     <Tag className={className}>
       <SectionWrapper>
