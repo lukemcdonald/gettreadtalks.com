@@ -81,7 +81,7 @@ export const query = graphql`
           topics: { elemMatch: { data: { title: { in: $topic } } } }
         }
       }
-      sort: { fields: data___publishedDate, order: DESC }
+      sort: { data: { publishedDate: DESC } }
     ) {
       totalCount
       nodes {
@@ -100,7 +100,7 @@ export const query = graphql`
               avatar {
                 localFiles {
                   childImageSharp {
-                    gatsbyImageData(width: 128, placeholder: TRACED_SVG, layout: CONSTRAINED)
+                    gatsbyImageData(width: 128, placeholder: DOMINANT_COLOR, layout: CONSTRAINED)
                   }
                 }
               }
@@ -109,7 +109,7 @@ export const query = graphql`
         }
       }
     }
-    topics: allAirtableTopic(sort: { fields: data___title, order: ASC }) {
+    topics: allAirtableTopic(sort: { data: { title: ASC } }) {
       nodes {
         id
         fields {

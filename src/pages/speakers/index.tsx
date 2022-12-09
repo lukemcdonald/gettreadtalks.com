@@ -60,7 +60,7 @@ export const pageQuery = graphql`
   query SpeakersPage {
     speakers: allAirtableSpeaker(
       filter: { data: { title: { ne: null }, publishedTalksCount: { gte: 1 } } }
-      sort: { fields: data___lastName, order: ASC }
+      sort: { data: { lastName: ASC } }
     ) {
       totalCount
       nodes {
@@ -78,7 +78,7 @@ export const pageQuery = graphql`
           avatar {
             localFiles {
               childImageSharp {
-                gatsbyImageData(width: 128, placeholder: TRACED_SVG, layout: CONSTRAINED)
+                gatsbyImageData(width: 128, placeholder: DOMINANT_COLOR, layout: CONSTRAINED)
               }
             }
           }

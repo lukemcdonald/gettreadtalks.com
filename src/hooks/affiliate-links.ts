@@ -4,7 +4,7 @@ const AFFILIATE_LINKS_QUERY = graphql`
   query AffiliateLinks {
     links: allAirtableAffiliateLink(
       filter: { data: { title: { ne: null } } }
-      sort: { fields: data___type, order: ASC }
+      sort: { data: { type: ASC } }
     ) {
       nodes {
         id
@@ -28,7 +28,7 @@ const AFFILIATE_LINKS_QUERY = graphql`
           image {
             localFiles {
               childImageSharp {
-                gatsbyImageData(width: 128, placeholder: TRACED_SVG, layout: CONSTRAINED)
+                gatsbyImageData(width: 128, placeholder: DOMINANT_COLOR, layout: CONSTRAINED)
               }
             }
           }

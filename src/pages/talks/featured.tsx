@@ -46,7 +46,7 @@ export const query = graphql`
   query FeaturedTalksPage {
     talks: allAirtableTalk(
       filter: { data: { favorite: { eq: true }, publishedDate: { ne: null } } }
-      sort: { fields: data___publishedDate, order: DESC }
+      sort: { data: { publishedDate: DESC } }
     ) {
       nodes {
         id
@@ -61,7 +61,7 @@ export const query = graphql`
               avatar {
                 localFiles {
                   childImageSharp {
-                    gatsbyImageData(width: 128, placeholder: TRACED_SVG, layout: CONSTRAINED)
+                    gatsbyImageData(width: 128, placeholder: DOMINANT_COLOR, layout: CONSTRAINED)
                   }
                 }
               }
@@ -73,7 +73,7 @@ export const query = graphql`
         }
       }
     }
-    topics: allAirtableTopic(sort: { fields: data___title, order: ASC }) {
+    topics: allAirtableTopic(sort: { data: { title: ASC } }) {
       nodes {
         id
         fields {
