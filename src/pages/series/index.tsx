@@ -41,7 +41,7 @@ export const query = graphql`
   query SeriesPage {
     series: allAirtableSerie(
       filter: { data: { title: { ne: null } } }
-      sort: { fields: data___title, order: ASC }
+      sort: { data: { title: ASC } }
     ) {
       nodes {
         id
@@ -61,7 +61,7 @@ export const query = graphql`
               avatar {
                 localFiles {
                   childImageSharp {
-                    gatsbyImageData(width: 128, placeholder: TRACED_SVG, layout: CONSTRAINED)
+                    gatsbyImageData(width: 128, placeholder: DOMINANT_COLOR, layout: CONSTRAINED)
                   }
                 }
               }

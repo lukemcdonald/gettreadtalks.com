@@ -87,7 +87,7 @@ export const query = graphql`
   query AccountFavoritesPage {
     talks: allAirtableTalk(
       filter: { data: { publishedDate: { ne: null } } }
-      sort: { fields: data___publishedDate, order: DESC }
+      sort: { data: { publishedDate: DESC } }
     ) {
       totalCount
       nodes {
@@ -106,7 +106,7 @@ export const query = graphql`
               avatar {
                 localFiles {
                   childImageSharp {
-                    gatsbyImageData(width: 128, placeholder: TRACED_SVG, layout: CONSTRAINED)
+                    gatsbyImageData(width: 128, placeholder: DOMINANT_COLOR, layout: CONSTRAINED)
                   }
                 }
               }

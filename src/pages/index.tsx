@@ -76,7 +76,7 @@ export const query = graphql`
   query IndexPage {
     talks: allAirtableTalk(
       filter: { data: { favorite: { eq: true }, publishedDate: { ne: null } } }
-      sort: { fields: data___publishedDate, order: DESC }
+      sort: { data: { publishedDate: DESC } }
     ) {
       nodes {
         id
@@ -93,7 +93,7 @@ export const query = graphql`
               avatar {
                 localFiles {
                   childImageSharp {
-                    gatsbyImageData(width: 128, placeholder: TRACED_SVG, layout: CONSTRAINED)
+                    gatsbyImageData(width: 128, placeholder: DOMINANT_COLOR, layout: CONSTRAINED)
                   }
                 }
               }
@@ -104,7 +104,7 @@ export const query = graphql`
     }
     speakers: allAirtableSpeaker(
       filter: { data: { favorite: { eq: true }, title: { ne: null } } }
-      sort: { fields: data___lastName, order: ASC }
+      sort: { data: { lastName: ASC } }
     ) {
       nodes {
         id
@@ -118,7 +118,7 @@ export const query = graphql`
           avatar {
             localFiles {
               childImageSharp {
-                gatsbyImageData(width: 128, placeholder: TRACED_SVG, layout: CONSTRAINED)
+                gatsbyImageData(width: 128, placeholder: DOMINANT_COLOR, layout: CONSTRAINED)
               }
             }
           }
@@ -128,7 +128,7 @@ export const query = graphql`
     introImage: file(relativePath: { eq: "billy-graham-preaching-header.jpg" }) {
       childImageSharp {
         gatsbyImageData(
-          placeholder: TRACED_SVG
+          placeholder: DOMINANT_COLOR
           transformOptions: { grayscale: true }
           layout: FULL_WIDTH
         )

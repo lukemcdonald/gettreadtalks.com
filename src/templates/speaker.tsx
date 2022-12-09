@@ -172,7 +172,7 @@ export const query = graphql`
           localFiles {
             childImageSharp {
               gatsbyImageData(
-                placeholder: TRACED_SVG
+                placeholder: DOMINANT_COLOR
                 transformOptions: { grayscale: true }
                 layout: FULL_WIDTH
               )
@@ -182,7 +182,7 @@ export const query = graphql`
         avatar {
           localFiles {
             childImageSharp {
-              gatsbyImageData(width: 128, placeholder: TRACED_SVG, layout: CONSTRAINED)
+              gatsbyImageData(width: 128, placeholder: DOMINANT_COLOR, layout: CONSTRAINED)
             }
           }
         }
@@ -224,7 +224,7 @@ export const query = graphql`
     }
     speakers: allAirtableSpeaker(
       filter: { data: { title: { ne: null } } }
-      sort: { fields: data___lastName, order: ASC }
+      sort: { data: { lastName: ASC } }
     ) {
       totalCount
       nodes {
