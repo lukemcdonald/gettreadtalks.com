@@ -1,8 +1,8 @@
 export default {
-  resolve: `gatsby-source-filesystem`,
+  resolve: 'gatsby-source-filesystem',
   options: {
-    name: `images`,
-    path: `./src/assets/images`,
+    name: 'images',
+    path: './src/assets/images',
   },
   __key: 'images',
 }
