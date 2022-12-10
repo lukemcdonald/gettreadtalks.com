@@ -7,10 +7,10 @@ module.exports = {
   content: [
     // Note: https://github.com/gatsbyjs/gatsby/issues/35775
     './src/assets/**/*.css',
-    './src/components/**/*.{js,jsx,ts,tsx}',
-    './src/context/**/*.{js,jsx,ts,tsx}',
-    './src/pages/**/*.{js,jsx,ts,tsx}',
-    './src/templates/**/*.{js,jsx,ts,tsx}',
+    './src/components/**/*.{ts,tsx}',
+    './src/context/**/*.{ts,tsx}',
+    './src/pages/**/*.{ts,tsx}',
+    './src/templates/**/*.{ts,tsx}',
   ],
   theme: {
     extend: {
