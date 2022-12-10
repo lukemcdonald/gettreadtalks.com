@@ -90,8 +90,8 @@ export default {
 				{
 					allAirtableTalk(
 						limit: 1000
-						sort: { fields: data___publishedDate, order: DESC }
-						filter: { data: { publishedDate: { ne: null } } }
+						sort: {data: {publishedDate: DESC}}
+						filter: {data: {publishedDate: {ne: null}}}
 					) {
 						edges {
 							node {
