@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import clsx from 'clsx'
 
 interface Props {
   className?: string
@@ -7,7 +7,7 @@ interface Props {
 function Spinner({ className, ...props }: Props) {
   return (
     <div
-      className={classNames(
+      className={clsx(
         'my-24 mx-auto h-10 w-10 animate-pulse rounded-full bg-primary-600',
         className,
       )}

@@ -1,5 +1,5 @@
 import React from 'react'
-import classNames from 'classnames'
+import clsx from 'clsx'
 
 interface Props {
   children: React.ReactNode
@@ -8,7 +8,7 @@ interface Props {
 
 function CardText({ children, className }: Props) {
   return (
-    <div className={classNames('mt-px inline-block space-x-1 text-sm text-gray-500', className)}>
+    <div className={clsx('mt-px inline-block space-x-1 text-sm text-gray-500', className)}>
       {children}
     </div>
   )

@@ -1,5 +1,5 @@
 import React from 'react'
-import classNames from 'classnames'
+import clsx from 'clsx'
 
 import type { TAny } from '~/utils/types/shared'
 import type { SpeakerCardData } from './speaker-card'
@@ -22,7 +22,7 @@ interface SpeakerListItem {
 
 function SpeakerList({ actions, className, speakers }: SpeakerListProps) {
   return (
-    <div className={classNames('grid gap-4 sm:gap-6 lg:grid lg:grid-cols-2', className)}>
+    <div className={clsx('grid gap-4 sm:gap-6 lg:grid lg:grid-cols-2', className)}>
       {actions?.before}
       {speakers.map((speaker: SpeakerListItem) => (
         <SpeakerCard

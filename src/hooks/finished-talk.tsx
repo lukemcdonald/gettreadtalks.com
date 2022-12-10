@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import classNames from 'classnames'
+import clsx from 'clsx'
 import { CheckCircleIcon as CheckIcon, XCircleIcon as CloseIcon } from '@heroicons/react/24/outline'
 
 import { useAsync } from '~/hooks/async'
@@ -34,7 +34,7 @@ function useFinishedTalk() {
       title: talk.title,
       text: 'Marked as finished',
       icon: ({ className, ...props }) => (
-        <CheckIcon className={classNames(className, 'text-finished-700')} {...props} />
+        <CheckIcon className={clsx(className, 'text-finished-700')} {...props} />
       ),
     })
   }

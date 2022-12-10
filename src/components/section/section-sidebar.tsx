@@ -1,5 +1,5 @@
 import React from 'react'
-import classNames from 'classnames'
+import clsx from 'clsx'
 
 interface Props {
   align?: 'left' | 'right'
@@ -11,7 +11,7 @@ interface Props {
 function SectionSidebar({ children, className, align, isSticky }: Props) {
   return (
     <div
-      className={classNames(
+      className={clsx(
         `pt-6 sm:py-6`,
         `sm:border-0`,
         `lg:col-span-3 lg:py-16`,

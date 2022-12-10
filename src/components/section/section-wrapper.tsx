@@ -1,5 +1,5 @@
 import React from 'react'
-import classNames from 'classnames'
+import clsx from 'clsx'
 
 interface Props {
   children: React.ReactNode
@@ -7,7 +7,7 @@ interface Props {
 }
 
 function SectionWrapper({ className, children }: Props) {
-  return <div className={classNames('container max-w-screen-xl', className)}>{children}</div>
+  return <div className={clsx('container max-w-screen-xl', className)}>{children}</div>
 }
 
 export default SectionWrapper

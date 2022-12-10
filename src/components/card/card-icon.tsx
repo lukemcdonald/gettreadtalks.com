@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import classNames from 'classnames'
+import clsx from 'clsx'
 import { CheckIcon, HeartIcon, StarIcon } from '@heroicons/react/20/solid'
 
 import { Link } from '~/components/link'
@@ -48,9 +48,9 @@ function CardIcon({ className, to, type }: Props) {
   const Icon = item.icon
 
   return (
-    <Link to={item.to} className={classNames('rounded-full', className)}>
+    <Link to={item.to} className={clsx('rounded-full', className)}>
       <span
-        className={classNames(
+        className={clsx(
           'group flex items-center space-x-1 rounded-full px-1 py-1 text-xs font-medium',
           item.style,
         )}

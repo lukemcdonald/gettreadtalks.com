@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import clsx from 'clsx'
 import * as Yup from 'yup'
 import type { FormikHelpers } from 'formik'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
@@ -53,7 +53,7 @@ function SubscribeForm({ buttonText = 'Notify me', className, onSubmit, text, ti
           text: data.msg,
           icon: ({ className, ...props }) => (
             <EmailIcon
-              className={classNames(
+              className={clsx(
                 className,
                 data.result === 'error' ? 'text-status-error' : 'text-status-success',
               )}
@@ -88,7 +88,7 @@ function SubscribeForm({ buttonText = 'Notify me', className, onSubmit, text, ti
               autoComplete="email"
               required
               placeholder="Enter your email"
-              className={classNames(formStyles.field)}
+              className={clsx(formStyles.field)}
             />
             <ErrorMessage name="email" component="div" className={formStyles.fieldError} />
           </div>
@@ -96,7 +96,7 @@ function SubscribeForm({ buttonText = 'Notify me', className, onSubmit, text, ti
           <div className="sm:mt-px sm:ml-3 sm:flex-shrink-0">
             <button
               type="submit"
-              className={classNames(styles.button, 'flex w-full items-center justify-center')}
+              className={clsx(styles.button, 'flex w-full items-center justify-center')}
             >
               {buttonText}
             </button>

@@ -1,6 +1,6 @@
 import type { FormEvent } from 'react'
 import React, { createContext, useContext, useEffect, useState } from 'react'
-import classNames from 'classnames'
+import clsx from 'clsx'
 import { Switch } from '@headlessui/react'
 
 import { callAll } from '~/utils/misc'
@@ -29,7 +29,7 @@ function Toggle({ children }: Props) {
 
   const getToggleProps = ({ onChange, className, checked, ...props }: GetToggleProps) => ({
     checked,
-    className: classNames('', className),
+    className: clsx('', className),
     onChange: callAll(onChange, toggle),
     ...props,
   })

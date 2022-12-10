@@ -1,6 +1,6 @@
 import React from 'react'
 import { navigate } from 'gatsby'
-import classNames from 'classnames'
+import clsx from 'clsx'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { Field, Form, Formik } from 'formik'
 import SelectGroup from './select-group'
@@ -23,7 +23,7 @@ function Select({ children, className, current, label }: Props) {
   const selectValue = current?.value || ''
 
   return (
-    <div className={classNames('relative inline-block', className)}>
+    <div className={clsx('relative inline-block', className)}>
       <span>{selectLabel}</span>
       <ChevronDownIcon className="relative mb-px inline-block w-8" />
 

@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import classNames from 'classnames'
+import clsx from 'clsx'
 import { Dialog } from '@headlessui/react'
 import { XMarkIcon as CloseIcon } from '@heroicons/react/20/solid'
 
@@ -33,7 +33,7 @@ function DeactivateAccountButton({ buttonText = 'Deactivate', className }: Props
 
   return (
     <>
-      <button type="button" onClick={openModal} className={classNames(styles.button, className)}>
+      <button type="button" onClick={openModal} className={clsx(styles.button, className)}>
         {buttonText}
       </button>
 
@@ -70,7 +70,7 @@ function DeactivateAccountButton({ buttonText = 'Deactivate', className }: Props
 
             <div className="absolute top-2 right-2">
               <button
-                className={classNames(
+                className={clsx(
                   styles.textButton,
                   'inline-flex justify-center rounded-full bg-gray-100 p-2 text-gray-700 hover:bg-gray-200',
                 )}

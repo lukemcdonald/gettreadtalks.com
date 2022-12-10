@@ -1,5 +1,5 @@
 import React from 'react'
-import classNames from 'classnames'
+import clsx from 'clsx'
 import { GatsbyImage } from 'gatsby-plugin-image'
 
 import { Section } from '~/components/section'
@@ -25,7 +25,7 @@ function Intro({ align, bgGradient, children, className, fullscreen, image }: Pr
 
   return (
     <section
-      className={classNames(
+      className={clsx(
         'relative flex bg-gray-900 text-center',
         bgGradient ? 'bg-image-gradient' : '',
         className,

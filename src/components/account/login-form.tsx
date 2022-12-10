@@ -1,6 +1,6 @@
 // todo: Use Formik
 // https://devdojo.com/semirteskeredzic/create-forms-with-formik-and-firebase
-import classNames from 'classnames'
+import clsx from 'clsx'
 import React, { useState } from 'react'
 
 import { FormErrorMessage } from '~/components/account/lib/error-message'
@@ -37,9 +37,7 @@ function LoginForm({ className, buttonText, onSubmit, hiddenFields = [] }: Login
     <form onSubmit={handleSubmit} className={className}>
       {isError ? <FormErrorMessage error={error} /> : null}
 
-      <div
-        className={classNames(formStyles.formRow, hiddenFields.includes('email') ? 'hidden' : '')}
-      >
+      <div className={clsx(formStyles.formRow, hiddenFields.includes('email') ? 'hidden' : '')}>
         <label htmlFor="email" className={formStyles.label}>
           Email address
         </label>
@@ -53,12 +51,7 @@ function LoginForm({ className, buttonText, onSubmit, hiddenFields = [] }: Login
         />
       </div>
 
-      <div
-        className={classNames(
-          formStyles.formRow,
-          hiddenFields.includes('password') ? 'hidden' : '',
-        )}
-      >
+      <div className={clsx(formStyles.formRow, hiddenFields.includes('password') ? 'hidden' : '')}>
         <label htmlFor="password" className={formStyles.label}>
           Password
         </label>

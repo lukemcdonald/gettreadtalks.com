@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import clsx from 'clsx'
 
 interface Props {
   className?: string
@@ -12,7 +12,7 @@ function TextCarousel({ className, fontSize = '16vw', text }: Props) {
   return (
     <div className="absolute inset-0 z-0 hidden md:flex md:flex-col">
       <ul
-        className={classNames(
+        className={clsx(
           'css-slideshow sticky transform overflow-hidden px-12 font-black uppercase leading-none tracking-tighter text-gray-200',
           className,
         )}
