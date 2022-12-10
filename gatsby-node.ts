@@ -5,6 +5,17 @@ import slugify from 'slugify'
 
 import type { TAny } from '~/utils/types/shared'
 
+// Support for tsconfig 'paths' option
+export const onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    resolve: {
+      alias: {
+        '~': resolve(__dirname, 'src'),
+      },
+    },
+  })
+}
+
 const onCreateAirtableNode = ({ node, actions }: CreateNodeArgs) => {
   const { createNodeField } = actions
   const { type } = node.internal

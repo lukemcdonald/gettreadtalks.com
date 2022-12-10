@@ -1,6 +1,5 @@
 import type { GatsbyConfig } from 'gatsby'
 import {
-  gatsbyPluginTsconfigPaths,
   gatsbyPluginFeed,
   gatsbyPluginReactSvg,
   gatsbyPluginSitemap,
@@ -29,7 +28,6 @@ const config: GatsbyConfig = {
     gatsbyPluginFeed,
     gatsbyPluginReactSvg,
     gatsbyPluginSitemap,
-    gatsbyPluginTsconfigPaths,
     gatsbySourceAirtable,
     gatsbySourceFilesystem,
     gatsbyTransformerRemark,
