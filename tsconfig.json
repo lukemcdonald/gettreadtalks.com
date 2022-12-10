@@ -11,12 +11,12 @@
     "moduleResolution": "node",
     "noEmit": true,
     "noImplicitAny": false,
+    "noUnusedLocals": true,
     "paths": { "~/*": ["./src/*"] },
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "esnext",
-    "noUnusedLocals": true
+    "target": "esnext"
   },
   "include": [
     "./gatsby-browser.tsx",
