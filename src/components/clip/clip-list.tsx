@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import clsx from 'clsx'
 import type { TAny } from '~/utils/types/shared'
 
 import ClipCard from './clip-card'
@@ -17,7 +17,7 @@ interface ClipsListItem {
 
 function ClipList({ className, clips }: ClipsListProps) {
   return (
-    <div className={classNames('grid gap-4 sm:gap-6', className)}>
+    <div className={clsx('grid gap-4 sm:gap-6', className)}>
       {clips.map((clips: ClipsListItem) => (
         <ClipCard key={clips.id} clip={{ ...clips.fields, ...clips.data }} />
       ))}

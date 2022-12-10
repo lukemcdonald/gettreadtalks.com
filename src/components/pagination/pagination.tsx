@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import clsx from 'clsx'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid'
 
 import { Link } from '~/components/link'
@@ -36,7 +36,7 @@ function Pagination({
     base: 'flex-grow flex relative items-center justify-center py-2 text-sm font-medium bg-white hover:text-primary-600',
     prevNext: 'px-2 text-gray-500',
     disabled: 'pointer-events-none',
-    numbers: classNames(
+    numbers: clsx(
       'px-4 text-gray-700',
       !showPreviousNext && 'first:rounded-l last:rounded-r',
       totalPages > 5 && 'hidden sm:flex',
@@ -47,14 +47,14 @@ function Pagination({
     <>
       {totalCount > pageSize ? (
         <nav
-          className={classNames('relative z-0 inline-flex -space-x-px shadow-sm', className)}
+          className={clsx('relative z-0 inline-flex -space-x-px shadow-sm', className)}
           aria-label="Pagination"
         >
           {showPreviousNext ? (
             <Link
               to={`${base}/${prevPage}`}
               disabled={!hasPrevPage}
-              className={classNames(
+              className={clsx(
                 'rounded-l',
                 linkStyles.base,
                 linkStyles.prevNext,
@@ -62,7 +62,7 @@ function Pagination({
               )}
             >
               <ChevronLeftIcon className="h-5 w-5" />
-              <span className={classNames(showPreviousLabel ? 'pr-1' : 'sr-only')}>Prev</span>
+              <span className={clsx(showPreviousLabel ? 'pr-1' : 'sr-only')}>Prev</span>
             </Link>
           ) : null}
 
@@ -72,7 +72,7 @@ function Pagination({
                   key={`page-${i || 0}`}
                   to={`${base}/${i > 0 ? i + 1 : ''}`}
                   activeClassName="text-primary-600"
-                  className={classNames(linkStyles.base, linkStyles.numbers)}
+                  className={clsx(linkStyles.base, linkStyles.numbers)}
                 >
                   {i + 1}
                 </Link>
@@ -82,14 +82,14 @@ function Pagination({
           {showPreviousNext ? (
             <Link
               to={`${base}/${nextPage || ''}`}
-              className={classNames(
+              className={clsx(
                 'rounded-r',
                 linkStyles.base,
                 linkStyles.prevNext,
                 hasNextPage ? '' : linkStyles.disabled,
               )}
             >
-              <span className={classNames(showNextLabel ? 'pl-1' : 'sr-only')}>Next</span>
+              <span className={clsx(showNextLabel ? 'pl-1' : 'sr-only')}>Next</span>
               <ChevronRightIcon className="h-5 w-5" />
             </Link>
           ) : null}

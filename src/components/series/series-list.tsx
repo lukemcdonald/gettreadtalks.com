@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import clsx from 'clsx'
 
 import type { SeriesCardData } from './series-card'
 import SeriesCard from './series-card'
@@ -17,7 +17,7 @@ interface SeriesListItem {
 
 function SeriesList({ className, series }: SeriesListProps) {
   return (
-    <div className={classNames('grid gap-4 sm:gap-6', className)}>
+    <div className={clsx('grid gap-4 sm:gap-6', className)}>
       {series.map((series: SeriesListItem) => (
         <SeriesCard
           key={series.id}

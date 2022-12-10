@@ -1,5 +1,5 @@
 import { Fragment } from 'react'
-import classNames from 'classnames'
+import clsx from 'clsx'
 import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { UserCircleIcon as UserIcon } from '@heroicons/react/24/outline'
@@ -34,7 +34,7 @@ function ProfileMenu() {
             leaveTo="opacity-0 scale-95"
           >
             <Menu.Items
-              className={classNames(
+              className={clsx(
                 'absolute right-0 mt-2 w-60 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5',
                 'focus:outline-none',
               )}

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import classNames from 'classnames'
+import clsx from 'clsx'
 import { HeartIcon as HeartOutlineIcon } from '@heroicons/react/24/outline'
 import { HeartIcon as HeartSolidIcon } from '@heroicons/react/24/solid'
 
@@ -44,10 +44,10 @@ function FavoriteToggle({ classNameToggle, talk, ...props }: Props) {
       >
         <span className="sr-only">Add to favorites</span>
         <Toggle.On>
-          <HeartSolidIcon className={classNames('h-full w-full', classNameToggle?.on)} />
+          <HeartSolidIcon className={clsx('h-full w-full', classNameToggle?.on)} />
         </Toggle.On>
         <Toggle.Off>
-          <HeartOutlineIcon className={classNames('h-full w-full', classNameToggle?.off)} />
+          <HeartOutlineIcon className={clsx('h-full w-full', classNameToggle?.off)} />
         </Toggle.Off>
       </Toggle.Button>
     </Toggle>

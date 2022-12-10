@@ -1,5 +1,5 @@
 import React from 'react'
-import classNames from 'classnames'
+import clsx from 'clsx'
 
 import { sanitizeHTMLTag } from '~/utils/misc'
 import type { TAny } from '~/utils/types/shared'
@@ -15,7 +15,7 @@ function CardSubTitle({ as, children, className }: Props) {
 
   return (
     <Tag
-      className={classNames(
+      className={clsx(
         'mb-2 mt-1 text-xs font-bold uppercase leading-none tracking-wide text-primary-600',
         className,
       )}

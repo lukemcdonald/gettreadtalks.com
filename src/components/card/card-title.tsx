@@ -1,5 +1,5 @@
 import React from 'react'
-import classNames from 'classnames'
+import clsx from 'clsx'
 
 import { sanitizeHTMLTag } from '~/utils/misc'
 import type { TAny } from '~/utils/types/shared'
@@ -14,9 +14,7 @@ function CardTitle({ as, children, className }: Props) {
   const Tag: TAny = sanitizeHTMLTag(as, ['h1', 'h2', 'h3'])
 
   return (
-    <Tag className={classNames('text-lg font-bold leading-6 text-gray-900', className)}>
-      {children}
-    </Tag>
+    <Tag className={clsx('text-lg font-bold leading-6 text-gray-900', className)}>{children}</Tag>
   )
 }
 

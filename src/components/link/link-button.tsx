@@ -1,5 +1,5 @@
 import React from 'react'
-import classNames from 'classnames'
+import clsx from 'clsx'
 import type { TAny } from '~/utils/types/shared'
 
 import Link from './link'
@@ -32,7 +32,7 @@ function LinkButton({
 }: Props) {
   return (
     <Link
-      className={classNames(
+      className={clsx(
         'inline-block rounded-full transition duration-300 hover:shadow-lg',
         colorClassMap[color],
         sizeClassMap[size],

@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import clsx from 'clsx'
 
 import { Link } from '~/components/link'
 
@@ -27,7 +27,7 @@ function CardContent({ icons = [], subtitle, text, title, to = '' }: Props) {
       <div>
         <Link to={to} className="inline focus:outline-none">
           <span className="absolute inset-0 z-0" aria-hidden="true" />
-          <CardTitle as="h2" className={classNames('inline', icons.length > 0 && 'mr-2')}>
+          <CardTitle as="h2" className={clsx('inline', icons.length > 0 && 'mr-2')}>
             {title}
           </CardTitle>
         </Link>

@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react'
-import classNames from 'classnames'
+import clsx from 'clsx'
 import { Transition } from '@headlessui/react'
 import { XMarkIcon as CloseIcon } from '@heroicons/react/24/solid'
 
@@ -41,17 +41,14 @@ function Notification({ message, onClose }: Props) {
               <MessageIcon className="h-6 w-6" aria-hidden="true" />
             </div>
             <div
-              className={classNames(
-                'w-0 flex-1 pt-0.5',
-                message.icon !== undefined ? 'ml-3' : 'ml-1',
-              )}
+              className={clsx('w-0 flex-1 pt-0.5', message.icon !== undefined ? 'ml-3' : 'ml-1')}
             >
               {message.title ? (
                 <p className="text-sm font-medium text-gray-900">{message.title}</p>
               ) : null}
 
               {message.text ? (
-                <p className={classNames('text-sm text-gray-500', message.title && 'mt-1')}>
+                <p className={clsx('text-sm text-gray-500', message.title && 'mt-1')}>
                   {message.text}
                 </p>
               ) : null}

@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import clsx from 'clsx'
 
 import TalkCard from './talk-card'
 import type { TAny } from '~/utils/types/shared'
@@ -18,7 +18,7 @@ interface TalkListItem {
 
 function TalkList({ className, subtitle, talks }: TalkListProps) {
   return (
-    <div className={classNames('grid gap-4 sm:gap-6', className)}>
+    <div className={clsx('grid gap-4 sm:gap-6', className)}>
       {talks.map((talk: TalkListItem) => (
         <TalkCard
           key={talk.id}

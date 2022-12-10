@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import classNames from 'classnames'
+import clsx from 'clsx'
 
 import formStyles from '~/utils/styles/form'
 import styles from '~/utils/styles'
@@ -32,7 +32,7 @@ function DeactivateForm({ buttonText = 'Submit', className, onSubmit }: Props) {
     <form onSubmit={handleSubmit} className={className}>
       {isError ? <FormErrorMessage error={error} /> : null}
 
-      <div className={classNames(formStyles.formRow)}>
+      <div className={clsx(formStyles.formRow)}>
         <label htmlFor="password" className={formStyles.label}>
           Password
         </label>
@@ -46,7 +46,7 @@ function DeactivateForm({ buttonText = 'Submit', className, onSubmit }: Props) {
         />
       </div>
 
-      <div className={classNames(formStyles.formRow, state.password ? '' : 'hidden')}>
+      <div className={clsx(formStyles.formRow, state.password ? '' : 'hidden')}>
         <button type="submit" className={styles.dangerButton}>
           {buttonText}
         </button>

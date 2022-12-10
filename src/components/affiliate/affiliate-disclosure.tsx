@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import classNames from 'classnames'
+import clsx from 'clsx'
 
 interface Props {
   children: React.ReactNode
@@ -16,7 +16,7 @@ function AffiliateDisclosure({ children, className, title }: Props) {
 
   return (
     <div
-      className={classNames(
+      className={clsx(
         'z-40 mb-1 mr-1 rounded-sm px-1 text-xs def:absolute def:bottom-0 def:right-0 def:bg-gray-200 def:text-gray-500',
         className,
       )}

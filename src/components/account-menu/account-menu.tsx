@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import clsx from 'clsx'
 
 import { ACCOUNT_NAV } from '~/utils/constants'
 import { Link } from '~/components/link'
@@ -9,7 +9,7 @@ interface Props {
 
 function AccountMenu({ className }: Props) {
   return (
-    <nav className={classNames('space-y-1 font-medium text-gray-500', className)}>
+    <nav className={clsx('space-y-1 font-medium text-gray-500', className)}>
       {ACCOUNT_NAV.map(({ icon: Icon = '', name, to }) => (
         <Link
           key={name}

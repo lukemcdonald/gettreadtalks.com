@@ -1,5 +1,5 @@
 import React from 'react'
-import classNames from 'classnames'
+import clsx from 'clsx'
 
 import { sanitizeHTMLTag } from '~/utils/misc'
 
@@ -28,14 +28,7 @@ function SectionContent({ align, as, children, className }: SectionContentProps)
   const Tag = sanitizeHTMLTag(as, Array.from(allowedTags)) as React.ElementType
 
   return (
-    <Tag
-      className={classNames(
-        'py-6 sm:col-span-2 lg:py-16',
-        columns?.start,
-        columns?.span,
-        className,
-      )}
-    >
+    <Tag className={clsx('py-6 sm:col-span-2 lg:py-16', columns?.start, columns?.span, className)}>
       {children}
     </Tag>
   )

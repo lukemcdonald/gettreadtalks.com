@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import classNames from 'classnames'
+import clsx from 'clsx'
 import { HeartIcon, XCircleIcon } from '@heroicons/react/24/outline'
 
 import { useNotification } from '~/context/notifications'
@@ -34,7 +34,7 @@ function useFavoriteTalk() {
       title: talk.title,
       text: 'Added to favorites',
       icon: ({ className, ...props }) => (
-        <HeartIcon className={classNames(className, 'text-favorite-700')} {...props} />
+        <HeartIcon className={clsx(className, 'text-favorite-700')} {...props} />
       ),
     })
   }

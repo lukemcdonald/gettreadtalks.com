@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import clsx from 'clsx'
 
 import { Link } from '~/components/link'
 import type { TLink } from '~/utils/types/shared'
@@ -15,7 +15,7 @@ function PrimaryMenu({ navigation }: Props) {
           <Link
             key={item.name}
             to={item.to}
-            className={classNames(
+            className={clsx(
               'rounded-md px-3 py-1 text-lg font-medium text-gray-900',
               'hover:text-primary-600',
             )}

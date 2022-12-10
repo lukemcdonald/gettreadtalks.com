@@ -1,5 +1,5 @@
 import React from 'react'
-import classNames from 'classnames'
+import clsx from 'clsx'
 
 import { sanitizeHTMLTag } from '~/utils/misc'
 
@@ -16,7 +16,7 @@ function SectionTitle({ as, children, className = '' }: Props) {
 
   return (
     <Tag
-      className={classNames(
+      className={clsx(
         'mb-3 text-sm font-bold uppercase tracking-wide def:text-gray-500 lg:mb-2 lg:text-xs',
         className,
       )}

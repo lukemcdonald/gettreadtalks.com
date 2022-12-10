@@ -1,5 +1,5 @@
 import React from 'react'
-import classNames from 'classnames'
+import clsx from 'clsx'
 
 interface Props {
   children: React.ReactNode
@@ -17,7 +17,7 @@ function mapSizeToClassName(size: Props['size']) {
 function IntroTitle({ children, className, size }: Props) {
   return (
     <h1
-      className={classNames(
+      className={clsx(
         'text-center text-4xl font-medium text-white',
         mapSizeToClassName(size),
         className,

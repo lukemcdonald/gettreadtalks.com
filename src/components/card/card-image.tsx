@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import clsx from 'clsx'
 
 import { Image } from '~/components/image'
 import type { TAny } from '~/utils/types/shared'
@@ -15,7 +15,7 @@ function CardImage({ alt = '', className, image, ...props }: Props) {
       {image ? (
         <Image
           alt={alt}
-          className={classNames('flex-shrink-0', className || 'h-16 w-16 rounded-full')}
+          className={clsx('flex-shrink-0', className || 'h-16 w-16 rounded-full')}
           image={image}
           imgClassName="rounded-full"
           {...props}

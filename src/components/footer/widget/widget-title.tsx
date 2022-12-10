@@ -1,5 +1,5 @@
 import React from 'react'
-import classNames from 'classnames'
+import clsx from 'clsx'
 
 interface Props {
   children?: React.ReactNode
@@ -8,12 +8,7 @@ interface Props {
 
 function WidgetTitle({ children, className }: Props) {
   return (
-    <h3
-      className={classNames(
-        'text-sm font-semibold uppercase tracking-wider text-gray-400',
-        className,
-      )}
-    >
+    <h3 className={clsx('text-sm font-semibold uppercase tracking-wider text-gray-400', className)}>
       {children}
     </h3>
   )

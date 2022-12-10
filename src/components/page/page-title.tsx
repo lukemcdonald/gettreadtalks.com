@@ -1,5 +1,5 @@
 import React from 'react'
-import classNames from 'classnames'
+import clsx from 'clsx'
 
 interface Props {
   children: React.ReactNode
@@ -7,7 +7,7 @@ interface Props {
 }
 
 function PageTitle({ children, className }: Props) {
-  return <h1 className={classNames('text-2xl text-gray-900', className)}>{children}</h1>
+  return <h1 className={clsx('text-2xl text-gray-900', className)}>{children}</h1>
 }
 
 export default PageTitle
