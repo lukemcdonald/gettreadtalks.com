@@ -5,18 +5,18 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "lib": ["dom", "esnext"],
     "module": "esnext",
     "moduleResolution": "node",
     "noEmit": true,
     "noImplicitAny": false,
+    "noUnusedLocals": true,
     "paths": { "~/*": ["./src/*"] },
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "esnext",
-    "noUnusedLocals": true
+    "target": "esnext"
   },
   "include": [
     "./gatsby-browser.tsx",
