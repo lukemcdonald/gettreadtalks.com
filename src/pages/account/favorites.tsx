@@ -1,7 +1,7 @@
 // todo: Display five random featured talks as recomendations.
 // todo: Display tabs for favorite talks, clips, speakers.
 import { useEffect, useState } from 'react'
-import type { PageProps } from 'gatsby'
+import type { HeadFC, PageProps } from 'gatsby'
 import { graphql, navigate } from 'gatsby'
 import { HeartIcon } from '@heroicons/react/24/outline'
 
@@ -17,7 +17,7 @@ import { useUsers } from '~/context/users'
 
 type Props = PageProps<Queries.AccountFavoritesPageQuery>
 
-function AccountFavoritesPage({ data, location }: Props) {
+function AccountFavoritesPage({ data }: Props) {
   const [favoriteTalks, setFavoriteTalks] = useState([])
   const { isUser } = useAuth()
   const { user } = useUsers()
@@ -44,41 +44,41 @@ function AccountFavoritesPage({ data, location }: Props) {
   }
 
   return (
-    <>
-      <SEO title="Favorite Talks" location={location} />
+    <Section>
+      <Section.Sidebar>
+        <AccountMenu />
+      </Section.Sidebar>
 
-      <Section>
-        <Section.Sidebar>
-          <AccountMenu />
-        </Section.Sidebar>
-
-        <Section.Content>
-          {hasFavoriteTalks ? (
-            <div className="divide-y divide-gray-200">
-              <Page.Title>Your favorite talks:</Page.Title>
-              <div className="mt-5">
-                <TalkList talks={favoriteTalks} />
-              </div>
+      <Section.Content>
+        {hasFavoriteTalks ? (
+          <div className="divide-y divide-gray-200">
+            <Page.Title>Your favorite talks:</Page.Title>
+            <div className="mt-5">
+              <TalkList talks={favoriteTalks} />
             </div>
-          ) : null}
+          </div>
+        ) : null}
 
-          {!hasFavoriteTalks ? (
-            <Link
-              className="relative block w-full rounded-lg border-2 border-dashed border-gray-300 p-12 text-center hover:border-gray-400"
-              to="/talks/"
-              type="button"
-            >
-              <Page.Title>Favorites</Page.Title>
-              <p className="mt-2">
-                Click the {<HeartIcon className="inline h-6 w-6 text-gray-400" />} to save an item
-                to your favorites list.
-              </p>
-            </Link>
-          ) : null}
-        </Section.Content>
-      </Section>
-    </>
+        {!hasFavoriteTalks ? (
+          <Link
+            className="relative block w-full rounded-lg border-2 border-dashed border-gray-300 p-12 text-center hover:border-gray-400"
+            to="/talks/"
+            type="button"
+          >
+            <Page.Title>Favorites</Page.Title>
+            <p className="mt-2">
+              Click the {<HeartIcon className="inline h-6 w-6 text-gray-400" />} to save an item to
+              your favorites list.
+            </p>
+          </Link>
+        ) : null}
+      </Section.Content>
+    </Section>
   )
+}
+
+export const Head: HeadFC = ({ location }) => {
+  return <SEO title="Favorite Talks" location={location} />
 }
 
 export default AccountFavoritesPage

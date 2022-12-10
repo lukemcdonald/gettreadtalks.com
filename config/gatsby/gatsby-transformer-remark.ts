@@ -1,9 +1,9 @@
 export default {
-  resolve: `gatsby-transformer-remark`,
+  resolve: 'gatsby-transformer-remark',
   options: {
     plugins: [
       {
-        resolve: `@raae/gatsby-remark-oembed`,
+        resolve: '@raae/gatsby-remark-oembed',
         options: {
           providers: {
             include: ['Vimeo', 'YouTube'],
@@ -11,7 +11,7 @@ export default {
         },
       },
       {
-        resolve: `gatsby-remark-responsive-iframe`,
+        resolve: 'gatsby-remark-responsive-iframe',
       },
     ],
   },

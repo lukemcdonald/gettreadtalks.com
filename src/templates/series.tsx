@@ -1,4 +1,4 @@
-import type { PageProps } from 'gatsby'
+import type { HeadFC, PageProps } from 'gatsby'
 import { graphql } from 'gatsby'
 
 import { Intro } from '~/components/intro'
@@ -8,7 +8,7 @@ import { TalkList } from '~/components/talk'
 
 type Props = PageProps<Queries.SingleSeriesPageQuery>
 
-function SingleSeriesPage({ data, location }: Props) {
+function SingleSeriesPage({ data }: Props) {
   const series = data?.series?.data
 
   if (!series) {
@@ -17,8 +17,6 @@ function SingleSeriesPage({ data, location }: Props) {
 
   return (
     <>
-      <SEO title={series.title} location={location} />
-
       <Intro>
         <Intro.Title>{series.title}</Intro.Title>
       </Intro>
@@ -30,6 +28,10 @@ function SingleSeriesPage({ data, location }: Props) {
       </Section>
     </>
   )
+}
+
+export const Head: HeadFC<Queries.SingleSeriesPageQuery> = ({ data, location }) => {
+  return <SEO title={data?.series?.data?.title} location={location} />
 }
 
 export default SingleSeriesPage

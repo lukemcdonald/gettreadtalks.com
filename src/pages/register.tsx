@@ -1,4 +1,4 @@
-import { navigate } from 'gatsby'
+import { HeadFC, navigate } from 'gatsby'
 import type { PageProps } from 'gatsby'
 
 import styles from '~/utils/styles/form'
@@ -18,38 +18,38 @@ function RegisterPage({ location }: PageProps) {
   }
 
   return (
-    <>
-      <SEO title="Register" location={location} />
+    <Section>
+      <Section.Sidebar>
+        <Page.Title>Create your account</Page.Title>
 
-      <Section>
-        <Section.Sidebar>
-          <Page.Title>Create your account</Page.Title>
+        <div className="prose mt-2">
+          <p>
+            Create a free account and enjoy the benefits of bookmarking your own talks on TREAD
+            Talks.
+          </p>
+          <p>
+            Or <Link to="/login">sign in to your account &rarr;</Link>
+          </p>
+        </div>
+      </Section.Sidebar>
 
-          <div className="prose mt-2">
-            <p>
-              Create a free account and enjoy the benefits of bookmarking your own talks on TREAD
-              Talks.
-            </p>
-            <p>
-              Or <Link to="/login">sign in to your account &rarr;</Link>
-            </p>
+      <Section.Content>
+        <div className="relative z-10 flex flex-auto items-center justify-center">
+          <div className="w-full max-w-md">
+            <LoginForm
+              className={styles.fieldset}
+              onSubmit={register}
+              buttonText="Register your account"
+            />
           </div>
-        </Section.Sidebar>
-
-        <Section.Content>
-          <div className="relative z-10 flex flex-auto items-center justify-center">
-            <div className="w-full max-w-md">
-              <LoginForm
-                className={styles.fieldset}
-                onSubmit={register}
-                buttonText="Register your account"
-              />
-            </div>
-          </div>
-        </Section.Content>
-      </Section>
-    </>
+        </div>
+      </Section.Content>
+    </Section>
   )
+}
+
+export const Head: HeadFC = ({ location }) => {
+  return <SEO title="Register" location={location} />
 }
 
 export default RegisterPage

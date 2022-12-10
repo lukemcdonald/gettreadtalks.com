@@ -1,5 +1,4 @@
 import type { GatsbyConfig } from 'gatsby'
-import dotenv from 'dotenv'
 import {
   gatsbyPluginTsconfigPaths,
   gatsbyPluginFeed,
@@ -24,7 +23,6 @@ const config: GatsbyConfig = {
     'gatsby-plugin-image',
     'gatsby-plugin-netlify',
     'gatsby-plugin-postcss',
-    'gatsby-plugin-react-helmet',
     'gatsby-plugin-robots-txt',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',

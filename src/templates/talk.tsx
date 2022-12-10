@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import type { PageProps } from 'gatsby'
+import type { HeadFC, PageProps } from 'gatsby'
 import { graphql } from 'gatsby'
 import {
   EnvelopeIcon as EmailIcon,
@@ -51,6 +51,7 @@ function TalkPage({ data, location, pageContext }: Props) {
     if (speaker.talks) {
       // Get more talks from the same speaker excluding current talk.
       const filtered = speaker.talks?.filter((talk) => talk?.id !== pageContext.id)
+
       if (filtered.length > 0) {
         setMoreTalks(filtered)
       }
@@ -59,12 +60,6 @@ function TalkPage({ data, location, pageContext }: Props) {
 
   return (
     <>
-      <SEO
-        title={`${talk.title} by ${speaker.title}`}
-        description={`Listen to ${talk.title} by ${speaker.title} from ${talk.scripture}.`}
-        location={location}
-      />
-
       <Intro align="wide--center" bgGradient fullscreen>
         <Intro.Title>{talk.title}</Intro.Title>
 
@@ -231,6 +226,19 @@ function TalkPage({ data, location, pageContext }: Props) {
         </Section>
       ) : null}
     </>
+  )
+}
+
+export const Head: HeadFC<Queries.TalkPageQuery> = ({ data, location }) => {
+  const talk = { ...data.talk?.data }
+  const speaker = { ...talk.speakers?.[0]?.data }
+
+  return (
+    <SEO
+      title={`${talk.title} by ${speaker.title}`}
+      description={`Listen to ${talk.title} by ${speaker.title} from ${talk.scripture}.`}
+      location={location}
+    />
   )
 }
 

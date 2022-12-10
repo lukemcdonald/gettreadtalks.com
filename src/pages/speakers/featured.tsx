@@ -1,4 +1,4 @@
-import type { PageProps } from 'gatsby'
+import type { HeadFC, PageProps } from 'gatsby'
 import { graphql } from 'gatsby'
 
 import { Page } from '~/components/page'
@@ -8,39 +8,39 @@ import { SpeakerFilter, SpeakerList } from '~/components/speaker'
 
 type Props = PageProps<Queries.FeaturedSpeakersPageQuery>
 
-function FeaturedSpeakersPage({ data, location }: Props) {
+function FeaturedSpeakersPage({ data }: Props) {
   const { speakers } = data
 
   return (
-    <>
-      <SEO title="Featured Speakers" location={location} />
+    <Section>
+      <Section.Sidebar isSticky>
+        <Page.Title>
+          <SpeakerFilter
+            speakers={speakers.nodes}
+            current={{
+              value: '/speakers/featured/',
+              label: '★ Speakers',
+            }}
+          />
+        </Page.Title>
 
-      <Section>
-        <Section.Sidebar isSticky>
-          <Page.Title>
-            <SpeakerFilter
-              speakers={speakers.nodes}
-              current={{
-                value: '/speakers/featured/',
-                label: '★ Speakers',
-              }}
-            />
-          </Page.Title>
+        <div className="prose mt-2">
+          <p>
+            Here are <em>{speakers.totalCount}</em> hand picked stewards of Gods word to help get
+            you going.
+          </p>
+        </div>
+      </Section.Sidebar>
 
-          <div className="prose mt-2">
-            <p>
-              Here are <em>{speakers.totalCount}</em> hand picked stewards of Gods word to help get
-              you going.
-            </p>
-          </div>
-        </Section.Sidebar>
-
-        <Section.Content align="wide">
-          <SpeakerList className="xl:grid-cols-3" speakers={speakers.nodes} />
-        </Section.Content>
-      </Section>
-    </>
+      <Section.Content align="wide">
+        <SpeakerList className="xl:grid-cols-3" speakers={speakers.nodes} />
+      </Section.Content>
+    </Section>
   )
+}
+
+export const Head: HeadFC = ({ location }) => {
+  return <SEO title="Featured Speakers" location={location} />
 }
 
 export default FeaturedSpeakersPage
