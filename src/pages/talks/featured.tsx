@@ -1,5 +1,5 @@
-import { graphql, HeadFC } from 'gatsby'
-import type { PageProps } from 'gatsby'
+import { graphql } from 'gatsby'
+import type { PageProps, HeadFC } from 'gatsby'
 
 import { Page } from '~/components/page'
 import { SEO } from '~/components/seo'

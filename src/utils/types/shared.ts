@@ -1,7 +1,6 @@
 import type TFirebase from 'firebase/app'
 
 // Todo: Remove all uses of this type and replace with the correct type
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type TAny = any
 // Todo: Remove all uses of this type and replace with the correct type
 export type TUnknown = unknown

@@ -1,5 +1,5 @@
-import { HeadFC, navigate } from 'gatsby'
-import type { PageProps } from 'gatsby'
+import { navigate } from 'gatsby'
+import type { PageProps, HeadFC } from 'gatsby'
 
 import styles from '~/utils/styles/form'
 import { Link } from '~/components/link'

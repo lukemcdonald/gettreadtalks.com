@@ -1,20 +1,17 @@
 {
+  "root": true,
   "extends": [
-    "plugin:@typescript-eslint/recommended",
     "@remix-run/eslint-config",
     "@remix-run/eslint-config/node",
     "plugin:prettier/recommended"
   ],
-  "plugins": ["@typescript-eslint"],
-  "parser": "@typescript-eslint/parser",
+
   "parserOptions": {
     "ecmaVersion": 12,
     "sourceType": "module"
   },
 
   "rules": {
-    "@typescript-eslint/no-unused-vars": "error",
-    "@typescript-eslint/consistent-type-definitions": ["error", "interface"],
     "multiline-ternary": 0,
     "no-shadow": 0,
     "react/jsx-uses-react": "off",
@@ -36,15 +33,6 @@
   },
 
   "overrides": [
-    {
-      "files": ["*.ts", "*.tsx"],
-      "processor": "@graphql-eslint/graphql",
-      "parser": "@typescript-eslint/parser",
-      "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
-      "env": {
-        "es6": true
-      }
-    },
     {
       "files": ["*.graphql"],
       "parser": "@graphql-eslint/eslint-plugin",
