@@ -9,6 +9,8 @@
     "type": "git",
     "url": "https://github.com/lukemcdonald/gettreadtalks.com"
   },
+  "private": true,
+  "sideEffects": false,
   "scripts": {
     "build": "NODE_ENV=production run-s build:*",
     "build:gatsby": "gatsby build",
