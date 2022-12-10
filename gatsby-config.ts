@@ -1,5 +1,4 @@
 import type { GatsbyConfig } from 'gatsby'
-import dotenv from 'dotenv'
 import {
   gatsbyPluginTsconfigPaths,
   gatsbyPluginFeed,
