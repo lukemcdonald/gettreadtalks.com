@@ -23,6 +23,7 @@
     "./gatsby-config.ts",
     "./gatsby-node.ts",
     "./gatsby-ssr.tsx",
+    "./config/**/*",
     "./plugins/**/*",
     "./src/**/*"
   ]
