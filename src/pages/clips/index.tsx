@@ -1,5 +1,5 @@
-import { graphql, HeadFC } from 'gatsby'
-import type { PageProps } from 'gatsby'
+import { graphql } from 'gatsby'
+import type { PageProps, HeadFC } from 'gatsby'
 
 import { ClipList } from '~/components/clip'
 import { Page } from '~/components/page'

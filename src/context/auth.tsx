@@ -136,7 +136,6 @@ function AuthProvider(props: AuthProviderProps) {
 
   const reauthenticate = React.useCallback(
     (form: AuthCredentials) => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       const credential = firebase.auth.EmailAuthProvider.credential(form.email, form.password)
       const currentUser: AuthUser = auth.currentUser
