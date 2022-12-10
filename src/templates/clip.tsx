@@ -1,4 +1,4 @@
-import type { PageProps } from 'gatsby'
+import type { HeadFC, PageProps } from 'gatsby'
 import { graphql } from 'gatsby'
 
 import type { RemarkMedia } from '~/utils/types/shared'
@@ -9,7 +9,7 @@ import { TalkList } from '~/components/talk'
 
 type Props = PageProps<Queries.SingleClipPageQuery>
 
-function SingleClipPage({ data, location }: Props) {
+function SingleClipPage({ data }: Props) {
   const clip = data?.clip?.data
 
   if (!clip) {
@@ -26,42 +26,42 @@ function SingleClipPage({ data, location }: Props) {
   const hasVideo = media?.html?.includes('<iframe')
 
   return (
-    <>
-      <SEO title={clip.title} location={location} />
+    <Intro align="wide--center" bgGradient fullscreen>
+      <Intro.Title>{clip.title}</Intro.Title>
 
-      <Intro align="wide--center" bgGradient fullscreen>
-        <Intro.Title>{clip.title}</Intro.Title>
+      {speaker?.title && speaker.slug ? (
+        <Intro.Tagline className="flex justify-center space-x-2">
+          <span>
+            <span>by</span>&nbsp;
+            <Link className="hover:underline" to={speaker.slug}>
+              {speaker.title}
+            </Link>
+          </span>
+        </Intro.Tagline>
+      ) : null}
 
-        {speaker?.title && speaker.slug ? (
-          <Intro.Tagline className="flex justify-center space-x-2">
-            <span>
-              <span>by</span>&nbsp;
-              <Link className="hover:underline" to={speaker.slug}>
-                {speaker.title}
-              </Link>
-            </span>
-          </Intro.Tagline>
-        ) : null}
+      {hasVideo ? (
+        <figure
+          className="aspect-w-16 aspect-h-9 relative z-10 mt-10 rounded-t shadow-lg"
+          dangerouslySetInnerHTML={{
+            __html: media?.html || '',
+          }}
+        />
+      ) : null}
 
-        {hasVideo ? (
-          <figure
-            className="aspect-w-16 aspect-h-9 relative z-10 mt-10 rounded-t shadow-lg"
-            dangerouslySetInnerHTML={{
-              __html: media?.html || '',
-            }}
-          />
-        ) : null}
+      {clip.talks ? (
+        <TalkList className="-mt-1" subtitle="Related Talk:" talks={clip.talks} />
+      ) : null}
 
-        {clip.talks ? (
-          <TalkList className="-mt-1" subtitle="Related Talk:" talks={clip.talks} />
-        ) : null}
-
-        {!hasVideo && mediaLink ? (
-          <Link.Button to={mediaLink}>Listen to Clip &rarr;</Link.Button>
-        ) : null}
-      </Intro>
-    </>
+      {!hasVideo && mediaLink ? (
+        <Link.Button to={mediaLink}>Listen to Clip &rarr;</Link.Button>
+      ) : null}
+    </Intro>
   )
+}
+
+export const Head: HeadFC<Queries.SingleClipPageQuery> = ({ data, location }) => {
+  return <SEO title={data?.clip?.data?.title} location={location} />
 }
 
 export default SingleClipPage

@@ -1,18 +1,16 @@
-.vscode/
 .DS_Store
+
+.cache/
+.netlify/
+.vscode/
+
 node_modules/
-
-/.cache
-/build
-/public
-
-*.log
+build
+public
 
 package-lock.json
 
 .env*
+*.log
 
 src/gatsby-types.d.ts
-
-# Local Netlify folder
-.netlify

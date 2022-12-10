@@ -1,38 +1,38 @@
-import { graphql } from 'gatsby'
+import { graphql, HeadFC } from 'gatsby'
 import type { PageProps } from 'gatsby'
 
 import { Page } from '~/components/page'
-import { Section } from '~/components/section'
 import { SEO } from '~/components/seo'
+import { Section } from '~/components/section'
 import { SeriesList } from '~/components/series'
 
 type Props = PageProps<Queries.SeriesPageQuery>
 
-function SeriesPage({ data, location }: Props) {
+function SeriesPage({ data }: Props) {
   const { series } = data
 
   return (
-    <>
-      <SEO title="Sermon Series" location={location} />
+    <Section>
+      <Section.Sidebar isSticky>
+        <Page.Title>Series</Page.Title>
 
-      <Section>
-        <Section.Sidebar isSticky>
-          <Page.Title>Series</Page.Title>
+        <div className="prose mt-2">
+          <p>
+            Each series includes talks given by one or more speakers on the same topic or book of
+            the Bible.
+          </p>
+        </div>
+      </Section.Sidebar>
 
-          <div className="prose mt-2">
-            <p>
-              Each series includes talks given by one or more speakers on the same topic or book of
-              the Bible.
-            </p>
-          </div>
-        </Section.Sidebar>
-
-        <Section.Content>
-          <SeriesList series={series.nodes} />
-        </Section.Content>
-      </Section>
-    </>
+      <Section.Content>
+        <SeriesList series={series.nodes} />
+      </Section.Content>
+    </Section>
   )
+}
+
+export const Head: HeadFC = ({ location }) => {
+  return <SEO title="Sermon Series" location={location} />
 }
 
 export default SeriesPage

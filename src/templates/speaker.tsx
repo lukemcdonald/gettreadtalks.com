@@ -1,24 +1,25 @@
-import type { PageProps } from 'gatsby'
+import type { HeadFC, PageProps } from 'gatsby'
 import { graphql } from 'gatsby'
 
+import type { TAny } from '~/utils/types/shared'
 import { ClipList } from '~/components/clip'
 import { Image } from '~/components/image'
 import { Intro } from '~/components/intro'
 import { Link } from '~/components/link'
-import { Section } from '~/components/section'
 import { SEO } from '~/components/seo'
+import { Section } from '~/components/section'
 import { SpeakerFilter } from '~/components/speaker'
 import { TalkList } from '~/components/talk'
 import { TextCarousel } from '~/components/text-carousel'
 import { maybePluralize } from '~/utils/misc'
-import type { TAny } from '~/utils/types/shared'
 
 interface PageContext {
   slug: string
 }
+
 type Props = PageProps<Queries.SingleSpeakerPageQuery, PageContext>
 
-function SingleSpeakerPage({ data, location, pageContext }: Props) {
+function SingleSpeakerPage({ data, pageContext }: Props) {
   const speaker = data?.speaker?.data
   const speakers = data?.speakers
 
@@ -26,18 +27,8 @@ function SingleSpeakerPage({ data, location, pageContext }: Props) {
     return null
   }
 
-  const speakerImage =
-    speaker.avatar?.localFiles?.[0]?.childImageSharp?.gatsbyImageData?.images?.fallback?.src
-
   return (
     <>
-      <SEO
-        title={speaker.title}
-        description={speaker?.description?.childMarkdownRemark?.excerpt}
-        image={speakerImage}
-        location={location}
-      />
-
       <Intro image={speaker?.banner}>
         <Intro.Title className="flex flex-col">
           {speaker.avatar ? (
@@ -149,6 +140,20 @@ function SingleSpeakerPage({ data, location, pageContext }: Props) {
         </Section>
       ) : null}
     </>
+  )
+}
+
+export const Head: HeadFC<Queries.SingleSpeakerPageQuery> = ({ data, location }) => {
+  const speaker = data?.speaker?.data
+  const speakerImage = speaker?.banner?.localFiles?.[0]
+
+  return (
+    <SEO
+      title={speaker?.title}
+      description={speaker?.description?.childMarkdownRemark?.excerpt}
+      image={speakerImage?.childImageSharp?.gatsbyImageData?.images?.fallback?.src}
+      location={location}
+    />
   )
 }
 

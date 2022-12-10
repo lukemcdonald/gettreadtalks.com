@@ -1,4 +1,4 @@
-import { graphql } from 'gatsby'
+import { graphql, HeadFC } from 'gatsby'
 import type { PageProps } from 'gatsby'
 
 import { Page } from '~/components/page'
@@ -8,36 +8,36 @@ import { TalkFilter, TalkList } from '~/components/talk'
 
 type Props = PageProps<Queries.FeaturedTalksPageQuery>
 
-function FeaturedTalksPage({ data, location }: Props) {
+function FeaturedTalksPage({ data }: Props) {
   const { talks, topics } = data
 
   return (
-    <>
-      <SEO title="Featured Talks" location={location} />
+    <Section>
+      <Section.Sidebar isSticky>
+        <Page.Title className="relative">
+          <TalkFilter
+            topics={topics.nodes}
+            current={{
+              label: '★ Talks',
+              value: '/talks/featured/',
+            }}
+          />
+        </Page.Title>
 
-      <Section>
-        <Section.Sidebar isSticky>
-          <Page.Title className="relative">
-            <TalkFilter
-              topics={topics.nodes}
-              current={{
-                label: '★ Talks',
-                value: '/talks/featured/',
-              }}
-            />
-          </Page.Title>
+        <div className="prose mt-2">
+          <p>Choose one of these featured talks to elevate your spiritual heartbeat.</p>
+        </div>
+      </Section.Sidebar>
 
-          <div className="prose mt-2">
-            <p>Choose one of these featured talks to elevate your spiritual heartbeat.</p>
-          </div>
-        </Section.Sidebar>
-
-        <Section.Content>
-          <TalkList talks={talks.nodes} />
-        </Section.Content>
-      </Section>
-    </>
+      <Section.Content>
+        <TalkList talks={talks.nodes} />
+      </Section.Content>
+    </Section>
   )
+}
+
+export const Head: HeadFC = ({ location }) => {
+  return <SEO title="Featured Talks" location={location} />
 }
 
 export default FeaturedTalksPage

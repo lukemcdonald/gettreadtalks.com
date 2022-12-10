@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import type { PageProps } from 'gatsby'
+import type { HeadFC, PageProps } from 'gatsby'
 import { graphql } from 'gatsby'
 
 import { Page } from '~/components/page'
@@ -10,7 +10,7 @@ import { TextCarousel } from '~/components/text-carousel'
 
 type Props = PageProps<Queries.SpeakersPageQuery>
 
-function SpeakersPage({ data, location }: Props) {
+function SpeakersPage({ data }: Props) {
   const { speakers } = data
 
   const speakerIntroBlock = useMemo(
@@ -35,8 +35,6 @@ function SpeakersPage({ data, location }: Props) {
 
   return (
     <>
-      <SEO title="Speakers" location={location} />
-
       <TextCarousel text="Repent and Believe" />
 
       <Section>
@@ -52,6 +50,10 @@ function SpeakersPage({ data, location }: Props) {
       </Section>
     </>
   )
+}
+
+export const Head: HeadFC = ({ location }) => {
+  return <SEO title="Speakers" location={location} />
 }
 
 export default SpeakersPage

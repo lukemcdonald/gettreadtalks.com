@@ -23,7 +23,6 @@ const config: GatsbyConfig = {
     'gatsby-plugin-image',
     'gatsby-plugin-netlify',
     'gatsby-plugin-postcss',
-    'gatsby-plugin-react-helmet',
     'gatsby-plugin-robots-txt',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',

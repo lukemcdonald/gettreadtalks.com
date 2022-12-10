@@ -1,7 +1,7 @@
 // Todo: Typescript https://www.gatsbyjs.com/docs/how-to/local-development/graphql-typegen/
 import { useMemo } from 'react'
 import { graphql } from 'gatsby'
-import type { PageProps } from 'gatsby'
+import type { HeadFC, PageProps } from 'gatsby'
 
 import { Intro } from '~/components/intro'
 import { SEO } from '~/components/seo'
@@ -13,7 +13,7 @@ import { arrayShuffle } from '~/utils/misc'
 
 type Props = PageProps<Queries.IndexPageQuery>
 
-function IndexPage({ data, location }: Props) {
+function IndexPage({ data }: Props) {
   const { introImage, speakers, talks } = data
 
   const shuffledTalks = useMemo(() => {
@@ -25,8 +25,6 @@ function IndexPage({ data, location }: Props) {
 
   return (
     <>
-      <SEO title="Exercise Your Inner Man" location={location} />
-
       <Intro image={introImage} fullscreen>
         <Intro.Title size="large">Workout your salvation.</Intro.Title>
         <Intro.Tagline>
@@ -68,6 +66,10 @@ function IndexPage({ data, location }: Props) {
       </Section>
     </>
   )
+}
+
+export const Head: HeadFC = ({ location }) => {
+  return <SEO title="Exercise Your Inner Man" location={location} />
 }
 
 export default IndexPage

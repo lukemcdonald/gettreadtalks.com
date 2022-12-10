@@ -1,4 +1,4 @@
-import { graphql } from 'gatsby'
+import { graphql, HeadFC } from 'gatsby'
 import type { PageProps } from 'gatsby'
 
 import { Page } from '~/components/page'
@@ -17,19 +17,19 @@ interface PageContext {
 
 type Props = PageProps<Queries.TalksPageQuery, PageContext>
 
-function TalksPage({ data, location, pageContext }: Props) {
+function getTalksDescription(talksCount: number, topic?: string) {
+  const talksTense = maybePluralize(talksCount, 'talk', { formatSmallNumbers: true })
+  const topicSuffix = topic ? ` on ${topic}` : ''
+
+  return `Elevate your spiritual heartbeat with Christ centered ${talksTense}${topicSuffix}.`
+}
+
+function TalksPage({ data, pageContext }: Props) {
   const { talks, topics } = data
   const isTopical = topics?.nodes && pageContext?.topic
-  const description = `Elevate your spiritual heartbeat with ${maybePluralize(
-    talks.totalCount,
-    'Christ centered talk',
-    { formatSmallNumbers: true },
-  )}${isTopical ? ` on ${pageContext?.topic}` : ''}.`
 
   return (
     <>
-      <SEO title="Talks" description={description} location={location} />
-
       <TextCarousel text="Jesus is Lord" />
 
       <Section>
@@ -48,7 +48,7 @@ function TalksPage({ data, location, pageContext }: Props) {
           </Page.Title>
 
           <div className="prose mt-2">
-            <p>{description}</p>
+            <p>{getTalksDescription(talks.totalCount, pageContext.topic)}</p>
           </div>
         </Section.Sidebar>
 
@@ -66,6 +66,17 @@ function TalksPage({ data, location, pageContext }: Props) {
       </Section>
     </>
   )
+}
+
+export const Head: HeadFC<Queries.TalksPageQuery, PageContext> = ({
+  data,
+  location,
+  pageContext,
+}) => {
+  const { talks } = data
+  const description = getTalksDescription(talks.totalCount, pageContext.topic)
+
+  return <SEO title="Talks" description={description} location={location} />
 }
 
 export default TalksPage

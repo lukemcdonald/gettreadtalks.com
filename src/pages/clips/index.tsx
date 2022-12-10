@@ -1,4 +1,4 @@
-import { graphql } from 'gatsby'
+import { graphql, HeadFC } from 'gatsby'
 import type { PageProps } from 'gatsby'
 
 import { ClipList } from '~/components/clip'
@@ -8,27 +8,27 @@ import { Section } from '~/components/section'
 
 type Props = PageProps<Queries.ClipsPageQuery>
 
-function ClipsPage({ data, location }: Props) {
+function ClipsPage({ data }: Props) {
   const { clips } = data
 
   return (
-    <>
-      <SEO title="Clips" location={location} />
+    <Section>
+      <Section.Sidebar isSticky>
+        <Page.Title>Clips</Page.Title>
+        <div className="prose mt-2">
+          <p>Be encouraged by these short Christ centered clips.</p>
+        </div>
+      </Section.Sidebar>
 
-      <Section>
-        <Section.Sidebar isSticky>
-          <Page.Title>Clips</Page.Title>
-          <div className="prose mt-2">
-            <p>Be encouraged by these short Christ centered clips.</p>
-          </div>
-        </Section.Sidebar>
-
-        <Section.Content>
-          <ClipList clips={clips.nodes} />
-        </Section.Content>
-      </Section>
-    </>
+      <Section.Content>
+        <ClipList clips={clips.nodes} />
+      </Section.Content>
+    </Section>
   )
+}
+
+export const Head: HeadFC = ({ location }) => {
+  return <SEO title="Clips" location={location} />
 }
 
 export default ClipsPage
