@@ -11,6 +11,7 @@ export interface SpeakerCardBase {
 export interface SpeakerCardData {
   avatar: string
   favorite: boolean
+  lastName: string
   role: string
   title: string
 }

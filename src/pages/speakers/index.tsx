@@ -7,16 +7,65 @@ import { SEO } from '~/components/seo'
 import { Section } from '~/components/section'
 import { SpeakerFilter, SpeakerList } from '~/components/speaker'
 import { TextCarousel } from '~/components/text-carousel'
+import type { SpeakerListItem } from '~/components/speaker/speaker-list'
 
 type Props = PageProps<Queries.SpeakersPageQuery>
 
+function getSortedSpeakersMap(speakers) {
+  const speakersMap = new Map<string, SpeakerListItem[]>()
+
+  for (const speaker of speakers) {
+    // get first letter of speaker's last name
+    const letter = speaker.data?.lastName?.charAt(0)
+
+    if (!letter) {
+      continue
+    }
+
+    // add speaker to speakers map by letter of last name
+    if (!speakersMap.has(letter)) {
+      speakersMap.set(letter, [speaker])
+    } else {
+      const speakers = speakersMap.get(letter) || []
+      speakersMap.set(letter, [...speakers, speaker])
+    }
+  }
+
+  // sort speakers map keys alphabetically
+  return new Map([...speakersMap.entries()].sort())
+}
+
+function getSpeakersSectionLabel(speakers: SpeakerListItem[]) {
+  const firstSpeaker = speakers[0]
+  const lastSpeaker = speakers.at(-1)
+
+  if (!firstSpeaker || !lastSpeaker) {
+    return ''
+  }
+
+  if (firstSpeaker.data.lastName === lastSpeaker.data.lastName) {
+    return firstSpeaker.data.lastName
+  }
+
+  return (
+    <>
+      {firstSpeaker.data.lastName}
+      <span className="text-gray-400">&mdash;</span>
+      {lastSpeaker.data.lastName}
+    </>
+  )
+}
+
 function SpeakersPage({ data }: Props) {
   const { speakers } = data
+  const speakersMap = useMemo(() => getSortedSpeakersMap(speakers.nodes), [speakers.nodes])
 
-  const speakerIntroBlock = useMemo(
-    () => (
-      <div className="'relative row-span-2 flex flex-grow items-start rounded border border-transparent bg-white p-4 px-6 py-5 text-left text-gray-700 shadow-sm transition duration-300">
-        <div>
+  return (
+    <>
+      <TextCarousel text="Repent and Believe" />
+
+      <Section>
+        <Section.Sidebar>
           <Page.Title>
             <SpeakerFilter speakers={speakers.nodes} />
           </Page.Title>
@@ -27,25 +76,28 @@ function SpeakersPage({ data }: Props) {
               blessed.
             </p>
           </div>
-        </div>
-      </div>
-    ),
-    [speakers.nodes, speakers.totalCount],
-  )
+        </Section.Sidebar>
 
-  return (
-    <>
-      <TextCarousel text="Repent and Believe" />
+        <Section.Content align="wide">
+          {Array.from(speakersMap).map(([letter, speakers]) => {
+            const speakersSectionLabel = getSpeakersSectionLabel(speakers)
 
-      <Section>
-        <Section.Content align="full">
-          <SpeakerList
-            actions={{
-              before: speakerIntroBlock,
-            }}
-            className="xl:grid-cols-4"
-            speakers={speakers.nodes}
-          />
+            return (
+              <>
+                <h2
+                  id={`speakers-${letter}`}
+                  className="mb-2 mt-12 flex items-center justify-between gap-4 py-2 text-lg text-gray-900 first-of-type:mt-0"
+                >
+                  <span className="font-bold">{letter}</span>
+                  <span className="relative top-px flex-grow border-b border-gray-300"></span>
+                  <span className="text-xs uppercase tracking-wide text-gray-500">
+                    {speakersSectionLabel}
+                  </span>
+                </h2>
+                <SpeakerList speakers={speakers} />
+              </>
+            )
+          })}
         </Section.Content>
       </Section>
     </>
