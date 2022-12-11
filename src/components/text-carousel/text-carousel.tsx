@@ -10,7 +10,7 @@ function TextCarousel({ className, fontSize = '16vw', text }: Props) {
   const words = text.split(' ')
 
   return (
-    <div className="absolute inset-0 z-0 hidden md:flex md:flex-col">
+    <div className="absolute inset-0 -z-10 hidden md:flex md:flex-col">
       <ul
         className={clsx(
           'css-slideshow sticky transform overflow-hidden px-12 font-black uppercase leading-none tracking-tighter text-gray-200',
