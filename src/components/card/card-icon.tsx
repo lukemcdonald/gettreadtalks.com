@@ -56,7 +56,7 @@ function CardIcon({ className, to, type }: Props) {
         )}
       >
         <Icon className="h-3.5 w-3.5 transition-colors" />
-        <span className="hidden pr-1">{item.title}</span>
+        <span className="sr-only pr-1">{item.title}</span>
       </span>
     </Link>
   )
