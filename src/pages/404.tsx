@@ -1,9 +1,9 @@
-import type { HeadFC, PageProps } from 'gatsby'
+import type { HeadFC } from 'gatsby'
 
 import { Intro } from '~/components/intro'
 import { SEO } from '~/components/seo'
 
-function NotFoundPage({ location }: PageProps) {
+function NotFoundPage() {
   return (
     <Intro>
       <Intro.Title>Are you lost?</Intro.Title>
