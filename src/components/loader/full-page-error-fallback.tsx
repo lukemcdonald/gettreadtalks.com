@@ -5,11 +5,13 @@ interface Props {
 }
 
 function FullPageErrorFallback({ error }: Props) {
+  const errorMsg = getErrorMessage(error)
+
   return (
     <div role="alert" className="flex h-screen flex-col items-center justify-center">
       <div>
         <p>Uh oh... There's a problem. Try refreshing the app.</p>
-        <pre>{getErrorMessage(error)}</pre>
+        <pre>{errorMsg}</pre>
       </div>
     </div>
   )

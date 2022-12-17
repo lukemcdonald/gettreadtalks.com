@@ -141,10 +141,8 @@ function AuthProvider(props: AuthProviderProps) {
       const currentUser: AuthUser = auth.currentUser
 
       if (currentUser) {
-        console.log('reauthenticate: currentUser', currentUser)
         return currentUser.reauthenticateWithCredential(credential)
       } else {
-        console.log('reauthenticate: rejected currentUser', currentUser)
         return Promise.reject(new Error('No user is currently signed in.'))
       }
     },

@@ -9,10 +9,12 @@ interface Props {
 }
 
 function FormErrorMessage({ error }: Props) {
+  const errorMsg = getErrorMessage(error)
+
   return (
     <div className={clsx(styles.formError, 'flex items-center')}>
       <ExclamationCircleIcon className="mr-2 h-10 w-10" />
-      <p>{getErrorMessage(error)}</p>
+      <p>{errorMsg}</p>
     </div>
   )
 }
