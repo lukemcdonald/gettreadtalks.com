@@ -68,4 +68,4 @@ function useFirebase() {
   return context
 }
 
-export { FirebaseProvider, useFirebase, getFirebase }
+export { FirebaseProvider, useFirebase }
