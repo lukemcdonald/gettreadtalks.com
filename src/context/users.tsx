@@ -1,11 +1,13 @@
 import React, { createContext, useCallback, useContext, useEffect } from 'react'
+import type { DocumentData, SetOptions } from 'firebase/firestore'
+import { deleteDoc, doc, getDoc, getFirestore, setDoc, updateDoc } from 'firebase/firestore'
 
 import { FullPageErrorFallback, FullPageLogo } from '~/components/loader'
 import { useAuth } from '~/context/auth'
 import { useFirebase } from '~/context/firebase'
 import { useAsync } from '~/hooks/async'
 import { useMemoObject } from '~/hooks/memo-object'
-import type { IFirebase, Nullable } from '~/utils/types/shared'
+import type { Nullable } from '~/utils/types/shared'
 
 interface User {
   id: string
@@ -19,14 +21,8 @@ interface UsersProviderProps {
 }
 
 export interface UsersProviderValue {
-  deleteUserById: (id: User['id']) => Promise<void>
-  readUserByField: (field: string) => Promise<void>
-  readUserById: (id: User['id']) => Promise<void>
-  setUser: (
-    id: User['id'],
-    updates: Partial<IFirebase['firestoreData']>,
-    args: IFirebase['firestoreOptions'],
-  ) => Promise<void>
+  deleteUserById: (id: User['id']) => void
+  setUser: (id: User['id'], updates: Partial<DocumentData>, args: SetOptions) => Promise<void>
   updateUser: (id: User['id'], updates: Omit<User, 'id'>) => Promise<void>
   user: Nullable<User>
 }
@@ -45,103 +41,65 @@ function UsersProvider(props: UsersProviderProps) {
     isSuccess,
   } = useAsync<User>()
 
-  const db = firebase.firestore()
+  const db = getFirestore(firebase)
+
+  const loadUserProfile = useCallback(
+    async (profile) => {
+      const docRef = doc(db, 'users', profile.uid)
+      const docSnap = await getDoc(docRef)
+      setData({
+        id: docSnap.id,
+        ...docSnap.data(),
+      })
+    },
+    [db, setData],
+  )
 
   useEffect(() => {
     if (profile) {
-      db.collection('users')
-        .doc(profile.uid)
-        .get()
-        .then((doc) =>
-          setData({
-            id: doc.id,
-            ...doc.data(),
-          }),
-        )
+      loadUserProfile(profile)
     }
-  }, [db, setData, profile])
+  }, [loadUserProfile, profile])
 
   const deleteUserById = useCallback(
-    (id: User['id']) =>
-      db
-        .collection('users')
-        .doc(id)
-        .delete()
-        .then(() => setData(null)),
-    [db, setData],
-  )
-
-  const readUserByField = useCallback(
-    (field: string) =>
-      db
-        .collection('users')
-        .limit(1)
-        .where(field.toString(), '==', field)
-        .get()
-        .then((snapshot) => {
-          const doc = snapshot.docs[0]
-          setData({
-            id: doc.id,
-            ...doc.data(),
-          })
-        }),
-    [db, setData],
-  )
-  const readUserById = useCallback(
-    (id: User['id']) =>
-      db
-        .collection('users')
-        .doc(id)
-        .get()
-        .then((doc) =>
-          setData({
-            id: doc.id,
-            ...doc.data(),
-          }),
-        ),
+    async (id: User['id']) => {
+      const docRef = doc(db, 'users', id)
+      await deleteDoc(docRef)
+      setData(null)
+    },
     [db, setData],
   )
 
   const setUser = useCallback(
-    (
-      id: User['id'],
-      updates: Partial<IFirebase['firestoreData']>,
-      args: IFirebase['firestoreOptions'],
-    ) =>
-      db
-        .collection('users')
-        .doc(id)
-        .set(updates, args || { merge: true })
-        .then(() => db.collection('users').doc(id).get())
-        .then((doc) =>
-          setData({
-            id: doc.id,
-            ...doc.data(),
-          }),
-        ),
+    async (id: User['id'], updates: Partial<DocumentData>, args: SetOptions = { merge: true }) => {
+      const docRef = doc(db, 'users', id)
+      await setDoc(docRef, updates, args)
+      const updatedRef = doc(db, 'users', id)
+      const updatedSnap = await getDoc(updatedRef)
+      setData({
+        id: updatedSnap.id,
+        ...updatedSnap.data(),
+      })
+    },
     [db, setData],
   )
 
   const updateUser = useCallback(
-    (id: User['id'], updates: Partial<IFirebase['firestoreData']>) =>
-      db
-        .collection('users')
-        .doc(id)
-        .update(updates)
-        .then(() => db.collection('users').doc(id).get())
-        .then((doc) =>
-          setData({
-            id: doc.id,
-            ...doc.data(),
-          }),
-        ),
+    async (id: User['id'], updates: Partial<DocumentData>) => {
+      const docRef = doc(db, 'users', id)
+      await updateDoc(docRef, updates)
+      const updatedRef = doc(db, 'users', id)
+      const updatedSnap = await getDoc(updatedRef)
+      setData({
+        id: updatedSnap.id,
+        ...updatedSnap.data(),
+      })
+    },
     [db, setData],
   )
 
   const value = useMemoObject({
     deleteUserById,
-    readUserById,
-    readUserByField,
     setUser,
     updateUser,
     user,

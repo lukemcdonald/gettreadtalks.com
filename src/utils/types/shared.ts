@@ -1,5 +1,3 @@
-import type TFirebase from 'firebase/app'
-
 // Todo: Remove all uses of this type and replace with the correct type
 export type TAny = any
 // Todo: Remove all uses of this type and replace with the correct type
@@ -11,14 +9,6 @@ export interface NavigationItem {
   name: string
   to: string
   icon?: (props: React.ComponentProps<'svg'>) => JSX.Element
-}
-
-export interface IFirebase {
-  app: TFirebase.app.App
-  firestoreData: TFirebase.firestore.DocumentData
-  firestoreOptions: TFirebase.firestore.SetOptions
-  user: TFirebase.User
-  userCredential: TFirebase.auth.UserCredential
 }
 
 export interface TLink {
