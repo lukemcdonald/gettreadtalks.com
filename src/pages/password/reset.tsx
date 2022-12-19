@@ -1,5 +1,5 @@
 // todo: this could probably use a basic email form with resetPassword as the onSubmit
-import type { HeadFC, PageProps } from 'gatsby'
+import type { HeadFC } from 'gatsby'
 
 import styles from '~/utils/styles/form'
 import { Link } from '~/components/link'
@@ -9,7 +9,7 @@ import { SEO } from '~/components/seo'
 import { Section } from '~/components/section'
 import { useAuth } from '~/context/auth'
 
-function ResetPassword({ location }: PageProps) {
+function ResetPassword() {
   const { resetPassword } = useAuth()
 
   return (

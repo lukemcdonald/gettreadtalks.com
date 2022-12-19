@@ -1,6 +1,6 @@
 // todo: Setup Firebase functionality to handle email and password updates onClick event handlers.
 import { navigate } from 'gatsby'
-import type { PageProps, HeadFC } from 'gatsby'
+import type { HeadFC } from 'gatsby'
 
 import { AccountMenu } from '~/components/account-menu'
 import { DeactivateAccountButton } from '~/components/account/deactivate-dialog'
@@ -11,7 +11,7 @@ import { SettingsEmailForm } from '~/components/account/settings-email-form'
 import { SettingsPasswordForm } from '~/components/account/settings-password-form'
 import { useAuth } from '~/context/auth'
 
-function AccountPage({ location }: PageProps) {
+function AccountPage() {
   const { isUser, profile, updateSettings } = useAuth()
 
   if (!isUser) {

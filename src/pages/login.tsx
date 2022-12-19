@@ -1,5 +1,5 @@
 import { navigate } from 'gatsby'
-import type { PageProps, HeadFC } from 'gatsby'
+import type { HeadFC } from 'gatsby'
 
 import styles from '~/utils/styles/form'
 import { Link } from '~/components/link'
@@ -9,7 +9,7 @@ import { SEO } from '~/components/seo'
 import { Section } from '~/components/section'
 import { useAuth } from '~/context/auth'
 
-function LoginPage({ location }: PageProps) {
+function LoginPage() {
   const { login, isUser } = useAuth()
 
   if (isUser) {

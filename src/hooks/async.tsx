@@ -15,6 +15,8 @@ interface AsyncState<TData = TUnknown> {
   status: AsyncActionType
 }
 
+type AsyncReducer<T> = (state: AsyncState<T>, action: AsyncAction<T>) => AsyncState<T>
+
 interface AsyncAction<TData> extends AsyncState<TData> {
   type: AsyncActionType
 }
@@ -63,19 +65,18 @@ function asyncReducer<TData>(state: AsyncState<TData>, action: AsyncAction<TData
 
 function useAsync<TData>(initialData: Nullable<TData> = null): AsyncValue<TData> {
   const initialState: AsyncState<TData> = {
-    status: AsyncActionType.IDLE,
     data: initialData,
     error: null,
+    status: AsyncActionType.IDLE,
   }
-  const [state, unsafeDispatch] = useReducer<
-    (state: AsyncState<TData>, action: AsyncAction<TData>) => AsyncState<TData>
-  >(asyncReducer, initialState)
+  const [state, unsafeDispatch] = useReducer<AsyncReducer<TData>>(asyncReducer, initialState)
   const dispatch = useSafeDispatch(unsafeDispatch)
 
   const setData = useCallback(
     (data: AsyncState<TData>['data']) => dispatch({ type: AsyncActionType.RESOLVED, data }),
     [dispatch],
   )
+
   const setError = useCallback(
     (error: AsyncState<TData>['error']) => dispatch({ type: AsyncActionType.REJECTED, error }),
     [dispatch],
@@ -94,11 +95,9 @@ function useAsync<TData>(initialData: Nullable<TData> = null): AsyncValue<TData>
       return promise.then(
         (data: AsyncState<TData>['data']) => {
           setData(data)
-          return data
         },
         (error: AsyncState<TData>['error']) => {
           setError(error)
-          return Promise.reject(error)
         },
       )
     },
