@@ -95,11 +95,9 @@ function useAsync<TData>(initialData: Nullable<TData> = null): AsyncValue<TData>
       return promise.then(
         (data: AsyncState<TData>['data']) => {
           setData(data)
-          return data
         },
         (error: AsyncState<TData>['error']) => {
           setError(error)
-          return Promise.reject(error)
         },
       )
     },
