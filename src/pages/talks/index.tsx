@@ -37,7 +37,6 @@ function TalksPage({ data, pageContext }: Props) {
           {isTopical ? <Section.Title as="h2">Talks On</Section.Title> : null}
 
           <Page.Title>
-            {/* TODO: Is there a better way of passing a generic to a component? */}
             <TalkFilter
               topics={topics.nodes}
               current={{
@@ -74,9 +73,10 @@ export const Head: HeadFC<Queries.TalksPageQuery, PageContext> = ({
   pageContext,
 }) => {
   const { talks } = data
+  const title = pageContext.topic ? `Talks on ${pageContext.topic}` : 'Talks'
   const description = getTalksDescription(talks.totalCount, pageContext.topic)
 
-  return <SEO title="Talks" description={description} location={location} />
+  return <SEO title={title} description={description} location={location} />
 }
 
 export default TalksPage
