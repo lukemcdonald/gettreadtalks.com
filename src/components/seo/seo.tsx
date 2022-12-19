@@ -2,7 +2,6 @@ import type { ReactNode } from 'react'
 import type { HeadProps } from 'gatsby'
 import striptags from 'striptags'
 
-import SchemaOrg from '~/components/seo/schema-org'
 import { useSiteMetadata } from '~/hooks/site-metadata'
 import { trimText } from '~/utils/misc'
 
@@ -25,6 +24,16 @@ function SEO({ children, description, image, location, title }: Props) {
     image: image || '/default-seo-image.png',
     url: location.pathname ? `${BASE_URL}${location.pathname}` : BASE_URL,
   }
+
+  const schemaOrg = [
+    {
+      '@context': 'http://schema.org',
+      '@type': 'WebSite',
+      url: seo.url,
+      name: seo.title,
+      alternateName: siteTitle || '',
+    },
+  ]
 
   return (
     <>
@@ -57,7 +66,8 @@ function SEO({ children, description, image, location, title }: Props) {
       {/* Additions and Overrides */}
       {children}
 
-      <SchemaOrg defaultTitle={siteTitle || ''} title={seo.title} url={seo.url} />
+      {/* Schema.org tags */}
+      <script type="application/ld+json">{JSON.stringify(schemaOrg)}</script>
     </>
   )
 }
