@@ -1,35 +1,22 @@
-// todo: update Firebase functionality to version 9 (currently version 8)
-import React from 'react'
+import { createContext, useCallback, useContext, useEffect, useMemo } from 'react'
+import type { FirebaseApp } from 'firebase/app'
+import { initializeApp } from 'firebase/app'
 
 import { FullPageErrorFallback, FullPageLogo } from '~/components/loader'
 import { useAsync } from '~/hooks/async'
-import type { IFirebase } from '~/utils/types/shared'
 import type { TAny } from '~/utils/types/shared'
 
-export interface FirebaseApp {
-  firebase: IFirebase['app']
+interface FirebaseContextValue {
+  firebase: FirebaseApp
 }
 
-interface FirebaseValue {
-  firebase: IFirebase['app']
-}
-
-async function getFirebase() {
-  const firebase = (await import('firebase/app')).default
-  await Promise.all([import('firebase/auth'), import('firebase/firestore')])
-
-  if (!firebase.apps.length) {
-    firebase.initializeApp({
-      apiKey: process.env.GATSBY_FIREBASE_API_KEY,
-      authDomain: process.env.GATSBY_FIREBASE_AUTH_DOMAIN,
-      databaseURL: process.env.GATSBY_FIREBASE_DATABASE_URL,
-      projectId: process.env.GATSBY_FIREBASE_PROJECT_ID,
-      storageBucket: process.env.GATSBY_FIREBASE_STORAGE_BUCKET,
-      messagingSenderId: process.env.GATSBY_FIREBASE_MESSAGING_SENDER_ID,
-    })
-  }
-
-  return firebase
+const firebaseConfig = {
+  apiKey: process.env.GATSBY_FIREBASE_API_KEY,
+  authDomain: process.env.GATSBY_FIREBASE_AUTH_DOMAIN,
+  databaseURL: process.env.GATSBY_FIREBASE_DATABASE_URL,
+  projectId: process.env.GATSBY_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.GATSBY_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.GATSBY_FIREBASE_MESSAGING_SENDER_ID,
 }
 
 function FirebaseProvider(props: TAny) {
@@ -44,11 +31,16 @@ function FirebaseProvider(props: TAny) {
     isSuccess,
   } = useAsync<FirebaseApp>()
 
-  React.useEffect(() => {
-    getFirebase().then((client: TAny) => setData(client))
+  const initializeFirebase = useCallback(() => {
+    const app = initializeApp(firebaseConfig)
+    setData(app)
   }, [setData])
 
-  const value = React.useMemo(() => ({ firebase }), [firebase])
+  useEffect(() => {
+    initializeFirebase()
+  }, [initializeFirebase])
+
+  const value = useMemo(() => ({ firebase }), [firebase])
 
   if (isLoading || isIdle) {
     return <FullPageLogo />
@@ -65,15 +57,15 @@ function FirebaseProvider(props: TAny) {
   throw new Error(`Unhandled status: ${status}`)
 }
 
-const FirebaseContext = React.createContext<FirebaseApp>({} as FirebaseValue)
+const FirebaseContext = createContext<FirebaseContextValue>({} as FirebaseContextValue)
 FirebaseContext.displayName = 'FirebaseContext'
 
 function useFirebase() {
-  const context = React.useContext(FirebaseContext)
+  const context = useContext(FirebaseContext)
   if (context === undefined) {
     throw new Error(`useFirebase must be used within FirebaseProvider`)
   }
   return context
 }
 
-export { FirebaseProvider, useFirebase, getFirebase }
+export { FirebaseProvider, useFirebase }

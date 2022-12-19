@@ -1,14 +1,31 @@
-import React from 'react'
+import type { ComponentProps, ReactNode } from 'react'
+import { createContext, useContext } from 'react'
+import { useCallback, useEffect } from 'react'
 import { navigate } from 'gatsby'
 import { UserCircleIcon } from '@heroicons/react/24/outline'
+import type { User } from 'firebase/auth'
+import {
+  getAuth,
+  onAuthStateChanged,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+  reauthenticateWithCredential,
+  updateEmail,
+  updatePassword,
+  signOut,
+  EmailAuthProvider,
+} from 'firebase/auth'
+import type { DocumentData, SetOptions } from 'firebase/firestore'
+import { getFirestore, doc, setDoc, deleteDoc } from 'firebase/firestore'
 
-import type { IFirebase, Nullable, TAny } from '~/utils/types/shared'
 import { FullPageErrorFallback, FullPageLogo } from '~/components/loader'
 import { getErrorMessage } from '~/utils/error'
 import { useAsync } from '~/hooks/async'
 import { useFirebase } from '~/context/firebase'
 import { useMemoObject } from '~/hooks/memo-object'
 import { useNotification } from '~/context/notifications'
+import { getAuthErrorMessage } from '~/utils/auth-error'
 
 export interface AuthProfile {
   email: string
@@ -27,32 +44,32 @@ export interface AuthSettings {
     email: string
     password: string
   }
-  updates: Partial<IFirebase['firestoreData']>
+  updates: Partial<DocumentData>
 }
 
-export type AuthUser = Nullable<IFirebase['user']>
+export type AuthUser = User | null
 
 export interface AuthProviderValue {
   isUser: boolean
-  login: (props: AuthCredentials) => Promise<void>
-  logout: () => Promise<void>
+  login: (form: AuthCredentials) => Promise<void>
+  logout: () => void
   profile: AuthUser
-  reauthenticate: (props: AuthCredentials) => Promise<IFirebase['userCredential']>
-  register: (props: AuthCredentials) => Promise<void>
-  resetPassword: (props: AuthCredentials) => Promise<void>
+  reauthenticate: (form: AuthCredentials) => Promise<void>
+  register: (form: AuthCredentials) => Promise<void>
+  resetPassword: (form: AuthCredentials) => Promise<void>
   unregister: (props: { password: string }) => Promise<void>
   updateSettings: (props: AuthSettings) => void
 }
 
 interface AuthProviderProps {
-  children: React.ReactNode
+  children: ReactNode
 }
 
 function AuthProvider(props: AuthProviderProps) {
   const { notify } = useNotification()
   const { firebase } = useFirebase()
-  const auth = firebase.auth()
-  const db = firebase.firestore()
+  const auth = getAuth(firebase)
+  const db = getFirestore(firebase)
   const {
     data: profile,
     error,
@@ -62,115 +79,133 @@ function AuthProvider(props: AuthProviderProps) {
     isSuccess,
     setData,
     status,
-  } = useAsync<IFirebase['user']>()
+  } = useAsync<AuthUser>()
 
-  React.useEffect(() => {
-    auth.onAuthStateChanged((creds) => setData(creds))
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      setData(user)
+    })
   }, [auth, setData])
 
-  const updateUsersCollection = React.useCallback(
-    (
-      id: string,
-      updates: Partial<IFirebase['firestoreData']>,
-      args?: IFirebase['firestoreOptions'],
-    ) =>
-      db
-        .collection('users')
-        .doc(id)
-        .set(updates, args || { merge: true }),
+  const updateUsersCollection = useCallback(
+    (id: string, updates: Partial<DocumentData>, args: SetOptions = { merge: true }) => {
+      try {
+        const docRef = doc(db, 'users', id)
+        setDoc(docRef, updates, args)
+      } catch (err) {
+        throw new Error(getAuthErrorMessage(err))
+      }
+    },
     [db],
   )
 
-  const login = React.useCallback(
-    (form: AuthCredentials) =>
-      auth.signInWithEmailAndPassword(form.email, form.password).then((creds) => {
-        setData(creds.user)
+  const login = useCallback(
+    async (form: AuthCredentials) => {
+      try {
+        const userCredential = await signInWithEmailAndPassword(auth, form.email, form.password)
+        setData(userCredential.user)
         navigate('/account/')
-      }),
+      } catch (err) {
+        throw new Error(getAuthErrorMessage(err))
+      }
+    },
     [auth, setData],
   )
 
-  const register = React.useCallback(
-    (form: AuthCredentials) =>
-      auth
-        .createUserWithEmailAndPassword(form.email, form.password)
-        .then((creds: IFirebase['userCredential']) => {
-          setData(creds.user)
-
-          if (creds.user) {
-            updateUsersCollection(creds.user.uid, {
-              creationTime: new Date(),
-              favoriteTalks: [],
-              finishedTalks: [],
-            })
-          }
+  const register = useCallback(
+    async (form: AuthCredentials) => {
+      try {
+        const userCredential = await createUserWithEmailAndPassword(auth, form.email, form.password)
+        setData(userCredential.user)
+        updateUsersCollection(userCredential.user.uid, {
+          creationTime: new Date(),
+          favoriteTalks: [],
+          finishedTalks: [],
         })
-        .then(() => {
-          navigate('/account/')
-        }),
+        navigate('/account/')
+      } catch (err) {
+        throw new Error(getAuthErrorMessage(err))
+      }
+    },
     [auth, setData, updateUsersCollection],
   )
 
-  const logout = React.useCallback(
-    () =>
-      auth.signOut().then(() => {
-        setData(null)
-        navigate('/login/')
-      }),
-    [auth, setData],
-  )
+  const logout = useCallback(async () => {
+    try {
+      await signOut(auth)
+      setData(null)
+      navigate('/login/')
+    } catch (err) {
+      throw new Error(getAuthErrorMessage(err))
+    }
+  }, [auth, setData])
 
-  const resetPassword = React.useCallback(
-    (form: Pick<AuthCredentials, 'email'>) =>
-      auth.sendPasswordResetEmail(form.email).then(() => {
+  const resetPassword = useCallback(
+    async (form: Pick<AuthCredentials, 'email'>) => {
+      try {
+        await sendPasswordResetEmail(auth, form.email)
         setData(null)
-        navigate('/login/')
         notify({
-          title: 'Email sent',
+          title: 'Check your email',
           text: 'An email to reset your password has been sent.',
-          icon: (props: React.ComponentProps<'svg'>) => <UserCircleIcon {...props} />,
+          icon: (props: ComponentProps<'svg'>) => <UserCircleIcon {...props} />,
         })
-      }),
+        navigate('/login/')
+      } catch (err) {
+        throw new Error(getAuthErrorMessage(err))
+      }
+    },
     [auth, notify, setData],
   )
 
-  const reauthenticate = React.useCallback(
-    (form: AuthCredentials) => {
-      // @ts-ignore
-      const credential = firebase.auth.EmailAuthProvider.credential(form.email, form.password)
-      const currentUser: AuthUser = auth.currentUser
+  const reauthenticate = useCallback(
+    async (form: AuthCredentials) => {
+      try {
+        const credential = EmailAuthProvider.credential(form.email, form.password)
+        const currentUser: AuthUser = auth.currentUser
 
-      if (currentUser) {
-        return currentUser.reauthenticateWithCredential(credential)
-      } else {
-        return Promise.reject(new Error('No user is currently signed in.'))
+        if (currentUser === null) {
+          throw new Error('No user is currently signed in.')
+        }
+
+        await reauthenticateWithCredential(currentUser, credential)
+      } catch (err) {
+        throw new Error(getAuthErrorMessage(err))
       }
     },
-    [auth, firebase],
+    [auth.currentUser],
   )
 
-  const unregister = React.useCallback(
+  const unregister = useCallback(
     async (form: { password: string }) => {
       const currentUser: AuthUser = auth.currentUser
 
       try {
-        reauthenticate({
-          email: currentUser?.email || '',
+        if (currentUser === null) {
+          throw new Error('Current user is not set.')
+        }
+
+        await reauthenticate({
+          email: currentUser.email || '',
           password: form.password,
-        }).then(async () => {
-          await db.collection('users').doc(currentUser?.uid).delete()
-          await currentUser?.delete().then(() => setData(null))
-          notify({
-            title: 'Account updated',
-            text: 'Your account has successfully been unregisterd.',
-            icon: (props) => <UserCircleIcon {...props} />,
-          })
-          navigate('/')
         })
-      } catch (error: TAny) {
+
+        const docRef = doc(db, 'users', currentUser.uid)
+
+        await deleteDoc(docRef)
+        await currentUser?.delete()
+
+        setData(null)
+        notify({
+          title: 'Account updated',
+          text: 'Your account has successfully been unregisterd.',
+          icon: (props) => <UserCircleIcon {...props} />,
+        })
+        navigate('/')
+      } catch (err) {
         notify({
           title: 'Error',
-          text: getErrorMessage(error),
+          text: getErrorMessage(err),
           icon: (props) => <UserCircleIcon {...props} />,
         })
       }
@@ -178,42 +213,46 @@ function AuthProvider(props: AuthProviderProps) {
     [auth, db, notify, reauthenticate, setData],
   )
 
-  const updateSettings = React.useCallback(
-    ({ creds, updates }: AuthSettings) => {
+  const updateSettings = useCallback(
+    async ({ creds, updates }: AuthSettings) => {
       const currentUser: AuthUser = auth.currentUser
-      reauthenticate({
-        email: currentUser?.email || '',
-        password: creds.password,
-      })
-        .then(async () => {
-          if (updates.email) {
-            currentUser?.updateEmail(updates.email).then(() =>
-              notify({
-                title: 'Email updated',
-                text: 'Your email address has been updated.',
-                icon: (props: React.ComponentProps<'svg'>) => <UserCircleIcon {...props} />,
-              }),
-            )
-          }
 
-          if (updates.password) {
-            currentUser?.updatePassword(updates.password).then(() => {
-              setData(profile)
-              notify({
-                title: 'Password updated',
-                text: 'Your password has been updated.',
-                icon: (props: React.ComponentProps<'svg'>) => <UserCircleIcon {...props} />,
-              })
-            })
-          }
+      try {
+        if (currentUser === null) {
+          throw new Error('Current user is not set.')
+        }
+
+        await reauthenticate({
+          email: currentUser?.email || '',
+          password: creds.password,
         })
-        .catch((error: TAny) => {
+
+        if (updates.email) {
+          await updateEmail(currentUser, updates.email)
+          setData(profile)
           notify({
-            title: 'Error',
-            text: getErrorMessage(error),
-            icon: (props: React.ComponentProps<'svg'>) => <UserCircleIcon {...props} />,
+            title: 'Email updated',
+            text: 'Your email address has been updated.',
+            icon: (props: ComponentProps<'svg'>) => <UserCircleIcon {...props} />,
           })
+        }
+
+        if (updates.password) {
+          await updatePassword(currentUser, updates.password)
+          setData(profile)
+          notify({
+            title: 'Password updated',
+            text: 'Your password has been updated.',
+            icon: (props: ComponentProps<'svg'>) => <UserCircleIcon {...props} />,
+          })
+        }
+      } catch (err) {
+        notify({
+          title: 'Error',
+          text: getErrorMessage(err),
+          icon: (props: ComponentProps<'svg'>) => <UserCircleIcon {...props} />,
         })
+      }
     },
     [auth, notify, profile, reauthenticate, setData],
   )
@@ -245,11 +284,11 @@ function AuthProvider(props: AuthProviderProps) {
   throw new Error(`Unhandled status: ${status}`)
 }
 
-const AuthContext = React.createContext<AuthProviderValue>({} as AuthProviderValue)
+const AuthContext = createContext<AuthProviderValue>({} as AuthProviderValue)
 AuthContext.displayName = 'AuthContext'
 
 function useAuth() {
-  const context = React.useContext(AuthContext)
+  const context = useContext(AuthContext)
   if (context === undefined) {
     throw new Error(`useAuth must be used within a AuthProvider`)
   }

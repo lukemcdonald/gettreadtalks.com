@@ -35,7 +35,7 @@
     "@tailwindcss/typography": "^0.5.8",
     "clsx": "^1.2.1",
     "dotenv": "^16.0.3",
-    "firebase": "^8.10.0",
+    "firebase": "9.15.0",
     "formik": "^2.2.9",
     "gatsby": "^5.2.0",
     "gatsby-plugin-feed": "^5.2.0",
