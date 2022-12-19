@@ -31,8 +31,8 @@ function FirebaseProvider(props: TAny) {
     isSuccess,
   } = useAsync<FirebaseApp>()
 
-  const initializeFirebase = useCallback(async () => {
-    const app = await initializeApp(firebaseConfig)
+  const initializeFirebase = useCallback(() => {
+    const app = initializeApp(firebaseConfig)
     setData(app)
   }, [setData])
 
