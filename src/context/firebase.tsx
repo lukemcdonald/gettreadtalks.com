@@ -19,17 +19,6 @@ const firebaseConfig = {
   messagingSenderId: process.env.GATSBY_FIREBASE_MESSAGING_SENDER_ID,
 }
 
-async function getFirebase() {
-  // let firebase = (await import('firebase/app')).default
-  // await Promise.all([import('firebase/auth'), import('firebase/firestore')])
-
-  // if (!firebase.getApps().length) {
-  //   firebase = initializeApp(firebaseConfig)
-  // }
-
-  return initializeApp(firebaseConfig)
-}
-
 function FirebaseProvider(props: TAny) {
   const {
     data: firebase,
@@ -43,8 +32,8 @@ function FirebaseProvider(props: TAny) {
   } = useAsync<FirebaseApp>()
 
   const initializeFirebase = useCallback(async () => {
-    const client = await getFirebase()
-    setData(client)
+    const app = await initializeApp(firebaseConfig)
+    setData(app)
   }, [setData])
 
   useEffect(() => {
