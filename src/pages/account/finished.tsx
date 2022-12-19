@@ -1,11 +1,10 @@
 // todo: Display five random featured talks as recomendations.
 // todo: Display tabs for finished talks, clips, speakers.
-import { useEffect, useState } from 'react'
+import { useMemo } from 'react'
 import type { HeadFC, PageProps } from 'gatsby'
 import { graphql, navigate } from 'gatsby'
 import { CheckCircleIcon as CheckIcon } from '@heroicons/react/24/outline'
 
-import type { TAny } from '~/utils/types/shared'
 import { AccountMenu } from '~/components/account-menu'
 import { Link } from '~/components/link'
 import { Page } from '~/components/page'
@@ -18,26 +17,23 @@ import { useUsers } from '~/context/users'
 type Props = PageProps<Queries.AccountFinishedPageQuery>
 
 function AccountFinishedPage({ data }: Props) {
-  const [finishedTalks, setFinishedTalks] = useState([])
   const { isUser } = useAuth()
   const { user } = useUsers()
   const { talks } = data
   const userFinishedTalks = user?.finishedTalks
-  const hasFinishedTalks = Array.isArray(finishedTalks) && finishedTalks.length
-
-  useEffect(() => {
-    if (talks && userFinishedTalks) {
-      // Get finished user talks.
-      const finished = talks.nodes.filter(({ id }) => userFinishedTalks.includes(id))
-
-      // Update finished talks to match order of user finished; latest finished talk shown first.
-      const sortedFinished: TAny = finished.slice().sort((a, b) => {
-        return userFinishedTalks.indexOf(a?.id) - userFinishedTalks.indexOf(b?.id)
-      })
-
-      setFinishedTalks(sortedFinished)
+  const finishedTalks = useMemo(() => {
+    if (userFinishedTalks) {
+      // Get favorite user talks.
+      const favorites = talks.nodes.filter(({ id }) => userFinishedTalks.includes(id))
+      // Update favorite talks to match order of user favorites; latest favorited talk shown first.
+      return favorites
+        .slice()
+        .sort((a, b) => userFinishedTalks.indexOf(a?.id) - userFinishedTalks.indexOf(b?.id))
     }
-  }, [talks, userFinishedTalks])
+
+    return []
+  }, [talks.nodes, userFinishedTalks])
+  const hasFinishedTalks = finishedTalks.length > 0
 
   if (!isUser) {
     navigate('/login/')

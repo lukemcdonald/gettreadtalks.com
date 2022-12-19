@@ -1,11 +1,10 @@
 // todo: Display five random featured talks as recomendations.
 // todo: Display tabs for favorite talks, clips, speakers.
-import { useEffect, useState } from 'react'
+import { useMemo } from 'react'
 import type { HeadFC, PageProps } from 'gatsby'
 import { graphql, navigate } from 'gatsby'
 import { HeartIcon } from '@heroicons/react/24/outline'
 
-import type { TAny } from '~/utils/types/shared'
 import { AccountMenu } from '~/components/account-menu'
 import { Link } from '~/components/link'
 import { Page } from '~/components/page'
@@ -18,26 +17,23 @@ import { useUsers } from '~/context/users'
 type Props = PageProps<Queries.AccountFavoritesPageQuery>
 
 function AccountFavoritesPage({ data }: Props) {
-  const [favoriteTalks, setFavoriteTalks] = useState([])
   const { isUser } = useAuth()
   const { user } = useUsers()
   const { talks } = data
   const userFavoriteTalks = user?.favoriteTalks
-  const hasFavoriteTalks = Array.isArray(favoriteTalks) && favoriteTalks.length
-
-  useEffect(() => {
-    if (talks && userFavoriteTalks) {
+  const favoriteTalks = useMemo(() => {
+    if (userFavoriteTalks) {
       // Get favorite user talks.
       const favorites = talks.nodes.filter(({ id }) => userFavoriteTalks.includes(id))
-
       // Update favorite talks to match order of user favorites; latest favorited talk shown first.
-      const sortedFavorites: TAny = favorites.slice().sort((a, b) => {
-        return userFavoriteTalks.indexOf(a?.id) - userFavoriteTalks.indexOf(b?.id)
-      })
-
-      setFavoriteTalks(sortedFavorites)
+      return favorites
+        .slice()
+        .sort((a, b) => userFavoriteTalks.indexOf(a?.id) - userFavoriteTalks.indexOf(b?.id))
     }
-  }, [talks, userFavoriteTalks])
+
+    return []
+  }, [talks.nodes, userFavoriteTalks])
+  const hasFavoriteTalks = favoriteTalks.length > 0
 
   if (!isUser) {
     navigate('/login/')
