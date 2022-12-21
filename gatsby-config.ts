@@ -6,6 +6,7 @@ import {
   gatsbySourceAirtable,
   gatsbySourceFilesystem,
   gatsbyTransformerRemark,
+  sentryGatsby,
 } from './config/gatsby'
 
 const config: GatsbyConfig = {
@@ -31,6 +32,7 @@ const config: GatsbyConfig = {
     gatsbySourceAirtable,
     gatsbySourceFilesystem,
     gatsbyTransformerRemark,
+    sentryGatsby,
   ],
 }
 

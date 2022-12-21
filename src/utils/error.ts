@@ -1,3 +1,5 @@
+import * as Sentry from '@sentry/gatsby'
+
 interface ErrorWithMessage {
   message: string
 }
@@ -26,5 +28,6 @@ function toErrorWithMessage(maybeError: unknown): ErrorWithMessage {
 }
 
 export function getErrorMessage(error: unknown) {
+  Sentry.captureException(error)
   return toErrorWithMessage(error).message
 }
