@@ -11,8 +11,8 @@ import { useUsers } from '~/context/users'
 interface Props {
   className?: string
   classNameToggle?: {
-    on: string
     off: string
+    on: string
   }
   talk: FavoriteTalk
 }
@@ -36,12 +36,7 @@ function FavoriteToggle({ classNameToggle, talk, ...props }: Props) {
 
   return (
     <Toggle>
-      <Toggle.Button
-        checked={enabled}
-        onChange={handleOnChange}
-        className="relative inline-flex items-center rounded-full"
-        {...props}
-      >
+      <Toggle.Button checked={enabled} onChange={handleOnChange} {...props}>
         <span className="sr-only">Add to favorites</span>
         <Toggle.On>
           <HeartSolidIcon className={clsx('h-full w-full', classNameToggle?.on)} />

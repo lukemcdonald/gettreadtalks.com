@@ -58,7 +58,7 @@ function useFinishedTalk() {
   }
 
   const updateFinished = (talk: FinishedTalk) => {
-    return isFinished(talk) ? removeFinished(talk) : removeFinished(talk)
+    return isFinished(talk) ? removeFinished(talk) : addFinished(talk)
   }
 
   useEffect(() => {

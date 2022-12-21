@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import { CheckIcon as CheckOutlineIcon } from '@heroicons/react/24/outline'
 import { CheckIcon as CheckSolidIcon } from '@heroicons/react/24/solid'
 
-import type { FavoriteTalk } from '~/hooks/favorite-talk'
+import type { FinishedTalk } from '~/hooks/finished-talk'
 import { Toggle } from '~/components/toggle'
 import { useFinishedTalk } from '~/hooks/finished-talk'
 import { useUsers } from '~/context/users'
@@ -11,10 +11,10 @@ import { useUsers } from '~/context/users'
 interface Props {
   className?: string
   classNameToggle?: {
-    on: string
     off: string
+    on: string
   }
-  talk: FavoriteTalk
+  talk: FinishedTalk
 }
 
 function FinishedToggle({ classNameToggle, talk, ...props }: Props) {
