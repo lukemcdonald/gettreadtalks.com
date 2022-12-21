@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { Fragment, useMemo } from 'react'
 import type { HeadFC, PageProps } from 'gatsby'
 import { graphql } from 'gatsby'
 
@@ -80,13 +80,14 @@ function SpeakersPage({ data }: Props) {
 
         <Section.Content align="wide">
           {Array.from(speakersMap).map(([letter, speakers]) => {
+            const key = `speakers-${letter}`
             const speakersSectionLabel = getSpeakersSectionLabel(speakers)
 
             return (
-              <>
+              <Fragment key={key}>
                 <h2
-                  id={`speakers-${letter}`}
                   className="mb-2 mt-12 flex items-center justify-between gap-4 py-2 text-lg text-gray-900 first-of-type:mt-0"
+                  id={key}
                 >
                   <span className="font-bold">{letter}</span>
                   <span className="relative top-px flex-grow border-b border-gray-300"></span>
@@ -95,7 +96,7 @@ function SpeakersPage({ data }: Props) {
                   </span>
                 </h2>
                 <SpeakerList speakers={speakers} />
-              </>
+              </Fragment>
             )
           })}
         </Section.Content>
