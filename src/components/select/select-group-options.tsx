@@ -13,7 +13,7 @@ function SelectGroupOptions({ options }: Props) {
   return (
     <>
       {options?.map((option: Partial<SelectOption>) => (
-        <Fragment key={option.value}>
+        <Fragment key={`${option.value}-${option.label}`}>
           {option.separator ? (
             <option disabled>{getSeparatorLabel(option.separator)}</option>
           ) : null}
