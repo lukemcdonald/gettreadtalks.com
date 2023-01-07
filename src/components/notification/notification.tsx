@@ -1,9 +1,10 @@
-import React, { Fragment, useState } from 'react'
+import type { ComponentProps } from 'react'
+import { Fragment, useState } from 'react'
 import clsx from 'clsx'
 import { Transition } from '@headlessui/react'
 import { XMarkIcon as CloseIcon } from '@heroicons/react/24/solid'
 
-type IconProps = React.ComponentProps<'svg'> & {
+type IconProps = ComponentProps<'svg'> & {
   className?: string
 }
 

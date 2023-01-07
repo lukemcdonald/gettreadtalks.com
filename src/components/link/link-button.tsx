@@ -1,10 +1,10 @@
-import React from 'react'
+import type { ReactNode } from 'react'
 import clsx from 'clsx'
 import type { TAny } from '~/utils/types/shared'
 
 import Link from './link'
 interface Props {
-  children: React.ReactNode
+  children: ReactNode
   className?: string
   color?: keyof typeof colorClassMap
   size?: keyof typeof sizeClassMap

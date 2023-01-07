@@ -1,3 +1,4 @@
+import type { ChangeEvent, FormEvent } from 'react'
 import { useState } from 'react'
 import clsx from 'clsx'
 
@@ -18,13 +19,13 @@ function DeactivateForm({ buttonText = 'Submit', className, onSubmit }: Props) {
     password: '',
   })
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     const { password } = state
     run(onSubmit({ password }))
   }
 
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+  function handleChange(event: ChangeEvent<HTMLInputElement>) {
     setState({ ...state, [event.target.id]: event.target.value })
   }
 

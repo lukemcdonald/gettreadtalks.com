@@ -1,4 +1,5 @@
-import React, { createContext, useCallback, useContext, useReducer } from 'react'
+import type { Dispatch, ReactNode } from 'react'
+import { createContext, useCallback, useContext, useReducer } from 'react'
 
 import { Notification } from '~/components/notification'
 import type { NotificationMessage } from '~/components/notification/notification'
@@ -20,11 +21,11 @@ interface NotificationAction {
 }
 
 interface NotificationProps {
-  children: React.ReactNode
+  children: ReactNode
 }
 
 export interface NotificationContextValue {
-  dispatch: React.Dispatch<NotificationAction>
+  dispatch: Dispatch<NotificationAction>
   notify: (message: NotificationMessage) => void
   state: NotificationState
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import type { ChangeEvent, ReactNode } from 'react'
 import { navigate } from 'gatsby'
 import clsx from 'clsx'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
@@ -12,7 +12,7 @@ export interface SelectOption {
 }
 
 interface Props {
-  children: React.ReactNode
+  children: ReactNode
   className?: string
   current?: SelectOption
   label?: string
@@ -39,7 +39,7 @@ function Select({ children, className, current, label }: Props) {
               as="select"
               name="optionPath"
               className="flex-grow cursor-pointer border-0 bg-transparent bg-none p-0"
-              onChange={(event: React.ChangeEvent<HTMLSelectElement>) => {
+              onChange={(event: ChangeEvent<HTMLSelectElement>) => {
                 handleChange(event)
                 submitForm()
               }}

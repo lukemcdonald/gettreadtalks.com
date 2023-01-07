@@ -1,7 +1,8 @@
 // todo: Use Formik
 // https://devdojo.com/semirteskeredzic/create-forms-with-formik-and-firebase
+import type { ChangeEvent, FormEvent } from 'react'
+import { useState } from 'react'
 import clsx from 'clsx'
-import React, { useState } from 'react'
 
 import { FormErrorMessage } from '~/components/account/lib/error-message'
 import styles from '~/utils/styles'
@@ -23,13 +24,13 @@ function LoginForm({ className, buttonText, onSubmit, hiddenFields = [] }: Login
     password: '',
   })
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     const { email, password } = state
     run(onSubmit({ email, password }))
   }
 
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+  function handleChange(event: ChangeEvent<HTMLInputElement>) {
     setState({ ...state, [event.target.id]: event.target.value })
   }
 

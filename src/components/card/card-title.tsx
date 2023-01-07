@@ -1,4 +1,4 @@
-import React from 'react'
+import type { ReactNode } from 'react'
 import clsx from 'clsx'
 
 import { sanitizeHTMLTag } from '~/utils/misc'
@@ -6,7 +6,7 @@ import type { TAny } from '~/utils/types/shared'
 
 interface Props {
   as: 'h1' | 'h2' | 'h3'
-  children: React.ReactNode
+  children: ReactNode
   className?: string
 }
 

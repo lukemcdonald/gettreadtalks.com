@@ -1,8 +1,9 @@
+import type { ReactNode } from 'react'
 import { useState } from 'react'
 import clsx from 'clsx'
 
 interface Props {
-  children: React.ReactNode
+  children: ReactNode
   className?: string
   title: string
 }

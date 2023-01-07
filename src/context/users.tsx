@@ -1,4 +1,5 @@
-import React, { createContext, useCallback, useContext, useEffect } from 'react'
+import type { ReactNode } from 'react'
+import { createContext, useCallback, useContext, useEffect } from 'react'
 import type { DocumentData, SetOptions } from 'firebase/firestore'
 import { deleteDoc, doc, getDoc, getFirestore, setDoc, updateDoc } from 'firebase/firestore'
 
@@ -17,7 +18,7 @@ interface User {
 }
 
 interface UsersProviderProps {
-  children: React.ReactNode
+  children: ReactNode
 }
 
 export interface UsersProviderValue {

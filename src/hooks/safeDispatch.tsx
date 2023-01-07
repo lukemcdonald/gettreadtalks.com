@@ -1,7 +1,9 @@
+import type { Dispatch } from 'react'
 import { useCallback, useLayoutEffect, useRef } from 'react'
+
 import type { TAny } from '~/utils/types/shared'
 
-function useSafeDispatch(dispatch: React.Dispatch<TAny>) {
+function useSafeDispatch(dispatch: Dispatch<TAny>) {
   const mounted = useRef(false)
 
   useLayoutEffect(() => {

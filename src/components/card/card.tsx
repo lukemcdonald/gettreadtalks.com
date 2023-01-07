@@ -1,4 +1,4 @@
-import React from 'react'
+import type { PropsWithChildren } from 'react'
 
 import CardContent from './card-content'
 import CardIcon from './card-icon'
@@ -10,7 +10,6 @@ import CardTitle from './card-title'
 import CardWrapper from './card-wrapper'
 
 interface Props {
-  children?: React.ReactNode
   className?: string
   icons?: string[]
   image: string
@@ -21,7 +20,17 @@ interface Props {
   to: string
 }
 
-function Card({ children, className, icons, image, imageAlt, subtitle, text, title, to }: Props) {
+function Card({
+  children,
+  className,
+  icons,
+  image,
+  imageAlt,
+  subtitle,
+  text,
+  title,
+  to,
+}: PropsWithChildren<Props>) {
   return (
     <CardWrapper className={className}>
       <CardImage alt={imageAlt} image={image} />

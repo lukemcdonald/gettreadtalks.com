@@ -1,11 +1,11 @@
-import React from 'react'
+import type { ReactNode } from 'react'
 import { Link as GatsbyLink } from 'gatsby'
 import type { TUnknown } from '~/utils/types/shared'
 
 import LinkButton from './link-button'
 
 interface Props {
-  children: React.ReactNode
+  children: ReactNode
   to: string
   [key: string]: TUnknown
 }
