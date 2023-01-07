@@ -1,9 +1,9 @@
-import React from 'react'
+import type { ReactNode } from 'react'
 
 import { Layout } from '~/components/layout'
 
 interface Props {
-  children: React.ReactNode
+  children: ReactNode
 }
 
 function UnauthenticatedApp({ children }: Props) {

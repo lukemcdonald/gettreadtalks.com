@@ -1,4 +1,4 @@
-import React from 'react'
+import type { ElementType, ReactNode } from 'react'
 import clsx from 'clsx'
 
 import { sanitizeHTMLTag } from '~/utils/misc'
@@ -7,12 +7,12 @@ const allowedTags = ['h1', 'h2', 'h3'] as const
 
 interface Props {
   as?: typeof allowedTags[number]
-  children: React.ReactNode
+  children: ReactNode
   className?: string
 }
 
 function SectionTitle({ as, children, className = '' }: Props) {
-  const Tag = sanitizeHTMLTag(as, Array.from(allowedTags)) as React.ElementType
+  const Tag = sanitizeHTMLTag(as, Array.from(allowedTags)) as ElementType
 
   return (
     <Tag

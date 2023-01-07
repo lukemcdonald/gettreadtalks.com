@@ -1,11 +1,11 @@
 // todo: Consider moving UsersProvider around the areas that need it.
-import React from 'react'
+import type { ReactNode } from 'react'
 
 import { Layout } from '~/components/layout'
 import { UsersProvider } from '~/context/users'
 
 interface Props {
-  children: React.ReactNode
+  children: ReactNode
 }
 
 function AuthenticatedApp({ children }: Props) {

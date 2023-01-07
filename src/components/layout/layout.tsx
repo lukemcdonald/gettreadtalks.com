@@ -1,10 +1,10 @@
-import React from 'react'
+import type { ReactNode } from 'react'
 import { Footer } from '~/components/footer'
 import { Header } from '~/components/header'
 import { useSiteMetadata } from '~/hooks/site-metadata'
 
 interface Props {
-  children: React.ReactNode
+  children: ReactNode
 }
 
 function Layout({ children }: Props) {

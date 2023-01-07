@@ -1,3 +1,4 @@
+import type { ComponentType, ReactNode } from 'react'
 import { Menu } from '@headlessui/react'
 
 import type { StyleMenuItemArgs } from './utils'
@@ -6,12 +7,12 @@ import { getMenuItemStyles } from './utils'
 
 interface MenuItemTypeProps {
   active: boolean
-  children: React.ReactNode
+  children: ReactNode
 }
 
 interface Props {
   as?: StyleMenuItemArgs['type']
-  icon: React.ComponentType<{ className: string }>
+  icon: ComponentType<{ className: string }>
   onClick?: () => void
   title: string
   to: string

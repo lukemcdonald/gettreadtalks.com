@@ -1,3 +1,5 @@
+import type { ComponentProps } from 'react'
+
 // Todo: Remove all uses of this type and replace with the correct type
 export type TAny = any
 // Todo: Remove all uses of this type and replace with the correct type
@@ -8,7 +10,7 @@ export type Nullable<T> = T | null | undefined
 export interface NavigationItem {
   name: string
   to: string
-  icon?: (props: React.ComponentProps<'svg'>) => JSX.Element
+  icon?: (props: ComponentProps<'svg'>) => JSX.Element
 }
 
 export interface TLink {

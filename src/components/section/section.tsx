@@ -1,4 +1,4 @@
-import React from 'react'
+import type { ElementType, ReactNode } from 'react'
 
 import SectionContent from './section-content'
 import SectionSeparator from './section-separator'
@@ -13,14 +13,14 @@ const allowedSeparators = ['top', 'bottom', 'top-bottom'] as const
 
 interface Props {
   as?: typeof allowedTags[number]
-  children: React.ReactNode
+  children: ReactNode
   className?: string
   separator?: Nullable<typeof allowedSeparators[number]>
   separatorClass?: string
 }
 
 function Section({ as, children, className, separator, separatorClass }: Props) {
-  const Tag = sanitizeHTMLTag(as, Array.from(allowedTags)) as React.ElementType
+  const Tag = sanitizeHTMLTag(as, Array.from(allowedTags)) as ElementType
   const border = {
     top: separator === 'top' || separator === 'top-bottom',
     bottom: separator === 'bottom' || separator === 'top-bottom',

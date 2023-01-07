@@ -1,9 +1,9 @@
-import React from 'react'
+import type { ReactNode } from 'react'
 
 import PageTitle from './page-title'
 
 interface Props {
-  children: React.ReactNode
+  children: ReactNode
   className?: string
 }
 

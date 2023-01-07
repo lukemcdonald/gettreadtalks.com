@@ -1,4 +1,4 @@
-import React from 'react'
+import type { ElementType, ReactNode } from 'react'
 import clsx from 'clsx'
 
 import { sanitizeHTMLTag } from '~/utils/misc'
@@ -9,7 +9,7 @@ const allowedTags = ['div', 'article', 'footer', 'header', 'section'] as const
 export interface SectionContentProps {
   align?: typeof allowedAligns[number]
   as?: typeof allowedTags[number]
-  children: React.ReactNode
+  children: ReactNode
   className?: string
 }
 
@@ -25,7 +25,7 @@ function mapAlignToClassName(align: SectionContentProps['align']) {
 
 function SectionContent({ align, as, children, className }: SectionContentProps) {
   const columns = mapAlignToClassName(align)
-  const Tag = sanitizeHTMLTag(as, Array.from(allowedTags)) as React.ElementType
+  const Tag = sanitizeHTMLTag(as, Array.from(allowedTags)) as ElementType
 
   return (
     <Tag className={clsx('py-6 sm:col-span-2 lg:py-16', columns?.start, columns?.span, className)}>

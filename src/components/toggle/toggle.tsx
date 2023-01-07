@@ -1,5 +1,5 @@
-import type { FormEvent } from 'react'
-import React, { createContext, useContext, useEffect, useState } from 'react'
+import type { FormEvent, ReactNode } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
 import clsx from 'clsx'
 import { Switch } from '@headlessui/react'
 
@@ -7,7 +7,7 @@ import { callAll } from '~/utils/misc'
 import type { TAny } from '~/utils/types/shared'
 
 interface Props {
-  children: React.ReactNode
+  children: ReactNode
 }
 
 interface GetToggleProps {
@@ -57,7 +57,7 @@ function ToggleButton({
   ...props
 }: {
   checked: boolean
-  children: React.ReactNode
+  children: ReactNode
   className?: string
   onChange?: GetToggleProps['onChange']
 }) {

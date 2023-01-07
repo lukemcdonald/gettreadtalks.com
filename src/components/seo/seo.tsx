@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import type { PropsWithChildren } from 'react'
 import type { HeadProps } from 'gatsby'
 import striptags from 'striptags'
 
@@ -8,14 +8,13 @@ import { trimText } from '~/utils/misc'
 const BASE_URL = process.env.BASE_URL ?? 'https://gettreadtalks.com'
 
 interface Props {
-  children?: ReactNode
   description?: string | null
   image?: string
   location: HeadProps['location']
   title?: string | null
 }
 
-function SEO({ children, description, image, location, title }: Props) {
+function SEO({ children, description, image, location, title }: PropsWithChildren<Props>) {
   const { title: siteTitle, description: siteDescription } = useSiteMetadata()
 
   const seo = {

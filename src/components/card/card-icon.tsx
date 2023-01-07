@@ -1,4 +1,5 @@
-import React, { useMemo } from 'react'
+import type { ComponentProps } from 'react'
+import { useMemo } from 'react'
 import clsx from 'clsx'
 import { CheckIcon, HeartIcon, StarIcon } from '@heroicons/react/20/solid'
 
@@ -11,7 +12,7 @@ interface Props {
 }
 
 interface CardIconItem {
-  icon: (props: React.ComponentProps<'svg'>) => JSX.Element
+  icon: (props: ComponentProps<'svg'>) => JSX.Element
   style: string
   title: string
   to: string

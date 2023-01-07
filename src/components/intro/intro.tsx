@@ -1,4 +1,4 @@
-import React from 'react'
+import type { PropsWithChildren } from 'react'
 import clsx from 'clsx'
 import { GatsbyImage } from 'gatsby-plugin-image'
 
@@ -12,13 +12,19 @@ import IntroTitle from './intro-title'
 interface Props {
   align?: SectionContentProps['align']
   bgGradient?: boolean
-  children?: React.ReactNode
   className?: string
   fullscreen?: boolean
   image?: TAny // ImageComponentProps
 }
 
-function Intro({ align, bgGradient, children, className, fullscreen, image }: Props) {
+function Intro({
+  align,
+  bgGradient,
+  children,
+  className,
+  fullscreen,
+  image,
+}: PropsWithChildren<Props>) {
   const imageSrc =
     image?.childImageSharp?.gatsbyImageData ||
     image?.localFiles?.[0]?.childImageSharp?.gatsbyImageData
