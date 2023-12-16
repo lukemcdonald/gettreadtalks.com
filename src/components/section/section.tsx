@@ -12,10 +12,10 @@ const allowedTags = ['div', 'article', 'footer', 'header', 'section'] as const
 const allowedSeparators = ['top', 'bottom', 'top-bottom'] as const
 
 interface Props {
-  as?: typeof allowedTags[number]
+  as?: (typeof allowedTags)[number]
   children: ReactNode
   className?: string
-  separator?: Nullable<typeof allowedSeparators[number]>
+  separator?: Nullable<(typeof allowedSeparators)[number]>
   separatorClass?: string
 }
 

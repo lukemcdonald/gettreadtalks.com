@@ -7,8 +7,8 @@ const allowedAligns = ['DEFAULT', 'wide', 'wide--center', 'full'] as const
 const allowedTags = ['div', 'article', 'footer', 'header', 'section'] as const
 
 export interface SectionContentProps {
-  align?: typeof allowedAligns[number]
-  as?: typeof allowedTags[number]
+  align?: (typeof allowedAligns)[number]
+  as?: (typeof allowedTags)[number]
   children: ReactNode
   className?: string
 }
