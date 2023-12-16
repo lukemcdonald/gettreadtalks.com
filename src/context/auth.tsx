@@ -1,6 +1,5 @@
 import type { ComponentProps, ReactNode } from 'react'
-import { createContext, useContext } from 'react'
-import { useCallback, useEffect } from 'react'
+import { createContext, useContext, useCallback, useEffect } from 'react'
 import { navigate } from 'gatsby'
 import { UserCircleIcon } from '@heroicons/react/24/outline'
 import type { User } from 'firebase/auth'
