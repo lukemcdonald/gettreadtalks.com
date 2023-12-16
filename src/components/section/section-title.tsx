@@ -6,7 +6,7 @@ import { sanitizeHTMLTag } from '~/utils/misc'
 const allowedTags = ['h1', 'h2', 'h3'] as const
 
 interface Props {
-  as?: typeof allowedTags[number]
+  as?: (typeof allowedTags)[number]
   children: ReactNode
   className?: string
 }
