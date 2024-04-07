@@ -10,18 +10,18 @@ interface Props {
 }
 
 function CardImage({ alt = '', className, image, ...props }: Props) {
+  if (!image) {
+    return null
+  }
+
   return (
-    <>
-      {image ? (
-        <Image
-          alt={alt}
-          className={clsx('flex-shrink-0', className || 'h-16 w-16 rounded-full')}
-          image={image}
-          imgClassName="rounded-full"
-          {...props}
-        />
-      ) : null}
-    </>
+    <Image
+      alt={alt}
+      className={clsx('flex-shrink-0', className || 'h-16 w-16 rounded-full')}
+      image={image}
+      imgClassName="rounded-full"
+      {...props}
+    />
   )
 }
 
