@@ -68,11 +68,66 @@ function IndexPage({ data }: Props) {
 }
 
 export const Head: HeadFC = ({ location }) => {
+  const BASE_URL = process.env.BASE_URL ?? 'https://gettreadtalks.com'
+
+  const structuredData = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      name: 'TREAD Talks - Exercise Your Inner Man',
+      description:
+        'Workout your salvation with Christ-centered sermons to elevate your spiritual heartbeat. Listen to faithful ministers of the Gospel while you exercise.',
+      url: `${BASE_URL}${location.pathname}`,
+      mainEntity: {
+        '@type': 'Organization',
+        name: 'TREAD Talks',
+        url: BASE_URL,
+        description:
+          'Exercise your inner man with Christ centered sermons to elevate your spiritual heartbeat while working out your physical one.',
+        founder: {
+          '@type': 'Person',
+          name: 'Luke McDonald',
+          url: 'https://lukemcdonald.com',
+        },
+        sameAs: [
+          'https://twitter.com/gettreadtalks',
+          'https://www.facebook.com/gettreadtalks',
+          'https://www.instagram.com/gettreadtalks',
+        ],
+      },
+      about: [
+        {
+          '@type': 'Thing',
+          name: 'Christian Sermons',
+        },
+        {
+          '@type': 'Thing',
+          name: 'Biblical Teaching',
+        },
+        {
+          '@type': 'Thing',
+          name: 'Spiritual Growth',
+        },
+      ],
+      keywords: [
+        'christian sermons',
+        'biblical teaching',
+        'spiritual growth',
+        'gospel',
+        'faith',
+        'exercise',
+        'workout',
+        'salvation',
+      ],
+    },
+  ]
+
   return (
     <SEO
       title="Exercise Your Inner Man"
       description="Workout your salvation with Christ-centered sermons to elevate your spiritual heartbeat. Listen to faithful ministers of the Gospel while you exercise."
       location={location}
+      structuredData={structuredData}
     />
   )
 }

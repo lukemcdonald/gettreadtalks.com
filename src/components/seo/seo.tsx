@@ -12,9 +12,17 @@ interface Props {
   image?: string
   location: HeadProps['location']
   title?: string | null
+  structuredData?: Record<string, any>[]
 }
 
-function SEO({ children, description, image, location, title }: PropsWithChildren<Props>) {
+function SEO({
+  children,
+  description,
+  image,
+  location,
+  title,
+  structuredData,
+}: PropsWithChildren<Props>) {
   const { title: siteTitle, description: siteDescription } = useSiteMetadata()
 
   const seo = {
@@ -24,15 +32,31 @@ function SEO({ children, description, image, location, title }: PropsWithChildre
     url: location.pathname ? `${BASE_URL}${location.pathname}` : BASE_URL,
   }
 
-  const schemaOrg = [
+  const baseSchemaOrg = [
     {
-      '@context': 'http://schema.org',
+      '@context': 'https://schema.org',
       '@type': 'WebSite',
       url: seo.url,
       name: seo.title,
       alternateName: siteTitle || '',
     },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: 'TREAD Talks',
+      url: BASE_URL,
+      description:
+        'Exercise your inner man with Christ centered sermons to elevate your spiritual heartbeat while working out your physical one.',
+      logo: `${BASE_URL}/logo.png`,
+      sameAs: [
+        'https://twitter.com/gettreadtalks',
+        'https://www.facebook.com/gettreadtalks',
+        'https://www.instagram.com/gettreadtalks',
+      ],
+    },
   ]
+
+  const schemaOrg = structuredData ? [...baseSchemaOrg, ...structuredData] : baseSchemaOrg
 
   return (
     <>

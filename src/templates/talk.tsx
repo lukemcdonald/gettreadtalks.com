@@ -232,12 +232,51 @@ function TalkPage({ data, location, pageContext }: Props) {
 export const Head: HeadFC<Queries.TalkPageQuery> = ({ data, location }) => {
   const talk = { ...data.talk?.data }
   const speaker = { ...talk.speakers?.[0]?.data }
+  const BASE_URL = process.env.BASE_URL ?? 'https://gettreadtalks.com'
+
+  const structuredData = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'AudioObject',
+      name: talk.title,
+      description: `Listen to ${talk.title} by ${speaker.title}${talk.scripture ? ` from ${talk.scripture}` : ''}.`,
+      url: `${BASE_URL}${location.pathname}`,
+      author: {
+        '@type': 'Person',
+        name: speaker.title,
+        jobTitle: 'Minister',
+      },
+      publisher: {
+        '@type': 'Organization',
+        name: 'TREAD Talks',
+        url: BASE_URL,
+      },
+      about: talk.scripture
+        ? {
+            '@type': 'Thing',
+            name: talk.scripture,
+          }
+        : undefined,
+      keywords: [
+        'sermon',
+        'christian',
+        'bible',
+        'faith',
+        'gospel',
+        speaker.title,
+        ...(talk.scripture ? [talk.scripture] : []),
+      ].filter(Boolean),
+      inLanguage: 'en',
+      isAccessibleForFree: true,
+    },
+  ]
 
   return (
     <SEO
       title={`${talk.title} by ${speaker.title}`}
       description={`Listen to ${talk.title} by ${speaker.title} from ${talk.scripture}.`}
       location={location}
+      structuredData={structuredData}
     />
   )
 }

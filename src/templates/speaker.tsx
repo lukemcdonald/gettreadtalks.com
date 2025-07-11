@@ -146,6 +146,39 @@ function SingleSpeakerPage({ data, pageContext }: Props) {
 export const Head: HeadFC<Queries.SingleSpeakerPageQuery> = ({ data, location }) => {
   const speaker = data?.speaker?.data
   const speakerImage = speaker?.banner?.localFiles?.[0]
+  const BASE_URL = process.env.BASE_URL ?? 'https://gettreadtalks.com'
+
+  const structuredData = speaker
+    ? [
+        {
+          '@context': 'https://schema.org',
+          '@type': 'Person',
+          name: speaker.title,
+          jobTitle: speaker.role || 'Minister',
+          description:
+            speaker.description?.childMarkdownRemark?.excerpt ||
+            `${speaker.role || 'Minister'} delivering Christ-centered sermons.`,
+          url: `${BASE_URL}${location.pathname}`,
+          ...(speaker.website && { sameAs: [speaker.website] }),
+          ...(speaker.ministry && {
+            affiliation: {
+              '@type': 'Organization',
+              name: speaker.ministry,
+              ...(speaker.website && { url: speaker.website }),
+            },
+          }),
+          ...(speaker.banner?.localFiles?.[0] && {
+            image: speakerImage?.childImageSharp?.gatsbyImageData?.images?.fallback?.src,
+          }),
+          knowsAbout: ['Christianity', 'Bible', 'Theology', 'Preaching', 'Gospel', 'Faith'],
+          memberOf: {
+            '@type': 'Organization',
+            name: 'TREAD Talks',
+            url: BASE_URL,
+          },
+        },
+      ]
+    : []
 
   return (
     <SEO
@@ -153,6 +186,7 @@ export const Head: HeadFC<Queries.SingleSpeakerPageQuery> = ({ data, location })
       description={speaker?.description?.childMarkdownRemark?.excerpt}
       image={speakerImage?.childImageSharp?.gatsbyImageData?.images?.fallback?.src}
       location={location}
+      structuredData={structuredData}
     />
   )
 }
