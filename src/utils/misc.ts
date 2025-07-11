@@ -1,5 +1,3 @@
-import type { TUnknown } from './types/shared'
-
 interface CallBack<Params extends unknown[]> {
   (...args: Params): void
 }
@@ -17,7 +15,7 @@ export const trimText = (text: string, limit: number) => {
   return text
 }
 
-export function arrayShuffle<T extends TUnknown>(array: T): T[] {
+export function arrayShuffle<T>(array: T): T[] {
   if (!Array.isArray(array)) {
     return []
   }

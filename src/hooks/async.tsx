@@ -1,5 +1,5 @@
 import { useCallback, useReducer } from 'react'
-import type { Nullable, TAny, TUnknown } from '~/utils/types/shared'
+import type { Nullable, TAny } from '~/utils/types/shared'
 import { useSafeDispatch } from './safeDispatch'
 
 enum AsyncActionType {
@@ -9,7 +9,7 @@ enum AsyncActionType {
   REJECTED = 'rejected',
 }
 
-interface AsyncState<TData = TUnknown> {
+interface AsyncState<TData = unknown> {
   data: TData | null
   error: typeof Error | null
   status: AsyncActionType
@@ -21,7 +21,7 @@ interface AsyncAction<TData> extends AsyncState<TData> {
   type: AsyncActionType
 }
 
-interface AsyncValue<TData = TUnknown> {
+interface AsyncValue<TData = unknown> {
   isIdle: boolean
   isLoading: boolean
   isError: boolean
