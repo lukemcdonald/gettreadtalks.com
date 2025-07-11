@@ -15,7 +15,16 @@ function CardSubtitle({ as, children, className }: Props) {
     'h3',
   ]) as keyof JSX.IntrinsicElements
 
-  return <Tag className={clsx('text-xs text-gray-500', className)}>{children}</Tag>
+  return (
+    <Tag
+      className={clsx(
+        'mb-2 mt-1 text-xs font-bold uppercase leading-none tracking-wide text-primary-600',
+        className,
+      )}
+    >
+      {children}
+    </Tag>
+  )
 }
 
 export default CardSubtitle
