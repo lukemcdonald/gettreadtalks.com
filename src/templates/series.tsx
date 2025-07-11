@@ -70,11 +70,11 @@ export const Head: HeadFC<Queries.SingleSeriesPageQuery> = ({ data, location }) 
           ...(series.talks &&
             series.talks.length > 0 && {
               hasPart: series.talks
-                .filter((talk) => talk && talk.data?.title && talk.fields?.slug)
+                .filter((talk) => talk?.data?.title && talk?.fields?.slug)
                 .map((talk) => ({
                   '@type': 'AudioObject',
-                  name: talk!.data!.title,
-                  url: `${BASE_URL}${talk!.fields!.slug}`,
+                  name: talk?.data?.title || 'Untitled Talk',
+                  url: `${BASE_URL}${talk?.fields?.slug}`,
                 })),
             }),
         },

@@ -29,11 +29,10 @@ function SeriesCard({ series }: SeriesCardProps) {
     id: string
   }
 
-  const uniqueSpeakers = series?.speakers?.filter(
-    (speaker: Speaker, index: number, self: Speaker[]) => {
-      return index === self.findIndex((current: any) => current.id === speaker.id)
-    },
-  )
+  const uniqueSpeakers =
+    series?.speakers?.filter((speaker: Speaker, index: number, self: Speaker[]) => {
+      return speaker && index === self.findIndex((current) => current?.id === speaker?.id)
+    }) || []
 
   const maxSpeakers = 3
   const uniqueSpeakersList = uniqueSpeakers.slice(0, maxSpeakers + 1)

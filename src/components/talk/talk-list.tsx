@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 
 import TalkCard from './talk-card'
+import type { TalkCardData } from './talk-card'
 
 interface TalkListProps {
   className?: string
@@ -9,7 +10,7 @@ interface TalkListProps {
 }
 
 interface TalkListItem {
-  data: any
+  data: TalkCardData
   fields: { slug: string }
   id: string
 }

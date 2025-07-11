@@ -1,4 +1,5 @@
 import { useMemo } from 'react'
+import type { Talk, Speaker, Series } from '~/utils/schema'
 import {
   createAudioObjectSchema,
   createPersonSchema,
@@ -7,9 +8,9 @@ import {
 } from '~/utils/schema'
 
 type StructuredDataContext =
-  | { type: 'talk'; data: { talk: any; speaker: any; pathname: string } }
-  | { type: 'speaker'; data: { speaker: any; pathname: string } }
-  | { type: 'series'; data: { series: any; pathname: string } }
+  | { type: 'talk'; data: { talk: Talk; speaker: Speaker; pathname: string } }
+  | { type: 'speaker'; data: { speaker: Speaker; pathname: string } }
+  | { type: 'series'; data: { series: Series; pathname: string } }
   | { type: 'homepage'; data: { pathname: string } }
 
 export function useStructuredData(context: StructuredDataContext) {

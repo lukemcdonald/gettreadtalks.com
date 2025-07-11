@@ -1,6 +1,5 @@
 import type { HeadFC, PageProps } from 'gatsby'
 import { graphql } from 'gatsby'
-
 import { Image } from '~/components/image'
 import type { ImageProps } from '~/components/image'
 import { ClipList } from '~/components/clip'
@@ -153,7 +152,7 @@ export const Head: HeadFC<Queries.SingleSpeakerPageQuery> = ({ data, location })
         {
           '@context': 'https://schema.org',
           '@type': 'Person',
-          name: speaker.title,
+          name: speaker.title || 'Unknown Speaker',
           jobTitle: speaker.role || 'Minister',
           description:
             speaker.description?.childMarkdownRemark?.excerpt ||
