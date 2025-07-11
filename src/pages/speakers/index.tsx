@@ -66,7 +66,13 @@ function SpeakersPage({ data }: Props) {
       <Section>
         <Section.Sidebar>
           <Page.Title>
-            <SpeakerFilter speakers={speakers.nodes} />
+            <SpeakerFilter
+              speakers={speakers.nodes}
+              current={{
+                value: '/speakers/',
+                label: 'All Speakers',
+              }}
+            />
           </Page.Title>
 
           <div className="prose mt-2">

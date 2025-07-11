@@ -2,11 +2,10 @@ import clsx from 'clsx'
 
 import type { SeriesCardData } from './series-card'
 import SeriesCard from './series-card'
-import type { TAny } from '~/utils/types/shared'
 
 interface SeriesListProps {
   className?: string
-  series: TAny
+  series: any
 }
 
 interface SeriesListItem {

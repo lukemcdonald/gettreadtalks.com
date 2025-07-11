@@ -1,9 +1,7 @@
 import type { Dispatch } from 'react'
 import { useCallback, useLayoutEffect, useRef } from 'react'
 
-import type { TAny } from '~/utils/types/shared'
-
-function useSafeDispatch(dispatch: Dispatch<TAny>) {
+function useSafeDispatch(dispatch: Dispatch<any>) {
   const mounted = useRef(false)
 
   useLayoutEffect(() => {
@@ -13,7 +11,7 @@ function useSafeDispatch(dispatch: Dispatch<TAny>) {
     }
   }, [])
 
-  return useCallback((action: TAny) => (mounted.current ? dispatch(action) : void 0), [dispatch])
+  return useCallback((action: any) => (mounted.current ? dispatch(action) : void 0), [dispatch])
 }
 
 export { useSafeDispatch }

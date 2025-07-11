@@ -1,16 +1,15 @@
 import clsx from 'clsx'
 
 import TalkCard from './talk-card'
-import type { TAny } from '~/utils/types/shared'
 
 interface TalkListProps {
   className?: string
   subtitle?: string
-  talks: TAny
+  talks: any
 }
 
 interface TalkListItem {
-  data: TAny
+  data: any
   fields: { slug: string }
   id: string
 }

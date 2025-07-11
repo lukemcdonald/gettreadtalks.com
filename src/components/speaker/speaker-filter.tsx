@@ -1,5 +1,4 @@
-import type { SelectOption } from '~/components/select/select'
-import type { TAny } from '~/utils/types/shared'
+import type { SelectOption } from '../select/select'
 import { Select } from '~/components/select'
 
 const defaultGroupOptions = [
@@ -16,30 +15,31 @@ const defaultGroupOptions = [
   },
 ]
 
-interface SpeakerFilterProp {
-  className?: string
-  current?: NonNullable<SelectOption>
-  label?: string
-  speakers: TAny
-}
-
-interface SpeakerOption {
+interface Speaker {
   data: {
     firstName: string
     lastName: string
+    talks: []
   }
   fields: {
     slug: string
   }
+  id: string
 }
 
-function SpeakerFilter({ className, current, label = 'Speakers', speakers }: SpeakerFilterProp) {
+interface Props {
+  className?: string
+  current: SelectOption
+  speakers: any
+}
+
+function SpeakerFilter({ className, current, speakers }: Props) {
   return (
-    <Select label={label} className={className} current={current}>
+    <Select label="Speakers" className={className} current={current}>
       <Select.Group options={defaultGroupOptions} />
 
       <Select.Group
-        options={speakers.map((speaker: SpeakerOption) => ({
+        options={speakers.map((speaker: Speaker) => ({
           value: speaker.fields.slug,
           label: `${speaker.data.lastName}, ${speaker.data.firstName}`,
         }))}

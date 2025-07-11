@@ -1,9 +1,9 @@
 import type { HeadFC, PageProps } from 'gatsby'
 import { graphql } from 'gatsby'
 
-import type { TAny } from '~/utils/types/shared'
-import { ClipList } from '~/components/clip'
 import { Image } from '~/components/image'
+import type { ImageProps } from '~/components/image'
+import { ClipList } from '~/components/clip'
 import { Intro } from '~/components/intro'
 import { Link } from '~/components/link'
 import { SEO } from '~/components/seo'
@@ -20,8 +20,8 @@ interface PageContext {
 type Props = PageProps<Queries.SingleSpeakerPageQuery, PageContext>
 
 function SingleSpeakerPage({ data, pageContext }: Props) {
-  const speaker = data?.speaker?.data
-  const speakers = data?.speakers
+  const speaker = { ...data.speaker?.data }
+  const speakers = { ...data.speakers }
 
   if (!speaker) {
     return null
@@ -35,7 +35,7 @@ function SingleSpeakerPage({ data, pageContext }: Props) {
             <Image
               className="m-auto mb-4 block w-24 rounded-full border-4 border-white shadow-lg"
               imgClassName="rounded-full"
-              image={speaker.avatar as TAny}
+              image={speaker.avatar as ImageProps['image']}
               alt={speaker.title || ''}
             />
           ) : null}

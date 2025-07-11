@@ -1,4 +1,3 @@
-import type { TAny } from '~/utils/types/shared'
 import { Card } from '~/components/card'
 import { Image } from '~/components/image'
 import { Link } from '~/components/link'
@@ -10,7 +9,7 @@ export interface SeriesCardBase {
 
 export interface SeriesCardData {
   publishedTalksCount: number
-  speakers: TAny
+  speakers: any
   title: string
 }
 
@@ -18,22 +17,25 @@ export interface SeriesCardProps {
   series: SeriesCardBase & SeriesCardData
 }
 
-interface SeriesSpeakerData {
-  data: {
-    avatar: TAny
-    title: string
-  }
-  fields: { slug: string }
-  id: string
-}
-
 function SeriesCard({ series }: SeriesCardProps) {
-  const maxSpeakers = 3
-  const uniqueSpeakers = series.speakers.filter(
-    (speaker: SeriesSpeakerData, index: number, self: string[]) => {
-      return index === self.findIndex((current: TAny) => current.id === speaker.id)
+  interface Speaker {
+    data: {
+      avatar: any
+      title: string
+    }
+    fields: {
+      slug: string
+    }
+    id: string
+  }
+
+  const uniqueSpeakers = series?.speakers?.filter(
+    (speaker: Speaker, index: number, self: Speaker[]) => {
+      return index === self.findIndex((current: any) => current.id === speaker.id)
     },
   )
+
+  const maxSpeakers = 3
   const uniqueSpeakersList = uniqueSpeakers.slice(0, maxSpeakers + 1)
 
   return (
@@ -55,7 +57,7 @@ function SeriesCard({ series }: SeriesCardProps) {
       </Link>
 
       <div className="mt-2 flex -space-x-4 sm:mt-0">
-        {uniqueSpeakersList.map((speaker: SeriesSpeakerData, index: number) => {
+        {uniqueSpeakersList.map((speaker: Speaker, index: number) => {
           const moreSpeakersCount = Math.max(0, uniqueSpeakers.length - maxSpeakers)
           const hasMoreSpeakers = moreSpeakersCount > 0 && index === moreSpeakersCount + 1
 

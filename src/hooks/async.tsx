@@ -1,5 +1,5 @@
 import { useCallback, useReducer } from 'react'
-import type { Nullable, TAny } from '~/utils/types/shared'
+import type { Nullable } from '~/utils/types/shared'
 import { useSafeDispatch } from './safeDispatch'
 
 enum AsyncActionType {
@@ -29,7 +29,7 @@ interface AsyncValue<TData = unknown> {
   data: TData | null
   error: typeof Error | null
   status: AsyncActionType
-  run: (promise: TAny) => void
+  run: (promise: any) => void
   setData: (data: AsyncState<TData>['data']) => void
   setError: (error: AsyncState<TData>['error']) => void
 }
@@ -83,7 +83,7 @@ function useAsync<TData>(initialData: Nullable<TData> = null): AsyncValue<TData>
   )
 
   const run = useCallback(
-    (promise: TAny) => {
+    (promise: any) => {
       if (!promise || !promise.then) {
         throw new Error(
           `The argument passed to useAsync().run must be a promise. Maybe a function that's passed isn't returning anything?`,

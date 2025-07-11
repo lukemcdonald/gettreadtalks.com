@@ -1,12 +1,12 @@
 import clsx from 'clsx'
 
 import { Image } from '~/components/image'
-import type { TAny } from '~/utils/types/shared'
+import type { ImageProps } from '~/components/image'
 
 interface Props {
   alt?: string
   className?: string
-  image: TAny
+  image: string | ImageProps['image']
 }
 
 function CardImage({ alt = '', className, image, ...props }: Props) {
@@ -14,6 +14,19 @@ function CardImage({ alt = '', className, image, ...props }: Props) {
     return null
   }
 
+  // Handle string URLs
+  if (typeof image === 'string') {
+    return (
+      <img
+        alt={alt}
+        className={clsx('flex-shrink-0 rounded-full', className || 'h-16 w-16')}
+        src={image}
+        {...props}
+      />
+    )
+  }
+
+  // Handle complex Gatsby image objects
   return (
     <Image
       alt={alt}

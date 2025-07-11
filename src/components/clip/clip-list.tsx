@@ -1,12 +1,11 @@
 import clsx from 'clsx'
-import type { TAny } from '~/utils/types/shared'
 
 import ClipCard from './clip-card'
 import type { ClipsCardData } from './clip-card'
 
 interface ClipsListProps {
   className?: string
-  clips: TAny
+  clips: any
 }
 
 interface ClipsListItem {
