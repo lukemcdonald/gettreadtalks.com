@@ -12,7 +12,7 @@ interface MenuItemTypeProps {
 
 interface Props {
   as?: StyleMenuItemArgs['type']
-  icon: ComponentType<{ className: string }>
+  icon: ComponentType<any>
   onClick?: () => void
   title: string
   to: string
