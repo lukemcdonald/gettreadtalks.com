@@ -2,7 +2,6 @@ import type { ReactNode } from 'react'
 import clsx from 'clsx'
 
 import { sanitizeHTMLTag } from '~/utils/misc'
-import type { TAny } from '~/utils/types/shared'
 
 interface Props {
   as: 'h1' | 'h2' | 'h3'
@@ -11,7 +10,11 @@ interface Props {
 }
 
 function CardTitle({ as, children, className }: Props) {
-  const Tag: TAny = sanitizeHTMLTag(as, ['h1', 'h2', 'h3'])
+  const Tag: keyof JSX.IntrinsicElements = sanitizeHTMLTag(as, [
+    'h1',
+    'h2',
+    'h3',
+  ]) as keyof JSX.IntrinsicElements
 
   return (
     <Tag className={clsx('text-lg font-bold leading-6 text-gray-900', className)}>{children}</Tag>

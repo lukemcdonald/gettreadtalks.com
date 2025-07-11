@@ -1,11 +1,11 @@
-import type { TAny, TUnknown } from './types/shared'
+import type { TUnknown } from './types/shared'
 
-interface CallBack<Params extends TAny[]> {
+interface CallBack<Params extends unknown[]> {
   (...args: Params): void
 }
 
 // prettier-ignore
-export const callAll = <Params extends TAny[]>(
+export const callAll = <Params extends unknown[]>(
 	...fns: Array<CallBack<Params> | undefined>
 ) => (...args: Params) => fns.forEach((fn) => typeof fn === 'function' && fn(...args))
 
