@@ -7,12 +7,11 @@ import { SEO } from '~/components/seo'
 import { Section } from '~/components/section'
 import { SpeakerFilter, SpeakerList } from '~/components/speaker'
 import { TextCarousel } from '~/components/text-carousel'
-import type { SpeakerListItem } from '~/components/speaker/speaker-list'
 
 type Props = PageProps<Queries.SpeakersPageQuery>
 
-function getSortedSpeakersMap(speakers) {
-  const speakersMap = new Map<string, SpeakerListItem[]>()
+function getSortedSpeakersMap(speakers: Props['data']['speakers']['nodes']) {
+  const speakersMap = new Map<string, typeof speakers>()
 
   for (const speaker of speakers) {
     // get first letter of speaker's last name
@@ -35,11 +34,11 @@ function getSortedSpeakersMap(speakers) {
   return new Map([...speakersMap.entries()].sort())
 }
 
-function getSpeakersSectionLabel(speakers: SpeakerListItem[]) {
+function getSpeakersSectionLabel(speakers: Props['data']['speakers']['nodes']) {
   const firstSpeaker = speakers[0]
   const lastSpeaker = speakers.at(-1)
 
-  if (!firstSpeaker || !lastSpeaker) {
+  if (!firstSpeaker?.data || !lastSpeaker?.data) {
     return ''
   }
 

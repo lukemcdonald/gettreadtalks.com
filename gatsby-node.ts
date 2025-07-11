@@ -3,10 +3,10 @@ import type { CreateNodeArgs, CreatePagesArgs, GatsbyNode } from 'gatsby'
 import { resolve } from 'path'
 import slugify from 'slugify'
 
-import type { TAny } from '~/utils/types/shared'
+import type { TAny } from './src/utils/types/shared'
 
 // Support for tsconfig 'paths' option
-export const onCreateWebpackConfig = ({ actions }) => {
+export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({ actions }) => {
   actions.setWebpackConfig({
     resolve: {
       alias: {
