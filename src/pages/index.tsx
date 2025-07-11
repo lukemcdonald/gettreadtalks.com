@@ -68,7 +68,13 @@ function IndexPage({ data }: Props) {
 }
 
 export const Head: HeadFC = ({ location }) => {
-  return <SEO title="Exercise Your Inner Man" location={location} />
+  return (
+    <SEO
+      title="Exercise Your Inner Man"
+      description="Workout your salvation with Christ-centered sermons to elevate your spiritual heartbeat. Listen to faithful ministers of the Gospel while you exercise."
+      location={location}
+    />
+  )
 }
 
 export default IndexPage

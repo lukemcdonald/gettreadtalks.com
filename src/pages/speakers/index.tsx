@@ -104,8 +104,11 @@ function SpeakersPage({ data }: Props) {
   )
 }
 
-export const Head: HeadFC = ({ location }) => {
-  return <SEO title="Speakers" location={location} />
+export const Head: HeadFC<Queries.SpeakersPageQuery> = ({ data, location }) => {
+  const speakerCount = data?.speakers?.totalCount || 0
+  const description = `Listen to ${speakerCount} faithful ambassadors of Christ and be blessed. Browse our complete directory of ministers delivering Christ-centered sermons.`
+
+  return <SEO title="Speakers" description={description} location={location} />
 }
 
 export default SpeakersPage

@@ -31,7 +31,13 @@ function SingleSeriesPage({ data }: Props) {
 }
 
 export const Head: HeadFC<Queries.SingleSeriesPageQuery> = ({ data, location }) => {
-  return <SEO title={data?.series?.data?.title} location={location} />
+  const series = data?.series?.data
+  const talkCount = series?.talks?.length || 0
+  const description = series
+    ? `Listen to the "${series.title}" series featuring ${talkCount} Christ-centered talks from TREAD Talks.`
+    : 'Listen to this series of Christ-centered talks from TREAD Talks.'
+
+  return <SEO title={series?.title} description={description} location={location} />
 }
 
 export default SingleSeriesPage
