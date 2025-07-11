@@ -17,13 +17,13 @@ interface SeriesListItem {
 function SeriesList({ className, series }: SeriesListProps) {
   return (
     <div className={clsx('grid gap-4 sm:gap-6', className)}>
-      {series.map((series: SeriesListItem) => (
+      {series.map((seriesItem: SeriesListItem) => (
         <SeriesCard
-          key={series.id}
+          key={seriesItem.id}
           series={{
-            ...series.fields,
-            ...series.data,
-            id: series.id,
+            ...seriesItem.fields,
+            ...seriesItem.data,
+            id: seriesItem.id,
           }}
         />
       ))}

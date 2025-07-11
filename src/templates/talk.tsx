@@ -51,7 +51,7 @@ function TalkPage({ data, location, pageContext }: Props) {
   useEffect(() => {
     if (speaker.talks) {
       // Get more talks from the same speaker excluding current talk.
-      const filtered = speaker.talks?.filter((talk) => talk?.id !== pageContext.id)
+      const filtered = speaker.talks?.filter((talkItem) => talkItem?.id !== pageContext.id)
 
       if (filtered.length > 0) {
         setMoreTalks(filtered)

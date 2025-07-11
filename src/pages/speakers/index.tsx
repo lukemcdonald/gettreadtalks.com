@@ -25,8 +25,8 @@ function getSortedSpeakersMap(speakers: Props['data']['speakers']['nodes']) {
     if (!speakersMap.has(letter)) {
       speakersMap.set(letter, [speaker])
     } else {
-      const speakers = speakersMap.get(letter) || []
-      speakersMap.set(letter, [...speakers, speaker])
+      const existingSpeakers = speakersMap.get(letter) || []
+      speakersMap.set(letter, [...existingSpeakers, speaker])
     }
   }
 
@@ -84,9 +84,9 @@ function SpeakersPage({ data }: Props) {
         </Section.Sidebar>
 
         <Section.Content align="wide">
-          {Array.from(speakersMap).map(([letter, speakers]) => {
+          {Array.from(speakersMap).map(([letter, groupSpeakers]) => {
             const key = `speakers-${letter}`
-            const speakersSectionLabel = getSpeakersSectionLabel(speakers)
+            const speakersSectionLabel = getSpeakersSectionLabel(groupSpeakers)
 
             return (
               <Fragment key={key}>
@@ -100,7 +100,7 @@ function SpeakersPage({ data }: Props) {
                     {speakersSectionLabel}
                   </span>
                 </h2>
-                <SpeakerList speakers={speakers} />
+                <SpeakerList speakers={groupSpeakers} />
               </Fragment>
             )
           })}

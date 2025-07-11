@@ -45,10 +45,10 @@ function UsersProvider(props: UsersProviderProps) {
   const db = getFirestore(firebase)
 
   const loadUserProfile = useCallback(
-    async (profile: AuthUser) => {
-      if (!profile?.uid) return
+    async (authProfile: AuthUser) => {
+      if (!authProfile?.uid) return
 
-      const docRef = doc(db, 'users', profile.uid)
+      const docRef = doc(db, 'users', authProfile.uid)
       const docSnap = await getDoc(docRef)
       setData({
         id: docSnap.id,

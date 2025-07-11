@@ -9,13 +9,13 @@ import { sanitizeHTMLTag } from '~/utils/misc'
 import type { Nullable } from '~/utils/types/shared'
 
 const allowedTags = ['div', 'article', 'footer', 'header', 'section'] as const
-const allowedSeparators = ['top', 'bottom', 'top-bottom'] as const
+const _allowedSeparators = ['top', 'bottom', 'top-bottom'] as const
 
 interface Props {
   as?: (typeof allowedTags)[number]
   children: ReactNode
   className?: string
-  separator?: Nullable<(typeof allowedSeparators)[number]>
+  separator?: Nullable<(typeof _allowedSeparators)[number]>
   separatorClass?: string
 }
 
