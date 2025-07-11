@@ -1,10 +1,10 @@
+import type { PropsWithChildren } from 'react'
 import { createContext, useCallback, useContext, useEffect, useMemo } from 'react'
 import type { FirebaseApp } from 'firebase/app'
 import { initializeApp } from 'firebase/app'
 
 import { FullPageErrorFallback, FullPageLogo } from '~/components/loader'
 import { useAsync } from '~/hooks/async'
-import type { TAny } from '~/utils/types/shared'
 
 interface FirebaseContextValue {
   firebase: FirebaseApp
@@ -19,7 +19,7 @@ const firebaseConfig = {
   storageBucket: process.env.GATSBY_FIREBASE_STORAGE_BUCKET,
 }
 
-function FirebaseProvider(props: TAny) {
+function FirebaseProvider(props: PropsWithChildren) {
   const {
     data: firebase,
     status,
@@ -40,7 +40,7 @@ function FirebaseProvider(props: TAny) {
     initializeFirebase()
   }, [initializeFirebase])
 
-  const value = useMemo(() => ({ firebase }), [firebase])
+  const value = useMemo(() => ({ firebase: firebase! }), [firebase])
 
   if (isLoading || isIdle) {
     return <FullPageLogo />
@@ -50,7 +50,7 @@ function FirebaseProvider(props: TAny) {
     return <FullPageErrorFallback error={error} />
   }
 
-  if (isSuccess) {
+  if (isSuccess && firebase) {
     return <FirebaseContext.Provider value={value} {...props} />
   }
 
