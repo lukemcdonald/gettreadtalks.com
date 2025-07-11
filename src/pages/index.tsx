@@ -1,4 +1,3 @@
-// Todo: Typescript https://www.gatsbyjs.com/docs/how-to/local-development/graphql-typegen/
 import { useMemo } from 'react'
 import { graphql } from 'gatsby'
 import type { HeadFC, PageProps } from 'gatsby'
