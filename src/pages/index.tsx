@@ -9,6 +9,7 @@ import { SpeakerList } from '~/components/speaker'
 import { TalkList, TalkNav } from '~/components/talk'
 import { TextCarousel } from '~/components/text-carousel'
 import { arrayShuffle } from '~/utils/misc'
+import { createWebPageSchema } from '~/utils/schema'
 
 type Props = PageProps<Queries.IndexPageQuery>
 
@@ -68,58 +69,13 @@ function IndexPage({ data }: Props) {
 }
 
 export const Head: HeadFC = ({ location }) => {
-  const BASE_URL = process.env.BASE_URL ?? 'https://gettreadtalks.com'
-
   const structuredData = [
-    {
-      '@context': 'https://schema.org',
-      '@type': 'WebPage',
-      name: 'TREAD Talks - Exercise Your Inner Man',
-      description:
-        'Workout your salvation with Christ-centered sermons to elevate your spiritual heartbeat. Listen to faithful ministers of the Gospel while you exercise.',
-      url: `${BASE_URL}${location.pathname}`,
-      mainEntity: {
-        '@type': 'Organization',
-        name: 'TREAD Talks',
-        url: BASE_URL,
-        description:
-          'Exercise your inner man with Christ centered sermons to elevate your spiritual heartbeat while working out your physical one.',
-        founder: {
-          '@type': 'Person',
-          name: 'Luke McDonald',
-          url: 'https://lukemcdonald.com',
-        },
-        sameAs: [
-          'https://twitter.com/gettreadtalks',
-          'https://www.facebook.com/gettreadtalks',
-          'https://www.instagram.com/gettreadtalks',
-        ],
-      },
-      about: [
-        {
-          '@type': 'Thing',
-          name: 'Christian Sermons',
-        },
-        {
-          '@type': 'Thing',
-          name: 'Biblical Teaching',
-        },
-        {
-          '@type': 'Thing',
-          name: 'Spiritual Growth',
-        },
-      ],
-      keywords: [
-        'christian sermons',
-        'biblical teaching',
-        'spiritual growth',
-        'gospel',
-        'faith',
-        'exercise',
-        'workout',
-        'salvation',
-      ],
-    },
+    createWebPageSchema(
+      'TREAD Talks - Exercise Your Inner Man',
+      'Workout your salvation with Christ-centered sermons to elevate your spiritual heartbeat. Listen to faithful ministers of the Gospel while you exercise.',
+      location.pathname,
+      ['exercise', 'workout', 'salvation'],
+    ),
   ]
 
   return (
