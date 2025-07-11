@@ -27,8 +27,11 @@ function ClipsPage({ data }: Props) {
   )
 }
 
-export const Head: HeadFC = ({ location }) => {
-  return <SEO title="Clips" location={location} />
+export const Head: HeadFC<Queries.ClipsPageQuery> = ({ data, location }) => {
+  const clipCount = data?.clips?.nodes?.length || 0
+  const description = `Be encouraged by ${clipCount} short Christ-centered video clips. Watch inspiring moments from faithful ministers of the Gospel.`
+
+  return <SEO title="Clips" description={description} location={location} />
 }
 
 export default ClipsPage

@@ -1,12 +1,11 @@
 import clsx from 'clsx'
-import type { TAny } from '~/utils/types/shared'
 
 import ClipCard from './clip-card'
 import type { ClipsCardData } from './clip-card'
 
 interface ClipsListProps {
   className?: string
-  clips: TAny
+  clips: any
 }
 
 interface ClipsListItem {
@@ -18,8 +17,8 @@ interface ClipsListItem {
 function ClipList({ className, clips }: ClipsListProps) {
   return (
     <div className={clsx('grid gap-4 sm:gap-6', className)}>
-      {clips.map((clips: ClipsListItem) => (
-        <ClipCard key={clips.id} clip={{ ...clips.fields, ...clips.data }} />
+      {clips.map((clip: ClipsListItem) => (
+        <ClipCard key={clip.id} clip={{ ...clip.fields, ...clip.data }} />
       ))}
     </div>
   )

@@ -4,7 +4,7 @@ import type { DocumentData, SetOptions } from 'firebase/firestore'
 import { deleteDoc, doc, getDoc, getFirestore, setDoc, updateDoc } from 'firebase/firestore'
 
 import { FullPageErrorFallback, FullPageLogo } from '~/components/loader'
-import { useAuth } from '~/context/auth'
+import { useAuth, type AuthUser } from '~/context/auth'
 import { useFirebase } from '~/context/firebase'
 import { useAsync } from '~/hooks/async'
 import { useMemoObject } from '~/hooks/memo-object'
@@ -45,8 +45,10 @@ function UsersProvider(props: UsersProviderProps) {
   const db = getFirestore(firebase)
 
   const loadUserProfile = useCallback(
-    async (profile) => {
-      const docRef = doc(db, 'users', profile.uid)
+    async (authProfile: AuthUser) => {
+      if (!authProfile?.uid) return
+
+      const docRef = doc(db, 'users', authProfile.uid)
       const docSnap = await getDoc(docRef)
       setData({
         id: docSnap.id,

@@ -14,6 +14,7 @@ import { SEO } from '~/components/seo'
 import { Section } from '~/components/section'
 import { SeriesList } from '~/components/series'
 import { arrayShuffle } from '~/utils/misc'
+import { createAudioObjectSchema } from '~/utils/schema'
 
 interface PageContext {
   id: string
@@ -50,7 +51,7 @@ function TalkPage({ data, location, pageContext }: Props) {
   useEffect(() => {
     if (speaker.talks) {
       // Get more talks from the same speaker excluding current talk.
-      const filtered = speaker.talks?.filter((talk) => talk?.id !== pageContext.id)
+      const filtered = speaker.talks?.filter((talkItem) => talkItem?.id !== pageContext.id)
 
       if (filtered.length > 0) {
         setMoreTalks(filtered)
@@ -233,11 +234,14 @@ export const Head: HeadFC<Queries.TalkPageQuery> = ({ data, location }) => {
   const talk = { ...data.talk?.data }
   const speaker = { ...talk.speakers?.[0]?.data }
 
+  const structuredData = [createAudioObjectSchema(talk, speaker, location.pathname)]
+
   return (
     <SEO
       title={`${talk.title} by ${speaker.title}`}
       description={`Listen to ${talk.title} by ${speaker.title} from ${talk.scripture}.`}
       location={location}
+      structuredData={structuredData}
     />
   )
 }

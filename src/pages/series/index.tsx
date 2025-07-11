@@ -31,8 +31,11 @@ function SeriesPage({ data }: Props) {
   )
 }
 
-export const Head: HeadFC = ({ location }) => {
-  return <SEO title="Sermon Series" location={location} />
+export const Head: HeadFC<Queries.SeriesPageQuery> = ({ data, location }) => {
+  const seriesCount = data?.series?.nodes?.length || 0
+  const description = `Explore ${seriesCount} sermon series featuring talks on the same topic or book of the Bible. Each series includes multiple Christ-centered messages from faithful ministers.`
+
+  return <SEO title="Sermon Series" description={description} location={location} />
 }
 
 export default SeriesPage

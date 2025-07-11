@@ -147,7 +147,7 @@ function AuthProvider(props: AuthProviderProps) {
         notify({
           title: 'Check your email',
           text: 'An email to reset your password has been sent.',
-          icon: (props: ComponentProps<'svg'>) => <UserCircleIcon {...props} />,
+          icon: (iconProps: ComponentProps<'svg'>) => <UserCircleIcon {...iconProps} />,
         })
         navigate('/login/')
       } catch (err) {
@@ -198,14 +198,14 @@ function AuthProvider(props: AuthProviderProps) {
         notify({
           title: 'Account updated',
           text: 'Your account has successfully been unregisterd.',
-          icon: (props) => <UserCircleIcon {...props} />,
+          icon: (iconProps) => <UserCircleIcon {...iconProps} />,
         })
         navigate('/')
       } catch (err) {
         notify({
           title: 'Error',
           text: getErrorMessage(err),
-          icon: (props) => <UserCircleIcon {...props} />,
+          icon: (iconProps) => <UserCircleIcon {...iconProps} />,
         })
       }
     },
@@ -232,7 +232,7 @@ function AuthProvider(props: AuthProviderProps) {
           notify({
             title: 'Email updated',
             text: 'Your email address has been updated.',
-            icon: (props: ComponentProps<'svg'>) => <UserCircleIcon {...props} />,
+            icon: (iconProps: ComponentProps<'svg'>) => <UserCircleIcon {...iconProps} />,
           })
         }
 
@@ -242,14 +242,14 @@ function AuthProvider(props: AuthProviderProps) {
           notify({
             title: 'Password updated',
             text: 'Your password has been updated.',
-            icon: (props: ComponentProps<'svg'>) => <UserCircleIcon {...props} />,
+            icon: (iconProps: ComponentProps<'svg'>) => <UserCircleIcon {...iconProps} />,
           })
         }
       } catch (err) {
         notify({
           title: 'Error',
           text: getErrorMessage(err),
-          icon: (props: ComponentProps<'svg'>) => <UserCircleIcon {...props} />,
+          icon: (iconProps) => <UserCircleIcon {...iconProps} />,
         })
       }
     },

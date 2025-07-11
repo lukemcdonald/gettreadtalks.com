@@ -4,7 +4,6 @@ import clsx from 'clsx'
 import { Switch } from '@headlessui/react'
 
 import { callAll } from '~/utils/misc'
-import type { TAny } from '~/utils/types/shared'
 
 interface Props {
   children: ReactNode
@@ -41,12 +40,12 @@ function Toggle({ children }: Props) {
   )
 }
 
-function ToggleOn({ children }: { children: TAny }) {
+function ToggleOn({ children }: { children: ReactNode }) {
   const { on } = useToggle()
   return on ? children : null
 }
 
-function ToggleOff({ children }: { children: TAny }) {
+function ToggleOff({ children }: { children: ReactNode }) {
   const { on } = useToggle()
   return on ? null : children
 }

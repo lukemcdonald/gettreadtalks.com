@@ -2,7 +2,6 @@ import { HeartIcon } from '@heroicons/react/24/outline'
 
 import { useAffiliateLinks } from '~/hooks/affiliate-links'
 import { COMPANY_NAV, CONTENT_NAV, RESOURCES_NAV, SOCIAL_NAV } from '~/utils/constants'
-import type { TAny } from '~/utils/types/shared'
 
 import WidgetAffiliateLink from './widget/widget-affiliate-link'
 import WidgetNavigation from './widget/widget-navigation'
@@ -29,7 +28,7 @@ function Footer({ siteTitle }: Props) {
             </div>
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <WidgetNavigation navigation={RESOURCES_NAV} title="Resources" />
-              <WidgetAffiliateLink className="mt-12 md:mt-0" data={randomLink as TAny} />
+              <WidgetAffiliateLink className="mt-12 md:mt-0" data={randomLink as any} />
             </div>
           </div>
         </div>

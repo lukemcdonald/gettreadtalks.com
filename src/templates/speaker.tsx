@@ -1,9 +1,8 @@
 import type { HeadFC, PageProps } from 'gatsby'
 import { graphql } from 'gatsby'
-
-import type { TAny } from '~/utils/types/shared'
-import { ClipList } from '~/components/clip'
 import { Image } from '~/components/image'
+import type { ImageProps } from '~/components/image'
+import { ClipList } from '~/components/clip'
 import { Intro } from '~/components/intro'
 import { Link } from '~/components/link'
 import { SEO } from '~/components/seo'
@@ -20,8 +19,8 @@ interface PageContext {
 type Props = PageProps<Queries.SingleSpeakerPageQuery, PageContext>
 
 function SingleSpeakerPage({ data, pageContext }: Props) {
-  const speaker = data?.speaker?.data
-  const speakers = data?.speakers
+  const speaker = { ...data.speaker?.data }
+  const speakers = { ...data.speakers }
 
   if (!speaker) {
     return null
@@ -35,7 +34,7 @@ function SingleSpeakerPage({ data, pageContext }: Props) {
             <Image
               className="m-auto mb-4 block w-24 rounded-full border-4 border-white shadow-lg"
               imgClassName="rounded-full"
-              image={speaker.avatar as TAny}
+              image={speaker.avatar as ImageProps['image']}
               alt={speaker.title || ''}
             />
           ) : null}
@@ -146,6 +145,39 @@ function SingleSpeakerPage({ data, pageContext }: Props) {
 export const Head: HeadFC<Queries.SingleSpeakerPageQuery> = ({ data, location }) => {
   const speaker = data?.speaker?.data
   const speakerImage = speaker?.banner?.localFiles?.[0]
+  const BASE_URL = process.env.BASE_URL ?? 'https://gettreadtalks.com'
+
+  const structuredData = speaker
+    ? [
+        {
+          '@context': 'https://schema.org',
+          '@type': 'Person',
+          name: speaker.title || 'Unknown Speaker',
+          jobTitle: speaker.role || 'Minister',
+          description:
+            speaker.description?.childMarkdownRemark?.excerpt ||
+            `${speaker.role || 'Minister'} delivering Christ-centered sermons.`,
+          url: `${BASE_URL}${location.pathname}`,
+          ...(speaker.website && { sameAs: [speaker.website] }),
+          ...(speaker.ministry && {
+            affiliation: {
+              '@type': 'Organization',
+              name: speaker.ministry,
+              ...(speaker.website && { url: speaker.website }),
+            },
+          }),
+          ...(speaker.banner?.localFiles?.[0] && {
+            image: speakerImage?.childImageSharp?.gatsbyImageData?.images?.fallback?.src,
+          }),
+          knowsAbout: ['Christianity', 'Bible', 'Theology', 'Preaching', 'Gospel', 'Faith'],
+          memberOf: {
+            '@type': 'Organization',
+            name: 'TREAD Talks',
+            url: BASE_URL,
+          },
+        },
+      ]
+    : []
 
   return (
     <SEO
@@ -153,6 +185,7 @@ export const Head: HeadFC<Queries.SingleSpeakerPageQuery> = ({ data, location })
       description={speaker?.description?.childMarkdownRemark?.excerpt}
       image={speakerImage?.childImageSharp?.gatsbyImageData?.images?.fallback?.src}
       location={location}
+      structuredData={structuredData}
     />
   )
 }

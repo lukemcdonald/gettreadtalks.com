@@ -1,20 +1,31 @@
 import type { PropsWithChildren } from 'react'
 import clsx from 'clsx'
 import { GatsbyImage } from 'gatsby-plugin-image'
+import type { IGatsbyImageData } from 'gatsby-plugin-image'
 
 import { Section } from '~/components/section'
 import type { SectionContentProps } from '~/components/section/section-content'
-import type { TAny } from '~/utils/types/shared'
 
 import IntroTagline from './intro-tagline'
 import IntroTitle from './intro-title'
+
+interface GatsbyImageFile {
+  childImageSharp?: {
+    gatsbyImageData: IGatsbyImageData
+  } | null
+  localFiles?: ReadonlyArray<{
+    childImageSharp?: {
+      gatsbyImageData: IGatsbyImageData
+    } | null
+  } | null> | null
+}
 
 interface Props {
   align?: SectionContentProps['align']
   bgGradient?: boolean
   className?: string
   fullscreen?: boolean
-  image?: TAny // ImageComponentProps
+  image?: GatsbyImageFile | null
 }
 
 function Intro({

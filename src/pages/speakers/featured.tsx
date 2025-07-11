@@ -39,8 +39,11 @@ function FeaturedSpeakersPage({ data }: Props) {
   )
 }
 
-export const Head: HeadFC = ({ location }) => {
-  return <SEO title="Featured Speakers" location={location} />
+export const Head: HeadFC<Queries.FeaturedSpeakersPageQuery> = ({ data, location }) => {
+  const speakerCount = data?.speakers?.totalCount || 0
+  const description = `Discover ${speakerCount} hand-picked faithful ministers of the Gospel. These featured speakers deliver Christ-centered sermons to elevate your spiritual heartbeat.`
+
+  return <SEO title="Featured Speakers" description={description} location={location} />
 }
 
 export default FeaturedSpeakersPage

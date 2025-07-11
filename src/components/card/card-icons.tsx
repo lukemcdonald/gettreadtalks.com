@@ -1,6 +1,5 @@
 import CardIcon from './card-icon'
 
-import type { TAny } from '~/utils/types/shared'
 import { sanitizeHTMLTag } from '~/utils/misc'
 
 interface Props {
@@ -11,7 +10,10 @@ interface Props {
 }
 
 function CardIcons({ as, className, context, icons = [] }: Props) {
-  const Tag: TAny = sanitizeHTMLTag(as, ['div', 'span'])
+  const Tag: keyof JSX.IntrinsicElements = sanitizeHTMLTag(as, [
+    'div',
+    'span',
+  ]) as keyof JSX.IntrinsicElements
   let filteredIcons = icons
 
   if (icons.includes('favorite') && icons.includes('featured')) {

@@ -1,12 +1,11 @@
 import clsx from 'clsx'
 
-import type { TAny } from '~/utils/types/shared'
 import type { SpeakerCardData } from './speaker-card'
 import SpeakerCard from './speaker-card'
 
 interface SpeakerListProps {
   className?: string
-  speakers: TAny
+  speakers: any
 }
 
 export interface SpeakerListItem {

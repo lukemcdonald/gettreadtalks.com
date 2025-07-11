@@ -1,12 +1,11 @@
 import { Card } from '~/components/card'
-import type { TAny } from '~/utils/types/shared'
 
 export interface ClipsCardBase {
   slug: string
 }
 
 export interface ClipsCardData {
-  speakers: TAny
+  speakers: any
   title: string
 }
 

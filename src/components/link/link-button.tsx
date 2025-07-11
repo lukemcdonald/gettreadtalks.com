@@ -1,6 +1,5 @@
 import type { ReactNode } from 'react'
 import clsx from 'clsx'
-import type { TAny } from '~/utils/types/shared'
 
 import Link from './link'
 interface Props {
@@ -9,7 +8,7 @@ interface Props {
   color?: keyof typeof colorClassMap
   size?: keyof typeof sizeClassMap
   to: string
-  [key: string]: TAny
+  [key: string]: unknown
 }
 
 const colorClassMap = {

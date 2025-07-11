@@ -3,11 +3,11 @@ import clsx from 'clsx'
 
 import { sanitizeHTMLTag } from '~/utils/misc'
 
-const allowedAligns = ['DEFAULT', 'wide', 'wide--center', 'full'] as const
+const _allowedAligns = ['DEFAULT', 'wide', 'wide--center', 'full'] as const
 const allowedTags = ['div', 'article', 'footer', 'header', 'section'] as const
 
 export interface SectionContentProps {
-  align?: (typeof allowedAligns)[number]
+  align?: (typeof _allowedAligns)[number]
   as?: (typeof allowedTags)[number]
   children: ReactNode
   className?: string

@@ -1,11 +1,10 @@
-import type { TAny } from '~/utils/types/shared'
 import { Card } from '~/components/card'
 import { useFavoriteTalk } from '~/hooks/favorite-talk'
 import { useFinishedTalk } from '~/hooks/finished-talk'
 
 interface TalkCardSpeakerData {
   data: {
-    avatar: TAny
+    avatar: any
     title: string
   }
 }

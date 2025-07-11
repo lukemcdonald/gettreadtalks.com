@@ -51,10 +51,10 @@ function SubscribeForm({ buttonText = 'Notify me', className, onSubmit, text, ti
         notify({
           title: data.result === 'error' ? 'Error!' : 'Success!',
           text: data.msg,
-          icon: ({ className, ...props }) => (
+          icon: ({ className: iconClassName, ...props }) => (
             <EmailIcon
               className={clsx(
-                className,
+                iconClassName,
                 data.result === 'error' ? 'text-status-error' : 'text-status-success',
               )}
               {...props}

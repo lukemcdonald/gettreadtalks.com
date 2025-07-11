@@ -1,13 +1,12 @@
 import type { SelectOption } from '../select/select'
-import type { TAny } from '~/utils/types/shared'
 import { Select } from '~/components/select'
 
 interface Topic {
   data: {
-    talks: []
-    title: string
-  }
-  fields: { slug: string }
+    talks: readonly any[] | null
+    title: string | null
+  } | null
+  fields: { slug: string | null } | null
   id: string
 }
 
@@ -15,7 +14,7 @@ interface Props {
   className?: string
   current: SelectOption
   label?: string
-  topics: TAny
+  topics: readonly Topic[]
 }
 
 const mainOptions = [

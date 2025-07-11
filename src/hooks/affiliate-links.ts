@@ -41,9 +41,9 @@ const AFFILIATE_LINKS_QUERY = graphql`
 function useAffiliateLinks() {
   const data = useStaticQuery<Queries.AffiliateLinksQuery>(AFFILIATE_LINKS_QUERY)
 
-  const links = data.links.nodes.map(({ id, data }) => ({
+  const links = data.links.nodes.map(({ id, data: linkData }) => ({
     id,
-    ...data,
+    ...linkData,
   }))
 
   const randomLink = links[Math.floor(Math.random() * links.length)]

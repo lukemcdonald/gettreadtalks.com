@@ -1,11 +1,9 @@
-import type { TAny, TUnknown } from './types/shared'
-
-interface CallBack<Params extends TAny[]> {
+interface CallBack<Params extends unknown[]> {
   (...args: Params): void
 }
 
 // prettier-ignore
-export const callAll = <Params extends TAny[]>(
+export const callAll = <Params extends unknown[]>(
 	...fns: Array<CallBack<Params> | undefined>
 ) => (...args: Params) => fns.forEach((fn) => typeof fn === 'function' && fn(...args))
 
@@ -17,7 +15,7 @@ export const trimText = (text: string, limit: number) => {
   return text
 }
 
-export function arrayShuffle<T extends TUnknown>(array: T): T[] {
+export function arrayShuffle<T>(array: T): T[] {
   if (!Array.isArray(array)) {
     return []
   }

@@ -1,12 +1,9 @@
-// Note: Changing this to a typscript file will cause the terminal to be in loop of sorts.
 import type { CreateNodeArgs, CreatePagesArgs, GatsbyNode } from 'gatsby'
 import { resolve } from 'path'
 import slugify from 'slugify'
 
-import type { TAny } from '~/utils/types/shared'
-
-// Support for tsconfig 'paths' option
-export const onCreateWebpackConfig = ({ actions }) => {
+// Add webpack alias for ~ path
+export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({ actions }) => {
   actions.setWebpackConfig({
     resolve: {
       alias: {
@@ -114,7 +111,7 @@ interface CreatePagePostData {
 async function createClipPages({ graphql, actions, reporter }: CreatePagesArgs) {
   const pageQuery: {
     data?: { clips: { nodes: CreatePagePostData[] } }
-    errors?: TAny
+    errors?: unknown
   } = await graphql(`
     query Clips {
       clips: allAirtableClip(filter: { data: { title: { ne: null } } }) {
@@ -148,7 +145,7 @@ async function createClipPages({ graphql, actions, reporter }: CreatePagesArgs) 
 async function createPagePages({ graphql, actions, reporter }: CreatePagesArgs) {
   const pageQuery: {
     data?: { pages: { nodes: CreatePagePostData[] } }
-    errors?: TAny
+    errors?: unknown
   } = await graphql(`
     query Pages {
       pages: allAirtablePage(filter: { data: { title: { ne: null } } }) {
@@ -182,7 +179,7 @@ async function createPagePages({ graphql, actions, reporter }: CreatePagesArgs) 
 async function createSeriesPages({ graphql, actions, reporter }: CreatePagesArgs) {
   const pageQuery: {
     data?: { series: { nodes: CreatePagePostData[] } }
-    errors?: TAny
+    errors?: unknown
   } = await graphql(`
     query Series {
       series: allAirtableSerie(filter: { data: { title: { ne: null } } }) {
@@ -216,7 +213,7 @@ async function createSeriesPages({ graphql, actions, reporter }: CreatePagesArgs
 async function createSpeakerPages({ graphql, actions, reporter }: CreatePagesArgs) {
   const pageQuery: {
     data?: { speakers: { nodes: CreatePagePostData[] } }
-    errors?: TAny
+    errors?: unknown
   } = await graphql(`
     query Speakers {
       speakers: allAirtableSpeaker(filter: { data: { title: { ne: null } } }) {
@@ -250,7 +247,7 @@ async function createSpeakerPages({ graphql, actions, reporter }: CreatePagesArg
 async function createTalkPages({ graphql, actions, reporter }: CreatePagesArgs) {
   const pageQuery: {
     data?: { talks: { nodes: CreatePagePostData[]; totalCount: number } }
-    errors?: TAny
+    errors?: unknown
   } = await graphql(`
     query Talks {
       talks: allAirtableTalk(filter: { data: { title: { ne: null } } }) {
@@ -302,7 +299,7 @@ async function createTalkPages({ graphql, actions, reporter }: CreatePagesArgs) 
 async function createTopicPages({ graphql, actions, reporter }: CreatePagesArgs) {
   const pageQuery: {
     data?: { topics: { nodes: CreatePagePostData[] } }
-    errors?: TAny
+    errors?: unknown
   } = await graphql(`
     query Topics {
       topics: allAirtableTopic(filter: { data: { title: { ne: null } } }) {

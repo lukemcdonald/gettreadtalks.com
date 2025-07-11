@@ -61,7 +61,14 @@ function SingleClipPage({ data }: Props) {
 }
 
 export const Head: HeadFC<Queries.SingleClipPageQuery> = ({ data, location }) => {
-  return <SEO title={data?.clip?.data?.title} location={location} />
+  const clip = data?.clip?.data
+  const speaker = clip?.speakers?.[0]?.data
+  const description =
+    clip && speaker
+      ? `Watch "${clip.title}" by ${speaker.title}. A compelling video clip from TREAD Talks.`
+      : 'Watch this compelling video clip from TREAD Talks.'
+
+  return <SEO title={clip?.title} description={description} location={location} />
 }
 
 export default SingleClipPage

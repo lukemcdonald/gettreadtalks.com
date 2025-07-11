@@ -237,7 +237,7 @@ const FIREBASE_AUTH_ERRORS = {
   unauthenticated: 'The request does not have valid authentication credentials for the operation.',
 }
 
-export function getAuthErrorMessage(error) {
-  const authMsg: string = FIREBASE_AUTH_ERRORS[error?.code]
+export function getAuthErrorMessage(error: any): string {
+  const authMsg: string = FIREBASE_AUTH_ERRORS[error?.code as keyof typeof FIREBASE_AUTH_ERRORS]
   return authMsg ?? getErrorMessage(error)
 }

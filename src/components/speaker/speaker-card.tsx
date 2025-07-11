@@ -28,7 +28,7 @@ function SpeakerCard({ speaker }: SpeakerCardProps) {
     const hasFavoriteSpeakers = user?.favoriteSpeakers?.includes(speaker.id)
 
     if (hasFavoriteSpeakers) {
-      setIcons((icons) => ['favorite', ...icons])
+      setIcons((prevIcons) => ['favorite', ...prevIcons])
     }
   }, [speaker, user])
 

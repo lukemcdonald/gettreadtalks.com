@@ -1,4 +1,3 @@
-// Todo: Typescript https://www.gatsbyjs.com/docs/how-to/local-development/graphql-typegen/
 import { useMemo } from 'react'
 import { graphql } from 'gatsby'
 import type { HeadFC, PageProps } from 'gatsby'
@@ -10,6 +9,7 @@ import { SpeakerList } from '~/components/speaker'
 import { TalkList, TalkNav } from '~/components/talk'
 import { TextCarousel } from '~/components/text-carousel'
 import { arrayShuffle } from '~/utils/misc'
+import { createWebPageSchema } from '~/utils/schema'
 
 type Props = PageProps<Queries.IndexPageQuery>
 
@@ -69,7 +69,23 @@ function IndexPage({ data }: Props) {
 }
 
 export const Head: HeadFC = ({ location }) => {
-  return <SEO title="Exercise Your Inner Man" location={location} />
+  const structuredData = [
+    createWebPageSchema(
+      'TREAD Talks - Exercise Your Inner Man',
+      'Workout your salvation with Christ-centered sermons to elevate your spiritual heartbeat. Listen to faithful ministers of the Gospel while you exercise.',
+      location.pathname,
+      ['exercise', 'workout', 'salvation'],
+    ),
+  ]
+
+  return (
+    <SEO
+      title="Exercise Your Inner Man"
+      description="Workout your salvation with Christ-centered sermons to elevate your spiritual heartbeat. Listen to faithful ministers of the Gospel while you exercise."
+      location={location}
+      structuredData={structuredData}
+    />
+  )
 }
 
 export default IndexPage

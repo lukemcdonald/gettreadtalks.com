@@ -36,8 +36,11 @@ function FeaturedTalksPage({ data }: Props) {
   )
 }
 
-export const Head: HeadFC = ({ location }) => {
-  return <SEO title="Featured Talks" location={location} />
+export const Head: HeadFC<Queries.FeaturedTalksPageQuery> = ({ data, location }) => {
+  const talkCount = data?.talks?.nodes?.length || 0
+  const description = `Listen to ${talkCount} hand-picked featured talks. These Christ-centered sermons will elevate your spiritual heartbeat during your workout.`
+
+  return <SEO title="Featured Talks" description={description} location={location} />
 }
 
 export default FeaturedTalksPage

@@ -26,7 +26,7 @@ const initialValues = {
 
 const validationSchema = Yup.object({
   authPassword: Yup.string().required('Enter your current password to update your password.'),
-  confirmPassword: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match.'),
+  confirmPassword: Yup.string().oneOf([Yup.ref('password')], 'Passwords must match.'),
   password: Yup.string().min(8, 'Must be at least eight characters long.'),
 })
 

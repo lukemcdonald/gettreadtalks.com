@@ -7,12 +7,11 @@ import { SEO } from '~/components/seo'
 import { Section } from '~/components/section'
 import { SpeakerFilter, SpeakerList } from '~/components/speaker'
 import { TextCarousel } from '~/components/text-carousel'
-import type { SpeakerListItem } from '~/components/speaker/speaker-list'
 
 type Props = PageProps<Queries.SpeakersPageQuery>
 
-function getSortedSpeakersMap(speakers) {
-  const speakersMap = new Map<string, SpeakerListItem[]>()
+function getSortedSpeakersMap(speakers: Props['data']['speakers']['nodes']) {
+  const speakersMap = new Map<string, typeof speakers>()
 
   for (const speaker of speakers) {
     // get first letter of speaker's last name
@@ -26,8 +25,8 @@ function getSortedSpeakersMap(speakers) {
     if (!speakersMap.has(letter)) {
       speakersMap.set(letter, [speaker])
     } else {
-      const speakers = speakersMap.get(letter) || []
-      speakersMap.set(letter, [...speakers, speaker])
+      const existingSpeakers = speakersMap.get(letter) || []
+      speakersMap.set(letter, [...existingSpeakers, speaker])
     }
   }
 
@@ -35,11 +34,11 @@ function getSortedSpeakersMap(speakers) {
   return new Map([...speakersMap.entries()].sort())
 }
 
-function getSpeakersSectionLabel(speakers: SpeakerListItem[]) {
+function getSpeakersSectionLabel(speakers: Props['data']['speakers']['nodes']) {
   const firstSpeaker = speakers[0]
   const lastSpeaker = speakers.at(-1)
 
-  if (!firstSpeaker || !lastSpeaker) {
+  if (!firstSpeaker?.data || !lastSpeaker?.data) {
     return ''
   }
 
@@ -67,7 +66,13 @@ function SpeakersPage({ data }: Props) {
       <Section>
         <Section.Sidebar>
           <Page.Title>
-            <SpeakerFilter speakers={speakers.nodes} />
+            <SpeakerFilter
+              speakers={speakers.nodes}
+              current={{
+                value: '/speakers/',
+                label: 'All Speakers',
+              }}
+            />
           </Page.Title>
 
           <div className="prose mt-2">
@@ -79,9 +84,9 @@ function SpeakersPage({ data }: Props) {
         </Section.Sidebar>
 
         <Section.Content align="wide">
-          {Array.from(speakersMap).map(([letter, speakers]) => {
+          {Array.from(speakersMap).map(([letter, groupSpeakers]) => {
             const key = `speakers-${letter}`
-            const speakersSectionLabel = getSpeakersSectionLabel(speakers)
+            const speakersSectionLabel = getSpeakersSectionLabel(groupSpeakers)
 
             return (
               <Fragment key={key}>
@@ -95,7 +100,7 @@ function SpeakersPage({ data }: Props) {
                     {speakersSectionLabel}
                   </span>
                 </h2>
-                <SpeakerList speakers={speakers} />
+                <SpeakerList speakers={groupSpeakers} />
               </Fragment>
             )
           })}
@@ -105,8 +110,11 @@ function SpeakersPage({ data }: Props) {
   )
 }
 
-export const Head: HeadFC = ({ location }) => {
-  return <SEO title="Speakers" location={location} />
+export const Head: HeadFC<Queries.SpeakersPageQuery> = ({ data, location }) => {
+  const speakerCount = data?.speakers?.totalCount || 0
+  const description = `Listen to ${speakerCount} faithful ambassadors of Christ and be blessed. Browse our complete directory of ministers delivering Christ-centered sermons.`
+
+  return <SEO title="Speakers" description={description} location={location} />
 }
 
 export default SpeakersPage
