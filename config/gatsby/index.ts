@@ -1,5 +1,6 @@
 export { default as gatsbyPluginFeed } from './gatsby-plugin-feed'
 export { default as gatsbyPluginReactSvg } from './gatsby-plugin-react-svg'
+export { default as gatsbyPluginRobotsTxt } from './gatsby-plugin-robots-txt'
 export { default as gatsbyPluginSitemap } from './gatsby-plugin-sitemap'
 export { default as gatsbySourceAirtable } from './gatsby-source-airtable'
 export { default as gatsbySourceFilesystem } from './gatsby-source-filesystem'
