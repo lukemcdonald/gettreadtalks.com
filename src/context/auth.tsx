@@ -25,6 +25,7 @@ import { useFirebase } from '~/context/firebase'
 import { useMemoObject } from '~/hooks/memo-object'
 import { useNotification } from '~/context/notifications'
 import { getAuthErrorMessage } from '~/utils/auth-error'
+import { setSentryUser } from '../../sentry.config'
 
 export interface AuthProfile {
   email: string
@@ -76,15 +77,23 @@ function AuthProvider(props: AuthProviderProps) {
     isIdle,
     isLoading,
     isSuccess,
-    setData,
+    setData: setUser,
     status,
   } = useAsync<AuthUser>()
 
+  const updateUserContext = useCallback(
+    (user: AuthUser) => {
+      setUser(user)
+      setSentryUser(user)
+    },
+    [setUser],
+  )
+
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      setData(user)
+      updateUserContext(user)
     })
-  }, [auth, setData])
+  }, [auth, updateUserContext])
 
   const updateUsersCollection = useCallback(
     (id: string, updates: Partial<DocumentData>, args: SetOptions = { merge: true }) => {
@@ -102,20 +111,20 @@ function AuthProvider(props: AuthProviderProps) {
     async (form: AuthCredentials) => {
       try {
         const userCredential = await signInWithEmailAndPassword(auth, form.email, form.password)
-        setData(userCredential.user)
+        updateUserContext(userCredential.user)
         navigate('/account/')
       } catch (err) {
         throw new Error(getAuthErrorMessage(err))
       }
     },
-    [auth, setData],
+    [auth, updateUserContext],
   )
 
   const register = useCallback(
     async (form: AuthCredentials) => {
       try {
         const userCredential = await createUserWithEmailAndPassword(auth, form.email, form.password)
-        setData(userCredential.user)
+        updateUserContext(userCredential.user)
         updateUsersCollection(userCredential.user.uid, {
           creationTime: new Date(),
           favoriteTalks: [],
@@ -126,24 +135,24 @@ function AuthProvider(props: AuthProviderProps) {
         throw new Error(getAuthErrorMessage(err))
       }
     },
-    [auth, setData, updateUsersCollection],
+    [auth, updateUserContext, updateUsersCollection],
   )
 
   const logout = useCallback(async () => {
     try {
       await signOut(auth)
-      setData(null)
+      updateUserContext(null)
       navigate('/login/')
     } catch (err) {
       throw new Error(getAuthErrorMessage(err))
     }
-  }, [auth, setData])
+  }, [auth, updateUserContext])
 
   const resetPassword = useCallback(
     async (form: Pick<AuthCredentials, 'email'>) => {
       try {
         await sendPasswordResetEmail(auth, form.email)
-        setData(null)
+        updateUserContext(null)
         notify({
           title: 'Check your email',
           text: 'An email to reset your password has been sent.',
@@ -154,7 +163,7 @@ function AuthProvider(props: AuthProviderProps) {
         throw new Error(getAuthErrorMessage(err))
       }
     },
-    [auth, notify, setData],
+    [auth, notify, updateUserContext],
   )
 
   const reauthenticate = useCallback(
@@ -194,7 +203,7 @@ function AuthProvider(props: AuthProviderProps) {
         await deleteDoc(docRef)
         await currentUser?.delete()
 
-        setData(null)
+        updateUserContext(null)
         notify({
           title: 'Account updated',
           text: 'Your account has successfully been unregisterd.',
@@ -209,7 +218,7 @@ function AuthProvider(props: AuthProviderProps) {
         })
       }
     },
-    [auth, db, notify, reauthenticate, setData],
+    [auth, db, notify, reauthenticate, updateUserContext],
   )
 
   const updateSettings = useCallback(
@@ -228,7 +237,7 @@ function AuthProvider(props: AuthProviderProps) {
 
         if (updates.email) {
           await updateEmail(currentUser, updates.email)
-          setData(profile)
+          updateUserContext(profile)
           notify({
             title: 'Email updated',
             text: 'Your email address has been updated.',
@@ -238,7 +247,7 @@ function AuthProvider(props: AuthProviderProps) {
 
         if (updates.password) {
           await updatePassword(currentUser, updates.password)
-          setData(profile)
+          updateUserContext(profile)
           notify({
             title: 'Password updated',
             text: 'Your password has been updated.',
@@ -253,7 +262,7 @@ function AuthProvider(props: AuthProviderProps) {
         })
       }
     },
-    [auth, notify, profile, reauthenticate, setData],
+    [auth, notify, profile, reauthenticate, updateUserContext],
   )
 
   const value = useMemoObject<AuthProviderValue>({
