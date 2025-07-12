@@ -2,6 +2,7 @@ import type { GatsbyConfig } from 'gatsby'
 import {
   gatsbyPluginFeed,
   gatsbyPluginReactSvg,
+  gatsbyPluginRobotsTxt,
   gatsbyPluginSitemap,
   gatsbySourceAirtable,
   gatsbySourceFilesystem,
@@ -28,6 +29,7 @@ const config: GatsbyConfig = {
     'gatsby-transformer-sharp',
     gatsbyPluginFeed,
     gatsbyPluginReactSvg,
+    gatsbyPluginRobotsTxt,
     gatsbyPluginSitemap,
     gatsbySourceAirtable,
     gatsbySourceFilesystem,
