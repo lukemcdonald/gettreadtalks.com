@@ -5,8 +5,6 @@ const COMMIT_SHA = process.env.GATSBY_COMMIT_SHA
 const IS_PROD = process.env.NODE_ENV === 'production'
 const NODE_ENV = process.env.NODE_ENV
 const SENTRY_DSN = process.env.GATSBY_SENTRY_DSN
-console.log('GATSBY_SENTRY_DSN:', process.env.GATSBY_SENTRY_DSN)
-console.log('SENTRY_DSN:', SENTRY_DSN)
 
 Sentry.init({
   debug: !IS_PROD,
@@ -35,8 +33,6 @@ export function captureException(error: unknown, context?: Record<string, any>) 
 
   Sentry.withScope((scope) => {
     const { fingerprint, level, tags, transactionName, user, ...extras } = context ?? {}
-
-    console.log('context', context)
 
     if (fingerprint) {
       scope.setFingerprint(fingerprint)
