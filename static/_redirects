@@ -2,7 +2,7 @@
 
 https://treadtalks.netlify.com/*   https://gettreadtalks.com/:splat 301!
 
-/sitemap.xml          /sitemap.xml              200
+/sitemap.xml          /sitemap-index.xml        200
 
 /archive              /talks/                   301
 /featured             /talks/featured/          301
